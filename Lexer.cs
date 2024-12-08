@@ -127,11 +127,16 @@ namespace Heir
                 default:
                     {
                         var current = (char)_current!; // kill me
-                        if (current == '\n')
+                        if (char.IsLetter(current))
+                        {
+                            return ReadIdentifier();
+                        }
+                        else if (current == '\n')
                         {
                             SkipNewLines();
                             return null;
-                        } else if (char.IsWhiteSpace(current))
+                        }
+                        else if (char.IsWhiteSpace(current))
                         {
                             SkipWhitespace();
                             return null;
@@ -143,19 +148,39 @@ namespace Heir
             }
         }
 
-        private void SkipWhitespace()
+        private Token ReadIdentifier()
         {
-            while (char.IsWhiteSpace((char)_current!)) // fuck you C#
+            var location = _location;
+            while (char.IsLetterOrDigit((char)_current!)) // fuck you C#
                 Advance();
+
+            return TokenFactory.Identifier(_currentLexeme, location);
         }
 
-        private void SkipNewLines()
+        private Token SkipWhitespace()
         {
+            var location = _location;
+            while (char.IsWhiteSpace((char)_current!)) // fuck you C#
+                Advance();
+
+            var lexeme = _currentLexeme;
+            _currentLexeme = "";
+            return TokenFactory.Trivia(lexeme, location, TriviaKind.Whitespace);
+        }
+
+        private Token SkipNewLines()
+        {
+            var location = _location;
             while (_current == '\n')
             {
+                _position++; // Advance() but w/o adding to _column for performance reasons
                 _line++;
-                _column = 0;
             }
+
+            var lexeme = _currentLexeme;
+            _currentLexeme = "";
+            _column = 0;
+            return TokenFactory.Trivia(lexeme, location, TriviaKind.Newlines);
         }
 
         private bool Match(char character)

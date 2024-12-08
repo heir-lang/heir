@@ -2,6 +2,16 @@
 {
     public static class TokenFactory
     {
+        public static Token Trivia(string text, Location location, TriviaKind kind)
+        {
+            return new TriviaToken(text, location, kind);
+        }
+
+        public static Token Identifier(string text, Location location)
+        {
+            return new Token(SyntaxKind.Identifier, text, null, location);
+        }
+
         public static Token Operator(SyntaxKind kind, string text, Location location)
         {
             return new Token(kind, text, null, location);

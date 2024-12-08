@@ -2,7 +2,8 @@
 {
     public enum SyntaxKind
     {
-        EOF, 
+        EOF,
+        Trivia,
 
         LParen,
         RParen,
