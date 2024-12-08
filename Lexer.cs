@@ -63,6 +63,101 @@ namespace Heir
 
                         return token;
                     }
+                case '-':
+                    {
+                        var location = _location;
+                        var token = TokenFactory.Operator(SyntaxKind.Minus, _current.ToString()!, location);
+                        Advance();
+
+                        if (_current == '-')
+                        {
+                            var newToken = TokenFactory.Operator(SyntaxKind.MinusMinus, _current.ToString()!, location);
+                            Advance();
+                            return newToken;
+                        }
+                        else if (_current == '=')
+                        {
+                            var newToken = TokenFactory.Operator(SyntaxKind.MinusEqual, _current.ToString()!, location);
+                            Advance();
+                            return newToken;
+                        }
+
+                        return token;
+                    }
+                case '*':
+                    {
+                        var location = _location;
+                        var token = TokenFactory.Operator(SyntaxKind.Star, _current.ToString()!, location);
+                        Advance();
+
+                        if (_current == '=')
+                        {
+                            var newToken = TokenFactory.Operator(SyntaxKind.StarEqual, _current.ToString()!, location);
+                            Advance();
+                            return newToken;
+                        }
+
+                        return token;
+                    }
+                case '/':
+                    {
+                        var location = _location;
+                        var token = TokenFactory.Operator(SyntaxKind.Slash, _current.ToString()!, location);
+                        Advance();
+
+                        if (_current == '/')
+                        {
+                            var newToken = TokenFactory.Operator(SyntaxKind.SlashSlash, _current.ToString()!, location);
+                            Advance();
+
+                            if (_current == '=')
+                            {
+                                var finalToken = TokenFactory.Operator(SyntaxKind.SlashSlashEqual, _current.ToString()!, location);
+                                Advance();
+                                return finalToken;
+                            }
+
+                            return newToken;
+                        }
+                        else if (_current == '=')
+                        {
+                            var newToken = TokenFactory.Operator(SyntaxKind.SlashEqual, _current.ToString()!, location);
+                            Advance();
+                            return newToken;
+                        }
+
+                        return token;
+                    }
+                case '%':
+                    {
+                        var location = _location;
+                        var token = TokenFactory.Operator(SyntaxKind.Percent, _current.ToString()!, location);
+                        Advance();
+
+                        if (_current == '=')
+                        {
+                            var newToken = TokenFactory.Operator(SyntaxKind.PercentEqual, _current.ToString()!, location);
+                            Advance();
+                            return newToken;
+                        }
+
+                        return token;
+                    }
+                case '^':
+                    {
+                        var location = _location;
+                        var token = TokenFactory.Operator(SyntaxKind.Carat, _current.ToString()!, location);
+                        Advance();
+
+                        if (_current == '=')
+                        {
+                            var newToken = TokenFactory.Operator(SyntaxKind.CaratEqual, _current.ToString()!, location);
+                            Advance();
+                            return newToken;
+                        }
+
+                        return token;
+                    }
 
                 default:
                     {
