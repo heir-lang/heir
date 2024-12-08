@@ -6,6 +6,12 @@ namespace Heir
     {
         public string Source { get; } = source;
 
+        private readonly string _fileName = fileName;
+        private readonly List<Token> _tokens = [];
+        private string _currentLexeme = "";
+        private int _position = 0;
+        private int _line = 1;
+        private int _column = 0;
         private Location _location
         {
             get => new Location(_fileName, _line, _column);
@@ -18,13 +24,6 @@ namespace Heir
         {
             get => Peek(0);
         }
-
-        private readonly string _fileName = fileName;
-        private readonly List<Token> _tokens = [];
-        private string _currentLexeme = "";
-        private int _position = 0;
-        private int _line = 1;
-        private int _column = 0;
 
         public TokenStream GetTokens()
         {
@@ -42,13 +41,15 @@ namespace Heir
 
         private Token? Lex()
         {
-            switch (_current)
+            var location = _location;
+            var current = (char)_current!;
+            if ((object)current == null) return null;
+
+            Advance();
+            switch (current)
             {
                 case '+':
                     {
-                        var location = _location;
-                        Advance();
-
                         var token = TokenFactory.Operator(SyntaxKind.Plus, _currentLexeme, location);
                         if (Match('+'))
                             return TokenFactory.Operator(SyntaxKind.PlusPlus, _currentLexeme, location);
@@ -59,9 +60,6 @@ namespace Heir
                     }
                 case '-':
                     {
-                        var location = _location;
-                        Advance();
-
                         var token = TokenFactory.Operator(SyntaxKind.Minus, _currentLexeme, location);
                         if (Match('-'))
                             return TokenFactory.Operator(SyntaxKind.MinusMinus, _currentLexeme, location);
@@ -72,9 +70,6 @@ namespace Heir
                     }
                 case '*':
                     {
-                        var location = _location;
-                        Advance();
-
                         var token = TokenFactory.Operator(SyntaxKind.Star, _currentLexeme, location);
                         if (Match('='))
                             return TokenFactory.Operator(SyntaxKind.StarEquals, _currentLexeme, location);
@@ -83,9 +78,6 @@ namespace Heir
                     }
                 case '/':
                     {
-                        var location = _location;
-                        Advance();
-
                         var token = TokenFactory.Operator(SyntaxKind.Slash, _currentLexeme, location);
                         if (Match('/'))
                         {
@@ -102,9 +94,6 @@ namespace Heir
                     }
                 case '%':
                     {
-                        var location = _location;
-                        Advance();
-
                         var token = TokenFactory.Operator(SyntaxKind.Percent, _current.ToString()!, location);
                         if (Match('='))
                             return TokenFactory.Operator(SyntaxKind.PercentEquals, _currentLexeme, location);
@@ -113,9 +102,6 @@ namespace Heir
                     }
                 case '^':
                     {
-                        var location = _location;
-                        Advance();
-
                         var token = TokenFactory.Operator(SyntaxKind.Carat, _currentLexeme, location);
                         if (Match('='))
                             return TokenFactory.Operator(SyntaxKind.CaratEquals, _currentLexeme, location);
@@ -123,9 +109,37 @@ namespace Heir
                         return token;
                     }
 
+                case '(':
+                    return TokenFactory.Operator(SyntaxKind.LParen, _currentLexeme, location);
+                case ')':
+                    return TokenFactory.Operator(SyntaxKind.RParen, _currentLexeme, location);
+                case '[':
+                    return TokenFactory.Operator(SyntaxKind.LBracket, _currentLexeme, location);
+                case ']':
+                    return TokenFactory.Operator(SyntaxKind.RBracket, _currentLexeme, location);
+                case '{':
+                    return TokenFactory.Operator(SyntaxKind.LBrace, _currentLexeme, location);
+                case '}':
+                    return TokenFactory.Operator(SyntaxKind.RBrace, _currentLexeme, location);
+                case '<':
+                    {
+                        var token = TokenFactory.Operator(SyntaxKind.LT, _currentLexeme, location);
+                        if (Match('='))
+                            return TokenFactory.Operator(SyntaxKind.LTE, _currentLexeme, location);
+
+                        return token;
+                    }
+                case '>':
+                    {
+                        var token = TokenFactory.Operator(SyntaxKind.GT, _currentLexeme, location);
+                        if (Match('='))
+                            return TokenFactory.Operator(SyntaxKind.GTE, _currentLexeme, location);
+
+                        return token;
+                    }
+
                 default:
                     {
-                        var current = (char)_current!; // kill me
                         if (char.IsLetter(current))
                             return ReadIdentifier();
                         else if (current == ';')
@@ -156,9 +170,7 @@ namespace Heir
             while (char.IsWhiteSpace((char)_current!)) // fuck you C#
                 Advance();
 
-            var lexeme = _currentLexeme;
-            _currentLexeme = "";
-            return TokenFactory.Trivia(lexeme, location, TriviaKind.Whitespace);
+            return TokenFactory.Trivia(_currentLexeme, location, TriviaKind.Whitespace);
         }
 
         private Token SkipNewLines()
@@ -182,7 +194,6 @@ namespace Heir
 
             return TokenFactory.Trivia(_currentLexeme, location, TriviaKind.Semicolons);
         }
-
 
         private bool Match(char character)
         {
