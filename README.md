@@ -23,6 +23,7 @@ toy language part 9999999
   [x] keywords
     [x] `let`
     [x] `mut`
+    [ ] primitive type keywords
   [x] identifiers
   [x] brackets (`()`, `[]`, `{}`)
   [x] operators
