@@ -183,6 +183,8 @@ namespace Heir
                     {
                         if (char.IsLetter(current))
                             return ReadIdentifier();
+                        else if (char.IsDigit(current))
+                            return ReadNumber();
                         else if (current == ';')
                             return SkipSemicolons();
                         else if (current == '\n')
@@ -194,6 +196,24 @@ namespace Heir
                         return null;
                     }
             }
+        }
+
+        private Token ReadNumber()
+        {
+            var location = _location;
+            var decimalUsed = false;
+            while (char.IsDigit((char)_current!) || _current == '.') // fuck you C#
+            {
+                if (_current == '.')
+                    decimalUsed = true;
+
+                Advance();
+            }
+
+            if (decimalUsed)
+                return TokenFactory.FloatLiteral(_currentLexeme, location);
+            else
+                return TokenFactory.IntLiteral(_currentLexeme, location);
         }
 
         private Token ReadIdentifier()
