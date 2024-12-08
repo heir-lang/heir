@@ -17,7 +17,7 @@ toy language part 9999999
       [x] hexadecimal
     [x] float
     [x] string
-    [ ] character
+    [x] character
     [x] boolean
     [x] none
   [x] keywords
@@ -26,7 +26,7 @@ toy language part 9999999
   [x] identifiers
   [x] brackets (`()`, `[]`, `{}`)
   [x] operators
-    [ ] comma
+    [x] comma
     [x] equals
     [x] dot
     [x] colon

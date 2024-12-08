@@ -27,6 +27,11 @@
             return new Token(SyntaxKind.StringLiteral, text.Substring(1, text.Length - 2), text, location);
         }
 
+        public static Token CharLiteral(string text, Location location)
+        {
+            return new Token(SyntaxKind.CharLiteral, text.Substring(1, text.Length - 2), text, location);
+        }
+
         public static Token IntLiteral(string text, Location location, int radix = 10)
         {
             return new Token(SyntaxKind.IntLiteral, text, Convert.ToInt64(radix == 10 ? text : text.Substring(2), radix), location);

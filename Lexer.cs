@@ -30,7 +30,12 @@ namespace Heir
             while (!_isFinished)
             {
                 var token = Lex();
-                if (token == null) continue;
+                if (token == null)
+                {
+                    // unexpected character (_current)
+                    continue;
+                }
+
                 _currentLexeme = "";
                 _tokens.Add(token);
             }
@@ -182,6 +187,8 @@ namespace Heir
                     }
                 case '"':
                     return ReadString(location);
+                case '\'':
+                    return ReadCharacter(location);
 
                 case '#':
                     {
@@ -221,9 +228,21 @@ namespace Heir
             }
         }
 
+        private Token ReadCharacter(Location location)
+        {
+            Advance();
+            if (_current != '\'')
+            {
+                // unexpected character, expected '
+            }
+            Advance();
+
+            return TokenFactory.CharLiteral(_currentLexeme, location);
+        }
+
         private Token ReadString(Location location)
         {
-            while (!_isFinished && _current != '"') // fuck you C#
+            while (!_isFinished && _current != '"')
                 Advance();
 
             Advance();
