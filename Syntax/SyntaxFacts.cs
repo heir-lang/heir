@@ -46,6 +46,13 @@
 
     internal static class SyntaxFacts
     {
+        public static readonly Dictionary<char, int> RadixCodes = new Dictionary<char, int>
+        {
+            { 'b', 2 },
+            { 'o', 8 },
+            { 'x', 16 }
+        };
+
         public static readonly BiDictionary<string, SyntaxKind> OperatorMap = new(new Dictionary<string, SyntaxKind>
         {
             { "+", SyntaxKind.Plus },

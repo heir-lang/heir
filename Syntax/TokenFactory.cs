@@ -27,9 +27,9 @@
             return new Token(SyntaxKind.StringLiteral, text, text, location);
         }
 
-        public static Token IntLiteral(string text, Location location)
+        public static Token IntLiteral(string text, Location location, int radix = 10)
         {
-            return new Token(SyntaxKind.IntLiteral, text, Convert.ToInt64(text), location);
+            return new Token(SyntaxKind.IntLiteral, text, Convert.ToInt64(radix == 10 ? text : text.Substring(2), radix), location);
         }
 
         public static Token FloatLiteral(string text, Location location)

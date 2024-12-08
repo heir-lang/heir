@@ -201,6 +201,16 @@ namespace Heir
         private Token ReadNumber()
         {
             var location = _location;
+            if (Peek(-1) == '0')
+            {
+                char code = (char)_current!;
+                if (SyntaxFacts.RadixCodes.ContainsKey(code))
+                {
+                    int radix = SyntaxFacts.RadixCodes[code];
+                    return ReadNonDecimalNumber(location, radix);
+                }
+            }
+
             var decimalUsed = false;
             while (char.IsDigit((char)_current!) || _current == '.') // fuck you C#
             {
@@ -214,6 +224,15 @@ namespace Heir
                 return TokenFactory.FloatLiteral(_currentLexeme, location);
             else
                 return TokenFactory.IntLiteral(_currentLexeme, location);
+        }
+
+        private Token ReadNonDecimalNumber(Location location, int radix)
+        {
+            Advance();
+            while (char.IsLetterOrDigit((char)_current!)) // fuck you C#
+                Advance();
+
+            return TokenFactory.IntLiteral(_currentLexeme, location, radix);
         }
 
         private Token ReadIdentifier()
@@ -278,7 +297,7 @@ namespace Heir
             _column++;
         }
 
-        private char? Peek(int offset)
+        private char? Peek(int offset = 1)
         {
             return Source.ToCharArray().ElementAtOrDefault(_position + offset);
         }
