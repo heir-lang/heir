@@ -4,7 +4,7 @@
     {
         public static Token Operator(SyntaxKind kind, string text, Location location)
         {
-            return new Token(kind, text, null!, location);
+            return new Token(kind, text, null, location);
         }
 
         public static Token BoolLiteral(bool value, Location location)

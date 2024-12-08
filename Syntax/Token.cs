@@ -1,6 +1,6 @@
 ﻿namespace Heir.Syntax
 {
-    public class Token(SyntaxKind syntax, string text, object value, Location location)
+    public class Token(SyntaxKind syntax, string text, object? value, Location location)
     {
         public SyntaxKind Kind { get; } = syntax;
         public string Text { get; } = text;
@@ -10,6 +10,11 @@
         public bool IsKind(SyntaxKind kind)
         {
             return Kind == kind;
+        }
+
+        public override string ToString()
+        {
+            return $"{Kind}: {(Value == null ? "null" : Value)} ({Text})    -> {Location.ToString()}";
         }
     }
 }

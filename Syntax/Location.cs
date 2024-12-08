@@ -1,9 +1,14 @@
 ﻿namespace Heir.Syntax
 {
-    public class Location(string fileName, uint line, uint column)
+    public class Location(string fileName, int line, int column)
     {
         string FileName { get; } = fileName;
-        uint Line { get; } = line;
-        uint Column { get; } = column;
+        int Line { get; } = line;
+        int Column { get; } = column;
+
+        public override string ToString()
+        {
+            return $"{FileName}:{Line}:{Column}";
+        }
     }
 }

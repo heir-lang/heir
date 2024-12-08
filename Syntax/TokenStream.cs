@@ -1,4 +1,6 @@
-﻿namespace Heir.Syntax
+﻿using System.Collections;
+
+namespace Heir.Syntax
 {
     internal class EndOfTokenStreamException : Exception
     {
@@ -16,7 +18,7 @@
         }
     }
 
-    internal class TokenStream(Token[] tokens)
+    public class TokenStream(Token[] tokens) : IEnumerable<Token>
     {
         public Token[] Tokens { get; } = (Token[])tokens.Clone();
         private int _index = 0;
@@ -64,7 +66,17 @@
 
         public Token? Peek(int offset)
         {
-            return Tokens.ElementAt(_index + offset);
+            return Tokens.ElementAtOrDefault(_index + offset);
+        }
+
+        public IEnumerator<Token> GetEnumerator()
+        {
+            return ((IEnumerable<Token>)Tokens).GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return Tokens.GetEnumerator();
         }
     }
 }

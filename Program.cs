@@ -1,2 +1,7 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using Heir;
+
+var lexer = new Lexer("++ += +");
+var tokenStream = lexer.GetTokens();
+
+foreach (var token in tokenStream)
+    Console.WriteLine(token);

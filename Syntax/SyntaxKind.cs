@@ -2,6 +2,8 @@
 {
     public enum SyntaxKind
     {
+        EOF, 
+
         LParen,
         RParen,
         LBracket,
