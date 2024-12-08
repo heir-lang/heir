@@ -24,6 +24,7 @@
         Dot,
         Colon,
         ColonColon,
+        Comma,
         
         Plus,
         PlusEquals,
@@ -46,6 +47,7 @@
         IntLiteral,
         FloatLiteral,
         StringLiteral,
+        CharLiteral,
         BoolLiteral,
         NoneLiteral,
 

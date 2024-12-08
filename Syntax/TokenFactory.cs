@@ -24,7 +24,7 @@
 
         public static Token StringLiteral(string text, Location location)
         {
-            return new Token(SyntaxKind.StringLiteral, text, text, location);
+            return new Token(SyntaxKind.StringLiteral, text.Substring(1, text.Length - 2), text, location);
         }
 
         public static Token IntLiteral(string text, Location location, int radix = 10)

@@ -149,6 +149,8 @@ namespace Heir
                     }
                 case '.':
                     return TokenFactory.Operator(SyntaxKind.Dot, _currentLexeme, location);
+                case ',':
+                    return TokenFactory.Operator(SyntaxKind.Comma, _currentLexeme, location);
 
                 case '(':
                     return TokenFactory.Operator(SyntaxKind.LParen, _currentLexeme, location);
@@ -178,6 +180,8 @@ namespace Heir
 
                         return token;
                     }
+                case '"':
+                    return ReadString(location);
 
                 case '#':
                     {
@@ -201,9 +205,9 @@ namespace Heir
                                 return TokenFactory.Keyword(keywordSyntax, location);
                             }
 
-                            return ReadIdentifier();
+                            return ReadIdentifier(location);
                         } else if (char.IsDigit(current))
-                            return ReadNumber();
+                            return ReadNumber(location);
                         else if (current == ';')
                             return SkipSemicolons();
                         else if (current == '\n')
@@ -217,9 +221,17 @@ namespace Heir
             }
         }
 
-        private Token ReadNumber()
+        private Token ReadString(Location location)
         {
-            var location = _location;
+            while (!_isFinished && _current != '"') // fuck you C#
+                Advance();
+
+            Advance();
+            return TokenFactory.StringLiteral(_currentLexeme, location);
+        }
+
+        private Token ReadNumber(Location location)
+        {
             if (Peek(-1) == '0')
             {
                 char code = (char)_current!;
@@ -254,9 +266,8 @@ namespace Heir
             return TokenFactory.IntLiteral(_currentLexeme, location, radix);
         }
 
-        private Token ReadIdentifier()
+        private Token ReadIdentifier(Location location)
         {
-            var location = _location;
             while (char.IsLetterOrDigit((char)_current!)) // fuck you C#
                 Advance();
 

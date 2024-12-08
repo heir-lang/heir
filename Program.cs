@@ -1,4 +1,4 @@
-﻿var lexer = new Heir.Lexer("none; non; tru; fals; false; true");
+﻿var lexer = new Heir.Lexer("\"abcd\"");
 var tokenStream = lexer.GetTokens(true);
 
 Console.WriteLine(tokenStream);
