@@ -9,14 +9,14 @@ toy language part 9999999
     [x] newlines
     [x] semicolons
     [x] comment
-    [x] multi-line comment
+    [] multi-line comment
   [x] literals
     [x] integer
       [x] binary
       [x] octal
       [x] hexadecimal
     [x] float
-    [x] string
+    [ ] string
     [x] boolean
     [x] none
   [x] keywords
@@ -25,6 +25,9 @@ toy language part 9999999
   [x] identifiers
   [x] brackets (`()`, `[]`, `{}`)
   [x] operators
+    [ ] comma
+    [ ] double quote
+    [ ] single quote
     [x] equals
     [x] dot
     [x] colon

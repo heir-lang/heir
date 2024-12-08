@@ -35,11 +35,8 @@ namespace Heir
                 _tokens.Add(token);
             }
 
-            if (noTrivia)
-                _tokens = _tokens.Where(token => !token.IsKind(SyntaxKind.Trivia)).ToList();
-
             _tokens.Add(TokenFactory.Trivia("", _location, TriviaKind.EOF));
-            return new TokenStream(_tokens.ToArray());
+            return new TokenStream(_tokens.Where(token => noTrivia ? !token.IsKind(SyntaxKind.Trivia) : true).ToArray());
         }
 
         private Token? Lex()
@@ -308,14 +305,16 @@ namespace Heir
 
         private bool MatchLexeme(string lexeme)
         {
-            var characters = lexeme.ToCharArray();
-            var isMatch = _current == characters.First();
+            var characters = lexeme.ToCharArray().ToList();
+            var isMatch = Peek(-1) == characters.First();
+            if (!isMatch) return false;
 
-            foreach (var character in characters)
+            foreach (var character in characters.Skip(1))
             {
-                isMatch = isMatch || _current == character;
-                if (isMatch)
-                    Advance();
+                if (_current != character)
+                    return false;
+
+                Advance();
             }                   
 
             return isMatch;
