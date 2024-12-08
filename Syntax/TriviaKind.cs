@@ -4,6 +4,8 @@
     {
         Whitespace,
         Newlines,
-        Semicolons
+        Semicolons,
+        Comments,
+        EOF
     }
 }

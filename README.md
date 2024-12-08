@@ -3,12 +3,12 @@ toy language part 9999999
 
 ## Roadmap
 
-[ ] lexing
+[x] lexing
   [ ] trivia
     [x] whitespace
     [x] newlines
     [x] semicolons
-    [ ] comments
+    [x] comments
   [x] literals
     [x] integer
       [x] binary

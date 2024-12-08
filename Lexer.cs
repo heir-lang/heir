@@ -7,7 +7,7 @@ namespace Heir
         public string Source { get; } = source;
 
         private readonly string _fileName = fileName;
-        private readonly List<Token> _tokens = [];
+        private List<Token> _tokens = [];
         private string _currentLexeme = "";
         private int _position = 0;
         private int _line = 1;
@@ -25,7 +25,7 @@ namespace Heir
             get => Peek(0);
         }
 
-        public TokenStream GetTokens()
+        public TokenStream GetTokens(bool noTrivia = false)
         {
             while (!_isFinished)
             {
@@ -35,7 +35,10 @@ namespace Heir
                 _tokens.Add(token);
             }
 
-            _tokens.Add(new Token(SyntaxKind.EOF, "", null, _location));
+            if (noTrivia)
+                _tokens = _tokens.Where(token => !token.IsKind(SyntaxKind.Trivia)).ToList();
+
+            _tokens.Add(TokenFactory.Trivia("", _location, TriviaKind.EOF));
             return new TokenStream(_tokens.ToArray());
         }
 
