@@ -2,9 +2,9 @@
 {
     public static class TokenFactory
     {
-        public static Token Trivia(string text, Location location, TriviaKind kind)
+        public static Token Keyword(SyntaxKind kind, Location location)
         {
-            return new TriviaToken(text, location, kind);
+            return new Token(kind, SyntaxFacts.KeywordMap.GetKey(kind), null, location);
         }
 
         public static Token Identifier(string text, Location location)
@@ -35,6 +35,11 @@
         public static Token FloatLiteral(string text, Location location)
         {
             return new Token(SyntaxKind.FloatLiteral, text, Convert.ToDouble(text), location);
+        }
+
+        public static Token Trivia(string text, Location location, TriviaKind kind)
+        {
+            return new TriviaToken(text, location, kind);
         }
     }
 }

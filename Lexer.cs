@@ -202,6 +202,12 @@ namespace Heir
             while (char.IsLetterOrDigit((char)_current!)) // fuck you C#
                 Advance();
 
+            if (SyntaxFacts.KeywordMap.Contains(_currentLexeme))
+            {
+                var keywordSyntax = SyntaxFacts.KeywordMap.GetValue(_currentLexeme);
+                return TokenFactory.Keyword(keywordSyntax, location);
+            }
+
             return TokenFactory.Identifier(_currentLexeme, location);
         }
 

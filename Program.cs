@@ -1,4 +1,4 @@
-﻿var lexer = new Heir.Lexer("foo += bar;");
+﻿var lexer = new Heir.Lexer("let x = a;");
 var tokenStream = lexer.GetTokens();
 
 foreach (var token in tokenStream)
