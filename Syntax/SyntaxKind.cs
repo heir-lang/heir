@@ -19,9 +19,12 @@
         EqualsEquals,
         BangEquals,
         Bang,
-        Dot,
         Question,
         QuestionQuestion,
+        QuestionQuestionEquals,
+        Dot,
+        Colon,
+        ColonColon,
 
         Plus,
         PlusEquals,
@@ -45,6 +48,9 @@
         FloatLiteral,
         StringLiteral,
         BoolLiteral,
-        NoneLiteral
+        NoneLiteral,
+
+        LetKeyword,
+        MutKeyword
     }
 }

@@ -109,6 +109,47 @@ namespace Heir
                         return token;
                     }
 
+                case '=':
+                    {
+                        var token = TokenFactory.Operator(SyntaxKind.Equals, _currentLexeme, location);
+                        if (Match('='))
+                            return TokenFactory.Operator(SyntaxKind.EqualsEquals, _currentLexeme, location);
+
+                        return token;
+                    }
+                case '!':
+                    {
+                        var token = TokenFactory.Operator(SyntaxKind.Bang, _currentLexeme, location);
+                        if (Match('='))
+                            return TokenFactory.Operator(SyntaxKind.BangEquals, _currentLexeme, location);
+
+                        return token;
+                    }
+                case '?':
+                    {
+                        var token = TokenFactory.Operator(SyntaxKind.Question, _currentLexeme, location);
+                        if (Match('?'))
+                        {
+                            var newToken = TokenFactory.Operator(SyntaxKind.QuestionQuestion, _currentLexeme, location);
+                            if (Match('='))
+                                return TokenFactory.Operator(SyntaxKind.QuestionQuestionEquals, _currentLexeme, location);
+
+                            return newToken;
+                        }
+
+                        return token;
+                    }
+                case ':':
+                    {
+                        var token = TokenFactory.Operator(SyntaxKind.Colon, _currentLexeme, location);
+                        if (Match(':'))
+                            return TokenFactory.Operator(SyntaxKind.ColonColon, _currentLexeme, location);
+
+                        return token;
+                    }
+                case '.':
+                    return TokenFactory.Operator(SyntaxKind.Dot, _currentLexeme, location);
+
                 case '(':
                     return TokenFactory.Operator(SyntaxKind.LParen, _currentLexeme, location);
                 case ')':
