@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Text;
 
 namespace Heir.Syntax
 {
@@ -67,6 +68,15 @@ namespace Heir.Syntax
         public Token? Peek(int offset)
         {
             return Tokens.ElementAtOrDefault(_index + offset);
+        }
+
+        public override string ToString()
+        {
+            var result = new StringBuilder();
+            foreach (var token in this)
+                result.AppendLine(token.ToString());
+
+            return result.ToString().TrimEnd();
         }
 
         public IEnumerator<Token> GetEnumerator()

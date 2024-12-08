@@ -43,7 +43,7 @@ namespace Heir
         {
             var location = _location;
             var current = (char)_current!;
-            if ((object)current == null) return null;
+            if (_current == null) return null;
 
             Advance();
             switch (current)
