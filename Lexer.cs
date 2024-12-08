@@ -42,7 +42,6 @@ namespace Heir
 
         private Token? Lex()
         {
-            _currentLexeme += _current;
             switch (_current)
             {
                 case '+':
@@ -53,7 +52,7 @@ namespace Heir
                         var token = TokenFactory.Operator(SyntaxKind.Plus, _currentLexeme, location);
                         if (Match('+'))
                             return TokenFactory.Operator(SyntaxKind.PlusPlus, _currentLexeme, location);
-                        if (Match('='))
+                        else if (Match('='))
                             return TokenFactory.Operator(SyntaxKind.PlusEquals, _currentLexeme, location);
 
                         return token;
@@ -66,7 +65,7 @@ namespace Heir
                         var token = TokenFactory.Operator(SyntaxKind.Minus, _currentLexeme, location);
                         if (Match('-'))
                             return TokenFactory.Operator(SyntaxKind.MinusMinus, _currentLexeme, location);
-                        if (Match('='))
+                        else if (Match('='))
                             return TokenFactory.Operator(SyntaxKind.MinusEquals, _currentLexeme, location);
 
                         return token;
@@ -194,6 +193,7 @@ namespace Heir
 
         private void Advance()
         {
+            _currentLexeme += _current;
             _position++;
             _column++;
         }
