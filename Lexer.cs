@@ -21,6 +21,7 @@ namespace Heir
 
         private readonly string _fileName = fileName;
         private readonly List<Token> _tokens = [];
+        private string _currentLexeme = "";
         private int _position = 0;
         private int _line = 1;
         private int _column = 0;
@@ -31,6 +32,7 @@ namespace Heir
             {
                 var token = Lex();
                 if (token == null) continue;
+                _currentLexeme = "";
                 _tokens.Add(token);
             }
 
@@ -40,133 +42,96 @@ namespace Heir
 
         private Token? Lex()
         {
+            _currentLexeme += _current;
             switch (_current)
             {
                 case '+':
                     {
                         var location = _location;
-                        var token = TokenFactory.Operator(SyntaxKind.Plus, _current.ToString()!, location);
                         Advance();
 
-                        if (_current == '+')
-                        {
-                            var newToken = TokenFactory.Operator(SyntaxKind.PlusPlus, _current.ToString()!, location);
-                            Advance();
-                            return newToken;
-                        }
-                        else if (_current == '=')
-                        {
-                            var newToken = TokenFactory.Operator(SyntaxKind.PlusEqual, _current.ToString()!, location);
-                            Advance();
-                            return newToken;
-                        }
+                        var token = TokenFactory.Operator(SyntaxKind.Plus, _currentLexeme, location);
+                        if (Match('+'))
+                            return TokenFactory.Operator(SyntaxKind.PlusPlus, _currentLexeme, location);
+                        if (Match('='))
+                            return TokenFactory.Operator(SyntaxKind.PlusEquals, _currentLexeme, location);
 
                         return token;
                     }
                 case '-':
                     {
                         var location = _location;
-                        var token = TokenFactory.Operator(SyntaxKind.Minus, _current.ToString()!, location);
                         Advance();
 
-                        if (_current == '-')
-                        {
-                            var newToken = TokenFactory.Operator(SyntaxKind.MinusMinus, _current.ToString()!, location);
-                            Advance();
-                            return newToken;
-                        }
-                        else if (_current == '=')
-                        {
-                            var newToken = TokenFactory.Operator(SyntaxKind.MinusEqual, _current.ToString()!, location);
-                            Advance();
-                            return newToken;
-                        }
+                        var token = TokenFactory.Operator(SyntaxKind.Minus, _currentLexeme, location);
+                        if (Match('-'))
+                            return TokenFactory.Operator(SyntaxKind.MinusMinus, _currentLexeme, location);
+                        if (Match('='))
+                            return TokenFactory.Operator(SyntaxKind.MinusEquals, _currentLexeme, location);
 
                         return token;
                     }
                 case '*':
                     {
                         var location = _location;
-                        var token = TokenFactory.Operator(SyntaxKind.Star, _current.ToString()!, location);
                         Advance();
 
-                        if (_current == '=')
-                        {
-                            var newToken = TokenFactory.Operator(SyntaxKind.StarEqual, _current.ToString()!, location);
-                            Advance();
-                            return newToken;
-                        }
+                        var token = TokenFactory.Operator(SyntaxKind.Star, _currentLexeme, location);
+                        if (Match('='))
+                            return TokenFactory.Operator(SyntaxKind.StarEquals, _currentLexeme, location);
 
                         return token;
                     }
                 case '/':
                     {
                         var location = _location;
-                        var token = TokenFactory.Operator(SyntaxKind.Slash, _current.ToString()!, location);
                         Advance();
 
-                        if (_current == '/')
+                        var token = TokenFactory.Operator(SyntaxKind.Slash, _currentLexeme, location);
+                        if (Match('/'))
                         {
-                            var newToken = TokenFactory.Operator(SyntaxKind.SlashSlash, _current.ToString()!, location);
-                            Advance();
-
-                            if (_current == '=')
-                            {
-                                var finalToken = TokenFactory.Operator(SyntaxKind.SlashSlashEqual, _current.ToString()!, location);
-                                Advance();
-                                return finalToken;
-                            }
+                            var newToken = TokenFactory.Operator(SyntaxKind.SlashSlash, _currentLexeme, location);
+                            if (Match('='))
+                                return TokenFactory.Operator(SyntaxKind.SlashSlashEquals, _currentLexeme, location);
 
                             return newToken;
                         }
-                        else if (_current == '=')
-                        {
-                            var newToken = TokenFactory.Operator(SyntaxKind.SlashEqual, _current.ToString()!, location);
-                            Advance();
-                            return newToken;
-                        }
+                        else if (Match('='))
+                            return TokenFactory.Operator(SyntaxKind.SlashEquals, _currentLexeme, location);
 
                         return token;
                     }
                 case '%':
                     {
                         var location = _location;
-                        var token = TokenFactory.Operator(SyntaxKind.Percent, _current.ToString()!, location);
                         Advance();
 
-                        if (_current == '=')
-                        {
-                            var newToken = TokenFactory.Operator(SyntaxKind.PercentEqual, _current.ToString()!, location);
-                            Advance();
-                            return newToken;
-                        }
+                        var token = TokenFactory.Operator(SyntaxKind.Percent, _current.ToString()!, location);
+                        if (Match('='))
+                            return TokenFactory.Operator(SyntaxKind.PercentEquals, _currentLexeme, location);
 
                         return token;
                     }
                 case '^':
                     {
                         var location = _location;
-                        var token = TokenFactory.Operator(SyntaxKind.Carat, _current.ToString()!, location);
                         Advance();
 
-                        if (_current == '=')
-                        {
-                            var newToken = TokenFactory.Operator(SyntaxKind.CaratEqual, _current.ToString()!, location);
-                            Advance();
-                            return newToken;
-                        }
+                        var token = TokenFactory.Operator(SyntaxKind.Carat, _currentLexeme, location);
+                        if (Match('='))
+                            return TokenFactory.Operator(SyntaxKind.CaratEquals, _currentLexeme, location);
 
                         return token;
                     }
 
                 default:
                     {
-                        if (_current == '\n')
+                        var current = (char)_current!; // kill me
+                        if (current == '\n')
                         {
-                            NewLine();
+                            SkipNewLines();
                             return null;
-                        }
-                        if (string.IsNullOrEmpty(_current.ToString()))
+                        } else if (char.IsWhiteSpace(current))
                         {
                             SkipWhitespace();
                             return null;
@@ -180,14 +145,26 @@ namespace Heir
 
         private void SkipWhitespace()
         {
-            while (string.IsNullOrEmpty(_current.ToString()))
+            while (char.IsWhiteSpace((char)_current!)) // fuck you C#
                 Advance();
         }
 
-        private void NewLine()
+        private void SkipNewLines()
         {
-            _line++;
-            _column = 0;
+            while (_current == '\n')
+            {
+                _line++;
+                _column = 0;
+            }
+        }
+
+        private bool Match(char character)
+        {
+            var isMatch = _current == character;
+            if (isMatch)
+                Advance();
+
+            return isMatch;
         }
 
         private void Advance()
