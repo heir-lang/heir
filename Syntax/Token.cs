@@ -4,7 +4,7 @@
     {
         SyntaxKind Syntax { get; } = syntax;
         string Text { get; } = text;
-        object Value { get; } = value;
+        object? Value { get; } = value;
         Location Location { get; } = location;
     }
 }
