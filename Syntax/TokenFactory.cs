@@ -17,9 +17,9 @@
             return new Token(kind, text, null, location);
         }
 
-        public static Token BoolLiteral(bool value, Location location)
+        public static Token BoolLiteral(string text, Location location)
         {
-            return new Token(SyntaxKind.BoolLiteral, value.ToString().ToLower(), value, location);
+            return new Token(SyntaxKind.BoolLiteral, text, text == "true", location);
         }
 
         public static Token StringLiteral(string text, Location location)
@@ -35,6 +35,11 @@
         public static Token FloatLiteral(string text, Location location)
         {
             return new Token(SyntaxKind.FloatLiteral, text, Convert.ToDouble(text), location);
+        }
+
+        public static Token NoneLiteral(Location location)
+        {
+            return new Token(SyntaxKind.NoneLiteral, "none", null, location);
         }
 
         public static Token Trivia(string text, Location location, TriviaKind kind)

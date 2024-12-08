@@ -182,8 +182,19 @@ namespace Heir
                 default:
                     {
                         if (char.IsLetter(current))
+                        {
+                            if (MatchLexeme("none"))
+                                return TokenFactory.NoneLiteral(location);
+                            else if (MatchLexeme("true") || MatchLexeme("false"))
+                                return TokenFactory.BoolLiteral(_currentLexeme, location);
+                            else if (SyntaxFacts.KeywordMap.Contains(_currentLexeme))
+                            {
+                                var keywordSyntax = SyntaxFacts.KeywordMap.GetValue(_currentLexeme);
+                                return TokenFactory.Keyword(keywordSyntax, location);
+                            }
+
                             return ReadIdentifier();
-                        else if (char.IsDigit(current))
+                        } else if (char.IsDigit(current))
                             return ReadNumber();
                         else if (current == ';')
                             return SkipSemicolons();
@@ -241,12 +252,6 @@ namespace Heir
             while (char.IsLetterOrDigit((char)_current!)) // fuck you C#
                 Advance();
 
-            if (SyntaxFacts.KeywordMap.Contains(_currentLexeme))
-            {
-                var keywordSyntax = SyntaxFacts.KeywordMap.GetValue(_currentLexeme);
-                return TokenFactory.Keyword(keywordSyntax, location);
-            }
-
             return TokenFactory.Identifier(_currentLexeme, location);
         }
 
@@ -279,6 +284,21 @@ namespace Heir
                 Advance();
 
             return TokenFactory.Trivia(_currentLexeme, location, TriviaKind.Semicolons);
+        }
+
+        private bool MatchLexeme(string lexeme)
+        {
+            var characters = lexeme.ToCharArray();
+            var isMatch = _current == characters.First();
+
+            foreach (var character in characters)
+            {
+                isMatch = isMatch || _current == character;
+                if (isMatch)
+                    Advance();
+            }                   
+
+            return isMatch;
         }
 
         private bool Match(char character)
