@@ -3,6 +3,7 @@
     public enum TriviaKind
     {
         Whitespace,
-        Newlines
+        Newlines,
+        Semicolons
     }
 }

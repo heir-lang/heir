@@ -1,6 +1,6 @@
 ﻿using Heir;
 
-var lexer = new Lexer("foo += bar");
+var lexer = new Lexer("foo += bar;");
 var tokenStream = lexer.GetTokens();
 
 foreach (var token in tokenStream)

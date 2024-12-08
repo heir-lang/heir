@@ -127,19 +127,13 @@ namespace Heir
                     {
                         var current = (char)_current!; // kill me
                         if (char.IsLetter(current))
-                        {
                             return ReadIdentifier();
-                        }
+                        else if (current == ';')
+                            return SkipSemicolons();
                         else if (current == '\n')
-                        {
-                            SkipNewLines();
-                            return null;
-                        }
+                            return SkipNewLines();
                         else if (char.IsWhiteSpace(current))
-                        {
-                            SkipWhitespace();
-                            return null;
-                        }
+                            return SkipWhitespace();
 
                         Advance();
                         return null;
@@ -176,11 +170,19 @@ namespace Heir
                 _line++;
             }
 
-            var lexeme = _currentLexeme;
-            _currentLexeme = "";
             _column = 0;
-            return TokenFactory.Trivia(lexeme, location, TriviaKind.Newlines);
+            return TokenFactory.Trivia(_currentLexeme, location, TriviaKind.Newlines);
         }
+
+        private Token SkipSemicolons()
+        {
+            var location = _location;
+            while (_current == ';')
+                Advance();
+
+            return TokenFactory.Trivia(_currentLexeme, location, TriviaKind.Semicolons);
+        }
+
 
         private bool Match(char character)
         {
