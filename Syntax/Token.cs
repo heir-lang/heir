@@ -2,9 +2,14 @@
 {
     public class Token(SyntaxKind syntax, string text, object value, Location location)
     {
-        SyntaxKind Syntax { get; } = syntax;
-        string Text { get; } = text;
-        object? Value { get; } = value;
-        Location Location { get; } = location;
+        public SyntaxKind Kind { get; } = syntax;
+        public string Text { get; } = text;
+        public object? Value { get; } = value;
+        public Location Location { get; } = location;
+
+        public bool IsKind(SyntaxKind kind)
+        {
+            return Kind == kind;
+        }
     }
 }
