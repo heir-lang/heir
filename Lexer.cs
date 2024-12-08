@@ -182,6 +182,14 @@ namespace Heir
                         return token;
                     }
 
+                case '#':
+                    {
+                        if (Match('#'))
+                            return SkipComment();
+
+                        return null;
+                    }
+
                 default:
                     {
                         if (char.IsLetter(current))
@@ -287,6 +295,15 @@ namespace Heir
                 Advance();
 
             return TokenFactory.Trivia(_currentLexeme, location, TriviaKind.Semicolons);
+        }
+
+        private Token SkipComment()
+        {
+            var location = _location;
+            while (!_isFinished && _current != '\n')
+                Advance();
+
+            return TokenFactory.Trivia(_currentLexeme, location, TriviaKind.Comment);
         }
 
         private bool MatchLexeme(string lexeme)

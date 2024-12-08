@@ -8,7 +8,8 @@ toy language part 9999999
     [x] whitespace
     [x] newlines
     [x] semicolons
-    [x] comments
+    [x] comment
+    [x] multi-line comment
   [x] literals
     [x] integer
       [x] binary

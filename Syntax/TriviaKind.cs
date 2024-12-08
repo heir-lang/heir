@@ -2,10 +2,11 @@
 {
     public enum TriviaKind
     {
+        EOF,
         Whitespace,
         Newlines,
         Semicolons,
-        Comments,
-        EOF
+        Comment,
+        MultiLineComment
     }
 }
