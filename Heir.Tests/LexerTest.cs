@@ -5,6 +5,16 @@ namespace Heir.Tests
     public class LexerTest
     {
         [Fact]
+        public void ThrowsWith_MalformedNumber()
+        {
+            var tokenStream = Tokenize("1.2.3", noTrivia: true);
+            Assert.True(tokenStream.Diagnostics.HasErrors());
+
+            var error = tokenStream.Diagnostics.First();
+            Assert.Equal("H004", error.Code); // malformed number
+        }
+
+        [Fact]
         public void ThrowsWith_UnterminatedStringOrChar()
         {
             {
