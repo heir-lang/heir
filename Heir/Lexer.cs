@@ -270,7 +270,7 @@ namespace Heir
 
             var token = TokenFactory.CharLiteral(_currentLexeme, location, _currentLocation);
             if (endQuote != '\'')
-                Diagnostics.Error("H002", $"Unexpected character \"{(_isFinished ? "EOF" : endQuote)}\", expected '", token);
+                Diagnostics.Error("H002", $"Unterminated character", token);
 
             return token;
         }
@@ -278,6 +278,7 @@ namespace Heir
         private Token ReadString(Location location)
         {
             // TODO: disallow multiline shit; this is cooked
+            // H003 for unterminated string
             while (!_isFinished && _current != '"')
                 Advance();
 
@@ -304,7 +305,7 @@ namespace Heir
                 {
                     if (decimalUsed)
                     {
-                        Diagnostics.Error("H003", "Malformed number", location, _currentLocation);
+                        Diagnostics.Error("H004", "Malformed number", location, _currentLocation);
                         break;
                     }
                     decimalUsed = true;

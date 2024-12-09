@@ -4,6 +4,25 @@ namespace Heir.Tests
 {
     public class LexerTest
     {
+        [Fact]
+        public void ThrowsWith_UnterminatedStringOrChar()
+        {
+            {
+                var tokenStream = Tokenize("'c", noTrivia: true);
+                Assert.True(tokenStream.Diagnostics.HasErrors());
+
+                var error = tokenStream.Diagnostics.First();
+                Assert.Equal("H002", error.Code); // unterminated character
+            }
+            {
+                var tokenStream = Tokenize("\"ab", noTrivia: true);
+                Assert.True(tokenStream.Diagnostics.HasErrors());
+
+                var error = tokenStream.Diagnostics.First();
+                Assert.Equal("H003", error.Code); // unterminated string
+            }
+        }
+
         [Theory]
         [InlineData("\"abc\"", "abc")]
         public void Tokenizes_StringLiterals(string input, string value)
