@@ -19,25 +19,25 @@ namespace Heir.Tests
         }
 
         [Theory]
-        [InlineData("\"abc\"", SyntaxKind.StringLiteral, "\"abc\"", "abc")]
-        [InlineData("'a'", SyntaxKind.CharLiteral, "'a'", "a")]
-        [InlineData("123", SyntaxKind.IntLiteral, "123", (long)123)]
-        [InlineData("69", SyntaxKind.IntLiteral, "69", (long)69)]
-        [InlineData("0b1101", SyntaxKind.IntLiteral, "0b1101", (long)13)]
-        [InlineData("0o420", SyntaxKind.IntLiteral, "0o420", (long)272)]
-        [InlineData("0x03E", SyntaxKind.IntLiteral, "0x03E", (long)62)]
-        [InlineData("123.456", SyntaxKind.FloatLiteral, "123.456", 123.456)]
-        [InlineData("69.420", SyntaxKind.FloatLiteral, "69.420", 69.420)]
-        [InlineData("true", SyntaxKind.BoolLiteral, "true", true)]
-        [InlineData("false", SyntaxKind.BoolLiteral, "false", false)]
-        [InlineData("none", SyntaxKind.NoneLiteral, "none", null)]
-        public void Tokenizes_Literals(string input, SyntaxKind expectedKind, string expectedText, object expectedValue)
+        [InlineData("\"abc\"", SyntaxKind.StringLiteral, "abc")]
+        [InlineData("'a'", SyntaxKind.CharLiteral, "a")]
+        [InlineData("123", SyntaxKind.IntLiteral, (long)123)]
+        [InlineData("69", SyntaxKind.IntLiteral, (long)69)]
+        [InlineData("0b1101", SyntaxKind.IntLiteral, (long)13)]
+        [InlineData("0o420", SyntaxKind.IntLiteral, (long)272)]
+        [InlineData("0x03E", SyntaxKind.IntLiteral, (long)62)]
+        [InlineData("123.456", SyntaxKind.FloatLiteral, 123.456)]
+        [InlineData("69.420", SyntaxKind.FloatLiteral, 69.420)]
+        [InlineData("true", SyntaxKind.BoolLiteral, true)]
+        [InlineData("false", SyntaxKind.BoolLiteral, false)]
+        [InlineData("none", SyntaxKind.NoneKeyword, null)]
+        public void Tokenizes_Literals(string input, SyntaxKind expectedKind, object expectedValue)
         {
             var tokenStream = Tokenize(input, noTrivia: true);
             var literalToken = tokenStream.First();
 
             Assert.True(literalToken.IsKind(expectedKind));
-            Assert.Equal(expectedText, literalToken.Text);
+            Assert.Equal(input, literalToken.Text);
             Assert.Equal(expectedValue, literalToken.Value);
         }
 

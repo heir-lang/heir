@@ -8,7 +8,11 @@ namespace Heir.AST
 
         public override void Display(int indent)
         {
-            Console.Write($"{string.Concat(Enumerable.Repeat("  ", indent))}Literal({Token.Kind}, {Token.Value?.ToString()})");
+            var valueText = Token.Value?.ToString() ?? "none";
+            if (Token.IsKind(SyntaxKind.BoolLiteral))
+                valueText = valueText.ToLower();
+
+            Console.Write($"{string.Concat(Enumerable.Repeat("  ", indent))}Literal({Token.Kind}, {valueText})");
         }
     }
 }

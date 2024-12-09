@@ -124,7 +124,7 @@ namespace Heir
                 case SyntaxKind.StringLiteral:
                 case SyntaxKind.IntLiteral:
                 case SyntaxKind.FloatLiteral:
-                case SyntaxKind.NoneLiteral:
+                case SyntaxKind.NoneKeyword:
                     return new Literal(token);
 
                 case SyntaxKind.LParen:

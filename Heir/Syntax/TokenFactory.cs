@@ -44,7 +44,7 @@
 
         public static Token NoneLiteral(Location startLocation, Location endLocation)
         {
-            return new Token(SyntaxKind.NoneLiteral, "none", null, startLocation, endLocation);
+            return new Token(SyntaxKind.NoneKeyword, "none", null, startLocation, endLocation);
         }
 
         public static Token Trivia(TriviaKind kind, string text, Location startLocation, Location endLocation)

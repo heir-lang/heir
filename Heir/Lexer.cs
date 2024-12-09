@@ -237,17 +237,17 @@ namespace Heir
                     {
                         if (char.IsLetter(current))
                         {
-                            if (MatchLexeme("none"))
-                                return TokenFactory.NoneLiteral(startLocation, _currentLocation);
-                            else if (MatchLexeme("true") || MatchLexeme("false"))
+                            if (MatchLexeme("true") || MatchLexeme("false"))
                                 return TokenFactory.BoolLiteral(_currentLexeme, startLocation, _currentLocation);
-                            else if (SyntaxFacts.KeywordMap.Contains(_currentLexeme))
+
+                            var identifier = ReadIdentifier(startLocation);
+                            if (SyntaxFacts.KeywordMap.Contains(_currentLexeme))
                             {
                                 var keywordSyntax = SyntaxFacts.KeywordMap.GetValue(_currentLexeme);
                                 return TokenFactory.Keyword(keywordSyntax, startLocation, _currentLocation);
                             }
 
-                            return ReadIdentifier(startLocation);
+                            return identifier;
                         } else if (char.IsDigit(current))
                             return ReadNumber(startLocation);
                         else if (current == ';')
@@ -274,9 +274,7 @@ namespace Heir
 
         private Token ReadString(Location location)
         {
-            // TODO: disallow multiline shit; this is cooked
-            // H003 for unterminated string
-            while (!_isFinished && _current != '"')
+            while (!_isFinished && _current != '"' && _current != '\n')
                 Advance();
 
             if (_current != '"')
@@ -314,10 +312,9 @@ namespace Heir
                 Advance();
             }
 
-            if (decimalUsed)
-                return TokenFactory.FloatLiteral(_currentLexeme, location, _currentLocation);
-            else
-                return TokenFactory.IntLiteral(_currentLexeme, location, _currentLocation);
+            return decimalUsed ?
+                TokenFactory.FloatLiteral(_currentLexeme, location, _currentLocation)
+                : TokenFactory.IntLiteral(_currentLexeme, location, _currentLocation);
         }
 
         private Token ReadNonDecimalNumber(Location location, int radix)

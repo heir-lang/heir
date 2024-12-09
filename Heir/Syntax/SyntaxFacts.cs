@@ -28,13 +28,28 @@
             { "^", SyntaxKind.Carat },
             { "^=", SyntaxKind.CaratEquals },
             { "??", SyntaxKind.QuestionQuestion },
-            { "??=", SyntaxKind.QuestionQuestionEquals }
+            { "??=", SyntaxKind.QuestionQuestionEquals },
+            { "&", SyntaxKind.Ampersand },
+            { "|", SyntaxKind.Pipe },
+            { "~", SyntaxKind.Tilde },
+            { "~=", SyntaxKind.TildeEquals },
+            { "&&", SyntaxKind.AmpersandAmpersand },
+            { "&&=", SyntaxKind.AmpersandAmpersandEquals },
+            { "||", SyntaxKind.PipePipe },
+            { "||=", SyntaxKind.PipePipeEquals }
         });
 
         public static readonly BiDictionary<string, SyntaxKind> KeywordMap = new(new Dictionary<string, SyntaxKind>
         {
             { "let", SyntaxKind.LetKeyword },
-            { "mut", SyntaxKind.MutKeyword }
+            { "mut", SyntaxKind.MutKeyword },
+
+            { "int", SyntaxKind.IntKeyword },
+            { "float", SyntaxKind.FloatKeyword },
+            { "string", SyntaxKind.StringKeyword },
+            { "char", SyntaxKind.CharKeyword },
+            { "bool", SyntaxKind.BoolKeyword },
+            { "none", SyntaxKind.NoneKeyword }
         });
     }
 }

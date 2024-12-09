@@ -63,9 +63,16 @@
         StringLiteral,
         CharLiteral,
         BoolLiteral,
-        NoneLiteral,
 
         LetKeyword, // keywords
-        MutKeyword
+        MutKeyword,
+
+            // type keywords
+        IntKeyword,
+        FloatKeyword,
+        StringKeyword,
+        CharKeyword,
+        BoolKeyword,
+        NoneKeyword
     }
 }
