@@ -25,8 +25,21 @@ namespace Heir
 
         private Expression ParseMultiplication()
         {
+            var left = ParseExponentiation();
+            while (Tokens.Match(SyntaxKind.Star) || Tokens.Match(SyntaxKind.Slash) || Tokens.Match(SyntaxKind.Percent))
+            {
+                var op = Tokens.Previous!;
+                var right = ParseExponentiation();
+                left = new BinaryOp(left, op, right);
+            }
+
+            return left;
+        }
+
+        private Expression ParseExponentiation()
+        {
             var left = ParsePrimary();
-            while (Tokens.Match(SyntaxKind.Star) || Tokens.Match(SyntaxKind.Slash))
+            while (Tokens.Match(SyntaxKind.Carat))
             {
                 var op = Tokens.Previous!;
                 var right = ParsePrimary();
