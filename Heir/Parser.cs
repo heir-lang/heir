@@ -105,15 +105,31 @@ namespace Heir
 
         private Expression ParseExponentiation()
         {
-            var left = ParsePrimary();
+            var left = ParseUnary();
             while (Tokens.Match(SyntaxKind.Carat))
             {
                 var op = Tokens.Previous!;
-                var right = ParsePrimary();
+                var right = ParseUnary();
                 left = new BinaryOp(left, op, right);
             }
 
             return left;
+        }
+
+        private Expression ParseUnary()
+        {
+            if (Tokens.Match(SyntaxKind.Bang) ||
+                Tokens.Match(SyntaxKind.Tilde) ||
+                Tokens.Match(SyntaxKind.PlusPlus) ||
+                Tokens.Match(SyntaxKind.MinusMinus) ||
+                Tokens.Match(SyntaxKind.Minus))
+            {
+                var op = Tokens.Previous!;
+                var operand = ParseUnary(); // recursively parse the operand
+                return new UnaryOp(operand, op);
+            }
+
+            return ParsePrimary();
         }
 
         private Expression ParsePrimary()
