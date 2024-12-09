@@ -89,6 +89,20 @@ namespace Heir.Tests
             Assert.Null(token.Value);
         }
 
+        [Theory]
+        [InlineData("abc")]
+        [InlineData("abc123")]
+        [InlineData("abc_123")]
+        public void Tokenizes_Identifiers(string input)
+        {
+            var tokenStream = Tokenize(input);
+            var token = tokenStream.First();
+
+            Assert.Equal(SyntaxKind.Identifier, token.Kind);
+            Assert.Equal(input, token.Text);
+            Assert.Null(token.Value);
+        }
+
         private TokenStream Tokenize(string input)
         {
             var lexer = new Lexer(input, "<testing>");
