@@ -17,6 +17,11 @@ namespace Heir.Syntax
 
         private readonly Token[] _tokens = (Token[])tokens.Clone();
         private int _index = 0;
+
+        public TokenStream WithoutTrivia()
+        {
+            return new TokenStream(Diagnostics, _tokens.Where(token => !token.IsKind(SyntaxKind.Trivia)).ToArray());
+        }
         
         public bool Match(SyntaxKind kind)
         {

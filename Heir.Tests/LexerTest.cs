@@ -11,7 +11,7 @@ namespace Heir.Tests
         [InlineData(@"\\", "H001")]
         public void ThrowsWith_Error(string input, string expectedErrorCode)
         {
-            var tokenStream = Tokenize(input, noTrivia: true);
+            var tokenStream = Tokenize(input);
             Assert.True(tokenStream.Diagnostics.HasErrors());
 
             var error = tokenStream.Diagnostics.First();
@@ -33,7 +33,7 @@ namespace Heir.Tests
         [InlineData("none", SyntaxKind.NoneKeyword, null)]
         public void Tokenizes_Literals(string input, SyntaxKind expectedKind, object expectedValue)
         {
-            var tokenStream = Tokenize(input, noTrivia: true);
+            var tokenStream = Tokenize(input);
             var literalToken = tokenStream.First();
 
             Assert.True(literalToken.IsKind(expectedKind));
@@ -41,10 +41,10 @@ namespace Heir.Tests
             Assert.Equal(expectedValue, literalToken.Value);
         }
 
-        private TokenStream Tokenize(string input, bool noTrivia = false)
+        private TokenStream Tokenize(string input)
         {
             var lexer = new Lexer(input, "<testing>");
-            return lexer.GetTokens(noTrivia);
+            return lexer.GetTokens().WithoutTrivia();
         }
     }
 }

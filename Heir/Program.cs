@@ -1,5 +1,5 @@
 ﻿var lexer = Heir.Lexer.FromFile("./Heir/Test.heir");
-var tokenStream = lexer.GetTokens(true);
+var tokenStream = lexer.GetTokens();
 var parser = new Heir.Parser(tokenStream);
 var ast = parser.ParseExpression();
 

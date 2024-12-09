@@ -37,7 +37,7 @@ namespace Heir
             return new Lexer(contents, fileName);
         }
 
-        public TokenStream GetTokens(bool noTrivia = false)
+        public TokenStream GetTokens()
         {
             while (!_isFinished)
             {
@@ -54,7 +54,7 @@ namespace Heir
             }
 
             _tokens.Add(TokenFactory.Trivia(TriviaKind.EOF, "", _currentLocation, _currentLocation));
-            return new TokenStream(Diagnostics, _tokens.Where(token => noTrivia ? !token.IsKind(SyntaxKind.Trivia) : true).ToArray());
+            return new TokenStream(Diagnostics, _tokens.ToArray());
         }
 
         private Token? Lex()

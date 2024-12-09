@@ -5,7 +5,7 @@ namespace Heir
 {
     public class Parser(TokenStream tokenStream)
     {
-        public TokenStream Tokens { get; } = tokenStream;
+        public TokenStream Tokens { get; } = tokenStream.WithoutTrivia(); // temporary
         public DiagnosticBag Diagnostics { get; } = tokenStream.Diagnostics;
 
         public Expression ParseExpression() => ParseLogicalOr();
