@@ -24,12 +24,12 @@
 
         public static Token StringLiteral(string text, Location startLocation, Location endLocation)
         {
-            return new Token(SyntaxKind.StringLiteral, text.Substring(1, text.Length - 2), text, startLocation, endLocation);
+            return new Token(SyntaxKind.StringLiteral, text, text.Substring(1, text.Length - 2), startLocation, endLocation);
         }
 
         public static Token CharLiteral(string text, Location startLocation, Location endLocation)
         {
-            return new Token(SyntaxKind.CharLiteral, text.Substring(1, text.Length - 2), text, startLocation, endLocation);
+            return new Token(SyntaxKind.CharLiteral, text, text.Substring(1, text.Length - 2), startLocation, endLocation);
         }
 
         public static Token IntLiteral(string text, Location startLocation, Location endLocation, int radix = 10)

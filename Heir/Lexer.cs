@@ -265,14 +265,11 @@ namespace Heir
         private Token ReadCharacter(Location location)
         {
             Advance();
-            var endQuote = _current;
+            if (_current != '\'')
+                Diagnostics.Error("H002", $"Unterminated character", location, _currentLocation);
+
             Advance();
-
-            var token = TokenFactory.CharLiteral(_currentLexeme, location, _currentLocation);
-            if (endQuote != '\'')
-                Diagnostics.Error("H002", $"Unterminated character", token);
-
-            return token;
+            return TokenFactory.CharLiteral(_currentLexeme, location, _currentLocation);
         }
 
         private Token ReadString(Location location)
@@ -281,6 +278,9 @@ namespace Heir
             // H003 for unterminated string
             while (!_isFinished && _current != '"')
                 Advance();
+
+            if (_current != '"')
+                Diagnostics.Error("H003", $"Unterminated string", location, _currentLocation);
 
             Advance();
             return TokenFactory.StringLiteral(_currentLexeme, location, _currentLocation);
