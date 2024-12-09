@@ -8,7 +8,72 @@ namespace Heir
         public TokenStream Tokens { get; } = tokenStream;
         public DiagnosticBag Diagnostics { get; } = tokenStream.Diagnostics;
 
-        public Expression ParseExpression() => ParseAddition();
+        public Expression ParseExpression() => ParseLogicalOr();
+
+        private Expression ParseLogicalOr()
+        {
+            var left = ParseLogicalAnd();
+            while (Tokens.Match(SyntaxKind.PipePipe))
+            {
+                var op = Tokens.Previous!;
+                var right = ParseLogicalAnd();
+                left = new BinaryOp(left, op, right);
+            }
+
+            return left;
+        }
+
+        private Expression ParseLogicalAnd()
+        {
+            var left = ParseBitwiseXor();
+            while (Tokens.Match(SyntaxKind.AmpersandAmpersand))
+            {
+                var op = Tokens.Previous!;
+                var right = ParseBitwiseXor();
+                left = new BinaryOp(left, op, right);
+            }
+
+            return left;
+        }
+
+        private Expression ParseBitwiseXor()
+        {
+            var left = ParseBitwiseOr();
+            while (Tokens.Match(SyntaxKind.Tilde))
+            {
+                var op = Tokens.Previous!;
+                var right = ParseBitwiseOr();
+                left = new BinaryOp(left, op, right);
+            }
+
+            return left;
+        }
+
+        private Expression ParseBitwiseOr()
+        {
+            var left = ParseBitwiseAnd();
+            while (Tokens.Match(SyntaxKind.Pipe))
+            {
+                var op = Tokens.Previous!;
+                var right = ParseBitwiseAnd();
+                left = new BinaryOp(left, op, right);
+            }
+
+            return left;
+        }
+
+        private Expression ParseBitwiseAnd()
+        {
+            var left = ParseAddition();
+            while (Tokens.Match(SyntaxKind.Ampersand))
+            {
+                var op = Tokens.Previous!;
+                var right = ParseAddition();
+                left = new BinaryOp(left, op, right);
+            }
+
+            return left;
+        }
 
         private Expression ParseAddition()
         {
