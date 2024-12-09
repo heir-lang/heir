@@ -25,6 +25,10 @@ namespace Heir
         {
             get => Peek(0);
         }
+        private char? _previous
+        {
+            get => Peek(-1);
+        }
 
         public TokenStream GetTokens(bool noTrivia = false)
         {
@@ -34,7 +38,7 @@ namespace Heir
                 var token = Lex();
                 if (token == null)
                 {
-                    Diagnostics.Error("H001", $"Unexpected character \"{Peek(-1)}\"", location, _currentLocation);
+                    Diagnostics.Error("H001", $"Unexpected character \"{_previous}\"", location, _currentLocation);
                     continue;
                 }
 
@@ -240,7 +244,7 @@ namespace Heir
 
         private Token ReadNumber(Location location)
         {
-            if (Peek(-1) == '0')
+            if (_previous == '0')
             {
                 char code = (char)_current!;
                 if (SyntaxFacts.RadixCodes.ContainsKey(code))
@@ -328,7 +332,7 @@ namespace Heir
         private bool MatchLexeme(string lexeme)
         {
             var characters = lexeme.ToCharArray().ToList();
-            var isMatch = Peek(-1) == characters.First();
+            var isMatch = _previous == characters.First();
             if (!isMatch) return false;
 
             foreach (var character in characters.Skip(1))

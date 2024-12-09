@@ -1,26 +1,26 @@
 ﻿using System.Collections;
-using System.Diagnostics;
 using System.Text;
 
 namespace Heir.Syntax
 {
-    internal class EndOfTokenStreamException : Exception
-    {
-        public EndOfTokenStreamException()
-            : base("End of token stream reached")
-        {
-        }
-    }
-
     public class TokenStream(DiagnosticBag diagnostics, Token[] tokens) : IEnumerable<Token>
     {
-        private readonly DiagnosticBag _diagnostics = diagnostics;
+        public readonly DiagnosticBag Diagnostics = diagnostics;
+        public Token? Current
+        {
+            get => Peek(0);
+        }
+        public Token? Previous
+        {
+            get => Peek(-1);
+        }
+
         private readonly Token[] _tokens = (Token[])tokens.Clone();
         private int _index = 0;
-
+        
         public bool Match(SyntaxKind kind)
         {
-            var token = Current();
+            var token = Current;
             if (token == null) return false;
 
             var isMatch = token.IsKind(kind);
@@ -34,31 +34,19 @@ namespace Heir.Syntax
         {
             var token = Advance();
             if (!token.IsKind(kind))
-            {
-                _diagnostics.Error("H003", $"Expected {kind} but got {token.Kind}", token);
-            }
+                Diagnostics.Error("H004", $"Expected {kind} but got {token.Kind}", token);
 
             return token;
         }
 
         public Token Advance()
         {
-            var token = Current();
+            var token = Current;
             if (token == null)
-                throw new EndOfTokenStreamException();
+                Diagnostics.Error("H001B", "End of token stream reached", Previous!);
 
             _index++;
-            return token;
-        }
-
-        public Token? Current()
-        {
-            return Peek(0);
-        }
-
-        public Token? Previous()
-        {
-            return Peek(-1);
+            return token!;
         }
 
         public Token? Peek(int offset)
