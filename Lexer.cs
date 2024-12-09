@@ -119,6 +119,13 @@ namespace Heir
 
                         return TokenFactory.Operator(SyntaxKind.Carat, _currentLexeme, startLocation, _currentLocation);
                     }
+                case '~':
+                    {
+                        if (Match('='))
+                            return TokenFactory.Operator(SyntaxKind.TildeEquals, _currentLexeme, startLocation, _currentLocation);
+
+                        return TokenFactory.Operator(SyntaxKind.Tilde, _currentLexeme, startLocation, _currentLocation);
+                    }
 
                 case '=':
                     {
@@ -146,6 +153,35 @@ namespace Heir
 
                         return TokenFactory.Operator(SyntaxKind.Question, _currentLexeme, startLocation, _currentLocation);
                     }
+                case '&':
+                    {
+                        if (Match('&'))
+                        {
+                            if (Match('='))
+                                return TokenFactory.Operator(SyntaxKind.AmpersandAmpersandEquals, _currentLexeme, startLocation, _currentLocation);
+
+                            return TokenFactory.Operator(SyntaxKind.AmpersandAmpersand, _currentLexeme, startLocation, _currentLocation);
+                        }
+                        else if (Match('='))
+                            return TokenFactory.Operator(SyntaxKind.AmpersandEquals, _currentLexeme, startLocation, _currentLocation);
+
+                        return TokenFactory.Operator(SyntaxKind.Ampersand, _currentLexeme, startLocation, _currentLocation);
+                    }
+                case '|':
+                    {
+                        if (Match('|'))
+                        {
+                            if (Match('='))
+                                return TokenFactory.Operator(SyntaxKind.PipePipeEquals, _currentLexeme, startLocation, _currentLocation);
+
+                            return TokenFactory.Operator(SyntaxKind.PipePipe, _currentLexeme, startLocation, _currentLocation);
+                        }
+                        else if (Match('='))
+                            return TokenFactory.Operator(SyntaxKind.PipeEquals, _currentLexeme, startLocation, _currentLocation);
+
+                        return TokenFactory.Operator(SyntaxKind.Pipe, _currentLexeme, startLocation, _currentLocation);
+                    }
+
                 case ':':
                     {
                         if (Match(':'))

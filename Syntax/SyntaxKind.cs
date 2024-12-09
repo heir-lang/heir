@@ -4,13 +4,14 @@
     {
         Trivia,
 
-        LParen,
+        LParen, // brackets
         RParen,
         LBracket,
         RBracket,
         LBrace,
         RBrace,
-        LT,
+
+        LT, // equality
         GT,
         LTE,
         GTE,
@@ -19,6 +20,11 @@
         BangEquals,
         Bang,
         Question,
+        AmpersandAmpersand,
+        PipePipe,
+        AmpersandAmpersandEquals,
+        PipePipeEquals,
+
         QuestionQuestion,
         QuestionQuestionEquals,
         Dot,
@@ -26,7 +32,7 @@
         ColonColon,
         Comma,
         
-        Plus,
+        Plus, // arithmetic
         PlusEquals,
         PlusPlus,
         Minus,
@@ -42,16 +48,24 @@
         PercentEquals,
         Carat,
         CaratEquals,
-        
+
+        Ampersand, // bitops
+        Pipe,
+        Tilde,
+        AmpersandEquals,
+        PipeEquals,
+        TildeEquals,
+
         Identifier,
-        IntLiteral,
+
+        IntLiteral, // literals
         FloatLiteral,
         StringLiteral,
         CharLiteral,
         BoolLiteral,
         NoneLiteral,
 
-        LetKeyword,
+        LetKeyword, // keywords
         MutKeyword
     }
 }
