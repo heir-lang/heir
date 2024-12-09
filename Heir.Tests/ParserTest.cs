@@ -6,6 +6,21 @@ namespace Heir.Tests
     public class ParserTest
     {
         [Theory]
+        [InlineData("!true", SyntaxKind.Bang)]
+        [InlineData("++a", SyntaxKind.PlusPlus)]
+        [InlineData("--b", SyntaxKind.MinusMinus)]
+        [InlineData("-10", SyntaxKind.Minus)]
+        [InlineData("~14", SyntaxKind.Tilde)]
+        public void Parses_UnaryOperators(string input, SyntaxKind operatorKind)
+        {
+            var node = Parse(input);
+            Assert.IsType<UnaryOp>(node);
+
+            var unaryOperation = (UnaryOp)node;
+            Assert.Equal(operatorKind, unaryOperation.Operator.Kind);
+        }
+
+        [Theory]
         [InlineData("1 + 2", SyntaxKind.Plus)]
         [InlineData("3 - 2", SyntaxKind.Minus)]
         [InlineData("3 * 4", SyntaxKind.Star)]
