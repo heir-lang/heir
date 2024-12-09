@@ -4,114 +4,41 @@ namespace Heir.Tests
 {
     public class LexerTest
     {
-        [Fact]
-        public void ThrowsWith_MalformedNumber()
+        [Theory]
+        [InlineData("1.2.3", "H004")]
+        [InlineData("'c", "H002")]
+        [InlineData("\"ab", "H003")]
+        [InlineData(@"\\", "H001")]
+        public void ThrowsWith_Error(string input, string expectedErrorCode)
         {
-            var tokenStream = Tokenize("1.2.3", noTrivia: true);
+            var tokenStream = Tokenize(input, noTrivia: true);
             Assert.True(tokenStream.Diagnostics.HasErrors());
 
             var error = tokenStream.Diagnostics.First();
-            Assert.Equal("H004", error.Code);
-        }
-
-        [Fact]
-        public void ThrowsWith_UnterminatedStringOrChar()
-        {
-            {
-                var tokenStream = Tokenize("'c", noTrivia: true);
-                Assert.True(tokenStream.Diagnostics.HasErrors());
-
-                var error = tokenStream.Diagnostics.First();
-                Assert.Equal("H002", error.Code);
-            }
-            {
-                var tokenStream = Tokenize("\"ab", noTrivia: true);
-                Assert.True(tokenStream.Diagnostics.HasErrors());
-
-                var error = tokenStream.Diagnostics.First();
-                Assert.Equal("H003", error.Code);
-            }
-        }
-
-        [Fact]
-        public void ThrowsWith_UnexpectedCharacter()
-        {
-            var tokenStream = Tokenize("\\", noTrivia: true);
-            Assert.True(tokenStream.Diagnostics.HasErrors());
-
-            var error = tokenStream.Diagnostics.First();
-            Assert.Equal("H001", error.Code);
+            Assert.Equal(expectedErrorCode, error.Code);
         }
 
         [Theory]
-        [InlineData("\"abc\"", "abc")]
-        public void Tokenizes_StringLiterals(string input, string value)
+        [InlineData("\"abc\"", SyntaxKind.StringLiteral, "\"abc\"", "abc")]
+        [InlineData("'a'", SyntaxKind.CharLiteral, "'a'", "a")]
+        [InlineData("123", SyntaxKind.IntLiteral, "123", (long)123)]
+        [InlineData("69", SyntaxKind.IntLiteral, "69", (long)69)]
+        [InlineData("0b1101", SyntaxKind.IntLiteral, "0b1101", (long)13)]
+        [InlineData("0o420", SyntaxKind.IntLiteral, "0o420", (long)272)]
+        [InlineData("0x03E", SyntaxKind.IntLiteral, "0x03E", (long)62)]
+        [InlineData("123.456", SyntaxKind.FloatLiteral, "123.456", 123.456)]
+        [InlineData("69.420", SyntaxKind.FloatLiteral, "69.420", 69.420)]
+        [InlineData("true", SyntaxKind.BoolLiteral, "true", true)]
+        [InlineData("false", SyntaxKind.BoolLiteral, "false", false)]
+        [InlineData("none", SyntaxKind.NoneLiteral, "none", null)]
+        public void Tokenizes_Literals(string input, SyntaxKind expectedKind, string expectedText, object expectedValue)
         {
             var tokenStream = Tokenize(input, noTrivia: true);
             var literalToken = tokenStream.First();
-            Assert.True(literalToken.IsKind(SyntaxKind.StringLiteral));
-            Assert.Equal(input, literalToken.Text);
-            Assert.Equal(value, literalToken.Value);
-        }
 
-        [Theory]
-        [InlineData("'a'", 'a')]
-        public void Tokenizes_CharLiterals(string input, char value)
-        {
-            var tokenStream = Tokenize(input, noTrivia: true);
-            var literalToken = tokenStream.First();
-            Assert.True(literalToken.IsKind(SyntaxKind.CharLiteral));
-            Assert.Equal(input, literalToken.Text);
-            Assert.Equal(value.ToString(), literalToken.Value?.ToString());
-        }
-
-        [Theory]
-        [InlineData("123", 123)]
-        [InlineData("69", 69)]
-        [InlineData("0b1101", 13)]
-        [InlineData("0o420", 272)]
-        [InlineData("0x03E", 62)]
-        public void Tokenizes_IntLiterals(string input, long value)
-        {
-            var tokenStream = Tokenize(input, noTrivia: true);
-            var literalToken = tokenStream.First();
-            Assert.True(literalToken.IsKind(SyntaxKind.IntLiteral));
-            Assert.Equal(input, literalToken.Text);
-            Assert.Equal(value, literalToken.Value);
-        }
-
-        [Theory]
-        [InlineData("123.456", 123.456)]
-        [InlineData("69.420", 69.420)]
-        public void Tokenizes_FloatLiterals(string input, double value)
-        {
-            var tokenStream = Tokenize(input, noTrivia: true);
-            var literalToken = tokenStream.First();
-            Assert.True(literalToken.IsKind(SyntaxKind.FloatLiteral));
-            Assert.Equal(input, literalToken.Text);
-            Assert.Equal(value, literalToken.Value);
-        }
-
-        [Theory]
-        [InlineData("true", true)]
-        [InlineData("false", false)]
-        public void Tokenizes_BoolLiterals(string input, bool value)
-        {
-            var tokenStream = Tokenize(input, noTrivia: true);
-            var literalToken = tokenStream.First();
-            Assert.True(literalToken.IsKind(SyntaxKind.BoolLiteral));
-            Assert.Equal(input, literalToken.Text);
-            Assert.Equal(value, literalToken.Value);
-        }
-
-        [Fact]
-        public void Tokenizes_NoneLiterals()
-        {
-            var tokenStream = Tokenize("none", noTrivia: true);
-            var literalToken = tokenStream.First();
-            Assert.True(literalToken.IsKind(SyntaxKind.NoneLiteral));
-            Assert.Equal("none", literalToken.Text);
-            Assert.Null(literalToken.Value);
+            Assert.True(literalToken.IsKind(expectedKind));
+            Assert.Equal(expectedText, literalToken.Text);
+            Assert.Equal(expectedValue, literalToken.Value);
         }
 
         private TokenStream Tokenize(string input, bool noTrivia = false)
