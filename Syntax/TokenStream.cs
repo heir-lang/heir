@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Diagnostics;
 using System.Text;
 
 namespace Heir.Syntax
@@ -11,17 +12,10 @@ namespace Heir.Syntax
         }
     }
 
-    internal class InvalidConsumptionException : Exception
+    public class TokenStream(DiagnosticBag diagnostics, Token[] tokens) : IEnumerable<Token>
     {
-        public InvalidConsumptionException(SyntaxKind expected, SyntaxKind got)
-            : base($"Invalid token consumption: Expected {expected} but got {got}")
-        {
-        }
-    }
-
-    public class TokenStream(Token[] tokens) : IEnumerable<Token>
-    {
-        public Token[] Tokens { get; } = (Token[])tokens.Clone();
+        private readonly DiagnosticBag _diagnostics = diagnostics;
+        private readonly Token[] _tokens = (Token[])tokens.Clone();
         private int _index = 0;
 
         public bool Match(SyntaxKind kind)
@@ -40,7 +34,9 @@ namespace Heir.Syntax
         {
             var token = Advance();
             if (!token.IsKind(kind))
-                throw new InvalidConsumptionException(kind, token.Kind);
+            {
+                _diagnostics.Error("H003", $"Expected {kind} but got {token.Kind}", token);
+            }
 
             return token;
         }
@@ -67,7 +63,7 @@ namespace Heir.Syntax
 
         public Token? Peek(int offset)
         {
-            return Tokens.ElementAtOrDefault(_index + offset);
+            return _tokens.ElementAtOrDefault(_index + offset);
         }
 
         public override string ToString()
@@ -81,12 +77,12 @@ namespace Heir.Syntax
 
         public IEnumerator<Token> GetEnumerator()
         {
-            return ((IEnumerable<Token>)Tokens).GetEnumerator();
+            return ((IEnumerable<Token>)_tokens).GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return Tokens.GetEnumerator();
+            return _tokens.GetEnumerator();
         }
     }
 }

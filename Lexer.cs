@@ -5,6 +5,7 @@ namespace Heir
     public class Lexer(string source, string fileName = "<anonymous>")
     {
         public string Source { get; } = source;
+        public DiagnosticBag Diagnostics { get; } = new();
 
         private readonly string _fileName = fileName;
         private List<Token> _tokens = [];
@@ -12,9 +13,9 @@ namespace Heir
         private int _position = 0;
         private int _line = 1;
         private int _column = 0;
-        private Location _location
+        private Location _currentLocation
         {
-            get => new Location(_fileName, _line, _column);
+            get => new Location(_fileName, _line, _column, _position);
         }
         private bool _isFinished
         {
@@ -29,10 +30,11 @@ namespace Heir
         {
             while (!_isFinished)
             {
+                var location = _currentLocation;
                 var token = Lex();
                 if (token == null)
                 {
-                    // unexpected character (_current)
+                    Diagnostics.Error("H001", $"Unexpected character \"{Peek(-1)}\"", location, _currentLocation);
                     continue;
                 }
 
@@ -40,160 +42,146 @@ namespace Heir
                 _tokens.Add(token);
             }
 
-            _tokens.Add(TokenFactory.Trivia("", _location, TriviaKind.EOF));
-            return new TokenStream(_tokens.Where(token => noTrivia ? !token.IsKind(SyntaxKind.Trivia) : true).ToArray());
+            _tokens.Add(TokenFactory.Trivia(TriviaKind.EOF, "", _currentLocation, _currentLocation));
+            return new TokenStream(Diagnostics, _tokens.Where(token => noTrivia ? !token.IsKind(SyntaxKind.Trivia) : true).ToArray());
         }
 
         private Token? Lex()
         {
-            var location = _location;
+            if (_isFinished) return null;
+            var startLocation = _currentLocation;
             var current = (char)_current!;
-            if (_current == null) return null;
 
             Advance();
             switch (current)
             {
                 case '+':
                     {
-                        var token = TokenFactory.Operator(SyntaxKind.Plus, _currentLexeme, location);
                         if (Match('+'))
-                            return TokenFactory.Operator(SyntaxKind.PlusPlus, _currentLexeme, location);
+                            return TokenFactory.Operator(SyntaxKind.PlusPlus, _currentLexeme, startLocation, _currentLocation);
                         else if (Match('='))
-                            return TokenFactory.Operator(SyntaxKind.PlusEquals, _currentLexeme, location);
+                            return TokenFactory.Operator(SyntaxKind.PlusEquals, _currentLexeme, startLocation, _currentLocation);
 
-                        return token;
+                        return TokenFactory.Operator(SyntaxKind.Plus, _currentLexeme, startLocation, _currentLocation);
                     }
                 case '-':
                     {
-                        var token = TokenFactory.Operator(SyntaxKind.Minus, _currentLexeme, location);
                         if (Match('-'))
-                            return TokenFactory.Operator(SyntaxKind.MinusMinus, _currentLexeme, location);
+                            return TokenFactory.Operator(SyntaxKind.MinusMinus, _currentLexeme, startLocation, _currentLocation);
                         else if (Match('='))
-                            return TokenFactory.Operator(SyntaxKind.MinusEquals, _currentLexeme, location);
+                            return TokenFactory.Operator(SyntaxKind.MinusEquals, _currentLexeme, startLocation, _currentLocation);
 
-                        return token;
+                        return TokenFactory.Operator(SyntaxKind.Minus, _currentLexeme, startLocation, _currentLocation);
                     }
                 case '*':
                     {
-                        var token = TokenFactory.Operator(SyntaxKind.Star, _currentLexeme, location);
                         if (Match('='))
-                            return TokenFactory.Operator(SyntaxKind.StarEquals, _currentLexeme, location);
+                            return TokenFactory.Operator(SyntaxKind.StarEquals, _currentLexeme, startLocation, _currentLocation);
 
-                        return token;
+                        return TokenFactory.Operator(SyntaxKind.Star, _currentLexeme, startLocation, _currentLocation);
                     }
                 case '/':
                     {
-                        var token = TokenFactory.Operator(SyntaxKind.Slash, _currentLexeme, location);
                         if (Match('/'))
                         {
-                            var newToken = TokenFactory.Operator(SyntaxKind.SlashSlash, _currentLexeme, location);
                             if (Match('='))
-                                return TokenFactory.Operator(SyntaxKind.SlashSlashEquals, _currentLexeme, location);
+                                return TokenFactory.Operator(SyntaxKind.SlashSlashEquals, _currentLexeme, startLocation, _currentLocation);
 
-                            return newToken;
+                            return TokenFactory.Operator(SyntaxKind.SlashSlash, _currentLexeme, startLocation, _currentLocation);
                         }
                         else if (Match('='))
-                            return TokenFactory.Operator(SyntaxKind.SlashEquals, _currentLexeme, location);
+                            return TokenFactory.Operator(SyntaxKind.SlashEquals, _currentLexeme, startLocation, _currentLocation);
 
-                        return token;
+                        return TokenFactory.Operator(SyntaxKind.Slash, _currentLexeme, startLocation, _currentLocation);
                     }
                 case '%':
                     {
-                        var token = TokenFactory.Operator(SyntaxKind.Percent, _current.ToString()!, location);
                         if (Match('='))
-                            return TokenFactory.Operator(SyntaxKind.PercentEquals, _currentLexeme, location);
+                            return TokenFactory.Operator(SyntaxKind.PercentEquals, _currentLexeme, startLocation, _currentLocation);
 
-                        return token;
+                        return TokenFactory.Operator(SyntaxKind.Percent, _currentLexeme, startLocation, _currentLocation);
                     }
                 case '^':
                     {
-                        var token = TokenFactory.Operator(SyntaxKind.Carat, _currentLexeme, location);
                         if (Match('='))
-                            return TokenFactory.Operator(SyntaxKind.CaratEquals, _currentLexeme, location);
+                            return TokenFactory.Operator(SyntaxKind.CaratEquals, _currentLexeme, startLocation, _currentLocation);
 
-                        return token;
+                        return TokenFactory.Operator(SyntaxKind.Carat, _currentLexeme, startLocation, _currentLocation);
                     }
 
                 case '=':
                     {
-                        var token = TokenFactory.Operator(SyntaxKind.Equals, _currentLexeme, location);
                         if (Match('='))
-                            return TokenFactory.Operator(SyntaxKind.EqualsEquals, _currentLexeme, location);
+                            return TokenFactory.Operator(SyntaxKind.EqualsEquals, _currentLexeme, startLocation, _currentLocation);
 
-                        return token;
+                        return TokenFactory.Operator(SyntaxKind.Equals, _currentLexeme, startLocation, _currentLocation);
                     }
                 case '!':
                     {
-                        var token = TokenFactory.Operator(SyntaxKind.Bang, _currentLexeme, location);
                         if (Match('='))
-                            return TokenFactory.Operator(SyntaxKind.BangEquals, _currentLexeme, location);
+                            return TokenFactory.Operator(SyntaxKind.BangEquals, _currentLexeme, startLocation, _currentLocation);
 
-                        return token;
+                        return TokenFactory.Operator(SyntaxKind.Bang, _currentLexeme, startLocation, _currentLocation);
                     }
                 case '?':
                     {
-                        var token = TokenFactory.Operator(SyntaxKind.Question, _currentLexeme, location);
                         if (Match('?'))
                         {
-                            var newToken = TokenFactory.Operator(SyntaxKind.QuestionQuestion, _currentLexeme, location);
                             if (Match('='))
-                                return TokenFactory.Operator(SyntaxKind.QuestionQuestionEquals, _currentLexeme, location);
+                                return TokenFactory.Operator(SyntaxKind.QuestionQuestionEquals, _currentLexeme, startLocation, _currentLocation);
 
-                            return newToken;
+                            return TokenFactory.Operator(SyntaxKind.QuestionQuestion, _currentLexeme, startLocation, _currentLocation);
                         }
 
-                        return token;
+                        return TokenFactory.Operator(SyntaxKind.Question, _currentLexeme, startLocation, _currentLocation);
                     }
                 case ':':
                     {
-                        var token = TokenFactory.Operator(SyntaxKind.Colon, _currentLexeme, location);
                         if (Match(':'))
-                            return TokenFactory.Operator(SyntaxKind.ColonColon, _currentLexeme, location);
+                            return TokenFactory.Operator(SyntaxKind.ColonColon, _currentLexeme, startLocation, _currentLocation);
 
-                        return token;
+                        return TokenFactory.Operator(SyntaxKind.Colon, _currentLexeme, startLocation, _currentLocation);
                     }
                 case '.':
-                    return TokenFactory.Operator(SyntaxKind.Dot, _currentLexeme, location);
+                    return TokenFactory.Operator(SyntaxKind.Dot, _currentLexeme, startLocation, _currentLocation);
                 case ',':
-                    return TokenFactory.Operator(SyntaxKind.Comma, _currentLexeme, location);
+                    return TokenFactory.Operator(SyntaxKind.Comma, _currentLexeme, startLocation, _currentLocation);
 
                 case '(':
-                    return TokenFactory.Operator(SyntaxKind.LParen, _currentLexeme, location);
+                    return TokenFactory.Operator(SyntaxKind.LParen, _currentLexeme, startLocation, _currentLocation);
                 case ')':
-                    return TokenFactory.Operator(SyntaxKind.RParen, _currentLexeme, location);
+                    return TokenFactory.Operator(SyntaxKind.RParen, _currentLexeme, startLocation, _currentLocation);
                 case '[':
-                    return TokenFactory.Operator(SyntaxKind.LBracket, _currentLexeme, location);
+                    return TokenFactory.Operator(SyntaxKind.LBracket, _currentLexeme, startLocation, _currentLocation);
                 case ']':
-                    return TokenFactory.Operator(SyntaxKind.RBracket, _currentLexeme, location);
+                    return TokenFactory.Operator(SyntaxKind.RBracket, _currentLexeme, startLocation, _currentLocation);
                 case '{':
-                    return TokenFactory.Operator(SyntaxKind.LBrace, _currentLexeme, location);
+                    return TokenFactory.Operator(SyntaxKind.LBrace, _currentLexeme, startLocation, _currentLocation);
                 case '}':
-                    return TokenFactory.Operator(SyntaxKind.RBrace, _currentLexeme, location);
+                    return TokenFactory.Operator(SyntaxKind.RBrace, _currentLexeme, startLocation, _currentLocation);
                 case '<':
                     {
-                        var token = TokenFactory.Operator(SyntaxKind.LT, _currentLexeme, location);
                         if (Match('='))
-                            return TokenFactory.Operator(SyntaxKind.LTE, _currentLexeme, location);
+                            return TokenFactory.Operator(SyntaxKind.LTE, _currentLexeme, startLocation, _currentLocation);
 
-                        return token;
+                        return TokenFactory.Operator(SyntaxKind.LT, _currentLexeme, startLocation, _currentLocation);
                     }
                 case '>':
                     {
-                        var token = TokenFactory.Operator(SyntaxKind.GT, _currentLexeme, location);
                         if (Match('='))
-                            return TokenFactory.Operator(SyntaxKind.GTE, _currentLexeme, location);
+                            return TokenFactory.Operator(SyntaxKind.GTE, _currentLexeme, startLocation, _currentLocation);
 
-                        return token;
+                        return TokenFactory.Operator(SyntaxKind.GT, _currentLexeme, startLocation, _currentLocation);
                     }
                 case '"':
-                    return ReadString(location);
+                    return ReadString(startLocation);
                 case '\'':
-                    return ReadCharacter(location);
+                    return ReadCharacter(startLocation);
 
                 case '#':
                     {
                         if (Match('#'))
-                            return SkipComment();
+                            return SkipComment(startLocation);
 
                         return null;
                     }
@@ -203,26 +191,25 @@ namespace Heir
                         if (char.IsLetter(current))
                         {
                             if (MatchLexeme("none"))
-                                return TokenFactory.NoneLiteral(location);
+                                return TokenFactory.NoneLiteral(startLocation, _currentLocation);
                             else if (MatchLexeme("true") || MatchLexeme("false"))
-                                return TokenFactory.BoolLiteral(_currentLexeme, location);
+                                return TokenFactory.BoolLiteral(_currentLexeme, startLocation, _currentLocation);
                             else if (SyntaxFacts.KeywordMap.Contains(_currentLexeme))
                             {
                                 var keywordSyntax = SyntaxFacts.KeywordMap.GetValue(_currentLexeme);
-                                return TokenFactory.Keyword(keywordSyntax, location);
+                                return TokenFactory.Keyword(keywordSyntax, startLocation, _currentLocation);
                             }
 
-                            return ReadIdentifier(location);
+                            return ReadIdentifier(startLocation);
                         } else if (char.IsDigit(current))
-                            return ReadNumber(location);
+                            return ReadNumber(startLocation);
                         else if (current == ';')
-                            return SkipSemicolons();
+                            return SkipSemicolons(startLocation);
                         else if (current == '\n')
-                            return SkipNewLines();
+                            return SkipNewLines(startLocation);
                         else if (char.IsWhiteSpace(current))
-                            return SkipWhitespace();
+                            return SkipWhitespace(startLocation);
 
-                        Advance();
                         return null;
                     }
             }
@@ -231,22 +218,24 @@ namespace Heir
         private Token ReadCharacter(Location location)
         {
             Advance();
-            if (_current != '\'')
-            {
-                // unexpected character, expected '
-            }
+            var endQuote = _current;
             Advance();
 
-            return TokenFactory.CharLiteral(_currentLexeme, location);
+            var token = TokenFactory.CharLiteral(_currentLexeme, location, _currentLocation);
+            if (endQuote != '\'')
+                Diagnostics.Error("H002", $"Unexpected character \"{(_isFinished ? "EOF" : endQuote)}\", expected '", token);
+
+            return token;
         }
 
         private Token ReadString(Location location)
         {
+            // TODO: disallow multiline shit; this is cooked
             while (!_isFinished && _current != '"')
                 Advance();
 
             Advance();
-            return TokenFactory.StringLiteral(_currentLexeme, location);
+            return TokenFactory.StringLiteral(_currentLexeme, location, _currentLocation);
         }
 
         private Token ReadNumber(Location location)
@@ -265,15 +254,22 @@ namespace Heir
             while (char.IsDigit((char)_current!) || _current == '.') // fuck you C#
             {
                 if (_current == '.')
+                {
+                    if (decimalUsed)
+                    {
+                        Diagnostics.Error("H003", "Malformed number", location, _currentLocation);
+                        break;
+                    }
                     decimalUsed = true;
+                }
 
                 Advance();
             }
 
             if (decimalUsed)
-                return TokenFactory.FloatLiteral(_currentLexeme, location);
+                return TokenFactory.FloatLiteral(_currentLexeme, location, _currentLocation);
             else
-                return TokenFactory.IntLiteral(_currentLexeme, location);
+                return TokenFactory.IntLiteral(_currentLexeme, location, _currentLocation);
         }
 
         private Token ReadNonDecimalNumber(Location location, int radix)
@@ -282,7 +278,7 @@ namespace Heir
             while (char.IsLetterOrDigit((char)_current!)) // fuck you C#
                 Advance();
 
-            return TokenFactory.IntLiteral(_currentLexeme, location, radix);
+            return TokenFactory.IntLiteral(_currentLexeme, location, _currentLocation, radix);
         }
 
         private Token ReadIdentifier(Location location)
@@ -290,21 +286,19 @@ namespace Heir
             while (char.IsLetterOrDigit((char)_current!)) // fuck you C#
                 Advance();
 
-            return TokenFactory.Identifier(_currentLexeme, location);
+            return TokenFactory.Identifier(_currentLexeme, location, _currentLocation);
         }
 
-        private Token SkipWhitespace()
+        private Token SkipWhitespace(Location location)
         {
-            var location = _location;
             while (char.IsWhiteSpace((char)_current!)) // fuck you C#
                 Advance();
 
-            return TokenFactory.Trivia(_currentLexeme, location, TriviaKind.Whitespace);
+            return TokenFactory.Trivia(TriviaKind.Whitespace, _currentLexeme, location, _currentLocation);
         }
 
-        private Token SkipNewLines()
+        private Token SkipNewLines(Location location)
         {
-            var location = _location;
             while (_current == '\n')
             {
                 _position++; // Advance() but w/o adding to _column for performance reasons
@@ -312,25 +306,23 @@ namespace Heir
             }
 
             _column = 0;
-            return TokenFactory.Trivia(_currentLexeme, location, TriviaKind.Newlines);
+            return TokenFactory.Trivia(TriviaKind.Newlines, _currentLexeme, location, _currentLocation);
         }
 
-        private Token SkipSemicolons()
+        private Token SkipSemicolons(Location location)
         {
-            var location = _location;
             while (_current == ';')
                 Advance();
 
-            return TokenFactory.Trivia(_currentLexeme, location, TriviaKind.Semicolons);
+            return TokenFactory.Trivia(TriviaKind.Semicolons, _currentLexeme, location, _currentLocation);
         }
 
-        private Token SkipComment()
+        private Token SkipComment(Location location)
         {
-            var location = _location;
             while (!_isFinished && _current != '\n')
                 Advance();
 
-            return TokenFactory.Trivia(_currentLexeme, location, TriviaKind.Comment);
+            return TokenFactory.Trivia(TriviaKind.Comment, _currentLexeme, location, _currentLocation);
         }
 
         private bool MatchLexeme(string lexeme)
