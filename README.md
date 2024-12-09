@@ -37,6 +37,8 @@ Though I cannot guarantee the lifetime or dedication to this project, contributi
     - [x] question mark
     - [x] null coalescing (`??`, `??=`)
     - [x] equality (`==`, `!=`, `!`, `<`, `>`, `<=`, `>=`)
+    - [x] logical (`&&`, `||`) 
+    - [x] bitwise (`&`, `|`, `~`) 
     - [x] arithmetic (`+`, `-`, `*`, `/`, `//`, `%`, `^`)
       - [x] increment (`++`, `--`)
       - [x] compound assignment (`+=`, `-=`, `*=`, `/=`, `//=`, `%=`, `^=`)
