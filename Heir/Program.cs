@@ -3,8 +3,8 @@ var tokenStream = lexer.GetTokens();
 var parser = new Heir.Parser(tokenStream);
 var ast = parser.Parse();
 
-Console.WriteLine(tokenStream);
-Console.WriteLine();
+//Console.WriteLine(tokenStream);
+//Console.WriteLine();
 ast.Display();
 Console.WriteLine();
 Console.WriteLine();

@@ -25,7 +25,7 @@ Though I cannot guarantee the lifetime or dedication to this project, contributi
   - [x] keywords
     - [x] `let`
     - [x] `mut`
-    - [ ] primitive type keywords
+    - [x] primitive type keywords
   - [x] identifiers
   - [x] brackets (`()`, `[]`, `{}`)
   - [x] operators
@@ -49,7 +49,7 @@ Though I cannot guarantee the lifetime or dedication to this project, contributi
     - [ ] variable declaration
     - [ ] compound assignment
     - [ ] assignment
-    - [ ] identifiers
+    - [x] identifiers
     - [ ] unary operations
     - [x] binary operations
     - [x] parenthesized expressions

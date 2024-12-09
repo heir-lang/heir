@@ -129,6 +129,9 @@ namespace Heir
                 case SyntaxKind.NoneKeyword:
                     return new Literal(token);
 
+                case SyntaxKind.Identifier:
+                    return new IdentifierName(token);
+
                 case SyntaxKind.LParen:
                     {
                         var expression = ParseExpression();
