@@ -62,16 +62,16 @@ namespace Heir.Tests
             var literalToken = tokenStream.First();
             Assert.True(literalToken.IsKind(SyntaxKind.CharLiteral));
             Assert.Equal(input, literalToken.Text);
-            Assert.Equal(value, literalToken.Value);
+            Assert.Equal(value.ToString(), literalToken.Value?.ToString());
         }
 
         [Theory]
         [InlineData("123", 123)]
         [InlineData("69", 69)]
         [InlineData("0b1101", 13)]
-        [InlineData("0o69", 6)]
+        [InlineData("0o420", 272)]
         [InlineData("0x03E", 62)]
-        public void Tokenizes_IntLiterals(string input, int value)
+        public void Tokenizes_IntLiterals(string input, long value)
         {
             var tokenStream = Tokenize(input, noTrivia: true);
             var literalToken = tokenStream.First();
