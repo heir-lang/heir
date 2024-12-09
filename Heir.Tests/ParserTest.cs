@@ -27,6 +27,47 @@ namespace Heir.Tests
             Assert.Equal(operatorKind, binaryOperation.Operator.Kind);
         }
 
+        [Fact]
+        public void Parses_OperatorPrecedence()
+        {
+            {
+                var node = Parse("3 ^ 2 * 4 - 2");
+                Assert.IsType<BinaryOp>(node);
+
+                var subtraction = (BinaryOp)node;
+                Assert.IsType<BinaryOp>(subtraction.Left);
+                var multiplication = (BinaryOp)subtraction.Left;
+                Assert.IsType<Literal>(subtraction.Right);
+                var twoLiteral = (Literal)subtraction.Right;
+                Assert.IsType<BinaryOp>(multiplication.Left);
+                var exponentation = (BinaryOp)multiplication.Left;
+                Assert.IsType<Literal>(multiplication.Right);
+                var fourLiteral = (Literal)multiplication.Right;
+
+                Assert.Equal(SyntaxKind.Minus, subtraction.Operator.Kind);
+                Assert.Equal(SyntaxKind.Star, multiplication.Operator.Kind);
+                Assert.Equal(SyntaxKind.Carat, exponentation.Operator.Kind);
+                Assert.Equal((long)2, twoLiteral.Token.Value);
+                Assert.Equal((long)4, fourLiteral.Token.Value);
+            }
+            {
+                var node = Parse("true || false && true");
+                Assert.IsType<BinaryOp>(node);
+
+                var or = (BinaryOp)node;
+                Assert.IsType<Literal>(or.Left);
+                var trueLiteral = (Literal)or.Left;
+                Assert.IsType<BinaryOp>(or.Right);
+                var and = (BinaryOp)or.Right;
+                Assert.IsType<Literal>(and.Left);
+                Assert.IsType<Literal>(and.Right);
+
+                Assert.Equal(SyntaxKind.PipePipe, or.Operator.Kind);
+                Assert.Equal(SyntaxKind.AmpersandAmpersand, and.Operator.Kind);
+                Assert.Equal(true, trueLiteral.Token.Value);
+            }
+        }
+
         [Theory]
         [InlineData("\"abc\"")]
         [InlineData("'a'")]
