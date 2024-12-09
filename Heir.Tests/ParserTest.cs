@@ -59,6 +59,19 @@ namespace Heir.Tests
             Assert.IsType<BinaryOp>(parenthesized.Expression);
         }
 
+        [Theory]
+        [InlineData("abc")]
+        [InlineData("abc123")]
+        [InlineData("abc_123")]
+        public void Parses_Identifiers(string input)
+        {
+            var node = Parse(input);
+            Assert.IsType<IdentifierName>(node);
+
+            var identifier = (IdentifierName)node;
+            Assert.Equal(input, identifier.Token.Text);
+        }
+
         private SyntaxNode Parse(string input)
         {
             var lexer = new Lexer(input, "<testing>");
