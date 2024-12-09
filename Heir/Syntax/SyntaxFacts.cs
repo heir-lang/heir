@@ -1,6 +1,6 @@
 ﻿namespace Heir.Syntax
 {
-    internal static class SyntaxFacts
+    public static class SyntaxFacts
     {
         public static readonly Dictionary<char, int> RadixCodes = new Dictionary<char, int>
         {
@@ -36,7 +36,18 @@
             { "&&", SyntaxKind.AmpersandAmpersand },
             { "&&=", SyntaxKind.AmpersandAmpersandEquals },
             { "||", SyntaxKind.PipePipe },
-            { "||=", SyntaxKind.PipePipeEquals }
+            { "||=", SyntaxKind.PipePipeEquals },
+
+            { "<", SyntaxKind.LT },
+            { "<=", SyntaxKind.LTE },
+            { ">", SyntaxKind.GT },
+            { ">=", SyntaxKind.GTE },
+            { "!", SyntaxKind.Bang },
+            { "!=", SyntaxKind.BangEquals },
+            { "==", SyntaxKind.EqualsEquals },
+
+            { "?", SyntaxKind.Question },
+            { "=", SyntaxKind.Equals },
         });
 
         public static readonly BiDictionary<string, SyntaxKind> KeywordMap = new(new Dictionary<string, SyntaxKind>

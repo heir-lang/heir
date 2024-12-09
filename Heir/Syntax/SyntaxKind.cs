@@ -15,11 +15,9 @@
         GT,
         LTE,
         GTE,
-        Equals,
         EqualsEquals,
         BangEquals,
         Bang,
-        Question,
         AmpersandAmpersand,
         PipePipe,
         AmpersandAmpersandEquals,
@@ -31,6 +29,8 @@
         Colon,
         ColonColon,
         Comma,
+        Question,
+        Equals,
         
         Plus, // arithmetic
         PlusEquals,
