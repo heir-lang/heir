@@ -11,7 +11,7 @@ namespace Heir.Tests
             Assert.True(tokenStream.Diagnostics.HasErrors());
 
             var error = tokenStream.Diagnostics.First();
-            Assert.Equal("H004", error.Code); // malformed number
+            Assert.Equal("H004", error.Code);
         }
 
         [Fact]
@@ -22,15 +22,25 @@ namespace Heir.Tests
                 Assert.True(tokenStream.Diagnostics.HasErrors());
 
                 var error = tokenStream.Diagnostics.First();
-                Assert.Equal("H002", error.Code); // unterminated character
+                Assert.Equal("H002", error.Code);
             }
             {
                 var tokenStream = Tokenize("\"ab", noTrivia: true);
                 Assert.True(tokenStream.Diagnostics.HasErrors());
 
                 var error = tokenStream.Diagnostics.First();
-                Assert.Equal("H003", error.Code); // unterminated string
+                Assert.Equal("H003", error.Code);
             }
+        }
+
+        [Fact]
+        public void ThrowsWith_UnexpectedCharacter()
+        {
+            var tokenStream = Tokenize("\\", noTrivia: true);
+            Assert.True(tokenStream.Diagnostics.HasErrors());
+
+            var error = tokenStream.Diagnostics.First();
+            Assert.Equal("H001", error.Code);
         }
 
         [Theory]
