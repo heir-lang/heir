@@ -1,7 +1,11 @@
-﻿var lexer = new Heir.Lexer("~");
+﻿var lexer = new Heir.Lexer("(2 * 4) + 6");
 var tokenStream = lexer.GetTokens(true);
+var parser = new Heir.Parser(tokenStream);
+var ast = parser.ParseExpression();
 
-Console.WriteLine(tokenStream);
+ast.Display();
+Console.WriteLine();
+Console.WriteLine();
 
 Console.WriteLine("Diagnostics:");
 foreach (var diagnostic in lexer.Diagnostics)

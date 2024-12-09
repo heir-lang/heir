@@ -6,9 +6,9 @@ namespace Heir.Syntax
     public class TokenStream(DiagnosticBag diagnostics, Token[] tokens) : IEnumerable<Token>
     {
         public readonly DiagnosticBag Diagnostics = diagnostics;
-        public Token? Current
+        public Token Current
         {
-            get => Peek(0);
+            get => Peek(0)!;
         }
         public Token? Previous
         {
