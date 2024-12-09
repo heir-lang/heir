@@ -1,5 +1,4 @@
 using Heir.Syntax;
-using Newtonsoft.Json.Linq;
 
 namespace Heir.Tests
 {
@@ -62,6 +61,25 @@ namespace Heir.Tests
         [InlineData("::", SyntaxKind.ColonColon)]
         [InlineData(",", SyntaxKind.Comma)]
         public void Tokenizes_MiscSymbols(string input, SyntaxKind expectedKind)
+        {
+            var tokenStream = Tokenize(input);
+            var token = tokenStream.First();
+
+            Assert.Equal(expectedKind, token.Kind);
+            Assert.Equal(input, token.Text);
+            Assert.Null(token.Value);
+        }
+
+        [Theory]
+        [InlineData("let", SyntaxKind.LetKeyword)]
+        [InlineData("mut", SyntaxKind.MutKeyword)]
+        [InlineData("int", SyntaxKind.IntKeyword)]
+        [InlineData("float", SyntaxKind.FloatKeyword)]
+        [InlineData("string", SyntaxKind.StringKeyword)]
+        [InlineData("char", SyntaxKind.CharKeyword)]
+        [InlineData("bool", SyntaxKind.BoolKeyword)]
+        [InlineData("none", SyntaxKind.NoneKeyword)]
+        public void Tokenizes_Keywords(string input, SyntaxKind expectedKind)
         {
             var tokenStream = Tokenize(input);
             var token = tokenStream.First();
