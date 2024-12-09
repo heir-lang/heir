@@ -312,6 +312,7 @@ namespace Heir
                 Advance();
             }
 
+            // TODO: handle conversion errors
             return decimalUsed ?
                 TokenFactory.FloatLiteral(_currentLexeme, location, _currentLocation)
                 : TokenFactory.IntLiteral(_currentLexeme, location, _currentLocation);
@@ -328,7 +329,7 @@ namespace Heir
 
         private Token ReadIdentifier(Location location)
         {
-            while (char.IsLetterOrDigit((char)_current!)) // fuck you C#
+            while (char.IsLetterOrDigit((char)_current!) || _current == '_') // fuck you C#
                 Advance();
 
             return TokenFactory.Identifier(_currentLexeme, location, _currentLocation);
