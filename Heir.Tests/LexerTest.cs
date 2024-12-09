@@ -5,6 +5,28 @@ namespace Heir.Tests
     public class LexerTest
     {
         [Theory]
+        [InlineData("\"abc\"", "abc")]
+        public void Tokenizes_StringLiterals(string input, string value)
+        {
+            var tokenStream = Tokenize(input, noTrivia: true);
+            var literalToken = tokenStream.First();
+            Assert.True(literalToken.IsKind(SyntaxKind.StringLiteral));
+            Assert.Equal(input, literalToken.Text);
+            Assert.Equal(value, literalToken.Value);
+        }
+
+        [Theory]
+        [InlineData("'a'", 'a')]
+        public void Tokenizes_CharLiterals(string input, char value)
+        {
+            var tokenStream = Tokenize(input, noTrivia: true);
+            var literalToken = tokenStream.First();
+            Assert.True(literalToken.IsKind(SyntaxKind.CharLiteral));
+            Assert.Equal(input, literalToken.Text);
+            Assert.Equal(value, literalToken.Value);
+        }
+
+        [Theory]
         [InlineData("123", 123)]
         [InlineData("69", 69)]
         [InlineData("0b1101", 13)]
@@ -15,8 +37,8 @@ namespace Heir.Tests
             var tokenStream = Tokenize(input, noTrivia: true);
             var literalToken = tokenStream.First();
             Assert.True(literalToken.IsKind(SyntaxKind.IntLiteral));
-            Assert.Equal(literalToken.Text, input);
-            Assert.Equal(literalToken.Value, value);
+            Assert.Equal(input, literalToken.Text);
+            Assert.Equal(value, literalToken.Value);
         }
 
         [Theory]
@@ -27,8 +49,30 @@ namespace Heir.Tests
             var tokenStream = Tokenize(input, noTrivia: true);
             var literalToken = tokenStream.First();
             Assert.True(literalToken.IsKind(SyntaxKind.FloatLiteral));
-            Assert.Equal(literalToken.Text, input);
-            Assert.Equal(literalToken.Value, value);
+            Assert.Equal(input, literalToken.Text);
+            Assert.Equal(value, literalToken.Value);
+        }
+
+        [Theory]
+        [InlineData("true", true)]
+        [InlineData("false", false)]
+        public void Tokenizes_BoolLiterals(string input, bool value)
+        {
+            var tokenStream = Tokenize(input, noTrivia: true);
+            var literalToken = tokenStream.First();
+            Assert.True(literalToken.IsKind(SyntaxKind.BoolLiteral));
+            Assert.Equal(input, literalToken.Text);
+            Assert.Equal(value, literalToken.Value);
+        }
+
+        [Fact]
+        public void Tokenizes_NoneLiterals()
+        {
+            var tokenStream = Tokenize("none", noTrivia: true);
+            var literalToken = tokenStream.First();
+            Assert.True(literalToken.IsKind(SyntaxKind.NoneLiteral));
+            Assert.Equal("none", literalToken.Text);
+            Assert.Null(literalToken.Value);
         }
 
         private TokenStream Tokenize(string input, bool noTrivia = false)
