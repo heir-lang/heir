@@ -49,6 +49,16 @@ namespace Heir.Tests
             Assert.Equal(input, literal.Token.Text);
         }
 
+        [Fact]
+        public void Parses_ParenthesizedExpressions()
+        {
+            var node = Parse("(1 + 2)");
+            Assert.IsType<Parenthesized>(node);
+
+            var parenthesized = (Parenthesized)node;
+            Assert.IsType<BinaryOp>(parenthesized.Expression);
+        }
+
         private SyntaxNode Parse(string input)
         {
             var lexer = new Lexer(input, "<testing>");
