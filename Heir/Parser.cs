@@ -8,7 +8,9 @@ namespace Heir
         public TokenStream Tokens { get; } = tokenStream.WithoutTrivia(); // temporary
         public DiagnosticBag Diagnostics { get; } = tokenStream.Diagnostics;
 
-        public Expression ParseExpression() => ParseLogicalOr();
+        public Expression Parse() => ParseExpression();
+
+        private Expression ParseExpression() => ParseLogicalOr();
 
         private Expression ParseLogicalOr()
         {
