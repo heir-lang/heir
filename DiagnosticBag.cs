@@ -33,6 +33,7 @@ namespace Heir
         {
             return _diagnostics.Any(diagnostic => diagnostic.Level == DiagnosticLevel.Error);
         }
+
         public IEnumerator<Diagnostic> GetEnumerator()
         {
             return _diagnostics.GetEnumerator();

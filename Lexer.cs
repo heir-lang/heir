@@ -30,6 +30,13 @@ namespace Heir
             get => Peek(-1);
         }
 
+        public static Lexer FromFile(string path)
+        {
+            string fileName = Path.GetFileName(path);
+            string contents = File.ReadAllText(path);
+            return new Lexer(contents, fileName);
+        }
+
         public TokenStream GetTokens(bool noTrivia = false)
         {
             while (!_isFinished)

@@ -1,4 +1,4 @@
-﻿var lexer = new Heir.Lexer("(2 * 4) + 6");
+﻿var lexer = Heir.Lexer.FromFile("./Test.heir");
 var tokenStream = lexer.GetTokens(true);
 var parser = new Heir.Parser(tokenStream);
 var ast = parser.ParseExpression();
