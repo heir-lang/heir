@@ -37,3 +37,7 @@ toy language part 9999999
     - [x] arithmetic (`+`, `-`, `*`, `/`, `//`, `%`, `^`)
       - [x] increment (`++`, `--`)
       - [x] compound assignment (`+=`, `-=`, `*=`, `/=`, `//=`, `%=`, `^=`)
+- [ ] parsing
+    - [x] literals
+    - [x] binary operations
+    - [x] parenthesized expressions
