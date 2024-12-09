@@ -43,6 +43,14 @@ Though I cannot guarantee the lifetime or dedication to this project, contributi
       - [x] increment (`++`, `--`)
       - [x] compound assignment (`+=`, `-=`, `*=`, `/=`, `//=`, `%=`, `^=`)
 - [ ] parsing
-    - [x] literals
+    - [ ] indexing (`a["b"]`)
+    - [ ] dot access (`a.b`)
+    - [ ] method calls
+    - [ ] variable declaration
+    - [ ] compound assignment
+    - [ ] assignment
+    - [ ] identifiers
+    - [ ] unary operations
     - [x] binary operations
     - [x] parenthesized expressions
+    - [x] literals
