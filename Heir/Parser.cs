@@ -80,7 +80,7 @@ namespace Heir
         private Expression ParseAddition()
         {
             var left = ParseMultiplication();
-            while (Tokens.Match(SyntaxKind.Plus) || Tokens.Match(SyntaxKind.Slash))
+            while (Tokens.Match(SyntaxKind.Plus) || Tokens.Match(SyntaxKind.Minus))
             {
                 var op = Tokens.Previous!;
                 var right = ParseMultiplication();

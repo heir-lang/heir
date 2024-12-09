@@ -14,8 +14,8 @@ namespace Heir.Tests
         [InlineData("2 & 7", SyntaxKind.Ampersand)]
         [InlineData("9 | 4", SyntaxKind.Pipe)]
         [InlineData("5 ~ 3", SyntaxKind.Tilde)]
-        [InlineData("true && false", SyntaxKind.Tilde)]
-        [InlineData("true || false", SyntaxKind.Tilde)]
+        [InlineData("true && false", SyntaxKind.AmpersandAmpersand)]
+        [InlineData("true || false", SyntaxKind.PipePipe)]
         public void Parses_BinaryOperators(string input, SyntaxKind operatorKind)
         {
             var node = Parse(input);
