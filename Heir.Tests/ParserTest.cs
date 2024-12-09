@@ -1,9 +1,32 @@
 using Heir.AST;
+using Heir.Syntax;
 
 namespace Heir.Tests
 {
     public class ParserTest
     {
+        [Theory]
+        [InlineData("1 + 2", SyntaxKind.Plus)]
+        [InlineData("3 - 2", SyntaxKind.Minus)]
+        [InlineData("3 * 4", SyntaxKind.Star)]
+        [InlineData("6 % 4", SyntaxKind.Percent)]
+        [InlineData("10 ^ 2", SyntaxKind.Carat)]
+        [InlineData("2 & 7", SyntaxKind.Ampersand)]
+        [InlineData("9 | 4", SyntaxKind.Pipe)]
+        [InlineData("5 ~ 3", SyntaxKind.Tilde)]
+        [InlineData("true && false", SyntaxKind.Tilde)]
+        [InlineData("true || false", SyntaxKind.Tilde)]
+        public void Parses_BinaryOperators(string input, SyntaxKind operatorKind)
+        {
+            var node = Parse(input);
+            Assert.IsType<BinaryOp>(node);
+
+            var binaryOperation = (BinaryOp)node;
+            Assert.IsType<Literal>(binaryOperation.Left);
+            Assert.IsType<Literal>(binaryOperation.Right);
+            Assert.Equal(operatorKind, binaryOperation.Operator.Kind);
+        }
+
         [Theory]
         [InlineData("\"abc\"")]
         [InlineData("'a'")]
