@@ -5,8 +5,10 @@ var ast = parser.Parse();
 
 //Console.WriteLine(tokenStream);
 //Console.WriteLine();
-ast.Display();
-Console.WriteLine();
+//ast.Display();
+foreach (var instruction in ast.GenerateBytecode())
+    Console.WriteLine(instruction.OpCode + ", " + (instruction.Operand?.ToString() ?? "null"));
+
 Console.WriteLine();
 
 Console.WriteLine("Diagnostics:");
