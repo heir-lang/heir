@@ -6,9 +6,14 @@ var ast = parser.Parse();
 //Console.WriteLine(tokenStream);
 //Console.WriteLine();
 //ast.Display();
-foreach (var instruction in ast.GenerateBytecode())
-    Console.WriteLine(instruction.OpCode + ", " + (instruction.Operand?.ToString() ?? "null"));
+var bytecode = ast.GenerateBytecode();
+//foreach (var instruction in bytecode)
+//    Console.WriteLine(instruction.OpCode + ", " + (instruction.Operand?.ToString() ?? "null"));
 
+//Console.WriteLine();
+
+var vm = new Heir.VirtualMachine(parser.Diagnostics, bytecode);
+Console.WriteLine(vm.Evaluate() ?? "null");
 Console.WriteLine();
 
 Console.WriteLine("Diagnostics:");

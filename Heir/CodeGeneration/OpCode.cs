@@ -42,6 +42,7 @@
         LTE,
         EQ,
 
-        NOOP
+        NOOP,
+        EXIT
     }
 }

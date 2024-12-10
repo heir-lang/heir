@@ -13,11 +13,11 @@ namespace Heir.AST
             var value = Operand.GenerateBytecode();
             var bytecode = Operator.Kind switch
             {
-                SyntaxKind.Bang => value.Append(new Instruction(OpCode.NOT)),
-                SyntaxKind.Tilde => value.Append(new Instruction(OpCode.BNOT)),
-                SyntaxKind.Minus => value.Append(new Instruction(OpCode.UNM)),
-                SyntaxKind.PlusPlus => value.Append(new Instruction(OpCode.PUSH, 1)).Append(new Instruction(OpCode.ADD)),
-                SyntaxKind.MinusMinus => value.Append(new Instruction(OpCode.PUSH, 1)).Append(new Instruction(OpCode.SUB)),
+                SyntaxKind.Bang => value.Append(new Instruction(this, OpCode.NOT)),
+                SyntaxKind.Tilde => value.Append(new Instruction(this, OpCode.BNOT)),
+                SyntaxKind.Minus => value.Append(new Instruction(this, OpCode.UNM)),
+                SyntaxKind.PlusPlus => value.Append(new Instruction(this, OpCode.PUSH, 1)).Append(new Instruction(this, OpCode.ADD)),
+                SyntaxKind.MinusMinus => value.Append(new Instruction(this, OpCode.PUSH, 1)).Append(new Instruction(this, OpCode.SUB)),
 
                 _ => null!
             };

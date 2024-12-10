@@ -12,7 +12,7 @@ namespace Heir
             Warn(code, message, token.StartLocation, token.EndLocation);
         }
 
-        public void Warn(string code, string message, Location startLocation, Location? endLocation)
+        public void Warn(string code, string message, Location startLocation, Location? endLocation = null)
         {
             var diagnostic = new Diagnostic(code, message, startLocation, endLocation ?? startLocation, DiagnosticLevel.Warn);
             _diagnostics.Add(diagnostic);
@@ -23,7 +23,7 @@ namespace Heir
             Error(code, message, token.StartLocation, token.EndLocation);
         }
 
-        public void Error(string code, string message, Location startLocation, Location? endLocation)
+        public void Error(string code, string message, Location startLocation, Location? endLocation = null)
         {
             var diagnostic = new Diagnostic(code, message, startLocation, endLocation ?? startLocation, DiagnosticLevel.Error);
             _diagnostics.Add(diagnostic);

@@ -7,7 +7,7 @@ namespace Heir.AST
     {
         public Token Token { get; } = token;
 
-        public override List<Instruction> GenerateBytecode() => [new Instruction(OpCode.PUSH, Token.Value)];
+        public override List<Instruction> GenerateBytecode() => [new Instruction(this, OpCode.PUSH, Token.Value)];
 
         public override List<Token> GetTokens() => [Token];
 
