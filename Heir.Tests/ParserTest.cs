@@ -102,6 +102,21 @@ namespace Heir.Tests
                 Assert.Equal(SyntaxKind.AmpersandAmpersand, and.Operator.Kind);
                 Assert.Equal(true, trueLiteral.Token.Value);
             }
+            {
+                var (node, _) = Parse("x += y * z");
+                Assert.IsType<AssignmentOp>(node);
+
+                var assignment = (AssignmentOp)node;
+                Assert.IsType<IdentifierName>(assignment.Left);
+                var target = (IdentifierName)assignment.Left;
+                Assert.IsType<BinaryOp>(assignment.Right);
+                var multiplication = (BinaryOp)assignment.Right;
+                Assert.IsType<IdentifierName>(assignment.Left);
+                Assert.IsType<IdentifierName>(assignment.Right);
+
+                Assert.Equal(SyntaxKind.PlusEquals, assignment.Operator.Kind);
+                Assert.Equal(SyntaxKind.Star, multiplication.Operator.Kind);
+            }
         }
 
         [Theory]
