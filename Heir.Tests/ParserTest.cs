@@ -6,10 +6,11 @@ namespace Heir.Tests
     public class ParserTest
     {
         [Theory]
-        [InlineData(")", "H005")]
+        [InlineData("1 += 2", "H008")]
         [InlineData("()", "H007")]
         [InlineData("++1", "H006")]
         [InlineData("--3", "H006")]
+        [InlineData("]", "H005")]
         public void ThrowsWith(string input, string expectedErrorCode)
         {
             var (_, diagnostics) = Parse(input);

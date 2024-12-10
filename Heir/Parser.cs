@@ -15,9 +15,6 @@ namespace Heir
         private Expression ParseAssignment()
         {
             var left = ParseLogicalOr();
-            if (!left.Is<IdentifierName>()) // && !left.Is<MemberAccess>()
-                Diagnostics.Error("H008", $"Invalid assignment target, expected identifier or member access", left.GetFirstToken());
-
             if (Tokens.Match(SyntaxKind.Equals) ||
                 Tokens.Match(SyntaxKind.PlusEquals) ||
                 Tokens.Match(SyntaxKind.MinusEquals) ||
@@ -31,6 +28,9 @@ namespace Heir
                 Tokens.Match(SyntaxKind.AmpersandAmpersandEquals) ||
                 Tokens.Match(SyntaxKind.PipePipeEquals))
             {
+                if (!left.Is<IdentifierName>()) // && !left.Is<MemberAccess>()
+                    Diagnostics.Error("H008", $"Invalid assignment target, expected identifier or member access", left.GetFirstToken());
+
                 var op = Tokens.Previous!;
                 var right = ParseAssignment();
                 return new AssignmentOp(left, op, right);
