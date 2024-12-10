@@ -6,6 +6,27 @@ namespace Heir.Tests
     public class ParserTest
     {
         [Theory]
+        [InlineData(")", "H005")]
+        [InlineData("()", "H007")]
+        [InlineData("++1", "H006")]
+        [InlineData("--3", "H006")]
+        public void ThrowsWith(string input, string expectedErrorCode)
+        {
+            var (_, diagnostics) = Parse(input);
+            Assert.True(diagnostics.HasErrors());
+            Assert.Contains(diagnostics, diagnostic => diagnostic.Code == expectedErrorCode);
+        }
+
+        [Theory]
+        [InlineData("++a")]
+        [InlineData("--b")]
+        public void DoesNotThrowWith(string input)
+        {
+            var (_, diagnostics) = Parse(input);
+            Assert.False(diagnostics.HasErrors());
+        }
+
+        [Theory]
         [InlineData("!true", SyntaxKind.Bang)]
         [InlineData("++a", SyntaxKind.PlusPlus)]
         [InlineData("--b", SyntaxKind.MinusMinus)]
@@ -13,7 +34,7 @@ namespace Heir.Tests
         [InlineData("~14", SyntaxKind.Tilde)]
         public void Parses_UnaryOperators(string input, SyntaxKind operatorKind)
         {
-            var node = Parse(input);
+            var (node, _) = Parse(input);
             Assert.IsType<UnaryOp>(node);
 
             var unaryOperation = (UnaryOp)node;
@@ -33,7 +54,7 @@ namespace Heir.Tests
         [InlineData("true || false", SyntaxKind.PipePipe)]
         public void Parses_BinaryOperators(string input, SyntaxKind operatorKind)
         {
-            var node = Parse(input);
+            var (node, _) = Parse(input);
             Assert.IsType<BinaryOp>(node);
 
             var binaryOperation = (BinaryOp)node;
@@ -46,7 +67,7 @@ namespace Heir.Tests
         public void Parses_OperatorPrecedence()
         {
             {
-                var node = Parse("3 ^ 2 * 4 - 2");
+                var (node, _) = Parse("3 ^ 2 * 4 - 2");
                 Assert.IsType<BinaryOp>(node);
 
                 var subtraction = (BinaryOp)node;
@@ -66,7 +87,7 @@ namespace Heir.Tests
                 Assert.Equal((long)4, fourLiteral.Token.Value);
             }
             {
-                var node = Parse("true || false && true");
+                var (node, _) = Parse("true || false && true");
                 Assert.IsType<BinaryOp>(node);
 
                 var or = (BinaryOp)node;
@@ -98,7 +119,7 @@ namespace Heir.Tests
         [InlineData("none")]
         public void Parses_Literals(string input)
         {
-            var node = Parse(input);
+            var (node, _) = Parse(input);
             Assert.IsType<Literal>(node);
 
             var literal = (Literal)node;
@@ -108,7 +129,7 @@ namespace Heir.Tests
         [Fact]
         public void Parses_ParenthesizedExpressions()
         {
-            var node = Parse("(1 + 2)");
+            var (node, _) = Parse("(1 + 2)");
             Assert.IsType<Parenthesized>(node);
 
             var parenthesized = (Parenthesized)node;
@@ -121,19 +142,21 @@ namespace Heir.Tests
         [InlineData("abc_123")]
         public void Parses_Identifiers(string input)
         {
-            var node = Parse(input);
+            var (node, _) = Parse(input);
             Assert.IsType<IdentifierName>(node);
 
             var identifier = (IdentifierName)node;
             Assert.Equal(input, identifier.Token.Text);
         }
 
-        private SyntaxNode Parse(string input)
+        private (SyntaxNode, DiagnosticBag) Parse(string input)
         {
             var lexer = new Lexer(input, "<testing>");
             var tokenStream = lexer.GetTokens();
             var parser = new Parser(tokenStream);
-            return parser.Parse();
+
+            // temp
+            return (parser.Parse(), parser.Diagnostics);
         }
     }
 }

@@ -9,7 +9,7 @@ namespace Heir.Tests
         [InlineData("'c", "H002")]
         [InlineData("\"ab", "H003")]
         [InlineData(@"\\", "H001")]
-        public void ThrowsWith_Error(string input, string expectedErrorCode)
+        public void ThrowsWith(string input, string expectedErrorCode)
         {
             var tokenStream = Tokenize(input);
             Assert.True(tokenStream.Diagnostics.HasErrors());

@@ -35,23 +35,25 @@ namespace Heir.Syntax
             return isMatch;
         }
 
-        public Token Consume(SyntaxKind kind)
+        public Token? Consume(SyntaxKind kind)
         {
             var token = Advance();
+            if (token == null) return null;
+
             if (!token.IsKind(kind))
                 Diagnostics.Error("H004", $"Expected {kind} but got {token.Kind}", token);
 
             return token;
         }
 
-        public Token Advance()
+        public Token? Advance()
         {
             var token = Current;
             if (token == null)
                 Diagnostics.Error("H001B", "End of token stream reached", Previous!);
 
             _index++;
-            return token!;
+            return token;
         }
 
         public Token? Peek(int offset)

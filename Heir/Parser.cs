@@ -139,6 +139,9 @@ namespace Heir
         private Expression ParsePrimary()
         {
             var token = Tokens.Advance();
+            if (token == null)
+                return new NoOp();
+
             switch (token.Kind)
             {
                 case SyntaxKind.BoolLiteral:
@@ -155,8 +158,13 @@ namespace Heir
                 case SyntaxKind.LParen:
                     {
                         var expression = ParseExpression();
-                        Tokens.Consume(SyntaxKind.RParen);
+                        if (expression.Is<NoOp>())
+                        {
+                            Diagnostics.Error("H007", $"Expected expression, got {(Tokens.Previous?.Kind.ToString() ?? "EOF")}", token);
+                            return new NoOp();
+                        }
 
+                        Tokens.Consume(SyntaxKind.RParen);
                         return new Parenthesized(expression);
                     }
             }
