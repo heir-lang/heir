@@ -1,3 +1,4 @@
+using Heir.CodeGeneration;
 using Heir.Syntax;
 
 namespace Heir.AST
@@ -6,6 +7,7 @@ namespace Heir.AST
     {
         public Token Token { get; } = token;
 
+        public override List<Instruction> GenerateBytecode() => [new Instruction(OpCode.LOAD, Token.Text)];
         public override List<Token> GetTokens() => [Token];
 
         public override void Display(int indent)

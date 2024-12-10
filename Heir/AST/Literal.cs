@@ -1,10 +1,13 @@
-﻿using Heir.Syntax;
+﻿using Heir.CodeGeneration;
+using Heir.Syntax;
 
 namespace Heir.AST
 {
     public class Literal(Token token) : Expression
     {
         public Token Token { get; } = token;
+
+        public override List<Instruction> GenerateBytecode() => [new Instruction(OpCode.PUSH, Token.Value)];
 
         public override List<Token> GetTokens() => [Token];
 

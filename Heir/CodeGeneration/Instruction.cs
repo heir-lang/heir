@@ -1,10 +1,14 @@
 ﻿namespace Heir.CodeGeneration
 {
-    public class Instruction(OpCode opCode, int? operand = null)
+    public class Instruction(OpCode opCode, object? operand = null) : Instruction<object>(opCode, operand)
+    { 
+    }
+
+    public class Instruction<T>(OpCode opCode, T? operand = default)
     {
         public OpCode OpCode { get; } = opCode;
-        public int? Operand { get; } = operand;
+        public T? Operand { get; } = operand;
 
-        public override string ToString() => Operand.HasValue ? $"{OpCode} {Operand}" : OpCode.ToString();
+        public override string ToString() => Operand != null ? $"{OpCode} {Operand}" : OpCode.ToString();
     }
 }

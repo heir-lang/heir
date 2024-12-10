@@ -1,4 +1,5 @@
-﻿using Heir.Syntax;
+﻿using Heir.CodeGeneration;
+using Heir.Syntax;
 
 namespace Heir.AST
 {
@@ -12,6 +13,7 @@ namespace Heir.AST
 
     public abstract class SyntaxNode
     {
+        public abstract List<Instruction> GenerateBytecode();
         public abstract void Display(int indent = 0);
         public abstract List<Token> GetTokens();
 

@@ -1,4 +1,5 @@
-﻿using Heir.Syntax;
+﻿using Heir.CodeGeneration;
+using Heir.Syntax;
 
 namespace Heir.AST
 {
@@ -6,6 +7,23 @@ namespace Heir.AST
     {
         public SyntaxNode Operand { get; } = operand;
         public Token Operator { get; } = op;
+
+        public override List<Instruction> GenerateBytecode()
+        {
+            var value = Operand.GenerateBytecode();
+            var bytecode = Operator.Kind switch
+            {
+                SyntaxKind.Bang => value.Append(new Instruction(OpCode.NOT)),
+                SyntaxKind.Tilde => value.Append(new Instruction(OpCode.BNOT)),
+                SyntaxKind.Minus => value.Append(new Instruction(OpCode.UNM)),
+                SyntaxKind.PlusPlus => value.Append(new Instruction(OpCode.PUSH, 1)).Append(new Instruction(OpCode.ADD)),
+                SyntaxKind.MinusMinus => value.Append(new Instruction(OpCode.PUSH, 1)).Append(new Instruction(OpCode.SUB)),
+
+                _ => null!
+            };
+
+            return bytecode.ToList();
+        }
 
         public override List<Token> GetTokens() => Operand.GetTokens().Append(Operator).ToList();
 

@@ -26,6 +26,7 @@
         IDIV,
         POW,
         MOD,
+        UNM,
 
         // BSHL,
         // BSHR,
