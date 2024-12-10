@@ -60,3 +60,5 @@ Though I cannot guarantee the lifetime or dedication to this project, contributi
     - [x] binary operations
     - [x] parenthesized expressions
     - [x] literals
+- [ ] bytecode generator
+- [ ] hvm (heir virtual machine)
