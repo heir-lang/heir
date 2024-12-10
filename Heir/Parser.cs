@@ -10,7 +10,31 @@ namespace Heir
 
         public Expression Parse() => ParseExpression();
 
-        private Expression ParseExpression() => ParseLogicalOr();
+        private Expression ParseExpression() => ParseAssignment();
+
+        private Expression ParseAssignment()
+        {
+            var left = ParseLogicalOr();
+            if (Tokens.Match(SyntaxKind.Equals) ||
+                Tokens.Match(SyntaxKind.PlusEquals) ||
+                Tokens.Match(SyntaxKind.MinusEquals) ||
+                Tokens.Match(SyntaxKind.StarEquals) ||
+                Tokens.Match(SyntaxKind.SlashEquals) ||
+                Tokens.Match(SyntaxKind.PercentEquals) ||
+                Tokens.Match(SyntaxKind.CaratEquals) ||
+                Tokens.Match(SyntaxKind.AmpersandEquals) ||
+                Tokens.Match(SyntaxKind.PipeEquals) ||
+                Tokens.Match(SyntaxKind.TildeEquals) ||
+                Tokens.Match(SyntaxKind.AmpersandAmpersandEquals) ||
+                Tokens.Match(SyntaxKind.PipePipeEquals))
+            {
+                var op = Tokens.Previous!;
+                var right = ParseAssignment();
+                return new AssignmentOp(left, op, right);
+            }
+
+            return left;
+        }
 
         private Expression ParseLogicalOr()
         {
