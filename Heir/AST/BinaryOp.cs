@@ -9,51 +9,59 @@ namespace Heir.AST
         public Token Operator { get; } = op;
         public SyntaxNode Right { get; } = right;
 
+        private static readonly Dictionary<SyntaxKind, OpCode> StandardOpMap = new()
+        {
+            { SyntaxKind.Plus,                  OpCode.ADD },
+            { SyntaxKind.Minus,                 OpCode.SUB },
+            { SyntaxKind.Star,                  OpCode.MUL },
+            { SyntaxKind.Slash,                 OpCode.DIV },
+            { SyntaxKind.SlashSlash,            OpCode.IDIV },
+            { SyntaxKind.Percent,               OpCode.MOD },
+            { SyntaxKind.Carat,                 OpCode.POW },
+            { SyntaxKind.Ampersand,             OpCode.BAND },
+            { SyntaxKind.Pipe,                  OpCode.BOR },
+            { SyntaxKind.Tilde,                 OpCode.BXOR },
+            { SyntaxKind.AmpersandAmpersand,    OpCode.AND },
+            { SyntaxKind.PipePipe,              OpCode.OR }
+        };
+
+        private static readonly Dictionary<SyntaxKind, OpCode> AssignmentOpMap = new()
+        {
+            { SyntaxKind.PlusEquals,                OpCode.ADD },
+            { SyntaxKind.MinusEquals,               OpCode.SUB },
+            { SyntaxKind.StarEquals,                OpCode.MUL },
+            { SyntaxKind.SlashEquals,               OpCode.DIV },
+            { SyntaxKind.SlashSlashEquals,          OpCode.IDIV },
+            { SyntaxKind.PercentEquals,             OpCode.MOD },
+            { SyntaxKind.CaratEquals,               OpCode.POW },
+            { SyntaxKind.AmpersandEquals,           OpCode.BAND },
+            { SyntaxKind.PipeEquals,                OpCode.BOR },
+            { SyntaxKind.TildeEquals,               OpCode.BXOR },
+            { SyntaxKind.AmpersandAmpersandEquals,  OpCode.AND },
+            { SyntaxKind.PipePipeEquals,            OpCode.OR }
+        };
+
         public override List<Instruction> GenerateBytecode()
         {
-            var left = Left.GenerateBytecode();
-            var right = Right.GenerateBytecode();
-            var combined = left.Concat(right);
-            var bytecode = GetStandardOperations(combined) ?? (Operator.Kind switch
+            var leftInstructions = Left.GenerateBytecode();
+            var rightInstructions = Right.GenerateBytecode();
+            var combined = leftInstructions.Concat(rightInstructions);
+
+            if (StandardOpMap.TryGetValue(Operator.Kind, out var standardOp))
             {
-                SyntaxKind.PlusEquals => left.Concat(combined.Append(new Instruction(this, OpCode.ADD))).Append(new Instruction(this, OpCode.STORE)),
-                SyntaxKind.MinusEquals => left.Concat(combined.Append(new Instruction(this, OpCode.SUB))).Append(new Instruction(this, OpCode.STORE)),
-                SyntaxKind.StarEquals => left.Concat(combined.Append(new Instruction(this, OpCode.MUL))).Append(new Instruction(this, OpCode.STORE)),
-                SyntaxKind.SlashEquals => left.Concat(combined.Append(new Instruction(this, OpCode.DIV))).Append(new Instruction(this, OpCode.STORE)),
-                SyntaxKind.SlashSlashEquals => left.Concat(combined.Append(new Instruction(this, OpCode.IDIV))).Append(new Instruction(this, OpCode.STORE)),
-                SyntaxKind.PercentEquals => left.Concat(combined.Append(new Instruction(this, OpCode.MOD))).Append(new Instruction(this, OpCode.STORE)),
-                SyntaxKind.CaratEquals => left.Concat(combined.Append(new Instruction(this, OpCode.POW))).Append(new Instruction(this, OpCode.STORE)),
-                SyntaxKind.AmpersandEquals => left.Concat(combined.Append(new Instruction(this, OpCode.BAND))).Append(new Instruction(this, OpCode.STORE)),
-                SyntaxKind.PipeEquals => left.Concat(combined.Append(new Instruction(this, OpCode.BOR))).Append(new Instruction(this, OpCode.STORE)),
-                SyntaxKind.TildeEquals => left.Concat(combined.Append(new Instruction(this, OpCode.BXOR))).Append(new Instruction(this, OpCode.STORE)),
-                SyntaxKind.AmpersandAmpersandEquals => left.Concat(combined.Append(new Instruction(this, OpCode.AND))).Append(new Instruction(this, OpCode.STORE)),
-                SyntaxKind.PipePipeEquals => left.Concat(combined.Append(new Instruction(this, OpCode.OR))).Append(new Instruction(this, OpCode.STORE)),
+                return combined.Append(new Instruction(this, standardOp)).ToList();
+            }
 
-                _ => null!
-            });
-
-            return bytecode.ToList();
-        }
-
-        private IEnumerable<Instruction>? GetStandardOperations(IEnumerable<Instruction> combined)
-        {
-            return Operator.Kind switch
+            if (AssignmentOpMap.TryGetValue(Operator.Kind, out var assignmentOp))
             {
-                SyntaxKind.Plus => combined.Append(new Instruction(this, OpCode.ADD)),
-                SyntaxKind.Minus => combined.Append(new Instruction(this, OpCode.SUB)),
-                SyntaxKind.Star => combined.Append(new Instruction(this, OpCode.MUL)),
-                SyntaxKind.Slash => combined.Append(new Instruction(this, OpCode.DIV)),
-                SyntaxKind.SlashSlash => combined.Append(new Instruction(this, OpCode.IDIV)),
-                SyntaxKind.Percent => combined.Append(new Instruction(this, OpCode.MOD)),
-                SyntaxKind.Carat => combined.Append(new Instruction(this, OpCode.POW)),
-                SyntaxKind.Ampersand => combined.Append(new Instruction(this, OpCode.BAND)),
-                SyntaxKind.Pipe => combined.Append(new Instruction(this, OpCode.BOR)),
-                SyntaxKind.Tilde => combined.Append(new Instruction(this, OpCode.BXOR)),
-                SyntaxKind.AmpersandAmpersand => combined.Append(new Instruction(this, OpCode.AND)),
-                SyntaxKind.PipePipe => combined.Append(new Instruction(this, OpCode.OR)),
+                return leftInstructions
+                    .Concat(rightInstructions)
+                    .Append(new Instruction(this, assignmentOp))
+                    .Append(new Instruction(this, OpCode.STORE))
+                    .ToList();
+            }
 
-                _ => null
-            };
+            throw new NotSupportedException($"Unsupported operator kind: {Operator.Kind}");
         }
 
         public override List<Token> GetTokens() => Left.GetTokens().Append(Operator).Concat(Right.GetTokens()).ToList();
