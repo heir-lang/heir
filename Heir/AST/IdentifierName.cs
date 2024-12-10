@@ -6,6 +6,8 @@ namespace Heir.AST
     {
         public Token Token { get; } = token;
 
+        public override List<Token> GetTokens() => [Token];
+
         public override void Display(int indent)
         {
             Console.Write($"{string.Concat(Enumerable.Repeat("  ", indent))}IdentifierName({Token.Text})");

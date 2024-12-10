@@ -126,6 +126,10 @@ namespace Heir
             {
                 var op = Tokens.Previous!;
                 var operand = ParseUnary(); // recursively parse the operand
+                var isAssignmentOp = op.IsKind(SyntaxKind.PlusPlus) || op.IsKind(SyntaxKind.MinusMinus);
+                if (isAssignmentOp && operand.Is<Literal>())
+                    Diagnostics.Error("H006", $"Attempt to {(op.IsKind(SyntaxKind.PlusPlus) ? "in" : "de")}crement a constant, expected identifier", operand.GetFirstToken());
+
                 return new UnaryOp(operand, op);
             }
 

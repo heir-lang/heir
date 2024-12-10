@@ -6,6 +6,8 @@ namespace Heir.AST
     {
         public Token Token { get; } = token;
 
+        public override List<Token> GetTokens() => [Token];
+
         public override void Display(int indent)
         {
             var valueText = Token.Value?.ToString() ?? "none";

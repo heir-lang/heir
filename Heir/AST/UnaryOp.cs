@@ -7,6 +7,8 @@ namespace Heir.AST
         public SyntaxNode Operand { get; } = operand;
         public Token Operator { get; } = op;
 
+        public override List<Token> GetTokens() => Operand.GetTokens().Append(Operator).ToList();
+
         public override void Display(int indent)
         {
             Console.WriteLine($"{string.Concat(Enumerable.Repeat("  ", indent))}Unary(");

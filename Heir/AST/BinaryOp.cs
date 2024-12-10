@@ -8,6 +8,8 @@ namespace Heir.AST
         public Token Operator { get; } = op;
         public SyntaxNode Right { get; } = right;
 
+        public override List<Token> GetTokens() => Left.GetTokens().Append(Operator).Concat(Right.GetTokens()).ToList();
+
         public override void Display(int indent)
         {
             Console.WriteLine($"{string.Concat(Enumerable.Repeat("  ", indent))}BinaryOp(");

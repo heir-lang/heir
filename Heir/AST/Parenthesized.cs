@@ -1,8 +1,12 @@
-﻿namespace Heir.AST
+﻿using Heir.Syntax;
+
+namespace Heir.AST
 {
     public class Parenthesized(Expression expression) : Expression
     {
         public Expression Expression { get; } = expression;
+
+        public override List<Token> GetTokens() => Expression.GetTokens();
 
         public override void Display(int indent)
         {
