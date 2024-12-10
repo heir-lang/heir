@@ -53,8 +53,8 @@ Though I cannot guarantee the lifetime or dedication to this project, contributi
     - [ ] dot access (`a.b`)
     - [ ] method calls
     - [ ] variable declaration
-    - [ ] compound assignment
-    - [ ] assignment
+    - [x] compound assignment
+    - [x] assignment
     - [x] identifiers
     - [x] unary operations
     - [x] binary operations
