@@ -111,8 +111,8 @@ namespace Heir.Tests
                 var target = (IdentifierName)assignment.Left;
                 Assert.IsType<BinaryOp>(assignment.Right);
                 var multiplication = (BinaryOp)assignment.Right;
-                Assert.IsType<IdentifierName>(assignment.Left);
-                Assert.IsType<IdentifierName>(assignment.Right);
+                Assert.IsType<IdentifierName>(multiplication.Left);
+                Assert.IsType<IdentifierName>(multiplication.Right);
 
                 Assert.Equal(SyntaxKind.PlusEquals, assignment.Operator.Kind);
                 Assert.Equal(SyntaxKind.Star, multiplication.Operator.Kind);
