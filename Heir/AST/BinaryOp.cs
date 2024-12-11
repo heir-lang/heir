@@ -48,18 +48,14 @@ namespace Heir.AST
             var combined = leftInstructions.Concat(rightInstructions);
 
             if (StandardOpMap.TryGetValue(Operator.Kind, out var standardOp))
-            {
                 return combined.Append(new Instruction(this, standardOp)).ToList();
-            }
 
             if (AssignmentOpMap.TryGetValue(Operator.Kind, out var assignmentOp))
-            {
                 return leftInstructions
                     .Concat(rightInstructions)
                     .Append(new Instruction(this, assignmentOp))
                     .Append(new Instruction(this, OpCode.STORE))
                     .ToList();
-            }
 
             throw new NotSupportedException($"Unsupported operator kind: {Operator.Kind}");
         }
