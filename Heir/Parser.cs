@@ -8,7 +8,11 @@ namespace Heir
         public TokenStream Tokens { get; } = tokenStream.WithoutTrivia(); // temporary
         public DiagnosticBag Diagnostics { get; } = tokenStream.Diagnostics;
 
-        public Expression Parse() => ParseExpression();
+        public SyntaxTree Parse()
+        {
+            var statement = ParseExpression(); // TODO: yeah you know what to do lol
+            return new([statement]);
+        }
 
         private Expression ParseExpression() => ParseAssignment();
 

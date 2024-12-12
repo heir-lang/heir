@@ -3,7 +3,7 @@ using Heir.Syntax;
 
 namespace Heir.AST
 {
-    public class SyntaxTree(SyntaxNode[] statements) : SyntaxNode
+    public class SyntaxTree(SyntaxNode[] statements) : Statement
     {
         public SyntaxNode[] Statements { get; } = statements;
 
@@ -18,9 +18,9 @@ namespace Heir.AST
             .Select(statement => statement.GenerateBytecode())
             .Aggregate((finalBytecode, statementBytecode) => finalBytecode.Concat(statementBytecode).ToList());
 
-        public override List<Token> GetTokens()
-        {
-            throw new NotImplementedException();
-        }
+        public override List<Token> GetTokens() =>
+            Statements
+            .Select(statement => statement.GetTokens())
+            .Aggregate((allTokens, statementTokens) => allTokens.Concat(statementTokens).ToList());
     }
 }
