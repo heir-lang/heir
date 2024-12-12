@@ -41,7 +41,7 @@ namespace Heir.AST
             { SyntaxKind.PipePipeEquals,            OpCode.OR }
         };
 
-        public override List<Instruction> GenerateBytecode()
+        public List<Instruction> GenerateBytecode()
         {
             var leftInstructions = Left.GenerateBytecode();
             var rightInstructions = Right.GenerateBytecode();

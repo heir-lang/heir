@@ -6,9 +6,12 @@ namespace Heir.AST
     {
         public abstract BaseType? Type { get; }
 
-        public abstract class Visitor<R>
+        public abstract R Accept<R>(Visitor<R> visitor);
+
+        public interface Visitor<R>
         {
-            
+            public R VisitBoundSyntaxTree(BoundSyntaxTree boundBlock);
+            public R VisitBoundBlockStatement(BoundBlock boundBlock);
         }
     }
 
@@ -16,7 +19,9 @@ namespace Heir.AST
     {
         public abstract BaseType Type { get; }
 
-        public abstract class Visitor<R>
+        public abstract R Accept<R>(Visitor<R> visitor);
+
+        public interface Visitor<R>
         {
             
         }

@@ -8,7 +8,7 @@ namespace Heir
         Error
     }
 
-    public class Diagnostic(string code, string message, Location startLocation, Location endLocation, DiagnosticLevel level)
+    public sealed class Diagnostic(string code, string message, Location startLocation, Location endLocation, DiagnosticLevel level)
     {
         public string Code { get; } = code;
         public string Message { get; } = message;

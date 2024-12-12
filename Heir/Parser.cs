@@ -3,7 +3,7 @@ using Heir.AST;
 
 namespace Heir
 {
-    public class Parser(TokenStream tokenStream)
+    public sealed class Parser(TokenStream tokenStream)
     {
         public TokenStream Tokens { get; } = tokenStream.WithoutTrivia(); // temporary
         public DiagnosticBag Diagnostics { get; } = tokenStream.Diagnostics;

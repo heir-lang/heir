@@ -3,7 +3,7 @@ using System.Collections;
 
 namespace Heir
 {
-    public class DiagnosticBag : IEnumerable<Diagnostic>
+    public sealed class DiagnosticBag : IEnumerable<Diagnostic>
     {
         private readonly HashSet<Diagnostic> _diagnostics = [];
 

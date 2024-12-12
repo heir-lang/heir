@@ -1,6 +1,6 @@
 ﻿namespace Heir
 {
-    public class BiDictionary<TKey, TValue>
+    public sealed class BiDictionary<TKey, TValue>
         where TKey : notnull
         where TValue : notnull
     {

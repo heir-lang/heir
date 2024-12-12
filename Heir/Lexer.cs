@@ -2,7 +2,7 @@
 
 namespace Heir
 {
-    public class Lexer(string source, string fileName = "<anonymous>")
+    public sealed class Lexer(string source, string fileName = "<anonymous>")
     {
         public string Source { get; } = source;
         public DiagnosticBag Diagnostics { get; } = new();

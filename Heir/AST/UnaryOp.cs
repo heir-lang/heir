@@ -8,7 +8,7 @@ namespace Heir.AST
         public SyntaxNode Operand { get; } = operand;
         public Token Operator { get; } = op;
 
-        public override List<Instruction> GenerateBytecode()
+        public List<Instruction> GenerateBytecode()
         {
             var value = Operand.GenerateBytecode();
             var bytecode = Operator.Kind switch

@@ -1,9 +1,8 @@
 ﻿using Heir.CodeGeneration;
-using System.Numerics;
 
 namespace Heir
 {
-    public class VirtualMachine(DiagnosticBag diagnostics, List<Instruction> bytecode)
+    public sealed class VirtualMachine(DiagnosticBag diagnostics, List<Instruction> bytecode)
     {
         public DiagnosticBag Diagnostics { get; } = diagnostics;
 
