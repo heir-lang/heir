@@ -2,7 +2,7 @@ using Heir.Syntax;
 
 namespace Heir.AST
 {
-    public class AssignmentOp(SyntaxNode left, Token op, SyntaxNode right) : BinaryOp(left, op, right)
+    public class AssignmentOp(Expression left, Token op, Expression right) : BoundBinaryOp(left, op, right)
     {
         public override void Display(int indent)
         {

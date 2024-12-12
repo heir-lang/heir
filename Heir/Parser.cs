@@ -50,7 +50,7 @@ namespace Heir
             {
                 var op = Tokens.Previous!;
                 var right = ParseLogicalAnd();
-                left = new BinaryOp(left, op, right);
+                left = new BoundBinaryOp(left, op, right);
             }
 
             return left;
@@ -63,7 +63,7 @@ namespace Heir
             {
                 var op = Tokens.Previous!;
                 var right = ParseBitwiseXor();
-                left = new BinaryOp(left, op, right);
+                left = new BoundBinaryOp(left, op, right);
             }
 
             return left;
@@ -76,7 +76,7 @@ namespace Heir
             {
                 var op = Tokens.Previous!;
                 var right = ParseBitwiseOr();
-                left = new BinaryOp(left, op, right);
+                left = new BoundBinaryOp(left, op, right);
             }
 
             return left;
@@ -89,7 +89,7 @@ namespace Heir
             {
                 var op = Tokens.Previous!;
                 var right = ParseBitwiseAnd();
-                left = new BinaryOp(left, op, right);
+                left = new BoundBinaryOp(left, op, right);
             }
 
             return left;
@@ -102,7 +102,7 @@ namespace Heir
             {
                 var op = Tokens.Previous!;
                 var right = ParseAddition();
-                left = new BinaryOp(left, op, right);
+                left = new BoundBinaryOp(left, op, right);
             }
 
             return left;
@@ -115,7 +115,7 @@ namespace Heir
             {
                 var op = Tokens.Previous!;
                 var right = ParseMultiplication();
-                left = new BinaryOp(left, op, right);
+                left = new BoundBinaryOp(left, op, right);
             }
 
             return left;
@@ -128,7 +128,7 @@ namespace Heir
             {
                 var op = Tokens.Previous!;
                 var right = ParseExponentiation();
-                left = new BinaryOp(left, op, right);
+                left = new BoundBinaryOp(left, op, right);
             }
 
             return left;
@@ -141,7 +141,7 @@ namespace Heir
             {
                 var op = Tokens.Previous!;
                 var right = ParseUnary();
-                left = new BinaryOp(left, op, right);
+                left = new BoundBinaryOp(left, op, right);
             }
 
             return left;

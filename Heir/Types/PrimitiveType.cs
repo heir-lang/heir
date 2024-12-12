@@ -12,6 +12,8 @@
 
     public class PrimitiveType(PrimitiveTypeKind primitiveTypeKind) : SingularType(primitiveTypeKind.ToString().ToLower())
     {
+        public override TypeKind Kind => TypeKind.Primitive;
+
         public static PrimitiveType FromValue(object? value)
         {
             // TODO: do something with _ or "not null" patterns

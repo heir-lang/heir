@@ -1,6 +1,7 @@
-﻿using Heir.Types;
+﻿using Heir.AST;
+using Heir.Types;
 
-namespace Heir.AST
+namespace Heir.BoundAST
 {
     public abstract class BoundStatement : BoundSyntaxNode
     {
@@ -23,7 +24,13 @@ namespace Heir.AST
 
         public interface Visitor<R>
         {
-            
+            //public R VisitBoundIdentifierNameExpression(BoundIdentifierName identifierName);
+            //public R VisitBoundAssignmentOpExpression(BoundAssignmentOp assignmentOp);
+            //public R VisitBoundUnaryOpExpression(BoundUnaryOp unaryOp);
+            public R VisitBoundBinaryOpExpression(BoundBinaryOp binaryOp);
+            //public R VisitBoundParenthesizedExpression(BoundParenthesized parenthesized);
+            public R VisitBoundLiteralExpression(BoundLiteral literal);
+            //public R VisitBoundNoOp(BoundNoOp noOp);
         }
     }
 

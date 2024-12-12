@@ -2,9 +2,9 @@
 
 namespace Heir.AST
 {
-    public class UnaryOp(SyntaxNode operand, Token op) : Expression
+    public class UnaryOp(Expression operand, Token op) : Expression
     {
-        public SyntaxNode Operand { get; } = operand;
+        public Expression Operand { get; } = operand;
         public Token Operator { get; } = op;
 
         public override R Accept<R>(Visitor<R> visitor) => visitor.VisitUnaryOpExpression(this);

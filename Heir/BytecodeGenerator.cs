@@ -1,11 +1,16 @@
 ﻿using Heir.Syntax;
 using Heir.AST;
 using Heir.CodeGeneration;
+using Heir.Types;
+using Heir.BoundAST;
 
 namespace Heir
 {
-    public sealed class BytecodeGenerator(SyntaxTree syntaxTree) : Statement.Visitor<List<Instruction>>, Expression.Visitor<List<Instruction>>
+    public sealed class BytecodeGenerator(Binder binder, SyntaxTree syntaxTree) : Statement.Visitor<List<Instruction>>, Expression.Visitor<List<Instruction>>
     {
+        public DiagnosticBag Diagnostics { get; } = binder.Diagnostics;
+
+        private readonly Binder _binder = binder;
         private readonly SyntaxTree _syntaxTree = syntaxTree;
 
         public List<Instruction> GenerateBytecode() => GenerateBytecode(_syntaxTree);
@@ -15,16 +20,35 @@ namespace Heir
         public List<Instruction> VisitBlock(Block block) => GenerateStatementsBytecode(block.Statements);
 
         public List<Instruction> VisitAssignmentOpExpression(AssignmentOp assignmentOp) => VisitBinaryOpExpression(assignmentOp);
-        public List<Instruction> VisitBinaryOpExpression(BinaryOp binaryOp)
+        public List<Instruction> VisitBinaryOpExpression(BoundBinaryOp binaryOp)
         {
+            var leftBoundNode = _binder.GetBoundNode(binaryOp.Left);
+            var rightBoundNode = _binder.GetBoundNode(binaryOp.Right);
+
+            List<Instruction> cannotApply()
+            {
+                Diagnostics.Error("H010", $"Cannot apply operator \"{binaryOp.Operator.Text}\" to operands of type \"{leftBoundNode.Type.ToString()}\" and \"{rightBoundNode.Type.ToString()}\"", binaryOp.Operator);
+                return [];
+            }
+            bool isNumber(BoundExpression boundExpression)
+            {
+                return boundExpression.Type.IsAssignableTo(new PrimitiveType(PrimitiveTypeKind.Int))
+                    || boundExpression.Type.IsAssignableTo(new PrimitiveType(PrimitiveTypeKind.Float));
+            }
+
+            if (SyntaxFacts.NumberOperators.Contains(binaryOp.Operator.Kind) && (!isNumber(leftBoundNode) && !isNumber(rightBoundNode)))
+                return cannotApply();
+            else if (!leftBoundNode.Type.IsAssignableTo(rightBoundNode.Type))
+                return cannotApply();
+
             var leftInstructions = GenerateBytecode(binaryOp.Left);
             var rightInstructions = GenerateBytecode(binaryOp.Right);
             var combined = leftInstructions.Concat(rightInstructions);
 
-            if (BinaryOp.StandardOpCodeMap.TryGetValue(binaryOp.Operator.Kind, out var standardOp))
+            if (BoundBinaryOp.StandardOpCodeMap.TryGetValue(binaryOp.Operator.Kind, out var standardOp))
                 return combined.Append(new Instruction(binaryOp, standardOp)).ToList();
 
-            if (BinaryOp.AssignmentOpCodeMap.TryGetValue(binaryOp.Operator.Kind, out var assignmentOp))
+            if (BoundBinaryOp.AssignmentOpCodeMap.TryGetValue(binaryOp.Operator.Kind, out var assignmentOp))
                 return leftInstructions
                     .Concat(rightInstructions)
                     .Append(new Instruction(binaryOp, assignmentOp))

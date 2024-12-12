@@ -1,7 +1,7 @@
 ﻿using Heir.Syntax;
 using Heir.Types;
 
-namespace Heir.AST
+namespace Heir.BoundAST
 {
     public class BoundBlock(List<BoundSyntaxNode> statements) : BoundStatement
     {
@@ -12,8 +12,11 @@ namespace Heir.AST
 
         public override void Display(int indent = 0)
         {
+            Console.WriteLine($"{string.Concat(Enumerable.Repeat("  ", indent))}BoundBlock(");
             foreach (var statement in Statements)
-                statement.Display(indent);
+                statement.Display(indent + 1);
+
+            Console.Write($"{string.Concat(Enumerable.Repeat("  ", indent))})");
         }
 
         public override List<Token> GetTokens() =>

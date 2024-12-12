@@ -1,4 +1,5 @@
-﻿Console.WriteLine(evaluateFile("./Heir/Test.heir") ?? "null");
+﻿var result = evaluateFile("./Heir/Test.heir") ?? "none";
+Console.WriteLine(result);
 
 object? evaluateFile(string filePath)
 {
@@ -6,9 +7,11 @@ object? evaluateFile(string filePath)
     var tokenStream = lexer.GetTokens();
     var parser = new Heir.Parser(tokenStream);
     var syntaxTree = parser.Parse();
-    var bytecodeGenerator = new Heir.BytecodeGenerator(syntaxTree);
+    var binder = new Heir.Binder(parser.Diagnostics, syntaxTree);
+    var boundSyntaxTree = binder.Bind();
+    var bytecodeGenerator = new Heir.BytecodeGenerator(binder, syntaxTree);
     var bytecode = bytecodeGenerator.GenerateBytecode();
-    var vm = new Heir.VirtualMachine(parser.Diagnostics, bytecode);
+    var vm = new Heir.VirtualMachine(bytecodeGenerator.Diagnostics, bytecode);
     var result = vm.Evaluate();
 
     Console.WriteLine("Diagnostics:");

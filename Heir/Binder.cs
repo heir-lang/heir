@@ -8,8 +8,10 @@ namespace Heir
         Parameters
     }
 
-    public sealed class Binder(SyntaxTree syntaxTree) : Statement.Visitor<BoundStatement>, Expression.Visitor<BoundExpression>
+    public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : Statement.Visitor<BoundStatement>, Expression.Visitor<BoundExpression>
     {
+        public DiagnosticBag Diagnostics { get; } = diagnostics;
+
         private readonly SyntaxTree _syntaxTree = syntaxTree;
         private readonly Dictionary<SyntaxNode, BoundSyntaxNode> _boundNodes = new();
         private Context _context = Context.Global;
@@ -18,6 +20,7 @@ namespace Heir
 
         public BoundStatement GetBoundNode(Statement statement) => (BoundStatement)_boundNodes[statement];
         public BoundExpression GetBoundNode(Expression expression) => (BoundExpression)_boundNodes[expression];
+        public BoundSyntaxNode GetBoundNode(SyntaxNode expression) => _boundNodes[expression];
 
         public BoundStatement VisitSyntaxTree(SyntaxTree syntaxTree) => new BoundSyntaxTree(BindStatements(syntaxTree.Statements));
 
@@ -41,10 +44,7 @@ namespace Heir
             throw new NotImplementedException();
         }
 
-        public BoundExpression VisitLiteralExpression(Literal literal)
-        {
-            throw new NotImplementedException();
-        }
+        public BoundExpression VisitLiteralExpression(Literal literal) => new BoundLiteral(literal.Token);
 
         public BoundExpression VisitNoOp(NoOp noOp)
         {

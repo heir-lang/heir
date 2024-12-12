@@ -3,6 +3,7 @@
     public enum TypeKind
     {
         Singular,
+        Primitive,
         Literal,
         Union,
         Intersection,

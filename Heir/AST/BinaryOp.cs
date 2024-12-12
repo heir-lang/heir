@@ -3,7 +3,7 @@ using Heir.Syntax;
 
 namespace Heir.AST
 {
-    public class BinaryOp(SyntaxNode left, Token op, SyntaxNode right) : Expression
+    public class BinaryOp(Expression left, Token op, Expression right) : Expression
     {
         public static readonly Dictionary<SyntaxKind, OpCode> StandardOpCodeMap = new()
         {
@@ -37,9 +37,9 @@ namespace Heir.AST
             { SyntaxKind.PipePipeEquals,            OpCode.OR }
         };
 
-        public SyntaxNode Left { get; } = left;
+        public Expression Left { get; } = left;
         public Token Operator { get; } = op;
-        public SyntaxNode Right { get; } = right;
+        public Expression Right { get; } = right;
         
         public override R Accept<R>(Visitor<R> visitor) => visitor.VisitBinaryOpExpression(this);
         public override List<Token> GetTokens() => Left.GetTokens().Append(Operator).Concat(Right.GetTokens()).ToList();
