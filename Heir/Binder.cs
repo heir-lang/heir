@@ -1,4 +1,5 @@
 ﻿using Heir.AST;
+using Heir.BoundAST;
 
 namespace Heir
 {
@@ -34,9 +35,18 @@ namespace Heir
             throw new NotImplementedException();
         }
 
-        public BoundExpression VisitBinaryOpExpression(BoundBinaryOp binaryOp)
+        public BoundExpression VisitBinaryOpExpression(BinaryOp binaryOp)
         {
-            throw new NotImplementedException();
+            var left = Bind(binaryOp.Left);
+            var right = Bind(binaryOp.Right);
+            var boundOperator = BoundBinaryOperator.Bind(binaryOp.Operator, left.Type, right.Type);
+            if (boundOperator == null)
+            {
+                Diagnostics.Error("H010", $"Cannot apply operator \"{binaryOp.Operator.Text}\" to operands of type \"{left.Type.ToString()}\" and \"{right.Type.ToString()}\"", binaryOp.Operator);
+                return new BoundNoOp();
+            }
+
+            return new BoundBinaryOp(left, boundOperator, right);
         }
 
         public BoundExpression VisitIdentifierNameExpression(IdentifierName identifierName)
@@ -64,6 +74,16 @@ namespace Heir
         //private List<BoundStatement> BindStatements(List<Statement> statements) => statements.ConvertAll(Bind);
         private List<BoundSyntaxNode> BindStatements(List<SyntaxNode> statements) => statements.ConvertAll(Bind); // temp
 
+        private BoundSyntaxNode Bind(SyntaxNode node)
+        {
+            if (node is Expression expression)
+                return Bind(expression);
+            else if (node is Statement statement)
+                return Bind(statement);
+
+            return null!; // poop
+        }
+
         private BoundStatement Bind(Statement statement)
         {
             var boundStatement = statement.Accept(this);
@@ -76,16 +96,6 @@ namespace Heir
             var boundExpression = expression.Accept(this);
             _boundNodes.Add(expression, boundExpression);
             return boundExpression;
-        }
-
-        private BoundSyntaxNode Bind(SyntaxNode node)
-        {
-            if (node is Expression expression)
-                return Bind(expression);
-            else if (node is Statement statement)
-                return Bind(statement);
-
-            return null!; // poop
         }
     }
 }

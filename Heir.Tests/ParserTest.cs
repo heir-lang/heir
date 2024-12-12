@@ -56,9 +56,9 @@ namespace Heir.Tests
         public void Parses_BinaryOperators(string input, SyntaxKind operatorKind)
         {
             var (node, _) = Parse(input);
-            Assert.IsType<BoundBinaryOp>(node);
+            Assert.IsType<BinaryOp>(node);
 
-            var binaryOperation = (BoundBinaryOp)node;
+            var binaryOperation = (BinaryOp)node;
             Assert.IsType<Literal>(binaryOperation.Left);
             Assert.IsType<Literal>(binaryOperation.Right);
             Assert.Equal(operatorKind, binaryOperation.Operator.Kind);
@@ -69,15 +69,15 @@ namespace Heir.Tests
         {
             {
                 var (node, _) = Parse("3 ^ 2 * 4 - 2");
-                Assert.IsType<BoundBinaryOp>(node);
+                Assert.IsType<BinaryOp>(node);
 
-                var subtraction = (BoundBinaryOp)node;
-                Assert.IsType<BoundBinaryOp>(subtraction.Left);
-                var multiplication = (BoundBinaryOp)subtraction.Left;
+                var subtraction = (BinaryOp)node;
+                Assert.IsType<BinaryOp>(subtraction.Left);
+                var multiplication = (BinaryOp)subtraction.Left;
                 Assert.IsType<Literal>(subtraction.Right);
                 var twoLiteral = (Literal)subtraction.Right;
-                Assert.IsType<BoundBinaryOp>(multiplication.Left);
-                var exponentation = (BoundBinaryOp)multiplication.Left;
+                Assert.IsType<BinaryOp>(multiplication.Left);
+                var exponentation = (BinaryOp)multiplication.Left;
                 Assert.IsType<Literal>(multiplication.Right);
                 var fourLiteral = (Literal)multiplication.Right;
 
@@ -89,13 +89,13 @@ namespace Heir.Tests
             }
             {
                 var (node, _) = Parse("true || false && true");
-                Assert.IsType<BoundBinaryOp>(node);
+                Assert.IsType<BinaryOp>(node);
 
-                var or = (BoundBinaryOp)node;
+                var or = (BinaryOp)node;
                 Assert.IsType<Literal>(or.Left);
                 var trueLiteral = (Literal)or.Left;
-                Assert.IsType<BoundBinaryOp>(or.Right);
-                var and = (BoundBinaryOp)or.Right;
+                Assert.IsType<BinaryOp>(or.Right);
+                var and = (BinaryOp)or.Right;
                 Assert.IsType<Literal>(and.Left);
                 Assert.IsType<Literal>(and.Right);
 
@@ -110,8 +110,8 @@ namespace Heir.Tests
                 var assignment = (AssignmentOp)node;
                 Assert.IsType<IdentifierName>(assignment.Left);
                 var target = (IdentifierName)assignment.Left;
-                Assert.IsType<BoundBinaryOp>(assignment.Right);
-                var multiplication = (BoundBinaryOp)assignment.Right;
+                Assert.IsType<BinaryOp>(assignment.Right);
+                var multiplication = (BinaryOp)assignment.Right;
                 Assert.IsType<IdentifierName>(multiplication.Left);
                 Assert.IsType<IdentifierName>(multiplication.Right);
 
@@ -149,7 +149,7 @@ namespace Heir.Tests
             Assert.IsType<Parenthesized>(node);
 
             var parenthesized = (Parenthesized)node;
-            Assert.IsType<BoundBinaryOp>(parenthesized.Expression);
+            Assert.IsType<BinaryOp>(parenthesized.Expression);
         }
 
         [Theory]

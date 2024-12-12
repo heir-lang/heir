@@ -11,7 +11,7 @@ object? evaluateFile(string filePath)
     var boundSyntaxTree = binder.Bind();
     var bytecodeGenerator = new Heir.BytecodeGenerator(binder, syntaxTree);
     var bytecode = bytecodeGenerator.GenerateBytecode();
-    var vm = new Heir.VirtualMachine(bytecodeGenerator.Diagnostics, bytecode);
+    var vm = new Heir.VirtualMachine(binder, bytecode);
     var result = vm.Evaluate();
 
     Console.WriteLine("Diagnostics:");

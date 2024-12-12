@@ -1,13 +1,22 @@
-﻿using Heir.CodeGeneration;
+﻿using Heir.AST;
+using Heir.CodeGeneration;
+using Heir.Types;
 
 namespace Heir
 {
-    public sealed class VirtualMachine(DiagnosticBag diagnostics, List<Instruction> bytecode)
+    sealed class StackFrame(SyntaxNode node, object? value)
     {
-        public DiagnosticBag Diagnostics { get; } = diagnostics;
+        public SyntaxNode Node { get; } = node;
+        public object? Value { get; } = value;
+    }
 
+    public sealed class VirtualMachine(Binder binder, List<Instruction> bytecode)
+    {
+        public DiagnosticBag Diagnostics { get; } = binder.Diagnostics;
+
+        private readonly Binder _binder = binder;
         private readonly List<Instruction> _bytecode = bytecode;
-        private readonly Stack<object?> _stack = new();
+        private readonly Stack<StackFrame> _stack = new();
         private int _pointer = 0;
 
         public T? Evaluate<T>()
@@ -23,13 +32,13 @@ namespace Heir
                 var instruction = _bytecode[_pointer];
                 var result = EvaluateInstruction(instruction);
                 if (instruction.OpCode == OpCode.RETURN)
-                    return result;
+                    return result?.Value;
             }
 
-            return _stack.Pop();
+            return _stack.Pop().Value;
         }
 
-        private object? EvaluateInstruction(Instruction instruction)
+        private StackFrame? EvaluateInstruction(Instruction instruction)
         {
             switch (instruction.OpCode)
             {
@@ -42,11 +51,8 @@ namespace Heir
                     return _stack.Pop();
 
                 case OpCode.PUSH:
-                    _stack.Push(GetValueFromMemory());
-                    Advance();
-                    break;
                 case OpCode.PUSHNONE:
-                    _stack.Push(null);
+                    _stack.Push(CreateStackFrameFromInstruction());
                     Advance();
                     break;
                 case OpCode.DUP:
@@ -59,10 +65,19 @@ namespace Heir
 
                 case OpCode.ADD:
                     {
-                        // TODO: use bound node's type to convert value
-                        var right = Convert.ToDouble(_stack.Pop());
-                        var left = Convert.ToDouble(_stack.Pop());
-                        _stack.Push(left + right);
+                        var right = _stack.Pop();
+                        var left = _stack.Pop();
+                        var rightBoundNode = _binder.GetBoundNode((Expression)right.Node);
+                        var leftBoundNode = _binder.GetBoundNode((Expression)left.Node);
+                        var stringType = new PrimitiveType(PrimitiveTypeKind.String);
+
+                        if (leftBoundNode.Type.IsAssignableTo(IntrinsicTypes.Number) && rightBoundNode.Type.IsAssignableTo(IntrinsicTypes.Number))
+                            _stack.Push(new(right.Node, Convert.ToDouble(left.Value) + Convert.ToDouble(right.Value)));
+                        if (leftBoundNode.Type.IsAssignableTo(stringType) && rightBoundNode.Type.IsAssignableTo(stringType))
+                            _stack.Push(new(right.Node, Convert.ToString(left.Value) + Convert.ToString(right.Value)));
+                        else
+                            _stack.Push(new(right.Node, null));
+
                         Advance();
                         break;
                     }
@@ -78,8 +93,8 @@ namespace Heir
                     }
                 case OpCode.JNZ:
                     {
-                        var value = _stack.Pop();
-                        if (value is int n && n != 0)
+                        var frame = _stack.Pop();
+                        if (frame.Value is int n && n != 0)
                         {
                             if (instruction.Operand is int index)
                                 _pointer = index;
@@ -93,8 +108,8 @@ namespace Heir
                     }
                 case OpCode.JZ:
                     {
-                        var value = _stack.Pop();
-                        if (value is int n && n == 0)
+                        var frame = _stack.Pop();
+                        if (frame.Value is int n && n == 0)
                         {
                             if (instruction.Operand is int index)
                                 _pointer = index;
@@ -116,15 +131,10 @@ namespace Heir
             Diagnostics.Error("H001C", $"Invalid bytecode! {instruction.OpCode} opcode was used with non-integer operand.", instruction.Root.GetFirstToken());
         }
 
-        private object? GetValueFromMemory(int offset = 0)
+        private StackFrame CreateStackFrameFromInstruction(int offset = 0)
         {
             var instruction = _bytecode[_pointer + offset];
-            return instruction.Operand;
-        }
-
-        private T? GetValueFromMemory<T>(int offset = 0)
-        {
-            return (T?)GetValueFromMemory(offset);
+            return new(instruction.Root, instruction.Operand);
         }
 
         private void Advance(int amount = 1)

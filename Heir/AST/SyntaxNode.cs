@@ -23,7 +23,7 @@ namespace Heir.AST
             public R VisitIdentifierNameExpression(IdentifierName identifierName);
             public R VisitAssignmentOpExpression(AssignmentOp assignmentOp);
             public R VisitUnaryOpExpression(UnaryOp unaryOp);
-            public R VisitBinaryOpExpression(BoundBinaryOp binaryOp);
+            public R VisitBinaryOpExpression(BinaryOp binaryOp);
             public R VisitParenthesizedExpression(Parenthesized parenthesized);
             public R VisitLiteralExpression(Literal literal);
             public R VisitNoOp(NoOp noOp);

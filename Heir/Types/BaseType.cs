@@ -4,14 +4,16 @@
     {
         public abstract TypeKind Kind { get; }
 
+        public abstract string ToString(bool colors = false);
+
         public bool IsAssignableTo(BaseType other)
         {
-            return Kind == other.Kind; // temp
-        }
+            if (this is UnionType union)
+                return union.Types.Any(type => type.IsAssignableTo(other));
+            else if (this is SingularType singular && other is SingularType otherSingular)
+                return singular.Name == otherSingular.Name;
 
-        public string ToString(bool colors = false)
-        {
-            return "";
+            return Kind == other.Kind; // temp
         }
     }
 }
