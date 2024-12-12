@@ -34,7 +34,7 @@ namespace Heir
             throw new NotImplementedException();
         }
 
-        public BoundExpression VisitBinaryOpExpression(BinaryOp binaryOp)
+        public BoundExpression VisitBinaryOpExpression(BoundBinaryOp binaryOp)
         {
             throw new NotImplementedException();
         }
