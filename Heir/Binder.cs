@@ -14,10 +14,17 @@ namespace Heir
         private readonly Dictionary<SyntaxNode, BoundSyntaxNode> _boundNodes = new();
         private Context _context = Context.Global;
 
-        private BoundStatement GetBoundNode(Statement statement) => (BoundStatement)_boundNodes[statement];
-        private BoundExpression GetBoundNode(Expression expression) => (BoundExpression)_boundNodes[expression];
+        public BoundStatement Bind() => Bind(_syntaxTree);
+
+        public BoundStatement GetBoundNode(Statement statement) => (BoundStatement)_boundNodes[statement];
+        public BoundExpression GetBoundNode(Expression expression) => (BoundExpression)_boundNodes[expression];
 
         public BoundStatement VisitSyntaxTree(SyntaxTree syntaxTree) => new BoundSyntaxTree(BindStatements(syntaxTree.Statements));
+
+        public BoundStatement VisitBlock(Block block)
+        {
+            throw new NotImplementedException();
+        }
 
         public BoundExpression VisitAssignmentOpExpression(AssignmentOp assignmentOp)
         {
@@ -74,9 +81,9 @@ namespace Heir
         private BoundSyntaxNode Bind(SyntaxNode node)
         {
             if (node is Expression expression)
-                return Bind(expression.Accept(this));
+                return Bind(expression);
             else if (node is Statement statement)
-                return Bind(statement.Accept(this));
+                return Bind(statement);
 
             return null!; // poop
         }

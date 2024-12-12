@@ -10,6 +10,7 @@ namespace Heir.AST
         public interface Visitor<R>
         {
             public R VisitSyntaxTree(SyntaxTree syntaxTree);
+            public R VisitBlock(Block block);
         }
     }
 

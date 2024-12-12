@@ -1,5 +1,4 @@
-﻿using Heir.CodeGeneration;
-using Heir.Syntax;
+﻿using Heir.Syntax;
 
 namespace Heir.AST
 {
@@ -7,8 +6,7 @@ namespace Heir.AST
     {
         public Token Token { get; } = token;
 
-        public List<Instruction> GenerateBytecode() => [new Instruction(this, OpCode.PUSH, Token.Value)];
-
+        public override R Accept<R>(Visitor<R> visitor) => visitor.VisitLiteralExpression(this);
         public override List<Token> GetTokens() => [Token];
 
         public override void Display(int indent)

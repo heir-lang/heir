@@ -5,11 +5,7 @@ namespace Heir.AST
 {
     public class BinaryOp(SyntaxNode left, Token op, SyntaxNode right) : Expression
     {
-        public SyntaxNode Left { get; } = left;
-        public Token Operator { get; } = op;
-        public SyntaxNode Right { get; } = right;
-
-        private static readonly Dictionary<SyntaxKind, OpCode> StandardOpMap = new()
+        public static readonly Dictionary<SyntaxKind, OpCode> StandardOpCodeMap = new()
         {
             { SyntaxKind.Plus,                  OpCode.ADD },
             { SyntaxKind.Minus,                 OpCode.SUB },
@@ -25,7 +21,7 @@ namespace Heir.AST
             { SyntaxKind.PipePipe,              OpCode.OR }
         };
 
-        private static readonly Dictionary<SyntaxKind, OpCode> AssignmentOpMap = new()
+        public static readonly Dictionary<SyntaxKind, OpCode> AssignmentOpCodeMap = new()
         {
             { SyntaxKind.PlusEquals,                OpCode.ADD },
             { SyntaxKind.MinusEquals,               OpCode.SUB },
@@ -41,25 +37,11 @@ namespace Heir.AST
             { SyntaxKind.PipePipeEquals,            OpCode.OR }
         };
 
-        public List<Instruction> GenerateBytecode()
-        {
-            var leftInstructions = Left.GenerateBytecode();
-            var rightInstructions = Right.GenerateBytecode();
-            var combined = leftInstructions.Concat(rightInstructions);
-
-            if (StandardOpMap.TryGetValue(Operator.Kind, out var standardOp))
-                return combined.Append(new Instruction(this, standardOp)).ToList();
-
-            if (AssignmentOpMap.TryGetValue(Operator.Kind, out var assignmentOp))
-                return leftInstructions
-                    .Concat(rightInstructions)
-                    .Append(new Instruction(this, assignmentOp))
-                    .Append(new Instruction(this, OpCode.STORE))
-                    .ToList();
-
-            throw new NotSupportedException($"Unsupported operator kind: {Operator.Kind}");
-        }
-
+        public SyntaxNode Left { get; } = left;
+        public Token Operator { get; } = op;
+        public SyntaxNode Right { get; } = right;
+        
+        public override R Accept<R>(Visitor<R> visitor) => visitor.VisitBinaryOpExpression(this);
         public override List<Token> GetTokens() => Left.GetTokens().Append(Operator).Concat(Right.GetTokens()).ToList();
 
         public override void Display(int indent)

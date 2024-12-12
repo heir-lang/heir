@@ -1,11 +1,10 @@
-﻿using Heir.CodeGeneration;
-using Heir.Syntax;
+﻿using Heir.Syntax;
 
 namespace Heir.AST
 {
     public class NoOp : Expression
     {
-        public List<Instruction> GenerateBytecode() => [new Instruction(this, OpCode.NOOP)];
+        public override R Accept<R>(Visitor<R> visitor) => visitor.VisitNoOp(this);
         public override List<Token> GetTokens() => [];
 
         public override void Display(int indent)

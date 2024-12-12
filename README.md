@@ -60,5 +60,8 @@ Though I cannot guarantee the lifetime or dedication to this project, contributi
     - [x] binary operations
     - [x] parenthesized expressions
     - [x] literals
+- [ ] resolving
+- [ ] binding
+- [ ] typechecking
 - [ ] bytecode generator
 - [ ] hvm (heir virtual machine)

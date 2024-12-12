@@ -1,5 +1,4 @@
-﻿using Heir.CodeGeneration;
-using Heir.Syntax;
+﻿using Heir.Syntax;
 
 namespace Heir.AST
 {
@@ -7,20 +6,17 @@ namespace Heir.AST
     {
         public List<SyntaxNode> Statements { get; } = statements;
 
+        public override R Accept<R>(Visitor<R> visitor) => visitor.VisitBlock(this);
+
         public override void Display(int indent = 0)
         {
             foreach (var statement in Statements)
                 statement.Display(indent);
-        }
-
-        public List<Instruction> GenerateBytecode() => [];
-            //Statements
-            //.Select(statement => statement.GenerateBytecode())
-            //.Aggregate((finalBytecode, statementBytecode) => finalBytecode.Concat(statementBytecode).ToList());
+        }        
 
         public override List<Token> GetTokens() =>
             Statements
-            .Select(statement => statement.GetTokens())
-            .Aggregate((allTokens, statementTokens) => allTokens.Concat(statementTokens).ToList());
+            .SelectMany(statement => statement.GetTokens())
+            .ToList();
     }
 }

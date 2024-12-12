@@ -1,5 +1,4 @@
-﻿using Heir.CodeGeneration;
-using Heir.Syntax;
+﻿using Heir.Syntax;
 
 namespace Heir.AST
 {
@@ -7,7 +6,7 @@ namespace Heir.AST
     {
         public Expression Expression { get; } = expression;
 
-        public List<Instruction> GenerateBytecode() => Expression.GenerateBytecode();
+        public override R Accept<R>(Visitor<R> visitor) => visitor.VisitParenthesizedExpression(this);
         public override List<Token> GetTokens() => Expression.GetTokens();
 
         public override void Display(int indent)
