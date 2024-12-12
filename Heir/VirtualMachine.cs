@@ -73,7 +73,7 @@ namespace Heir
 
                         if (leftBoundNode.Type.IsAssignableTo(IntrinsicTypes.Number) && rightBoundNode.Type.IsAssignableTo(IntrinsicTypes.Number))
                             _stack.Push(new(right.Node, Convert.ToDouble(left.Value) + Convert.ToDouble(right.Value)));
-                        if (leftBoundNode.Type.IsAssignableTo(stringType) && rightBoundNode.Type.IsAssignableTo(stringType))
+                        else if (leftBoundNode.Type.IsAssignableTo(stringType) && rightBoundNode.Type.IsAssignableTo(stringType))
                             _stack.Push(new(right.Node, Convert.ToString(left.Value) + Convert.ToString(right.Value)));
                         else
                             _stack.Push(new(right.Node, null));
