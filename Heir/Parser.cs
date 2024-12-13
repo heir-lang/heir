@@ -124,7 +124,7 @@ namespace Heir
         private Expression ParseMultiplication()
         {
             var left = ParseExponentiation();
-            while (Tokens.Match(SyntaxKind.Star) || Tokens.Match(SyntaxKind.Slash) || Tokens.Match(SyntaxKind.Percent))
+            while (Tokens.Match(SyntaxKind.Star) || Tokens.Match(SyntaxKind.Slash) || Tokens.Match(SyntaxKind.SlashSlash) || Tokens.Match(SyntaxKind.Percent))
             {
                 var op = Tokens.Previous!;
                 var right = ParseExponentiation();

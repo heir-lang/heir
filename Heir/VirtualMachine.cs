@@ -82,8 +82,7 @@ namespace Heir
                         Advance();
                         break;
                     }
-
-                case OpCode.ADD:
+                case OpCode.SUB:
                     {
                         var right = _stack.Pop();
                         var left = _stack.Pop();
@@ -92,11 +91,157 @@ namespace Heir
                         object? result = null;
 
                         if (leftBoundNode.Type.IsAssignableTo(IntrinsicTypes.Number) && rightBoundNode.Type.IsAssignableTo(IntrinsicTypes.Number))
-                            result = Convert.ToDouble(left.Value) + Convert.ToDouble(right.Value);
-                        else if (leftBoundNode.Type.IsAssignableTo(PrimitiveType.String) && rightBoundNode.Type.IsAssignableTo(PrimitiveType.String))
-                            result = Convert.ToString(left.Value) + Convert.ToString(right.Value);
-                        else if (leftBoundNode.Type.IsAssignableTo(PrimitiveType.Char) && rightBoundNode.Type.IsAssignableTo(PrimitiveType.Char))
-                            result = Convert.ToChar(left.Value) + Convert.ToChar(right.Value);
+                            result = Convert.ToDouble(left.Value) - Convert.ToDouble(right.Value);
+
+                        _stack.Push(new(right.Node, result));
+                        Advance();
+                        break;
+                    }
+                case OpCode.MUL:
+                    {
+                        var right = _stack.Pop();
+                        var left = _stack.Pop();
+                        var rightBoundNode = _binder.GetBoundNode((Expression)right.Node);
+                        var leftBoundNode = _binder.GetBoundNode((Expression)left.Node);
+                        object? result = null;
+
+                        if (leftBoundNode.Type.IsAssignableTo(IntrinsicTypes.Number) && rightBoundNode.Type.IsAssignableTo(IntrinsicTypes.Number))
+                            result = Convert.ToDouble(left.Value) * Convert.ToDouble(right.Value);
+
+                        _stack.Push(new(right.Node, result));
+                        Advance();
+                        break;
+                    }
+                case OpCode.DIV:
+                    {
+                        var right = _stack.Pop();
+                        var left = _stack.Pop();
+                        var rightBoundNode = _binder.GetBoundNode((Expression)right.Node);
+                        var leftBoundNode = _binder.GetBoundNode((Expression)left.Node);
+                        object? result = null;
+
+                        if (leftBoundNode.Type.IsAssignableTo(IntrinsicTypes.Number) && rightBoundNode.Type.IsAssignableTo(IntrinsicTypes.Number))
+                            result = Convert.ToDouble(left.Value) / Convert.ToDouble(right.Value);
+
+                        _stack.Push(new(right.Node, result));
+                        Advance();
+                        break;
+                    }
+                case OpCode.IDIV:
+                    {
+                        var right = _stack.Pop();
+                        var left = _stack.Pop();
+                        var rightBoundNode = _binder.GetBoundNode((Expression)right.Node);
+                        var leftBoundNode = _binder.GetBoundNode((Expression)left.Node);
+                        object? result = null;
+
+                        if (leftBoundNode.Type.IsAssignableTo(IntrinsicTypes.Number) && rightBoundNode.Type.IsAssignableTo(IntrinsicTypes.Number))
+                            result = Math.Floor(Convert.ToDouble(left.Value) / Convert.ToDouble(right.Value));
+
+                        _stack.Push(new(right.Node, result));
+                        Advance();
+                        break;
+                    }
+                case OpCode.MOD:
+                    {
+                        var right = _stack.Pop();
+                        var left = _stack.Pop();
+                        var rightBoundNode = _binder.GetBoundNode((Expression)right.Node);
+                        var leftBoundNode = _binder.GetBoundNode((Expression)left.Node);
+                        object? result = null;
+
+                        if (leftBoundNode.Type.IsAssignableTo(IntrinsicTypes.Number) && rightBoundNode.Type.IsAssignableTo(IntrinsicTypes.Number))
+                            result = Convert.ToDouble(left.Value) % Convert.ToDouble(right.Value);
+
+                        _stack.Push(new(right.Node, result));
+                        Advance();
+                        break;
+                    }
+                case OpCode.POW:
+                    {
+                        var right = _stack.Pop();
+                        var left = _stack.Pop();
+                        var rightBoundNode = _binder.GetBoundNode((Expression)right.Node);
+                        var leftBoundNode = _binder.GetBoundNode((Expression)left.Node);
+                        object? result = null;
+
+                        if (leftBoundNode.Type.IsAssignableTo(IntrinsicTypes.Number) && rightBoundNode.Type.IsAssignableTo(IntrinsicTypes.Number))
+                            result = Math.Pow(Convert.ToDouble(left.Value), Convert.ToDouble(right.Value));
+
+                        _stack.Push(new(right.Node, result));
+                        Advance();
+                        break;
+                    }
+                case OpCode.BAND:
+                    {
+                        var right = _stack.Pop();
+                        var left = _stack.Pop();
+                        var rightBoundNode = _binder.GetBoundNode((Expression)right.Node);
+                        var leftBoundNode = _binder.GetBoundNode((Expression)left.Node);
+                        object? result = null;
+
+                        if (leftBoundNode.Type.IsAssignableTo(IntrinsicTypes.Number) && rightBoundNode.Type.IsAssignableTo(IntrinsicTypes.Number))
+                            result = Convert.ToInt64(left.Value) & Convert.ToInt64(right.Value);
+
+                        _stack.Push(new(right.Node, result));
+                        Advance();
+                        break;
+                    }
+                case OpCode.BOR:
+                    {
+                        var right = _stack.Pop();
+                        var left = _stack.Pop();
+                        var rightBoundNode = _binder.GetBoundNode((Expression)right.Node);
+                        var leftBoundNode = _binder.GetBoundNode((Expression)left.Node);
+                        object? result = null;
+
+                        if (leftBoundNode.Type.IsAssignableTo(IntrinsicTypes.Number) && rightBoundNode.Type.IsAssignableTo(IntrinsicTypes.Number))
+                            result = Convert.ToInt64(left.Value) | Convert.ToInt64(right.Value);
+
+                        _stack.Push(new(right.Node, result));
+                        Advance();
+                        break;
+                    }
+                case OpCode.BXOR:
+                    {
+                        var right = _stack.Pop();
+                        var left = _stack.Pop();
+                        var rightBoundNode = _binder.GetBoundNode((Expression)right.Node);
+                        var leftBoundNode = _binder.GetBoundNode((Expression)left.Node);
+                        object? result = null;
+
+                        if (leftBoundNode.Type.IsAssignableTo(IntrinsicTypes.Number) && rightBoundNode.Type.IsAssignableTo(IntrinsicTypes.Number))
+                            result = Convert.ToInt64(left.Value) ^ Convert.ToInt64(right.Value);
+
+                        _stack.Push(new(right.Node, result));
+                        Advance();
+                        break;
+                    }
+                case OpCode.AND:
+                    {
+                        var right = _stack.Pop();
+                        var left = _stack.Pop();
+                        var rightBoundNode = _binder.GetBoundNode((Expression)right.Node);
+                        var leftBoundNode = _binder.GetBoundNode((Expression)left.Node);
+                        object? result = null;
+
+                        if (leftBoundNode.Type.IsAssignableTo(PrimitiveType.Bool) && rightBoundNode.Type.IsAssignableTo(PrimitiveType.Bool))
+                            result = Convert.ToBoolean(left.Value) && Convert.ToBoolean(right.Value);
+
+                        _stack.Push(new(right.Node, result));
+                        Advance();
+                        break;
+                    }
+                case OpCode.OR:
+                    {
+                        var right = _stack.Pop();
+                        var left = _stack.Pop();
+                        var rightBoundNode = _binder.GetBoundNode((Expression)right.Node);
+                        var leftBoundNode = _binder.GetBoundNode((Expression)left.Node);
+                        object? result = null;
+
+                        if (leftBoundNode.Type.IsAssignableTo(PrimitiveType.Bool) && rightBoundNode.Type.IsAssignableTo(PrimitiveType.Bool))
+                            result = Convert.ToBoolean(left.Value) || Convert.ToBoolean(right.Value);
 
                         _stack.Push(new(right.Node, result));
                         Advance();
