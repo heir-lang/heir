@@ -34,6 +34,10 @@ namespace Heir.BoundAST
         {
             new BoundBinaryOperator(SyntaxKind.Plus, BoundBinaryOperatorType.Addition, IntrinsicTypes.Number),
             new BoundBinaryOperator(SyntaxKind.PlusEquals, BoundBinaryOperatorType.Addition, IntrinsicTypes.Number),
+            new BoundBinaryOperator(SyntaxKind.Plus, BoundBinaryOperatorType.Addition, PrimitiveType.String),
+            new BoundBinaryOperator(SyntaxKind.PlusEquals, BoundBinaryOperatorType.Addition, PrimitiveType.String),
+            new BoundBinaryOperator(SyntaxKind.Plus, BoundBinaryOperatorType.Addition, PrimitiveType.Char),
+            new BoundBinaryOperator(SyntaxKind.PlusEquals, BoundBinaryOperatorType.Addition, PrimitiveType.Char),
             new BoundBinaryOperator(SyntaxKind.PlusPlus, BoundBinaryOperatorType.Addition, IntrinsicTypes.Number),
             new BoundBinaryOperator(SyntaxKind.Minus, BoundBinaryOperatorType.Subtraction, IntrinsicTypes.Number),
             new BoundBinaryOperator(SyntaxKind.MinusEquals, BoundBinaryOperatorType.Addition, IntrinsicTypes.Number),
@@ -42,6 +46,8 @@ namespace Heir.BoundAST
             new BoundBinaryOperator(SyntaxKind.StarEquals, BoundBinaryOperatorType.Multiplication, IntrinsicTypes.Number),
             new BoundBinaryOperator(SyntaxKind.Slash, BoundBinaryOperatorType.Division, IntrinsicTypes.Number),
             new BoundBinaryOperator(SyntaxKind.SlashEquals, BoundBinaryOperatorType.Division, IntrinsicTypes.Number),
+            new BoundBinaryOperator(SyntaxKind.SlashSlash, BoundBinaryOperatorType.IntegerDivision, IntrinsicTypes.Number),
+            new BoundBinaryOperator(SyntaxKind.SlashSlashEquals, BoundBinaryOperatorType.IntegerDivision, IntrinsicTypes.Number),
             new BoundBinaryOperator(SyntaxKind.Carat, BoundBinaryOperatorType.Exponentation, IntrinsicTypes.Number),
             new BoundBinaryOperator(SyntaxKind.CaratEquals, BoundBinaryOperatorType.Exponentation, IntrinsicTypes.Number),
             new BoundBinaryOperator(SyntaxKind.Percent, BoundBinaryOperatorType.Modulus, IntrinsicTypes.Number),
@@ -53,21 +59,24 @@ namespace Heir.BoundAST
             new BoundBinaryOperator(SyntaxKind.Tilde, BoundBinaryOperatorType.BitwiseXor, IntrinsicTypes.Number),
             new BoundBinaryOperator(SyntaxKind.TildeEquals, BoundBinaryOperatorType.BitwiseXor, IntrinsicTypes.Number),
 
-            new BoundBinaryOperator(SyntaxKind.EqualsEquals, BoundBinaryOperatorType.Equals, IntrinsicTypes.Number, new PrimitiveType(PrimitiveTypeKind.Bool)),
-            new BoundBinaryOperator(SyntaxKind.BangEquals, BoundBinaryOperatorType.NotEquals, IntrinsicTypes.Number, new PrimitiveType(PrimitiveTypeKind.Bool)),
-            new BoundBinaryOperator(SyntaxKind.EqualsEquals, BoundBinaryOperatorType.Equals, new PrimitiveType(PrimitiveTypeKind.Bool)),
-            new BoundBinaryOperator(SyntaxKind.BangEquals, BoundBinaryOperatorType.NotEquals, new PrimitiveType(PrimitiveTypeKind.Bool)),
+            new BoundBinaryOperator(SyntaxKind.EqualsEquals, BoundBinaryOperatorType.Equals, IntrinsicTypes.Number, PrimitiveType.Bool),
+            new BoundBinaryOperator(SyntaxKind.BangEquals, BoundBinaryOperatorType.NotEquals, IntrinsicTypes.Number, PrimitiveType.Bool),
+            new BoundBinaryOperator(SyntaxKind.EqualsEquals, BoundBinaryOperatorType.Equals, PrimitiveType.Bool),
+            new BoundBinaryOperator(SyntaxKind.BangEquals, BoundBinaryOperatorType.NotEquals, PrimitiveType.Bool),
 
-            new BoundBinaryOperator(SyntaxKind.AmpersandAmpersand, BoundBinaryOperatorType.LogicalAnd, new PrimitiveType(PrimitiveTypeKind.Bool)),
-            new BoundBinaryOperator(SyntaxKind.PipePipe, BoundBinaryOperatorType.LogicalOr, new PrimitiveType(PrimitiveTypeKind.Bool))
+            new BoundBinaryOperator(SyntaxKind.AmpersandAmpersand, BoundBinaryOperatorType.LogicalAnd, PrimitiveType.Bool),
+            new BoundBinaryOperator(SyntaxKind.PipePipe, BoundBinaryOperatorType.LogicalOr, PrimitiveType.Bool)
         };
 
         public static BoundBinaryOperator? Bind(Token token, BaseType leftType, BaseType rightType)
         {
             foreach (var op in _operators)
             {
-                if (op.SyntaxKind == token.Kind && op.LeftType.IsAssignableTo(leftType) && op.RightType.IsAssignableTo(rightType))
-                    return op;
+                if (op.SyntaxKind != token.Kind) continue;
+                if (!op.LeftType.IsAssignableTo(leftType)) continue;
+                if (!op.RightType.IsAssignableTo(rightType)) continue;
+
+                return op;
             }
 
             return null;

@@ -69,13 +69,34 @@ namespace Heir
                         var left = _stack.Pop();
                         var rightBoundNode = _binder.GetBoundNode((Expression)right.Node);
                         var leftBoundNode = _binder.GetBoundNode((Expression)left.Node);
-                        var stringType = new PrimitiveType(PrimitiveTypeKind.String);
                         object? result = null;
 
                         if (leftBoundNode.Type.IsAssignableTo(IntrinsicTypes.Number) && rightBoundNode.Type.IsAssignableTo(IntrinsicTypes.Number))
                             result = Convert.ToDouble(left.Value) + Convert.ToDouble(right.Value);
-                        else if (leftBoundNode.Type.IsAssignableTo(stringType) && rightBoundNode.Type.IsAssignableTo(stringType))
+                        else if (leftBoundNode.Type.IsAssignableTo(PrimitiveType.String) && rightBoundNode.Type.IsAssignableTo(PrimitiveType.String))
                             result = Convert.ToString(left.Value) + Convert.ToString(right.Value);
+                        else if (leftBoundNode.Type.IsAssignableTo(PrimitiveType.Char) && rightBoundNode.Type.IsAssignableTo(PrimitiveType.Char))
+                            result = Convert.ToChar(left.Value) + Convert.ToChar(right.Value);
+
+                        _stack.Push(new(right.Node, result));
+                        Advance();
+                        break;
+                    }
+
+                case OpCode.ADD:
+                    {
+                        var right = _stack.Pop();
+                        var left = _stack.Pop();
+                        var rightBoundNode = _binder.GetBoundNode((Expression)right.Node);
+                        var leftBoundNode = _binder.GetBoundNode((Expression)left.Node);
+                        object? result = null;
+
+                        if (leftBoundNode.Type.IsAssignableTo(IntrinsicTypes.Number) && rightBoundNode.Type.IsAssignableTo(IntrinsicTypes.Number))
+                            result = Convert.ToDouble(left.Value) + Convert.ToDouble(right.Value);
+                        else if (leftBoundNode.Type.IsAssignableTo(PrimitiveType.String) && rightBoundNode.Type.IsAssignableTo(PrimitiveType.String))
+                            result = Convert.ToString(left.Value) + Convert.ToString(right.Value);
+                        else if (leftBoundNode.Type.IsAssignableTo(PrimitiveType.Char) && rightBoundNode.Type.IsAssignableTo(PrimitiveType.Char))
+                            result = Convert.ToChar(left.Value) + Convert.ToChar(right.Value);
 
                         _stack.Push(new(right.Node, result));
                         Advance();
