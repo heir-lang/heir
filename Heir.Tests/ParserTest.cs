@@ -35,7 +35,8 @@ namespace Heir.Tests
         [InlineData("~14", SyntaxKind.Tilde)]
         public void Parses_UnaryOperators(string input, SyntaxKind operatorKind)
         {
-            var (node, _) = Parse(input);
+            var (tree, _) = Parse(input);
+            var node = tree.Statements.First();
             Assert.IsType<UnaryOp>(node);
 
             var unaryOperation = (UnaryOp)node;
@@ -55,7 +56,8 @@ namespace Heir.Tests
         [InlineData("true || false", SyntaxKind.PipePipe)]
         public void Parses_BinaryOperators(string input, SyntaxKind operatorKind)
         {
-            var (node, _) = Parse(input);
+            var (tree, _) = Parse(input);
+            var node = tree.Statements.First();
             Assert.IsType<BinaryOp>(node);
 
             var binaryOperation = (BinaryOp)node;
@@ -68,7 +70,8 @@ namespace Heir.Tests
         public void Parses_OperatorPrecedence()
         {
             {
-                var (node, _) = Parse("3 ^ 2 * 4 - 2");
+                var (tree, _) = Parse("3 ^ 2 * 4 - 2");
+                var node = tree.Statements.First();
                 Assert.IsType<BinaryOp>(node);
 
                 var subtraction = (BinaryOp)node;
@@ -88,7 +91,8 @@ namespace Heir.Tests
                 Assert.Equal((long)4, fourLiteral.Token.Value);
             }
             {
-                var (node, _) = Parse("true || false && true");
+                var (tree, _) = Parse("true || false && true");
+                var node = tree.Statements.First();
                 Assert.IsType<BinaryOp>(node);
 
                 var or = (BinaryOp)node;
@@ -104,7 +108,8 @@ namespace Heir.Tests
                 Assert.Equal(true, trueLiteral.Token.Value);
             }
             {
-                var (node, _) = Parse("x += y * z");
+                var (tree, _) = Parse("x += y * z");
+                var node = tree.Statements.First();
                 Assert.IsType<AssignmentOp>(node);
 
                 var assignment = (AssignmentOp)node;
@@ -135,7 +140,8 @@ namespace Heir.Tests
         [InlineData("none")]
         public void Parses_Literals(string input)
         {
-            var (node, _) = Parse(input);
+            var (tree, _) = Parse(input);
+            var node = tree.Statements.First();
             Assert.IsType<Literal>(node);
 
             var literal = (Literal)node;
@@ -145,7 +151,8 @@ namespace Heir.Tests
         [Fact]
         public void Parses_ParenthesizedExpressions()
         {
-            var (node, _) = Parse("(1 + 2)");
+            var (tree, _) = Parse("(1 + 2)");
+            var node = tree.Statements.First();
             Assert.IsType<Parenthesized>(node);
 
             var parenthesized = (Parenthesized)node;
@@ -158,14 +165,15 @@ namespace Heir.Tests
         [InlineData("abc_123")]
         public void Parses_Identifiers(string input)
         {
-            var (node, _) = Parse(input);
+            var (tree, _) = Parse(input);
+            var node = tree.Statements.First();
             Assert.IsType<IdentifierName>(node);
 
             var identifier = (IdentifierName)node;
             Assert.Equal(input, identifier.Token.Text);
         }
 
-        private (SyntaxNode, DiagnosticBag) Parse(string input)
+        private (SyntaxTree, DiagnosticBag) Parse(string input)
         {
             var lexer = new Lexer(input, "<testing>");
             var tokenStream = lexer.GetTokens();

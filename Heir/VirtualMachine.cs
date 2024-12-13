@@ -70,14 +70,14 @@ namespace Heir
                         var rightBoundNode = _binder.GetBoundNode((Expression)right.Node);
                         var leftBoundNode = _binder.GetBoundNode((Expression)left.Node);
                         var stringType = new PrimitiveType(PrimitiveTypeKind.String);
+                        object? result = null;
 
                         if (leftBoundNode.Type.IsAssignableTo(IntrinsicTypes.Number) && rightBoundNode.Type.IsAssignableTo(IntrinsicTypes.Number))
-                            _stack.Push(new(right.Node, Convert.ToDouble(left.Value) + Convert.ToDouble(right.Value)));
+                            result = Convert.ToDouble(left.Value) + Convert.ToDouble(right.Value);
                         else if (leftBoundNode.Type.IsAssignableTo(stringType) && rightBoundNode.Type.IsAssignableTo(stringType))
-                            _stack.Push(new(right.Node, Convert.ToString(left.Value) + Convert.ToString(right.Value)));
-                        else
-                            _stack.Push(new(right.Node, null));
+                            result = Convert.ToString(left.Value) + Convert.ToString(right.Value);
 
+                        _stack.Push(new(right.Node, result));
                         Advance();
                         break;
                     }
