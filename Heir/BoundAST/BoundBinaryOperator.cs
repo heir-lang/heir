@@ -1,10 +1,57 @@
 ﻿using Heir.Syntax;
 using Heir.Types;
+using Heir.CodeGeneration;
 
 namespace Heir.BoundAST
 {
+    public enum BoundBinaryOperatorType
+    {
+        Addition,
+        Subtraction,
+        Multiplication,
+        Division,
+        IntegerDivision,
+        Exponentation,
+        Modulus,
+        BitwiseAnd,
+        BitwiseOr,
+        BitwiseXor,
+        LogicalOr,
+        LogicalAnd,
+        Equals,
+        NotEquals,
+        LessThan,
+        LessThanOrEquals,
+        GreaterThan,
+        GreaterThanOrEquals,
+        Concatenation
+    }
+
     public sealed class BoundBinaryOperator
     {
+        public static readonly Dictionary<BoundBinaryOperatorType, OpCode> OpCodeMap = new()
+        {
+            { BoundBinaryOperatorType.Addition,            OpCode.ADD },
+            { BoundBinaryOperatorType.Subtraction,         OpCode.SUB },
+            { BoundBinaryOperatorType.Multiplication,      OpCode.MUL },
+            { BoundBinaryOperatorType.Division,            OpCode.DIV },
+            { BoundBinaryOperatorType.IntegerDivision,     OpCode.IDIV },
+            { BoundBinaryOperatorType.Modulus,             OpCode.MOD },
+            { BoundBinaryOperatorType.Exponentation,       OpCode.POW },
+            { BoundBinaryOperatorType.BitwiseAnd,          OpCode.BAND },
+            { BoundBinaryOperatorType.BitwiseOr,           OpCode.BOR },
+            { BoundBinaryOperatorType.BitwiseXor,          OpCode.BXOR },
+            { BoundBinaryOperatorType.LogicalAnd,          OpCode.AND },
+            { BoundBinaryOperatorType.LogicalOr,           OpCode.OR },
+            { BoundBinaryOperatorType.Equals,              OpCode.EQ },
+            { BoundBinaryOperatorType.NotEquals,           OpCode.EQ },
+            { BoundBinaryOperatorType.LessThan,            OpCode.LT },
+            { BoundBinaryOperatorType.LessThanOrEquals,    OpCode.LTE },
+            { BoundBinaryOperatorType.GreaterThan,         OpCode.LT },
+            { BoundBinaryOperatorType.GreaterThanOrEquals, OpCode.LTE },
+            { BoundBinaryOperatorType.Concatenation,       OpCode.CONCAT }
+        };
+
         public SyntaxKind SyntaxKind { get; }
         public BoundBinaryOperatorType Type { get; }
         public BaseType LeftType { get; }

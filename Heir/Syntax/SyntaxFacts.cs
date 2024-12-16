@@ -2,6 +2,23 @@
 {
     public static class SyntaxFacts
     {
+        public static readonly HashSet<SyntaxKind> CompoundAssignmentOperators = [
+            SyntaxKind.PlusEquals,
+            SyntaxKind.MinusEquals,
+            SyntaxKind.StarEquals,
+            SyntaxKind.SlashEquals,
+            SyntaxKind.SlashSlashEquals,
+            SyntaxKind.PercentEquals,
+            SyntaxKind.CaratEquals,
+            SyntaxKind.AmpersandEquals,
+            SyntaxKind.PipeEquals,
+            SyntaxKind.TildeEquals,
+            SyntaxKind.AmpersandAmpersandEquals,
+            SyntaxKind.PipePipeEquals,
+            SyntaxKind.MinusMinus,
+            SyntaxKind.PlusPlus
+        ];
+
         public static readonly HashSet<SyntaxKind> NumberOperators = [
             SyntaxKind.Plus,
             SyntaxKind.Minus,

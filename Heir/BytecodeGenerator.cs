@@ -1,6 +1,7 @@
 ﻿using Heir.Syntax;
 using Heir.AST;
 using Heir.CodeGeneration;
+using Heir.BoundAST;
 
 namespace Heir
 {
@@ -14,26 +15,30 @@ namespace Heir
 
         public Bytecode GenerateBytecode() => new Bytecode(GenerateBytecode(_syntaxTree), Diagnostics);
 
-        public List<Instruction> VisitSyntaxTree(SyntaxTree syntaxTree) => GenerateStatementsBytecode(syntaxTree.Statements);
+        public List<Instruction> VisitSyntaxTree(SyntaxTree syntaxTree) =>
+            GenerateStatementsBytecode(syntaxTree.Statements)
+            .Append(new Instruction(syntaxTree, OpCode.EXIT))
+            .ToList();
+
         // TODO: create scope
         public List<Instruction> VisitBlock(Block block) => GenerateStatementsBytecode(block.Statements);
 
         public List<Instruction> VisitAssignmentOpExpression(AssignmentOp assignmentOp) => VisitBinaryOpExpression(assignmentOp);
         public List<Instruction> VisitBinaryOpExpression(BinaryOp binaryOp)
         {
+            var boundBinaryOp = (BoundBinaryOp)_binder.GetBoundNode(binaryOp);
             var leftInstructions = GenerateBytecode(binaryOp.Left);
             var rightInstructions = GenerateBytecode(binaryOp.Right);
             var combined = leftInstructions.Concat(rightInstructions);
 
-            if (BinaryOp.StandardOpCodeMap.TryGetValue(binaryOp.Operator.Kind, out var standardOp))
-                return combined.Append(new Instruction(binaryOp, standardOp)).ToList();
-
-            if (BinaryOp.AssignmentOpCodeMap.TryGetValue(binaryOp.Operator.Kind, out var assignmentOp))
-                return leftInstructions
-                    .Concat(rightInstructions)
-                    .Append(new Instruction(binaryOp, assignmentOp))
-                    .Append(new Instruction(binaryOp, OpCode.STORE))
-                    .ToList();
+            if (BoundBinaryOperator.OpCodeMap.TryGetValue(boundBinaryOp.Operator.Type, out var opCode))
+                return (!SyntaxFacts.CompoundAssignmentOperators.Contains(binaryOp.Operator.Kind) ?
+                    combined.Append(new Instruction(binaryOp, opCode))
+                    : leftInstructions
+                        .Concat(rightInstructions)
+                        .Append(new Instruction(binaryOp, opCode))
+                        .Append(new Instruction(binaryOp, OpCode.STORE))
+                ).ToList();
 
             Diagnostics.Error("H011", $"Unsupported binary operator kind: {binaryOp.Operator.Kind}", binaryOp.Operator);
             return [new Instruction(binaryOp, OpCode.NOOP)];
@@ -58,7 +63,7 @@ namespace Heir
 
         public List<Instruction> VisitIdentifierNameExpression(IdentifierName identifierName) => [new Instruction(identifierName, OpCode.LOAD, identifierName.Token.Text)];
         public List<Instruction> VisitParenthesizedExpression(Parenthesized parenthesized) => GenerateBytecode(parenthesized.Expression);
-        public List<Instruction> VisitLiteralExpression(Literal literal) => [new Instruction(literal, OpCode.PUSH, literal.Token.Value)];
+        public List<Instruction> VisitLiteralExpression(Literal literal) => [new Instruction(literal, literal.Token.Value != null ? OpCode.PUSH : OpCode.PUSHNONE, literal.Token.Value)];
         public List<Instruction> VisitNoOp(NoOp noOp) => [new Instruction(noOp, OpCode.NOOP)];
 
         //private List<Instruction> GenerateStatementsBytecode(List<Statement> statements) => statements.SelectMany(GenerateBytecode).ToList();
