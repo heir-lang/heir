@@ -10,12 +10,12 @@ namespace Heir
         public object? Value { get; } = value;
     }
 
-    public sealed class VirtualMachine(Binder binder, List<Instruction> bytecode)
+    public sealed class VirtualMachine(Binder binder, Bytecode bytecode)
     {
-        public DiagnosticBag Diagnostics { get; } //= binder.Diagnostics; // TODO: create Bytecode class
+        public DiagnosticBag Diagnostics { get; } = bytecode.Diagnostics;
 
         private readonly Binder _binder = binder;
-        private readonly List<Instruction> _bytecode = bytecode;
+        private readonly Bytecode _bytecode = bytecode;
         private readonly Stack<StackFrame> _stack = new();
         private int _pointer = 0;
 

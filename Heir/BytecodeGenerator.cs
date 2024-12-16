@@ -12,7 +12,7 @@ namespace Heir
         private readonly Binder _binder = binder;
         private readonly SyntaxTree _syntaxTree = syntaxTree;
 
-        public List<Instruction> GenerateBytecode() => GenerateBytecode(_syntaxTree);
+        public Bytecode GenerateBytecode() => new Bytecode(GenerateBytecode(_syntaxTree), Diagnostics);
 
         public List<Instruction> VisitSyntaxTree(SyntaxTree syntaxTree) => GenerateStatementsBytecode(syntaxTree.Statements);
         // TODO: create scope
