@@ -110,10 +110,12 @@ namespace Heir.BoundAST
             new BoundBinaryOperator(SyntaxKind.Tilde, BoundBinaryOperatorType.BitwiseXor, PrimitiveType.Int),
             new BoundBinaryOperator(SyntaxKind.TildeEquals, BoundBinaryOperatorType.BitwiseXor, PrimitiveType.Int),
 
-            new BoundBinaryOperator(SyntaxKind.EqualsEquals, BoundBinaryOperatorType.Equals, IntrinsicTypes.Number, PrimitiveType.Bool),
-            new BoundBinaryOperator(SyntaxKind.BangEquals, BoundBinaryOperatorType.NotEquals, IntrinsicTypes.Number, PrimitiveType.Bool),
-            new BoundBinaryOperator(SyntaxKind.EqualsEquals, BoundBinaryOperatorType.Equals, PrimitiveType.Bool),
-            new BoundBinaryOperator(SyntaxKind.BangEquals, BoundBinaryOperatorType.NotEquals, PrimitiveType.Bool),
+            new BoundBinaryOperator(SyntaxKind.EqualsEquals, BoundBinaryOperatorType.Equals, IntrinsicTypes.Any, PrimitiveType.Bool),
+            new BoundBinaryOperator(SyntaxKind.BangEquals, BoundBinaryOperatorType.NotEquals, IntrinsicTypes.Any, PrimitiveType.Bool),
+            new BoundBinaryOperator(SyntaxKind.LT, BoundBinaryOperatorType.LessThan, IntrinsicTypes.Number, PrimitiveType.Bool),
+            new BoundBinaryOperator(SyntaxKind.LTE, BoundBinaryOperatorType.LessThanOrEquals, IntrinsicTypes.Number, PrimitiveType.Bool),
+            new BoundBinaryOperator(SyntaxKind.GT, BoundBinaryOperatorType.GreaterThan, IntrinsicTypes.Number, PrimitiveType.Bool),
+            new BoundBinaryOperator(SyntaxKind.GTE, BoundBinaryOperatorType.GreaterThanOrEquals, IntrinsicTypes.Number, PrimitiveType.Bool),
 
             new BoundBinaryOperator(SyntaxKind.AmpersandAmpersand, BoundBinaryOperatorType.LogicalAnd, PrimitiveType.Bool),
             new BoundBinaryOperator(SyntaxKind.PipePipe, BoundBinaryOperatorType.LogicalOr, PrimitiveType.Bool)

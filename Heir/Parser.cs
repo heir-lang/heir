@@ -61,8 +61,26 @@ namespace Heir
 
         private Expression ParseLogicalAnd()
         {
-            var left = ParseBitwiseXor();
+            var left = ParseComparison();
             while (Tokens.Match(SyntaxKind.AmpersandAmpersand))
+            {
+                var op = Tokens.Previous!;
+                var right = ParseComparison();
+                left = new BinaryOp(left, op, right);
+            }
+
+            return left;
+        }
+
+        private Expression ParseComparison()
+        {
+            var left = ParseBitwiseXor();
+            while (Tokens.Match(SyntaxKind.EqualsEquals) ||
+                   Tokens.Match(SyntaxKind.BangEquals) ||
+                   Tokens.Match(SyntaxKind.LT) ||
+                   Tokens.Match(SyntaxKind.LTE) ||
+                   Tokens.Match(SyntaxKind.GT) ||
+                   Tokens.Match(SyntaxKind.GTE))
             {
                 var op = Tokens.Previous!;
                 var right = ParseBitwiseXor();
