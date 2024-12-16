@@ -20,7 +20,7 @@ namespace Heir.Tests
 
         [Theory]
         [InlineData("\"abc\"", SyntaxKind.StringLiteral, "abc")]
-        [InlineData("'a'", SyntaxKind.CharLiteral, "a")]
+        [InlineData("'a'", SyntaxKind.CharLiteral, 'a')]
         [InlineData("123", SyntaxKind.IntLiteral, (long)123)]
         [InlineData("69", SyntaxKind.IntLiteral, (long)69)]
         [InlineData("0b1101", SyntaxKind.IntLiteral, (long)13)]
@@ -103,10 +103,6 @@ namespace Heir.Tests
             Assert.Null(token.Value);
         }
 
-        private TokenStream Tokenize(string input)
-        {
-            var lexer = new Lexer(input, "<testing>");
-            return lexer.GetTokens().WithoutTrivia();
-        }
+        private TokenStream Tokenize(string input) => Common.Tokenize(input).WithoutTrivia();
     }
 }

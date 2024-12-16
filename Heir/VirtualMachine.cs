@@ -12,7 +12,7 @@ namespace Heir
 
     public sealed class VirtualMachine(Binder binder, List<Instruction> bytecode)
     {
-        public DiagnosticBag Diagnostics { get; } = binder.Diagnostics;
+        public DiagnosticBag Diagnostics { get; } //= binder.Diagnostics; // TODO: create Bytecode class
 
         private readonly Binder _binder = binder;
         private readonly List<Instruction> _bytecode = bytecode;

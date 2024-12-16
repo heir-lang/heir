@@ -7,7 +7,7 @@ namespace Heir
     public sealed class BytecodeGenerator(Binder binder, SyntaxTree syntaxTree) : Statement.Visitor<List<Instruction>>, Expression.Visitor<List<Instruction>>
     {
         // TODO: do not continue pipeline (codegen/evaluation) if we have errors
-        public DiagnosticBag Diagnostics { get; } = binder.Diagnostics;
+        public DiagnosticBag Diagnostics { get; } = syntaxTree.Diagnostics;
 
         private readonly Binder _binder = binder;
         private readonly SyntaxTree _syntaxTree = syntaxTree;

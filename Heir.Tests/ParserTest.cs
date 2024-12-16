@@ -1,5 +1,6 @@
 using Heir.AST;
 using Heir.Syntax;
+using static Heir.Tests.Common;
 
 namespace Heir.Tests
 {
@@ -13,9 +14,9 @@ namespace Heir.Tests
         [InlineData("]", "H005")]
         public void ThrowsWith(string input, string expectedErrorCode)
         {
-            var (_, diagnostics) = Parse(input);
-            Assert.True(diagnostics.HasErrors());
-            Assert.Contains(diagnostics, diagnostic => diagnostic.Code == expectedErrorCode);
+            var tree = Parse(input);
+            Assert.True(tree.Diagnostics.HasErrors());
+            Assert.Contains(tree.Diagnostics, diagnostic => diagnostic.Code == expectedErrorCode);
         }
 
         [Theory]
@@ -23,8 +24,8 @@ namespace Heir.Tests
         [InlineData("--b")]
         public void DoesNotThrowWith(string input)
         {
-            var (_, diagnostics) = Parse(input);
-            Assert.False(diagnostics.HasErrors());
+            var tree = Parse(input);
+            Assert.False(tree.Diagnostics.HasErrors());
         }
 
         [Theory]
@@ -35,7 +36,7 @@ namespace Heir.Tests
         [InlineData("~14", SyntaxKind.Tilde)]
         public void Parses_UnaryOperators(string input, SyntaxKind operatorKind)
         {
-            var (tree, _) = Parse(input);
+            var tree = Parse(input);
             var node = tree.Statements.First();
             Assert.IsType<UnaryOp>(node);
 
@@ -56,7 +57,7 @@ namespace Heir.Tests
         [InlineData("true || false", SyntaxKind.PipePipe)]
         public void Parses_BinaryOperators(string input, SyntaxKind operatorKind)
         {
-            var (tree, _) = Parse(input);
+            var tree = Parse(input);
             var node = tree.Statements.First();
             Assert.IsType<BinaryOp>(node);
 
@@ -70,7 +71,7 @@ namespace Heir.Tests
         public void Parses_OperatorPrecedence()
         {
             {
-                var (tree, _) = Parse("3 ^ 2 * 4 - 2");
+                var tree = Parse("3 ^ 2 * 4 - 2");
                 var node = tree.Statements.First();
                 Assert.IsType<BinaryOp>(node);
 
@@ -91,7 +92,7 @@ namespace Heir.Tests
                 Assert.Equal((long)4, fourLiteral.Token.Value);
             }
             {
-                var (tree, _) = Parse("true || false && true");
+                var tree = Parse("true || false && true");
                 var node = tree.Statements.First();
                 Assert.IsType<BinaryOp>(node);
 
@@ -108,7 +109,7 @@ namespace Heir.Tests
                 Assert.Equal(true, trueLiteral.Token.Value);
             }
             {
-                var (tree, _) = Parse("x += y * z");
+                var tree = Parse("x += y * z");
                 var node = tree.Statements.First();
                 Assert.IsType<AssignmentOp>(node);
 
@@ -140,7 +141,7 @@ namespace Heir.Tests
         [InlineData("none")]
         public void Parses_Literals(string input)
         {
-            var (tree, _) = Parse(input);
+            var tree = Parse(input);
             var node = tree.Statements.First();
             Assert.IsType<Literal>(node);
 
@@ -151,7 +152,7 @@ namespace Heir.Tests
         [Fact]
         public void Parses_ParenthesizedExpressions()
         {
-            var (tree, _) = Parse("(1 + 2)");
+            var tree = Parse("(1 + 2)");
             var node = tree.Statements.First();
             Assert.IsType<Parenthesized>(node);
 
@@ -165,22 +166,12 @@ namespace Heir.Tests
         [InlineData("abc_123")]
         public void Parses_Identifiers(string input)
         {
-            var (tree, _) = Parse(input);
+            var tree = Parse(input);
             var node = tree.Statements.First();
             Assert.IsType<IdentifierName>(node);
 
             var identifier = (IdentifierName)node;
             Assert.Equal(input, identifier.Token.Text);
-        }
-
-        private (SyntaxTree, DiagnosticBag) Parse(string input)
-        {
-            var lexer = new Lexer(input, "<testing>");
-            var tokenStream = lexer.GetTokens();
-            var parser = new Parser(tokenStream);
-
-            // temp
-            return (parser.Parse(), parser.Diagnostics);
         }
     }
 }

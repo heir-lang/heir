@@ -6,12 +6,14 @@ namespace Heir
     public sealed class Parser(TokenStream tokenStream)
     {
         public TokenStream Tokens { get; } = tokenStream.WithoutTrivia(); // temporary
-        public DiagnosticBag Diagnostics { get; } = tokenStream.Diagnostics;
+
+
+        private DiagnosticBag _diagnostics = tokenStream.Diagnostics;
 
         public SyntaxTree Parse()
         {
             var statement = ParseExpression(); // TODO: yeah you know what to do lol
-            return new([statement]);
+            return new([statement], _diagnostics);
         }
 
         private Expression ParseExpression() => ParseAssignment();
@@ -33,7 +35,7 @@ namespace Heir
                 Tokens.Match(SyntaxKind.PipePipeEquals))
             {
                 if (!left.Is<IdentifierName>()) // && !left.Is<MemberAccess>()
-                    Diagnostics.Error("H008", $"Invalid assignment target, expected identifier or member access", left.GetFirstToken());
+                    _diagnostics.Error("H008", $"Invalid assignment target, expected identifier or member access", left.GetFirstToken());
 
                 var op = Tokens.Previous!;
                 var right = ParseAssignment();
@@ -159,7 +161,7 @@ namespace Heir
                 var operand = ParseUnary(); // recursively parse the operand
                 var isAssignmentOp = op.IsKind(SyntaxKind.PlusPlus) || op.IsKind(SyntaxKind.MinusMinus);
                 if (isAssignmentOp && operand.Is<Literal>())
-                    Diagnostics.Error("H006", $"Attempt to {(op.IsKind(SyntaxKind.PlusPlus) ? "in" : "de")}crement a constant, expected identifier", operand.GetFirstToken());
+                    _diagnostics.Error("H006", $"Attempt to {(op.IsKind(SyntaxKind.PlusPlus) ? "in" : "de")}crement a constant, expected identifier", operand.GetFirstToken());
 
                 return new UnaryOp(operand, op);
             }
@@ -191,7 +193,7 @@ namespace Heir
                         var expression = ParseExpression();
                         if (expression.Is<NoOp>())
                         {
-                            Diagnostics.Error("H007", $"Expected expression, got {(Tokens.Previous?.Kind.ToString() ?? "EOF")}", token);
+                            _diagnostics.Error("H007", $"Expected expression, got {(Tokens.Previous?.Kind.ToString() ?? "EOF")}", token);
                             return new NoOp();
                         }
 
@@ -200,7 +202,7 @@ namespace Heir
                     }
             }
 
-            Diagnostics.Error("H005", $"Unexpected token \"{token.Kind}\"", token);
+            _diagnostics.Error("H005", $"Unexpected token \"{token.Kind}\"", token);
             return new NoOp();
         }
     }

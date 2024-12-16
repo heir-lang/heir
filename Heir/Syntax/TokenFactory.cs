@@ -29,7 +29,7 @@
 
         public static Token CharLiteral(string text, Location startLocation, Location endLocation)
         {
-            return new Token(SyntaxKind.CharLiteral, text, text.Substring(1, text.Length - 2), startLocation, endLocation);
+            return new Token(SyntaxKind.CharLiteral, text, Convert.ToChar(text.Substring(1, text.Length - 2)), startLocation, endLocation);
         }
 
         public static Token IntLiteral(string text, Location startLocation, Location endLocation, int radix = 10)

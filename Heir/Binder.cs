@@ -9,21 +9,21 @@ namespace Heir
         Parameters
     }
 
-    public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : Statement.Visitor<BoundStatement>, Expression.Visitor<BoundExpression>
+    public sealed class Binder(SyntaxTree syntaxTree) : Statement.Visitor<BoundStatement>, Expression.Visitor<BoundExpression>
     {
-        public DiagnosticBag Diagnostics { get; } = diagnostics;
-
         private readonly SyntaxTree _syntaxTree = syntaxTree;
+        private readonly DiagnosticBag _diagnostics = syntaxTree.Diagnostics;
         private readonly Dictionary<SyntaxNode, BoundSyntaxNode> _boundNodes = new();
         private Context _context = Context.Global;
 
-        public BoundStatement Bind() => Bind(_syntaxTree);
+        public BoundSyntaxTree Bind() => (BoundSyntaxTree)Bind(_syntaxTree);
 
         public BoundStatement GetBoundNode(Statement statement) => (BoundStatement)_boundNodes[statement];
         public BoundExpression GetBoundNode(Expression expression) => (BoundExpression)_boundNodes[expression];
         public BoundSyntaxNode GetBoundNode(SyntaxNode expression) => _boundNodes[expression];
 
-        public BoundStatement VisitSyntaxTree(SyntaxTree syntaxTree) => new BoundSyntaxTree(BindStatements(syntaxTree.Statements));
+        public BoundStatement VisitSyntaxTree(SyntaxTree syntaxTree) =>
+            new BoundSyntaxTree(BindStatements(syntaxTree.Statements), _diagnostics);
 
         public BoundStatement VisitBlock(Block block)
         {
@@ -42,7 +42,7 @@ namespace Heir
             var boundOperator = BoundBinaryOperator.Bind(binaryOp.Operator, left.Type, right.Type);
             if (boundOperator == null)
             {
-                Diagnostics.Error("H010", $"Cannot apply operator \"{binaryOp.Operator.Text}\" to operands of type \"{left.Type.ToString()}\" and \"{right.Type.ToString()}\"", binaryOp.Operator);
+                _diagnostics.Error("H010", $"Cannot apply operator \"{binaryOp.Operator.Text}\" to operands of type \"{left.Type.ToString()}\" and \"{right.Type.ToString()}\"", binaryOp.Operator);
                 return new BoundNoOp();
             }
 

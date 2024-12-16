@@ -1,6 +1,6 @@
 ﻿namespace Heir.Types
 {
-    enum PrimitiveTypeKind
+    public enum PrimitiveTypeKind
     {
         Int,
         Float,
@@ -21,9 +21,12 @@
 
         public override TypeKind Kind => TypeKind.Primitive;
 
+        public PrimitiveTypeKind PrimitiveKind { get; }
+
         private PrimitiveType(PrimitiveTypeKind primitiveTypeKind)
             : base(primitiveTypeKind.ToString().ToLower())
-        { 
+        {
+            PrimitiveKind = primitiveTypeKind;
         }
 
         public static PrimitiveType FromValue(object? value)
