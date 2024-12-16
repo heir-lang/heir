@@ -16,5 +16,6 @@
         LogicalAnd,
         Equals,
         NotEquals,
+        Concatenation
     }
 }

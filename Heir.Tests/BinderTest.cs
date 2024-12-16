@@ -61,8 +61,9 @@ namespace Heir.Tests
         }
 
         [Theory]
-        [InlineData("7 / 4")]
-        public void Binds_UnionBinaryOperations(string input)
+        [InlineData("7 / 4", PrimitiveTypeKind.Int, PrimitiveTypeKind.Float)]
+        [InlineData("\"a\" + 'b'", PrimitiveTypeKind.String, PrimitiveTypeKind.Char)]
+        public void Binds_UnionBinaryOperations(string input, PrimitiveTypeKind typeA, PrimitiveTypeKind typeB)
         {
             var boundTree = Bind(input);
             var node = boundTree.Statements.First();
@@ -78,8 +79,8 @@ namespace Heir.Tests
             var floatType = returnType.Types.Last();
             Assert.IsType<PrimitiveType>(intType);
             Assert.IsType<PrimitiveType>(floatType);
-            Assert.Equal(PrimitiveTypeKind.Int, ((PrimitiveType)intType).PrimitiveKind);
-            Assert.Equal(PrimitiveTypeKind.Float, ((PrimitiveType)floatType).PrimitiveKind);
+            Assert.Equal(typeA, ((PrimitiveType)intType).PrimitiveKind);
+            Assert.Equal(typeB, ((PrimitiveType)floatType).PrimitiveKind);
             Assert.Equal(TypeKind.Union, returnType.Kind);
         }
     }

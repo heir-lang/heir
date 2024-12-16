@@ -12,10 +12,12 @@
                 return union.Types.Any(type => type.IsAssignableTo(other));
             else if (other is UnionType)
                 return other.IsAssignableTo(this);
+            else if (this is LiteralType literal && other is LiteralType otherLiteral)
+                return literal.Value == otherLiteral.Value;
             else if (this is SingularType singular && other is SingularType otherSingular)
                 return singular.Name == otherSingular.Name;
 
-            return Kind == other.Kind; // temp
+            return false;
         }
     }
 }
