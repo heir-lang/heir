@@ -6,6 +6,15 @@ namespace Heir.Tests
     public class BytecodeGeneratorTest
     {
         [Fact]
+        public void GeneratesExit()
+        {
+            var bytecode = GenerateBytecode("69");
+            var instruction = bytecode.Instructions.Last();
+            Assert.Equal(OpCode.EXIT, instruction.OpCode);
+            Assert.Null(instruction.Operand);
+        }
+
+        [Fact]
         public void GeneratesPush_ForLiterals()
         {
             {
@@ -47,19 +56,19 @@ namespace Heir.Tests
             Assert.Null(operation.Operand);
         }
 
-        //[Theory]
-        //[InlineData("!false", false, OpCode.NOT)]
-        //[InlineData("~3", 3L, OpCode.BNOT)]
-        //[InlineData("-6", 6L, OpCode.UNM)]
-        //public void Generates_UnaryOperations(string input, object? operandValue, OpCode opCode)
-        //{
-        //    var bytecode = GenerateBytecode(input);
-        //    var push = bytecode.Instructions.First();
-        //    var operation = bytecode.Instructions.Last();
-        //    Assert.Equal(OpCode.PUSH, push.OpCode);
-        //    Assert.Equal(operandValue, push.Operand);
-        //    Assert.Equal(opCode, operation.OpCode);
-        //    Assert.Null(operation.Operand);
-        //}
+        [Theory]
+        [InlineData("!false", false, OpCode.NOT)]
+        [InlineData("~3", 3L, OpCode.BNOT)]
+        [InlineData("-6", 6L, OpCode.UNM)]
+        public void Generates_UnaryOperations(string input, object? operandValue, OpCode opCode)
+        {
+            var bytecode = GenerateBytecode(input);
+            var push = bytecode.Instructions[0];
+            var operation = bytecode.Instructions[1];
+            Assert.Equal(OpCode.PUSH, push.OpCode);
+            Assert.Equal(operandValue, push.Operand);
+            Assert.Equal(opCode, operation.OpCode);
+            Assert.Null(operation.Operand);
+        }
     }
 }
