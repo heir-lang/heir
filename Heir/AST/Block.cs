@@ -2,9 +2,9 @@
 
 namespace Heir.AST
 {
-    public class Block(List<SyntaxNode> statements) : Statement
+    public class Block(List<Statement> statements) : Statement
     {
-        public List<SyntaxNode> Statements { get; } = statements;
+        public List<Statement> Statements { get; } = statements;
 
         public override R Accept<R>(Visitor<R> visitor) => visitor.VisitBlock(this);
 

@@ -6,6 +6,7 @@ namespace Heir.Syntax
     public class TokenStream(DiagnosticBag diagnostics, Token[] tokens) : IEnumerable<Token>
     {
         public readonly DiagnosticBag Diagnostics = diagnostics;
+        public bool IsAtEnd => _tokens.ElementAtOrDefault(_index) == null;
         public Token Current
         {
             get => Peek(0)!;
@@ -56,10 +57,7 @@ namespace Heir.Syntax
             return token;
         }
 
-        public Token? Peek(int offset)
-        {
-            return _tokens.ElementAtOrDefault(_index + offset);
-        }
+        public Token? Peek(int offset) => _tokens.ElementAtOrDefault(_index + offset);
 
         public override string ToString()
         {
@@ -70,14 +68,7 @@ namespace Heir.Syntax
             return result.ToString().TrimEnd();
         }
 
-        public IEnumerator<Token> GetEnumerator()
-        {
-            return ((IEnumerable<Token>)_tokens).GetEnumerator();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return _tokens.GetEnumerator();
-        }
+        public IEnumerator<Token> GetEnumerator() => ((IEnumerable<Token>)_tokens).GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator() => _tokens.GetEnumerator();
     }
 }

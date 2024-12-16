@@ -30,6 +30,22 @@ namespace Heir
             throw new NotImplementedException();
         }
 
+        public BoundStatement VisitVariableDeclaration(VariableDeclaration variableDeclaration)
+        {
+            throw new NotImplementedException();
+        }
+
+        public BoundStatement VisitExpressionStatement(ExpressionStatement expressionStatement)
+        {
+            var expression = Bind(expressionStatement.Expression);
+            return new BoundExpressionStatement(expression);
+        }
+
+        public BoundStatement VisitNoOp(NoOpStatement noOp)
+        {
+            throw new NotImplementedException();
+        }
+
         public BoundExpression VisitAssignmentOpExpression(AssignmentOp assignmentOp)
         {
             throw new NotImplementedException();
@@ -79,8 +95,7 @@ namespace Heir
             throw new NotImplementedException();
         }
 
-        //private List<BoundStatement> BindStatements(List<Statement> statements) => statements.ConvertAll(Bind);
-        private List<BoundSyntaxNode> BindStatements(List<SyntaxNode> statements) => statements.ConvertAll(Bind); // temp
+        private List<BoundStatement> BindStatements(List<Statement> statements) => statements.ConvertAll(Bind);
 
         private BoundSyntaxNode Bind(SyntaxNode node)
         {

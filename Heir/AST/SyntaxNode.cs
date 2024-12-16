@@ -1,5 +1,4 @@
-﻿using Heir.CodeGeneration;
-using Heir.Syntax;
+﻿using Heir.Syntax;
 
 namespace Heir.AST
 {
@@ -10,7 +9,10 @@ namespace Heir.AST
         public interface Visitor<R>
         {
             public R VisitSyntaxTree(SyntaxTree syntaxTree);
+            public R VisitVariableDeclaration(VariableDeclaration variableDeclaration);
             public R VisitBlock(Block block);
+            public R VisitExpressionStatement(ExpressionStatement expressionStatement);
+            public R VisitNoOp(NoOpStatement noOp);
         }
     }
 

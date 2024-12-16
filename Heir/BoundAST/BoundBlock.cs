@@ -3,12 +3,12 @@ using Heir.Types;
 
 namespace Heir.BoundAST
 {
-    public class BoundBlock(List<BoundSyntaxNode> statements) : BoundStatement
+    public class BoundBlock(List<BoundStatement> statements) : BoundStatement
     {
         public override BaseType? Type => null; // temp
-        public List<BoundSyntaxNode> Statements { get; } = statements;
+        public List<BoundStatement> Statements { get; } = statements;
 
-        public override R Accept<R>(Visitor<R> visitor) => visitor.VisitBoundBlockStatement(this);
+        public override R Accept<R>(Visitor<R> visitor) => visitor.VisitBoundBlock(this);
 
         public override void Display(int indent = 0)
         {

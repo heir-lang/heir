@@ -1,6 +1,6 @@
 ﻿namespace Heir.BoundAST
 {
-    public class BoundSyntaxTree(List<BoundSyntaxNode> statements, DiagnosticBag diagnostics) : BoundBlock(statements)
+    public class BoundSyntaxTree(List<BoundStatement> statements, DiagnosticBag diagnostics) : BoundBlock(statements)
     {
         public DiagnosticBag Diagnostics { get; } = diagnostics;
 

@@ -1,7 +1,7 @@
 ﻿using Heir.Syntax;
 using Heir.AST;
-using Heir.CodeGeneration;
 using Heir.BoundAST;
+using Heir.CodeGeneration;
 
 namespace Heir
 {
@@ -22,6 +22,20 @@ namespace Heir
 
         // TODO: create scope
         public List<Instruction> VisitBlock(Block block) => GenerateStatementsBytecode(block.Statements);
+        public List<Instruction> VisitVariableDeclaration(VariableDeclaration variableDeclaration)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Instruction> VisitExpressionStatement(ExpressionStatement expressionStatement)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Instruction> VisitNoOp(NoOpStatement noOp)
+        {
+            throw new NotImplementedException();
+        }
 
         public List<Instruction> VisitAssignmentOpExpression(AssignmentOp assignmentOp) => VisitBinaryOpExpression(assignmentOp);
         public List<Instruction> VisitBinaryOpExpression(BinaryOp binaryOp)
@@ -66,8 +80,7 @@ namespace Heir
         public List<Instruction> VisitLiteralExpression(Literal literal) => [new Instruction(literal, literal.Token.Value != null ? OpCode.PUSH : OpCode.PUSHNONE, literal.Token.Value)];
         public List<Instruction> VisitNoOp(NoOp noOp) => [new Instruction(noOp, OpCode.NOOP)];
 
-        //private List<Instruction> GenerateStatementsBytecode(List<Statement> statements) => statements.SelectMany(GenerateBytecode).ToList();
-        private List<Instruction> GenerateStatementsBytecode(List<SyntaxNode> statements) => statements.SelectMany(GenerateBytecode).ToList(); // temp
+        private List<Instruction> GenerateStatementsBytecode(List<Statement> statements) => statements.SelectMany(GenerateBytecode).ToList();
         private List<Instruction> GenerateBytecode(Expression expression) => expression.Accept(this);
         private List<Instruction> GenerateBytecode(Statement statement) => statement.Accept(this);
         private List<Instruction> GenerateBytecode(SyntaxNode node)

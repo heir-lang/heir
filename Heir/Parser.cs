@@ -7,13 +7,44 @@ namespace Heir
     {
         public TokenStream Tokens { get; } = tokenStream.WithoutTrivia(); // temporary
 
-
         private DiagnosticBag _diagnostics = tokenStream.Diagnostics;
 
         public SyntaxTree Parse()
         {
-            var statement = ParseExpression(); // TODO: yeah you know what to do lol
-            return new([statement], _diagnostics);
+            var statements = new List<Statement>();
+            while (!Tokens.IsAtEnd)
+            {
+                var statement = ParseStatement();
+                statements.Add(statement);
+            }
+
+            return new(statements, _diagnostics);
+        }
+
+        private Statement ParseStatement()
+        {
+            if (Tokens.Match(SyntaxKind.LetKeyword))
+                return ParseVariableDeclaration();
+
+            var expression = ParseExpression();
+            return new ExpressionStatement(expression);
+        }
+
+        private Statement ParseVariableDeclaration()
+        {
+            if (!Tokens.Match(SyntaxKind.Identifier))
+            {
+                _diagnostics.Error("H009", "Expected identifier after 'let'", Tokens.Previous!);
+                return new NoOpStatement();
+            }
+
+            var identifier = Tokens.Previous!;
+            Expression? initializer = null;
+
+            if (Tokens.Match(SyntaxKind.Equals))
+                initializer = ParseExpression();
+
+            return new VariableDeclaration(new IdentifierName(identifier), initializer);
         }
 
         private Expression ParseExpression() => ParseAssignment();
@@ -212,7 +243,7 @@ namespace Heir
                         var expression = ParseExpression();
                         if (expression.Is<NoOp>())
                         {
-                            _diagnostics.Error("H007", $"Expected expression, got {(Tokens.Previous?.Kind.ToString() ?? "EOF")}", token);
+                            _diagnostics.Error("H007", $"Expected expression, got {Tokens.Previous?.Kind.ToString() ?? "EOF"}", token);
                             return new NoOp();
                         }
 
