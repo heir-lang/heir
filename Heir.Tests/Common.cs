@@ -1,5 +1,6 @@
 ﻿using Heir.AST;
 using Heir.BoundAST;
+using Heir.CodeGeneration;
 using Heir.Syntax;
 using System;
 using System.Collections.Generic;
@@ -29,6 +30,28 @@ namespace Heir.Tests
             var syntaxTree = Parse(input);
             var binder = new Binder(syntaxTree);
             return binder.Bind();
+        }
+
+        public static Bytecode GenerateBytecode(string input)
+        {
+            var syntaxTree = Parse(input);
+            var binder = new Binder(syntaxTree);
+            binder.Bind();
+
+            var bytecodeGenerator = new BytecodeGenerator(binder, syntaxTree);
+            return bytecodeGenerator.GenerateBytecode();
+        }
+
+        public static object? Evaluate(string input)
+        {
+            var syntaxTree = Parse(input);
+            var binder = new Binder(syntaxTree);
+            binder.Bind();
+
+            var bytecodeGenerator = new BytecodeGenerator(binder, syntaxTree);
+            var bytecode = bytecodeGenerator.GenerateBytecode();
+            var vm = new VirtualMachine(binder, bytecode);
+            return vm.Evaluate();
         }
     }
 }
