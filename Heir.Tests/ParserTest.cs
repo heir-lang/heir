@@ -28,6 +28,34 @@ namespace Heir.Tests
             Assert.False(tree.Diagnostics.HasErrors());
         }
 
+        [Fact]
+        public void Parses_VariableDeclarations()
+        {
+            var tree = Parse("let x = 1");
+            var statement = tree.Statements.First();
+            Assert.IsType<VariableDeclaration>(statement);
+
+            var declaration = (VariableDeclaration)statement;
+            Assert.False(declaration.IsMutable);
+            Assert.NotNull(declaration.Initializer);
+            Assert.IsType<Literal>(declaration.Initializer);
+            Assert.Equal("x", declaration.Name.Token.Text);
+        }
+
+        [Fact]
+        public void Parses_MutableVariableDeclarations()
+        {
+            var tree = Parse("let mut x = 1");
+            var statement = tree.Statements.First();
+            Assert.IsType<VariableDeclaration>(statement);
+
+            var declaration = (VariableDeclaration)statement;
+            Assert.True(declaration.IsMutable);
+            Assert.NotNull(declaration.Initializer);
+            Assert.IsType<Literal>(declaration.Initializer);
+            Assert.Equal("x", declaration.Name.Token.Text);
+        }
+
         [Theory]
         [InlineData("!true", SyntaxKind.Bang)]
         [InlineData("++a", SyntaxKind.PlusPlus)]

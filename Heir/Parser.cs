@@ -32,6 +32,7 @@ namespace Heir
 
         private Statement ParseVariableDeclaration()
         {
+            var isMutable = Tokens.Match(SyntaxKind.MutKeyword);
             if (!Tokens.Match(SyntaxKind.Identifier))
             {
                 _diagnostics.Error("H009", "Expected identifier after 'let'", Tokens.Previous!);
@@ -44,7 +45,7 @@ namespace Heir
             if (Tokens.Match(SyntaxKind.Equals))
                 initializer = ParseExpression();
 
-            return new VariableDeclaration(new IdentifierName(identifier), initializer);
+            return new VariableDeclaration(new IdentifierName(identifier), initializer, isMutable);
         }
 
         private Expression ParseExpression() => ParseAssignment();
