@@ -8,7 +8,9 @@
 
         public bool IsAssignableTo(BaseType other)
         {
-            if (this is UnionType union)
+            if (this is AnyType || other is AnyType)
+                return true;
+            else if (this is UnionType union)
                 return union.Types.Any(type => type.IsAssignableTo(other));
             else if (other is UnionType)
                 return other.IsAssignableTo(this);

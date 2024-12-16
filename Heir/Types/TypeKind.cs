@@ -2,6 +2,7 @@
 {
     public enum TypeKind
     {
+        Any,
         Singular,
         Primitive,
         Literal,
