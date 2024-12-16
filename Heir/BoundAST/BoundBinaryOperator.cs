@@ -34,10 +34,8 @@ namespace Heir.BoundAST
         {
             new BoundBinaryOperator(SyntaxKind.Plus, BoundBinaryOperatorType.Addition, IntrinsicTypes.Number),
             new BoundBinaryOperator(SyntaxKind.PlusEquals, BoundBinaryOperatorType.Addition, IntrinsicTypes.Number),
-            new BoundBinaryOperator(SyntaxKind.Plus, BoundBinaryOperatorType.Addition, PrimitiveType.String),
-            new BoundBinaryOperator(SyntaxKind.PlusEquals, BoundBinaryOperatorType.Addition, PrimitiveType.String),
-            new BoundBinaryOperator(SyntaxKind.Plus, BoundBinaryOperatorType.Addition, PrimitiveType.Char),
-            new BoundBinaryOperator(SyntaxKind.PlusEquals, BoundBinaryOperatorType.Addition, PrimitiveType.Char),
+            new BoundBinaryOperator(SyntaxKind.Plus, BoundBinaryOperatorType.Addition, IntrinsicTypes.StringOrChar),
+            new BoundBinaryOperator(SyntaxKind.PlusEquals, BoundBinaryOperatorType.Addition, IntrinsicTypes.StringOrChar),
             new BoundBinaryOperator(SyntaxKind.PlusPlus, BoundBinaryOperatorType.Addition, IntrinsicTypes.Number),
             new BoundBinaryOperator(SyntaxKind.Minus, BoundBinaryOperatorType.Subtraction, IntrinsicTypes.Number),
             new BoundBinaryOperator(SyntaxKind.MinusEquals, BoundBinaryOperatorType.Addition, IntrinsicTypes.Number),

@@ -6,5 +6,9 @@
             PrimitiveType.Int,
             PrimitiveType.Float
         ]);
+        public static UnionType StringOrChar = new UnionType([
+            PrimitiveType.String,
+            PrimitiveType.Char
+        ]);
     }
 }
