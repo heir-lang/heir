@@ -7,6 +7,16 @@ namespace Heir.Tests
     public class BinderTest
     {
         [Theory]
+        [InlineData("\"a\" + 1", "H010")]
+        [InlineData("true * false", "H010")]
+        public void ThrowsWith(string input, string expectedErrorCode)
+        {
+            var boundTree = Bind(input);
+            Assert.True(boundTree.Diagnostics.HasErrors());
+            Assert.Contains(boundTree.Diagnostics, diagnostic => diagnostic.Code == expectedErrorCode);
+        }
+
+        [Theory]
         [InlineData("\"abc\"", PrimitiveTypeKind.String)]
         [InlineData("'a'", PrimitiveTypeKind.Char)]
         [InlineData("123", PrimitiveTypeKind.Int)]
