@@ -32,7 +32,7 @@ namespace Heir
             var combined = leftInstructions.Concat(rightInstructions);
 
             if (BoundBinaryOperator.OpCodeMap.TryGetValue(boundBinaryOp.Operator.Type, out var opCode))
-                return (!SyntaxFacts.CompoundAssignmentOperators.Contains(binaryOp.Operator.Kind) ?
+                return (!SyntaxFacts.BinaryCompoundAssignmentOperators.Contains(binaryOp.Operator.Kind) ?
                     combined.Append(new Instruction(binaryOp, opCode))
                     : leftInstructions
                         .Concat(rightInstructions)

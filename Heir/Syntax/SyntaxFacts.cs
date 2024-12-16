@@ -2,7 +2,12 @@
 {
     public static class SyntaxFacts
     {
-        public static readonly HashSet<SyntaxKind> CompoundAssignmentOperators = [
+        public static readonly HashSet<SyntaxKind> UnaryCompoundAssignmentOperators = [
+            SyntaxKind.MinusMinus,
+            SyntaxKind.PlusPlus
+        ];
+
+        public static readonly HashSet<SyntaxKind> BinaryCompoundAssignmentOperators = [
             SyntaxKind.PlusEquals,
             SyntaxKind.MinusEquals,
             SyntaxKind.StarEquals,
@@ -14,9 +19,7 @@
             SyntaxKind.PipeEquals,
             SyntaxKind.TildeEquals,
             SyntaxKind.AmpersandAmpersandEquals,
-            SyntaxKind.PipePipeEquals,
-            SyntaxKind.MinusMinus,
-            SyntaxKind.PlusPlus
+            SyntaxKind.PipePipeEquals
         ];
 
         public static readonly HashSet<SyntaxKind> NumberOperators = [

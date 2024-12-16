@@ -103,12 +103,12 @@ namespace Heir.BoundAST
             new BoundBinaryOperator(SyntaxKind.CaratEquals, BoundBinaryOperatorType.Exponentation, IntrinsicTypes.Number),
             new BoundBinaryOperator(SyntaxKind.Percent, BoundBinaryOperatorType.Modulus, IntrinsicTypes.Number),
             new BoundBinaryOperator(SyntaxKind.PercentEquals, BoundBinaryOperatorType.Modulus, IntrinsicTypes.Number),
-            new BoundBinaryOperator(SyntaxKind.Ampersand, BoundBinaryOperatorType.BitwiseAnd, IntrinsicTypes.Number),
-            new BoundBinaryOperator(SyntaxKind.AmpersandEquals, BoundBinaryOperatorType.BitwiseAnd, IntrinsicTypes.Number),
-            new BoundBinaryOperator(SyntaxKind.Pipe, BoundBinaryOperatorType.BitwiseOr, IntrinsicTypes.Number),
-            new BoundBinaryOperator(SyntaxKind.PipeEquals, BoundBinaryOperatorType.BitwiseOr, IntrinsicTypes.Number),
-            new BoundBinaryOperator(SyntaxKind.Tilde, BoundBinaryOperatorType.BitwiseXor, IntrinsicTypes.Number),
-            new BoundBinaryOperator(SyntaxKind.TildeEquals, BoundBinaryOperatorType.BitwiseXor, IntrinsicTypes.Number),
+            new BoundBinaryOperator(SyntaxKind.Ampersand, BoundBinaryOperatorType.BitwiseAnd, PrimitiveType.Int),
+            new BoundBinaryOperator(SyntaxKind.AmpersandEquals, BoundBinaryOperatorType.BitwiseAnd, PrimitiveType.Int),
+            new BoundBinaryOperator(SyntaxKind.Pipe, BoundBinaryOperatorType.BitwiseOr, PrimitiveType.Int),
+            new BoundBinaryOperator(SyntaxKind.PipeEquals, BoundBinaryOperatorType.BitwiseOr, PrimitiveType.Int),
+            new BoundBinaryOperator(SyntaxKind.Tilde, BoundBinaryOperatorType.BitwiseXor, PrimitiveType.Int),
+            new BoundBinaryOperator(SyntaxKind.TildeEquals, BoundBinaryOperatorType.BitwiseXor, PrimitiveType.Int),
 
             new BoundBinaryOperator(SyntaxKind.EqualsEquals, BoundBinaryOperatorType.Equals, IntrinsicTypes.Number, PrimitiveType.Bool),
             new BoundBinaryOperator(SyntaxKind.BangEquals, BoundBinaryOperatorType.NotEquals, IntrinsicTypes.Number, PrimitiveType.Bool),
@@ -123,7 +123,7 @@ namespace Heir.BoundAST
         {
             foreach (var op in _operators)
             {
-                if (op.SyntaxKind != token.Kind) continue;
+                if (!token.IsKind(op.SyntaxKind)) continue;
                 if (!op.LeftType.IsAssignableTo(leftType)) continue;
                 if (!op.RightType.IsAssignableTo(rightType)) continue;
 

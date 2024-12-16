@@ -15,7 +15,7 @@ namespace Heir.BoundAST
 
         public override void Display(int indent)
         {
-            Console.WriteLine($"{string.Concat(Enumerable.Repeat("  ", indent))}BinaryOp(");
+            Console.WriteLine($"{string.Concat(Enumerable.Repeat("  ", indent))}BoundBinaryOp(");
             Console.WriteLine($"{string.Concat(Enumerable.Repeat("  ", indent + 1))}Left ->");
             Left.Display(indent + 2);
             Console.WriteLine(",");

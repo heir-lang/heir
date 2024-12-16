@@ -49,6 +49,19 @@ namespace Heir
             return new BoundBinaryOp(left, boundOperator, right);
         }
 
+        public BoundExpression VisitUnaryOpExpression(UnaryOp unaryOp)
+        {
+            var operand = Bind(unaryOp.Operand);
+            var boundOperator = BoundUnaryOperator.Bind(unaryOp.Operator, operand.Type);
+            if (boundOperator == null)
+            {
+                _diagnostics.Error("H010", $"Cannot apply operator \"{unaryOp.Operator.Text}\" to operand of type \"{operand.Type.ToString()}\"", unaryOp.Operator);
+                return new BoundNoOp();
+            }
+
+            return new BoundUnaryOp(boundOperator, operand);
+        }
+
         public BoundExpression VisitIdentifierNameExpression(IdentifierName identifierName)
         {
             throw new NotImplementedException();
@@ -62,11 +75,6 @@ namespace Heir
         }
 
         public BoundExpression VisitParenthesizedExpression(Parenthesized parenthesized)
-        {
-            throw new NotImplementedException();
-        }
-
-        public BoundExpression VisitUnaryOpExpression(UnaryOp unaryOp)
         {
             throw new NotImplementedException();
         }

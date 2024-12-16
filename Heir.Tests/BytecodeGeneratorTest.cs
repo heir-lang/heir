@@ -38,13 +38,28 @@ namespace Heir.Tests
             var bytecode = GenerateBytecode(input);
             var pushLeft = bytecode.Instructions[0];
             var pushRight = bytecode.Instructions[1];
-            var add = bytecode.Instructions[2];
+            var operation = bytecode.Instructions[2];
             Assert.Equal(OpCode.PUSH, pushLeft.OpCode);
             Assert.Equal(leftValue, pushLeft.Operand);
             Assert.Equal(OpCode.PUSH, pushRight.OpCode);
             Assert.Equal(rightValue, pushRight.Operand);
-            Assert.Equal(opCode, add.OpCode);
-            Assert.Null(add.Operand);
+            Assert.Equal(opCode, operation.OpCode);
+            Assert.Null(operation.Operand);
         }
+
+        //[Theory]
+        //[InlineData("!false", false, OpCode.NOT)]
+        //[InlineData("~3", 3L, OpCode.BNOT)]
+        //[InlineData("-6", 6L, OpCode.UNM)]
+        //public void Generates_UnaryOperations(string input, object? operandValue, OpCode opCode)
+        //{
+        //    var bytecode = GenerateBytecode(input);
+        //    var push = bytecode.Instructions.First();
+        //    var operation = bytecode.Instructions.Last();
+        //    Assert.Equal(OpCode.PUSH, push.OpCode);
+        //    Assert.Equal(operandValue, push.Operand);
+        //    Assert.Equal(opCode, operation.OpCode);
+        //    Assert.Null(operation.Operand);
+        //}
     }
 }
