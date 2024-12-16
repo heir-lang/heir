@@ -5,6 +5,21 @@ namespace Heir.Tests
     public class TypeTest
     {
         [Fact]
+        public void AnyType_IsAssignableTo()
+        {
+            {
+                var a = PrimitiveType.Int;
+                var b = new AnyType();
+                Assert.True(a.IsAssignableTo(b));
+            }
+            {
+                var a = new AnyType();
+                var b = PrimitiveType.String;
+                Assert.True(a.IsAssignableTo(b));
+            }
+        }
+
+        [Fact]
         public void SingularTypes_AreAssignableTo()
         {
             var a = new SingularType("MyType");
