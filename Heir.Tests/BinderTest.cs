@@ -1,4 +1,5 @@
-﻿using Heir.BoundAST;
+﻿using Heir.AST;
+using Heir.BoundAST;
 using Heir.Types;
 using static Heir.Tests.Common;
 
@@ -32,7 +33,10 @@ namespace Heir.Tests
         public void Binds_Literals(string input, PrimitiveTypeKind primitiveTypeKind)
         {
             var boundTree = Bind(input);
-            var node = boundTree.Statements.First();
+            var statement = boundTree.Statements.First();
+            Assert.IsType<BoundExpressionStatement>(statement);
+
+            var node = ((BoundExpressionStatement)statement).Expression;
             Assert.IsType<BoundLiteral>(node);
 
             var literal = (BoundLiteral)node;
@@ -48,7 +52,10 @@ namespace Heir.Tests
         public void Binds_PrimitiveBinaryOperations(string input, PrimitiveTypeKind returnTypeKind)
         {
             var boundTree = Bind(input);
-            var node = boundTree.Statements.First();
+            var statement = boundTree.Statements.First();
+            Assert.IsType<BoundExpressionStatement>(statement);
+
+            var node = ((BoundExpressionStatement)statement).Expression;
             Assert.IsType<BoundBinaryOp>(node);
 
             var binaryOp = (BoundBinaryOp)node;
@@ -66,7 +73,10 @@ namespace Heir.Tests
         public void Binds_UnionBinaryOperations(string input, PrimitiveTypeKind typeAKind, PrimitiveTypeKind typeBKind)
         {
             var boundTree = Bind(input);
-            var node = boundTree.Statements.First();
+            var statement = boundTree.Statements.First();
+            Assert.IsType<BoundExpressionStatement>(statement);
+
+            var node = ((BoundExpressionStatement)statement).Expression;
             Assert.IsType<BoundBinaryOp>(node);
 
             var binaryOp = (BoundBinaryOp)node;
@@ -90,7 +100,10 @@ namespace Heir.Tests
         public void Binds_PrimitiveUnaryOperations(string input, PrimitiveTypeKind returnTypeKind)
         {
             var boundTree = Bind(input);
-            var node = boundTree.Statements.First();
+            var statement = boundTree.Statements.First();
+            Assert.IsType<BoundExpressionStatement>(statement);
+
+            var node = ((BoundExpressionStatement)statement).Expression;
             Assert.IsType<BoundUnaryOp>(node);
 
             var unaryOp = (BoundUnaryOp)node;
@@ -107,7 +120,10 @@ namespace Heir.Tests
         public void Binds_UnionUnaryOperations(string input, PrimitiveTypeKind typeAKind, PrimitiveTypeKind typeBKind)
         {
             var boundTree = Bind(input);
-            var node = boundTree.Statements.First();
+            var statement = boundTree.Statements.First();
+            Assert.IsType<BoundExpressionStatement>(statement);
+
+            var node = ((BoundExpressionStatement)statement).Expression;
             Assert.IsType<BoundUnaryOp>(node);
 
             var unaryOp = (BoundUnaryOp)node;

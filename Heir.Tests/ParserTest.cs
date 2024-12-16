@@ -37,7 +37,10 @@ namespace Heir.Tests
         public void Parses_UnaryOperators(string input, SyntaxKind operatorKind)
         {
             var tree = Parse(input);
-            var node = tree.Statements.First();
+            var statement = tree.Statements.First();
+            Assert.IsType<ExpressionStatement>(statement);
+
+            var node = ((ExpressionStatement)statement).Expression;
             Assert.IsType<UnaryOp>(node);
 
             var unaryOperation = (UnaryOp)node;
@@ -58,7 +61,10 @@ namespace Heir.Tests
         public void Parses_BinaryOperators(string input, SyntaxKind operatorKind)
         {
             var tree = Parse(input);
-            var node = tree.Statements.First();
+            var statement = tree.Statements.First();
+            Assert.IsType<ExpressionStatement>(statement);
+
+            var node = ((ExpressionStatement)statement).Expression;
             Assert.IsType<BinaryOp>(node);
 
             var binaryOperation = (BinaryOp)node;
@@ -74,7 +80,10 @@ namespace Heir.Tests
         public void Parses_AssignmentOperators(string input, SyntaxKind operatorKind)
         {
             var tree = Parse(input);
-            var node = tree.Statements.First();
+            var statement = tree.Statements.First();
+            Assert.IsType<ExpressionStatement>(statement);
+
+            var node = ((ExpressionStatement)statement).Expression;
             Assert.IsType<AssignmentOp>(node);
 
             var assignmentOperation = (AssignmentOp)node;
@@ -86,7 +95,10 @@ namespace Heir.Tests
         {
             {
                 var tree = Parse("3 ^ 2 * 4 - 2");
-                var node = tree.Statements.First();
+                var statement = tree.Statements.First();
+                Assert.IsType<ExpressionStatement>(statement);
+
+                var node = ((ExpressionStatement)statement).Expression;
                 Assert.IsType<BinaryOp>(node);
 
                 var subtraction = (BinaryOp)node;
@@ -107,7 +119,10 @@ namespace Heir.Tests
             }
             {
                 var tree = Parse("true || false && true");
-                var node = tree.Statements.First();
+                var statement = tree.Statements.First();
+                Assert.IsType<ExpressionStatement>(statement);
+
+                var node = ((ExpressionStatement)statement).Expression;
                 Assert.IsType<BinaryOp>(node);
 
                 var or = (BinaryOp)node;
@@ -124,7 +139,10 @@ namespace Heir.Tests
             }
             {
                 var tree = Parse("x += y * z");
-                var node = tree.Statements.First();
+                var statement = tree.Statements.First();
+                Assert.IsType<ExpressionStatement>(statement);
+
+                var node = ((ExpressionStatement)statement).Expression;
                 Assert.IsType<AssignmentOp>(node);
 
                 var assignment = (AssignmentOp)node;
@@ -156,7 +174,10 @@ namespace Heir.Tests
         public void Parses_Literals(string input)
         {
             var tree = Parse(input);
-            var node = tree.Statements.First();
+            var statement = tree.Statements.First();
+            Assert.IsType<ExpressionStatement>(statement);
+
+            var node = ((ExpressionStatement)statement).Expression;
             Assert.IsType<Literal>(node);
 
             var literal = (Literal)node;
@@ -167,7 +188,10 @@ namespace Heir.Tests
         public void Parses_ParenthesizedExpressions()
         {
             var tree = Parse("(1 + 2)");
-            var node = tree.Statements.First();
+            var statement = tree.Statements.First();
+            Assert.IsType<ExpressionStatement>(statement);
+
+            var node = ((ExpressionStatement)statement).Expression;
             Assert.IsType<Parenthesized>(node);
 
             var parenthesized = (Parenthesized)node;
@@ -181,7 +205,10 @@ namespace Heir.Tests
         public void Parses_Identifiers(string input)
         {
             var tree = Parse(input);
-            var node = tree.Statements.First();
+            var statement = tree.Statements.First();
+            Assert.IsType<ExpressionStatement>(statement);
+
+            var node = ((ExpressionStatement)statement).Expression;
             Assert.IsType<IdentifierName>(node);
 
             var identifier = (IdentifierName)node;

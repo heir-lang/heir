@@ -27,15 +27,9 @@ namespace Heir
             throw new NotImplementedException();
         }
 
-        public List<Instruction> VisitExpressionStatement(ExpressionStatement expressionStatement)
-        {
-            throw new NotImplementedException();
-        }
+        public List<Instruction> VisitExpressionStatement(ExpressionStatement expressionStatement) => GenerateBytecode(expressionStatement.Expression);
 
-        public List<Instruction> VisitNoOp(NoOpStatement noOp)
-        {
-            throw new NotImplementedException();
-        }
+        public List<Instruction> VisitNoOp(NoOpStatement noOp) => [];
 
         public List<Instruction> VisitAssignmentOpExpression(AssignmentOp assignmentOp) => VisitBinaryOpExpression(assignmentOp);
         public List<Instruction> VisitBinaryOpExpression(BinaryOp binaryOp)

@@ -47,12 +47,13 @@ Though I cannot guarantee the lifetime or dedication to this project, contributi
         - [ ] if 
         - [ ] while 
         - [ ] for 
+        - [ ] switch
     - [ ] blocks
-    - [ ] statements
+    - [x] variable declaration
+    - [x] statements
     - [ ] indexing (`a["b"]`)
     - [ ] dot access (`a.b`)
     - [ ] method calls
-    - [ ] variable declaration
     - [x] compound assignment
     - [x] assignment
     - [x] identifiers
@@ -60,6 +61,7 @@ Though I cannot guarantee the lifetime or dedication to this project, contributi
     - [x] binary operations
     - [x] parenthesized expressions
     - [x] literals
+- [ ] scopes
 - [ ] resolving
 - [ ] binding
 - [ ] typechecking
