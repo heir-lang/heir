@@ -63,7 +63,7 @@ namespace Heir.Tests
         [Theory]
         [InlineData("7 / 4", PrimitiveTypeKind.Int, PrimitiveTypeKind.Float)]
         [InlineData("\"a\" + 'b'", PrimitiveTypeKind.String, PrimitiveTypeKind.Char)]
-        public void Binds_UnionBinaryOperations(string input, PrimitiveTypeKind typeA, PrimitiveTypeKind typeB)
+        public void Binds_UnionBinaryOperations(string input, PrimitiveTypeKind typeAKind, PrimitiveTypeKind typeBKind)
         {
             var boundTree = Bind(input);
             var node = boundTree.Statements.First();
@@ -75,12 +75,52 @@ namespace Heir.Tests
             Assert.IsType<UnionType>(binaryOp.Type);
 
             var returnType = (UnionType)binaryOp.Type;
-            var intType = returnType.Types.First();
-            var floatType = returnType.Types.Last();
-            Assert.IsType<PrimitiveType>(intType);
-            Assert.IsType<PrimitiveType>(floatType);
-            Assert.Equal(typeA, ((PrimitiveType)intType).PrimitiveKind);
-            Assert.Equal(typeB, ((PrimitiveType)floatType).PrimitiveKind);
+            var typeA = returnType.Types.First();
+            var typeB = returnType.Types.Last();
+            Assert.IsType<PrimitiveType>(typeA);
+            Assert.IsType<PrimitiveType>(typeB);
+            Assert.Equal(typeAKind, ((PrimitiveType)typeA).PrimitiveKind);
+            Assert.Equal(typeBKind, ((PrimitiveType)typeB).PrimitiveKind);
+            Assert.Equal(TypeKind.Union, returnType.Kind);
+        }
+
+        [Theory]
+        [InlineData("!false", PrimitiveTypeKind.Bool)]
+        [InlineData("~6", PrimitiveTypeKind.Int)]
+        public void Binds_PrimitiveUnaryOperations(string input, PrimitiveTypeKind returnTypeKind)
+        {
+            var boundTree = Bind(input);
+            var node = boundTree.Statements.First();
+            Assert.IsType<BoundUnaryOp>(node);
+
+            var unaryOp = (BoundUnaryOp)node;
+            Assert.IsType<PrimitiveType>(unaryOp.Operand.Type);
+            Assert.IsType<PrimitiveType>(unaryOp.Type);
+
+            var returnType = (PrimitiveType)unaryOp.Type;
+            Assert.Equal(returnTypeKind, returnType.PrimitiveKind);
+        }
+
+        [Theory]
+        [InlineData("-69.420", PrimitiveTypeKind.Int, PrimitiveTypeKind.Float)]
+        [InlineData("++6", PrimitiveTypeKind.Int, PrimitiveTypeKind.Float)] // invalid but only for testing purposes so idc
+        public void Binds_UnionUnaryOperations(string input, PrimitiveTypeKind typeAKind, PrimitiveTypeKind typeBKind)
+        {
+            var boundTree = Bind(input);
+            var node = boundTree.Statements.First();
+            Assert.IsType<BoundUnaryOp>(node);
+
+            var unaryOp = (BoundUnaryOp)node;
+            Assert.IsType<PrimitiveType>(unaryOp.Operand.Type);
+            Assert.IsType<UnionType>(unaryOp.Type);
+
+            var returnType = (UnionType)unaryOp.Type;
+            var typeA = returnType.Types.First();
+            var typeB = returnType.Types.Last();
+            Assert.IsType<PrimitiveType>(typeA);
+            Assert.IsType<PrimitiveType>(typeB);
+            Assert.Equal(typeAKind, ((PrimitiveType)typeA).PrimitiveKind);
+            Assert.Equal(typeBKind, ((PrimitiveType)typeB).PrimitiveKind);
             Assert.Equal(TypeKind.Union, returnType.Kind);
         }
     }

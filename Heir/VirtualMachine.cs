@@ -33,6 +33,8 @@ namespace Heir
                 var result = EvaluateInstruction(instruction);
                 if (instruction.OpCode == OpCode.RETURN)
                     return result?.Value;
+
+                if (result == null) break;
             }
 
             return _stack.Pop().Value;
@@ -63,6 +65,18 @@ namespace Heir
                         break;
                     }
 
+                case OpCode.CONCAT:
+                    {
+                        var right = _stack.Pop();
+                        var left = _stack.Pop();
+                        var rightBoundNode = _binder.GetBoundNode((Expression)right.Node);
+                        var leftBoundNode = _binder.GetBoundNode((Expression)left.Node);
+                        var result = Convert.ToString(left.Value) + Convert.ToString(right.Value);
+
+                        _stack.Push(new(right.Node, result));
+                        Advance();
+                        break;
+                    }
                 case OpCode.ADD:
                     {
                         var right = _stack.Pop();
@@ -73,10 +87,6 @@ namespace Heir
 
                         if (leftBoundNode.Type.IsAssignableTo(IntrinsicTypes.Number) && rightBoundNode.Type.IsAssignableTo(IntrinsicTypes.Number))
                             result = Convert.ToDouble(left.Value) + Convert.ToDouble(right.Value);
-                        else if (leftBoundNode.Type.IsAssignableTo(PrimitiveType.String) && rightBoundNode.Type.IsAssignableTo(PrimitiveType.String))
-                            result = Convert.ToString(left.Value) + Convert.ToString(right.Value);
-                        else if (leftBoundNode.Type.IsAssignableTo(PrimitiveType.Char) && rightBoundNode.Type.IsAssignableTo(PrimitiveType.Char))
-                            result = Convert.ToChar(left.Value) + Convert.ToChar(right.Value);
 
                         _stack.Push(new(right.Node, result));
                         Advance();
@@ -285,6 +295,12 @@ namespace Heir
                         else
                             Advance();
 
+                        break;
+                    }
+
+                default:
+                    {
+                        Diagnostics.Error("H001D", $"Unhandled opcode \"{instruction.OpCode}\"", instruction.Root.GetFirstToken());
                         break;
                     }
             }
