@@ -26,6 +26,7 @@ namespace Heir
                 Tokens.Match(SyntaxKind.MinusEquals) ||
                 Tokens.Match(SyntaxKind.StarEquals) ||
                 Tokens.Match(SyntaxKind.SlashEquals) ||
+                Tokens.Match(SyntaxKind.SlashSlashEquals) ||
                 Tokens.Match(SyntaxKind.PercentEquals) ||
                 Tokens.Match(SyntaxKind.CaratEquals) ||
                 Tokens.Match(SyntaxKind.AmpersandEquals) ||

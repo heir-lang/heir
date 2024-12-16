@@ -67,6 +67,20 @@ namespace Heir.Tests
             Assert.Equal(operatorKind, binaryOperation.Operator.Kind);
         }
 
+        [Theory]
+        [InlineData("a = 2", SyntaxKind.Equals)]
+        [InlineData("a += 2", SyntaxKind.PlusEquals)]
+        [InlineData("a //= 2", SyntaxKind.SlashSlashEquals)]
+        public void Parses_AssignmentOperators(string input, SyntaxKind operatorKind)
+        {
+            var tree = Parse(input);
+            var node = tree.Statements.First();
+            Assert.IsType<AssignmentOp>(node);
+
+            var assignmentOperation = (AssignmentOp)node;
+            Assert.Equal(operatorKind, assignmentOperation.Operator.Kind);
+        }
+
         [Fact]
         public void Parses_OperatorPrecedence()
         {
