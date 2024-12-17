@@ -1,37 +1,29 @@
-﻿using Heir.Syntax;
-
-namespace Heir
+﻿namespace Heir
 {
-    public interface VariableOptions
-    {
-        bool IsMutable { get; }
-    }
-
-    public sealed class Scope(DiagnosticBag diagnostics, Scope? enclosing)
+    public sealed class Scope(DiagnosticBag diagnostics, Scope? enclosing = null)
     {
         public Scope? Enclosing { get; } = enclosing;
 
         private readonly DiagnosticBag _diagnostics = diagnostics;
         private readonly Dictionary<string, bool> _defined = [];
         private readonly Dictionary<string, object?> _values = [];
-        private readonly Dictionary<string, VariableOptions> _options = [];
 
-        public void AssignAt(Token name, object? value, uint distance)
+        public void AssignAt(string name, object? value, uint distance)
         {
             var scope = Ancestor(distance);
             if (scope != null)
             {
-                scope._values[name.Text] = value;
-                scope._defined[name.Text] = value != null;
+                scope._values[name] = value;
+                scope._defined[name] = value != null;
             }
         }
 
-        public void Assign(Token name, object? value)
+        public void Assign(string name, object? value)
         {
-            if (_values.ContainsKey(name.Text))
+            if (_values.ContainsKey(name))
             {
-                _values[name.Text] = value;
-                _defined[name.Text] = value != null;
+                _values[name] = value;
+                _defined[name] = value != null;
                 return;
             }
 
@@ -39,29 +31,32 @@ namespace Heir
             Enclosing.Assign(name, value);
         }
 
-        public void Define(Token name, object? value, VariableOptions options)
+        public void Define(string name, object? value)
         {
-            _values[name.Text] = value;
-            _options[name.Text] = options;
-            _defined[name.Text] = value != null;
+            _values[name] = value;
+            _defined[name] = value != null;
         }
 
-        public T? Get<T>(Token name)
+        public bool Contains(string name) => Lookup(name) != null;
+
+        public T? Lookup<T>(string name) => (T?)Lookup(name);
+        public object? Lookup(string name)
         {
-            if (_values.TryGetValue(name.Text, out var value))
-                return (T?)value;
+            if (_values.TryGetValue(name, out var value))
+                return value;
 
             if (Enclosing != null)
-                return Enclosing.Get<T>(name);
+                return Enclosing.Lookup(name);
 
             return default;
         }
 
-        public T? GetAt<T>(Token name, uint distance)
+        public T? LookupAt<T>(string name, uint distance) => (T?)LookupAt(name, distance);
+        public object? LookupAt(string name, uint distance)
         {
             var values = Ancestor(distance)?._values;
-            if (values != null && values.TryGetValue(name.Text, out var value))
-                return (T?)value;
+            if (values != null && values.TryGetValue(name, out var value))
+                return value;
 
             return default;
         }

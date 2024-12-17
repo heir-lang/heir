@@ -24,7 +24,7 @@ namespace Heir
         public List<Instruction> VisitVariableDeclaration(VariableDeclaration variableDeclaration) =>
             new List<Instruction>([new Instruction(variableDeclaration.Name, OpCode.PUSH, variableDeclaration.Name.Token.Text)])
             .Concat(variableDeclaration.Initializer != null ? GenerateBytecode(variableDeclaration.Initializer) : [])
-            .Append(new Instruction(variableDeclaration, variableDeclaration.IsMutable ? OpCode.STOREMUTABLE : OpCode.STORE))
+            .Append(new Instruction(variableDeclaration, OpCode.STORE))
             .ToList();
 
         public List<Instruction> VisitExpressionStatement(ExpressionStatement expressionStatement) => GenerateBytecode(expressionStatement.Expression);

@@ -11,14 +11,25 @@ namespace Heir
         public object? Value { get; } = value;
     }
 
-    public sealed class VirtualMachine(Binder binder, Bytecode bytecode)
+    public sealed class VirtualMachine
     {
-        public DiagnosticBag Diagnostics { get; } = bytecode.Diagnostics;
+        public DiagnosticBag Diagnostics { get; }
+        public Scope GlobalScope { get; }
 
-        private readonly Binder _binder = binder;
-        private readonly Bytecode _bytecode = bytecode;
         private readonly Stack<StackFrame> _stack = new();
+        private readonly Binder _binder;
+        private readonly Bytecode _bytecode;
+        private Scope _scope;
         private int _pointer = 0;
+
+        public VirtualMachine(Binder binder, Bytecode bytecode, Scope? scope = null)
+        {
+            Diagnostics = bytecode.Diagnostics;
+            GlobalScope = new(Diagnostics);
+            _binder = binder;
+            _bytecode = bytecode;
+            _scope = scope ?? GlobalScope;
+        }
 
         public T? Evaluate<T>()
         {
@@ -58,10 +69,62 @@ namespace Heir
                     _stack.Push(CreateStackFrameFromInstruction());
                     Advance();
                     break;
+                case OpCode.POP:
+                    {
+                        _stack.Pop();
+                        Advance();
+                        break;
+                    }
+                case OpCode.SWAP:
+                    {
+                        var right = _stack.Pop();
+                        var left = _stack.Pop();
+                        _stack.Push(right);
+                        _stack.Push(left);  
+                        Advance();
+                        break;
+                    }
                 case OpCode.DUP:
                     {
                         var value = _stack.Peek();
                         _stack.Push(value);
+                        Advance();
+                        break;
+                    }
+
+                case OpCode.LOAD:
+                    {
+                        var nameFrame = _stack.Pop();
+                        if (nameFrame.Value == null)
+                        {
+                            Diagnostics.Error(DiagnosticCode.HDEV, "Failed to execute LOAD op-code: No variable name was located in the stack", nameFrame.Node.GetFirstToken());
+                            Advance();
+                            break;
+                        }
+
+                        var name = (string)nameFrame.Value;
+                        var value = _scope.Lookup(name);
+                        _stack.Push(new(nameFrame.Node, value));
+                        Advance();
+                        break;
+                    }
+                case OpCode.STORE:
+                    {
+                        var initializer = _stack.Pop();
+                        var nameFrame = _stack.Pop();
+                        if (nameFrame.Value == null)
+                        {
+                            Diagnostics.Error(DiagnosticCode.HDEV, "Failed to execute STORE op-code: No variable name was located in the stack", initializer.Node.GetFirstToken());
+                            Advance();
+                            break;
+                        }
+
+                        var name = (string)nameFrame.Value;
+                        if (_scope.Contains(name))
+                            _scope.Assign(name, initializer.Value);
+                        else
+                            _scope.Define(name, initializer.Value);
+
                         Advance();
                         break;
                     }

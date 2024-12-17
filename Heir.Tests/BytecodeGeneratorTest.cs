@@ -166,7 +166,7 @@ namespace Heir.Tests
 
         [Theory]
         [InlineData("let a = 1;", "a", 1L, OpCode.STORE)]
-        [InlineData("let mut b = 2;", "b", 2L, OpCode.STOREMUTABLE)]
+        [InlineData("let mut b = 2;", "b", 2L, OpCode.STORE)]
         public void Generates_VariableDeclarations(string input, string name, object? value, OpCode opCode)
         {
             var bytecode = GenerateBytecode(input);

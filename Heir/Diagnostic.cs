@@ -4,6 +4,7 @@ namespace Heir
 {
     public enum DiagnosticCode : byte
     {
+        HDEV,
         H001,
         H001B,
         H001C,
