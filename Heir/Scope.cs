@@ -37,7 +37,14 @@
             _defined[name] = value != null;
         }
 
-        public bool Contains(string name) => Lookup(name) != null;
+        public bool IsDeclared(string name) => _defined.TryGetValue(name, out _);
+        public bool IsDefined(string name)
+        {
+            if (_defined.TryGetValue(name, out var isDefined))
+                return isDefined;
+            
+            return Enclosing?.IsDefined(name) ?? false;
+        }
 
         public T? Lookup<T>(string name) => (T?)Lookup(name);
         public object? Lookup(string name)
@@ -48,7 +55,7 @@
             if (Enclosing != null)
                 return Enclosing.Lookup(name);
 
-            return default;
+            return null;
         }
 
         public T? LookupAt<T>(string name, uint distance) => (T?)LookupAt(name, distance);

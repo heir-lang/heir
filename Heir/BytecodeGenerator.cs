@@ -84,23 +84,21 @@ namespace Heir
                 SyntaxKind.Minus => value.Append(new Instruction(unaryOp, OpCode.UNM)),
 
                 SyntaxKind.PlusPlus => PushName((Name)unaryOp.Operand)
-                                        .Append(new Instruction(unaryOp, OpCode.DUP))
-                                        .Append(new Instruction(unaryOp, OpCode.LOAD))
-                                        .Append(new Instruction(unaryOp, OpCode.SWAP))
                                         .Concat(value.Append(new Instruction(unaryOp, OpCode.PUSH, 1)))
                                         .Concat([
                                             new Instruction(unaryOp, OpCode.ADD),
-                                            new Instruction(unaryOp, OpCode.STORE)
+                                            new Instruction(unaryOp, OpCode.STORE),
+                                            new Instruction(unaryOp, OpCode.PUSH, 1),
+                                            new Instruction(unaryOp, OpCode.SUB),
                                         ]),
 
                 SyntaxKind.MinusMinus => PushName((Name)unaryOp.Operand)
-                                        .Append(new Instruction(unaryOp, OpCode.DUP))
-                                        .Append(new Instruction(unaryOp, OpCode.LOAD))
-                                        .Append(new Instruction(unaryOp, OpCode.SWAP))
                                         .Concat(value.Append(new Instruction(unaryOp, OpCode.PUSH, 1)))
                                         .Concat([
                                             new Instruction(unaryOp, OpCode.SUB),
-                                            new Instruction(unaryOp, OpCode.STORE)
+                                            new Instruction(unaryOp, OpCode.STORE),
+                                            new Instruction(unaryOp, OpCode.PUSH, 1),
+                                            new Instruction(unaryOp, OpCode.ADD),
                                         ]),
 
                 _ => null!

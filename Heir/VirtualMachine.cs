@@ -15,20 +15,20 @@ namespace Heir
     {
         public DiagnosticBag Diagnostics { get; }
         public Scope GlobalScope { get; }
+        public Scope Scope { get; }
 
         private readonly Stack<StackFrame> _stack = new();
         private readonly Binder _binder;
         private readonly Bytecode _bytecode;
-        private Scope _scope;
         private int _pointer = 0;
 
         public VirtualMachine(Binder binder, Bytecode bytecode, Scope? scope = null)
         {
             Diagnostics = bytecode.Diagnostics;
             GlobalScope = new(Diagnostics);
+            Scope = scope ?? GlobalScope;
             _binder = binder;
             _bytecode = bytecode;
-            _scope = scope ?? GlobalScope;
         }
 
         public T? Evaluate<T>()
@@ -103,7 +103,7 @@ namespace Heir
                         }
 
                         var name = (string)nameFrame.Value;
-                        var value = _scope.Lookup(name);
+                        var value = Scope.Lookup(name);
                         _stack.Push(new(nameFrame.Node, value));
                         Advance();
                         break;
@@ -120,10 +120,10 @@ namespace Heir
                         }
 
                         var name = (string)nameFrame.Value;
-                        if (_scope.Contains(name))
-                            _scope.Assign(name, initializer.Value);
+                        if (Scope.IsDeclared(name))
+                            Scope.Assign(name, initializer.Value);
                         else
-                            _scope.Define(name, initializer.Value);
+                            Scope.Define(name, initializer.Value);
 
                         _stack.Push(initializer);
                         Advance();
@@ -184,7 +184,7 @@ namespace Heir
                     {
                         var right = _stack.Pop();
                         var left = _stack.Pop();
-                        var result = Math.Floor(Convert.ToDouble(left.Value) / Convert.ToDouble(right.Value));
+                        var result = Convert.ToInt64(Math.Floor(Convert.ToDouble(left.Value) / Convert.ToDouble(right.Value)));
 
                         _stack.Push(new(right.Node, result));
                         Advance();

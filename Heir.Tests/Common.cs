@@ -46,7 +46,7 @@ namespace Heir.Tests
             return bytecodeGenerator.GenerateBytecode();
         }
 
-        public static object? Evaluate(string input)
+        public static (object?, VirtualMachine) Evaluate(string input)
         {
             var syntaxTree = Parse(input);
             var binder = new Binder(syntaxTree);
@@ -55,7 +55,7 @@ namespace Heir.Tests
             var bytecodeGenerator = new BytecodeGenerator(binder, syntaxTree);
             var bytecode = bytecodeGenerator.GenerateBytecode();
             var vm = new VirtualMachine(binder, bytecode);
-            return vm.Evaluate();
+            return (vm.Evaluate(), vm);
         }
     }
 }
