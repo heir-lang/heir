@@ -2,6 +2,16 @@
 {
     public static class SyntaxFacts
     {
+        public static readonly HashSet<SyntaxKind> TypeSyntaxes = [
+            SyntaxKind.Identifier,
+            SyntaxKind.StringKeyword,
+            SyntaxKind.CharKeyword,
+            SyntaxKind.IntKeyword,
+            SyntaxKind.FloatKeyword,
+            SyntaxKind.BoolKeyword,
+            SyntaxKind.NoneKeyword
+        ];
+
         public static readonly HashSet<SyntaxKind> BinaryCompoundAssignmentOperators = [
             SyntaxKind.PlusEquals,
             SyntaxKind.MinusEquals,

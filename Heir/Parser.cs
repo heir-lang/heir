@@ -40,12 +40,26 @@ namespace Heir
             }
 
             var identifier = Tokens.Previous!;
-            Expression? initializer = null;
+            TypeRef? type = null;
+            if (Tokens.Match(SyntaxKind.Colon))
+                type = ParseType();
 
+            Expression? initializer = null;
             if (Tokens.Match(SyntaxKind.Equals))
                 initializer = ParseExpression();
 
-            return new VariableDeclaration(new IdentifierName(identifier), initializer, isMutable);
+            return new VariableDeclaration(new IdentifierName(identifier), initializer, type, isMutable);
+        }
+
+        private TypeRef ParseType() => ParseSingularType();
+
+        private TypeRef ParseSingularType()
+        {
+            var token = Tokens.ConsumeType();
+            if (token == null)
+                return new NoOpType();
+
+            return new SingularType(token);
         }
 
         private Expression ParseExpression() => ParseAssignment();

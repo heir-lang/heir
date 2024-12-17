@@ -2,10 +2,11 @@
 
 namespace Heir.AST
 {
-    public sealed class VariableDeclaration(IdentifierName name, Expression? initializer, bool isMutable) : Statement
+    public sealed class VariableDeclaration(IdentifierName name, Expression? initializer, TypeRef? type, bool isMutable) : Statement
     {
         public IdentifierName Name { get; } = name;
         public Expression? Initializer { get; } = initializer;
+        public TypeRef? TypeRef { get; } = type;
         public bool IsMutable { get; } = isMutable;
 
         public override R Accept<R>(Visitor<R> visitor) => visitor.VisitVariableDeclaration(this);

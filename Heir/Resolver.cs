@@ -84,6 +84,12 @@ namespace Heir
 
         public object? VisitLiteralExpression(Literal literal) => null;
         public object? VisitNoOp(NoOp noOp) => null;
+        public object? VisitNoOp(NoOpType noOp) => null;
+        public object? VisitSingularTypeRef(SingularType singularType)
+        {
+            // TODO: scope resolving just like identifiers
+            return null;
+        }
 
         public object? VisitNoOp(NoOpStatement noOp) => null;
 

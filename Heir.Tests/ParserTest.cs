@@ -7,7 +7,8 @@ namespace Heir.Tests
     public class ParserTest
     {
         [Theory]
-        [InlineData("1 += 2", "H008")]
+        [InlineData("let", "H009")]
+        [InlineData("1 = 2", "H008")]
         [InlineData("()", "H007")]
         [InlineData("++1", "H006")]
         [InlineData("--3", "H006")]
@@ -31,14 +32,19 @@ namespace Heir.Tests
         [Fact]
         public void Parses_VariableDeclarations()
         {
-            var tree = Parse("let x = 1");
+            var tree = Parse("let x: int = 1");
             var statement = tree.Statements.First();
             Assert.IsType<VariableDeclaration>(statement);
 
             var declaration = (VariableDeclaration)statement;
             Assert.False(declaration.IsMutable);
             Assert.NotNull(declaration.Initializer);
+            Assert.NotNull(declaration.TypeRef);
             Assert.IsType<Literal>(declaration.Initializer);
+            Assert.IsType<SingularType>(declaration.TypeRef);
+
+            var type = (SingularType)declaration.TypeRef;
+            Assert.Equal("int", type.Token.Text);
             Assert.Equal("x", declaration.Name.Token.Text);
         }
 

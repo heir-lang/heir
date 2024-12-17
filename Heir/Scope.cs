@@ -82,7 +82,7 @@ namespace Heir
             var isMutable = _options[name.Text].IsMutable;
             var isDefined = _defined[name.Text];
             if (!isMutable && isDefined)
-                _diagnostics.Error("H015", $"'{name}' is not defined in this scope", name   .Token);
+                _diagnostics.Error("H015", $"'{name}' is not defined in this scope", name);
         }
     }
 }

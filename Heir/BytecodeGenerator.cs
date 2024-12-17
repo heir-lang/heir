@@ -29,7 +29,10 @@ namespace Heir
 
         public List<Instruction> VisitExpressionStatement(ExpressionStatement expressionStatement) => GenerateBytecode(expressionStatement.Expression);
 
-        public List<Instruction> VisitNoOp(NoOpStatement noOp) => [];
+        public List<Instruction> VisitNoOp(NoOp noOp) => NoOp(noOp);
+        public List<Instruction> VisitNoOp(NoOpStatement noOp) => NoOp(noOp);
+        public List<Instruction> VisitNoOp(NoOpType noOp) => NoOp(noOp);
+        public List<Instruction> VisitSingularTypeRef(SingularType singularType) => NoOp(singularType);
 
         public List<Instruction> VisitAssignmentOpExpression(AssignmentOp assignmentOp) => VisitBinaryOpExpression(assignmentOp);
         public List<Instruction> VisitBinaryOpExpression(BinaryOp binaryOp)
@@ -72,7 +75,8 @@ namespace Heir
         public List<Instruction> VisitIdentifierNameExpression(IdentifierName identifierName) => [new Instruction(identifierName, OpCode.LOAD, identifierName.Token.Text)];
         public List<Instruction> VisitParenthesizedExpression(Parenthesized parenthesized) => GenerateBytecode(parenthesized.Expression);
         public List<Instruction> VisitLiteralExpression(Literal literal) => [new Instruction(literal, literal.Token.Value != null ? OpCode.PUSH : OpCode.PUSHNONE, literal.Token.Value)];
-        public List<Instruction> VisitNoOp(NoOp noOp) => [new Instruction(noOp, OpCode.NOOP)];
+
+        private List<Instruction> NoOp(SyntaxNode node) => [new Instruction(node, OpCode.NOOP)];
 
         private List<Instruction> GenerateStatementsBytecode(List<Statement> statements) => statements.SelectMany(GenerateBytecode).ToList();
         private List<Instruction> GenerateBytecode(Expression expression) => expression.Accept(this);

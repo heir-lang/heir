@@ -36,13 +36,25 @@ namespace Heir.Syntax
             return isMatch;
         }
 
+        public Token? ConsumeType()
+        {
+            foreach (var typeKind in SyntaxFacts.TypeSyntaxes)
+            {
+                if (!Current.IsKind(typeKind)) continue;
+                return Consume(typeKind);
+            }
+
+            Diagnostics.Error("H004B", $"Expected type, got {Current.Kind}", Current);
+            return null;
+        }
+
         public Token? Consume(SyntaxKind kind)
         {
             var token = Advance();
             if (token == null) return null;
 
             if (!token.IsKind(kind))
-                Diagnostics.Error("H004", $"Expected {kind} but got {token.Kind}", token);
+                Diagnostics.Error("H004", $"Expected {kind}, got {token.Kind}", token);
 
             return token;
         }

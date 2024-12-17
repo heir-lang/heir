@@ -1,6 +1,7 @@
 ﻿using Heir.AST;
 using Heir.BoundAST;
 using Heir.Syntax;
+using Heir.Types;
 
 namespace Heir
 {
@@ -32,7 +33,8 @@ namespace Heir
         public BoundStatement VisitVariableDeclaration(VariableDeclaration variableDeclaration)
         {
             var initializer = variableDeclaration.Initializer != null ? Bind(variableDeclaration.Initializer) : null;
-            var name = (BoundIdentifierName)Bind(variableDeclaration.Name);
+            var type = PrimitiveType.None;
+            var name = new VariableSymbol(variableDeclaration.Name.Token, type);
             return new BoundVariableDeclaration(name, initializer, variableDeclaration.IsMutable);
         }
 
@@ -89,7 +91,9 @@ namespace Heir
 
         public BoundExpression VisitLiteralExpression(Literal literal) => new BoundLiteral(literal.Token);
         public BoundStatement VisitNoOp(NoOpStatement noOp) => new BoundNoOpStatement();
+        public BoundExpression VisitNoOp(NoOpType noOp) => new BoundNoOp();
         public BoundExpression VisitNoOp(NoOp noOp) => new BoundNoOp();
+        public BoundExpression VisitSingularTypeRef(AST.SingularType singularType) => new BoundNoOp();
 
         public BoundExpression VisitParenthesizedExpression(Parenthesized parenthesized)
         {

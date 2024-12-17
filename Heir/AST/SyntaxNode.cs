@@ -16,6 +16,8 @@ namespace Heir.AST
         }
     }
 
+    public abstract class TypeRef : Expression;
+
     public abstract class Expression : SyntaxNode
     {
         public abstract R Accept<R>(Visitor<R> visitor);
@@ -29,6 +31,8 @@ namespace Heir.AST
             public R VisitParenthesizedExpression(Parenthesized parenthesized);
             public R VisitLiteralExpression(Literal literal);
             public R VisitNoOp(NoOp noOp);
+            public R VisitNoOp(NoOpType noOp);
+            public R VisitSingularTypeRef(SingularType singularType);
         }
     }
 
