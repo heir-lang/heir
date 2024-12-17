@@ -72,6 +72,29 @@ namespace Heir.Tests
         }
 
         [Theory]
+        [InlineData("let a = 1; ++a", OpCode.ADD)]
+        [InlineData("let b = 2; --a", OpCode.SUB)]
+        public void Generates_UnaryAssignmentOperations(string input, OpCode opCode)
+        {
+            var bytecode = GenerateBytecode(input).Skip(3);
+            var loadA = bytecode.Instructions[0];
+            var loadAAgain = bytecode.Instructions[1];
+            var pushOne = bytecode.Instructions[2];
+            var operation = bytecode.Instructions[3];
+            var store = bytecode.Instructions[4];
+            Assert.Equal(OpCode.LOAD, loadA.OpCode);
+            Assert.Equal("a", loadA.Operand);
+            Assert.Equal(OpCode.LOAD, loadAAgain.OpCode);
+            Assert.Equal("a", loadAAgain.Operand);
+            Assert.Equal(OpCode.PUSH, pushOne.OpCode);
+            Assert.Equal(1, pushOne.Operand);
+            Assert.Equal(opCode, operation.OpCode);
+            Assert.Null(operation.Operand);
+            Assert.Equal(OpCode.STORE, store.OpCode);
+            Assert.Null(store.Operand);
+        }
+
+        [Theory]
         [InlineData("let a = 1;", "a", 1L, OpCode.STORE)]
         [InlineData("let mut b = 2;", "b", 2L, OpCode.STOREMUTABLE)]
         public void Generates_VariableDeclarations(string input, string name, object? value, OpCode opCode)
