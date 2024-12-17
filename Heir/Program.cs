@@ -22,6 +22,7 @@ object? evaluateFile(string filePath)
 
     Console.WriteLine();
     syntaxTree.Display();
+    //boundSyntaxTree.Display();
     Console.WriteLine();
     Console.WriteLine();
     return result;

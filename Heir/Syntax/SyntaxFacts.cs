@@ -1,4 +1,6 @@
-﻿namespace Heir.Syntax
+﻿using Heir.Types;
+
+namespace Heir.Syntax
 {
     public static class SyntaxFacts
     {
@@ -52,7 +54,17 @@
             SyntaxKind.PlusPlus,
         ];
 
-        public static readonly Dictionary<char, int> RadixCodes = new Dictionary<char, int>
+        public static readonly Dictionary<SyntaxKind, PrimitiveType> PrimitiveTypeMap = new()
+        {
+            { SyntaxKind.StringKeyword, PrimitiveType.String },
+            { SyntaxKind.CharKeyword, PrimitiveType.Char },
+            { SyntaxKind.IntKeyword, PrimitiveType.Int },
+            { SyntaxKind.FloatKeyword, PrimitiveType.Float },
+            { SyntaxKind.BoolKeyword, PrimitiveType.Bool },
+            { SyntaxKind.NoneKeyword, PrimitiveType.None }
+        };
+
+        public static readonly Dictionary<char, int> RadixCodes = new()
         {
             { 'b', 2 },
             { 'o', 8 },

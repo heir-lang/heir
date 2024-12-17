@@ -33,9 +33,14 @@ namespace Heir
         public BoundStatement VisitVariableDeclaration(VariableDeclaration variableDeclaration)
         {
             var initializer = variableDeclaration.Initializer != null ? Bind(variableDeclaration.Initializer) : null;
-            var type = PrimitiveType.None;
-            var name = new VariableSymbol(variableDeclaration.Name.Token, type);
-            return new BoundVariableDeclaration(name, initializer, variableDeclaration.IsMutable);
+            BaseType type;
+            if (variableDeclaration.TypeRef != null)
+                type = BaseType.FromTypeRef(variableDeclaration.TypeRef);
+            else
+                type = initializer?.Type ?? IntrinsicTypes.Any;
+
+            var symbol = DefineSymbol(variableDeclaration.Name.Token, type);
+            return new BoundVariableDeclaration(symbol, initializer, variableDeclaration.IsMutable);
         }
 
         public BoundStatement VisitExpressionStatement(ExpressionStatement expressionStatement)
@@ -103,6 +108,15 @@ namespace Heir
 
         private void BeginScope() => _variableScopes.Push([]);
         private Stack<VariableSymbol> EndScope() => _variableScopes.Pop();
+
+        private VariableSymbol DefineSymbol(Token name, BaseType type)
+        {
+            var symbol = new VariableSymbol(name, type);
+            if (_variableScopes.TryPeek(out var scope))
+                scope.Push(symbol);
+
+            return symbol;
+        }
 
         private VariableSymbol? FindSymbol(Token name)
         {

@@ -7,6 +7,7 @@ namespace Heir.Tests
     public class ParserTest
     {
         [Theory]
+        [InlineData("let x", "H016")]
         [InlineData("let", "H009")]
         [InlineData("1 = 2", "H008")]
         [InlineData("()", "H007")]

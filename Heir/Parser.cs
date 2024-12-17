@@ -48,6 +48,12 @@ namespace Heir
             if (Tokens.Match(SyntaxKind.Equals))
                 initializer = ParseExpression();
 
+            if (initializer == null && type == null)
+            {
+                _diagnostics.Error("H016", $"Cannot infer type of variable '{identifier.Text}', please add an explicit type", identifier);
+                return new NoOpStatement();
+            }
+
             return new VariableDeclaration(new IdentifierName(identifier), initializer, type, isMutable);
         }
 

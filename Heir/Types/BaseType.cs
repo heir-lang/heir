@@ -1,10 +1,29 @@
-﻿namespace Heir.Types
+﻿using Heir.Syntax;
+using Heir.AST;
+
+namespace Heir.Types
 {
     public abstract class BaseType
     {
         public abstract TypeKind Kind { get; }
 
         public abstract string ToString(bool colors = false);
+
+        public static BaseType FromTypeRef(TypeRef typeRef)
+        {
+            switch (typeRef)
+            {
+                case AST.SingularType singularType:
+                    {
+                        if (singularType.Token.IsKind(SyntaxKind.Identifier))
+                            return new SingularType(singularType.Token.Text);
+
+                        return SyntaxFacts.PrimitiveTypeMap[singularType.Token.Kind];
+                    }
+            }
+
+            return PrimitiveType.None;
+        }
 
         public bool IsAssignableTo(BaseType other)
         {
