@@ -95,9 +95,9 @@ namespace Heir
                 case OpCode.LOAD:
                     {
                         var nameFrame = _stack.Pop();
-                        if (nameFrame.Value == null)
+                        if (nameFrame.Value == null || nameFrame.Value is not string)
                         {
-                            Diagnostics.Error(DiagnosticCode.HDEV, "Failed to execute LOAD op-code: No variable name was located in the stack", nameFrame.Node.GetFirstToken());
+                            Diagnostics.Error(DiagnosticCode.HDEV, $"Failed to execute LOAD op-code: No variable name was located in the stack, got {nameFrame.Value ?? "none"}", nameFrame.Node.GetFirstToken());
                             Advance();
                             break;
                         }
@@ -112,9 +112,9 @@ namespace Heir
                     {
                         var initializer = _stack.Pop();
                         var nameFrame = _stack.Pop();
-                        if (nameFrame.Value == null)
+                        if (nameFrame.Value == null || nameFrame.Value is not string)
                         {
-                            Diagnostics.Error(DiagnosticCode.HDEV, "Failed to execute STORE op-code: No variable name was located in the stack", initializer.Node.GetFirstToken());
+                            Diagnostics.Error(DiagnosticCode.HDEV, $"Failed to execute STORE op-code: No variable name was located in the stack, got {nameFrame.Value ?? "none"}", initializer.Node.GetFirstToken());
                             Advance();
                             break;
                         }
@@ -125,6 +125,7 @@ namespace Heir
                         else
                             _scope.Define(name, initializer.Value);
 
+                        _stack.Push(initializer);
                         Advance();
                         break;
                     }

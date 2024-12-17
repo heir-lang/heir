@@ -82,14 +82,26 @@ namespace Heir
                 SyntaxKind.Bang => value.Append(new Instruction(unaryOp, OpCode.NOT)),
                 SyntaxKind.Tilde => value.Append(new Instruction(unaryOp, OpCode.BNOT)),
                 SyntaxKind.Minus => value.Append(new Instruction(unaryOp, OpCode.UNM)),
+
                 SyntaxKind.PlusPlus => PushName((Name)unaryOp.Operand)
-                                        .Concat(value.Append(new Instruction(unaryOp, OpCode.PUSH, 1))
-                                        .Append(new Instruction(unaryOp, OpCode.ADD)))
-                                        .Append(new Instruction(unaryOp, OpCode.STORE)),
+                                        .Append(new Instruction(unaryOp, OpCode.DUP))
+                                        .Append(new Instruction(unaryOp, OpCode.LOAD))
+                                        .Append(new Instruction(unaryOp, OpCode.SWAP))
+                                        .Concat(value.Append(new Instruction(unaryOp, OpCode.PUSH, 1)))
+                                        .Concat([
+                                            new Instruction(unaryOp, OpCode.ADD),
+                                            new Instruction(unaryOp, OpCode.STORE)
+                                        ]),
+
                 SyntaxKind.MinusMinus => PushName((Name)unaryOp.Operand)
-                                        .Concat(value.Append(new Instruction(unaryOp, OpCode.PUSH, 1))
-                                        .Append(new Instruction(unaryOp, OpCode.SUB)))
-                                        .Append(new Instruction(unaryOp, OpCode.STORE)),
+                                        .Append(new Instruction(unaryOp, OpCode.DUP))
+                                        .Append(new Instruction(unaryOp, OpCode.LOAD))
+                                        .Append(new Instruction(unaryOp, OpCode.SWAP))
+                                        .Concat(value.Append(new Instruction(unaryOp, OpCode.PUSH, 1)))
+                                        .Concat([
+                                            new Instruction(unaryOp, OpCode.SUB),
+                                            new Instruction(unaryOp, OpCode.STORE)
+                                        ]),
 
                 _ => null!
             };
