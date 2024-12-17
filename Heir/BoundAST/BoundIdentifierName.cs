@@ -3,9 +3,9 @@ using Heir.Types;
 
 namespace Heir.BoundAST
 {
-    public class BoundIdentifierName(Token token) : BoundName
+    public class BoundIdentifierName(Token token, BaseType type) : BoundName
     {
-        public override BaseType Type => throw new NotImplementedException();
+        public override BaseType Type => type;
         public Token Token { get; } = token;
 
         public override R Accept<R>(Visitor<R> visitor) => visitor.VisitBoundIdentifierNameExpression(this);

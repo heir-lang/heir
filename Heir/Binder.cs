@@ -1,5 +1,6 @@
 ﻿using Heir.AST;
 using Heir.BoundAST;
+using Heir.Syntax;
 
 namespace Heir
 {
@@ -13,7 +14,8 @@ namespace Heir
     {
         private readonly SyntaxTree _syntaxTree = syntaxTree;
         private readonly DiagnosticBag _diagnostics = syntaxTree.Diagnostics;
-        private readonly Dictionary<SyntaxNode, BoundSyntaxNode> _boundNodes = new();
+        private readonly Dictionary<SyntaxNode, BoundSyntaxNode> _boundNodes = [];
+        private readonly Stack<Stack<VariableSymbol>> _variableScopes = [];
         private Context _context = Context.Global;
 
         public BoundSyntaxTree Bind() => (BoundSyntaxTree)Bind(_syntaxTree);
@@ -25,15 +27,12 @@ namespace Heir
         public BoundStatement VisitSyntaxTree(SyntaxTree syntaxTree) =>
             new BoundSyntaxTree(BindStatements(syntaxTree.Statements), _diagnostics);
 
-        public BoundStatement VisitBlock(Block block)
-        {
-            throw new NotImplementedException();
-        }
+        public BoundStatement VisitBlock(Block block) => new BoundBlock(BindStatements(block.Statements));
 
         public BoundStatement VisitVariableDeclaration(VariableDeclaration variableDeclaration)
         {
-            var name = (BoundIdentifierName)Bind(variableDeclaration.Name);
             var initializer = variableDeclaration.Initializer != null ? Bind(variableDeclaration.Initializer) : null;
+            var name = (BoundIdentifierName)Bind(variableDeclaration.Name);
             return new BoundVariableDeclaration(name, initializer, variableDeclaration.IsMutable);
         }
 
@@ -42,8 +41,6 @@ namespace Heir
             var expression = Bind(expressionStatement.Expression);
             return new BoundExpressionStatement(expression);
         }
-
-        public BoundStatement VisitNoOp(NoOpStatement noOp) => new BoundNoOpStatement();
 
         public BoundExpression VisitAssignmentOpExpression(AssignmentOp assignmentOp)
         {
@@ -83,20 +80,34 @@ namespace Heir
 
         public BoundExpression VisitIdentifierNameExpression(IdentifierName identifierName)
         {
-            throw new NotImplementedException();
+            var variableSymbol = FindSymbol(identifierName.Token);
+            if (variableSymbol == null)
+                return new BoundNoOp();
+
+            return new BoundIdentifierName(identifierName.Token, variableSymbol.Type);
         }
 
         public BoundExpression VisitLiteralExpression(Literal literal) => new BoundLiteral(literal.Token);
-
-        public BoundExpression VisitNoOp(NoOp noOp)
-        {
-            throw new NotImplementedException();
-        }
+        public BoundStatement VisitNoOp(NoOpStatement noOp) => new BoundNoOpStatement();
+        public BoundExpression VisitNoOp(NoOp noOp) => new BoundNoOp();
 
         public BoundExpression VisitParenthesizedExpression(Parenthesized parenthesized)
         {
             var expression = Bind(parenthesized.Expression);
             return new BoundParenthesized(expression);
+        }
+
+        private void BeginScope() => _variableScopes.Push([]);
+        private Stack<VariableSymbol> EndScope() => _variableScopes.Pop();
+
+        private VariableSymbol? FindSymbol(Token name)
+        {
+            var symbol = _variableScopes.SelectMany(v => v).FirstOrDefault(symbol => symbol.Name.Text == name.Text);
+            if (symbol != null)
+                return symbol;
+
+            _diagnostics.Error("H001E", $"Failed to find variable symbol for '{name.Text}'", name);
+            return null;
         }
 
         private List<BoundStatement> BindStatements(List<Statement> statements) => statements.ConvertAll(Bind);
