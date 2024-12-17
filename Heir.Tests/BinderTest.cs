@@ -1,5 +1,6 @@
 ﻿using Heir.BoundAST;
 using Heir.Types;
+using System.Xml.Linq;
 using static Heir.Tests.Common;
 
 namespace Heir.Tests
@@ -15,6 +16,24 @@ namespace Heir.Tests
             var boundTree = Bind(input);
             Assert.True(boundTree.Diagnostics.HasErrors());
             Assert.Contains(boundTree.Diagnostics, diagnostic => diagnostic.Code == expectedErrorCode);
+        }
+
+        [Fact]
+        public void Binds_Identifiers()
+        {
+            var boundTree = Bind("let x: string; x;");
+            var statement = boundTree.Statements.Last();
+            Assert.IsType<BoundExpressionStatement>(statement);
+
+            var node = ((BoundExpressionStatement)statement).Expression;
+            Assert.IsType<BoundIdentifierName>(node);
+
+            var identifier = (BoundIdentifierName)node;
+            Assert.Equal("x", identifier.Token.Text);
+            Assert.IsType<PrimitiveType>(identifier.Type);
+
+            var type = (PrimitiveType)identifier.Type;
+            Assert.Equal("string", type.Name);
         }
 
         [Fact]
