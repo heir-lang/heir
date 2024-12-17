@@ -45,11 +45,18 @@ namespace Heir
             var leftInstructions = GenerateBytecode(binaryOp.Left);
             var rightInstructions = GenerateBytecode(binaryOp.Right);
             var combined = leftInstructions.Concat(rightInstructions);
+            var boundOperatorType = boundBinaryOp.Operator.Type;
 
-            if (BoundBinaryOperator.OpCodeMap.TryGetValue(boundBinaryOp.Operator.Type, out var opCode))
+            if (boundOperatorType == BoundBinaryOperatorType.Assignment)
+                return PushName((Name)binaryOp.Left)
+                       .Concat(rightInstructions)
+                       .Append(new Instruction(binaryOp, OpCode.STORE))
+                       .ToList();
+
+            if (BoundBinaryOperator.OpCodeMap.TryGetValue(boundOperatorType, out var opCode))
                 return (!SyntaxFacts.BinaryCompoundAssignmentOperators.Contains(binaryOp.Operator.Kind) ?
                     combined.Append(new Instruction(binaryOp, opCode))
-                    : new List<Instruction>([new Instruction(binaryOp.Left, OpCode.PUSH, ((Name)binaryOp.Left).ToString())])
+                    : PushName((Name)binaryOp.Left)
                         .Concat(leftInstructions)
                         .Concat(rightInstructions)
                         .Append(new Instruction(binaryOp, opCode))
@@ -57,7 +64,7 @@ namespace Heir
                 ).ToList();
 
             Diagnostics.Error("H011", $"Unsupported binary operator kind: {binaryOp.Operator.Kind}", binaryOp.Operator);
-            return [new Instruction(binaryOp, OpCode.NOOP)];
+            return NoOp(binaryOp);
         }
 
         public List<Instruction> VisitUnaryOpExpression(UnaryOp unaryOp)
@@ -68,11 +75,11 @@ namespace Heir
                 SyntaxKind.Bang => value.Append(new Instruction(unaryOp, OpCode.NOT)),
                 SyntaxKind.Tilde => value.Append(new Instruction(unaryOp, OpCode.BNOT)),
                 SyntaxKind.Minus => value.Append(new Instruction(unaryOp, OpCode.UNM)),
-                SyntaxKind.PlusPlus => new List<Instruction>([new Instruction(unaryOp.Operand, OpCode.PUSH, ((Name)unaryOp.Operand).ToString())])
+                SyntaxKind.PlusPlus => PushName((Name)unaryOp.Operand)
                                         .Concat(value.Append(new Instruction(unaryOp, OpCode.PUSH, 1))
                                         .Append(new Instruction(unaryOp, OpCode.ADD)))
                                         .Append(new Instruction(unaryOp, OpCode.STORE)),
-                SyntaxKind.MinusMinus => new List<Instruction>([new Instruction(unaryOp.Operand, OpCode.PUSH, ((Name)unaryOp.Operand).ToString())])
+                SyntaxKind.MinusMinus => PushName((Name)unaryOp.Operand)
                                         .Concat(value.Append(new Instruction(unaryOp, OpCode.PUSH, 1))
                                         .Append(new Instruction(unaryOp, OpCode.SUB)))
                                         .Append(new Instruction(unaryOp, OpCode.STORE)),
@@ -91,6 +98,7 @@ namespace Heir
         public List<Instruction> VisitParenthesizedExpression(Parenthesized parenthesized) => GenerateBytecode(parenthesized.Expression);
         public List<Instruction> VisitLiteralExpression(Literal literal) => [new Instruction(literal, literal.Token.Value != null ? OpCode.PUSH : OpCode.PUSHNONE, literal.Token.Value)];
 
+        private List<Instruction> PushName(Name name) => [new Instruction(name, OpCode.PUSH, name.ToString())];
         private List<Instruction> NoOp(SyntaxNode node) => [new Instruction(node, OpCode.NOOP)];
 
         private List<Instruction> GenerateStatementsBytecode(List<Statement> statements) => statements.SelectMany(GenerateBytecode).ToList();
