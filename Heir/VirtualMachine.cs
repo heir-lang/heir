@@ -37,7 +37,7 @@ namespace Heir
                 if (result == null) break;
             }
 
-            return _stack.Pop().Value;
+            return _stack.TryPop(out var stackFrame) ? stackFrame.Value : null;
         }
 
         private StackFrame? EvaluateInstruction(Instruction instruction)

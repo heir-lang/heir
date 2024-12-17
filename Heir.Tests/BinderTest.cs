@@ -7,6 +7,7 @@ namespace Heir.Tests
     public class BinderTest
     {
         [Theory]
+        [InlineData("let x = 1; x = 2;", "H015")]
         [InlineData("\"a\" + 1", "H010")]
         [InlineData("true * false", "H010")]
         public void ThrowsWith(string input, string expectedErrorCode)

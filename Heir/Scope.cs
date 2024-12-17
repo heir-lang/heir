@@ -19,7 +19,6 @@ namespace Heir
         public void AssignAt(Token name, object? value, uint distance)
         {
             var scope = Ancestor(distance);
-            scope?.CheckImmutability(name);
             if (scope != null)
             {
                 scope._values[name.Text] = value;
@@ -31,7 +30,6 @@ namespace Heir
         {
             if (_values.ContainsKey(name.Text))
             {
-                CheckImmutability(name);
                 _values[name.Text] = value;
                 _defined[name.Text] = value != null;
                 return;
@@ -75,14 +73,6 @@ namespace Heir
                 env = env.Enclosing!;
 
             return env;
-        }
-
-        private void CheckImmutability(Token name)
-        {
-            var isMutable = _options[name.Text].IsMutable;
-            var isDefined = _defined[name.Text];
-            if (!isMutable && isDefined)
-                _diagnostics.Error("H015", $"'{name}' is not defined in this scope", name);
         }
     }
 }

@@ -24,7 +24,8 @@ namespace Heir.BoundAST
         LessThanOrEquals,
         GreaterThan,
         GreaterThanOrEquals,
-        Concatenation
+        Concatenation,
+        Assignment
     }
 
     public sealed class BoundBinaryOperator
@@ -49,7 +50,8 @@ namespace Heir.BoundAST
             { BoundBinaryOperatorType.LessThanOrEquals,    OpCode.LTE },
             { BoundBinaryOperatorType.GreaterThan,         OpCode.LT },
             { BoundBinaryOperatorType.GreaterThanOrEquals, OpCode.LTE },
-            { BoundBinaryOperatorType.Concatenation,       OpCode.CONCAT }
+            { BoundBinaryOperatorType.Concatenation,       OpCode.CONCAT },
+            { BoundBinaryOperatorType.Assignment,          OpCode.STORE }
         };
 
         public SyntaxKind SyntaxKind { get; }
@@ -118,7 +120,9 @@ namespace Heir.BoundAST
             new BoundBinaryOperator(SyntaxKind.GTE, BoundBinaryOperatorType.GreaterThanOrEquals, IntrinsicTypes.Number, PrimitiveType.Bool),
 
             new BoundBinaryOperator(SyntaxKind.AmpersandAmpersand, BoundBinaryOperatorType.LogicalAnd, PrimitiveType.Bool),
-            new BoundBinaryOperator(SyntaxKind.PipePipe, BoundBinaryOperatorType.LogicalOr, PrimitiveType.Bool)
+            new BoundBinaryOperator(SyntaxKind.PipePipe, BoundBinaryOperatorType.LogicalOr, PrimitiveType.Bool),
+
+            new BoundBinaryOperator(SyntaxKind.Equals, BoundBinaryOperatorType.Assignment, IntrinsicTypes.Any)
         };
 
         public static BoundBinaryOperator? Bind(Token token, BaseType leftType, BaseType rightType)

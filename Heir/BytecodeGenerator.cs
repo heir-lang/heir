@@ -22,10 +22,7 @@ namespace Heir
 
         // TODO: create scope
         public List<Instruction> VisitBlock(Block block) => GenerateStatementsBytecode(block.Statements);
-        public List<Instruction> VisitVariableDeclaration(VariableDeclaration variableDeclaration)
-        {
-            throw new NotImplementedException();
-        }
+        public List<Instruction> VisitVariableDeclaration(VariableDeclaration variableDeclaration) => [];
 
         public List<Instruction> VisitExpressionStatement(ExpressionStatement expressionStatement) => GenerateBytecode(expressionStatement.Expression);
 
@@ -37,7 +34,10 @@ namespace Heir
         public List<Instruction> VisitAssignmentOpExpression(AssignmentOp assignmentOp) => VisitBinaryOpExpression(assignmentOp);
         public List<Instruction> VisitBinaryOpExpression(BinaryOp binaryOp)
         {
-            var boundBinaryOp = (BoundBinaryOp)_binder.GetBoundNode(binaryOp);
+            var boundBinaryOp = _binder.GetBoundNode(binaryOp) as BoundBinaryOp;
+            if (boundBinaryOp == null)
+                return NoOp(binaryOp);
+
             var leftInstructions = GenerateBytecode(binaryOp.Left);
             var rightInstructions = GenerateBytecode(binaryOp.Right);
             var combined = leftInstructions.Concat(rightInstructions);
@@ -63,8 +63,8 @@ namespace Heir
                 SyntaxKind.Bang => value.Append(new Instruction(unaryOp, OpCode.NOT)),
                 SyntaxKind.Tilde => value.Append(new Instruction(unaryOp, OpCode.BNOT)),
                 SyntaxKind.Minus => value.Append(new Instruction(unaryOp, OpCode.UNM)),
-                SyntaxKind.PlusPlus => value.Append(new Instruction(unaryOp, OpCode.PUSH, 1)).Append(new Instruction(unaryOp, OpCode.ADD)),
-                SyntaxKind.MinusMinus => value.Append(new Instruction(unaryOp, OpCode.PUSH, 1)).Append(new Instruction(unaryOp, OpCode.SUB)),
+                SyntaxKind.PlusPlus => value.Concat(value.Append(new Instruction(unaryOp, OpCode.PUSH, 1)).Append(new Instruction(unaryOp, OpCode.ADD))).Append(new Instruction(unaryOp, OpCode.STORE)),
+                SyntaxKind.MinusMinus => value.Concat(value.Append(new Instruction(unaryOp, OpCode.PUSH, 1)).Append(new Instruction(unaryOp, OpCode.SUB))).Append(new Instruction(unaryOp, OpCode.STORE)),
 
                 _ => null!
             };

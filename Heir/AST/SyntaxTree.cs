@@ -9,7 +9,10 @@
         public override void Display(int indent = 0)
         {
             foreach (var statement in Statements)
+            {
                 statement.Display(indent);
+                Console.WriteLine();
+            }
         }
     }
 }

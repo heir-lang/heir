@@ -2,6 +2,7 @@
 using Heir.BoundAST;
 using Heir.Syntax;
 using Heir.Types;
+using System.Xml.Linq;
 
 namespace Heir
 {
@@ -19,7 +20,11 @@ namespace Heir
         private readonly Stack<Stack<VariableSymbol>> _variableScopes = [];
         private Context _context = Context.Global;
 
-        public BoundSyntaxTree Bind() => (BoundSyntaxTree)Bind(_syntaxTree);
+        public BoundSyntaxTree Bind()
+        {
+            BeginScope();
+            return (BoundSyntaxTree)Bind(_syntaxTree);
+        }
 
         public BoundStatement GetBoundNode(Statement statement) => (BoundStatement)_boundNodes[statement];
         public BoundExpression GetBoundNode(Expression expression) => (BoundExpression)_boundNodes[expression];
@@ -39,7 +44,7 @@ namespace Heir
             else
                 type = initializer?.Type ?? IntrinsicTypes.Any;
 
-            var symbol = DefineSymbol(variableDeclaration.Name.Token, type);
+            var symbol = DefineSymbol(variableDeclaration.Name.Token, type, variableDeclaration.IsMutable);
             return new BoundVariableDeclaration(symbol, initializer, variableDeclaration.IsMutable);
         }
 
@@ -54,6 +59,10 @@ namespace Heir
             var binary = VisitBinaryOpExpression(assignmentOp) as BoundBinaryOp;
             if (binary == null)
                 return new BoundNoOp();
+
+            var symbol = FindSymbol(binary.Left.GetFirstToken());
+            if (symbol != null && !symbol.IsMutable)
+                _diagnostics.Error("H015", $"Attempt to assign to immutable variable '{symbol.Name.Text}'", symbol.Name);
 
             return new BoundAssignmentOp(binary.Left, binary.Operator, binary.Right);
         }
@@ -87,11 +96,11 @@ namespace Heir
 
         public BoundExpression VisitIdentifierNameExpression(IdentifierName identifierName)
         {
-            var variableSymbol = FindSymbol(identifierName.Token);
-            if (variableSymbol == null)
+            var symbol = FindSymbol(identifierName.Token);
+            if (symbol == null)
                 return new BoundNoOp();
 
-            return new BoundIdentifierName(identifierName.Token, variableSymbol.Type);
+            return new BoundIdentifierName(identifierName.Token, symbol.Type);
         }
 
         public BoundExpression VisitLiteralExpression(Literal literal) => new BoundLiteral(literal.Token);
@@ -106,17 +115,17 @@ namespace Heir
             return new BoundParenthesized(expression);
         }
 
-        private void BeginScope() => _variableScopes.Push([]);
-        private Stack<VariableSymbol> EndScope() => _variableScopes.Pop();
-
-        private VariableSymbol DefineSymbol(Token name, BaseType type)
+        public VariableSymbol DefineSymbol(Token name, BaseType type, bool isMutable)
         {
-            var symbol = new VariableSymbol(name, type);
+            var symbol = new VariableSymbol(name, type, isMutable);
             if (_variableScopes.TryPeek(out var scope))
                 scope.Push(symbol);
 
             return symbol;
         }
+
+        private void BeginScope() => _variableScopes.Push([]);
+        private Stack<VariableSymbol> EndScope() => _variableScopes.Pop();
 
         private VariableSymbol? FindSymbol(Token name)
         {

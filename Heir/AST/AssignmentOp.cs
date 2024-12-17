@@ -4,6 +4,8 @@ namespace Heir.AST
 {
     public class AssignmentOp(Expression left, Token op, Expression right) : BinaryOp(left, op, right)
     {
+        public override R Accept<R>(Visitor<R> visitor) => visitor.VisitAssignmentOpExpression(this);
+
         public override void Display(int indent)
         {
             Console.WriteLine($"{string.Concat(Enumerable.Repeat("  ", indent))}AssignmentOp(");
