@@ -38,23 +38,23 @@ namespace Heir.Syntax
 
         public Token? ConsumeType()
         {
-            foreach (var typeKind in SyntaxFacts.TypeSyntaxes)
-            {
-                if (!Current.IsKind(typeKind)) continue;
-                return Consume(typeKind);
-            }
+            var token = Advance();
+            if (token != null)
+                foreach (var typeKind in SyntaxFacts.TypeSyntaxes)
+                {
+                    if (!token.IsKind(typeKind)) continue;
+                    return token;
+                }
 
-            Diagnostics.Error("H004B", $"Expected type, got {Current.Kind}", Current);
+            Diagnostics.Error(DiagnosticCode.H004B, $"Expected type, got '{token?.Kind.ToString() ?? "EOF"}'", token ?? Peek(-2)!);
             return null;
         }
 
         public Token? Consume(SyntaxKind kind)
         {
             var token = Advance();
-            if (token == null) return null;
-
-            if (!token.IsKind(kind))
-                Diagnostics.Error("H004", $"Expected {kind}, got {token.Kind}", token);
+            if (token == null || !token.IsKind(kind))
+                Diagnostics.Error(DiagnosticCode.H004, $"Expected {kind}, got '{token?.Kind.ToString() ?? "EOF"}'", token ?? Peek(-2)!);
 
             return token;
         }
@@ -62,9 +62,6 @@ namespace Heir.Syntax
         public Token? Advance()
         {
             var token = Current;
-            if (token == null)
-                Diagnostics.Error("H001B", "End of token stream reached", Previous!);
-
             _index++;
             return token;
         }

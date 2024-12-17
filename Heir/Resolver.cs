@@ -70,12 +70,12 @@ namespace Heir
             var name = identifierName.Token.Text;
             if (scope != null && scope.ContainsKey(name) && scope[name] == false)
             {
-                _diagnostics.Error("H013", $"Cannot read variable '{name}' in it's own initializer", identifierName.Token);
+                _diagnostics.Error(DiagnosticCode.H010, $"Cannot read variable '{name}' in it's own initializer", identifierName.Token);
                 return null;
             }
             if (!IsDefined(identifierName.Token))
             {
-                _diagnostics.Error("H014", $"'{name}' is not defined in this scope", identifierName.Token);
+                _diagnostics.Error(DiagnosticCode.H011, $"'{name}' is not defined in this scope", identifierName.Token);
                 return null;
             }
 
@@ -121,7 +121,7 @@ namespace Heir
             var scope = _scopes.LastOrDefault();
             if (scope?.ContainsKey(identifier.Text) ?? false)
             {
-                _diagnostics.Error("H012", $"Variable '{identifier.Text}' is already declared is this scope", identifier);
+                _diagnostics.Error(DiagnosticCode.H009, $"Variable '{identifier.Text}' is already declared is this scope", identifier);
                 return;
             }
 

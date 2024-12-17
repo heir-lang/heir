@@ -63,7 +63,7 @@ namespace Heir
                         .Append(new Instruction(binaryOp, OpCode.STORE))
                 ).ToList();
 
-            Diagnostics.Error("H011", $"Unsupported binary operator kind: {binaryOp.Operator.Kind}", binaryOp.Operator);
+            Diagnostics.Error(DiagnosticCode.H008, $"Unsupported binary operator kind: {binaryOp.Operator.Kind}", binaryOp.Operator);
             return NoOp(binaryOp);
         }
 

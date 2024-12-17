@@ -7,23 +7,23 @@ namespace Heir
     {
         private readonly HashSet<Diagnostic> _diagnostics = [];
 
-        public void Warn(string code, string message, Token token)
+        public void Warn(DiagnosticCode code, string message, Token token)
         {
             Warn(code, message, token.StartLocation, token.EndLocation);
         }
 
-        public void Warn(string code, string message, Location startLocation, Location? endLocation = null)
+        public void Warn(DiagnosticCode code, string message, Location startLocation, Location? endLocation = null)
         {
             var diagnostic = new Diagnostic(code, message, startLocation, endLocation ?? startLocation, DiagnosticLevel.Warn);
             _diagnostics.Add(diagnostic);
         }
 
-        public void Error(string code, string message, Token token)
+        public void Error(DiagnosticCode code, string message, Token token)
         {
             Error(code, message, token.StartLocation, token.EndLocation);
         }
 
-        public void Error(string code, string message, Location startLocation, Location? endLocation = null)
+        public void Error(DiagnosticCode code, string message, Location startLocation, Location? endLocation = null)
         {
             var diagnostic = new Diagnostic(code, message, startLocation, endLocation ?? startLocation, DiagnosticLevel.Error);
             _diagnostics.Add(diagnostic);

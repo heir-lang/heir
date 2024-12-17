@@ -7,14 +7,15 @@ namespace Heir.Tests
     public class ParserTest
     {
         [Theory]
-        [InlineData("let x", "H016")]
-        [InlineData("let", "H009")]
-        [InlineData("1 = 2", "H008")]
-        [InlineData("()", "H007")]
-        [InlineData("++1", "H006")]
-        [InlineData("--3", "H006")]
-        [InlineData("]", "H005")]
-        public void ThrowsWith(string input, string expectedErrorCode)
+        [InlineData("let x", DiagnosticCode.H012)]
+        [InlineData("1 = 2", DiagnosticCode.H006B)]
+        [InlineData("++1", DiagnosticCode.H006)]
+        [InlineData("--3", DiagnosticCode.H006)]
+        [InlineData("()", DiagnosticCode.H004D)]
+        [InlineData("let", DiagnosticCode.H004C)]
+        [InlineData("(1", DiagnosticCode.H004)]
+        [InlineData("]", DiagnosticCode.H001B)]
+        public void ThrowsWith(string input, DiagnosticCode expectedErrorCode)
         {
             var tree = Parse(input);
             Assert.True(tree.Diagnostics.HasErrors());

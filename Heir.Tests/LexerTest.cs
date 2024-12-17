@@ -5,11 +5,11 @@ namespace Heir.Tests
     public class LexerTest
     {
         [Theory]
-        [InlineData("1.2.3", "H004")]
-        [InlineData("'c", "H002")]
-        [InlineData("\"ab", "H003")]
-        [InlineData(@"\\", "H001")]
-        public void ThrowsWith(string input, string expectedErrorCode)
+        [InlineData("1.2.3", DiagnosticCode.H003)]
+        [InlineData("'c", DiagnosticCode.H002B)]
+        [InlineData("\"ab", DiagnosticCode.H002)]
+        [InlineData(@"\\", DiagnosticCode.H001)]
+        public void ThrowsWith(string input, DiagnosticCode expectedErrorCode)
         {
             var tokenStream = Tokenize(input);
             Assert.True(tokenStream.Diagnostics.HasErrors());

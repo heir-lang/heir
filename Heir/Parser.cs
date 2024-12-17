@@ -35,7 +35,7 @@ namespace Heir
             var isMutable = Tokens.Match(SyntaxKind.MutKeyword);
             if (!Tokens.Match(SyntaxKind.Identifier))
             {
-                _diagnostics.Error("H009", "Expected identifier after 'let'", Tokens.Previous!);
+                _diagnostics.Error(DiagnosticCode.H004C, $"Expected identifier after 'let', got {Tokens.Current}", Tokens.Previous!);
                 return new NoOpStatement();
             }
 
@@ -50,7 +50,7 @@ namespace Heir
 
             if (initializer == null && type == null)
             {
-                _diagnostics.Error("H016", $"Cannot infer type of variable '{identifier.Text}', please add an explicit type", identifier);
+                _diagnostics.Error(DiagnosticCode.H012, $"Cannot infer type of variable '{identifier.Text}', please add an explicit type", identifier);
                 return new NoOpStatement();
             }
 
@@ -88,7 +88,7 @@ namespace Heir
                 Tokens.Match(SyntaxKind.PipePipeEquals))
             {
                 if (!left.Is<Name>())
-                    _diagnostics.Error("H008", $"Invalid assignment target, expected identifier or member access", left.GetFirstToken());
+                    _diagnostics.Error(DiagnosticCode.H006B, $"Invalid assignment target, expected identifier or member access", left.GetFirstToken());
 
                 var op = Tokens.Previous!;
                 var right = ParseAssignment();
@@ -232,7 +232,7 @@ namespace Heir
                 var operand = ParseUnary(); // recursively parse the operand
                 var isAssignmentOp = op.IsKind(SyntaxKind.PlusPlus) || op.IsKind(SyntaxKind.MinusMinus);
                 if (isAssignmentOp && operand.Is<Literal>())
-                    _diagnostics.Error("H006", $"Attempt to {(op.IsKind(SyntaxKind.PlusPlus) ? "in" : "de")}crement a constant, expected identifier", operand.GetFirstToken());
+                    _diagnostics.Error(DiagnosticCode.H006, $"Attempt to {(op.IsKind(SyntaxKind.PlusPlus) ? "in" : "de")}crement a constant, expected identifier", operand.GetFirstToken());
 
                 return new UnaryOp(operand, op);
             }
@@ -264,7 +264,7 @@ namespace Heir
                         var expression = ParseExpression();
                         if (expression.Is<NoOp>())
                         {
-                            _diagnostics.Error("H007", $"Expected expression, got {Tokens.Previous?.Kind.ToString() ?? "EOF"}", token);
+                            _diagnostics.Error(DiagnosticCode.H004D, $"Expected expression, got '{Tokens.Previous?.Kind.ToString() ?? "EOF"}'", token);
                             return new NoOp();
                         }
 
@@ -273,7 +273,7 @@ namespace Heir
                     }
             }
 
-            _diagnostics.Error("H005", $"Unexpected token \"{token.Kind}\"", token);
+            _diagnostics.Error(DiagnosticCode.H001B, $"Unexpected token '{token.Kind}'", token);
             return new NoOp();
         }
     }

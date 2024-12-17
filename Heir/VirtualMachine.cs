@@ -300,7 +300,7 @@ namespace Heir
 
                 default:
                     {
-                        Diagnostics.Error("H001D", $"Unhandled opcode \"{instruction.OpCode}\"", instruction.Root.GetFirstToken());
+                        Diagnostics.Error(DiagnosticCode.H001D, $"Unhandled opcode \"{instruction.OpCode}\"", instruction.Root.GetFirstToken());
                         break;
                     }
             }
@@ -310,7 +310,7 @@ namespace Heir
 
         private void NonIntegerOperand(Instruction instruction)
         {
-            Diagnostics.Error("H001C", $"Invalid bytecode! {instruction.OpCode} opcode was used with non-integer operand.", instruction.Root.GetFirstToken());
+            Diagnostics.Error(DiagnosticCode.H001C, $"Invalid bytecode! {instruction.OpCode} opcode was used with non-integer operand.", instruction.Root.GetFirstToken());
         }
 
         private StackFrame CreateStackFrameFromInstruction(int offset = 0)

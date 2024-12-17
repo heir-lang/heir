@@ -1,17 +1,41 @@
 ﻿using Heir.Syntax;
-using Spectre.Console;
 
 namespace Heir
 {
+    public enum DiagnosticCode : byte
+    {
+        H001,
+        H001B,
+        H001C,
+        H001D,
+        H002,
+        H002B,
+        H003,
+        H004,
+        H004B,
+        H004C,
+        H004D,
+        H005,
+        H006,
+        H006B,
+        H006C,
+        H007,
+        H008,
+        H009,
+        H010,
+        H011,
+        H012
+    }
+
     public enum DiagnosticLevel : byte
     {
         Warn,
         Error
     }
 
-    public sealed class Diagnostic(string code, string message, Location startLocation, Location endLocation, DiagnosticLevel level)
+    public sealed class Diagnostic(DiagnosticCode code, string message, Location startLocation, Location endLocation, DiagnosticLevel level)
     {
-        public string Code { get; } = code;
+        public DiagnosticCode Code { get; } = code;
         public string Message { get; } = message;
         public Location StartLocation { get; } = startLocation;
         public Location EndLocation { get; } = endLocation;
@@ -20,14 +44,14 @@ namespace Heir
         public string ToString(bool colors)
         {
             var levelDisplay = Level.ToString().ToLower();
-            var codeDisplay = Code;
+            var codeDisplay = Code.ToString();
             var messageDisplay = Message;
             var locationDisplay = StartLocation.ToString();
 
             if (colors)
             {
                 codeDisplay = $"[grey]{codeDisplay}[/]";
-                messageDisplay = $"[lightskyblue1]{messageDisplay}[/]";
+                messageDisplay = $"[silver]{messageDisplay}[/]";
                 locationDisplay = $"[silver]{locationDisplay}[/]";
 
                 switch (Level)

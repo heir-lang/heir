@@ -45,7 +45,7 @@ namespace Heir
                 var token = Lex();
                 if (token == null)
                 {
-                    _diagnostics.Error("H001", $"Unexpected character \"{_previous}\"", location, _currentLocation);
+                    _diagnostics.Error(DiagnosticCode.H001, $"Unexpected character \"{_previous}\"", location, _currentLocation);
                     continue;
                 }
 
@@ -266,7 +266,7 @@ namespace Heir
         {
             Advance();
             if (_current != '\'')
-                _diagnostics.Error("H002", $"Unterminated character", location, _currentLocation);
+                _diagnostics.Error(DiagnosticCode.H002B, $"Unterminated character", location, _currentLocation);
 
             Advance();
             return TokenFactory.CharLiteral(_currentLexeme, location, _currentLocation);
@@ -278,7 +278,7 @@ namespace Heir
                 Advance();
 
             if (_current != '"')
-                _diagnostics.Error("H003", $"Unterminated string", location, _currentLocation);
+                _diagnostics.Error(DiagnosticCode.H002, $"Unterminated string", location, _currentLocation);
 
             Advance();
             return TokenFactory.StringLiteral(_currentLexeme, location, _currentLocation);
@@ -303,7 +303,7 @@ namespace Heir
                 {
                     if (decimalUsed)
                     {
-                        _diagnostics.Error("H004", "Malformed number", location, _currentLocation);
+                        _diagnostics.Error(DiagnosticCode.H003, "Malformed number", location, _currentLocation);
                         break;
                     }
                     decimalUsed = true;

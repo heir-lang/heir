@@ -62,7 +62,7 @@ namespace Heir
 
             var symbol = FindSymbol(binary.Left.GetFirstToken());
             if (symbol != null && !symbol.IsMutable)
-                _diagnostics.Error("H015", $"Attempt to assign to immutable variable '{symbol.Name.Text}'", symbol.Name);
+                _diagnostics.Error(DiagnosticCode.H006C, $"Attempt to assign to immutable variable '{symbol.Name.Text}'", symbol.Name);
 
             return new BoundAssignmentOp(binary.Left, binary.Operator, binary.Right);
         }
@@ -74,7 +74,7 @@ namespace Heir
             var boundOperator = BoundBinaryOperator.Bind(binaryOp.Operator, left.Type, right.Type);
             if (boundOperator == null)
             {
-                _diagnostics.Error("H010", $"Cannot apply operator \"{binaryOp.Operator.Text}\" to operands of type \"{left.Type.ToString()}\" and \"{right.Type.ToString()}\"", binaryOp.Operator);
+                _diagnostics.Error(DiagnosticCode.H007, $"Cannot apply operator \"{binaryOp.Operator.Text}\" to operands of type \"{left.Type.ToString()}\" and \"{right.Type.ToString()}\"", binaryOp.Operator);
                 return new BoundNoOp();
             }
 
@@ -87,7 +87,7 @@ namespace Heir
             var boundOperator = BoundUnaryOperator.Bind(unaryOp.Operator, operand.Type);
             if (boundOperator == null)
             {
-                _diagnostics.Error("H010", $"Cannot apply operator \"{unaryOp.Operator.Text}\" to operand of type \"{operand.Type.ToString()}\"", unaryOp.Operator);
+                _diagnostics.Error(DiagnosticCode.H007, $"Cannot apply operator \"{unaryOp.Operator.Text}\" to operand of type \"{operand.Type.ToString()}\"", unaryOp.Operator);
                 return new BoundNoOp();
             }
 
@@ -133,7 +133,7 @@ namespace Heir
             if (symbol != null)
                 return symbol;
 
-            _diagnostics.Error("H001E", $"Failed to find variable symbol for '{name.Text}'", name);
+            _diagnostics.Error(DiagnosticCode.H005, $"Failed to find variable symbol for '{name.Text}'", name);
             return null;
         }
 

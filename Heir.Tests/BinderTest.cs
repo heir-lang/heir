@@ -1,6 +1,5 @@
 ﻿using Heir.BoundAST;
 using Heir.Types;
-using System.Xml.Linq;
 using static Heir.Tests.Common;
 
 namespace Heir.Tests
@@ -8,10 +7,10 @@ namespace Heir.Tests
     public class BinderTest
     {
         [Theory]
-        [InlineData("let x = 1; x = 2;", "H015")]
-        [InlineData("\"a\" + 1", "H010")]
-        [InlineData("true * false", "H010")]
-        public void ThrowsWith(string input, string expectedErrorCode)
+        [InlineData("\"a\" + 1", DiagnosticCode.H007)]
+        [InlineData("true * false", DiagnosticCode.H007)]
+        [InlineData("let x = 1; x = 2;", DiagnosticCode.H006C)]
+        public void ThrowsWith(string input, DiagnosticCode expectedErrorCode)
         {
             var boundTree = Bind(input);
             Assert.True(boundTree.Diagnostics.HasErrors());
