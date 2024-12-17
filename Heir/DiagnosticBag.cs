@@ -43,5 +43,7 @@ namespace Heir
         {
             return _diagnostics.GetEnumerator();
         }
+
+        public string ToString(bool colors) => string.Join('\n', _diagnostics.Select(diagnostic => diagnostic.ToString(colors)));
     }
 }

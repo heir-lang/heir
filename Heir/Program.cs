@@ -1,4 +1,6 @@
-﻿var result = evaluateFile("./Heir/Test.heir") ?? "none";
+﻿using Spectre.Console;
+
+var result = evaluateFile("./Heir/Test.heir") ?? "none";
 Console.WriteLine(result);
 
 object? evaluateFile(string filePath)
@@ -15,10 +17,7 @@ object? evaluateFile(string filePath)
     var result = vm.Evaluate();
 
     Console.WriteLine("Diagnostics:");
-    if (vm.Diagnostics.Count() == 0)
-        Console.WriteLine("(none)");
-    foreach (var diagnostic in vm.Diagnostics)
-        Console.WriteLine($"{diagnostic.StartLocation} [{diagnostic.Code}] - {diagnostic.Message}");
+    AnsiConsole.MarkupLine(vm.Diagnostics.ToString(true));
 
     Console.WriteLine();
     syntaxTree.Display();

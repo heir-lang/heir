@@ -10,7 +10,7 @@ namespace Heir
         Class
     }
 
-    public class Resolver(SyntaxTree syntaxTree) : Expression.Visitor<object?>, Statement.Visitor<object?>
+    public sealed class Resolver(SyntaxTree syntaxTree) : Expression.Visitor<object?>, Statement.Visitor<object?>
     {
         private readonly SyntaxTree _syntaxTree = syntaxTree;
         private readonly DiagnosticBag _diagnostics = syntaxTree.Diagnostics;

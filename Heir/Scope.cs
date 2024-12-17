@@ -7,7 +7,7 @@ namespace Heir
         bool IsMutable { get; }
     }
 
-    public class Scope(DiagnosticBag diagnostics, Scope? enclosing)
+    public sealed class Scope(DiagnosticBag diagnostics, Scope? enclosing)
     {
         public Scope? Enclosing { get; } = enclosing;
 

@@ -3,7 +3,7 @@ using Heir.Types;
 
 namespace Heir
 {
-    public class VariableSymbol(Token name, BaseType type, bool isMutable) : VariableSymbol<BaseType>(name, type, isMutable);
+    public sealed class VariableSymbol(Token name, BaseType type, bool isMutable) : VariableSymbol<BaseType>(name, type, isMutable);
 
     public class VariableSymbol<T>(Token name, T type, bool isMutable) where T : BaseType
     {

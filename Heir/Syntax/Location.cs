@@ -7,9 +7,6 @@
         public int Column { get; } = column;
         public int Position { get; } = position;
 
-        public override string ToString()
-        {
-            return $"{FileName}:{Line}:{Column}";
-        }
+        public override string ToString() => $"{FileName}:{Line}:{Column}";
     }
 }
