@@ -178,6 +178,7 @@ public class BytecodeGeneratorTest
         Assert.Equal(OpCode.PUSH, pushValue.OpCode);
         Assert.Equal(value, pushValue.Operand);
         Assert.Equal(opCode, operation.OpCode);
-        Assert.Null(operation.Operand);
+        Assert.IsType<bool>(operation.Operand);
+        Assert.False((bool)operation.Operand);
     }
 }
