@@ -3,14 +3,14 @@ using Heir.Syntax;
 
 namespace Heir
 {
-    internal enum ScopeContext
+    public enum ScopeContext
     {
         Global,
         Block,
         Class
     }
 
-    internal class Resolver(SyntaxTree syntaxTree) : Expression.Visitor<object?>, Statement.Visitor<object?>
+    public class Resolver(SyntaxTree syntaxTree) : Expression.Visitor<object?>, Statement.Visitor<object?>
     {
         private readonly SyntaxTree _syntaxTree = syntaxTree;
         private readonly DiagnosticBag _diagnostics = syntaxTree.Diagnostics;
@@ -67,14 +67,15 @@ namespace Heir
         public object? VisitIdentifierNameExpression(IdentifierName identifierName)
         {
             var scope = _scopes.LastOrDefault();
-            if (scope != null && scope[identifierName.Token.Text] == false)
+            var name = identifierName.Token.Text;
+            if (scope != null && scope.ContainsKey(name) && scope[name] == false)
             {
-                _diagnostics.Error("H013", $"Cannot read variable '{identifierName.Token.Text}' in it's own initializer", identifierName.Token);
+                _diagnostics.Error("H013", $"Cannot read variable '{name}' in it's own initializer", identifierName.Token);
                 return null;
             }
             if (!IsDefined(identifierName.Token))
             {
-                _diagnostics.Error("H014", $"'{identifierName.Token.Text}' is not defined in this scope", identifierName.Token);
+                _diagnostics.Error("H014", $"'{name}' is not defined in this scope", identifierName.Token);
                 return null;
             }
 
@@ -103,7 +104,8 @@ namespace Heir
             if (_scopes.Count == 0) return;
 
             var scope = _scopes.LastOrDefault();
-            scope?.Add(identifier.Text, true);
+            if (scope != null)
+                scope[identifier.Text] = true;
         }
 
         private void Declare(Token identifier)

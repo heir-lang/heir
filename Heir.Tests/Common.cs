@@ -2,15 +2,10 @@
 using Heir.BoundAST;
 using Heir.CodeGeneration;
 using Heir.Syntax;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Heir.Tests
 {
-    public static class Common
+    internal static class Common
     {
         public static TokenStream Tokenize(string input)
         {
@@ -23,6 +18,15 @@ namespace Heir.Tests
             var tokens = Tokenize(input);
             var parser = new Parser(tokens);
             return parser.Parse();
+        }
+
+        public static DiagnosticBag Resolve(string input)
+        {
+            var syntaxTree = Parse(input);
+            var resolver = new Resolver(syntaxTree);
+            resolver.Resolve();
+
+            return syntaxTree.Diagnostics;
         }
 
         public static BoundSyntaxTree Bind(string input)

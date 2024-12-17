@@ -5,9 +5,9 @@ namespace Heir
     public sealed class Lexer(string source, string fileName = "<anonymous>")
     {
         public string Source { get; } = source;
-        public DiagnosticBag Diagnostics { get; } = new();
 
         private readonly string _fileName = fileName;
+        private readonly DiagnosticBag _diagnostics = new();
         private List<Token> _tokens = [];
         private string _currentLexeme = "";
         private int _position = 0;
@@ -45,7 +45,7 @@ namespace Heir
                 var token = Lex();
                 if (token == null)
                 {
-                    Diagnostics.Error("H001", $"Unexpected character \"{_previous}\"", location, _currentLocation);
+                    _diagnostics.Error("H001", $"Unexpected character \"{_previous}\"", location, _currentLocation);
                     continue;
                 }
 
@@ -54,7 +54,7 @@ namespace Heir
             }
 
             _tokens.Add(TokenFactory.Trivia(TriviaKind.EOF, "", _currentLocation, _currentLocation));
-            return new TokenStream(Diagnostics, _tokens.ToArray());
+            return new TokenStream(_diagnostics, _tokens.ToArray());
         }
 
         private Token? Lex()
@@ -266,7 +266,7 @@ namespace Heir
         {
             Advance();
             if (_current != '\'')
-                Diagnostics.Error("H002", $"Unterminated character", location, _currentLocation);
+                _diagnostics.Error("H002", $"Unterminated character", location, _currentLocation);
 
             Advance();
             return TokenFactory.CharLiteral(_currentLexeme, location, _currentLocation);
@@ -278,7 +278,7 @@ namespace Heir
                 Advance();
 
             if (_current != '"')
-                Diagnostics.Error("H003", $"Unterminated string", location, _currentLocation);
+                _diagnostics.Error("H003", $"Unterminated string", location, _currentLocation);
 
             Advance();
             return TokenFactory.StringLiteral(_currentLexeme, location, _currentLocation);
@@ -303,7 +303,7 @@ namespace Heir
                 {
                     if (decimalUsed)
                     {
-                        Diagnostics.Error("H004", "Malformed number", location, _currentLocation);
+                        _diagnostics.Error("H004", "Malformed number", location, _currentLocation);
                         break;
                     }
                     decimalUsed = true;
