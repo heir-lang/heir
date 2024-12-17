@@ -32,7 +32,9 @@ namespace Heir
 
         public BoundStatement VisitVariableDeclaration(VariableDeclaration variableDeclaration)
         {
-            throw new NotImplementedException();
+            var name = (BoundIdentifierName)Bind(variableDeclaration.Name);
+            var initializer = variableDeclaration.Initializer != null ? Bind(variableDeclaration.Initializer) : null;
+            return new BoundVariableDeclaration(name, initializer, variableDeclaration.IsMutable);
         }
 
         public BoundStatement VisitExpressionStatement(ExpressionStatement expressionStatement)
@@ -41,14 +43,15 @@ namespace Heir
             return new BoundExpressionStatement(expression);
         }
 
-        public BoundStatement VisitNoOp(NoOpStatement noOp)
-        {
-            throw new NotImplementedException();
-        }
+        public BoundStatement VisitNoOp(NoOpStatement noOp) => new BoundNoOpStatement();
 
         public BoundExpression VisitAssignmentOpExpression(AssignmentOp assignmentOp)
         {
-            throw new NotImplementedException();
+            var binary = VisitBinaryOpExpression(assignmentOp) as BoundBinaryOp;
+            if (binary == null)
+                return new BoundNoOp();
+
+            return new BoundAssignmentOp(binary.Left, binary.Operator, binary.Right);
         }
 
         public BoundExpression VisitBinaryOpExpression(BinaryOp binaryOp)
@@ -92,7 +95,8 @@ namespace Heir
 
         public BoundExpression VisitParenthesizedExpression(Parenthesized parenthesized)
         {
-            throw new NotImplementedException();
+            var expression = Bind(parenthesized.Expression);
+            return new BoundParenthesized(expression);
         }
 
         private List<BoundStatement> BindStatements(List<Statement> statements) => statements.ConvertAll(Bind);

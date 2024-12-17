@@ -5,7 +5,7 @@ namespace Heir.BoundAST
 {
     public class BoundExpressionStatement(BoundExpression expression) : BoundStatement
     {
-        public override BaseType? Type => null;
+        public override BaseType? Type => Expression.Type;
 
         public BoundExpression Expression { get; } = expression;
 

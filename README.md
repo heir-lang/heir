@@ -62,7 +62,7 @@ Though I cannot guarantee the lifetime or dedication to this project, contributi
     - [x] parenthesized expressions
     - [x] literals
 - [ ] scopes
-- [ ] resolving
+- [x] resolving
 - [ ] binding
 - [ ] typechecking
 - [ ] bytecode generator
