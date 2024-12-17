@@ -50,8 +50,7 @@ namespace Heir.BoundAST
             { BoundBinaryOperatorType.LessThanOrEquals,    OpCode.LTE },
             { BoundBinaryOperatorType.GreaterThan,         OpCode.LT },
             { BoundBinaryOperatorType.GreaterThanOrEquals, OpCode.LTE },
-            { BoundBinaryOperatorType.Concatenation,       OpCode.CONCAT },
-            { BoundBinaryOperatorType.Assignment,          OpCode.STORE }
+            { BoundBinaryOperatorType.Concatenation,       OpCode.CONCAT }
         };
 
         public SyntaxKind SyntaxKind { get; }

@@ -60,9 +60,15 @@ namespace Heir.Tests
         public void Generates_Assignment()
         {
             var bytecode = GenerateBytecode("let mut a = 1; a = 2;").Skip(3);
-            var loadIdentifier = bytecode.Instructions[0];
+            var pushIdentifier = bytecode.Instructions[0];
             var pushRight = bytecode.Instructions[1];
             var store = bytecode.Instructions[2];
+            Assert.Equal(OpCode.PUSH, pushIdentifier.OpCode);
+            Assert.Equal("a", pushIdentifier.Operand);
+            Assert.Equal(OpCode.PUSH, pushRight.OpCode);
+            Assert.Equal(2L, pushRight.Operand);
+            Assert.Equal(OpCode.STORE, store.OpCode);
+            Assert.Null(store.Operand);
         }
 
         [Theory]
