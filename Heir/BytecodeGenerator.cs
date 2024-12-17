@@ -2,6 +2,7 @@
 using Heir.AST;
 using Heir.BoundAST;
 using Heir.CodeGeneration;
+using System.Linq;
 
 namespace Heir
 {
@@ -53,7 +54,16 @@ namespace Heir
                        .Append(new Instruction(binaryOp, OpCode.STORE))
                        .ToList();
 
+            
+
             if (BoundBinaryOperator.OpCodeMap.TryGetValue(boundOperatorType, out var opCode))
+            {
+                if (BoundBinaryOperator.InvertedOperations.Contains(boundOperatorType))
+                    return combined
+                           .Append(new Instruction(binaryOp, opCode))
+                           .Append(new Instruction(binaryOp, OpCode.NOT))
+                           .ToList();
+
                 return (!SyntaxFacts.BinaryCompoundAssignmentOperators.Contains(binaryOp.Operator.Kind) ?
                     combined.Append(new Instruction(binaryOp, opCode))
                     : PushName((Name)binaryOp.Left)
@@ -62,6 +72,7 @@ namespace Heir
                         .Append(new Instruction(binaryOp, opCode))
                         .Append(new Instruction(binaryOp, OpCode.STORE))
                 ).ToList();
+            }
 
             Diagnostics.Error(DiagnosticCode.H008, $"Unsupported binary operator kind: {binaryOp.Operator.Kind}", binaryOp.Operator);
             return NoOp(binaryOp);

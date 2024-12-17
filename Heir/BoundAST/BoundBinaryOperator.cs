@@ -30,6 +30,12 @@ namespace Heir.BoundAST
 
     public sealed class BoundBinaryOperator
     {
+        public static readonly HashSet<BoundBinaryOperatorType> InvertedOperations = [
+            BoundBinaryOperatorType.GreaterThan,
+            BoundBinaryOperatorType.GreaterThanOrEquals,
+            BoundBinaryOperatorType.NotEquals
+        ];
+
         public static readonly Dictionary<BoundBinaryOperatorType, OpCode> OpCodeMap = new()
         {
             { BoundBinaryOperatorType.Addition,            OpCode.ADD },
