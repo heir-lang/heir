@@ -37,7 +37,7 @@
             _defined[name] = value != null;
         }
 
-        public bool IsDeclared(string name) => _defined.TryGetValue(name, out _);
+        public bool IsDeclared(string name) => _defined.TryGetValue(name, out _) || (Enclosing?.IsDeclared(name) ?? false);
         public bool IsDefined(string name)
         {
             if (_defined.TryGetValue(name, out var isDefined))
