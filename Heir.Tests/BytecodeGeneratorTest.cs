@@ -42,7 +42,7 @@ namespace Heir.Tests
         [InlineData("7 // 3", 7L, 3L, OpCode.IDIV)]
         [InlineData("1 < 2", 1L, 2L, OpCode.LT)]
         [InlineData("1 <= 2", 1L, 2L, OpCode.LTE)]
-        [InlineData("2 > 1", 2L, 1L, OpCode.LT)]
+        [InlineData("2 > 1", 2L, 1L, OpCode.LTE)]
         [InlineData("'a' == 'b'", 'a', 'b', OpCode.EQ)]
         [InlineData("'a' != 'b'", 'a', 'b', OpCode.EQ)]
         [InlineData("'a' + 'b'", 'a', 'b', OpCode.CONCAT)]
