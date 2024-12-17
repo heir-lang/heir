@@ -5,7 +5,6 @@ toy language part 9999999
 Though I cannot guarantee the lifetime or dedication to this project, contributions are welcome and encouraged and I will look at them as soon as I see them.
 
 ## Roadmap
-- [ ] virtual machine test
 - [x] lexing
   - [ ] trivia
     - [x] whitespace

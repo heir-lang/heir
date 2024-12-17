@@ -176,11 +176,21 @@ namespace Heir
                         Advance();
                         break;
                     }
+                case OpCode.UNM:
+                    {
+                        var operand = _stack.Pop();
+                        var result = -Convert.ToDouble(operand.Value);
+
+                        _stack.Push(new(operand.Node, result));
+                        Advance();
+                        break;
+                    }
+
                 case OpCode.AND:
                     {
                         var right = _stack.Pop();
                         var left = _stack.Pop();
-                        var result = Convert.ToBoolean(left.Value) || Convert.ToBoolean(right.Value);
+                        var result = Convert.ToBoolean(left.Value) && Convert.ToBoolean(right.Value);
 
                         _stack.Push(new(right.Node, result));
                         Advance();
@@ -289,7 +299,7 @@ namespace Heir
                 default:
                     {
                         Diagnostics.Error(DiagnosticCode.H001D, $"Unhandled opcode \"{instruction.OpCode}\"", instruction.Root.GetFirstToken());
-                        break;
+                        return new(instruction.Root, new ExitMarker());
                     }
             }
 
