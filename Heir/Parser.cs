@@ -264,7 +264,7 @@ namespace Heir
                         var expression = ParseExpression();
                         if (expression.Is<NoOp>())
                         {
-                            _diagnostics.Error(DiagnosticCode.H004D, $"Expected expression, got '{Tokens.Previous?.Kind.ToString() ?? "EOF"}'", token);
+                            _diagnostics.Error(DiagnosticCode.H004D, $"Expected expression, got '{Tokens.Previous?.Kind.ToString() ?? "EOF"}'", Tokens.Previous!);
                             return new NoOp();
                         }
 

@@ -1,5 +1,3 @@
-using Xunit.Sdk;
-
 namespace Heir.Tests
 {
     public class ScopeTest
@@ -7,7 +5,7 @@ namespace Heir.Tests
         [Fact]
         public void DeclaresVariables()
         {
-            var scope = new Scope(new());
+            var scope = new Scope();
             var name = "x";
             scope.Define(name, null);
             Assert.True(scope.IsDeclared(name));
@@ -18,7 +16,7 @@ namespace Heir.Tests
         [Fact]
         public void DefinesVariables()
         {
-            var scope = new Scope(new());
+            var scope = new Scope();
             var name = "x";
             var value = 123;
             scope.Define(name, 123);
@@ -30,9 +28,8 @@ namespace Heir.Tests
         [Fact]
         public void LooksUpVariables()
         {
-            var diagnostics = new DiagnosticBag();
-            var scope = new Scope(diagnostics);
-            var localScope = new Scope(diagnostics, scope);
+            var scope = new Scope();
+            var localScope = new Scope(scope);
             var name = "x";
             var value = 123;
             scope.Define(name, 123);

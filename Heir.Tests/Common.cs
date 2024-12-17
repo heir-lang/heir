@@ -9,7 +9,7 @@ namespace Heir.Tests
     {
         public static TokenStream Tokenize(string input)
         {
-            var lexer = new Lexer(input, "<testing>");
+            var lexer = new Lexer(new("<testing>", input));
             return lexer.GetTokens();
         }
 

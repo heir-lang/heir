@@ -11,6 +11,10 @@ object? evaluateFile(string filePath)
     var syntaxTree = parser.Parse();
     var binder = new Heir.Binder(syntaxTree);
     var boundSyntaxTree = binder.Bind();
+    Console.WriteLine(tokenStream.ToString());
+    //syntaxTree.Display();
+    //boundSyntaxTree.Display();
+    Console.WriteLine();
     if (boundSyntaxTree.Diagnostics.HasErrors())
     {
         AnsiConsole.MarkupLine(boundSyntaxTree.Diagnostics.ToString(true));
@@ -23,9 +27,6 @@ object? evaluateFile(string filePath)
     var result = vm.Evaluate();
 
     AnsiConsole.MarkupLine(vm.Diagnostics.ToString(true));
-    Console.WriteLine();
-    syntaxTree.Display();
-    //boundSyntaxTree.Display();
     Console.WriteLine();
     //Console.WriteLine(bytecode.ToString());
     //Console.WriteLine();

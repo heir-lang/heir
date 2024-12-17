@@ -1,4 +1,5 @@
 ﻿using Heir.Syntax;
+using System.Linq;
 
 namespace Heir
 {
@@ -34,8 +35,9 @@ namespace Heir
         Error
     }
 
-    public sealed class Diagnostic(DiagnosticCode code, string message, Location startLocation, Location endLocation, DiagnosticLevel level)
+    public sealed class Diagnostic(SourceFile sourceFile, DiagnosticCode code, string message, Location startLocation, Location endLocation, DiagnosticLevel level)
     {
+        public SourceFile SourceFile { get; } = sourceFile;
         public DiagnosticCode Code { get; } = code;
         public string Message { get; } = message;
         public Location StartLocation { get; } = startLocation;
@@ -45,15 +47,41 @@ namespace Heir
         public string ToString(bool colors)
         {
             var levelDisplay = Level.ToString().ToLower();
-            var codeDisplay = Code.ToString();
+            var errorCodeDisplay = Code.ToString();
             var messageDisplay = Message;
             var locationDisplay = StartLocation.ToString();
 
+            var erroneousCodeLength = EndLocation.Position - StartLocation.Position;
+            var erroneousCodeColumnLength = EndLocation.Column - StartLocation.Column;
+            var erroneousCodeDistance = EndLocation.Column - erroneousCodeColumnLength;
+            var erroneousCodeLineLength = EndLocation.Line - (StartLocation.Line - 1);
+            var lines = SourceFile.Source.Split('\n').Skip(StartLocation.Line - 2).Take(erroneousCodeLineLength + 1);
+            var erroneousCode = SourceFile.Source.Substring(StartLocation.Position, erroneousCodeLength);
+            var padding = string.Join("", Enumerable.Repeat(' ', EndLocation.Line.ToString().Length - 1));
+            var codeDisplay = "";
+            var lineNumber = lines.Count() == 1 ? 0 : -1;
+            foreach (var line in lines)
+            {
+                var offset = lineNumber++;
+                codeDisplay += $"{StartLocation.Line + offset}{padding} | {line}\n";
+            }
+
+            codeDisplay += $" {padding} | {string.Join("", Enumerable.Repeat(' ', EndLocation.Column - StartLocation.Column - 1))}~\n";
+
             if (colors)
             {
-                codeDisplay = $"[grey]{codeDisplay}[/]";
+                errorCodeDisplay = $"[grey]{errorCodeDisplay}[/]";
                 messageDisplay = $"[silver]{messageDisplay}[/]";
                 locationDisplay = $"[silver]{locationDisplay}[/]";
+                codeDisplay = "";
+                lineNumber = lines.Count() == 1 ? 0 : -1;
+                foreach (var line in lines)
+                {
+                    var offset = lineNumber++;
+                    codeDisplay += $"[invert white]{StartLocation.Line + offset}{padding}[/] [grey]|[/] {(offset == 0 ? "[white]" : "[grey58]")}{line}[/]\n";
+                }
+
+                codeDisplay += $" {padding}   [red]{string.Join("", Enumerable.Repeat(' ', erroneousCodeDistance))}{string.Join("", Enumerable.Repeat('~', erroneousCodeColumnLength))}[/]\n";
 
                 switch (Level)
                 {
@@ -66,7 +94,7 @@ namespace Heir
                 }
             }
 
-            return $"{locationDisplay} - {levelDisplay} {codeDisplay}: {messageDisplay}";
+            return $"{locationDisplay} - {levelDisplay} {errorCodeDisplay}: {messageDisplay}\n{codeDisplay}";
         }
     }
 }

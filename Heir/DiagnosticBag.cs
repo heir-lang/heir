@@ -1,11 +1,28 @@
-﻿using Heir.Syntax;
+﻿using Heir.AST;
+using Heir.Syntax;
 using System.Collections;
 
 namespace Heir
 {
-    public sealed class DiagnosticBag : IEnumerable<Diagnostic>
+    public sealed class DiagnosticBag(SourceFile sourceFile) : IEnumerable<Diagnostic>
     {
+        private readonly SourceFile _sourceFile = sourceFile;
         private readonly HashSet<Diagnostic> _diagnostics = [];
+
+        public void Warn(DiagnosticCode code, string message, SyntaxNode startNode, SyntaxNode endNode)
+        {
+            Warn(code, message, startNode.GetFirstToken(), endNode.GetLastToken());
+        }
+
+        public void Warn(DiagnosticCode code, string message, SyntaxNode node)
+        {
+            Warn(code, message, node.GetFirstToken(), node.GetLastToken());
+        }
+
+        public void Warn(DiagnosticCode code, string message, Token startToken, Token endToken)
+        {
+            Warn(code, message, startToken.StartLocation, endToken.EndLocation);
+        }
 
         public void Warn(DiagnosticCode code, string message, Token token)
         {
@@ -14,8 +31,23 @@ namespace Heir
 
         public void Warn(DiagnosticCode code, string message, Location startLocation, Location? endLocation = null)
         {
-            var diagnostic = new Diagnostic(code, message, startLocation, endLocation ?? startLocation, DiagnosticLevel.Warn);
+            var diagnostic = new Diagnostic(_sourceFile, code, message, startLocation, endLocation ?? startLocation, DiagnosticLevel.Warn);
             _diagnostics.Add(diagnostic);
+        }
+
+        public void Error(DiagnosticCode code, string message, SyntaxNode startNode, SyntaxNode endNode)
+        {
+            Error(code, message, startNode.GetFirstToken(), endNode.GetLastToken());
+        }
+
+        public void Error(DiagnosticCode code, string message, SyntaxNode node)
+        {
+            Error(code, message, node.GetFirstToken(), node.GetLastToken());
+        }
+
+        public void Error(DiagnosticCode code, string message, Token startToken, Token endToken)
+        {
+            Error(code, message, startToken.StartLocation, endToken.EndLocation);
         }
 
         public void Error(DiagnosticCode code, string message, Token token)
@@ -25,7 +57,7 @@ namespace Heir
 
         public void Error(DiagnosticCode code, string message, Location startLocation, Location? endLocation = null)
         {
-            var diagnostic = new Diagnostic(code, message, startLocation, endLocation ?? startLocation, DiagnosticLevel.Error);
+            var diagnostic = new Diagnostic(_sourceFile, code, message, startLocation, endLocation ?? startLocation, DiagnosticLevel.Error);
             _diagnostics.Add(diagnostic);
         }
 

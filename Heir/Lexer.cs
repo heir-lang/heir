@@ -1,13 +1,12 @@
 ﻿using Heir.Syntax;
+using System.Net.WebSockets;
 
 namespace Heir
 {
-    public sealed class Lexer(string source, string fileName = "<anonymous>")
+    public sealed class Lexer(SourceFile sourceFile)
     {
-        public string Source { get; } = source;
-
-        private readonly string _fileName = fileName;
-        private readonly DiagnosticBag _diagnostics = new();
+        private readonly SourceFile _sourceFile = sourceFile;
+        private readonly DiagnosticBag _diagnostics = new(sourceFile);
         private List<Token> _tokens = [];
         private string _currentLexeme = "";
         private int _position = 0;
@@ -15,11 +14,11 @@ namespace Heir
         private int _column = 0;
         private Location _currentLocation
         {
-            get => new Location(_fileName, _line, _column, _position);
+            get => new Location(_sourceFile.Path, _line, _column, _position);
         }
         private bool _isFinished
         {
-            get => _position >= Source.Length;
+            get => _position >= _sourceFile.Source.Length;
         }
         private char? _current
         {
@@ -32,9 +31,9 @@ namespace Heir
 
         public static Lexer FromFile(string path)
         {
-            string fileName = Path.GetFileName(path);
-            string contents = File.ReadAllText(path);
-            return new Lexer(contents, fileName);
+            var source = File.ReadAllText(path);
+            var sourceFile = new SourceFile(source, path);
+            return new Lexer(sourceFile);
         }
 
         public TokenStream GetTokens()
@@ -252,7 +251,7 @@ namespace Heir
                             return ReadNumber(startLocation);
                         else if (current == ';')
                             return SkipSemicolons(startLocation);
-                        else if (current == '\n')
+                        else if (current == '\r' || current == '\n')
                             return SkipNewLines(startLocation);
                         else if (char.IsWhiteSpace(current))
                             return SkipWhitespace(startLocation);
@@ -345,10 +344,12 @@ namespace Heir
 
         private Token SkipNewLines(Location location)
         {
-            while (_current == '\n')
+            while (_current == '\r' || _current == '\n')
             {
+                var isNewLine = _current == '\n';
                 _position++; // Advance() but w/o adding to _column for performance reasons
-                _line++;
+                if (isNewLine)
+                    _line++;
             }
 
             _column = 0;
@@ -406,7 +407,9 @@ namespace Heir
 
         private char? Peek(int offset = 1)
         {
-            return Source.ToCharArray().ElementAtOrDefault(_position + offset);
+            return _sourceFile.Source
+                .ToCharArray()
+                .ElementAtOrDefault(_position + offset);
         }
     }
 }

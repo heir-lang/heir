@@ -62,7 +62,7 @@ namespace Heir
 
             var symbol = FindSymbol(binary.Left.GetFirstToken());
             if (symbol != null && !symbol.IsMutable)
-                _diagnostics.Error(DiagnosticCode.H006C, $"Attempt to assign to immutable variable '{symbol.Name.Text}'", symbol.Name);
+                _diagnostics.Error(DiagnosticCode.H006C, $"Attempt to assign to immutable variable '{symbol.Name.Text}'", binary.Left, binary.Right);
 
             return new BoundAssignmentOp(binary.Left, binary.Operator, binary.Right);
         }

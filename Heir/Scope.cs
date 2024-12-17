@@ -1,10 +1,9 @@
 ﻿namespace Heir
 {
-    public sealed class Scope(DiagnosticBag diagnostics, Scope? enclosing = null)
+    public sealed class Scope(Scope? enclosing = null)
     {
         public Scope? Enclosing { get; } = enclosing;
 
-        private readonly DiagnosticBag _diagnostics = diagnostics;
         private readonly Dictionary<string, bool> _defined = [];
         private readonly Dictionary<string, object?> _values = [];
 
