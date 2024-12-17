@@ -70,5 +70,22 @@ namespace Heir.Tests
             Assert.Equal(opCode, operation.OpCode);
             Assert.Null(operation.Operand);
         }
+
+        [Theory]
+        [InlineData("let a = 1;", "a", 1L, OpCode.STORE)]
+        [InlineData("let mut b = 2;", "b", 2L, OpCode.STOREMUTABLE)]
+        public void Generates_VariableDeclarations(string input, string name, object? value, OpCode opCode)
+        {
+            var bytecode = GenerateBytecode(input);
+            var pushIdentifier = bytecode.Instructions[0];
+            var pushValue = bytecode.Instructions[1];
+            var operation = bytecode.Instructions[2];
+            Assert.Equal(OpCode.PUSH, pushIdentifier.OpCode);
+            Assert.Equal(name, pushIdentifier.Operand);
+            Assert.Equal(OpCode.PUSH, pushValue.OpCode);
+            Assert.Equal(value, pushValue.Operand);
+            Assert.Equal(opCode, operation.OpCode);
+            Assert.Null(operation.Operand);
+        }
     }
 }

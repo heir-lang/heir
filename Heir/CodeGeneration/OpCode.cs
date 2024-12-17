@@ -12,6 +12,7 @@
         DUP,
 
         STORE,
+        STOREMUTABLE,
         LOAD,
         RETURN,
         PROC,
