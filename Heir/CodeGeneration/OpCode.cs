@@ -2,6 +2,9 @@
 {
     public enum OpCode : byte
     {
+        BEGINSCOPE,
+        ENDSCOPE,
+
         PUSH,
         PUSHNONE,
         POP,

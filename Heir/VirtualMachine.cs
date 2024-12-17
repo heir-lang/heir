@@ -15,10 +15,11 @@ namespace Heir
     {
         public DiagnosticBag Diagnostics { get; }
         public Scope GlobalScope { get; }
-        public Scope Scope { get; }
+        public Scope Scope { get; private set; }
 
-        private readonly Stack<StackFrame> _stack = new();
+        private readonly Stack<StackFrame> _stack = [];
         private readonly Bytecode _bytecode;
+        private Scope _enclosingScope;
         private int _pointer = 0;
 
         public VirtualMachine(Bytecode bytecode, Scope? scope = null)
@@ -26,6 +27,7 @@ namespace Heir
             Diagnostics = bytecode.Diagnostics;
             GlobalScope = new();
             Scope = scope ?? GlobalScope;
+            _enclosingScope = Scope;
             _bytecode = bytecode;
         }
 
@@ -61,6 +63,17 @@ namespace Heir
                     break;
                 case OpCode.RETURN:
                     return _stack.Pop();
+
+                case OpCode.BEGINSCOPE:
+                    _enclosingScope = Scope;
+                    Scope = new(_enclosingScope);
+                    Advance();
+                    break;
+                case OpCode.ENDSCOPE:
+                    Scope = _enclosingScope;
+                    _enclosingScope = Scope.Enclosing ?? Scope;
+                    Advance();
+                    break;
 
                 case OpCode.PUSH:
                 case OpCode.PUSHNONE:
@@ -123,7 +136,9 @@ namespace Heir
                         else
                             Scope.Define(name, initializer.Value);
 
-                        _stack.Push(initializer);
+                        if (instruction.Operand as bool? ?? true)
+                            _stack.Push(initializer);
+
                         Advance();
                         break;
                     }

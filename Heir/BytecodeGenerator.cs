@@ -20,11 +20,16 @@ namespace Heir
             .ToList();
 
         // TODO: create scope
-        public List<Instruction> VisitBlock(Block block) => GenerateStatementsBytecode(block.Statements);
+        public List<Instruction> VisitBlock(Block block) =>
+            GenerateStatementsBytecode(block.Statements)
+            .Prepend(new Instruction(block, OpCode.BEGINSCOPE))
+            .Append(new Instruction(block, OpCode.ENDSCOPE))
+            .ToList();
+
         public List<Instruction> VisitVariableDeclaration(VariableDeclaration variableDeclaration) =>
             new List<Instruction>([new Instruction(variableDeclaration.Name, OpCode.PUSH, variableDeclaration.Name.Token.Text)])
             .Concat(variableDeclaration.Initializer != null ? GenerateBytecode(variableDeclaration.Initializer) : [])
-            .Append(new Instruction(variableDeclaration, OpCode.STORE))
+            .Append(new Instruction(variableDeclaration, OpCode.STORE, false))
             .ToList();
 
         public List<Instruction> VisitExpressionStatement(ExpressionStatement expressionStatement) => GenerateBytecode(expressionStatement.Expression);
