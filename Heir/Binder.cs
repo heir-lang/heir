@@ -2,7 +2,6 @@
 using Heir.BoundAST;
 using Heir.Syntax;
 using Heir.Types;
-using System.Xml.Linq;
 
 namespace Heir
 {
@@ -14,7 +13,8 @@ namespace Heir
 
     public sealed class Binder(SyntaxTree syntaxTree) : Statement.Visitor<BoundStatement>, Expression.Visitor<BoundExpression>
     {
-        private readonly SyntaxTree _syntaxTree = syntaxTree;
+        public SyntaxTree SyntaxTree { get; } = syntaxTree;
+
         private readonly DiagnosticBag _diagnostics = syntaxTree.Diagnostics;
         private readonly Dictionary<SyntaxNode, BoundSyntaxNode> _boundNodes = [];
         private readonly Stack<Stack<VariableSymbol>> _variableScopes = [];
@@ -23,7 +23,7 @@ namespace Heir
         public BoundSyntaxTree Bind()
         {
             BeginScope();
-            return (BoundSyntaxTree)Bind(_syntaxTree);
+            return (BoundSyntaxTree)Bind(SyntaxTree);
         }
 
         public BoundStatement GetBoundNode(Statement statement) => (BoundStatement)_boundNodes[statement];

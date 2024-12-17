@@ -18,16 +18,14 @@ namespace Heir
         public Scope Scope { get; }
 
         private readonly Stack<StackFrame> _stack = new();
-        private readonly Binder _binder;
         private readonly Bytecode _bytecode;
         private int _pointer = 0;
 
-        public VirtualMachine(Binder binder, Bytecode bytecode, Scope? scope = null)
+        public VirtualMachine(Bytecode bytecode, Scope? scope = null)
         {
             Diagnostics = bytecode.Diagnostics;
             GlobalScope = new();
             Scope = scope ?? GlobalScope;
-            _binder = binder;
             _bytecode = bytecode;
         }
 

@@ -6,6 +6,8 @@ namespace Heir
 {
     public sealed class DiagnosticBag(SourceFile sourceFile) : IEnumerable<Diagnostic>
     {
+        public bool HasErrors => _diagnostics.Any(diagnostic => diagnostic.Level == DiagnosticLevel.Error);
+
         private readonly SourceFile _sourceFile = sourceFile;
         private readonly HashSet<Diagnostic> _diagnostics = [];
 
@@ -61,21 +63,8 @@ namespace Heir
             _diagnostics.Add(diagnostic);
         }
 
-        public bool HasErrors()
-        {
-            return _diagnostics.Any(diagnostic => diagnostic.Level == DiagnosticLevel.Error);
-        }
-
-        public IEnumerator<Diagnostic> GetEnumerator()
-        {
-            return _diagnostics.GetEnumerator();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return _diagnostics.GetEnumerator();
-        }
-
+        public IEnumerator<Diagnostic> GetEnumerator() => _diagnostics.GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator() => _diagnostics.GetEnumerator();
         public string ToString(bool colors) => string.Join('\n', _diagnostics.Select(diagnostic => diagnostic.ToString(colors)));
     }
 }

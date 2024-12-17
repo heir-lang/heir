@@ -1,5 +1,4 @@
 ﻿using Heir.Syntax;
-using System.Net.WebSockets;
 
 namespace Heir
 {
@@ -27,13 +26,6 @@ namespace Heir
         private char? _previous
         {
             get => Peek(-1);
-        }
-
-        public static Lexer FromFile(string path)
-        {
-            var source = File.ReadAllText(path);
-            var sourceFile = new SourceFile(source, path);
-            return new Lexer(sourceFile);
         }
 
         public TokenStream GetTokens()

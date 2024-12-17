@@ -3,59 +3,58 @@ using Heir.BoundAST;
 using Heir.CodeGeneration;
 using Heir.Syntax;
 
-namespace Heir.Tests
+namespace Heir.Tests;
+
+internal static class Common
 {
-    internal static class Common
+    public static TokenStream Tokenize(string input)
     {
-        public static TokenStream Tokenize(string input)
-        {
-            var lexer = new Lexer(new(input, "<testing>"));
-            return lexer.GetTokens();
-        }
+        var lexer = new Lexer(new(input, "<testing>", true));
+        return lexer.GetTokens();
+    }
 
-        public static SyntaxTree Parse(string input)
-        {
-            var tokens = Tokenize(input);
-            var parser = new Parser(tokens);
-            return parser.Parse();
-        }
+    public static SyntaxTree Parse(string input)
+    {
+        var tokens = Tokenize(input);
+        var parser = new Parser(tokens);
+        return parser.Parse();
+    }
 
-        public static DiagnosticBag Resolve(string input)
-        {
-            var syntaxTree = Parse(input);
-            var resolver = new Resolver(syntaxTree);
-            resolver.Resolve();
+    public static DiagnosticBag Resolve(string input)
+    {
+        var syntaxTree = Parse(input);
+        var resolver = new Resolver(syntaxTree);
+        resolver.Resolve();
 
-            return syntaxTree.Diagnostics;
-        }
+        return syntaxTree.Diagnostics;
+    }
 
-        public static BoundSyntaxTree Bind(string input)
-        {
-            var syntaxTree = Parse(input);
-            var binder = new Binder(syntaxTree);
-            return binder.Bind();
-        }
+    public static BoundSyntaxTree Bind(string input)
+    {
+        var syntaxTree = Parse(input);
+        var binder = new Binder(syntaxTree);
+        return binder.Bind();
+    }
 
-        public static Bytecode GenerateBytecode(string input)
-        {
-            var syntaxTree = Parse(input);
-            var binder = new Binder(syntaxTree);
-            binder.Bind();
+    public static Bytecode GenerateBytecode(string input)
+    {
+        var syntaxTree = Parse(input);
+        var binder = new Binder(syntaxTree);
+        binder.Bind();
 
-            var bytecodeGenerator = new BytecodeGenerator(binder, syntaxTree);
-            return bytecodeGenerator.GenerateBytecode();
-        }
+        var bytecodeGenerator = new BytecodeGenerator(binder);
+        return bytecodeGenerator.GenerateBytecode();
+    }
 
-        public static (object?, VirtualMachine) Evaluate(string input)
-        {
-            var syntaxTree = Parse(input);
-            var binder = new Binder(syntaxTree);
-            binder.Bind();
+    public static (object?, VirtualMachine) Evaluate(string input)
+    {
+        var syntaxTree = Parse(input);
+        var binder = new Binder(syntaxTree);
+        binder.Bind();
 
-            var bytecodeGenerator = new BytecodeGenerator(binder, syntaxTree);
-            var bytecode = bytecodeGenerator.GenerateBytecode();
-            var vm = new VirtualMachine(binder, bytecode);
-            return (vm.Evaluate(), vm);
-        }
+        var bytecodeGenerator = new BytecodeGenerator(binder);
+        var bytecode = bytecodeGenerator.GenerateBytecode();
+        var vm = new VirtualMachine(bytecode);
+        return (vm.Evaluate(), vm);
     }
 }

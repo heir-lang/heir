@@ -5,12 +5,12 @@ using Heir.CodeGeneration;
 
 namespace Heir
 {
-    public sealed class BytecodeGenerator(Binder binder, SyntaxTree syntaxTree) : Statement.Visitor<List<Instruction>>, Expression.Visitor<List<Instruction>>
+    public sealed class BytecodeGenerator(Binder binder) : Statement.Visitor<List<Instruction>>, Expression.Visitor<List<Instruction>>
     {
-        public DiagnosticBag Diagnostics { get; } = syntaxTree.Diagnostics;
+        public DiagnosticBag Diagnostics { get; } = binder.SyntaxTree.Diagnostics;
 
         private readonly Binder _binder = binder;
-        private readonly SyntaxTree _syntaxTree = syntaxTree;
+        private readonly SyntaxTree _syntaxTree = binder.SyntaxTree;
 
         public Bytecode GenerateBytecode() => new Bytecode(GenerateBytecode(_syntaxTree), Diagnostics);
 
