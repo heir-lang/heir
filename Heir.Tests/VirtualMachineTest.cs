@@ -29,10 +29,11 @@ public class VirtualMachineTest
     [InlineData("let mut y: int = 2;", "y", 2L)]
     public void Evaluates_VariableDeclarations(string input, string name, object? expectedValue)
     {
-        var (_, vm) = Evaluate(input);
+        var (resultValue, vm) = Evaluate(input);
         Assert.True(vm.Scope.IsDeclared(name));
         Assert.True(vm.Scope.IsDefined(name));
         Assert.Equal(expectedValue, vm.Scope.Lookup(name));
+        Assert.Null(resultValue);
     }
 
     [Theory]
