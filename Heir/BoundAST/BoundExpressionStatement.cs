@@ -11,6 +11,13 @@ namespace Heir.BoundAST
 
         public override R Accept<R>(Visitor<R> visitor) => visitor.VisitBoundExpressionStatement(this);
         public override List<Token> GetTokens() => [];
-        public override void Display(int indent) => Console.Write($"{string.Concat(Enumerable.Repeat("  ", indent))}BoundNoOpStatement");
+
+        public override void Display(int indent)
+        {
+            Console.WriteLine($"{string.Concat(Enumerable.Repeat("  ", indent))}BoundExpressionStatement(");
+            Expression.Display(indent + 1);
+            Console.WriteLine();
+            Console.Write($"{string.Concat(Enumerable.Repeat("  ", indent))})");
+        }
     }
 }

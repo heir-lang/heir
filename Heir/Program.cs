@@ -1,7 +1,7 @@
 ﻿using Spectre.Console;
 
 var result = evaluateFile("./Heir/Test.heir") ?? "none";
-Console.WriteLine(result);
+Console.WriteLine(result); // TODO: some sort of repr function
 
 object? evaluateFile(string filePath)
 {
@@ -11,18 +11,23 @@ object? evaluateFile(string filePath)
     var syntaxTree = parser.Parse();
     var binder = new Heir.Binder(syntaxTree);
     var boundSyntaxTree = binder.Bind();
+    if (boundSyntaxTree.Diagnostics.HasErrors())
+    {
+        AnsiConsole.MarkupLine(boundSyntaxTree.Diagnostics.ToString(true));
+        return null;
+    }
+
     var bytecodeGenerator = new Heir.BytecodeGenerator(binder, syntaxTree);
     var bytecode = bytecodeGenerator.GenerateBytecode();
     var vm = new Heir.VirtualMachine(binder, bytecode);
     var result = vm.Evaluate();
 
-    Console.WriteLine("Diagnostics:");
     AnsiConsole.MarkupLine(vm.Diagnostics.ToString(true));
-
     Console.WriteLine();
     syntaxTree.Display();
     //boundSyntaxTree.Display();
     Console.WriteLine();
-    Console.WriteLine();
+    //Console.WriteLine(bytecode.ToString());
+    //Console.WriteLine();
     return result;
 }

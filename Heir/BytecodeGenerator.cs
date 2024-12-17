@@ -2,13 +2,11 @@
 using Heir.AST;
 using Heir.BoundAST;
 using Heir.CodeGeneration;
-using System.Linq;
 
 namespace Heir
 {
     public sealed class BytecodeGenerator(Binder binder, SyntaxTree syntaxTree) : Statement.Visitor<List<Instruction>>, Expression.Visitor<List<Instruction>>
     {
-        // TODO: do not continue pipeline (codegen/evaluation) if we have errors
         public DiagnosticBag Diagnostics { get; } = syntaxTree.Diagnostics;
 
         private readonly Binder _binder = binder;
@@ -54,16 +52,14 @@ namespace Heir
                        .Append(new Instruction(binaryOp, OpCode.STORE))
                        .ToList();
 
-            
+            if (BoundBinaryOperator.InvertedOperations.TryGetValue(boundOperatorType, out var invertedOpCode))
+                return combined
+                       .Append(new Instruction(binaryOp, invertedOpCode))
+                       .Append(new Instruction(binaryOp, OpCode.NOT))
+                       .ToList();
 
             if (BoundBinaryOperator.OpCodeMap.TryGetValue(boundOperatorType, out var opCode))
             {
-                if (BoundBinaryOperator.InvertedOperations.Contains(boundOperatorType))
-                    return combined
-                           .Append(new Instruction(binaryOp, opCode))
-                           .Append(new Instruction(binaryOp, OpCode.NOT))
-                           .ToList();
-
                 return (!SyntaxFacts.BinaryCompoundAssignmentOperators.Contains(binaryOp.Operator.Kind) ?
                     combined.Append(new Instruction(binaryOp, opCode))
                     : PushName((Name)binaryOp.Left)

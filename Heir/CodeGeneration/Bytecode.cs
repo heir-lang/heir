@@ -12,5 +12,7 @@ namespace Heir.CodeGeneration
         }
 
         public Bytecode Skip(int count) => new Bytecode(instructions.Skip(count).ToList(), Diagnostics);
+
+        public override string ToString() => string.Join('\n', Instructions.Select(instruction => instruction.ToString()));
     }
 }

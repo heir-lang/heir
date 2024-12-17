@@ -62,8 +62,8 @@ namespace Heir.Tests
         }
 
         [Theory]
-        [InlineData("2 > 1", 2L, 1L, OpCode.LT)]
-        [InlineData("2 >= 1", 2L, 1L, OpCode.LTE)]
+        [InlineData("2 > 1", 2L, 1L, OpCode.LTE)]
+        [InlineData("2 >= 1", 2L, 1L, OpCode.LT)]
         [InlineData("'a' != 'b'", 'a', 'b', OpCode.EQ)]
         public void Generates_InvertedBinaryOperations(string input, object? leftValue, object? rightValue, OpCode opCode)
         {

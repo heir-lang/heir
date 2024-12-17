@@ -13,6 +13,6 @@ namespace Heir.CodeGeneration
         public OpCode OpCode { get; } = opCode;
         public T? Operand { get; } = operand;
 
-        public override string ToString() => Operand != null ? $"{OpCode} {Operand}" : OpCode.ToString();
+        public override string ToString() => Operand != null ? $"{OpCode} {Operand} - {Root.GetFirstToken().StartLocation.ToString()}" : OpCode.ToString();
     }
 }
