@@ -50,6 +50,7 @@ namespace Heir
                 return (!SyntaxFacts.BinaryCompoundAssignmentOperators.Contains(binaryOp.Operator.Kind) ?
                     combined.Append(new Instruction(binaryOp, opCode))
                     : leftInstructions
+                        .Concat(leftInstructions)
                         .Concat(rightInstructions)
                         .Append(new Instruction(binaryOp, opCode))
                         .Append(new Instruction(binaryOp, OpCode.STORE))
