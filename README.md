@@ -5,6 +5,7 @@ toy language part 9999999
 Though I cannot guarantee the lifetime or dedication to this project, contributions are welcome and encouraged and I will look at them as soon as I see them.
 
 ## Roadmap
+- [ ] virtual machine test
 - [x] lexing
   - [ ] trivia
     - [x] whitespace
@@ -39,8 +40,9 @@ Though I cannot guarantee the lifetime or dedication to this project, contributi
     - [x] equality (`==`, `!=`, `!`, `<`, `>`, `<=`, `>=`)
     - [x] logical (`&&`, `||`) 
     - [x] bitwise (`&`, `|`, `~`) 
+        - [ ] shifts (`<<`, `>>`)
     - [x] arithmetic (`+`, `-`, `*`, `/`, `//`, `%`, `^`)
-      - [x] increment (`++`, `--`)
+      - [x] increment/decrement (`++`, `--`)
       - [x] compound assignment (`+=`, `-=`, `*=`, `/=`, `//=`, `%=`, `^=`)
 - [ ] parsing
     - [ ] control flow
@@ -61,7 +63,7 @@ Though I cannot guarantee the lifetime or dedication to this project, contributi
     - [x] binary operations
     - [x] parenthesized expressions
     - [x] literals
-- [ ] scopes
+- [x] scopes
 - [x] resolving
 - [ ] binding
 - [ ] typechecking
