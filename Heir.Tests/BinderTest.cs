@@ -1,5 +1,4 @@
-﻿using Heir.AST;
-using Heir.BoundAST;
+﻿using Heir.BoundAST;
 using Heir.Types;
 using static Heir.Tests.Common;
 
@@ -15,6 +14,42 @@ namespace Heir.Tests
             var boundTree = Bind(input);
             Assert.True(boundTree.Diagnostics.HasErrors());
             Assert.Contains(boundTree.Diagnostics, diagnostic => diagnostic.Code == expectedErrorCode);
+        }
+
+        [Fact]
+        public void Binds_VariableDeclarations()
+        {
+            var boundTree = Bind("let x: string;");
+            var statement = boundTree.Statements.First();
+            Assert.IsType<BoundVariableDeclaration>(statement);
+
+            var declaration = (BoundVariableDeclaration)statement;
+            Assert.False(declaration.IsMutable);
+            Assert.Null(declaration.Initializer);
+            Assert.NotNull(declaration.Type);
+            Assert.IsType<PrimitiveType>(declaration.Type);
+
+            var type = (PrimitiveType)declaration.Type;
+            Assert.Equal("string", type.Name);
+        }
+
+        [Fact]
+        public void Infers_VariableDeclarationTypes()
+        {
+            var boundTree = Bind("let mut x = 1;");
+            var statement = boundTree.Statements.First();
+            Assert.IsType<BoundVariableDeclaration>(statement);
+
+            var declaration = (BoundVariableDeclaration)statement;
+            Assert.True(declaration.IsMutable);
+            Assert.NotNull(declaration.Initializer);
+            Assert.IsType<BoundLiteral>(declaration.Initializer);
+
+            Assert.NotNull(declaration.Type);
+            Assert.IsType<PrimitiveType>(declaration.Type);
+
+            var type = (PrimitiveType)declaration.Type;
+            Assert.Equal("int", type.Name);
         }
 
         [Theory]
