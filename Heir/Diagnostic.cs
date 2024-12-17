@@ -51,15 +51,13 @@ namespace Heir
             var messageDisplay = Message;
             var locationDisplay = StartLocation.ToString();
 
-            var erroneousCodeLength = EndLocation.Position - StartLocation.Position;
             var erroneousCodeColumnLength = EndLocation.Column - StartLocation.Column;
             var erroneousCodeDistance = EndLocation.Column - erroneousCodeColumnLength;
             var erroneousCodeLineLength = EndLocation.Line - (StartLocation.Line - 1);
-            var lines = SourceFile.Source.Split('\n').Skip(StartLocation.Line - 2).Take(erroneousCodeLineLength + 1);
-            var erroneousCode = SourceFile.Source.Substring(StartLocation.Position, erroneousCodeLength);
+            var lines = SourceFile.Source.Split('\n').Skip(StartLocation.Line - 1).Take(erroneousCodeLineLength);
             var padding = string.Join("", Enumerable.Repeat(' ', EndLocation.Line.ToString().Length - 1));
             var codeDisplay = "";
-            var lineNumber = lines.Count() == 1 ? 0 : -1;
+            var lineNumber = 0;
             foreach (var line in lines)
             {
                 var offset = lineNumber++;
@@ -74,7 +72,7 @@ namespace Heir
                 messageDisplay = $"[silver]{messageDisplay}[/]";
                 locationDisplay = $"[silver]{locationDisplay}[/]";
                 codeDisplay = "";
-                lineNumber = lines.Count() == 1 ? 0 : -1;
+                lineNumber = 0;
                 foreach (var line in lines)
                 {
                     var offset = lineNumber++;

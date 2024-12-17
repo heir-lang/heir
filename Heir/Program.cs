@@ -11,10 +11,10 @@ object? evaluateFile(string filePath)
     var syntaxTree = parser.Parse();
     var binder = new Heir.Binder(syntaxTree);
     var boundSyntaxTree = binder.Bind();
-    Console.WriteLine(tokenStream.ToString());
+    //Console.WriteLine(tokenStream.ToString());
     //syntaxTree.Display();
     //boundSyntaxTree.Display();
-    Console.WriteLine();
+    //Console.WriteLine();
     if (boundSyntaxTree.Diagnostics.HasErrors())
     {
         AnsiConsole.MarkupLine(boundSyntaxTree.Diagnostics.ToString(true));

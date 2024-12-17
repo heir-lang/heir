@@ -231,6 +231,13 @@ namespace Heir
 
                         return null;
                     }
+                case ';':
+                    return SkipSemicolons(startLocation);
+
+                case '\r':
+                    return Lex();
+                case '\n':
+                    return SkipNewLines(startLocation);
 
                 default:
                     {
@@ -249,10 +256,6 @@ namespace Heir
                             return identifier;
                         } else if (char.IsDigit(current))
                             return ReadNumber(startLocation);
-                        else if (current == ';')
-                            return SkipSemicolons(startLocation);
-                        else if (current == '\r' || current == '\n')
-                            return SkipNewLines(startLocation);
                         else if (char.IsWhiteSpace(current))
                             return SkipWhitespace(startLocation);
 
@@ -336,7 +339,7 @@ namespace Heir
 
         private Token SkipWhitespace(Location location)
         {
-            while (char.IsWhiteSpace((char)_current!)) // fuck you C#
+            while (char.IsWhiteSpace((char)_current!) && _current != '\n') // fuck you C#
                 Advance();
 
             return TokenFactory.Trivia(TriviaKind.Whitespace, _currentLexeme, location, _currentLocation);
@@ -344,12 +347,11 @@ namespace Heir
 
         private Token SkipNewLines(Location location)
         {
-            while (_current == '\r' || _current == '\n')
+            _line++;
+            while (_current == '\n')
             {
-                var isNewLine = _current == '\n';
                 _position++; // Advance() but w/o adding to _column for performance reasons
-                if (isNewLine)
-                    _line++;
+                _line++;
             }
 
             _column = 0;
