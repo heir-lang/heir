@@ -56,21 +56,33 @@ namespace Heir.Tests
             Assert.Null(operation.Operand);
         }
 
+        [Fact]
+        public void Generates_Assignment()
+        {
+            var bytecode = GenerateBytecode("let mut a = 1; a = 2;").Skip(3);
+            var loadIdentifier = bytecode.Instructions[0];
+            var pushRight = bytecode.Instructions[1];
+            var store = bytecode.Instructions[2];
+        }
+
         [Theory]
-        [InlineData("let a = 1; a += 1", 1L, OpCode.ADD)]
-        [InlineData("let a = 1; a //= 2", 2L, OpCode.IDIV)]
+        [InlineData("let mut a = 1; a += 1", 1L, OpCode.ADD)]
+        [InlineData("let mut a = 1; a //= 2", 2L, OpCode.IDIV)]
         public void Generates_BinaryCompoundAssignment(string input, object? right, OpCode opCode)
         {
             var bytecode = GenerateBytecode(input).Skip(3);
-            var loadVar = bytecode.Instructions[0];
-            var loadVarAgain = bytecode.Instructions[1];
-            var pushRight = bytecode.Instructions[2];
-            var operation = bytecode.Instructions[3];
-            var store = bytecode.Instructions[4];
-            Assert.Equal(OpCode.LOAD, loadVar.OpCode);
-            Assert.Equal("a", loadVar.Operand);
-            Assert.Equal(OpCode.LOAD, loadVarAgain.OpCode);
-            Assert.Equal("a", loadVarAgain.Operand);
+            var pushIdentifier = bytecode.Instructions[0];
+            var pushIdentifierAgain = bytecode.Instructions[1];
+            var load = bytecode.Instructions[2];
+            var pushRight = bytecode.Instructions[3];
+            var operation = bytecode.Instructions[4];
+            var store = bytecode.Instructions[5];
+            Assert.Equal(OpCode.PUSH, pushIdentifier.OpCode);
+            Assert.Equal("a", pushIdentifier.Operand);
+            Assert.Equal(OpCode.PUSH, pushIdentifierAgain.OpCode);
+            Assert.Equal("a", pushIdentifierAgain.Operand);
+            Assert.Equal(OpCode.LOAD, load.OpCode);
+            Assert.Null(load.Operand);
             Assert.Equal(OpCode.PUSH, pushRight.OpCode);
             Assert.Equal(right, pushRight.Operand);
             Assert.Equal(opCode, operation.OpCode);
@@ -95,20 +107,23 @@ namespace Heir.Tests
         }
 
         [Theory]
-        [InlineData("let a = 1; ++a", OpCode.ADD)]
-        [InlineData("let a = 1; --a", OpCode.SUB)]
+        [InlineData("let mut a = 1; ++a", OpCode.ADD)]
+        [InlineData("let mut a = 1; --a", OpCode.SUB)]
         public void Generates_UnaryCompoundAssignment(string input, OpCode opCode)
         {
             var bytecode = GenerateBytecode(input).Skip(3);
-            var loadVar = bytecode.Instructions[0];
-            var loadVarAgain = bytecode.Instructions[1];
-            var pushOne = bytecode.Instructions[2];
-            var operation = bytecode.Instructions[3];
-            var store = bytecode.Instructions[4];
-            Assert.Equal(OpCode.LOAD, loadVar.OpCode);
-            Assert.Equal("a", loadVar.Operand);
-            Assert.Equal(OpCode.LOAD, loadVarAgain.OpCode);
-            Assert.Equal("a", loadVarAgain.Operand);
+            var pushIdentifier = bytecode.Instructions[0];
+            var pushIdentifierAgain = bytecode.Instructions[1];
+            var load = bytecode.Instructions[2];
+            var pushOne = bytecode.Instructions[3];
+            var operation = bytecode.Instructions[4];
+            var store = bytecode.Instructions[5];
+            Assert.Equal(OpCode.PUSH, pushIdentifier.OpCode);
+            Assert.Equal("a", pushIdentifier.Operand);
+            Assert.Equal(OpCode.PUSH, pushIdentifierAgain.OpCode);
+            Assert.Equal("a", pushIdentifierAgain.Operand);
+            Assert.Equal(OpCode.LOAD, load.OpCode);
+            Assert.Null(load.Operand);
             Assert.Equal(OpCode.PUSH, pushOne.OpCode);
             Assert.Equal(1, pushOne.Operand);
             Assert.Equal(opCode, operation.OpCode);

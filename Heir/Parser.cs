@@ -87,7 +87,7 @@ namespace Heir
                 Tokens.Match(SyntaxKind.AmpersandAmpersandEquals) ||
                 Tokens.Match(SyntaxKind.PipePipeEquals))
             {
-                if (!left.Is<IdentifierName>()) // && !left.Is<MemberAccess>()
+                if (!left.Is<Name>())
                     _diagnostics.Error("H008", $"Invalid assignment target, expected identifier or member access", left.GetFirstToken());
 
                 var op = Tokens.Previous!;

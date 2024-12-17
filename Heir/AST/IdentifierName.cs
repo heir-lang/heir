@@ -13,5 +13,7 @@ namespace Heir.AST
         {
             Console.Write($"{string.Concat(Enumerable.Repeat("  ", indent))}IdentifierName({Token.Text})");
         }
+
+        public override string ToString() => Token.Text;
     }
 }

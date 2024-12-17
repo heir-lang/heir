@@ -49,7 +49,7 @@ namespace Heir
             if (BoundBinaryOperator.OpCodeMap.TryGetValue(boundBinaryOp.Operator.Type, out var opCode))
                 return (!SyntaxFacts.BinaryCompoundAssignmentOperators.Contains(binaryOp.Operator.Kind) ?
                     combined.Append(new Instruction(binaryOp, opCode))
-                    : leftInstructions
+                    : new List<Instruction>([new Instruction(binaryOp.Left, OpCode.PUSH, ((Name)binaryOp.Left).ToString())])
                         .Concat(leftInstructions)
                         .Concat(rightInstructions)
                         .Append(new Instruction(binaryOp, opCode))
@@ -68,8 +68,14 @@ namespace Heir
                 SyntaxKind.Bang => value.Append(new Instruction(unaryOp, OpCode.NOT)),
                 SyntaxKind.Tilde => value.Append(new Instruction(unaryOp, OpCode.BNOT)),
                 SyntaxKind.Minus => value.Append(new Instruction(unaryOp, OpCode.UNM)),
-                SyntaxKind.PlusPlus => value.Concat(value.Append(new Instruction(unaryOp, OpCode.PUSH, 1)).Append(new Instruction(unaryOp, OpCode.ADD))).Append(new Instruction(unaryOp, OpCode.STORE)),
-                SyntaxKind.MinusMinus => value.Concat(value.Append(new Instruction(unaryOp, OpCode.PUSH, 1)).Append(new Instruction(unaryOp, OpCode.SUB))).Append(new Instruction(unaryOp, OpCode.STORE)),
+                SyntaxKind.PlusPlus => new List<Instruction>([new Instruction(unaryOp.Operand, OpCode.PUSH, ((Name)unaryOp.Operand).ToString())])
+                                        .Concat(value.Append(new Instruction(unaryOp, OpCode.PUSH, 1))
+                                        .Append(new Instruction(unaryOp, OpCode.ADD)))
+                                        .Append(new Instruction(unaryOp, OpCode.STORE)),
+                SyntaxKind.MinusMinus => new List<Instruction>([new Instruction(unaryOp.Operand, OpCode.PUSH, ((Name)unaryOp.Operand).ToString())])
+                                        .Concat(value.Append(new Instruction(unaryOp, OpCode.PUSH, 1))
+                                        .Append(new Instruction(unaryOp, OpCode.SUB)))
+                                        .Append(new Instruction(unaryOp, OpCode.STORE)),
 
                 _ => null!
             };
@@ -77,7 +83,11 @@ namespace Heir
             return bytecode.ToList();
         }
 
-        public List<Instruction> VisitIdentifierNameExpression(IdentifierName identifierName) => [new Instruction(identifierName, OpCode.LOAD, identifierName.Token.Text)];
+        public List<Instruction> VisitIdentifierNameExpression(IdentifierName identifierName) => [
+            new Instruction(identifierName, OpCode.PUSH, identifierName.Token.Text),
+            new Instruction(identifierName, OpCode.LOAD)
+        ];
+
         public List<Instruction> VisitParenthesizedExpression(Parenthesized parenthesized) => GenerateBytecode(parenthesized.Expression);
         public List<Instruction> VisitLiteralExpression(Literal literal) => [new Instruction(literal, literal.Token.Value != null ? OpCode.PUSH : OpCode.PUSHNONE, literal.Token.Value)];
 
