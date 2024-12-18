@@ -12,4 +12,12 @@ public class TypeCheckerTest
         Assert.True(diagnostics.HasErrors);
         Assert.Contains(diagnostics, diagnostic => diagnostic.Code == DiagnosticCode.H007);
     }
+
+    [Theory]
+    [InlineData("let mut x: int | char = 1; x = 'a';")]
+    public void DoesNotThrowWith(string input)
+    {
+        var diagnostics = TypeCheck(input);
+        Assert.False(diagnostics.HasErrors);
+    }
 }
