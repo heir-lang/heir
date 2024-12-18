@@ -1,12 +1,13 @@
-﻿using Heir.BoundAST;
+﻿using Heir.AST;
+using Heir.BoundAST;
 using Heir.Types;
 
 namespace Heir
 {
-    public class TypeChecker(BoundSyntaxTree syntaxTree) : BoundStatement.Visitor<object?>, BoundExpression.Visitor<object?>
+    public class TypeChecker(DiagnosticBag diagnostics, BoundSyntaxTree syntaxTree) : BoundStatement.Visitor<object?>, BoundExpression.Visitor<object?>
     {
+        private readonly DiagnosticBag _diagnostics = diagnostics;
         private readonly BoundSyntaxTree _syntaxTree = syntaxTree;
-        private readonly DiagnosticBag _diagnostics = syntaxTree.Diagnostics;
 
         public void Check() => Check(_syntaxTree);
 
@@ -15,7 +16,7 @@ namespace Heir
         public object? VisitBoundAssignmentOpExpression(BoundAssignmentOp assignmentOp)
         {
             Check(assignmentOp.Right);
-            Assert(assignmentOp.Right, assignmentOp.Operator.RightType);
+            Assert(assignmentOp.Right, assignmentOp.Left.Type);
             return null;
         }
 
@@ -77,7 +78,7 @@ namespace Heir
         private void Assert(BoundExpression node, BaseType type, string? message = null)
         {
             if (node.Type.IsAssignableTo(type)) return;
-            _diagnostics.Error(DiagnosticCode.H007, message ?? $"Type {node.Type.ToString()} is not assignable to type {type.ToString()}", node.GetFirstToken());
+            _diagnostics.Error(DiagnosticCode.H007, message ?? $"Type '{node.Type.ToString()}' is not assignable to type '{type.ToString()}'", node.GetFirstToken());
         }
     }
 }

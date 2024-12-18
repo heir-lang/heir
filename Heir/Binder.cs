@@ -11,11 +11,11 @@ namespace Heir
         Parameters
     }
 
-    public sealed class Binder(SyntaxTree syntaxTree) : Statement.Visitor<BoundStatement>, Expression.Visitor<BoundExpression>
+    public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : Statement.Visitor<BoundStatement>, Expression.Visitor<BoundExpression>
     {
         public SyntaxTree SyntaxTree { get; } = syntaxTree;
 
-        private readonly DiagnosticBag _diagnostics = syntaxTree.Diagnostics;
+        private readonly DiagnosticBag _diagnostics = diagnostics;
         private readonly Dictionary<SyntaxNode, BoundSyntaxNode> _boundNodes = [];
         private readonly Stack<Stack<VariableSymbol>> _variableScopes = [];
         private Context _context = Context.Global;
@@ -75,7 +75,7 @@ namespace Heir
             var boundOperator = BoundBinaryOperator.Bind(binaryOp.Operator, left.Type, right.Type);
             if (boundOperator == null)
             {
-                _diagnostics.Error(DiagnosticCode.H007, $"Cannot apply operator \"{binaryOp.Operator.Text}\" to operands of type \"{left.Type.ToString()}\" and \"{right.Type.ToString()}\"", binaryOp.Operator);
+                _diagnostics.Error(DiagnosticCode.H007, $"Cannot apply operator '{binaryOp.Operator.Text}' to operands of type '{left.Type.ToString()}' and '{right.Type.ToString()}'", binaryOp.Operator);
                 return new BoundNoOp();
             }
 
@@ -88,7 +88,7 @@ namespace Heir
             var boundOperator = BoundUnaryOperator.Bind(unaryOp.Operator, operand.Type);
             if (boundOperator == null)
             {
-                _diagnostics.Error(DiagnosticCode.H007, $"Cannot apply operator \"{unaryOp.Operator.Text}\" to operand of type \"{operand.Type.ToString()}\"", unaryOp.Operator);
+                _diagnostics.Error(DiagnosticCode.H007, $"Cannot apply operator '{unaryOp.Operator.Text}' to operand of type '{operand.Type.ToString()}'", unaryOp.Operator);
                 return new BoundNoOp();
             }
 
@@ -101,7 +101,7 @@ namespace Heir
             if (symbol == null)
                 return new BoundNoOp();
 
-            return new BoundIdentifierName(identifierName.Token, symbol.Type);
+            return new BoundIdentifierName(identifierName.Token, symbol);
         }
 
         public BoundExpression VisitLiteralExpression(Literal literal) => new BoundLiteral(literal.Token);

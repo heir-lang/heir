@@ -4,7 +4,6 @@ public sealed class HeirProgram
 {
     public HashSet<SourceFile> SourceFiles { get; private set; } = [];
 
-    private readonly List<DiagnosticBag> _diagnostics = [];
 
     public void LoadFile(SourceFile sourceFile) => SourceFiles.Add(sourceFile);
     public void LoadFiles(HashSet<SourceFile> sourceFiles)
@@ -15,7 +14,7 @@ public sealed class HeirProgram
 
     public object? Evaluate() =>
         SourceFiles
-        .Select(sourceFile => sourceFile.Evaluate())
+        .Select(sourceFile => sourceFile.Evaluate().Item1)
         .Where(result => result != null)
         .FirstOrDefault();
 }

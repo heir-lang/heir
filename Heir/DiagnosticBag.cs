@@ -6,7 +6,10 @@ namespace Heir
 {
     public sealed class DiagnosticBag(SourceFile sourceFile) : IEnumerable<Diagnostic>
     {
-        public bool HasErrors => _diagnostics.Any(diagnostic => diagnostic.Level == DiagnosticLevel.Error);
+        public bool HasErrors
+        {
+            get => _diagnostics.Any(diagnostic => diagnostic.Level == DiagnosticLevel.Error);
+        }
 
         private readonly SourceFile _sourceFile = sourceFile;
         private readonly HashSet<Diagnostic> _diagnostics = [];

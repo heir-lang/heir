@@ -31,24 +31,24 @@ namespace Heir
             return new(source, path, isMainFile);
         }
 
-        public object? Evaluate()
+        public (object?, VirtualMachine) Evaluate()
         {
             var bytecode = GenerateBytecode();
+            var vm = new VirtualMachine(bytecode);
             if (Diagnostics.HasErrors)
             {
                 WriteDiagnostics();
-                return null;
+                return (null, vm);
             }
 
-            var vm = new VirtualMachine(bytecode);
             var value = vm.Evaluate();
             if (Diagnostics.HasErrors)
             {
                 WriteDiagnostics();
-                return null;
+                return (null, vm);
             }
 
-            return IsMainFile ? value : null;
+            return (IsMainFile ? value : null, vm);
         }
 
         public Bytecode GenerateBytecode()
@@ -56,7 +56,7 @@ namespace Heir
             if (_bytecode != null)
                 return _bytecode;
 
-            var bytecodeGenerator = new BytecodeGenerator(TypeCheck());
+            var bytecodeGenerator = new BytecodeGenerator(Diagnostics, TypeCheck());
             _bytecode = bytecodeGenerator.GenerateBytecode();
 
             return _bytecode;
@@ -68,7 +68,7 @@ namespace Heir
                 return _binder;
 
             var binder = Bind();
-            var typeChecker = new TypeChecker(binder.GetBoundSyntaxTree());
+            var typeChecker = new TypeChecker(Diagnostics, binder.GetBoundSyntaxTree());
             typeChecker.Check();
 
             return binder;
@@ -79,7 +79,7 @@ namespace Heir
             if (_binder != null)
                 return _binder;
 
-            _binder = new Binder(Resolve());
+            _binder = new Binder(Diagnostics, Resolve());
             _binder.Bind();
 
             return _binder;
@@ -91,7 +91,7 @@ namespace Heir
                 return _syntaxTree;
 
             var syntaxTree = Parse();
-            var resolver = new Resolver(syntaxTree);
+            var resolver = new Resolver(Diagnostics, syntaxTree);
             resolver.Resolve();
 
             return syntaxTree;

@@ -5,14 +5,13 @@ using Heir.CodeGeneration;
 
 namespace Heir
 {
-    public sealed class BytecodeGenerator(Binder binder) : Statement.Visitor<List<Instruction>>, Expression.Visitor<List<Instruction>>
+    public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder) : Statement.Visitor<List<Instruction>>, Expression.Visitor<List<Instruction>>
     {
-        public DiagnosticBag Diagnostics { get; } = binder.SyntaxTree.Diagnostics;
-
+        private readonly DiagnosticBag _diagnostics = diagnostics;
         private readonly Binder _binder = binder;
         private readonly SyntaxTree _syntaxTree = binder.SyntaxTree;
 
-        public Bytecode GenerateBytecode() => new Bytecode(GenerateBytecode(_syntaxTree), Diagnostics);
+        public Bytecode GenerateBytecode() => new Bytecode(GenerateBytecode(_syntaxTree), _diagnostics);
 
         public List<Instruction> VisitSyntaxTree(SyntaxTree syntaxTree) =>
             GenerateStatementsBytecode(syntaxTree.Statements)
@@ -75,7 +74,7 @@ namespace Heir
                 ).ToList();
             }
 
-            Diagnostics.Error(DiagnosticCode.H008, $"Unsupported binary operator kind: {binaryOp.Operator.Kind}", binaryOp.Operator);
+            _diagnostics.Error(DiagnosticCode.H008, $"Unsupported binary operator kind: {binaryOp.Operator.Kind}", binaryOp.Operator);
             return NoOp(binaryOp);
         }
 

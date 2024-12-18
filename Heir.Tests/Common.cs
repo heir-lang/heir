@@ -9,52 +9,50 @@ internal static class Common
 {
     public static TokenStream Tokenize(string input)
     {
-        var lexer = new Lexer(new(input, "<testing>", true));
-        return lexer.GetTokens();
+        var sourceFile = CreateSourceFile(input);
+        return sourceFile.Tokenize();
     }
 
     public static SyntaxTree Parse(string input)
     {
-        var tokens = Tokenize(input);
-        var parser = new Parser(tokens);
-        return parser.Parse();
+        var sourceFile = CreateSourceFile(input);
+        return sourceFile.Parse();
     }
 
     public static DiagnosticBag Resolve(string input)
     {
-        var syntaxTree = Parse(input);
-        var resolver = new Resolver(syntaxTree);
-        resolver.Resolve();
+        var sourceFile = CreateSourceFile(input);
+        sourceFile.Resolve();
 
-        return syntaxTree.Diagnostics;
+        return sourceFile.Diagnostics;
     }
 
     public static BoundSyntaxTree Bind(string input)
     {
-        var syntaxTree = Parse(input);
-        var binder = new Binder(syntaxTree);
-        return binder.Bind();
+        var sourceFile = CreateSourceFile(input);
+        return sourceFile.Bind().GetBoundSyntaxTree();
+    }
+
+    public static DiagnosticBag TypeCheck(string input)
+    {
+        var sourceFile = CreateSourceFile(input);
+        sourceFile.TypeCheck();
+
+        return sourceFile.Diagnostics;
     }
 
     public static Bytecode GenerateBytecode(string input)
     {
-        var syntaxTree = Parse(input);
-        var binder = new Binder(syntaxTree);
-        binder.Bind();
-
-        var bytecodeGenerator = new BytecodeGenerator(binder);
-        return bytecodeGenerator.GenerateBytecode();
+        var sourceFile = CreateSourceFile(input);
+        return sourceFile.GenerateBytecode();
     }
 
     public static (object?, VirtualMachine) Evaluate(string input)
     {
-        var syntaxTree = Parse(input);
-        var binder = new Binder(syntaxTree);
-        binder.Bind();
-
-        var bytecodeGenerator = new BytecodeGenerator(binder);
-        var bytecode = bytecodeGenerator.GenerateBytecode();
-        var vm = new VirtualMachine(bytecode);
-        return (vm.Evaluate(), vm);
+        var sourceFile = CreateSourceFile(input);
+        return sourceFile.Evaluate();
     }
+
+    private static SourceFile CreateSourceFile(string input) => new(input, "<testing>", true);
+
 }
