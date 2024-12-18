@@ -1,8 +1,7 @@
-using Heir.AST;
-using Heir.BoundAST;
-using Heir.CodeGeneration;
-using Heir.Syntax;
 using Spectre.Console;
+using Heir.Syntax;
+using Heir.AST;
+using Heir.CodeGeneration;
 
 namespace Heir
 {
@@ -52,16 +51,27 @@ namespace Heir
             return IsMainFile ? value : null;
         }
 
-
         public Bytecode GenerateBytecode()
         {
             if (_bytecode != null)
                 return _bytecode;
 
-            var bytecodeGenerator = new BytecodeGenerator(Bind());
+            var bytecodeGenerator = new BytecodeGenerator(TypeCheck());
             _bytecode = bytecodeGenerator.GenerateBytecode();
 
             return _bytecode;
+        }
+
+        public Binder TypeCheck()
+        {
+            if (_binder != null)
+                return _binder;
+
+            var binder = Bind();
+            var typeChecker = new TypeChecker(binder.GetBoundSyntaxTree());
+            typeChecker.Check();
+
+            return binder;
         }
 
         public Binder Bind()

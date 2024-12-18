@@ -26,6 +26,7 @@ namespace Heir
             return (BoundSyntaxTree)Bind(SyntaxTree);
         }
 
+        public BoundSyntaxTree GetBoundSyntaxTree() => (BoundSyntaxTree)GetBoundNode(SyntaxTree);
         public BoundStatement GetBoundNode(Statement statement) => (BoundStatement)_boundNodes[statement];
         public BoundExpression GetBoundNode(Expression expression) => (BoundExpression)_boundNodes[expression];
         public BoundSyntaxNode GetBoundNode(SyntaxNode expression) => _boundNodes[expression];
