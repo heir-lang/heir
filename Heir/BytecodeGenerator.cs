@@ -37,6 +37,7 @@ namespace Heir
         public List<Instruction> VisitNoOp(NoOpStatement noOp) => NoOp(noOp);
         public List<Instruction> VisitNoOp(NoOpType noOp) => NoOp(noOp);
         public List<Instruction> VisitSingularTypeRef(SingularType singularType) => NoOp(singularType);
+        public List<Instruction> VisitUnionTypeRef(UnionType unionType) => NoOp(unionType);
 
         public List<Instruction> VisitAssignmentOpExpression(AssignmentOp assignmentOp) => VisitBinaryOpExpression(assignmentOp);
         public List<Instruction> VisitBinaryOpExpression(BinaryOp binaryOp)

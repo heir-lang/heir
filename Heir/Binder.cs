@@ -109,6 +109,7 @@ namespace Heir
         public BoundExpression VisitNoOp(NoOpType noOp) => new BoundNoOp();
         public BoundExpression VisitNoOp(NoOp noOp) => new BoundNoOp();
         public BoundExpression VisitSingularTypeRef(AST.SingularType singularType) => new BoundNoOp();
+        public BoundExpression VisitUnionTypeRef(AST.UnionType unionType) => new BoundNoOp();
 
         public BoundExpression VisitParenthesizedExpression(Parenthesized parenthesized)
         {

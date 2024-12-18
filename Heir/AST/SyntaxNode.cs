@@ -33,6 +33,7 @@ namespace Heir.AST
             public R VisitNoOp(NoOp noOp);
             public R VisitNoOp(NoOpType noOp);
             public R VisitSingularTypeRef(SingularType singularType);
+            public R VisitUnionTypeRef(UnionType unionType);
         }
     }
 

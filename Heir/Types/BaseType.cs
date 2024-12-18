@@ -20,6 +20,11 @@ namespace Heir.Types
 
                         return SyntaxFacts.PrimitiveTypeMap[singularType.Token.Kind];
                     }
+                case AST.UnionType unionType:
+                    {
+                        var types = unionType.Types.ConvertAll(FromTypeRef);
+                        return new UnionType(types);
+                    }
             }
 
             return PrimitiveType.None;

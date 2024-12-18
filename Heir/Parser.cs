@@ -1,5 +1,6 @@
 using Heir.Syntax;
 using Heir.AST;
+using System.Collections.Generic;
 
 namespace Heir
 {
@@ -57,15 +58,30 @@ namespace Heir
             return new VariableDeclaration(new IdentifierName(identifier), initializer, type, isMutable);
         }
 
-        private TypeRef ParseType() => ParseSingularType();
+        private TypeRef ParseType() => ParseUnionType();
 
-        private TypeRef ParseSingularType()
+        private TypeRef ParseUnionType()
+        {
+            var left = ParseSingularType();
+            if (Tokens.Match(SyntaxKind.Pipe))
+            {
+                var right = ParseUnionType();
+                var types = new List<SingularType>([left]);
+                if (right is UnionType union)
+                    types.AddRange(union.Types);
+                else
+                    types.Add((SingularType)right);
+
+                return new UnionType(types);
+            }
+
+            return left;
+        }
+
+        private SingularType ParseSingularType()
         {
             var token = Tokens.ConsumeType();
-            if (token == null)
-                return new NoOpType();
-
-            return new SingularType(token);
+            return new SingularType(token ?? Tokens.Previous!);
         }
 
         private Expression ParseExpression() => ParseAssignment();
