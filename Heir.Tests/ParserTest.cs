@@ -32,6 +32,30 @@ public class ParserTest
     }
 
     [Fact]
+    public void Parses_UnionTypes()
+    {
+        var tree = Parse("let y: int | char = 1");
+        var statement = tree.Statements.First();
+        Assert.IsType<VariableDeclaration>(statement);
+
+        var declaration = (VariableDeclaration)statement;
+        Assert.False(declaration.IsMutable);
+        Assert.NotNull(declaration.Initializer);
+        Assert.NotNull(declaration.TypeRef);
+        Assert.IsType<Literal>(declaration.Initializer);
+        Assert.IsType<UnionType>(declaration.TypeRef);
+
+        var unionType = (UnionType)declaration.TypeRef;
+        var intType = unionType.Types.First();
+        var charType = unionType.Types.Last();
+        Assert.IsType<SingularType>(intType);
+        Assert.IsType<SingularType>(charType);
+        Assert.Equal("int", intType.Token.Text);
+        Assert.Equal("char", charType.Token.Text);
+        Assert.Equal("y", declaration.Name.Token.Text);
+    }
+
+    [Fact]
     public void Parses_VariableDeclarations()
     {
         var tree = Parse("let x: int = 1");
