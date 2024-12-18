@@ -1,8 +1,8 @@
 # Heir
-toy language part 9999999
+toy (for now) bytecode interpreter
 
 ## Contributions
-Though I cannot guarantee the lifetime or dedication to this project, contributions are welcome and encouraged and I will look at them as soon as I see them.
+Though I cannot guarantee the lifetime or dedication to this project, contributions are welcome and encouraged and I will review them ASAP.
 
 ## Roadmap
 - [x] lexing
@@ -44,6 +44,15 @@ Though I cannot guarantee the lifetime or dedication to this project, contributi
       - [x] increment/decrement (`++`, `--`)
       - [x] compound assignment (`+=`, `-=`, `*=`, `/=`, `//=`, `%=`, `^=`)
 - [ ] parsing
+    - [ ] types
+        - [x] singular
+        - [x] union
+        - [ ] intersection
+        - [ ] literal
+        - [ ] array
+        - [ ] function
+        - [ ] interface
+        - [ ] class
     - [ ] control flow
         - [ ] if 
         - [ ] while 
@@ -64,7 +73,7 @@ Though I cannot guarantee the lifetime or dedication to this project, contributi
     - [x] literals
 - [x] scopes
 - [x] resolving
-- [ ] binding
-- [ ] typechecking
-- [ ] bytecode generator
+- [x] binding
+- [x] typechecking
+- [x] bytecode generator
 - [ ] hvm (heir virtual machine)
