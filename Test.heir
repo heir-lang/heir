@@ -1,5 +1,5 @@
-let x = {
-	a: true
-};
-
-x;
+let outer = "Outer";
+{
+	let outer = "Inner";
+	outer;
+}

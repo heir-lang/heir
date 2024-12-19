@@ -10,8 +10,8 @@ var testFile = SourceFile.FromPath("./Test.heir", isMainFile: true);
 //Console.WriteLine();
 //testFile.Bind().GetBoundNode(syntaxTree).Display();
 //Console.WriteLine();
-Console.WriteLine(testFile.GenerateBytecode().ToString());
-Console.WriteLine();
+//Console.WriteLine(testFile.GenerateBytecode().ToString());
+//Console.WriteLine();
 program.LoadFile(testFile);
 
 var result = program.Evaluate();

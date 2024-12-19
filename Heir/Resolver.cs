@@ -45,7 +45,9 @@ namespace Heir
         {
             var enclosingContext = _scopeContext;
             _scopeContext = ScopeContext.Block;
+            BeginScope();
             ResolveStatements(block.Statements);
+            EndScope();
             _scopeContext = enclosingContext;
 
             return null;
@@ -141,7 +143,7 @@ namespace Heir
             var scope = _scopes.LastOrDefault();
             if (scope?.ContainsKey(identifier.Text) ?? false)
             {
-                Diagnostics.Error(DiagnosticCode.H009, $"Variable '{identifier.Text}' is already declared is this scope", identifier);
+                Diagnostics.Error(DiagnosticCode.H009, $"Variable '{identifier.Text}' is already declared in this scope", identifier);
                 return;
             }
 

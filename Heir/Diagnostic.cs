@@ -62,7 +62,8 @@ namespace Heir
             foreach (var line in lines)
             {
                 var offset = lineNumber++;
-                codeDisplay += $"{StartLocation.Line + offset}{padding} | {line}\n";
+                var trimmed = line.Trim();
+                codeDisplay += $"{StartLocation.Line + offset}{padding} | {(line != trimmed ? " " + trimmed : trimmed)}\n";
             }
 
             codeDisplay += $" {padding} | {string.Join("", Enumerable.Repeat(' ', EndLocation.Column - StartLocation.Column - 1))}~\n";
@@ -77,7 +78,8 @@ namespace Heir
                 foreach (var line in lines)
                 {
                     var offset = lineNumber++;
-                    codeDisplay += $"[invert white]{StartLocation.Line + offset}{padding}[/] [grey]|[/] {(offset == 0 ? "[white]" : "[grey58]")}{line}[/]\n";
+                    var trimmed = line.Trim();
+                    codeDisplay += $"[invert white]{StartLocation.Line + offset}{padding}[/] [grey]|[/] {(offset == 0 ? "[white]" : "[grey58]")}{(line != trimmed ? " " + trimmed : trimmed)}[/]\n";
                 }
 
                 codeDisplay += $" {padding}   [red]{string.Join("", Enumerable.Repeat(' ', erroneousCodeDistance))}{string.Join("", Enumerable.Repeat('~', erroneousCodeColumnLength))}[/]\n";
