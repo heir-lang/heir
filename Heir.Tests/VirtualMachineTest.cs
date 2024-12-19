@@ -1,4 +1,5 @@
-﻿using static Heir.Tests.Common;
+﻿using Heir.Runtime;
+using static Heir.Tests.Common;
 
 namespace Heir.Tests;
 
@@ -34,6 +35,32 @@ public class VirtualMachineTest
         Assert.True(vm.Scope.IsDefined(name));
         Assert.Equal(expectedValue, vm.Scope.Lookup(name));
         Assert.Null(resultValue);
+    }
+
+    [Theory]
+    [InlineData("{ a: true }", "a", true)]
+    [InlineData("{ [\"a\"]: 69 }", "a", 69L)]
+    [InlineData("{ [1]: 420 }", 1L, 420L)]
+    public void Evaluates_ObjectLiterals(string input, object expectedKey, object? expectedValue)
+    {
+        var (resultValue, _) = Evaluate(input);
+        Assert.IsType<ObjectValue>(resultValue);
+
+        var objectValue = (ObjectValue)resultValue;
+        var key = objectValue.Keys.First();
+        var value = objectValue.Values.First();
+        Assert.Equal(expectedKey, key);
+        Assert.Equal(expectedValue, value);
+    }
+
+    [Fact]
+    public void Evaluates_EmptyObjectLiterals()
+    {
+        var (resultValue, _) = Evaluate("{}");
+        Assert.IsType<ObjectValue>(resultValue);
+
+        var objectValue = (ObjectValue)resultValue;
+        Assert.Empty(objectValue);
     }
 
     [Theory]
