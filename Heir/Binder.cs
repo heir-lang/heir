@@ -117,8 +117,9 @@ namespace Heir
                 var boundKey = Bind(pair.Key);
                 var keyType = boundKey switch
                 {
-                    BoundIdentifierName identifier => new LiteralType(identifier.Token.Text),
-                    BoundLiteral literal when literal.Token.Kind == SyntaxKind.StringLiteral => new LiteralType(literal.Token.Value),
+                    BoundLiteral literal when literal.Token.Kind == SyntaxKind.StringLiteral || literal.Token.Kind == SyntaxKind.IntLiteral =>
+                        new LiteralType(literal.Token.Value),
+
                     _ => boundKey.Type
                 };
 

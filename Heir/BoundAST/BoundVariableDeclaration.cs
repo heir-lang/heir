@@ -22,7 +22,7 @@ namespace Heir.BoundAST
             Console.WriteLine($"{string.Concat(Enumerable.Repeat("  ", indent + 1))}Initializer -> {(Initializer == null ? "none" : "")}");
             Initializer?.Display(indent + 2);
             Console.WriteLine(",");
-            Console.Write($"{string.Concat(Enumerable.Repeat("  ", indent + 1))}Mutable: {IsMutable}");
+            Console.WriteLine($"{string.Concat(Enumerable.Repeat("  ", indent + 1))}Mutable: {IsMutable}");
             Console.Write($"{string.Concat(Enumerable.Repeat("  ", indent))})");
         }
     }

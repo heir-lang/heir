@@ -47,11 +47,11 @@ namespace Heir
                 if (Tokens.Check(SyntaxKind.LBracket))
                 {
                     var offset = 1;
-                    while (!Tokens.Check(SyntaxKind.RBracket, offset++));
+                    while (!Tokens.Check(SyntaxKind.RBracket, ++offset))
+                    offset++;
 
                     if (Tokens.Check(SyntaxKind.Colon, offset + 1))
                         return new ExpressionStatement(ParseObject(token));
-
                 }
 
                 return ParseBlock();
@@ -355,7 +355,7 @@ namespace Heir
 
                 case SyntaxKind.LBrace:
                     {
-                        var brace = Tokens.Previous!;
+                        var brace = token.TransformKind(SyntaxKind.ObjectLiteral);
                         if (Tokens.Match(SyntaxKind.RBrace))
                             return new ObjectLiteral(brace, []);
 

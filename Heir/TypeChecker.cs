@@ -55,6 +55,7 @@ namespace Heir
                         continue;
                     }
 
+                    // pretty sure this check is quite literally useless
                     _diagnostics.Error(DiagnosticCode.H013, $"Index signature for '{property.Key.ToString()}' does not exist on '{objectLiteral.Type.Name}'", objectLiteral.Token);
                 }
             }

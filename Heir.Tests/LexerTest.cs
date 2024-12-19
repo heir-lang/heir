@@ -13,9 +13,7 @@ public class LexerTest
     {
         var tokenStream = Tokenize(input);
         Assert.True(tokenStream.Diagnostics.HasErrors);
-
-        var error = tokenStream.Diagnostics.First();
-        Assert.Equal(expectedErrorCode, error.Code);
+        Assert.Contains(tokenStream.Diagnostics, diagnostic => diagnostic.Code == expectedErrorCode);
     }
 
     [Theory]

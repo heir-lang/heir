@@ -14,7 +14,7 @@ namespace Heir.AST
             foreach (var statement in Statements)
                 statement.Display(indent + 1);
 
-            Console.Write($"{string.Concat(Enumerable.Repeat("  ", indent))})");
+            Console.WriteLine($"{string.Concat(Enumerable.Repeat("  ", indent))})");
         }        
 
         public override List<Token> GetTokens() =>

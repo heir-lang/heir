@@ -128,7 +128,11 @@ namespace Heir
                     .ToList()
                     .ConvertAll<KeyValuePair<List<Instruction>, List<Instruction>>>(property =>
                     {
-                        var key = GenerateBytecode(property.Key);
+                        Expression keyExpression = property.Key;
+                        if (keyExpression is IdentifierName identifier)
+                            keyExpression = new Literal(TokenFactory.StringFromIdentifier(identifier.Token));
+
+                        var key = GenerateBytecode(keyExpression);
                         var value = GenerateBytecode(property.Value);
                         return new(key, value);
                     })

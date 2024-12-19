@@ -1,4 +1,5 @@
 ﻿using Heir.BoundAST;
+using Heir.Syntax;
 using Heir.Types;
 using static Heir.Tests.Common;
 
@@ -69,6 +70,34 @@ public class BinderTest
 
         var type = (PrimitiveType)declaration.Type;
         Assert.Equal("int", type.Name);
+    }
+
+    [Theory]
+    [InlineData("{ a: true }", "a")]
+    [InlineData("{ [\"a\"]: true }", "a")]
+    [InlineData("{ [1]: true }", 1L)]
+    public void Parses_ObjectLiterals(string input, object? keyValue)
+    {
+        var boundTree = Bind(input);
+        var statement = boundTree.Statements.First();
+        Assert.IsType<BoundExpressionStatement>(statement);
+
+        var node = ((BoundExpressionStatement)statement).Expression;
+        Assert.IsType<BoundObjectLiteral>(node);
+
+        var objectLiteral = (BoundObjectLiteral)node;
+        Assert.Single(objectLiteral.Properties);
+
+        var keyType = objectLiteral.Properties.Keys.First();
+        var value = objectLiteral.Properties.Values.First();
+        Assert.IsType<LiteralType>(keyType);
+        Assert.IsType<PrimitiveType>(value.Type);
+        Assert.IsType<BoundLiteral>(value);
+
+        var keyLiteralType = (LiteralType)keyType;
+        var valueLiteralType = (PrimitiveType)value.Type;
+        Assert.Equal(keyValue, keyLiteralType.Value);
+        Assert.Equal(PrimitiveTypeKind.Bool, valueLiteralType.PrimitiveKind);
     }
 
     [Theory]

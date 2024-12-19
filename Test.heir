@@ -1,5 +1,1 @@
-let outer = "Outer";
-{
-	let outer = "Inner";
-	outer;
-}
+{ [1]: false }

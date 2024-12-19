@@ -2,6 +2,7 @@ using Heir.CodeGeneration;
 using static Heir.Tests.Common;
 
 namespace Heir.Tests;
+using ObjectBytecode = Dictionary<List<Instruction>, List<Instruction>>;
 
 public class BytecodeGeneratorTest
 {
@@ -12,6 +13,23 @@ public class BytecodeGeneratorTest
         var instruction = bytecode.Instructions.Last();
         Assert.Equal(OpCode.EXIT, instruction.OpCode);
         Assert.Null(instruction.Operand);
+    }
+
+    [Fact]
+    public void GeneratesPushObject_ObjectLiterals()
+    {
+        var bytecode = GenerateBytecode("{ a: true }");
+        var pushObject = bytecode.Instructions.First();
+        Assert.Equal(OpCode.PUSHOBJECT, pushObject.OpCode);
+        Assert.IsType<ObjectBytecode>(pushObject.Operand);
+
+        var objectBytecode = (ObjectBytecode)pushObject.Operand;
+        var keyBytecode = objectBytecode.Keys.First();
+        var valueBytecode = objectBytecode.Values.First();
+        var pushA = keyBytecode.First();
+        var pushTrue = valueBytecode.First();
+        Assert.Equal("a", pushA.Operand);
+        Assert.Equal(true, pushTrue.Operand);
     }
 
     [Fact]

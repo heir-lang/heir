@@ -218,6 +218,38 @@ public class ParserTest
         }
     }
 
+
+    [Theory]
+    [InlineData("{ a: true }", SyntaxKind.StringLiteral, 1)]
+    [InlineData("{ [\"a\"]: true }", SyntaxKind.StringLiteral, 1)]
+    [InlineData("{ [1]: true }", SyntaxKind.IntLiteral, 1)]
+    [InlineData("{}", SyntaxKind.Comma, 0)] // syntaxkind doesnt matter
+    public void Parses_ObjectLiterals(string input, SyntaxKind keyLiteralKind, int propertyCount)
+    {
+        var tree = Parse(input);
+        var statement = tree.Statements.First();
+        Assert.IsType<ExpressionStatement>(statement);
+
+        var node = ((ExpressionStatement)statement).Expression;
+        Assert.IsType<ObjectLiteral>(node);
+
+        var objectLiteral = (ObjectLiteral)node;
+        Assert.Equal(propertyCount, objectLiteral.Properties.Count);
+
+        if (objectLiteral.Properties.Count > 0)
+        {
+            var key = objectLiteral.Properties.Keys.First();
+            var value = objectLiteral.Properties.Values.First();
+            Assert.IsType<Literal>(key);
+            Assert.IsType<Literal>(value);
+
+            var keyLiteral = (Literal)key;
+            var valueLiteral = (Literal)value;
+            Assert.Equal(keyLiteralKind, keyLiteral.Token.Kind);
+            Assert.Equal(SyntaxKind.BoolLiteral, valueLiteral.Token.Kind);
+        }
+    }
+
     [Theory]
     [InlineData("\"abc\"")]
     [InlineData("'a'")]
