@@ -6,6 +6,7 @@
         ENDSCOPE,
 
         PUSH,
+        PUSHOBJECT,
         PUSHNONE,
         POP,
         JMP,

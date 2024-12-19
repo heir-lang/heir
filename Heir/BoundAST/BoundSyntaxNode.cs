@@ -33,6 +33,7 @@ namespace Heir.BoundAST
             public R VisitBoundBinaryOpExpression(BoundBinaryOp binaryOp);
             public R VisitBoundParenthesizedExpression(BoundParenthesized parenthesized);
             public R VisitBoundLiteralExpression(BoundLiteral literal);
+            public R VisitBoundObjectLiteralExpression(BoundObjectLiteral objectLiteral);
             public R VisitBoundNoOp(BoundNoOp noOp);
         }
     }

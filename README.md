@@ -58,12 +58,15 @@ Though I cannot guarantee the lifetime or dedication to this project, contributi
         - [ ] while 
         - [ ] for 
         - [ ] switch
-    - [ ] blocks
+    - [x] blocks
     - [x] variable declaration
     - [x] statements
     - [ ] indexing (`a["b"]`)
     - [ ] dot access (`a.b`)
     - [ ] method calls
+    - [ ] method declaration
+    - [ ] array literals
+    - [x] object literals
     - [x] compound assignment
     - [x] assignment
     - [x] identifiers

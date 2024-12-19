@@ -23,17 +23,31 @@ namespace Heir.Syntax
         {
             return new TokenStream(Diagnostics, _tokens.Where(token => !token.IsKind(SyntaxKind.Trivia)).ToArray());
         }
-        
+
         public bool Match(SyntaxKind kind)
         {
-            var token = Current;
-            if (token == null) return false;
-
-            var isMatch = token.IsKind(kind);
+            var isMatch = Check(kind);
             if (isMatch)
                 Advance();
 
             return isMatch;
+        }
+
+        public bool CheckSequential(HashSet<SyntaxKind> kinds, int startOffset = 0)
+        {
+            var offset = startOffset;
+            return kinds.All(kind => Check(kind, offset++));
+        }
+
+        public bool CheckSet(HashSet<SyntaxKind> kinds, int offset = 0) => kinds.Any(kind => Check(kind, offset));
+
+        public bool Check(SyntaxKind kind, int offset = 0)
+        {
+            var token = Peek(offset);
+            if (token == null)
+                return false;
+
+            return token.IsKind(kind);
         }
 
         public Token? ConsumeType()

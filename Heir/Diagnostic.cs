@@ -26,7 +26,8 @@ namespace Heir
         H009,
         H010,
         H011,
-        H012
+        H012,
+        H013
     }
 
     public enum DiagnosticLevel : byte

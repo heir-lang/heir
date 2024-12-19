@@ -84,6 +84,16 @@ namespace Heir
         }
 
         public object? VisitLiteralExpression(Literal literal) => null;
+        public object? VisitObjectLiteralExpression(ObjectLiteral objectLiteral)
+        {
+            foreach (var pair in objectLiteral.Properties)
+            {
+                Resolve(pair.Key);
+                Resolve(pair.Value);
+            }
+            return null;
+        }
+
         public object? VisitNoOp(NoOp noOp) => null;
         public object? VisitNoOp(NoOpType noOp) => null;
 

@@ -1,6 +1,5 @@
 using Heir.Syntax;
 using Heir.AST;
-using System.Collections.Generic;
 
 namespace Heir
 {
@@ -22,13 +21,79 @@ namespace Heir
             return new(statements, _diagnostics);
         }
 
+        private List<Statement> ParseStatementsUntil(Func<bool> predicate)
+        {
+            var statements = new List<Statement>();
+            while (!predicate())
+                statements.Add(ParseStatement());
+
+            return statements;
+        }
+
         private Statement ParseStatement()
         {
             if (Tokens.Match(SyntaxKind.LetKeyword))
                 return ParseVariableDeclaration();
 
+            if (Tokens.Match(SyntaxKind.LBrace))
+            {
+                var token = Tokens.Previous!.TransformKind(SyntaxKind.ObjectLiteral);
+                if (Tokens.Match(SyntaxKind.RBrace))
+                    return new ExpressionStatement(new ObjectLiteral(token, []));
+
+                if (Tokens.CheckSequential([SyntaxKind.Identifier, SyntaxKind.Colon]))
+                    return new ExpressionStatement(ParseObject(token));
+
+                if (Tokens.Check(SyntaxKind.LBracket))
+                {
+                    var offset = 1;
+                    while (!Tokens.Check(SyntaxKind.RBracket, offset++));
+
+                    if (Tokens.Check(SyntaxKind.Colon, offset + 1))
+                        return new ExpressionStatement(ParseObject(token));
+
+                }
+
+                return ParseBlock();
+            }
+
             var expression = ParseExpression();
             return new ExpressionStatement(expression);
+        }
+
+        private Block ParseBlock()
+        {
+            var statements = ParseStatementsUntil(() => Tokens.Match(SyntaxKind.RBrace));
+            return new(statements);
+        }
+
+        private ObjectLiteral ParseObject(Token token)
+        {
+            var keyValuePairs = new List<KeyValuePair<Expression, Expression>> { ParseObjectKeyValuePair() };
+            while (Tokens.Match(SyntaxKind.Comma) && !Tokens.Check(SyntaxKind.RBrace))
+                keyValuePairs.Add(ParseObjectKeyValuePair());
+            
+            Tokens.Consume(SyntaxKind.RBrace);
+            return new(token, new(keyValuePairs));
+        }
+
+        private KeyValuePair<Expression, Expression> ParseObjectKeyValuePair()
+        {
+            Expression key;
+            if (Tokens.Match(SyntaxKind.LBracket))
+            {
+                key = ParseExpression();
+                Tokens.Consume(SyntaxKind.RBracket);
+            }
+            else
+            {
+                var identifier = Tokens.Consume(SyntaxKind.Identifier)!;
+                key = new Literal(TokenFactory.StringFromIdentifier(identifier));
+            }
+
+            Tokens.Consume(SyntaxKind.Colon);
+            var value = ParseExpression();
+            return new(key, value);
         }
 
         private Statement ParseVariableDeclaration()
@@ -286,6 +351,15 @@ namespace Heir
 
                         Tokens.Consume(SyntaxKind.RParen);
                         return new Parenthesized(expression);
+                    }
+
+                case SyntaxKind.LBrace:
+                    {
+                        var brace = Tokens.Previous!;
+                        if (Tokens.Match(SyntaxKind.RBrace))
+                            return new ObjectLiteral(brace, []);
+
+                        return ParseObject(brace);
                     }
             }
 

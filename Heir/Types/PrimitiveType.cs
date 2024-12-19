@@ -31,7 +31,6 @@
 
         public static PrimitiveType FromValue(object? value)
         {
-            // TODO: do something with _ or "not null" patterns
             var primitiveTypeKind = value switch
             {
                 long => PrimitiveTypeKind.Int,
@@ -39,7 +38,9 @@
                 string => PrimitiveTypeKind.String,
                 char => PrimitiveTypeKind.Char,
                 bool => PrimitiveTypeKind.Bool,
-                null => PrimitiveTypeKind.None
+                null => PrimitiveTypeKind.None,
+
+                _ => PrimitiveTypeKind.None
             };
 
             return new(primitiveTypeKind);

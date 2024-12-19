@@ -1,10 +1,13 @@
 ﻿using Heir.AST;
+using Heir.Binding;
 using Heir.BoundAST;
 using Heir.Syntax;
 using Heir.Types;
 
 namespace Heir
 {
+    using PropertyPair = KeyValuePair<LiteralType, InterfaceMemberSignature>;
+
     enum Context
     {
         Global,
@@ -105,6 +108,49 @@ namespace Heir
         }
 
         public BoundExpression VisitLiteralExpression(Literal literal) => new BoundLiteral(literal.Token);
+        public BoundExpression VisitObjectLiteralExpression(ObjectLiteral objectLiteral)
+        {
+            var propertyPairs = objectLiteral.Properties.ToList();
+            var properties = new Dictionary<BaseType, BoundExpression>();
+            foreach (var pair in propertyPairs)
+            {
+                var boundKey = Bind(pair.Key);
+                var keyType = boundKey switch
+                {
+                    BoundIdentifierName identifier => new LiteralType(identifier.Token.Text),
+                    BoundLiteral literal when literal.Token.Kind == SyntaxKind.StringLiteral => new LiteralType(literal.Token.Value),
+                    _ => boundKey.Type
+                };
+
+                properties.Add(keyType, Bind(pair.Value));
+            }
+
+            
+            var indexSignatures = new Dictionary<PrimitiveType, BaseType>();
+            var pairs = properties.ToList();
+            var typeProperties = new List<PropertyPair>();
+            foreach (var pair in pairs)
+            {
+                if (pair.Key is LiteralType literalType)
+                {
+                    typeProperties.Add(new(literalType, new(pair.Value.Type, isMutable: true)));
+                    continue;
+                }
+
+                if (!pair.Key.IsAssignableTo(IntrinsicTypes.Index))
+                {
+                    var index = pairs.IndexOf(pair);
+                    var expressionPair = propertyPairs[index];
+                    _diagnostics.Error(DiagnosticCode.H007, "An index signature type must be 'string' or 'int'", expressionPair.Key.GetFirstToken());
+                }
+
+                indexSignatures.Add((PrimitiveType)pair.Key, pair.Value.Type);
+            }
+
+            var type = new InterfaceType(new(typeProperties), indexSignatures);
+            return new BoundObjectLiteral(objectLiteral.Token, properties, type);
+        }
+
         public BoundStatement VisitNoOp(NoOpStatement noOp) => new BoundNoOpStatement();
         public BoundExpression VisitNoOp(NoOpType noOp) => new BoundNoOp();
         public BoundExpression VisitNoOp(NoOp noOp) => new BoundNoOp();

@@ -1,2 +1,5 @@
-let mut x: int | char = 1;
-x = 'a';
+let x = {
+	a: true
+};
+
+x;

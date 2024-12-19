@@ -1,4 +1,5 @@
-﻿using Heir.Syntax;
+﻿using Heir.Binding;
+using Heir.Syntax;
 using Heir.Types;
 
 namespace Heir.BoundAST

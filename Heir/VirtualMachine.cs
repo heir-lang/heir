@@ -1,5 +1,6 @@
 ﻿using Heir.AST;
 using Heir.CodeGeneration;
+using Heir.Runtime;
 
 namespace Heir
 {
@@ -80,6 +81,28 @@ namespace Heir
                     _stack.Push(CreateStackFrameFromInstruction());
                     Advance();
                     break;
+                case OpCode.PUSHOBJECT:
+                    {
+                        var bytecodeDictionaryFrame = CreateStackFrameFromInstruction();
+                        var bytecodeDictionary = (Dictionary<List<Instruction>, List<Instruction>>)bytecodeDictionaryFrame.Value!;
+                        var evaluatedDictionary = new ObjectValue(
+                            bytecodeDictionary
+                                .ToList()
+                                .ConvertAll(pair =>
+                                {
+                                    var keyVM = new VirtualMachine(new(pair.Key, Diagnostics));
+                                    var valueVM = new VirtualMachine(new(pair.Value, Diagnostics));
+                                    var key = keyVM.Evaluate()!;
+                                    var value = valueVM.Evaluate();
+                                    return new KeyValuePair<object, object?>(key, value);
+                                })
+                        );
+
+                        _stack.Push(new(bytecodeDictionaryFrame.Node, evaluatedDictionary));
+                        Advance();
+                        break;
+                    }
+
                 case OpCode.POP:
                     {
                         _stack.Pop();

@@ -1,5 +1,7 @@
 ﻿using Heir.AST;
+using Heir.Binding;
 using Heir.BoundAST;
+using Heir.Syntax;
 using Heir.Types;
 
 namespace Heir
@@ -33,8 +35,33 @@ namespace Heir
 
         public object? VisitBoundExpressionStatement(BoundExpressionStatement expressionStatement) => Check(expressionStatement.Expression);
 
-        public object? VisitBoundIdentifierNameExpression(BoundIdentifierName identifierName) => null;
         public object? VisitBoundLiteralExpression(BoundLiteral literal) => null;
+        public object? VisitBoundObjectLiteralExpression(BoundObjectLiteral objectLiteral)
+        {
+            foreach (var property in objectLiteral.Properties)
+            {
+                Check(property.Value);
+                if (property.Key is LiteralType literalType)
+                {
+                    var signature = GetInterfaceMemberSignature(objectLiteral.Type, literalType, objectLiteral.Token);
+                    if (signature == null) continue;
+                    Assert(property.Value, signature.ValueType);
+                }
+                else
+                {
+                    if (property.Key.IsAssignableTo(IntrinsicTypes.Index) && objectLiteral.Type.IndexSignatures.TryGetValue((PrimitiveType)property.Key, out var valueType))
+                    {
+                        Assert(property.Value, valueType);
+                        continue;
+                    }
+
+                    _diagnostics.Error(DiagnosticCode.H013, $"Index signature for '{property.Key.ToString()}' does not exist on '{objectLiteral.Type.Name}'", objectLiteral.Token);
+                }
+            }
+            return null;
+        }
+
+        public object? VisitBoundIdentifierNameExpression(BoundIdentifierName identifierName) => null;
         public object? VisitBoundNoOp(BoundNoOp noOp) => null;
         public object? VisitBoundNoOp(BoundNoOpStatement noOp) => null;
 
@@ -55,6 +82,17 @@ namespace Heir
             // TODO: forgo this assertion if the initializer is an ArrayType
             Assert(variableDeclaration.Initializer, variableDeclaration.Symbol.Type);
             return null;
+        }
+
+        private InterfaceMemberSignature? GetInterfaceMemberSignature(InterfaceType interfaceType, LiteralType propertyName, Token token)
+        {
+            if (!interfaceType.Members.TryGetValue(propertyName, out var valueType))
+            {
+                _diagnostics.Error(DiagnosticCode.H013, $"Property '{propertyName.Value}' does not exist on '${interfaceType.Name}'", token);
+                return null;
+            }
+
+            return valueType;
         }
 
         private object? CheckStatements(List<BoundStatement> statements)

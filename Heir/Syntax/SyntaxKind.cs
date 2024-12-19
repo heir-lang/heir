@@ -63,6 +63,7 @@
         StringLiteral,
         CharLiteral,
         BoolLiteral,
+        ObjectLiteral,
 
         LetKeyword, // keywords
         MutKeyword,

@@ -30,6 +30,7 @@ namespace Heir.AST
             public R VisitBinaryOpExpression(BinaryOp binaryOp);
             public R VisitParenthesizedExpression(Parenthesized parenthesized);
             public R VisitLiteralExpression(Literal literal);
+            public R VisitObjectLiteralExpression(ObjectLiteral objectLiteral);
             public R VisitNoOp(NoOp noOp);
             public R VisitNoOp(NoOpType noOp);
             public R VisitSingularTypeRef(SingularType singularType);

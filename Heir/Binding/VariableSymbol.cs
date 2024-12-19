@@ -1,7 +1,7 @@
 ﻿using Heir.Syntax;
 using Heir.Types;
 
-namespace Heir
+namespace Heir.Binding
 {
     public sealed class VariableSymbol(Token name, BaseType type, bool isMutable) : VariableSymbol<BaseType>(name, type, isMutable);
 

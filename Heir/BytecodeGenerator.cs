@@ -118,7 +118,24 @@ namespace Heir
         ];
 
         public List<Instruction> VisitParenthesizedExpression(Parenthesized parenthesized) => GenerateBytecode(parenthesized.Expression);
-        public List<Instruction> VisitLiteralExpression(Literal literal) => [new Instruction(literal, literal.Token.Value != null ? OpCode.PUSH : OpCode.PUSHNONE, literal.Token.Value)];
+        public List<Instruction> VisitLiteralExpression(Literal literal) =>
+            [new Instruction(literal, literal.Token.Value != null ? OpCode.PUSH : OpCode.PUSHNONE, literal.Token.Value)];
+        public List<Instruction> VisitObjectLiteralExpression(ObjectLiteral objectLiteral)
+        {
+            // store objects as dictionaries, for now (this may be permanent tbh)
+            var objectValue = new Dictionary<List<Instruction>, List<Instruction>>(
+                objectLiteral.Properties
+                    .ToList()
+                    .ConvertAll<KeyValuePair<List<Instruction>, List<Instruction>>>(property =>
+                    {
+                        var key = GenerateBytecode(property.Key);
+                        var value = GenerateBytecode(property.Value);
+                        return new(key, value);
+                    })
+            );
+
+            return [new Instruction(objectLiteral, OpCode.PUSHOBJECT, objectValue)];
+        }
 
         private List<Instruction> PushName(Name name) => [new Instruction(name, OpCode.PUSH, name.ToString())];
         private List<Instruction> NoOp(SyntaxNode node) => [new Instruction(node, OpCode.NOOP)];

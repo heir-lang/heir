@@ -8,14 +8,8 @@
         public Location StartLocation { get; } = startLocation;
         public Location EndLocation { get; } = endLocation;
 
-        public bool IsKind(SyntaxKind kind)
-        {
-            return Kind == kind;
-        }
-
-        public override string ToString()
-        {
-            return $"{Kind}: {(Value == null ? "null" : Value.ToString())} ({Text})    -> {StartLocation.ToString()} - {EndLocation.ToString()}";
-        }
+        public Token TransformKind(SyntaxKind kind) => new(kind, Text, Value, StartLocation, EndLocation);
+        public bool IsKind(SyntaxKind kind) => Kind == kind;
+        public override string ToString() => $"{Kind}: {(Value == null ? "null" : Value.ToString())} ({Text})    -> {StartLocation.ToString()} - {EndLocation.ToString()}";
     }
 }
