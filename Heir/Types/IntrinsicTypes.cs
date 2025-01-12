@@ -1,19 +1,18 @@
-﻿namespace Heir.Types
+﻿namespace Heir.Types;
+
+public static class IntrinsicTypes
 {
-    public static class IntrinsicTypes
-    {
-        public static AnyType Any = new();
-        public static UnionType Index = new UnionType([
-            PrimitiveType.Int,
-            PrimitiveType.String
-        ]);
-        public static UnionType Number = new UnionType([
-            PrimitiveType.Int,
-            PrimitiveType.Float
-        ]);
-        public static UnionType StringOrChar = new UnionType([
-            PrimitiveType.String,
-            PrimitiveType.Char
-        ]);
-    }
+    public static readonly AnyType Any = new();
+    public static readonly UnionType Index = new([
+        PrimitiveType.Int,
+        PrimitiveType.String
+    ]);
+    public static readonly UnionType Number = new([
+        PrimitiveType.Int,
+        PrimitiveType.Float
+    ]);
+    public static readonly UnionType StringOrChar = new([
+        PrimitiveType.String,
+        PrimitiveType.Char
+    ]);
 }

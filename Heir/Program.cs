@@ -15,5 +15,6 @@ syntaxTree.Display();
 program.LoadFile(testFile);
 
 var result = program.Evaluate();
-var resultString = result is ObjectValue objectValue ? objectValue.ToString() : result ?? "none";
+var indent = 0;
+var resultString = result is ObjectValue objectValue ? objectValue.ToString(ref indent) : result ?? "none";
 Console.WriteLine(resultString); // TODO: some sort of repr function

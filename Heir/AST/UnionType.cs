@@ -3,12 +3,12 @@ using Heir.Syntax;
 
 namespace Heir.AST;
 
-public class UnionType(List<SingularType> types) : TypeRef
+public class UnionType(List<TypeRef> types) : TypeRef
 {
-    public List<SingularType> Types { get; } = types;
+    public List<TypeRef> Types { get; } = types;
 
     public override R Accept<R>(Visitor<R> visitor) => visitor.VisitUnionTypeRef(this);
-    public override List<Token> GetTokens() => Types.ConvertAll(type => type.Token);
+    public override List<Token> GetTokens() => Types.SelectMany(type => type.GetTokens()).ToList();
 
     public override void Display(int indent = 0)
     {
@@ -18,6 +18,6 @@ public class UnionType(List<SingularType> types) : TypeRef
             type.Display(indent + 1);
             Console.WriteLine(",");
         }
-        Console.WriteLine(")");
+        Console.Write($"{string.Concat(Enumerable.Repeat("  ", indent))})");
     }
 }

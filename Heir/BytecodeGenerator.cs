@@ -8,11 +8,9 @@ namespace Heir
 {
     public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder) : Statement.Visitor<List<Instruction>>, Expression.Visitor<List<Instruction>>
     {
-        private readonly DiagnosticBag _diagnostics = diagnostics;
-        private readonly Binder _binder = binder;
         private readonly SyntaxTree _syntaxTree = binder.SyntaxTree;
 
-        public Bytecode GenerateBytecode() => new Bytecode(GenerateBytecode(_syntaxTree), _diagnostics);
+        public Bytecode GenerateBytecode() => new(GenerateBytecode(_syntaxTree), diagnostics);
 
         public List<Instruction> VisitSyntaxTree(SyntaxTree syntaxTree) =>
             GenerateStatementsBytecode(syntaxTree.Statements)
@@ -39,12 +37,12 @@ namespace Heir
         public List<Instruction> VisitNoOp(NoOpType noOp) => NoOp(noOp);
         public List<Instruction> VisitSingularTypeRef(SingularType singularType) => NoOp(singularType);
         public List<Instruction> VisitUnionTypeRef(UnionType unionType) => NoOp(unionType);
+        public List<Instruction> VisitIntersectionTypeRef(IntersectionType intersectionType) => NoOp(intersectionType);
 
         public List<Instruction> VisitAssignmentOpExpression(AssignmentOp assignmentOp) => VisitBinaryOpExpression(assignmentOp);
         public List<Instruction> VisitBinaryOpExpression(BinaryOp binaryOp)
         {
-            var boundBinaryOp = _binder.GetBoundNode(binaryOp) as BoundBinaryOp;
-            if (boundBinaryOp == null)
+            if (binder.GetBoundNode(binaryOp) is not BoundBinaryOp boundBinaryOp)
                 return NoOp(binaryOp);
 
             var leftInstructions = GenerateBytecode(binaryOp.Left);
@@ -66,8 +64,8 @@ namespace Heir
 
             if (BoundBinaryOperator.OpCodeMap.TryGetValue(boundOperatorType, out var opCode))
             {
-                return (!SyntaxFacts.BinaryCompoundAssignmentOperators.Contains(binaryOp.Operator.Kind) ?
-                    combined.Append(new Instruction(binaryOp, opCode))
+                return (!SyntaxFacts.BinaryCompoundAssignmentOperators.Contains(binaryOp.Operator.Kind)
+                    ? combined.Append(new Instruction(binaryOp, opCode))
                     : PushName((Name)binaryOp.Left)
                         .Concat(leftInstructions)
                         .Concat(rightInstructions)
@@ -76,7 +74,7 @@ namespace Heir
                 ).ToList();
             }
 
-            _diagnostics.Error(DiagnosticCode.H008, $"Unsupported binary operator kind: {binaryOp.Operator.Kind}", binaryOp.Operator);
+            diagnostics.Error(DiagnosticCode.H008, $"Unsupported binary operator kind: {binaryOp.Operator.Kind}", binaryOp.Operator);
             return NoOp(binaryOp);
         }
 
@@ -114,8 +112,8 @@ namespace Heir
         }
 
         public List<Instruction> VisitIdentifierNameExpression(IdentifierName identifierName) => [
-            new Instruction(identifierName, OpCode.PUSH, identifierName.Token.Text),
-            new Instruction(identifierName, OpCode.LOAD)
+            new(identifierName, OpCode.PUSH, identifierName.Token.Text),
+            new(identifierName, OpCode.LOAD)
         ];
 
         public List<Instruction> VisitParenthesizedExpression(Parenthesized parenthesized) => GenerateBytecode(parenthesized.Expression);
@@ -129,7 +127,7 @@ namespace Heir
                     .ToList()
                     .ConvertAll<KeyValuePair<List<Instruction>, List<Instruction>>>(property =>
                     {
-                        Expression keyExpression = property.Key;
+                        var keyExpression = property.Key;
                         if (keyExpression is IdentifierName identifier)
                             keyExpression = new Literal(TokenFactory.StringFromIdentifier(identifier.Token));
 
@@ -142,20 +140,20 @@ namespace Heir
             return [new Instruction(objectLiteral, OpCode.PUSHOBJECT, objectValue)];
         }
 
-        private List<Instruction> PushName(Name name) => [new Instruction(name, OpCode.PUSH, name.ToString())];
-        private List<Instruction> NoOp(SyntaxNode node) => [new Instruction(node, OpCode.NOOP)];
+        private static List<Instruction> PushName(Name name) => [new(name, OpCode.PUSH, name.ToString())];
+        private static List<Instruction> NoOp(SyntaxNode node) => [new(node, OpCode.NOOP)];
 
         private List<Instruction> GenerateStatementsBytecode(List<Statement> statements) => statements.SelectMany(GenerateBytecode).ToList();
         private List<Instruction> GenerateBytecode(Expression expression) => expression.Accept(this);
         private List<Instruction> GenerateBytecode(Statement statement) => statement.Accept(this);
         private List<Instruction> GenerateBytecode(SyntaxNode node)
         {
-            if (node is Expression expression)
-                return GenerateBytecode(expression);
-            else if (node is Statement statement)
-                return GenerateBytecode(statement);
-
-            return null!; // poop
+            return node switch
+            {
+                Expression expression => GenerateBytecode(expression),
+                Statement statement => GenerateBytecode(statement),
+                _ => []
+            };
         }
     }
 }

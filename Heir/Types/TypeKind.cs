@@ -1,16 +1,15 @@
-﻿namespace Heir.Types
+﻿namespace Heir.Types;
+
+public enum TypeKind
 {
-    public enum TypeKind
-    {
-        Any,
-        Singular,
-        Primitive,
-        Literal,
-        Union,
-        Intersection,
-        Array,
-        Function,
-        Interface,
-        Class
-    }
+    Any,
+    Singular,
+    Primitive,
+    Literal,
+    Union,
+    Intersection,
+    Array,
+    Function,
+    Interface,
+    Class
 }

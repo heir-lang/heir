@@ -12,7 +12,7 @@ namespace Heir.BoundAST
 
         public interface Visitor<R>
         {
-            public R VisitBoundSyntaxTree(BoundSyntaxTree boundBlock);
+            public R VisitBoundSyntaxTree(BoundSyntaxTree tree);
             public R VisitBoundBlock(BoundBlock boundBlock);
             public R VisitBoundVariableDeclaration(BoundVariableDeclaration variableDeclaration);
             public R VisitBoundExpressionStatement(BoundExpressionStatement expressionStatement);

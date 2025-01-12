@@ -1,50 +1,54 @@
 ﻿using Heir.Syntax;
-using Heir.AST;
 using Heir.AST.Abstract;
 
-namespace Heir.Types
+namespace Heir.Types;
+
+public abstract class BaseType
 {
-    public abstract class BaseType
+    public abstract TypeKind Kind { get; }
+
+    public abstract string ToString(bool colors = false);
+
+    public static BaseType FromTypeRef(TypeRef typeRef)
     {
-        public abstract TypeKind Kind { get; }
-
-        public abstract string ToString(bool colors = false);
-
-        public static BaseType FromTypeRef(TypeRef typeRef)
+        switch (typeRef)
         {
-            switch (typeRef)
-            {
-                case AST.SingularType singularType:
-                    {
-                        if (singularType.Token.IsKind(SyntaxKind.Identifier))
-                            return new SingularType(singularType.Token.Text);
-
-                        return SyntaxFacts.PrimitiveTypeMap[singularType.Token.Kind];
-                    }
-                case AST.UnionType unionType:
-                    {
-                        var types = unionType.Types.ConvertAll(FromTypeRef);
-                        return new UnionType(types);
-                    }
-            }
-
-            return PrimitiveType.None;
+            case AST.SingularType singularType:
+                return singularType.Token.IsKind(SyntaxKind.Identifier)
+                    ? new SingularType(singularType.Token.Text)
+                    : SyntaxFacts.PrimitiveTypeMap[singularType.Token.Kind];
+            case AST.UnionType unionType:
+                return new UnionType(unionType.Types.ConvertAll(FromTypeRef));
+            case AST.IntersectionType intersectionType:
+                return new IntersectionType(intersectionType.Types.ConvertAll(FromTypeRef));
         }
 
-        public bool IsAssignableTo(BaseType other)
-        {
-            if (this is AnyType || other is AnyType)
-                return true;
-            else if (this is UnionType union)
-                return union.Types.Any(type => type.IsAssignableTo(other));
-            else if (other is UnionType)
-                return other.IsAssignableTo(this);
-            else if (this is LiteralType literal && other is LiteralType otherLiteral)
-                return literal.Value == otherLiteral.Value;
-            else if (this is SingularType singular && other is SingularType otherSingular)
-                return singular.Name == otherSingular.Name;
+        return PrimitiveType.None;
+    }
 
-            return false;
-        }
+    public bool IsAssignableTo(BaseType other)
+    {
+        if (this is AnyType || other is AnyType)
+            return true;
+        
+        if (this is UnionType union)
+            return union.Types.Any(type => type.IsAssignableTo(other));
+        
+        if (other is UnionType)
+            return other.IsAssignableTo(this);
+        
+        if (this is IntersectionType intersection)
+            return intersection.Types.All(type => type.IsAssignableTo(other));
+        
+        if (other is IntersectionType)
+            return other.IsAssignableTo(this);
+        
+        if (this is LiteralType literal && other is LiteralType otherLiteral)
+            return literal.Value == otherLiteral.Value;
+        
+        if (this is SingularType singular && other is SingularType otherSingular)
+            return singular.Name == otherSingular.Name;
+
+        return false;
     }
 }

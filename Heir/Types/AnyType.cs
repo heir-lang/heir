@@ -1,7 +1,6 @@
-namespace Heir.Types
+namespace Heir.Types;
+
+public sealed class AnyType() : SingularType("any")
 {
-    public sealed class AnyType() : SingularType("any")
-    {
-        public override TypeKind Kind => TypeKind.Any;
-    }
+    public override TypeKind Kind => TypeKind.Any;
 }

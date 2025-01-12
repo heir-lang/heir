@@ -125,20 +125,26 @@ namespace Heir
         }
 
         private TypeRef ParseType() => ParseUnionType();
-
+        
         private TypeRef ParseUnionType()
         {
-            var left = ParseSingularType();
+            var left = ParseIntersectionType();
             if (Tokens.Match(SyntaxKind.Pipe))
             {
-                var right = ParseUnionType();
-                var types = new List<SingularType>([left]);
-                if (right is UnionType union)
-                    types.AddRange(union.Types);
-                else
-                    types.Add((SingularType)right);
+                var right = ParseIntersectionType();
+                return new UnionType([left, right]);
+            }
 
-                return new UnionType(types);
+            return left;
+        }
+        
+        private TypeRef ParseIntersectionType()
+        {
+            var left = ParseSingularType();
+            if (Tokens.Match(SyntaxKind.Ampersand))
+            {
+                var right = ParseSingularType();
+                return new IntersectionType([left, right]);
             }
 
             return left;

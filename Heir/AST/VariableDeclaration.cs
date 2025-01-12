@@ -7,7 +7,7 @@ public sealed class VariableDeclaration(IdentifierName name, Expression? initial
 {
     public IdentifierName Name { get; } = name;
     public Expression? Initializer { get; } = initializer;
-    public TypeRef? TypeRef { get; } = type;
+    public TypeRef? Type { get; } = type;
     public bool IsMutable { get; } = isMutable;
 
     public override R Accept<R>(Visitor<R> visitor) => visitor.VisitVariableDeclaration(this);
@@ -16,12 +16,18 @@ public sealed class VariableDeclaration(IdentifierName name, Expression? initial
     public override void Display(int indent = 0)
     {
         Console.WriteLine($"{string.Concat(Enumerable.Repeat("  ", indent))}VariableDeclaration(");
-        Console.Write($"{string.Concat(Enumerable.Repeat("  ", indent + 1))}Name -> ");
-        Name.Display(0);
+        Console.WriteLine($"{string.Concat(Enumerable.Repeat("  ", indent + 1))}Name ->");
+        Name.Display(indent + 2);
         Console.WriteLine(",");
-        Console.WriteLine($"{string.Concat(Enumerable.Repeat("  ", indent + 1))}Initializer -> {(Initializer == null ? "none" : "")}");
+        Console.WriteLine();
+        Console.Write($"{string.Concat(Enumerable.Repeat("  ", indent + 1))}Type -> {(Type == null ? "(inferred)" : "\n")}");
+        Type?.Display(indent + 2);
+        Console.WriteLine(",");
+        Console.WriteLine();
+        Console.Write($"{string.Concat(Enumerable.Repeat("  ", indent + 1))}Initializer -> {(Initializer == null ? "none" : "\n")}");
         Initializer?.Display(indent + 2);
         Console.WriteLine(",");
+        Console.WriteLine();
         Console.WriteLine($"{string.Concat(Enumerable.Repeat("  ", indent + 1))}Mutable: {IsMutable}");
         Console.Write($"{string.Concat(Enumerable.Repeat("  ", indent))})");
     }

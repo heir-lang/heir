@@ -41,15 +41,16 @@ public class ParserTest
         var declaration = (VariableDeclaration)statement;
         Assert.False(declaration.IsMutable);
         Assert.NotNull(declaration.Initializer);
-        Assert.NotNull(declaration.TypeRef);
+        Assert.NotNull(declaration.Type);
         Assert.IsType<Literal>(declaration.Initializer);
-        Assert.IsType<UnionType>(declaration.TypeRef);
+        Assert.IsType<UnionType>(declaration.Type);
 
-        var unionType = (UnionType)declaration.TypeRef;
-        var intType = unionType.Types.First();
-        var charType = unionType.Types.Last();
-        Assert.IsType<SingularType>(intType);
-        Assert.IsType<SingularType>(charType);
+        var unionType = (UnionType)declaration.Type;
+        Assert.IsType<SingularType>(unionType.Types.First());
+        Assert.IsType<SingularType>(unionType.Types.Last());
+
+        var intType = (SingularType)unionType.Types.First();
+        var charType = (SingularType)unionType.Types.Last();
         Assert.Equal("int", intType.Token.Text);
         Assert.Equal("char", charType.Token.Text);
         Assert.Equal("y", declaration.Name.Token.Text);
@@ -65,11 +66,11 @@ public class ParserTest
         var declaration = (VariableDeclaration)statement;
         Assert.False(declaration.IsMutable);
         Assert.NotNull(declaration.Initializer);
-        Assert.NotNull(declaration.TypeRef);
+        Assert.NotNull(declaration.Type);
         Assert.IsType<Literal>(declaration.Initializer);
-        Assert.IsType<SingularType>(declaration.TypeRef);
+        Assert.IsType<SingularType>(declaration.Type);
 
-        var type = (SingularType)declaration.TypeRef;
+        var type = (SingularType)declaration.Type;
         Assert.Equal("int", type.Token.Text);
         Assert.Equal("x", declaration.Name.Token.Text);
     }

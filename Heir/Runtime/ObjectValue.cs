@@ -21,7 +21,11 @@ public sealed class ObjectValue(IEnumerable<KeyValuePair<object, object?>> pairs
             result.Append("]: ");
 
             var newIndent = indent + 1;
-            result.Append(property.Value is ObjectValue objectValue ? objectValue.ToString(ref newIndent) : property.Value?.ToString() ?? "none");
+            var valueString = property.Value is ObjectValue objectValue
+                ? objectValue.ToString(ref newIndent)
+                : property.Value?.ToString() ?? "none";
+            
+            result.Append(valueString); // TODO:repr function thing again
             if (Keys.ToList().IndexOf(property.Key) != Count - 1)
                 result.AppendLine(",");
         }

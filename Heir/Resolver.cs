@@ -113,6 +113,14 @@ namespace Heir
 
             return null;
         }
+        
+        public object? VisitIntersectionTypeRef(IntersectionType intersectionType)
+        {
+            foreach (var type in intersectionType.Types)
+                Resolve(type);
+
+            return null;
+        }
 
         public object? VisitNoOp(NoOpStatement noOp) => null;
 

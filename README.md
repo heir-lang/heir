@@ -48,12 +48,13 @@ Though I cannot guarantee the lifetime or dedication to this project, contributi
         - [x] singular
         - [x] union
         - [ ] intersection
+        - [ ] parenthesized
         - [ ] literal
         - [ ] array
         - [ ] function
         - [ ] interface
         - [ ] class
-    - [ ] control flow
+      - [ ] control flow
         - [ ] if 
         - [ ] while 
         - [ ] for 
