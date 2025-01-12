@@ -34,6 +34,14 @@ public class TypeTest
         var b = PrimitiveType.Int;
         Assert.True(a.IsAssignableTo(b));
     }
+    
+    [Fact]
+    public void ParenthesizesTypes_AreAssignableTo()
+    {
+        var a = new ParenthesizedType(PrimitiveType.Int);
+        var b = new ParenthesizedType(PrimitiveType.Int);
+        Assert.True(a.IsAssignableTo(b));
+    }
 
     [Fact]
     public void UnionTypes_AreAssignableTo()
