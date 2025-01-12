@@ -86,7 +86,7 @@ public class VirtualMachineTest
     [InlineData("10 / 2", 5.0)]
     [InlineData("9 // 2", 4L)]
     [InlineData("9 % 2", 1.0)]
-    [InlineData("14 << 1", 28L)]
+    [InlineData("14 << 1", 28)]
     [InlineData("11 & 7", 3L)]
     [InlineData("4 | 9", 13L)]
     [InlineData("5 ~ 3", 6L)]
