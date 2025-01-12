@@ -18,6 +18,20 @@ public class ScopeTest
     }
     
     [Fact]
+    public void LooksUpVariablesAtLevel()
+    {
+        var scope = new Scope();
+        var localScope = new Scope(scope);
+        const string name = "x";
+        const int value = 123;
+        
+        scope.Define(name, value);
+        Assert.True(localScope.IsDeclared(name));
+        Assert.True(localScope.IsDefined(name));
+        Assert.Equal(value, localScope.LookupAt(name, 1));
+    }
+    
+    [Fact]
     public void AssignsVariables()
     {
         var scope = new Scope();
