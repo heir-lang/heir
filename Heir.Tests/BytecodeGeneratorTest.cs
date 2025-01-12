@@ -65,6 +65,7 @@ public class BytecodeGeneratorTest
     [InlineData("'a' != 'b'", 'a', 'b', OpCode.EQ)]
     [InlineData("'a' + 'b'", 'a', 'b', OpCode.CONCAT)]
     [InlineData("true && false", true, false, OpCode.AND)]
+    [InlineData("14 << 1", 14L, 1L, OpCode.BSHL)]
     public void Generates_BinaryOperations(string input, object? leftValue, object? rightValue, OpCode opCode)
     {
         var bytecode = GenerateBytecode(input);
