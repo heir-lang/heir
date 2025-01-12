@@ -31,6 +31,7 @@
         Comma,
         Question,
         Equals,
+        DashRArrow, // ->
         
         Plus, // arithmetic
         PlusEquals,
