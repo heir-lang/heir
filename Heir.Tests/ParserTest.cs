@@ -30,9 +30,9 @@ public class ParserTest
         var tree = Parse(input);
         Assert.False(tree.Diagnostics.HasErrors);
     }
-
+    
     [Fact]
-    public void Parses_UnionTypes()
+    public void Parses_IntersectionTypes()
     {
         var tree = Parse("let y: int | char = 1");
         var statement = tree.Statements.First();
@@ -53,6 +53,37 @@ public class ParserTest
         var charType = (SingularType)unionType.Types.Last();
         Assert.Equal("int", intType.Token.Text);
         Assert.Equal("char", charType.Token.Text);
+        Assert.Equal("y", declaration.Name.Token.Text);
+    }
+
+    [Fact]
+    public void Parses_UnionTypes()
+    {
+        var tree = Parse("let y: int | char & string = 1");
+        var statement = tree.Statements.First();
+        Assert.IsType<VariableDeclaration>(statement);
+
+        var declaration = (VariableDeclaration)statement;
+        Assert.False(declaration.IsMutable);
+        Assert.NotNull(declaration.Initializer);
+        Assert.NotNull(declaration.Type);
+        Assert.IsType<Literal>(declaration.Initializer);
+        Assert.IsType<UnionType>(declaration.Type);
+
+        var unionType = (UnionType)declaration.Type;
+        Assert.IsType<SingularType>(unionType.Types.First());
+        Assert.IsType<IntersectionType>(unionType.Types.Last());
+
+        var intType = (SingularType)unionType.Types.First();
+        var charAndStringType = (IntersectionType)unionType.Types.Last();
+        Assert.IsType<SingularType>(charAndStringType.Types.First());
+        Assert.IsType<SingularType>(charAndStringType.Types.Last());
+        
+        var charType = charAndStringType.Types.First();
+        var stringType = charAndStringType.Types.Last();
+        Assert.Equal("int", intType.Token.Text);
+        Assert.Equal("char", charType.Token.Text);
+        Assert.Equal("string", stringType.Token.Text);
         Assert.Equal("y", declaration.Name.Token.Text);
     }
 
