@@ -15,11 +15,22 @@ public class ParserTest
     [InlineData("let", DiagnosticCode.H004C)]
     [InlineData("(1", DiagnosticCode.H004)]
     [InlineData("]", DiagnosticCode.H001B)]
-    public void ThrowsWith(string input, DiagnosticCode expectedErrorCode)
+    public void ThrowsWith(string input, DiagnosticCode expectedCode)
     {
         var tree = Parse(input);
         Assert.True(tree.Diagnostics.HasErrors);
-        Assert.Contains(tree.Diagnostics, diagnostic => diagnostic.Code == expectedErrorCode);
+        Assert.Contains(tree.Diagnostics, diagnostic => diagnostic.Code == expectedCode);
+    }
+
+    [Theory]
+    [InlineData("let x: (int) = 1", DiagnosticCode.H014)]
+    [InlineData("let x: (int | float) = 1", DiagnosticCode.H014)]
+    public void WarnsWith(string input, DiagnosticCode expectedCode)
+    {
+        var tree = Parse(input);
+        Assert.True(tree.Diagnostics.HasWarnings);
+        Assert.False(tree.Diagnostics.HasErrors);
+        Assert.Contains(tree.Diagnostics, diagnostic => diagnostic.Code == expectedCode);
     }
 
     [Theory]
@@ -85,6 +96,28 @@ public class ParserTest
         Assert.Equal("char", charType.Token.Text);
         Assert.Equal("string", stringType.Token.Text);
         Assert.Equal("y", declaration.Name.Token.Text);
+    }
+    
+    [Fact]
+    public void Parses_ParenthesizedTypes()
+    {
+        var tree = Parse("let x: (int) = 1");
+        var statement = tree.Statements.First();
+        Assert.IsType<VariableDeclaration>(statement);
+
+        var declaration = (VariableDeclaration)statement;
+        Assert.False(declaration.IsMutable);
+        Assert.NotNull(declaration.Initializer);
+        Assert.NotNull(declaration.Type);
+        Assert.IsType<Literal>(declaration.Initializer);
+        Assert.IsType<ParenthesizedType>(declaration.Type);
+
+        var type = (ParenthesizedType)declaration.Type;
+        Assert.IsType<SingularType>(type.Type);
+        
+        var singularType = (SingularType)type.Type;
+        Assert.Equal("int", singularType.Token.Text);
+        Assert.Equal("x", declaration.Name.Token.Text);
     }
 
     [Fact]
