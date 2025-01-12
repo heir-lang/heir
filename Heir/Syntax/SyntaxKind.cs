@@ -55,6 +55,10 @@
         AmpersandEquals,
         PipeEquals,
         TildeEquals,
+        LArrowLArrow,
+        LArrowLArrowEquals,
+        RArrowRArrow,
+        RArrowRArrowEquals,
 
         Identifier,
 

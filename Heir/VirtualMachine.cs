@@ -277,6 +277,26 @@ namespace Heir
                         Advance();
                         break;
                     }
+                case OpCode.BSHL:
+                {
+                    var right = _stack.Pop();
+                    var left = _stack.Pop();
+                    var result = Convert.ToInt32(left.Value) << Convert.ToInt32(right.Value);
+
+                    _stack.Push(new(right.Node, result));
+                    Advance();
+                    break;
+                }
+                case OpCode.BSHR:
+                {
+                    var right = _stack.Pop();
+                    var left = _stack.Pop();
+                    var result = Convert.ToInt32(left.Value) >> Convert.ToInt32(right.Value);
+
+                    _stack.Push(new(right.Node, result));
+                    Advance();
+                    break;
+                }
                 case OpCode.UNM:
                     {
                         var operand = _stack.Pop();

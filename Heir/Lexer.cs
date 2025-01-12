@@ -188,12 +188,26 @@ namespace Heir
                     return TokenFactory.Operator(SyntaxKind.RBrace, _currentLexeme, startLocation, _currentLocation);
                 case '<':
                 {
-                    var syntaxKind = Match('=') ? SyntaxKind.LTE : SyntaxKind.LT;
+                    SyntaxKind syntaxKind;
+                    if (Match('='))
+                        syntaxKind = SyntaxKind.LTE;
+                    else if (Match('<'))
+                        syntaxKind = Match('=') ? SyntaxKind.LArrowLArrowEquals : SyntaxKind.LArrowLArrow;
+                    else
+                        syntaxKind = SyntaxKind.LT;
+                    
                     return TokenFactory.Operator(syntaxKind, _currentLexeme, startLocation, _currentLocation);
                 }
                 case '>':
                 {
-                    var syntaxKind = Match('=') ? SyntaxKind.GTE : SyntaxKind.GT;
+                    SyntaxKind syntaxKind;
+                    if (Match('='))
+                        syntaxKind = SyntaxKind.GTE;
+                    else if (Match('>'))
+                        syntaxKind = Match('=') ? SyntaxKind.RArrowRArrowEquals : SyntaxKind.RArrowRArrow;
+                    else
+                        syntaxKind = SyntaxKind.GT;
+                    
                     return TokenFactory.Operator(syntaxKind, _currentLexeme, startLocation, _currentLocation);
                 }
                 case '"':

@@ -39,7 +39,7 @@ Though I cannot guarantee the lifetime or dedication to this project, contributi
     - [x] equality (`==`, `!=`, `!`, `<`, `>`, `<=`, `>=`)
     - [x] logical (`&&`, `||`) 
     - [x] bitwise (`&`, `|`, `~`) 
-        - [ ] shifts (`<<`, `>>`)
+        - [x] shifts (`<<`, `>>`)
     - [x] arithmetic (`+`, `-`, `*`, `/`, `//`, `%`, `^`)
       - [x] increment/decrement (`++`, `--`)
       - [x] compound assignment (`+=`, `-=`, `*=`, `/=`, `//=`, `%=`, `^=`)
@@ -47,8 +47,8 @@ Though I cannot guarantee the lifetime or dedication to this project, contributi
     - [ ] types
         - [x] singular
         - [x] union
-        - [ ] intersection
-        - [ ] parenthesized
+        - [x] intersection
+        - [x] parenthesized
         - [ ] literal
         - [ ] array
         - [ ] function

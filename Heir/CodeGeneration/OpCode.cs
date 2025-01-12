@@ -32,12 +32,12 @@
         MOD,
         UNM,
 
-        // BSHL,
-        // BSHR,
         BNOT,
         BAND,
         BOR,
         BXOR,
+        BSHL,
+        BSHR,
 
         AND,
         OR,

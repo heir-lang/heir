@@ -196,7 +196,9 @@ public sealed class Parser(TokenStream tokenStream)
             Tokens.Match(SyntaxKind.PipeEquals) ||
             Tokens.Match(SyntaxKind.TildeEquals) ||
             Tokens.Match(SyntaxKind.AmpersandAmpersandEquals) ||
-            Tokens.Match(SyntaxKind.PipePipeEquals))
+            Tokens.Match(SyntaxKind.PipePipeEquals) ||
+            Tokens.Match(SyntaxKind.LArrowLArrowEquals) ||
+            Tokens.Match(SyntaxKind.RArrowRArrowEquals))
         {
             if (!left.Is<Name>())
                 _diagnostics.Error(DiagnosticCode.H006B, "Invalid assignment target, expected identifier or member access", left.GetFirstToken());
@@ -281,8 +283,21 @@ public sealed class Parser(TokenStream tokenStream)
 
     private Expression ParseBitwiseAnd()
     {
-        var left = ParseAddition();
+        var left = ParseBitShift();
         while (Tokens.Match(SyntaxKind.Ampersand))
+        {
+            var op = Tokens.Previous!;
+            var right = ParseBitShift();
+            left = new BinaryOp(left, op, right);
+        }
+
+        return left;
+    }
+    
+    private Expression ParseBitShift()
+    {
+        var left = ParseAddition();
+        while (Tokens.Match(SyntaxKind.RArrowRArrow) || Tokens.Match(SyntaxKind.LArrowLArrow))
         {
             var op = Tokens.Previous!;
             var right = ParseAddition();
