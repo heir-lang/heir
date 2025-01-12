@@ -79,8 +79,8 @@ public class ParserTest
         Assert.IsType<SingularType>(charAndStringType.Types.First());
         Assert.IsType<SingularType>(charAndStringType.Types.Last());
         
-        var charType = charAndStringType.Types.First();
-        var stringType = charAndStringType.Types.Last();
+        var charType = (SingularType)charAndStringType.Types.First();
+        var stringType = (SingularType)charAndStringType.Types.Last();
         Assert.Equal("int", intType.Token.Text);
         Assert.Equal("char", charType.Token.Text);
         Assert.Equal("string", stringType.Token.Text);

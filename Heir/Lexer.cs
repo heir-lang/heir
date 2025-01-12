@@ -4,16 +4,15 @@ namespace Heir
 {
     public sealed class Lexer(SourceFile sourceFile)
     {
-        private readonly SourceFile _sourceFile = sourceFile;
-        private readonly DiagnosticBag _diagnostics = new(sourceFile);
+        private readonly DiagnosticBag _diagnostics = sourceFile.Diagnostics;
         private readonly List<Token> _tokens = [];
         private string _currentLexeme = "";
         private int _position = 0;
         private int _line = 1;
         private int _column = 0;
         
-        private Location _currentLocation => new(_sourceFile.Path, _line, _column, _position);
-        private bool _isFinished => _position >= _sourceFile.Source.Length;
+        private Location _currentLocation => new(sourceFile.Path, _line, _column, _position);
+        private bool _isFinished => _position >= sourceFile.Source.Length;
         private char? _current => Peek(0);
         private char? _previous => Peek(-1);
 
@@ -383,7 +382,7 @@ namespace Heir
 
         private char? Peek(int offset = 1)
         {
-            return _sourceFile.Source
+            return sourceFile.Source
                 .ToCharArray()
                 .ElementAtOrDefault(_position + offset);
         }

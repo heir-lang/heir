@@ -1,1 +1,1 @@
-let abc: string | int & float = 1;
+let abc: (int) = 1;

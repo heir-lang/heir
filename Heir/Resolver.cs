@@ -106,6 +106,12 @@ namespace Heir
             return null;
         }
 
+        public object? VisitParenthesizedTypeRef(ParenthesizedType parenthesizedType)
+        {
+            Resolve(parenthesizedType.Type);
+            return null;
+        }
+
         public object? VisitUnionTypeRef(UnionType unionType)
         {
             foreach (var type in unionType.Types)

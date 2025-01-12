@@ -156,6 +156,7 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : S
     public BoundExpression VisitNoOp(NoOpType noOp) => new BoundNoOp();
     public BoundExpression VisitNoOp(NoOp noOp) => new BoundNoOp();
     public BoundExpression VisitSingularTypeRef(AST.SingularType singularType) => new BoundNoOp();
+    public BoundExpression VisitParenthesizedTypeRef(AST.ParenthesizedType singularType) => new BoundNoOp();
     public BoundExpression VisitUnionTypeRef(AST.UnionType unionType) => new BoundNoOp();
     public BoundExpression VisitIntersectionTypeRef(AST.IntersectionType intersectionType) => new BoundNoOp();
 

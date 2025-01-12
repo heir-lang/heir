@@ -16,6 +16,7 @@ public abstract class Expression : SyntaxNode
         public R VisitNoOp(NoOp noOp);
         public R VisitNoOp(NoOpType noOp);
         public R VisitSingularTypeRef(SingularType singularType);
+        public R VisitParenthesizedTypeRef(ParenthesizedType parenthesizedType);
         public R VisitUnionTypeRef(UnionType unionType);
         public R VisitIntersectionTypeRef(IntersectionType intersectionType);
     }

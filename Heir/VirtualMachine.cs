@@ -27,7 +27,7 @@ namespace Heir
         public VirtualMachine(Bytecode bytecode, Scope? scope = null)
         {
             Diagnostics = bytecode.Diagnostics;
-            GlobalScope = new();
+            GlobalScope = new Scope();
             Scope = scope ?? GlobalScope;
             _enclosingScope = Scope;
             _bytecode = bytecode;

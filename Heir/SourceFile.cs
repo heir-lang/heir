@@ -19,7 +19,7 @@ namespace Heir
 
         public SourceFile(string source, string? path, bool isMainFile)
         {
-            Diagnostics = new(this);
+            Diagnostics = new DiagnosticBag(this);
             Source = source;
             Path = path ?? "<anonymous>";
             IsMainFile = isMainFile;
@@ -28,27 +28,25 @@ namespace Heir
         public static SourceFile FromPath(string path, bool isMainFile = false)
         {
             var source = File.ReadAllText(path);
-            return new(source, path, isMainFile);
+            return new SourceFile(source, path, isMainFile);
         }
 
         public (object?, VirtualMachine) Evaluate()
         {
             var bytecode = GenerateBytecode();
             var vm = new VirtualMachine(bytecode);
-            if (Diagnostics.HasErrors)
+            if (Diagnostics.Count > 0)
             {
                 WriteDiagnostics();
                 return (null, vm);
             }
 
             var value = vm.Evaluate();
-            if (Diagnostics.HasErrors)
-            {
-                WriteDiagnostics();
-                return (null, vm);
-            }
-
-            return (IsMainFile ? value : null, vm);
+            if (Diagnostics.Count <= 0)
+                return (IsMainFile ? value : null, vm);
+            
+            WriteDiagnostics();
+            return (null, vm);
         }
 
         public Bytecode GenerateBytecode()

@@ -11,25 +11,36 @@ public abstract class BaseType
 
     public static BaseType FromTypeRef(TypeRef typeRef)
     {
-        switch (typeRef)
+        return typeRef switch
         {
-            case AST.SingularType singularType:
-                return singularType.Token.IsKind(SyntaxKind.Identifier)
+            AST.SingularType singularType =>
+                singularType.Token.IsKind(SyntaxKind.Identifier)
                     ? new SingularType(singularType.Token.Text)
-                    : SyntaxFacts.PrimitiveTypeMap[singularType.Token.Kind];
-            case AST.UnionType unionType:
-                return new UnionType(unionType.Types.ConvertAll(FromTypeRef));
-            case AST.IntersectionType intersectionType:
-                return new IntersectionType(intersectionType.Types.ConvertAll(FromTypeRef));
-        }
-
-        return PrimitiveType.None;
+                    : SyntaxFacts.PrimitiveTypeMap[singularType.Token.Kind],
+            
+            AST.ParenthesizedType parenthesizedType =>
+                new ParenthesizedType(FromTypeRef(parenthesizedType.Type)),
+            
+            AST.UnionType unionType =>
+                new UnionType(unionType.Types.ConvertAll(FromTypeRef)),
+            
+            AST.IntersectionType intersectionType =>
+                new IntersectionType(intersectionType.Types.ConvertAll(FromTypeRef)),
+            
+            _ => PrimitiveType.None
+        };
     }
 
     public bool IsAssignableTo(BaseType other)
     {
         if (this is AnyType || other is AnyType)
             return true;
+        
+        if (this is ParenthesizedType parenthesized)
+            return parenthesized.Type.IsAssignableTo(other);
+        
+        if (other is ParenthesizedType otherParenthesized)
+            return otherParenthesized.Type.IsAssignableTo(this);
         
         if (this is UnionType union)
             return union.Types.Any(type => type.IsAssignableTo(other));

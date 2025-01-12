@@ -3,12 +3,12 @@ using Heir.Syntax;
 
 namespace Heir.AST;
 
-public class IntersectionType(List<SingularType> types) : TypeRef
+public class IntersectionType(List<TypeRef> types) : TypeRef
 {
-    public List<SingularType> Types { get; } = types;
+    public List<TypeRef> Types { get; } = types;
 
     public override R Accept<R>(Visitor<R> visitor) => visitor.VisitIntersectionTypeRef(this);
-    public override List<Token> GetTokens() => Types.ConvertAll(type => type.Token);
+    public override List<Token> GetTokens() => Types.SelectMany(type => type.GetTokens()).ToList();
 
     public override void Display(int indent = 0)
     {
