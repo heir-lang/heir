@@ -1,7 +1,32 @@
+using Heir.Runtime;
+
 namespace Heir.Tests;
 
 public class ScopeTest
 {
+    [Fact]
+    public void AncestorChain()
+    {
+        var scope4 = new Scope();
+        var scope3 = new Scope(scope4);
+        var scope2 = new Scope(scope3);
+        var scope1 = new Scope(scope2);
+        Assert.NotNull(scope1.Enclosing);
+        Assert.StrictEqual(scope2, scope1.Enclosing);
+        
+        var ancestor1 = scope1.Ancestor(1);
+        Assert.NotNull(ancestor1);
+        Assert.StrictEqual(scope2, ancestor1);
+
+        var ancestor2 = scope1.Ancestor(2);
+        Assert.NotNull(ancestor2);
+        Assert.StrictEqual(scope3, ancestor2);
+        
+        var ancestor3 = scope1.Ancestor(3);
+        Assert.NotNull(ancestor3);
+        Assert.StrictEqual(scope4, ancestor3);
+    }
+    
     [Fact]
     public void LooksUpVariables()
     {
