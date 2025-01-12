@@ -33,15 +33,15 @@ public abstract class BaseType
         
         if (this is UnionType union)
             return union.Types.Any(type => type.IsAssignableTo(other));
+
+        if (other is UnionType otherUnion)
+            return otherUnion.Types.Any(IsAssignableTo);
         
-        if (other is UnionType)
-            return other.IsAssignableTo(this);
+        if (other is IntersectionType otherIntersection)
+            return otherIntersection.Types.All(IsAssignableTo);
         
         if (this is IntersectionType intersection)
-            return intersection.Types.All(type => type.IsAssignableTo(other));
-        
-        if (other is IntersectionType)
-            return other.IsAssignableTo(this);
+            return intersection.Types.Any(type => type.IsAssignableTo(other));
         
         if (this is LiteralType literal && other is LiteralType otherLiteral)
             return literal.Value == otherLiteral.Value;

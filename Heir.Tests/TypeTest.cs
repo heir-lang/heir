@@ -59,6 +59,26 @@ public class TypeTest
             Assert.True(a.IsAssignableTo(b));
         }
     }
+    
+    [Fact]
+    public void IntersectionTypes_AreAssignableTo()
+    {
+        {
+            var a = new IntersectionType([PrimitiveType.Float, PrimitiveType.Int]);
+            var b = new IntersectionType([PrimitiveType.Float, PrimitiveType.Int, PrimitiveType.String]);
+            Assert.False(a.IsAssignableTo(b));
+            Assert.True(b.IsAssignableTo(a));
+        }
+        {
+            var a = new IntersectionType([IntrinsicTypes.Number, PrimitiveType.Int]);
+            var b = PrimitiveType.String;
+            Assert.False(a.IsAssignableTo(b));
+        }
+        {
+            var a = new IntersectionType([PrimitiveType.Int, PrimitiveType.Float]);
+            Assert.True(a.IsAssignableTo(a));
+        }
+    }
 
     [Fact]
     public void LiteralTypes_AreAssignableTo()
