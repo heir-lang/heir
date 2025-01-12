@@ -1,24 +1,40 @@
 name: CI
 on:
-  push:
-    branches: [ "master" ]
   pull_request:
-    branches: [ "master" ]
+  push:
+    branches: ["master"]
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: 8.0.x
-    - name: Restore dependencies
-      run: dotnet restore
-    - name: Build (Release)
-      run: dotnet build -c Release --no-restore
-    - name: Build (Debug)
-      run: dotnet build -c Debug --no-restore
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
+      - uses: actions/checkout@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Install ReportGenerator
+        run: dotnet tool install --global dotnet-reportgenerator-globaltool --version 5.*
+
+      - name: Configure PATH for tools
+        run: echo "/home/runner/.dotnet/tools" >> $GITHUB_PATH
+
+      - name: Run tests and generate coverage
+        run: |
+          chmod +x ./RobloxCS.Tests/lune
+          dotnet test -c Release --collect:"XPlat Code Coverage"
+
+      - name: Convert coverage to LCOV
+        run: |
+          reportgenerator -reports:"**/TestResults/**/*.cobertura.xml" -targetdir:"coverage" -reporttypes:lcov
+        env:
+          DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+          DOTNET_CLI_TELEMETRY_OPTOUT: true
+
+      - name: Report coverage
+        continue-on-error: true
+        uses: coverallsapp/github-action@v2.3.4
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          file: coverage/lcov.info
