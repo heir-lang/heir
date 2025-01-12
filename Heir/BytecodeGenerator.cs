@@ -1,5 +1,6 @@
 ﻿using Heir.Syntax;
 using Heir.AST;
+using Heir.AST.Abstract;
 using Heir.BoundAST;
 using Heir.CodeGeneration;
 

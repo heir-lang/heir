@@ -1,19 +1,18 @@
 using Heir.Syntax;
 
-namespace Heir.AST
+namespace Heir.AST;
+
+public class IdentifierName(Token token) : Name
 {
-    public class IdentifierName(Token token) : Name
+    public Token Token { get; } = token;
+
+    public override R Accept<R>(Visitor<R> visitor) => visitor.VisitIdentifierNameExpression(this);
+    public override List<Token> GetTokens() => [Token];
+
+    public override void Display(int indent = 0)
     {
-        public Token Token { get; } = token;
-
-        public override R Accept<R>(Visitor<R> visitor) => visitor.VisitIdentifierNameExpression(this);
-        public override List<Token> GetTokens() => [Token];
-
-        public override void Display(int indent)
-        {
-            Console.Write($"{string.Concat(Enumerable.Repeat("  ", indent))}IdentifierName({Token.Text})");
-        }
-
-        public override string ToString() => Token.Text;
+        Console.Write($"{string.Concat(Enumerable.Repeat("  ", indent))}IdentifierName({Token.Text})");
     }
+
+    public override string ToString() => Token.Text;
 }

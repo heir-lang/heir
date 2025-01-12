@@ -1,5 +1,6 @@
 using Heir.Syntax;
 using Heir.AST;
+using Heir.AST.Abstract;
 
 namespace Heir
 {
@@ -7,7 +8,7 @@ namespace Heir
     {
         public TokenStream Tokens { get; } = tokenStream.WithoutTrivia(); // temporary
 
-        private DiagnosticBag _diagnostics = tokenStream.Diagnostics;
+        private readonly DiagnosticBag _diagnostics = tokenStream.Diagnostics;
 
         public SyntaxTree Parse()
         {
@@ -18,7 +19,7 @@ namespace Heir
                 statements.Add(statement);
             }
 
-            return new(statements, _diagnostics);
+            return new SyntaxTree(statements, _diagnostics);
         }
 
         private List<Statement> ParseStatementsUntil(Func<bool> predicate)
@@ -48,7 +49,7 @@ namespace Heir
                 {
                     var offset = 1;
                     while (!Tokens.Check(SyntaxKind.RBracket, ++offset))
-                    offset++;
+                        offset++;
 
                     if (Tokens.Check(SyntaxKind.Colon, offset + 1))
                         return new ExpressionStatement(ParseObject(token));
@@ -64,7 +65,7 @@ namespace Heir
         private Block ParseBlock()
         {
             var statements = ParseStatementsUntil(() => Tokens.Match(SyntaxKind.RBrace));
-            return new(statements);
+            return new Block(statements);
         }
 
         private ObjectLiteral ParseObject(Token token)
@@ -74,7 +75,7 @@ namespace Heir
                 keyValuePairs.Add(ParseObjectKeyValuePair());
             
             Tokens.Consume(SyntaxKind.RBrace);
-            return new(token, new(keyValuePairs));
+            return new ObjectLiteral(token, new(keyValuePairs));
         }
 
         private KeyValuePair<Expression, Expression> ParseObjectKeyValuePair()

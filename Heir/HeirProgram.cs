@@ -2,9 +2,8 @@ namespace Heir;
 
 public sealed class HeirProgram
 {
-    public HashSet<SourceFile> SourceFiles { get; private set; } = [];
-
-
+    public HashSet<SourceFile> SourceFiles { get; } = [];
+    
     public void LoadFile(SourceFile sourceFile) => SourceFiles.Add(sourceFile);
     public void LoadFiles(HashSet<SourceFile> sourceFiles)
     {
@@ -14,7 +13,6 @@ public sealed class HeirProgram
 
     public object? Evaluate() =>
         SourceFiles
-        .Select(sourceFile => sourceFile.Evaluate().Item1)
-        .Where(result => result != null)
-        .FirstOrDefault();
+            .Select(sourceFile => sourceFile.Evaluate().Item1)
+            .FirstOrDefault(result => result != null);
 }

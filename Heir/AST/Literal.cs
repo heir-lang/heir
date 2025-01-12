@@ -1,21 +1,21 @@
-﻿using Heir.Syntax;
+﻿using Heir.AST.Abstract;
+using Heir.Syntax;
 
-namespace Heir.AST
+namespace Heir.AST;
+
+public class Literal(Token token) : Expression
 {
-    public class Literal(Token token) : Expression
+    public Token Token { get; } = token;
+
+    public override R Accept<R>(Visitor<R> visitor) => visitor.VisitLiteralExpression(this);
+    public override List<Token> GetTokens() => [Token];
+
+    public override void Display(int indent = 0)
     {
-        public Token Token { get; } = token;
+        var valueText = Token.Value?.ToString() ?? "none";
+        if (Token.IsKind(SyntaxKind.BoolLiteral))
+            valueText = valueText.ToLower();
 
-        public override R Accept<R>(Visitor<R> visitor) => visitor.VisitLiteralExpression(this);
-        public override List<Token> GetTokens() => [Token];
-
-        public override void Display(int indent)
-        {
-            var valueText = Token.Value?.ToString() ?? "none";
-            if (Token.IsKind(SyntaxKind.BoolLiteral))
-                valueText = valueText.ToLower();
-
-            Console.Write($"{string.Concat(Enumerable.Repeat("  ", indent))}Literal({Token.Kind}, {valueText})");
-        }
+        Console.Write($"{string.Concat(Enumerable.Repeat("  ", indent))}Literal({Token.Kind}, {valueText})");
     }
 }

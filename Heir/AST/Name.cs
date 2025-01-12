@@ -1,7 +1,8 @@
-﻿namespace Heir.AST
+﻿using Heir.AST.Abstract;
+
+namespace Heir.AST;
+
+public abstract class Name : Expression
 {
-    public abstract class Name : Expression
-    {
-        public override abstract string ToString();
-    }
+    public abstract override string ToString();
 }

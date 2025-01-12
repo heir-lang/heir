@@ -1,4 +1,5 @@
 ﻿using Heir.AST;
+using Heir.AST.Abstract;
 using Heir.Syntax;
 
 namespace Heir
@@ -15,9 +16,9 @@ namespace Heir
         public DiagnosticBag Diagnostics { get; } = diagnostics;
 
         private readonly SyntaxTree _syntaxTree = syntaxTree;
-        private readonly List<Dictionary<string, bool>> _scopes = [];
+        private readonly Stack<Dictionary<string, bool>> _scopes = [];
         private ScopeContext _scopeContext = ScopeContext.Global;
-        private bool withinFunction = false;
+        private bool _withinFunction = false;
 
         public void Resolve()
         {
@@ -162,25 +163,23 @@ namespace Heir
             return false;
         }
 
-        private void BeginScope()
-        {
-            _scopes.Add(new());
-        }
-
-        private void EndScope()
-        {
-            _scopes.Remove(_scopes.Last());
-        }
+        private void BeginScope() => _scopes.Push([]);
+        private void EndScope() => _scopes.Pop();
 
         private void ResolveStatements(List<Statement> statements) => statements.ForEach(Resolve);
         private void Resolve(Expression expression) => expression.Accept(this);
         private void Resolve(Statement statement) => statement.Accept(this);
         private void Resolve(SyntaxNode node)
         {
-            if (node is Expression expression)
-                Resolve(expression);
-            else if (node is Statement statement)
-                Resolve(statement);
+            switch (node)
+            {
+                case Expression expression:
+                    Resolve(expression);
+                    break;
+                case Statement statement:
+                    Resolve(statement);
+                    break;
+            }
         }
     }
 }

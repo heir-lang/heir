@@ -1,5 +1,6 @@
 ﻿using Heir.Syntax;
 using Heir.AST;
+using Heir.AST.Abstract;
 
 namespace Heir.Types
 {

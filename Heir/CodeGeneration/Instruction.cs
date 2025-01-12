@@ -1,4 +1,5 @@
 ﻿using Heir.AST;
+using Heir.AST.Abstract;
 
 namespace Heir.CodeGeneration
 {

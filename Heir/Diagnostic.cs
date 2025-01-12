@@ -55,7 +55,12 @@ namespace Heir
             var erroneousCodeColumnLength = EndLocation.Column - StartLocation.Column;
             var erroneousCodeDistance = EndLocation.Column - erroneousCodeColumnLength;
             var erroneousCodeLineLength = EndLocation.Line - (StartLocation.Line - 1);
-            var lines = SourceFile.Source.Split('\n').Skip(StartLocation.Line - 1).Take(erroneousCodeLineLength);
+            var lines = SourceFile.Source
+                .Split('\n')
+                .Skip(StartLocation.Line - 1)
+                .Take(erroneousCodeLineLength)
+                .ToList();
+            
             var padding = string.Join("", Enumerable.Repeat(' ', EndLocation.Line.ToString().Length - 1));
             var codeDisplay = "";
             var lineNumber = 0;

@@ -6,27 +6,16 @@ namespace Heir
     {
         private readonly SourceFile _sourceFile = sourceFile;
         private readonly DiagnosticBag _diagnostics = new(sourceFile);
-        private List<Token> _tokens = [];
+        private readonly List<Token> _tokens = [];
         private string _currentLexeme = "";
         private int _position = 0;
         private int _line = 1;
         private int _column = 0;
-        private Location _currentLocation
-        {
-            get => new Location(_sourceFile.Path, _line, _column, _position);
-        }
-        private bool _isFinished
-        {
-            get => _position >= _sourceFile.Source.Length;
-        }
-        private char? _current
-        {
-            get => Peek(0);
-        }
-        private char? _previous
-        {
-            get => Peek(-1);
-        }
+        
+        private Location _currentLocation => new(_sourceFile.Path, _line, _column, _position);
+        private bool _isFinished => _position >= _sourceFile.Source.Length;
+        private char? _current => Peek(0);
+        private char? _previous => Peek(-1);
 
         public TokenStream GetTokens()
         {
@@ -61,7 +50,7 @@ namespace Heir
                     {
                         if (Match('+'))
                             return TokenFactory.Operator(SyntaxKind.PlusPlus, _currentLexeme, startLocation, _currentLocation);
-                        else if (Match('='))
+                        if (Match('='))
                             return TokenFactory.Operator(SyntaxKind.PlusEquals, _currentLexeme, startLocation, _currentLocation);
 
                         return TokenFactory.Operator(SyntaxKind.Plus, _currentLexeme, startLocation, _currentLocation);
@@ -70,7 +59,7 @@ namespace Heir
                     {
                         if (Match('-'))
                             return TokenFactory.Operator(SyntaxKind.MinusMinus, _currentLexeme, startLocation, _currentLocation);
-                        else if (Match('='))
+                        if (Match('='))
                             return TokenFactory.Operator(SyntaxKind.MinusEquals, _currentLexeme, startLocation, _currentLocation);
 
                         return TokenFactory.Operator(SyntaxKind.Minus, _currentLexeme, startLocation, _currentLocation);
@@ -91,7 +80,8 @@ namespace Heir
 
                             return TokenFactory.Operator(SyntaxKind.SlashSlash, _currentLexeme, startLocation, _currentLocation);
                         }
-                        else if (Match('='))
+                        
+                        if (Match('='))
                             return TokenFactory.Operator(SyntaxKind.SlashEquals, _currentLexeme, startLocation, _currentLocation);
 
                         return TokenFactory.Operator(SyntaxKind.Slash, _currentLexeme, startLocation, _currentLocation);
@@ -136,10 +126,11 @@ namespace Heir
                     {
                         if (Match('?'))
                         {
-                            if (Match('='))
-                                return TokenFactory.Operator(SyntaxKind.QuestionQuestionEquals, _currentLexeme, startLocation, _currentLocation);
-
-                            return TokenFactory.Operator(SyntaxKind.QuestionQuestion, _currentLexeme, startLocation, _currentLocation);
+                            var syntaxKind = Match('=')
+                                ? SyntaxKind.QuestionQuestionEquals
+                                : SyntaxKind.QuestionQuestion;
+                            
+                            return TokenFactory.Operator(syntaxKind, _currentLexeme, startLocation, _currentLocation);
                         }
 
                         return TokenFactory.Operator(SyntaxKind.Question, _currentLexeme, startLocation, _currentLocation);
@@ -148,12 +139,14 @@ namespace Heir
                     {
                         if (Match('&'))
                         {
-                            if (Match('='))
-                                return TokenFactory.Operator(SyntaxKind.AmpersandAmpersandEquals, _currentLexeme, startLocation, _currentLocation);
-
-                            return TokenFactory.Operator(SyntaxKind.AmpersandAmpersand, _currentLexeme, startLocation, _currentLocation);
+                            var syntaxKind = Match('=')
+                                ? SyntaxKind.AmpersandAmpersandEquals
+                                : SyntaxKind.AmpersandAmpersand;
+                            
+                            return TokenFactory.Operator(syntaxKind, _currentLexeme, startLocation, _currentLocation);
                         }
-                        else if (Match('='))
+                        
+                        if (Match('='))
                             return TokenFactory.Operator(SyntaxKind.AmpersandEquals, _currentLexeme, startLocation, _currentLocation);
 
                         return TokenFactory.Operator(SyntaxKind.Ampersand, _currentLexeme, startLocation, _currentLocation);
@@ -162,24 +155,21 @@ namespace Heir
                     {
                         if (Match('|'))
                         {
-                            if (Match('='))
-                                return TokenFactory.Operator(SyntaxKind.PipePipeEquals, _currentLexeme, startLocation, _currentLocation);
-
-                            return TokenFactory.Operator(SyntaxKind.PipePipe, _currentLexeme, startLocation, _currentLocation);
+                            var syntaxKind = Match('=') ? SyntaxKind.PipePipeEquals : SyntaxKind.PipePipe;
+                            return TokenFactory.Operator(syntaxKind, _currentLexeme, startLocation, _currentLocation);
                         }
-                        else if (Match('='))
+                        
+                        if (Match('='))
                             return TokenFactory.Operator(SyntaxKind.PipeEquals, _currentLexeme, startLocation, _currentLocation);
 
                         return TokenFactory.Operator(SyntaxKind.Pipe, _currentLexeme, startLocation, _currentLocation);
                     }
 
                 case ':':
-                    {
-                        if (Match(':'))
-                            return TokenFactory.Operator(SyntaxKind.ColonColon, _currentLexeme, startLocation, _currentLocation);
-
-                        return TokenFactory.Operator(SyntaxKind.Colon, _currentLexeme, startLocation, _currentLocation);
-                    }
+                {
+                    var syntaxKind = Match(':') ? SyntaxKind.ColonColon : SyntaxKind.Colon;
+                    return TokenFactory.Operator(syntaxKind, _currentLexeme, startLocation, _currentLocation);
+                }
                 case '.':
                     return TokenFactory.Operator(SyntaxKind.Dot, _currentLexeme, startLocation, _currentLocation);
                 case ',':
@@ -198,31 +188,22 @@ namespace Heir
                 case '}':
                     return TokenFactory.Operator(SyntaxKind.RBrace, _currentLexeme, startLocation, _currentLocation);
                 case '<':
-                    {
-                        if (Match('='))
-                            return TokenFactory.Operator(SyntaxKind.LTE, _currentLexeme, startLocation, _currentLocation);
-
-                        return TokenFactory.Operator(SyntaxKind.LT, _currentLexeme, startLocation, _currentLocation);
-                    }
+                {
+                    var syntaxKind = Match('=') ? SyntaxKind.LTE : SyntaxKind.LT;
+                    return TokenFactory.Operator(syntaxKind, _currentLexeme, startLocation, _currentLocation);
+                }
                 case '>':
-                    {
-                        if (Match('='))
-                            return TokenFactory.Operator(SyntaxKind.GTE, _currentLexeme, startLocation, _currentLocation);
-
-                        return TokenFactory.Operator(SyntaxKind.GT, _currentLexeme, startLocation, _currentLocation);
-                    }
+                {
+                    var syntaxKind = Match('=') ? SyntaxKind.GTE : SyntaxKind.GT;
+                    return TokenFactory.Operator(syntaxKind, _currentLexeme, startLocation, _currentLocation);
+                }
                 case '"':
                     return ReadString(startLocation);
                 case '\'':
                     return ReadCharacter(startLocation);
 
                 case '#':
-                    {
-                        if (Match('#'))
-                            return SkipComment(startLocation);
-
-                        return null;
-                    }
+                    return Match('#') ? SkipComment(startLocation) : null;
                 case ';':
                     return SkipSemicolons(startLocation);
 
@@ -239,16 +220,17 @@ namespace Heir
                                 return TokenFactory.BoolLiteral(_currentLexeme, startLocation, _currentLocation);
 
                             var identifier = ReadIdentifier(startLocation);
-                            if (SyntaxFacts.KeywordMap.Contains(_currentLexeme))
-                            {
-                                var keywordSyntax = SyntaxFacts.KeywordMap.GetValue(_currentLexeme);
-                                return TokenFactory.Keyword(keywordSyntax, startLocation, _currentLocation);
-                            }
-
-                            return identifier;
-                        } else if (char.IsDigit(current))
+                            if (!SyntaxFacts.KeywordMap.Contains(_currentLexeme))
+                                return identifier;
+                            
+                            var keywordSyntax = SyntaxFacts.KeywordMap.GetValue(_currentLexeme);
+                            return TokenFactory.Keyword(keywordSyntax, startLocation, _currentLocation);
+                        }
+                        
+                        if (char.IsDigit(current))
                             return ReadNumber(startLocation);
-                        else if (char.IsWhiteSpace(current))
+                        
+                        if (char.IsWhiteSpace(current))
                             return SkipWhitespace(startLocation);
 
                         return null;

@@ -1,6 +1,7 @@
 ﻿using Heir.AST;
 using Heir.Syntax;
 using System.Collections;
+using Heir.AST.Abstract;
 
 namespace Heir
 {
