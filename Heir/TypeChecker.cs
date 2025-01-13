@@ -10,6 +10,9 @@ public class TypeChecker(DiagnosticBag diagnostics, BoundSyntaxTree syntaxTree) 
     public void Check() => Check(syntaxTree);
 
     public object? VisitBoundSyntaxTree(BoundSyntaxTree tree) => VisitBoundBlock(tree);
+    public object? VisitBoundBlock(BoundBlock block) => CheckStatements(block.Statements);
+    public object? VisitBoundReturnStatement(BoundReturn @return) => Check(@return.Expression);
+    public object? VisitBoundExpressionStatement(BoundExpressionStatement expressionStatement) => Check(expressionStatement.Expression);
 
     public object? VisitBoundAssignmentOpExpression(BoundAssignmentOp assignmentOp)
     {
@@ -26,11 +29,7 @@ public class TypeChecker(DiagnosticBag diagnostics, BoundSyntaxTree syntaxTree) 
         Assert(binaryOp.Right, binaryOp.Operator.RightType);
         return null;
     }
-
-    public object? VisitBoundBlock(BoundBlock block) => CheckStatements(block.Statements);
-
-    public object? VisitBoundExpressionStatement(BoundExpressionStatement expressionStatement) => Check(expressionStatement.Expression);
-
+    
     public object? VisitBoundLiteralExpression(BoundLiteral literal) => null;
     public object? VisitBoundObjectLiteralExpression(BoundObjectLiteral objectLiteral)
     {

@@ -62,11 +62,9 @@ namespace Heir
 
         public Binder TypeCheck()
         {
-            if (_binder != null)
-                return _binder;
-
-            var binder = Bind();
-            var typeChecker = new TypeChecker(Diagnostics, binder.GetBoundSyntaxTree());
+            var binder = _binder ?? Bind();
+            var boundTree = binder.GetBoundSyntaxTree();
+            var typeChecker = new TypeChecker(Diagnostics, boundTree);
             typeChecker.Check();
 
             return binder;
@@ -85,10 +83,7 @@ namespace Heir
 
         public SyntaxTree Resolve()
         {
-            if (_syntaxTree != null)
-                return _syntaxTree;
-
-            var syntaxTree = Parse();
+            var syntaxTree = _syntaxTree ?? Parse();
             var resolver = new Resolver(Diagnostics, syntaxTree);
             resolver.Resolve();
 

@@ -11,5 +11,6 @@ public abstract class Statement : SyntaxNode
         public R VisitBlock(Block block);
         public R VisitExpressionStatement(ExpressionStatement expressionStatement);
         public R VisitNoOp(NoOpStatement noOp);
+        public R VisitReturnStatement(Return @return);
     }
 }

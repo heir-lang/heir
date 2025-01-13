@@ -72,6 +72,8 @@
 
         LetKeyword, // keywords
         MutKeyword,
+        FnKeyword,
+        ReturnKeyword,
 
             // type keywords
         IntKeyword,

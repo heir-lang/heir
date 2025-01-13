@@ -10,13 +10,14 @@ namespace Heir.BoundAST
 
         public abstract R Accept<R>(Visitor<R> visitor);
 
-        public interface Visitor<R>
+        public interface Visitor<out R>
         {
             public R VisitBoundSyntaxTree(BoundSyntaxTree tree);
             public R VisitBoundBlock(BoundBlock boundBlock);
             public R VisitBoundVariableDeclaration(BoundVariableDeclaration variableDeclaration);
             public R VisitBoundExpressionStatement(BoundExpressionStatement expressionStatement);
             public R VisitBoundNoOp(BoundNoOpStatement noOp);
+            public R VisitBoundReturnStatement(BoundReturn @return);
         }
     }
 
@@ -26,7 +27,7 @@ namespace Heir.BoundAST
 
         public abstract R Accept<R>(Visitor<R> visitor);
 
-        public interface Visitor<R>
+        public interface Visitor<out R>
         {
             public R VisitBoundIdentifierNameExpression(BoundIdentifierName identifierName);
             public R VisitBoundAssignmentOpExpression(BoundAssignmentOp assignmentOp);
@@ -39,7 +40,5 @@ namespace Heir.BoundAST
         }
     }
 
-    public abstract class BoundSyntaxNode : SyntaxNode
-    {
-    }
+    public abstract class BoundSyntaxNode : SyntaxNode;
 }

@@ -12,7 +12,7 @@ namespace Heir.BoundAST
         public override R Accept<R>(Visitor<R> visitor) => visitor.VisitBoundUnaryOpExpression(this);
         public override List<Token> GetTokens() => Operand.GetTokens();
 
-        public override void Display(int indent)
+        public override void Display(int indent = 0)
         {
             Console.WriteLine($"{string.Concat(Enumerable.Repeat("  ", indent))}BoundUnaryOp(");
             Console.WriteLine($"{string.Concat(Enumerable.Repeat("  ", indent + 1))}Operator: {SyntaxFacts.OperatorMap.GetKey(Operator.SyntaxKind)},");

@@ -1,6 +1,3 @@
-﻿namespace Heir.BoundAST
-{
-    public abstract class BoundName : BoundExpression
-    {
-    }
-}
+﻿namespace Heir.BoundAST;
+
+public abstract class BoundName : BoundExpression;

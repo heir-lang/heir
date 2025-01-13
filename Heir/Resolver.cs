@@ -54,6 +54,15 @@ namespace Heir
             return null;
         }
 
+        public object? VisitReturnStatement(Return @return)
+        {
+            if (!_withinFunction)
+                Diagnostics.Error(DiagnosticCode.H015, "Invalid return statement: Can only use 'return' within a function body", @return.Keyword);
+            
+            Resolve(@return.Expression);
+            return null;
+        }
+
         public object? VisitAssignmentOpExpression(AssignmentOp assignmentOp) => VisitBinaryOpExpression(assignmentOp);
         public object? VisitBinaryOpExpression(BinaryOp binaryOp)
         {

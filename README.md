@@ -44,6 +44,7 @@ Though I cannot guarantee the lifetime or dedication to this project, contributi
       - [x] increment/decrement (`++`, `--`)
       - [x] compound assignment (`+=`, `-=`, `*=`, `/=`, `//=`, `%=`, `^=`)
 - [ ] parsing
+    - [ ] warn when using an expression as a statement that is not a return value and isn't something like AssignmentOp or Call
     - [ ] types
         - [x] singular
         - [x] union

@@ -35,6 +35,9 @@ public sealed class Parser(TokenStream tokenStream)
     {
         if (Tokens.Match(SyntaxKind.LetKeyword))
             return ParseVariableDeclaration();
+        
+        if (Tokens.Match(SyntaxKind.ReturnKeyword))
+            return ParseReturnStatement();
 
         if (Tokens.Match(SyntaxKind.LBrace))
         {
@@ -95,6 +98,13 @@ public sealed class Parser(TokenStream tokenStream)
         Tokens.Consume(SyntaxKind.Colon);
         var value = ParseExpression();
         return new(key, value);
+    }
+
+    private Return ParseReturnStatement()
+    {
+        var keyword = Tokens.Previous!;
+        var expression = ParseExpression();
+        return new Return(keyword, expression);
     }
 
     private Statement ParseVariableDeclaration()

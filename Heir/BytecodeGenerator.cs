@@ -25,10 +25,13 @@ public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder) 
             .ToList();
 
     public List<Instruction> VisitVariableDeclaration(VariableDeclaration variableDeclaration) =>
-        new List<Instruction>([new Instruction(variableDeclaration.Name, OpCode.PUSH, variableDeclaration.Name.Token.Text)])
-            .Concat(variableDeclaration.Initializer != null ? GenerateBytecode(variableDeclaration.Initializer) : [])
-            .Append(new Instruction(variableDeclaration, OpCode.STORE, false))
-            .ToList();
+    [
+        new(variableDeclaration.Name, OpCode.PUSH, variableDeclaration.Name.Token.Text),
+        ..variableDeclaration.Initializer != null ? GenerateBytecode(variableDeclaration.Initializer) : [],
+        new(variableDeclaration, OpCode.STORE, false)
+    ];
+
+    public List<Instruction> VisitReturnStatement(Return @return) => [..GenerateBytecode(@return.Expression), new(@return, OpCode.RETURN)];
 
     public List<Instruction> VisitExpressionStatement(ExpressionStatement expressionStatement) => GenerateBytecode(expressionStatement.Expression);
 

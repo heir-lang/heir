@@ -4,7 +4,8 @@ namespace Heir.Syntax
 {
     public static class SyntaxFacts
     {
-        public static readonly HashSet<SyntaxKind> TypeSyntaxes = [
+        public static readonly HashSet<SyntaxKind> TypeSyntaxes =
+        [
             SyntaxKind.Identifier,
             SyntaxKind.StringKeyword,
             SyntaxKind.CharKeyword,
@@ -14,7 +15,8 @@ namespace Heir.Syntax
             SyntaxKind.NoneKeyword
         ];
 
-        public static readonly HashSet<SyntaxKind> BinaryCompoundAssignmentOperators = [
+        public static readonly HashSet<SyntaxKind> BinaryCompoundAssignmentOperators =
+        [
             SyntaxKind.PlusEquals,
             SyntaxKind.MinusEquals,
             SyntaxKind.StarEquals,
@@ -29,7 +31,8 @@ namespace Heir.Syntax
             SyntaxKind.PipePipeEquals
         ];
 
-        public static readonly HashSet<SyntaxKind> NumberOperators = [
+        public static readonly HashSet<SyntaxKind> NumberOperators =
+        [
             SyntaxKind.Plus,
             SyntaxKind.Minus,
             SyntaxKind.Star,
@@ -116,6 +119,8 @@ namespace Heir.Syntax
         {
             { "let", SyntaxKind.LetKeyword },
             { "mut", SyntaxKind.MutKeyword },
+            { "fn", SyntaxKind.FnKeyword },
+            { "return", SyntaxKind.ReturnKeyword },
 
             { "int", SyntaxKind.IntKeyword },
             { "float", SyntaxKind.FloatKeyword },

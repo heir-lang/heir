@@ -11,7 +11,7 @@ namespace Heir.BoundAST
         public override R Accept<R>(Visitor<R> visitor) => visitor.VisitBoundLiteralExpression(this);
         public override List<Token> GetTokens() => [Token];
 
-        public override void Display(int indent)
+        public override void Display(int indent = 0)
         {
             var valueText = Token.Value?.ToString() ?? "none";
             if (Token.IsKind(SyntaxKind.BoolLiteral))

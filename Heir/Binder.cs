@@ -51,6 +51,12 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : S
         var symbol = DefineSymbol(variableDeclaration.Name.Token, type, variableDeclaration.IsMutable);
         return new BoundVariableDeclaration(symbol, initializer, variableDeclaration.IsMutable);
     }
+    
+    public BoundStatement VisitReturnStatement(Return @return)
+    {
+        var expression = Bind(@return.Expression);
+        return new BoundReturn(@return.Keyword, expression);
+    }
 
     public BoundStatement VisitExpressionStatement(ExpressionStatement expressionStatement)
     {
