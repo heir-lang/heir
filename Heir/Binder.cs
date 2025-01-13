@@ -57,7 +57,6 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : S
 
     public BoundStatement VisitFunctionDeclaration(FunctionDeclaration functionDeclaration)
     {
-        BeginScope();
         var enclosingContext = _context;
         _context = Context.Parameters;
         var boundParameters = functionDeclaration.Parameters
@@ -70,7 +69,6 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : S
             new KeyValuePair<string, BaseType>(parameter.Symbol.Name.Text, parameter.Type));
         
         var boundBody = (BoundBlock)Bind(functionDeclaration.Body);
-        EndScope();
         
         var type = new FunctionType(
             new Dictionary<string, BaseType>(parameterTypePairs),
@@ -158,7 +156,7 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : S
         if (symbol == null)
             return new BoundNoOp();
 
-        return new BoundIdentifierName(identifierName.Token, symbol);
+        return new BoundIdentifierName(symbol);
     }
 
     public BoundExpression VisitLiteralExpression(Literal literal) => new BoundLiteral(literal.Token);
@@ -225,9 +223,10 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : S
 
     private VariableSymbol<TType> DefineSymbol<TType>(Token name, TType type, bool isMutable) where TType : BaseType
     {
+        // this is so braindead
         var symbol = new VariableSymbol<TType>(name, type, isMutable);
         if (_variableScopes.TryPeek(out var scope))
-            scope.Push((symbol as VariableSymbol<BaseType>)!);
+            scope.Push(new VariableSymbol<BaseType>(name, type, isMutable));
 
         return symbol;
     }
@@ -238,8 +237,8 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : S
     private VariableSymbol<BaseType>? FindSymbol(Token name)
     {
         var symbol = _variableScopes
-            .Select(symbols => symbols.FirstOrDefault(symbol => symbol.Name.Text == name.Text)!)
-            .FirstOrDefault(symbol => symbol != null);
+            .SelectMany(v => v)
+            .FirstOrDefault(symbol => symbol.Name.Text == name.Text);
         
         if (symbol != null)
             return symbol;

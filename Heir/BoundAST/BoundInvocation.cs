@@ -13,12 +13,13 @@ public class BoundInvocation(BoundExpression callee, List<BoundExpression> argum
     public List<BoundExpression> Arguments { get; } = arguments;
 
     public override R Accept<R>(Visitor<R> visitor) => visitor.VisitBoundInvocationExpression(this);
-    public override List<Token> GetTokens() => Callee.GetTokens();
+    public override List<Token> GetTokens() => [..Callee.GetTokens(), ..Arguments.SelectMany(argument => argument.GetTokens())];
 
     public override void Display(int indent = 0)
     {
         Console.WriteLine($"{string.Concat(Enumerable.Repeat("  ", indent))}BoundInvocation(");
-        Callee.Display(indent + 1);
+        Console.WriteLine($"{string.Concat(Enumerable.Repeat("  ", indent + 1))}Callee ->");
+        Callee.Display(indent + 2);
         Console.WriteLine(',');
         Console.WriteLine();
         Console.WriteLine($"{string.Concat(Enumerable.Repeat("  ", indent + 1))}Arguments -> [");

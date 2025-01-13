@@ -44,7 +44,7 @@ public class BinderTest
         Assert.IsType<BoundIdentifierName>(node);
 
         var identifier = (BoundIdentifierName)node;
-        Assert.Equal("x", identifier.Token.Text);
+        Assert.Equal("x", identifier.Symbol.Name.Text);
         Assert.IsType<PrimitiveType>(identifier.Type);
 
         var type = (PrimitiveType)identifier.Type;
