@@ -15,6 +15,7 @@ public class ParserTest
     [InlineData("let", DiagnosticCode.H004C)]
     [InlineData("(1", DiagnosticCode.H004)]
     [InlineData("]", DiagnosticCode.H001B)]
+    [InlineData("fn abc(x) {}", DiagnosticCode.H012)]
     public void ThrowsWith(string input, DiagnosticCode expectedCode)
     {
         var tree = Parse(input);
@@ -40,6 +41,103 @@ public class ParserTest
     {
         var tree = Parse(input);
         Assert.False(tree.Diagnostics.HasErrors);
+    }
+
+    [Theory]
+    [InlineData("fn add(x: int, y = 1): int -> x + y;", true)]
+    [InlineData("fn add(x: int, y: int = 1): int { return x + y; }", false)]
+    public void Parses_FunctionDeclarations_WithParameters(string input, bool noTypeOnY)
+    {
+        var tree = Parse(input);
+        var statement = tree.Statements.First();
+        Assert.IsType<FunctionDeclaration>(statement);
+        
+        var functionDeclaration = (FunctionDeclaration)statement;
+        Assert.Equal(SyntaxKind.FnKeyword, functionDeclaration.Keyword.Kind);
+        Assert.Equal("add", functionDeclaration.Name.Token.Text);
+        Assert.Equal(2, functionDeclaration.Parameters.Count);
+        
+        var xParameter = functionDeclaration.Parameters.First();
+        var yParameter = functionDeclaration.Parameters.Last();
+        Assert.Equal("x", xParameter.Name.Token.Text);
+        Assert.Equal("y", yParameter.Name.Token.Text);
+        Assert.IsType<SingularType>(xParameter.Type);
+        Assert.Null(xParameter.Initializer);
+        if (noTypeOnY)
+            Assert.Null(yParameter.Type);
+        
+        Assert.NotNull(yParameter.Initializer);
+        Assert.Equal(1L, yParameter.Initializer.Token.Value);
+        
+        var xType = (SingularType)xParameter.Type;
+        Assert.Equal("int", xType.Token.Text);
+
+        Assert.Single(functionDeclaration.Body.Statements);
+        Assert.IsType<Return>(functionDeclaration.Body.Statements.First());
+        
+        var returnStatement = (Return)functionDeclaration.Body.Statements.First();
+        Assert.IsType<BinaryOp>(returnStatement.Expression);
+        
+        var binaryOp = (BinaryOp)returnStatement.Expression;
+        Assert.Equal("+", binaryOp.Operator.Text);
+        Assert.IsType<IdentifierName>(binaryOp.Left);
+        Assert.IsType<IdentifierName>(binaryOp.Right);
+
+        var left = (IdentifierName)binaryOp.Left;
+        var right = (IdentifierName)binaryOp.Right;
+        Assert.Equal("x", left.Token.Text);
+        Assert.Equal("y", right.Token.Text);
+    }
+
+    [Theory]
+    [InlineData("fn abc: int -> 123;")]
+    [InlineData("fn abc: int { return 123; }")]
+    public void Parses_FunctionDeclarations(string input)
+    {
+        var tree = Parse(input);
+        var statement = tree.Statements.First();
+        Assert.IsType<FunctionDeclaration>(statement);
+        
+        var functionDeclaration = (FunctionDeclaration)statement;
+        Assert.Equal(SyntaxKind.FnKeyword, functionDeclaration.Keyword.Kind);
+        Assert.Equal("abc", functionDeclaration.Name.Token.Text);
+        Assert.Empty(functionDeclaration.Parameters);
+        Assert.IsType<SingularType>(functionDeclaration.ReturnType);
+        
+        var returnType = (SingularType)functionDeclaration.ReturnType;
+        Assert.Equal("int", returnType.Token.Text);
+
+        Assert.Single(functionDeclaration.Body.Statements);
+        Assert.IsType<Return>(functionDeclaration.Body.Statements.First());
+        
+        var returnStatement = (Return)functionDeclaration.Body.Statements.First();
+        Assert.IsType<Literal>(returnStatement.Expression);
+        
+        var literal = (Literal)returnStatement.Expression;
+        Assert.Equal(123L, literal.Token.Value);
+    }
+
+    [Theory]
+    [InlineData("abc();", 0)]
+    [InlineData("abc(69);", 1)]
+    [InlineData("abc(69, 420);", 2)]
+    public void Parses_Invocations(string input, int expectedArgumentCount)
+    {
+        var tree = Parse(input);
+        var statement = tree.Statements.First();
+        Assert.IsType<ExpressionStatement>(statement);
+        
+        var expressionStatement = (ExpressionStatement)statement;
+        Assert.IsType<Invocation>(expressionStatement.Expression);
+        
+        var invocation = (Invocation)expressionStatement.Expression;
+        Assert.IsType<IdentifierName>(invocation.Callee);
+        
+        var calleeName = (IdentifierName)invocation.Callee;
+        Assert.Equal("abc", calleeName.Token.Text);
+        Assert.Equal(expectedArgumentCount, invocation.Arguments.Count);
+        foreach (var argument in invocation.Arguments)
+            Assert.IsType<Literal>(argument);
     }
 
     [Fact]
