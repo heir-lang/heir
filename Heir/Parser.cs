@@ -128,6 +128,7 @@ public sealed class Parser(TokenStream tokenStream)
                 if (expression is not Parameter parameter) continue;
                 
                 parameters.Add(parameter);
+                Tokens.Match(SyntaxKind.Comma);
             }
         }
         
@@ -272,7 +273,10 @@ public sealed class Parser(TokenStream tokenStream)
     {
         var arguments = new List<Expression>();
         while (!Tokens.Match(SyntaxKind.RParen) && !Tokens.IsAtEnd)
+        {
             arguments.Add(ParseExpression());
+            Tokens.Match(SyntaxKind.Comma);
+        }
         
         return arguments;
     }
