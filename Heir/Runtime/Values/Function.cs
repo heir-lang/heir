@@ -3,40 +3,24 @@ using Heir.CodeGeneration;
 
 namespace Heir.Runtime.Values;
 
-public sealed class Function
+public sealed class Function(FunctionDeclaration declaration, List<Instruction> bodyBytecode)
 {
-    public unsafe int* MemoryAddress { get; }
-    public string Name => _declaration.Name.Token.Text;
-
-    private readonly FunctionDeclaration _declaration;
-    private readonly List<Instruction> _bodyBytecode;
-    private readonly Scope _closure;
-    
-    public unsafe Function(FunctionDeclaration declaration, List<Instruction> bodyBytecode, Scope closure)
-    {
-        _declaration = declaration;
-        _bodyBytecode = bodyBytecode;
-        _closure = closure;
-        
-        fixed (int* ptr = &Call)
-        {
-            MemoryAddress = ptr;
-        }
-    }
+    public Guid ID { get; } = Guid.NewGuid();
+    public string Name => declaration.Name.Token.Text;
 
     public object? Call(VirtualMachine vm, List<object?> arguments)
     {
-        var scope = new Scope(_closure);
-        var index = 0;
-        foreach (var parameter in _declaration.Parameters)
+        var closure = new Scope(vm.Scope);
+        for (var i = 0; i < declaration.Parameters.Count; i++)
         {
+            var parameter = declaration.Parameters[i];
             var defaultValue = parameter.Initializer?.Token.Value;
-            var value = arguments.ElementAtOrDefault(index++) ?? defaultValue;
-            scope.Define(parameter.Name.Token.Text, value);
+            var value = i < arguments.Count ? arguments[i] : defaultValue;
+            closure.Define(parameter.Name.Token.Text, value);
         }
         
-        vm.BeginRecursion(_declaration.Name.Token);
-        var closureVM = new VirtualMachine(new(_bodyBytecode, vm.Diagnostics), scope, vm.RecursionDepth);
+        vm.BeginRecursion(declaration.Name.Token);
+        var closureVM = new VirtualMachine(new(bodyBytecode, vm.Diagnostics), closure, vm.RecursionDepth);
         var result = closureVM.Evaluate();
         vm.EndRecursion();
 

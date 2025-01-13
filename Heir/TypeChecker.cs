@@ -10,10 +10,42 @@ public class TypeChecker(DiagnosticBag diagnostics, BoundSyntaxTree syntaxTree) 
     public void Check() => Check(syntaxTree);
 
     public object? VisitBoundSyntaxTree(BoundSyntaxTree tree) => VisitBoundBlock(tree);
-    public object? VisitBoundBlock(BoundBlock block) => CheckStatements(block.Statements);
+    public object? VisitBoundBlock(BoundBlock block) => Check(block.Statements);
     public object? VisitBoundReturnStatement(BoundReturn @return) => Check(@return.Expression);
     public object? VisitBoundExpressionStatement(BoundExpressionStatement expressionStatement) => Check(expressionStatement.Expression);
 
+    public object? VisitBoundFunctionDeclaration(BoundFunctionDeclaration declaration)
+    {
+        Check(declaration.Parameters.OfType<BoundExpression>().ToList());
+        Check(declaration.Body);
+        if (declaration.Body.Type.IsAssignableTo(declaration.Type.ReturnType))
+            return null;
+        
+        var message = $"Function '{declaration.Symbol.Name.Text}' is expected to return type '{declaration.Type.ReturnType.ToString()}', but returns '{declaration.Body.Type.ToString()}'";
+        diagnostics.Error(DiagnosticCode.H007, message, declaration.Symbol.Name);
+        return null;
+    }
+
+    public object? VisitBoundVariableDeclaration(BoundVariableDeclaration variableDeclaration)
+    {
+        if (variableDeclaration.Initializer == null)
+            return null;
+        
+        Check(variableDeclaration.Initializer);
+        Assert(variableDeclaration.Initializer, variableDeclaration.Symbol.Type);
+        return null;
+    }
+    
+    public object? VisitBoundParameter(BoundParameter parameter)
+    {
+        if (parameter.Initializer == null)
+            return null;
+        
+        Check(parameter.Initializer);
+        Assert(parameter.Initializer, parameter.Symbol.Type);
+        return null;
+    }
+    
     public object? VisitBoundAssignmentOpExpression(BoundAssignmentOp assignmentOp)
     {
         Check(assignmentOp.Right);
@@ -69,17 +101,7 @@ public class TypeChecker(DiagnosticBag diagnostics, BoundSyntaxTree syntaxTree) 
         Assert(unaryOp.Operand, unaryOp.Operator.OperandType);
         return null;
     }
-
-    public object? VisitBoundVariableDeclaration(BoundVariableDeclaration variableDeclaration)
-    {
-        if (variableDeclaration.Initializer == null) return null;
-        Check(variableDeclaration.Initializer);
-
-        // TODO: forgo this assertion if the initializer is an ArrayType
-        Assert(variableDeclaration.Initializer, variableDeclaration.Symbol.Type);
-        return null;
-    }
-
+    
     private InterfaceMemberSignature? GetInterfaceMemberSignature(InterfaceType interfaceType, LiteralType propertyName, Token token)
     {
         if (!interfaceType.Members.TryGetValue(propertyName, out var valueType))
@@ -91,12 +113,30 @@ public class TypeChecker(DiagnosticBag diagnostics, BoundSyntaxTree syntaxTree) 
         return valueType;
     }
 
-    private object? CheckStatements(List<BoundStatement> statements)
+    private object? Check(List<BoundStatement> nodes)
     {
-        statements.ForEach(statement => Check(statement));
+        foreach (var node in nodes)
+            Check(node);
+        
         return null;
     }
-
+    
+    private object? Check(List<BoundExpression> nodes)
+    {
+        foreach (var node in nodes)
+            Check(node);
+        
+        return null;
+    }
+    
+    private object? Check(List<BoundSyntaxNode> nodes)
+    {
+        foreach (var node in nodes)
+            Check(node);
+        
+        return null;
+    }
+    
     private object? Check(BoundExpression expression) => expression.Accept(this);
     private object? Check(BoundStatement statement) => statement.Accept(this);
     private object? Check(BoundSyntaxNode node)

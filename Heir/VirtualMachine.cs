@@ -19,8 +19,8 @@ public sealed class VirtualMachine
 {
     public DiagnosticBag Diagnostics { get; }
     public Scope GlobalScope { get; }
-    public Scope Scope { get; set; }
-    public int RecursionDepth { get; }
+    public Scope Scope { get; private set; }
+    public int RecursionDepth { get; private set; }
     
     private const int _maxRecursionDepth = 1000;
     private readonly Stack<StackFrame> _stack = [];
@@ -144,16 +144,16 @@ public sealed class VirtualMachine
             case OpCode.LOAD:
             {
                 var nameFrame = _stack.Pop();
-                if (nameFrame.Value == null || nameFrame.Value is not string)
+                if (nameFrame.Value is not string name)
                 {
                     Diagnostics.Error(DiagnosticCode.HDEV,
                         $"Failed to execute LOAD op-code: No variable name was located in the stack, got {nameFrame.Value ?? "none"}",
                         nameFrame.Node.GetFirstToken());
+                    
                     Advance();
                     break;
                 }
 
-                var name = (string)nameFrame.Value;
                 var value = Scope.Lookup(name);
                 _stack.Push(new StackFrame(nameFrame.Node, value));
                 Advance();
@@ -163,22 +163,22 @@ public sealed class VirtualMachine
             {
                 var initializer = _stack.Pop();
                 var nameFrame = _stack.Pop();
-                if (nameFrame.Value == null || nameFrame.Value is not string)
+                if (nameFrame.Value is not string name)
                 {
                     Diagnostics.Error(DiagnosticCode.HDEV,
                         $"Failed to execute STORE op-code: No variable name was located in the stack, got {nameFrame.Value ?? "none"}",
                         initializer.Node.GetFirstToken());
+                    
                     Advance();
                     break;
                 }
 
-                var name = (string)nameFrame.Value;
                 if (Scope.IsDeclared(name))
                     Scope.Assign(name, initializer.Value);
                 else
                     Scope.Define(name, initializer.Value);
 
-                if (instruction.Operand as bool? ?? true)
+                if (instruction.Operand is true)
                     _stack.Push(initializer);
 
                 Advance();
@@ -299,7 +299,7 @@ public sealed class VirtualMachine
             {
                 var right = _stack.Pop();
                 var left = _stack.Pop();
-                var result = Convert.ToInt32(left.Value) << Convert.ToInt32(right.Value);
+                var result = Convert.ToInt64(Convert.ToInt32(left.Value) << Convert.ToInt32(right.Value));
 
                 _stack.Push(new StackFrame(right.Node, result));
                 Advance();
@@ -309,7 +309,7 @@ public sealed class VirtualMachine
             {
                 var right = _stack.Pop();
                 var left = _stack.Pop();
-                var result = Convert.ToInt32(left.Value) >> Convert.ToInt32(right.Value);
+                var result = Convert.ToInt64(Convert.ToInt32(left.Value) >> Convert.ToInt32(right.Value));
 
                 _stack.Push(new StackFrame(right.Node, result));
                 Advance();

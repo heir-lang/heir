@@ -210,12 +210,15 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : S
         var expression = Bind(parenthesized.Expression);
         return new BoundParenthesized(expression);
     }
-
-    public VariableSymbol DefineSymbol(Token name, BaseType type, bool isMutable)
+    
+    public VariableSymbol DefineSymbol(Token name, BaseType type, bool isMutable) =>
+        (VariableSymbol)DefineSymbol<BaseType>(name, type, isMutable);
+    
+    public VariableSymbol<TType> DefineSymbol<TType>(Token name, TType type, bool isMutable) where TType : BaseType
     {
-        var symbol = new VariableSymbol(name, type, isMutable);
+        var symbol = new VariableSymbol<TType>(name, type, isMutable);
         if (_variableScopes.TryPeek(out var scope))
-            scope.Push(symbol);
+            scope.Push((symbol as VariableSymbol)!);
 
         return symbol;
     }

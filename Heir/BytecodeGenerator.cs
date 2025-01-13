@@ -3,6 +3,7 @@ using Heir.AST;
 using Heir.AST.Abstract;
 using Heir.BoundAST;
 using Heir.CodeGeneration;
+using Heir.Runtime.Values;
 
 namespace Heir;
 
@@ -33,6 +34,26 @@ public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder) 
         new(variableDeclaration.Name, OpCode.PUSH, variableDeclaration.Name.Token.Text),
         ..variableDeclaration.Initializer != null ? GenerateBytecode(variableDeclaration.Initializer) : [],
         new(variableDeclaration, OpCode.STORE, false)
+    ];
+
+    public List<Instruction> VisitFunctionDeclaration(FunctionDeclaration functionDeclaration)
+    {
+        var bodyBytecode = GenerateBytecode(functionDeclaration.Body);
+        var function = new Function(functionDeclaration, bodyBytecode);
+        
+        return
+        [
+            new(functionDeclaration.Name, OpCode.PUSH, function.Name),
+            new(functionDeclaration, OpCode.PUSH, function),
+            new(functionDeclaration, OpCode.STORE, false)
+        ];
+    }
+
+    public List<Instruction> VisitParameter(Parameter parameter) =>
+    [
+        new(parameter.Name, OpCode.PUSH, parameter.Name.Token.Text),
+        ..parameter.Initializer != null ? GenerateBytecode(parameter.Initializer) : [],
+        new(parameter, OpCode.STORE, false)
     ];
 
     public List<Instruction> VisitReturnStatement(Return @return) => [..GenerateBytecode(@return.Expression), new(@return, OpCode.RETURN)];

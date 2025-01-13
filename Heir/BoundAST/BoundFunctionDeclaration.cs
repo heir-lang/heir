@@ -6,14 +6,14 @@ namespace Heir.BoundAST;
 
 public sealed class BoundFunctionDeclaration(
     Token keyword,
-    VariableSymbol symbol, // VariableSymbol<FunctionType>
+    VariableSymbol<FunctionType> symbol,
     List<BoundParameter> parameters,
     BoundBlock body) : BoundStatement
 {
-    public override BaseType Type => Symbol.Type;
+    public override FunctionType Type => Symbol.Type;
     
     public Token Keyword { get; } = keyword;
-    public VariableSymbol Symbol { get; } = symbol;
+    public VariableSymbol<FunctionType> Symbol { get; } = symbol;
     public List<BoundParameter> Parameters { get; } = parameters;
     public BoundBlock Body { get; } = body;
 
