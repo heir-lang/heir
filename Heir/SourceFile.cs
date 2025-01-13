@@ -70,7 +70,7 @@ namespace Heir
             return binder;
         }
 
-        public Binder Bind()
+        public Binder Bind(bool resolve = true)
         {
             if (_binder != null)
                 return _binder;

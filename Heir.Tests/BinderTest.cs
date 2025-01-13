@@ -19,6 +19,21 @@ public class BinderTest
     }
 
     [Fact]
+    public void Binds_ReturnStatements()
+    {
+        var boundTree = Bind("return 123;");
+        var statement = boundTree.Statements.First();
+        Assert.IsType<BoundReturn>(statement);
+        
+        var returnStatement = (BoundReturn)statement;
+        Assert.IsType<PrimitiveType>(returnStatement.Type);
+        Assert.IsType<BoundLiteral>(returnStatement.Expression);
+        
+        var primitiveType = (PrimitiveType)returnStatement.Type;
+        Assert.Equal(PrimitiveTypeKind.Int, primitiveType.PrimitiveKind);
+    }
+
+    [Fact]
     public void Binds_Identifiers()
     {
         var boundTree = Bind("let x: string; x;");
