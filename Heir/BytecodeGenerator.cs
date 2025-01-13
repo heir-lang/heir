@@ -12,10 +12,14 @@ public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder) 
 
     public Bytecode GenerateBytecode() => new(GenerateBytecode(_syntaxTree), diagnostics);
 
-    public List<Instruction> VisitSyntaxTree(SyntaxTree syntaxTree) =>
-        GenerateStatementsBytecode(syntaxTree.Statements)
-            .Append(new Instruction(syntaxTree, OpCode.EXIT))
-            .ToList();
+    public List<Instruction> VisitSyntaxTree(SyntaxTree syntaxTree)
+    {
+        var statementsBytecode = GenerateStatementsBytecode(syntaxTree.Statements).ToList();
+        if (statementsBytecode.Last().OpCode != OpCode.RETURN)
+            statementsBytecode.Add(new Instruction(syntaxTree, OpCode.EXIT));
+        
+        return statementsBytecode;
+    }
 
     // TODO: create scope
     public List<Instruction> VisitBlock(Block block) =>

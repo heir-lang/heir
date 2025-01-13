@@ -7,16 +7,25 @@ using ObjectBytecode = Dictionary<List<Instruction>, List<Instruction>>;
 public class BytecodeGeneratorTest
 {
     [Fact]
-    public void GeneratesExit()
+    public void Generates_Exit()
     {
         var bytecode = GenerateBytecode("69");
         var instruction = bytecode.Instructions.Last();
         Assert.Equal(OpCode.EXIT, instruction.OpCode);
         Assert.Null(instruction.Operand);
     }
+    
+    [Fact]
+    public void Generates_Return()
+    {
+        var bytecode = GenerateBytecode("return 123;");
+        var instruction = bytecode.Instructions.Last();
+        Assert.Equal(OpCode.RETURN, instruction.OpCode);
+        Assert.Null(instruction.Operand);
+    }
 
     [Fact]
-    public void GeneratesPushObject_ObjectLiterals()
+    public void GeneratesPushObject_ForObjectLiterals()
     {
         var bytecode = GenerateBytecode("{ a: true }");
         var pushObject = bytecode.Instructions.First();
