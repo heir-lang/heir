@@ -79,9 +79,9 @@ public class BytecodeGeneratorTest
     public void Generates_BinaryOperations(string input, object? leftValue, object? rightValue, OpCode opCode)
     {
         var bytecode = GenerateBytecode(input);
-        var pushLeft = bytecode.Instructions[0];
-        var pushRight = bytecode.Instructions[1];
-        var operation = bytecode.Instructions[2];
+        var pushLeft = bytecode[0];
+        var pushRight = bytecode[1];
+        var operation = bytecode[2];
         Assert.Equal(OpCode.PUSH, pushLeft.OpCode);
         Assert.Equal(leftValue, pushLeft.Operand);
         Assert.Equal(OpCode.PUSH, pushRight.OpCode);
@@ -97,10 +97,10 @@ public class BytecodeGeneratorTest
     public void Generates_InvertedBinaryOperations(string input, object? leftValue, object? rightValue, OpCode opCode)
     {
         var bytecode = GenerateBytecode(input);
-        var pushLeft = bytecode.Instructions[0];
-        var pushRight = bytecode.Instructions[1];
-        var operation = bytecode.Instructions[2];
-        var inversion = bytecode.Instructions[3];
+        var pushLeft = bytecode[0];
+        var pushRight = bytecode[1];
+        var operation = bytecode[2];
+        var inversion = bytecode[3];
         Assert.Equal(OpCode.PUSH, pushLeft.OpCode);
         Assert.Equal(leftValue, pushLeft.Operand);
         Assert.Equal(OpCode.PUSH, pushRight.OpCode);
@@ -115,9 +115,9 @@ public class BytecodeGeneratorTest
     public void Generates_Assignment()
     {
         var bytecode = GenerateBytecode("let mut a = 1; a = 2;").Skip(3);
-        var pushIdentifier = bytecode.Instructions[0];
-        var pushRight = bytecode.Instructions[1];
-        var store = bytecode.Instructions[2];
+        var pushIdentifier = bytecode[0];
+        var pushRight = bytecode[1];
+        var store = bytecode[2];
         Assert.Equal(OpCode.PUSH, pushIdentifier.OpCode);
         Assert.Equal("a", pushIdentifier.Operand);
         Assert.Equal(OpCode.PUSH, pushRight.OpCode);
@@ -132,12 +132,12 @@ public class BytecodeGeneratorTest
     public void Generates_BinaryCompoundAssignment(string input, object? right, OpCode opCode)
     {
         var bytecode = GenerateBytecode(input).Skip(3);
-        var pushIdentifier = bytecode.Instructions[0];
-        var pushIdentifierAgain = bytecode.Instructions[1];
-        var load = bytecode.Instructions[2];
-        var pushRight = bytecode.Instructions[3];
-        var operation = bytecode.Instructions[4];
-        var store = bytecode.Instructions[5];
+        var pushIdentifier = bytecode[0];
+        var pushIdentifierAgain = bytecode[1];
+        var load = bytecode[2];
+        var pushRight = bytecode[3];
+        var operation = bytecode[4];
+        var store = bytecode[5];
         Assert.Equal(OpCode.PUSH, pushIdentifier.OpCode);
         Assert.Equal("a", pushIdentifier.Operand);
         Assert.Equal(OpCode.PUSH, pushIdentifierAgain.OpCode);
@@ -159,8 +159,8 @@ public class BytecodeGeneratorTest
     public void Generates_UnaryOperations(string input, object? operandValue, OpCode opCode)
     {
         var bytecode = GenerateBytecode(input);
-        var push = bytecode.Instructions[0];
-        var operation = bytecode.Instructions[1];
+        var push = bytecode[0];
+        var operation = bytecode[1];
         Assert.Equal(OpCode.PUSH, push.OpCode);
         Assert.Equal(operandValue, push.Operand);
         Assert.Equal(opCode, operation.OpCode);
@@ -173,12 +173,12 @@ public class BytecodeGeneratorTest
     public void Generates_UnaryCompoundAssignment(string input, OpCode opCode)
     {
         var bytecode = GenerateBytecode(input).Skip(3);
-        var pushIdentifier = bytecode.Instructions[0];
-        var pushIdentifierAgain = bytecode.Instructions[1];
-        var load = bytecode.Instructions[2];
-        var pushOne = bytecode.Instructions[3];
-        var operation = bytecode.Instructions[4];
-        var store = bytecode.Instructions[5];
+        var pushIdentifier = bytecode[0];
+        var pushIdentifierAgain = bytecode[1];
+        var load = bytecode[2];
+        var pushOne = bytecode[3];
+        var operation = bytecode[4];
+        var store = bytecode[5];
         Assert.Equal(OpCode.PUSH, pushIdentifier.OpCode);
         Assert.Equal("a", pushIdentifier.Operand);
         Assert.Equal(OpCode.PUSH, pushIdentifierAgain.OpCode);
@@ -199,9 +199,9 @@ public class BytecodeGeneratorTest
     public void Generates_VariableDeclarations(string input, string name, object? value, OpCode opCode)
     {
         var bytecode = GenerateBytecode(input);
-        var pushIdentifier = bytecode.Instructions[0];
-        var pushValue = bytecode.Instructions[1];
-        var operation = bytecode.Instructions[2];
+        var pushIdentifier = bytecode[0];
+        var pushValue = bytecode[1];
+        var operation = bytecode[2];
         Assert.Equal(OpCode.PUSH, pushIdentifier.OpCode);
         Assert.Equal(name, pushIdentifier.Operand);
         Assert.Equal(OpCode.PUSH, pushValue.OpCode);
@@ -212,18 +212,41 @@ public class BytecodeGeneratorTest
     
     [Theory]
     [InlineData("fn abc -> 420;")]
-    [InlineData("fn abc(x: int): int -> 123;")]
+    [InlineData("fn abc(x: int): int -> 123 + x;")]
     public void Generates_FunctionDeclarations(string input)
     {
         var bytecode = GenerateBytecode(input);
-        var pushIdentifier = bytecode.Instructions[0];
-        var pushValue = bytecode.Instructions[1];
-        var operation = bytecode.Instructions[2];
+        var pushIdentifier = bytecode[0];
+        var pushValue = bytecode[1];
+        var operation = bytecode[2];
         Assert.Equal(OpCode.PUSH, pushIdentifier.OpCode);
         Assert.Equal("abc", pushIdentifier.Operand);
         Assert.Equal(OpCode.PUSH, pushValue.OpCode);
         Assert.IsType<Function>(pushValue.Operand);
         Assert.Equal(OpCode.STORE, operation.OpCode);
         Assert.False(operation.Operand as bool?);
+    }
+
+    [Fact]
+    public void Generates_Invocation()
+    {
+        var bytecode = GenerateBytecode("fn abc(x: int): int -> 123 + x; abc(69);").Skip(3);
+        var pushIdentifier = bytecode[0];
+        var load = bytecode[1];
+        var call = bytecode[2];
+        Assert.Equal(OpCode.PUSH, pushIdentifier.OpCode);
+        Assert.Equal("abc", pushIdentifier.Operand);
+        Assert.Equal(OpCode.LOAD, load.OpCode);
+        Assert.Null(load.Operand);
+        Assert.Equal(OpCode.CALL, call.OpCode);
+        Assert.IsType<List<List<Instruction>>>(call.Operand);
+        
+        var argumentsBytecode = (List<List<Instruction>>)call.Operand;
+        Assert.Single(argumentsBytecode);
+        
+        var argumentBytecode = argumentsBytecode.First();
+        var pushValue = argumentBytecode[0];
+        Assert.Equal(OpCode.PUSH, pushValue.OpCode);
+        Assert.Equal(69L, pushValue.Operand);
     }
 }
