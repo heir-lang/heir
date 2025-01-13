@@ -41,6 +41,21 @@ public class ParserTest
         var tree = Parse(input);
         Assert.False(tree.Diagnostics.HasErrors);
     }
+
+    [Fact]
+    public void Parses_ReturnStatements()
+    {
+        var tree = Parse("return 123;");
+        var statement = tree.Statements.First();
+        Assert.IsType<Return>(statement);
+        
+        var returnStatement = (Return)statement;
+        Assert.Equal(SyntaxKind.ReturnKeyword, returnStatement.Keyword.Kind);
+        Assert.IsType<Literal>(returnStatement.Expression);
+        
+        var literal = (Literal)returnStatement.Expression;
+        Assert.Equal(123L, literal.Token.Value);
+    }
     
     [Fact]
     public void Parses_IntersectionTypes()
