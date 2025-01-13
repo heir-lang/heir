@@ -187,9 +187,18 @@ public sealed class Parser(TokenStream tokenStream)
         if (Tokens.Match(SyntaxKind.Colon))
             type = ParseType();
         
-        Expression? initializer = null;
+        Literal? initializer = null;
         if (Tokens.Match(SyntaxKind.Equals))
-            initializer = ParseExpression();
+        {
+            var expression = ParsePrimary();
+            if (expression is not Literal literal)
+            {
+                _diagnostics.Error(DiagnosticCode.H016, "Parameter initializers must be literals", identifier);
+                return new NoOp();
+            }
+            
+            initializer = literal;
+        }
         
         if (initializer == null && type == null)
         {

@@ -1,8 +1,6 @@
 namespace Heir.Runtime.HookedExceptions;
 
-public class ReturnHook(object? value) : HookedException
-{
-    public object? Value { get; } = value;
-}
+public class BreakHook : HookedException;
+public class NextHook : HookedException;
 
 public abstract class HookedException() : Exception("BUG: Unhooked hooked exception");

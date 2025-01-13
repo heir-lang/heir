@@ -1,5 +1,6 @@
 ﻿using Heir;
 using Heir.Runtime;
+using Heir.Runtime.Values;
 
 var program = new HeirProgram();
 var testFile = SourceFile.FromPath("./Test.heir", isMainFile: true);

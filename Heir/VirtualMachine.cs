@@ -2,6 +2,8 @@
 using Heir.CodeGeneration;
 using Heir.Runtime;
 using Heir.Runtime.HookedExceptions;
+using Heir.Runtime.Values;
+using Heir.Syntax;
 
 namespace Heir;
 
@@ -17,20 +19,23 @@ public sealed class VirtualMachine
 {
     public DiagnosticBag Diagnostics { get; }
     public Scope GlobalScope { get; }
-    public Scope Scope { get; private set; }
-
+    public Scope Scope { get; set; }
+    public int RecursionDepth { get; }
+    
+    private const int _maxRecursionDepth = 1000;
     private readonly Stack<StackFrame> _stack = [];
     private readonly Bytecode _bytecode;
     private Scope _enclosingScope;
     private int _pointer;
 
-    public VirtualMachine(Bytecode bytecode, Scope? scope = null)
+    public VirtualMachine(Bytecode bytecode, Scope? scope = null, int recursionDepth = 0)
     {
         Diagnostics = bytecode.Diagnostics;
         GlobalScope = new Scope();
         Scope = scope ?? GlobalScope;
         _enclosingScope = Scope;
         _bytecode = bytecode;
+        RecursionDepth = recursionDepth;
     }
 
     public T? Evaluate<T>() => (T?)Evaluate();
@@ -53,6 +58,14 @@ public sealed class VirtualMachine
             : null;
     }
 
+    public void EndRecursion(int level = 1) => RecursionDepth -= level;
+    public void BeginRecursion(Token token)
+    {
+        RecursionDepth++;
+        if (RecursionDepth < _maxRecursionDepth) return;
+        Diagnostics.Error(DiagnosticCode.H017, $"Stack overflow: Recursion depth of ${_maxRecursionDepth} exceeded", token);
+    }
+    
     private StackFrame? EvaluateInstruction(Instruction instruction)
     {
         switch (instruction.OpCode)
@@ -64,10 +77,7 @@ public sealed class VirtualMachine
                 break;
             
             case OpCode.RETURN:
-            {
-                var frame = _stack.Pop();
-                throw new ReturnHook(frame.Value);
-            }
+                return _stack.Pop();
 
             case OpCode.BEGINSCOPE:
                 _enclosingScope = Scope;

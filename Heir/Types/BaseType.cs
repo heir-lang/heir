@@ -5,6 +5,8 @@ namespace Heir.Types;
 
 public abstract class BaseType
 {
+    public bool IsNullable => this is UnionType union && union.Types.Contains(PrimitiveType.None);
+    
     public abstract TypeKind Kind { get; }
 
     public abstract string ToString(bool colors = false);
