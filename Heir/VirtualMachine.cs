@@ -1,7 +1,7 @@
-﻿using Heir.AST;
-using Heir.AST.Abstract;
+﻿using Heir.AST.Abstract;
 using Heir.CodeGeneration;
 using Heir.Runtime;
+using Heir.Runtime.HookedExceptions;
 
 namespace Heir;
 
@@ -62,8 +62,12 @@ public sealed class VirtualMachine
             case OpCode.NOOP:
                 Advance();
                 break;
+            
             case OpCode.RETURN:
-                return _stack.Pop();
+            {
+                var frame = _stack.Pop();
+                throw new ReturnHook(frame.Value);
+            }
 
             case OpCode.BEGINSCOPE:
                 _enclosingScope = Scope;
@@ -410,7 +414,7 @@ public sealed class VirtualMachine
             case OpCode.JZ:
             {
                 var frame = _stack.Pop();
-                if (frame.Value is int n && n == 0)
+                if (frame.Value is 0)
                 {
                     if (instruction.Operand is int index)
                         _pointer = index;
@@ -418,17 +422,17 @@ public sealed class VirtualMachine
                         NonIntegerOperand(instruction);
                 }
                 else
-                {
                     Advance();
-                }
 
                 break;
             }
             
             default:
             {
-                Diagnostics.Error(DiagnosticCode.H001D, $"Unhandled opcode \"{instruction.OpCode}\"",
+                Diagnostics.Error(DiagnosticCode.H001D,
+                    $"Unhandled opcode \"{instruction.OpCode}\"",
                     instruction.Root.GetFirstToken());
+                
                 return new StackFrame(instruction.Root, new ExitMarker());
             }
         }
@@ -447,8 +451,5 @@ public sealed class VirtualMachine
         return new StackFrame(instruction.Root, instruction.Operand);
     }
 
-    private void Advance(int amount = 1)
-    {
-        _pointer += amount;
-    }
+    private void Advance(int amount = 1) => _pointer += amount;
 }
