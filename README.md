@@ -1,5 +1,7 @@
 # Heir
-toy (for now) bytecode interpreter
+[![CI Status](https://github.com/R-unic/heir/actions/workflows/ci.yml/badge.svg)](https://github.com/R-unic/heir/actions/workflows)
+[![Coverage Status](https://coveralls.io/repos/github/R-unic/heir/badge.svg)](https://coveralls.io/github/R-unic/heir)
+
 
 ## Contributions
 Though I cannot guarantee the lifetime or dedication to this project, contributions are welcome and encouraged and I will review them ASAP.
@@ -52,7 +54,7 @@ Though I cannot guarantee the lifetime or dedication to this project, contributi
         - [x] parenthesized
         - [ ] literal
         - [ ] array
-        - [x] function
+        - [ ] function
         - [ ] interface
         - [ ] class
       - [ ] control flow
