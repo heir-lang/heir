@@ -263,6 +263,26 @@ public sealed class Parser(TokenStream tokenStream)
         var token = Tokens.ConsumeType();
         return new SingularType(token ?? Tokens.Previous!);
     }
+    
+    private Invocation ParseInvocation(Expression expression)
+    {
+        var arguments = ParseArguments();
+        Tokens.Consume(SyntaxKind.RParen);
+        return new Invocation(expression, arguments);
+    }
+
+    private List<Expression> ParseArguments()
+    {
+        var arguments = new List<Expression>();
+        while (!Tokens.Match(SyntaxKind.RParen) && !Tokens.IsAtEnd)
+        {
+            arguments.Add(ParseExpression());
+            if (!Tokens.Match(SyntaxKind.Comma)) // no trailing comma
+                break;
+        }
+        
+        return arguments;
+    }
 
     private Expression ParseExpression() => ParseAssignment();
 
@@ -448,7 +468,21 @@ public sealed class Parser(TokenStream tokenStream)
             return new UnaryOp(operand, op);
         }
 
-        return ParsePrimary();
+        return ParsePostfix();
+    }
+    
+    private Expression ParsePostfix()
+    {
+        var expression = ParsePrimary();
+        while (!Tokens.IsAtEnd)
+        {
+            if (Tokens.Match(SyntaxKind.LParen))
+                expression = ParseInvocation(expression);
+            else
+                break; // No more postfix operators
+        }
+
+        return expression;
     }
 
     private Expression ParsePrimary()
