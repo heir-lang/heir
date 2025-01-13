@@ -34,7 +34,7 @@ namespace Heir
                 .Take(erroneousCodeLineLength)
                 .ToList();
             
-            var padding = string.Join("", Enumerable.Repeat(' ', EndLocation.Line.ToString().Length - 1));
+            var padding = string.Join("", Enumerable.Repeat(' ', EndLocation.Line.ToString().Length));
             var codeDisplay = "";
             var lineNumber = 0;
             foreach (var line in lines)
@@ -60,7 +60,7 @@ namespace Heir
                     codeDisplay += $"[invert white]{StartLocation.Line + offset}{padding}[/] [grey]|[/] {(offset == 0 ? "[white]" : "[grey58]")}{(line != trimmed ? " " + trimmed : trimmed)}[/]\n";
                 }
 
-                codeDisplay += $" {padding}   [red]{string.Join("", Enumerable.Repeat(' ', erroneousCodeDistance))}{string.Join("", Enumerable.Repeat('~', erroneousCodeColumnLength))}[/]\n";
+                codeDisplay += $" {padding}    [red]{string.Join("", Enumerable.Repeat(' ', erroneousCodeDistance))}{string.Join("", Enumerable.Repeat('~', erroneousCodeColumnLength))}[/]\n";
 
                 switch (Level)
                 {

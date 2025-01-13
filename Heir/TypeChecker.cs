@@ -60,10 +60,11 @@ public class TypeChecker(DiagnosticBag diagnostics, BoundSyntaxTree syntaxTree) 
         var index = 0;
         foreach (var argument in invocation.Arguments)
         {
-            KeyValuePair<string, BaseType>? parameterTypeInfo = expectedTypes.ElementAtOrDefault(index++);
-            if (parameterTypeInfo is null) continue;
+            var parameterTypeInfo = expectedTypes.ElementAtOrDefault(index++);
+            var defaultPair = default(KeyValuePair<string, BaseType>);
+            if (parameterTypeInfo.Key == defaultPair.Key && parameterTypeInfo.Value == defaultPair.Value) continue;
             
-            var (parameterName, expectedType) = parameterTypeInfo.Value;
+            var (parameterName, expectedType) = parameterTypeInfo;
             Check(argument);
             Assert(argument, expectedType, $"Argument type '{argument.Type.ToString()}' is not assignable to type '{expectedType.ToString()}' of parameter '{parameterName}'");
         }

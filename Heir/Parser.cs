@@ -267,7 +267,7 @@ public sealed class Parser(TokenStream tokenStream)
     private Invocation ParseInvocation(Expression expression)
     {
         var arguments = ParseArguments();
-        Tokens.Consume(SyntaxKind.RParen);
+        
         return new Invocation(expression, arguments);
     }
 
@@ -275,11 +275,7 @@ public sealed class Parser(TokenStream tokenStream)
     {
         var arguments = new List<Expression>();
         while (!Tokens.Match(SyntaxKind.RParen) && !Tokens.IsAtEnd)
-        {
             arguments.Add(ParseExpression());
-            if (!Tokens.Match(SyntaxKind.Comma)) // no trailing comma
-                break;
-        }
         
         return arguments;
     }
