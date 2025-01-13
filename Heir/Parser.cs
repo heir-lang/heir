@@ -25,7 +25,7 @@ public sealed class Parser(TokenStream tokenStream)
     private List<Statement> ParseStatementsUntil(Func<bool> predicate)
     {
         var statements = new List<Statement>();
-        while (!predicate())
+        while (!predicate() && !Tokens.IsAtEnd)
             statements.Add(ParseStatement());
 
         return statements;
@@ -35,6 +35,9 @@ public sealed class Parser(TokenStream tokenStream)
     {
         if (Tokens.Match(SyntaxKind.LetKeyword))
             return ParseVariableDeclaration();
+        
+        if (Tokens.Match(SyntaxKind.FnKeyword))
+            return ParseFunctionDeclaration();
         
         if (Tokens.Match(SyntaxKind.ReturnKeyword))
             return ParseReturnStatement();
@@ -103,8 +106,57 @@ public sealed class Parser(TokenStream tokenStream)
     private Return ParseReturnStatement()
     {
         var keyword = Tokens.Previous!;
-        var expression = ParseExpression();
+        var noExpression = Tokens.Check(SyntaxKind.RBrace) ||
+                                Tokens.Current is TriviaToken
+                                {
+                                    TriviaKind: TriviaKind.EOF or TriviaKind.Semicolons
+                                } ||
+                                Tokens.IsAtEnd;
+        
+        var expression = noExpression
+            ? new Literal(TokenFactory.NoneLiteral())
+            : ParseExpression();
+        
         return new Return(keyword, expression);
+    }
+    
+    private Statement ParseFunctionDeclaration()
+    {
+        var keyword = Tokens.Previous!;
+        if (!Tokens.Match(SyntaxKind.Identifier, out var identifier))
+        {
+            _diagnostics.Error(DiagnosticCode.H004C, $"Expected identifier after 'fn', got {Tokens.Current}", Tokens.Previous!);
+            return new NoOpStatement();
+        }
+
+        var parameters = new List<Parameter>();
+        if (Tokens.Match(SyntaxKind.LParen))
+        {
+            while (!Tokens.Check(SyntaxKind.RParen) && !Tokens.IsAtEnd)
+            {
+                var expression = ParseParameter();
+                if (expression is not Parameter parameter) continue;
+                
+                parameters.Add(parameter);
+                Tokens.Match(SyntaxKind.Comma);
+            }
+            Tokens.Consume(SyntaxKind.RParen);
+        }
+        
+        TypeRef? returnType = null;
+        if (Tokens.Match(SyntaxKind.Colon))
+            returnType = ParseType();
+
+        Block body;
+        if (Tokens.Match(SyntaxKind.DashRArrow))
+            body = new Block([new Return(TokenFactory.Keyword(SyntaxKind.ReturnKeyword), ParseExpression())]);
+        else
+        {
+            Tokens.Consume(SyntaxKind.LBrace);
+            body = ParseBlock();
+        }
+
+        return new FunctionDeclaration(keyword, new IdentifierName(identifier), parameters, body, returnType);
     }
 
     private Statement ParseVariableDeclaration()
@@ -117,6 +169,7 @@ public sealed class Parser(TokenStream tokenStream)
         }
 
         var identifier = Tokens.Previous!;
+        
         TypeRef? type = null;
         if (Tokens.Match(SyntaxKind.Colon))
             type = ParseType();
@@ -127,11 +180,43 @@ public sealed class Parser(TokenStream tokenStream)
 
         if (initializer == null && type == null)
         {
-            _diagnostics.Error(DiagnosticCode.H012, $"Cannot infer type of variable '{identifier.Text}', please add an explicit type", identifier);
+            _diagnostics.Error(DiagnosticCode.H012, $"Cannot infer type of variable '{identifier.Text}', please add an explicit type or initializer", identifier);
             return new NoOpStatement();
         }
 
         return new VariableDeclaration(new IdentifierName(identifier), initializer, type, isMutable);
+    }
+
+    private Expression ParseParameter()
+    {
+        var identifier = Tokens.Consume(SyntaxKind.Identifier);
+        if (identifier == null)
+            return new NoOp();
+        
+        TypeRef? type = null;
+        if (Tokens.Match(SyntaxKind.Colon))
+            type = ParseType();
+        
+        Literal? initializer = null;
+        if (Tokens.Match(SyntaxKind.Equals))
+        {
+            var expression = ParsePrimary();
+            if (expression is not Literal literal)
+            {
+                _diagnostics.Error(DiagnosticCode.H016, "Parameter initializers must be literals", identifier);
+                return new NoOp();
+            }
+            
+            initializer = literal;
+        }
+        
+        if (initializer == null && type == null)
+        {
+            _diagnostics.Error(DiagnosticCode.H012, $"Cannot infer type of parameter '{identifier.Text}', please add an explicit type or initializer", identifier);
+            return new NoOp();
+        }
+        
+        return new Parameter(new IdentifierName(identifier), type, initializer);
     }
 
     private TypeRef ParseType()
@@ -188,6 +273,25 @@ public sealed class Parser(TokenStream tokenStream)
         var token = Tokens.ConsumeType();
         return new SingularType(token ?? Tokens.Previous!);
     }
+    
+    private Invocation ParseInvocation(Expression expression)
+    {
+        var arguments = ParseArguments();
+        return new Invocation(expression, arguments);
+    }
+
+    private List<Expression> ParseArguments()
+    {
+        var arguments = new List<Expression>();
+        while (!Tokens.Check(SyntaxKind.RParen) && !Tokens.IsAtEnd)
+        {
+            arguments.Add(ParseExpression());
+            Tokens.Match(SyntaxKind.Comma);
+        }
+
+        Tokens.Consume(SyntaxKind.RParen);
+        return arguments;
+    }
 
     private Expression ParseExpression() => ParseAssignment();
 
@@ -210,7 +314,7 @@ public sealed class Parser(TokenStream tokenStream)
             Tokens.Match(SyntaxKind.LArrowLArrowEquals) ||
             Tokens.Match(SyntaxKind.RArrowRArrowEquals))
         {
-            if (!left.Is<Name>())
+            if (left is not Name) // or MemberAccess
                 _diagnostics.Error(DiagnosticCode.H006B, "Invalid assignment target, expected identifier or member access", left.GetFirstToken());
 
             var op = Tokens.Previous!;
@@ -367,13 +471,27 @@ public sealed class Parser(TokenStream tokenStream)
             var op = Tokens.Previous!;
             var operand = ParseUnary(); // recursively parse the operand
             var isAssignmentOp = op.IsKind(SyntaxKind.PlusPlus) || op.IsKind(SyntaxKind.MinusMinus);
-            if (isAssignmentOp && operand.Is<Literal>())
+            if (isAssignmentOp && operand is Literal)
                 _diagnostics.Error(DiagnosticCode.H006, $"Attempt to {(op.IsKind(SyntaxKind.PlusPlus) ? "in" : "de")}crement a constant, expected identifier", operand.GetFirstToken());
 
             return new UnaryOp(operand, op);
         }
 
-        return ParsePrimary();
+        return ParsePostfix();
+    }
+    
+    private Expression ParsePostfix()
+    {
+        var expression = ParsePrimary();
+        while (!Tokens.IsAtEnd)
+        {
+            if (Tokens.Match(SyntaxKind.LParen))
+                expression = ParseInvocation(expression);
+            else
+                break; // No more postfix operators
+        }
+
+        return expression;
     }
 
     private Expression ParsePrimary()
@@ -398,7 +516,7 @@ public sealed class Parser(TokenStream tokenStream)
             case SyntaxKind.LParen:
             {
                 var expression = ParseExpression();
-                if (expression.Is<NoOp>())
+                if (expression is NoOp)
                 {
                     _diagnostics.Error(DiagnosticCode.H004D, $"Expected expression, got '{Tokens.Previous?.Kind.ToString() ?? "EOF"}'", Tokens.Previous!);
                     return new NoOp();

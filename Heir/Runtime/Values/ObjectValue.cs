@@ -1,8 +1,8 @@
 ﻿using System.Text;
 
-namespace Heir.Runtime;
+namespace Heir.Runtime.Values;
 
-public sealed class ObjectValue(IEnumerable<KeyValuePair<object, object?>> pairs) : Dictionary<object, object?>(pairs)
+public sealed class ObjectValue(IEnumerable<KeyValuePair<object, object?>> pairs) : Dictionary<object, object?>(pairs), IValue
 {
     public string ToString(ref int indent)
     {

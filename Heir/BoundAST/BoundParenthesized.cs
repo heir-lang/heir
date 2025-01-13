@@ -10,7 +10,7 @@ public class BoundParenthesized(BoundExpression expression) : BoundExpression
     public BoundExpression Expression { get; } = expression;
 
     public override R Accept<R>(Visitor<R> visitor) => visitor.VisitBoundParenthesizedExpression(this);
-    public override List<Token> GetTokens() => [];
+    public override List<Token> GetTokens() => Expression.GetTokens();
 
     public override void Display(int indent = 0)
     {

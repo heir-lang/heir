@@ -44,7 +44,7 @@ Though I cannot guarantee the lifetime or dedication to this project, contributi
       - [x] increment/decrement (`++`, `--`)
       - [x] compound assignment (`+=`, `-=`, `*=`, `/=`, `//=`, `%=`, `^=`)
 - [ ] parsing
-    - [ ] warn when using an expression as a statement that is not a return value and isn't something like AssignmentOp or Call
+    - [ ] warn when using an expression as a statement that is not a return value and isn't something like AssignmentOp or Invocation
     - [ ] types
         - [x] singular
         - [x] union
@@ -52,7 +52,7 @@ Though I cannot guarantee the lifetime or dedication to this project, contributi
         - [x] parenthesized
         - [ ] literal
         - [ ] array
-        - [ ] function
+        - [x] function
         - [ ] interface
         - [ ] class
       - [ ] control flow
@@ -65,8 +65,8 @@ Though I cannot guarantee the lifetime or dedication to this project, contributi
     - [x] statements
     - [ ] indexing (`a["b"]`)
     - [ ] dot access (`a.b`)
-    - [ ] method calls
-    - [ ] method declaration
+    - [x] method calls
+    - [x] method declaration
     - [ ] array literals
     - [x] object literals
     - [x] compound assignment

@@ -5,6 +5,8 @@ namespace Heir.Types;
 
 public abstract class BaseType
 {
+    public bool IsNullable => this is UnionType union && union.Types.Contains(PrimitiveType.None);
+    
     public abstract TypeKind Kind { get; }
 
     public abstract string ToString(bool colors = false);
@@ -35,6 +37,20 @@ public abstract class BaseType
     {
         if (this is AnyType || other is AnyType)
             return true;
+
+        if (this is FunctionType functionType)
+        {
+            var parameterIndex = 0;
+            return other is FunctionType otherFunction &&
+                   functionType.ReturnType.IsAssignableTo(otherFunction.ReturnType) &&
+                   functionType.ParameterTypes.Values.All(parameterType =>
+                       otherFunction.ParameterTypes.Values
+                           .ElementAtOrDefault(parameterIndex++)?
+                           .IsAssignableTo(parameterType) ?? false);
+        }
+
+        if (other is FunctionType otherFunctionType)
+            return otherFunctionType.IsAssignableTo(this);
         
         if (this is ParenthesizedType parenthesized)
             return parenthesized.Type.IsAssignableTo(other);

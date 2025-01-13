@@ -2,6 +2,8 @@
 using Heir.CodeGeneration;
 using Heir.Runtime;
 using Heir.Runtime.HookedExceptions;
+using Heir.Runtime.Values;
+using Heir.Syntax;
 
 namespace Heir;
 
@@ -18,19 +20,22 @@ public sealed class VirtualMachine
     public DiagnosticBag Diagnostics { get; }
     public Scope GlobalScope { get; }
     public Scope Scope { get; private set; }
-
+    public int RecursionDepth { get; private set; }
+    
+    private const int _maxRecursionDepth = 1000;
     private readonly Stack<StackFrame> _stack = [];
     private readonly Bytecode _bytecode;
     private Scope _enclosingScope;
     private int _pointer;
 
-    public VirtualMachine(Bytecode bytecode, Scope? scope = null)
+    public VirtualMachine(Bytecode bytecode, Scope? scope = null, int recursionDepth = 0)
     {
         Diagnostics = bytecode.Diagnostics;
         GlobalScope = new Scope();
         Scope = scope ?? GlobalScope;
         _enclosingScope = Scope;
         _bytecode = bytecode;
+        RecursionDepth = recursionDepth;
     }
 
     public T? Evaluate<T>() => (T?)Evaluate();
@@ -53,6 +58,14 @@ public sealed class VirtualMachine
             : null;
     }
 
+    public void EndRecursion(int level = 1) => RecursionDepth -= level;
+    public void BeginRecursion(Token token)
+    {
+        RecursionDepth++;
+        if (RecursionDepth < _maxRecursionDepth) return;
+        Diagnostics.Error(DiagnosticCode.H017, $"Stack overflow: Recursion depth of ${_maxRecursionDepth} exceeded", token);
+    }
+    
     private StackFrame? EvaluateInstruction(Instruction instruction)
     {
         switch (instruction.OpCode)
@@ -64,10 +77,7 @@ public sealed class VirtualMachine
                 break;
             
             case OpCode.RETURN:
-            {
-                var frame = _stack.Pop();
-                throw new ReturnHook(frame.Value);
-            }
+                return _stack.Pop();
 
             case OpCode.BEGINSCOPE:
                 _enclosingScope = Scope;
@@ -79,6 +89,34 @@ public sealed class VirtualMachine
                 _enclosingScope = Scope.Enclosing ?? Scope;
                 Advance();
                 break;
+
+            case OpCode.CALL:
+            {
+                var calleeFrame = _stack.Pop();
+                if (instruction.Operand is not List<List<Instruction>> argumentsBytecode)
+                {
+                    Diagnostics.Error(DiagnosticCode.HDEV,
+                        "Failed to execute CALL op-code: Provided operand is not a list of argument bytecodes",
+                        calleeFrame.Node.GetFirstToken());
+                    
+                    Advance();
+                    break;
+                }
+                if (calleeFrame.Value is not Function function)
+                {
+                    Diagnostics.Error(DiagnosticCode.HDEV,
+                        "Failed to execute CALL op-code: Loaded callee is not a function",
+                        calleeFrame.Node.GetFirstToken());
+                    
+                    Advance();
+                    break;
+                }
+
+                var result = function.Call(this, argumentsBytecode);
+                _stack.Push(new(calleeFrame.Node, result));
+                Advance();
+                break;
+            }
 
             case OpCode.PUSH:
             case OpCode.PUSHNONE:
@@ -134,16 +172,16 @@ public sealed class VirtualMachine
             case OpCode.LOAD:
             {
                 var nameFrame = _stack.Pop();
-                if (nameFrame.Value == null || nameFrame.Value is not string)
+                if (nameFrame.Value is not string name)
                 {
                     Diagnostics.Error(DiagnosticCode.HDEV,
                         $"Failed to execute LOAD op-code: No variable name was located in the stack, got {nameFrame.Value ?? "none"}",
                         nameFrame.Node.GetFirstToken());
+                    
                     Advance();
                     break;
                 }
 
-                var name = (string)nameFrame.Value;
                 var value = Scope.Lookup(name);
                 _stack.Push(new StackFrame(nameFrame.Node, value));
                 Advance();
@@ -153,22 +191,22 @@ public sealed class VirtualMachine
             {
                 var initializer = _stack.Pop();
                 var nameFrame = _stack.Pop();
-                if (nameFrame.Value == null || nameFrame.Value is not string)
+                if (nameFrame.Value is not string name)
                 {
                     Diagnostics.Error(DiagnosticCode.HDEV,
                         $"Failed to execute STORE op-code: No variable name was located in the stack, got {nameFrame.Value ?? "none"}",
                         initializer.Node.GetFirstToken());
+                    
                     Advance();
                     break;
                 }
 
-                var name = (string)nameFrame.Value;
                 if (Scope.IsDeclared(name))
                     Scope.Assign(name, initializer.Value);
                 else
                     Scope.Define(name, initializer.Value);
 
-                if (instruction.Operand as bool? ?? true)
+                if (instruction.Operand is true)
                     _stack.Push(initializer);
 
                 Advance();
@@ -289,7 +327,7 @@ public sealed class VirtualMachine
             {
                 var right = _stack.Pop();
                 var left = _stack.Pop();
-                var result = Convert.ToInt32(left.Value) << Convert.ToInt32(right.Value);
+                var result = Convert.ToInt64(Convert.ToInt32(left.Value) << Convert.ToInt32(right.Value));
 
                 _stack.Push(new StackFrame(right.Node, result));
                 Advance();
@@ -299,7 +337,7 @@ public sealed class VirtualMachine
             {
                 var right = _stack.Pop();
                 var left = _stack.Pop();
-                var result = Convert.ToInt32(left.Value) >> Convert.ToInt32(right.Value);
+                var result = Convert.ToInt64(Convert.ToInt32(left.Value) >> Convert.ToInt32(right.Value));
 
                 _stack.Push(new StackFrame(right.Node, result));
                 Advance();

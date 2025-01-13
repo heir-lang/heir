@@ -18,6 +18,7 @@ namespace Heir.BoundAST
             public R VisitBoundExpressionStatement(BoundExpressionStatement expressionStatement);
             public R VisitBoundNoOp(BoundNoOpStatement noOp);
             public R VisitBoundReturnStatement(BoundReturn @return);
+            public R VisitBoundFunctionDeclaration(BoundFunctionDeclaration declaration);
         }
     }
 
@@ -37,6 +38,8 @@ namespace Heir.BoundAST
             public R VisitBoundLiteralExpression(BoundLiteral literal);
             public R VisitBoundObjectLiteralExpression(BoundObjectLiteral objectLiteral);
             public R VisitBoundNoOp(BoundNoOp noOp);
+            public R VisitBoundParameter(BoundParameter boundParameter);
+            public R VisitBoundInvocationExpression(BoundInvocation invocation);
         }
     }
 

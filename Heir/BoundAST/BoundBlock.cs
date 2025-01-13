@@ -5,7 +5,7 @@ namespace Heir.BoundAST;
 
 public class BoundBlock : BoundStatement
 {
-    public override BaseType? Type { get; }
+    public override BaseType Type { get; }
     public List<BoundStatement> Statements { get; }
 
     public BoundBlock(List<BoundStatement> statements)
@@ -45,6 +45,7 @@ public class BoundBlock : BoundStatement
         foreach (var statement in Statements)
             statement.Display(indent + 1);
 
+        Console.WriteLine();
         Console.Write($"{string.Concat(Enumerable.Repeat("  ", indent))})");
     }
 
@@ -55,8 +56,8 @@ public class BoundBlock : BoundStatement
         
     private static bool ContainsReturn(BoundStatement stmt)
     {
-        // if (stmt is BoundFunctionDeclaration)
-        //     return false;
+        if (stmt is BoundFunctionDeclaration)
+            return false;
 
         if (stmt is BoundBlock block)
             return block.Statements.Any(ContainsReturn);
@@ -64,17 +65,17 @@ public class BoundBlock : BoundStatement
         return stmt is BoundReturn;
     }
 
-    private static IEnumerable<BoundReturn> GetReturn(BoundStatement stmt)
+    private static List<BoundReturn> GetReturn(BoundStatement stmt)
     {
-        return stmt switch
+        return (stmt switch
         {
             BoundBlock block => block.Statements.SelectMany(GetReturn),
+            BoundFunctionDeclaration functionDeclaration => functionDeclaration.Body.Statements.SelectMany(GetReturn),
             BoundReturn returnStatement => [returnStatement],
-            // BoundFunctionDeclaration functionDeclaration => functionDeclaration.Body,
             _ => stmt.GetType()
                 .GetProperties()
                 .Select(prop => prop.GetValue(stmt))
                 .OfType<BoundReturn>()
-        };
+        }).ToList();
     }
 }

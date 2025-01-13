@@ -9,5 +9,4 @@ public abstract class SyntaxNode
 
     public Token GetFirstToken() => GetTokens().First();
     public Token GetLastToken() => GetTokens().Last();
-    public bool Is<T>() where T : SyntaxNode => this is T;
 }

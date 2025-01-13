@@ -9,24 +9,20 @@ namespace Heir;
 
 using PropertyPair = KeyValuePair<LiteralType, InterfaceMemberSignature>;
 
-internal enum Context
-{
-    Global,
-    Parameters
-}
-
 public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : Statement.Visitor<BoundStatement>, Expression.Visitor<BoundExpression>
 {
     public SyntaxTree SyntaxTree { get; } = syntaxTree;
 
     private readonly Dictionary<SyntaxNode, BoundSyntaxNode> _boundNodes = [];
-    private readonly Stack<Stack<VariableSymbol>> _variableScopes = [];
-    private Context _context = Context.Global;
-
+    private readonly Stack<Stack<VariableSymbol<BaseType>>> _variableScopes = [];
+    
     public BoundSyntaxTree Bind()
     {
         BeginScope();
-        return (BoundSyntaxTree)Bind(SyntaxTree);
+        var tree = (BoundSyntaxTree)Bind(SyntaxTree);
+        EndScope();
+
+        return tree;
     }
 
     public BoundSyntaxTree GetBoundSyntaxTree() => (BoundSyntaxTree)GetBoundNode(SyntaxTree);
@@ -34,8 +30,8 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : S
     public BoundExpression GetBoundNode(Expression expression) => (BoundExpression)_boundNodes[expression];
     public BoundSyntaxNode GetBoundNode(SyntaxNode node) => _boundNodes[node];
 
-    public BoundStatement VisitSyntaxTree(SyntaxTree syntaxTree) =>
-        new BoundSyntaxTree(BindStatements(syntaxTree.Statements), diagnostics);
+    public BoundStatement VisitSyntaxTree(SyntaxTree tree) =>
+        new BoundSyntaxTree(BindStatements(tree.Statements), diagnostics);
 
     public BoundStatement VisitBlock(Block block) => new BoundBlock(BindStatements(block.Statements));
 
@@ -51,7 +47,29 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : S
         var symbol = DefineSymbol(variableDeclaration.Name.Token, type, variableDeclaration.IsMutable);
         return new BoundVariableDeclaration(symbol, initializer, variableDeclaration.IsMutable);
     }
-    
+
+    public BoundStatement VisitFunctionDeclaration(FunctionDeclaration functionDeclaration)
+    {
+        var boundParameters = functionDeclaration.Parameters
+            .ConvertAll(Bind)
+            .OfType<BoundParameter>()
+            .ToList();
+        
+        var parameterTypePairs = boundParameters.ConvertAll(parameter =>
+            new KeyValuePair<string, BaseType>(parameter.Symbol.Name.Text, parameter.Type));
+        
+        var boundBody = (BoundBlock)Bind(functionDeclaration.Body);
+        var type = new FunctionType(
+            new Dictionary<string, BaseType>(parameterTypePairs),
+            functionDeclaration.ReturnType != null
+                ? BaseType.FromTypeRef(functionDeclaration.ReturnType)
+                : boundBody.Type
+        );
+        
+        var symbol = DefineSymbol(functionDeclaration.Name.Token, type, false);
+        return new BoundFunctionDeclaration(functionDeclaration.Keyword, symbol, boundParameters, boundBody);
+    }
+
     public BoundStatement VisitReturnStatement(Return @return)
     {
         var expression = Bind(@return.Expression);
@@ -64,14 +82,31 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : S
         return new BoundExpressionStatement(expression);
     }
 
+    public BoundExpression VisitParameter(Parameter parameter)
+    {
+        var initializer = parameter.Initializer != null ? Bind(parameter.Initializer) : null;
+        var type = parameter.Type != null
+            ? BaseType.FromTypeRef(parameter.Type)
+            : initializer?.Type ?? IntrinsicTypes.Any;
+
+        var symbol = DefineSymbol(parameter.Name.Token, type, true);
+        return new BoundParameter(symbol, initializer);
+    }
+
+    public BoundExpression VisitInvocationExpression(Invocation invocation)
+    {
+        var callee = Bind(invocation.Callee);
+        var arguments = invocation.Arguments.ConvertAll(Bind);
+        return new BoundInvocation(callee, arguments);
+    }
+
     public BoundExpression VisitAssignmentOpExpression(AssignmentOp assignmentOp)
     {
-        var binary = VisitBinaryOpExpression(assignmentOp) as BoundBinaryOp;
-        if (binary == null)
+        if (VisitBinaryOpExpression(assignmentOp) is not BoundBinaryOp binary)
             return new BoundNoOp();
 
         var symbol = FindSymbol(binary.Left.GetFirstToken());
-        if (symbol != null && !symbol.IsMutable)
+        if (symbol is { IsMutable: false })
             diagnostics.Error(DiagnosticCode.H006C, $"Attempt to assign to immutable variable '{symbol.Name.Text}'", binary.Left, binary.Right);
 
         return new BoundAssignmentOp(binary.Left, binary.Operator, binary.Right);
@@ -110,7 +145,7 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : S
         if (symbol == null)
             return new BoundNoOp();
 
-        return new BoundIdentifierName(identifierName.Token, symbol);
+        return new BoundIdentifierName(symbol);
     }
 
     public BoundExpression VisitLiteralExpression(Literal literal) => new BoundLiteral(literal.Token);
@@ -136,6 +171,7 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : S
         var indexSignatures = new Dictionary<PrimitiveType, BaseType>();
         var pairs = properties.ToList();
         var typeProperties = new List<PropertyPair>();
+        var index = 0;
         foreach (var pair in pairs)
         {
             if (pair.Key is LiteralType literalType)
@@ -146,8 +182,7 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : S
 
             if (!pair.Key.IsAssignableTo(IntrinsicTypes.Index))
             {
-                var index = pairs.IndexOf(pair);
-                var expressionPair = propertyPairs[index];
+                var expressionPair = propertyPairs[index++];
                 diagnostics.Error(DiagnosticCode.H007, "An index signature type must be 'string' or 'int'", expressionPair.Key.GetFirstToken());
             }
 
@@ -172,21 +207,28 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : S
         return new BoundParenthesized(expression);
     }
 
-    public VariableSymbol DefineSymbol(Token name, BaseType type, bool isMutable)
+    private VariableSymbol<BaseType> DefineSymbol(Token name, BaseType type, bool isMutable) =>
+        DefineSymbol<BaseType>(name, type, isMutable);
+
+    private VariableSymbol<TType> DefineSymbol<TType>(Token name, TType type, bool isMutable) where TType : BaseType
     {
-        var symbol = new VariableSymbol(name, type, isMutable);
+        // this is so braindead
+        var symbol = new VariableSymbol<TType>(name, type, isMutable);
         if (_variableScopes.TryPeek(out var scope))
-            scope.Push(symbol);
+            scope.Push(new VariableSymbol<BaseType>(name, type, isMutable));
 
         return symbol;
     }
 
     private void BeginScope() => _variableScopes.Push([]);
-    private Stack<VariableSymbol> EndScope() => _variableScopes.Pop();
+    private Stack<VariableSymbol<BaseType>> EndScope() => _variableScopes.Pop();
 
-    private VariableSymbol? FindSymbol(Token name)
+    private VariableSymbol<BaseType>? FindSymbol(Token name)
     {
-        var symbol = _variableScopes.SelectMany(v => v).FirstOrDefault(symbol => symbol.Name.Text == name.Text);
+        var symbol = _variableScopes
+            .SelectMany(v => v)
+            .FirstOrDefault(symbol => symbol.Name.Text == name.Text);
+        
         if (symbol != null)
             return symbol;
 
@@ -198,12 +240,12 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : S
 
     private BoundSyntaxNode Bind(SyntaxNode node)
     {
-        if (node is Expression expression)
-            return Bind(expression);
-        else if (node is Statement statement)
-            return Bind(statement);
-
-        return null!; // poop
+        return node switch
+        {
+            Expression expression => Bind(expression),
+            Statement statement => Bind(statement),
+            _ => null!
+        };
     }
 
     private BoundStatement Bind(Statement statement)

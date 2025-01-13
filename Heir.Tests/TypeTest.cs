@@ -34,9 +34,47 @@ public class TypeTest
         var b = PrimitiveType.Int;
         Assert.True(a.IsAssignableTo(b));
     }
-    
+
     [Fact]
-    public void ParenthesizesTypes_AreAssignableTo()
+    public void FunctionTypes_AreAssignableTo()
+    {
+        {
+            var a = new FunctionType(new()
+            {
+                { "a", PrimitiveType.Int }
+            }, PrimitiveType.Int);
+            var b = new FunctionType(new()
+            {
+                { "b", PrimitiveType.Int }
+            }, PrimitiveType.Int);
+            Assert.True(a.IsAssignableTo(b));
+        }
+        {
+            var a = new FunctionType(new()
+            {
+                { "a", PrimitiveType.Int }
+            }, PrimitiveType.Int);
+            var b = new FunctionType(new()
+            {
+                { "a", PrimitiveType.Int }
+            }, PrimitiveType.Float);
+            Assert.False(a.IsAssignableTo(b));
+        }
+        {
+            var a = new FunctionType(new()
+            {
+                { "a", PrimitiveType.Int }
+            }, PrimitiveType.Int);
+            var b = new FunctionType(new()
+            {
+                { "a", PrimitiveType.Float }
+            }, PrimitiveType.Int);
+            Assert.False(a.IsAssignableTo(b));
+        }
+    }
+
+    [Fact]
+    public void ParenthesizedTypes_AreAssignableTo()
     {
         var a = new ParenthesizedType(PrimitiveType.Int);
         var b = new ParenthesizedType(PrimitiveType.Int);

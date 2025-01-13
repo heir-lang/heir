@@ -3,6 +3,7 @@ using Heir.AST;
 using Heir.AST.Abstract;
 using Heir.BoundAST;
 using Heir.CodeGeneration;
+using Heir.Runtime.Values;
 
 namespace Heir;
 
@@ -12,11 +13,11 @@ public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder) 
 
     public Bytecode GenerateBytecode() => new(GenerateBytecode(_syntaxTree), diagnostics);
 
-    public List<Instruction> VisitSyntaxTree(SyntaxTree syntaxTree)
+    public List<Instruction> VisitSyntaxTree(SyntaxTree tree)
     {
-        var statementsBytecode = GenerateStatementsBytecode(syntaxTree.Statements).ToList();
+        var statementsBytecode = GenerateStatementsBytecode(tree.Statements).ToList();
         if (statementsBytecode.Last().OpCode != OpCode.RETURN)
-            statementsBytecode.Add(new Instruction(syntaxTree, OpCode.EXIT));
+            statementsBytecode.Add(new Instruction(tree, OpCode.EXIT));
         
         return statementsBytecode;
     }
@@ -35,6 +36,32 @@ public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder) 
         new(variableDeclaration, OpCode.STORE, false)
     ];
 
+    public List<Instruction> VisitFunctionDeclaration(FunctionDeclaration functionDeclaration)
+    {
+        var bodyBytecode = GenerateBytecode(functionDeclaration.Body);
+        var function = new Function(functionDeclaration, bodyBytecode);
+        
+        return
+        [
+            new(functionDeclaration.Name, OpCode.PUSH, function.Name),
+            new(functionDeclaration, OpCode.PUSH, function),
+            new(functionDeclaration, OpCode.STORE, false)
+        ];
+    }
+
+    public List<Instruction> VisitParameter(Parameter parameter) =>
+    [
+        new(parameter.Name, OpCode.PUSH, parameter.Name.Token.Text),
+        ..parameter.Initializer != null ? GenerateBytecode(parameter.Initializer) : [],
+        new(parameter, OpCode.STORE, false)
+    ];
+
+    public List<Instruction> VisitInvocationExpression(Invocation invocation) =>
+    [
+        ..GenerateBytecode(invocation.Callee),
+        new(invocation, OpCode.CALL, invocation.Arguments.ConvertAll(GenerateBytecode))
+    ];
+    
     public List<Instruction> VisitReturnStatement(Return @return) => [..GenerateBytecode(@return.Expression), new(@return, OpCode.RETURN)];
 
     public List<Instruction> VisitExpressionStatement(ExpressionStatement expressionStatement) => GenerateBytecode(expressionStatement.Expression);
@@ -61,7 +88,7 @@ public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder) 
         if (boundOperatorType == BoundBinaryOperatorType.Assignment)
             return PushName((Name)binaryOp.Left)
                 .Concat(rightInstructions)
-                .Append(new Instruction(binaryOp, OpCode.STORE))
+                .Append(new Instruction(binaryOp, OpCode.STORE, true))
                 .ToList();
 
         if (BoundBinaryOperator.InvertedOperations.TryGetValue(boundOperatorType, out var invertedOpCode))
@@ -78,7 +105,7 @@ public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder) 
                         .Concat(leftInstructions)
                         .Concat(rightInstructions)
                         .Append(new Instruction(binaryOp, opCode))
-                        .Append(new Instruction(binaryOp, OpCode.STORE))
+                        .Append(new Instruction(binaryOp, OpCode.STORE, true))
                 ).ToList();
         }
 
@@ -95,22 +122,19 @@ public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder) 
             SyntaxKind.Tilde => value.Append(new Instruction(unaryOp, OpCode.BNOT)),
             SyntaxKind.Minus => value.Append(new Instruction(unaryOp, OpCode.UNM)),
 
+            // TODO: return
             SyntaxKind.PlusPlus => PushName((Name)unaryOp.Operand)
                 .Concat(value.Append(new Instruction(unaryOp, OpCode.PUSH, 1)))
                 .Concat([
                     new Instruction(unaryOp, OpCode.ADD),
-                    new Instruction(unaryOp, OpCode.STORE),
-                    new Instruction(unaryOp, OpCode.PUSH, 1),
-                    new Instruction(unaryOp, OpCode.SUB),
+                    new Instruction(unaryOp, OpCode.STORE, true)
                 ]),
 
             SyntaxKind.MinusMinus => PushName((Name)unaryOp.Operand)
                 .Concat(value.Append(new Instruction(unaryOp, OpCode.PUSH, 1)))
                 .Concat([
                     new Instruction(unaryOp, OpCode.SUB),
-                    new Instruction(unaryOp, OpCode.STORE),
-                    new Instruction(unaryOp, OpCode.PUSH, 1),
-                    new Instruction(unaryOp, OpCode.ADD),
+                    new Instruction(unaryOp, OpCode.STORE, true)
                 ]),
 
             _ => null!

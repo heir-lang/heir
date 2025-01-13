@@ -33,7 +33,7 @@ public sealed class Lexer(SourceFile sourceFile)
         }
 
         _tokens.Add(TokenFactory.Trivia(TriviaKind.EOF, "", _currentLocation, _currentLocation));
-        return new TokenStream(_diagnostics, _tokens.ToArray());
+        return new TokenStream(_diagnostics, _tokens);
     }
 
     private Token? Lex()
