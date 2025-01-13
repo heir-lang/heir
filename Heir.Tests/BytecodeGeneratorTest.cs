@@ -1,4 +1,5 @@
 using Heir.CodeGeneration;
+using Heir.Runtime.Values;
 using static Heir.Tests.Common;
 
 namespace Heir.Tests;
@@ -206,7 +207,23 @@ public class BytecodeGeneratorTest
         Assert.Equal(OpCode.PUSH, pushValue.OpCode);
         Assert.Equal(value, pushValue.Operand);
         Assert.Equal(opCode, operation.OpCode);
-        Assert.IsType<bool>(operation.Operand);
-        Assert.False((bool)operation.Operand);
+        Assert.False(operation.Operand as bool?);
+    }
+    
+    [Theory]
+    [InlineData("fn abc -> 420;")]
+    [InlineData("fn abc(x: int): int -> 123;")]
+    public void Generates_FunctionDeclarations(string input)
+    {
+        var bytecode = GenerateBytecode(input);
+        var pushIdentifier = bytecode.Instructions[0];
+        var pushValue = bytecode.Instructions[1];
+        var operation = bytecode.Instructions[2];
+        Assert.Equal(OpCode.PUSH, pushIdentifier.OpCode);
+        Assert.Equal("abc", pushIdentifier.Operand);
+        Assert.Equal(OpCode.PUSH, pushValue.OpCode);
+        Assert.IsType<Function>(pushValue.Operand);
+        Assert.Equal(OpCode.STORE, operation.OpCode);
+        Assert.False(operation.Operand as bool?);
     }
 }
