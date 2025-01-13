@@ -1,15 +1,14 @@
 ﻿using Heir;
-using Heir.Runtime;
 using Heir.Runtime.Values;
 
 var program = new HeirProgram();
 var testFile = SourceFile.FromPath("./Test.heir", isMainFile: true);
-//Console.WriteLine(testFile.Tokenize().ToString());
-//Console.WriteLine();
-var syntaxTree = testFile.Parse();
-syntaxTree.Display();
-//Console.WriteLine();
-//testFile.Bind().GetBoundNode(syntaxTree).Display();
+// Console.WriteLine(testFile.Tokenize().WithoutTrivia().ToString());
+// Console.WriteLine();
+// var syntaxTree = testFile.Parse();
+// syntaxTree.Display();
+// Console.WriteLine();
+// testFile.Bind().GetBoundNode(syntaxTree).Display();
 //Console.WriteLine();
 //Console.WriteLine(testFile.GenerateBytecode().ToString());
 //Console.WriteLine();

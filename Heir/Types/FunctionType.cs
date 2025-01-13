@@ -11,7 +11,7 @@ public sealed class FunctionType(Dictionary<string, BaseType> parameterTypes, Ba
 
     public override string ToString(bool colors = false)
     {
-        var parameterList = string.Join(", ", ParameterTypes.Select(pair => $"{pair.Value}: {pair.Key}"));
+        var parameterList = string.Join(", ", ParameterTypes.Select(pair => $"{pair.Key}: {pair.Value.ToString()}"));
         return $"({parameterList}) -> {ReturnType.ToString(colors)}";
     }
 }

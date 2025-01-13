@@ -4,11 +4,11 @@ using Heir.Types;
 
 namespace Heir.BoundAST;
 
-public sealed class BoundVariableDeclaration(VariableSymbol symbol, BoundExpression? initializer, bool isMutable) : BoundStatement
+public sealed class BoundVariableDeclaration(VariableSymbol<BaseType> symbol, BoundExpression? initializer, bool isMutable) : BoundStatement
 {
     public override BaseType? Type => Symbol.Type;
 
-    public VariableSymbol Symbol { get; } = symbol;
+    public VariableSymbol<BaseType> Symbol { get; } = symbol;
     public BoundExpression? Initializer { get; } = initializer;
     public bool IsMutable { get; } = isMutable;
 

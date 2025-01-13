@@ -20,13 +20,16 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : S
     public SyntaxTree SyntaxTree { get; } = syntaxTree;
 
     private readonly Dictionary<SyntaxNode, BoundSyntaxNode> _boundNodes = [];
-    private readonly Stack<Stack<VariableSymbol>> _variableScopes = [];
+    private readonly Stack<Stack<VariableSymbol<BaseType>>> _variableScopes = [];
     private Context _context = Context.Global;
 
     public BoundSyntaxTree Bind()
     {
         BeginScope();
-        return (BoundSyntaxTree)Bind(SyntaxTree);
+        var tree = (BoundSyntaxTree)Bind(SyntaxTree);
+        EndScope();
+
+        return tree;
     }
 
     public BoundSyntaxTree GetBoundSyntaxTree() => (BoundSyntaxTree)GetBoundNode(SyntaxTree);
@@ -54,6 +57,7 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : S
 
     public BoundStatement VisitFunctionDeclaration(FunctionDeclaration functionDeclaration)
     {
+        BeginScope();
         var enclosingContext = _context;
         _context = Context.Parameters;
         var boundParameters = functionDeclaration.Parameters
@@ -66,13 +70,13 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : S
             new KeyValuePair<string, BaseType>(parameter.Symbol.Name.Text, parameter.Type));
         
         var boundBody = (BoundBlock)Bind(functionDeclaration.Body);
-        var returnType = functionDeclaration.ReturnType != null
-            ? BaseType.FromTypeRef(functionDeclaration.ReturnType)
-            : boundBody.Type;
-
+        EndScope();
+        
         var type = new FunctionType(
             new Dictionary<string, BaseType>(parameterTypePairs),
-            returnType
+            functionDeclaration.ReturnType != null
+                ? BaseType.FromTypeRef(functionDeclaration.ReturnType)
+                : boundBody.Type
         );
         
         var symbol = DefineSymbol(functionDeclaration.Name.Token, type, false);
@@ -93,7 +97,6 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : S
 
     public BoundExpression VisitParameter(Parameter parameter)
     {
-        var identifier = Bind(parameter.Name);
         var initializer = parameter.Initializer != null ? Bind(parameter.Initializer) : null;
         var type = parameter.Type != null
             ? BaseType.FromTypeRef(parameter.Type)
@@ -105,12 +108,11 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : S
 
     public BoundExpression VisitAssignmentOpExpression(AssignmentOp assignmentOp)
     {
-        var binary = VisitBinaryOpExpression(assignmentOp) as BoundBinaryOp;
-        if (binary == null)
+        if (VisitBinaryOpExpression(assignmentOp) is not BoundBinaryOp binary)
             return new BoundNoOp();
 
         var symbol = FindSymbol(binary.Left.GetFirstToken());
-        if (symbol != null && !symbol.IsMutable)
+        if (symbol is { IsMutable: false })
             diagnostics.Error(DiagnosticCode.H006C, $"Attempt to assign to immutable variable '{symbol.Name.Text}'", binary.Left, binary.Right);
 
         return new BoundAssignmentOp(binary.Left, binary.Operator, binary.Right);
@@ -175,6 +177,7 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : S
         var indexSignatures = new Dictionary<PrimitiveType, BaseType>();
         var pairs = properties.ToList();
         var typeProperties = new List<PropertyPair>();
+        var index = 0;
         foreach (var pair in pairs)
         {
             if (pair.Key is LiteralType literalType)
@@ -185,8 +188,7 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : S
 
             if (!pair.Key.IsAssignableTo(IntrinsicTypes.Index))
             {
-                var index = pairs.IndexOf(pair);
-                var expressionPair = propertyPairs[index];
+                var expressionPair = propertyPairs[index++];
                 diagnostics.Error(DiagnosticCode.H007, "An index signature type must be 'string' or 'int'", expressionPair.Key.GetFirstToken());
             }
 
@@ -210,27 +212,27 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : S
         var expression = Bind(parenthesized.Expression);
         return new BoundParenthesized(expression);
     }
-    
-    public VariableSymbol DefineSymbol(Token name, BaseType type, bool isMutable) =>
-        (VariableSymbol)DefineSymbol<BaseType>(name, type, isMutable);
-    
-    public VariableSymbol<TType> DefineSymbol<TType>(Token name, TType type, bool isMutable) where TType : BaseType
+
+    private VariableSymbol<BaseType> DefineSymbol(Token name, BaseType type, bool isMutable) =>
+        DefineSymbol<BaseType>(name, type, isMutable);
+
+    private VariableSymbol<TType> DefineSymbol<TType>(Token name, TType type, bool isMutable) where TType : BaseType
     {
         var symbol = new VariableSymbol<TType>(name, type, isMutable);
         if (_variableScopes.TryPeek(out var scope))
-            scope.Push((symbol as VariableSymbol)!);
+            scope.Push((symbol as VariableSymbol<BaseType>)!);
 
         return symbol;
     }
 
     private void BeginScope() => _variableScopes.Push([]);
-    private Stack<VariableSymbol> EndScope() => _variableScopes.Pop();
+    private Stack<VariableSymbol<BaseType>> EndScope() => _variableScopes.Pop();
 
-    private VariableSymbol? FindSymbol(Token name)
+    private VariableSymbol<BaseType>? FindSymbol(Token name)
     {
         var symbol = _variableScopes
-            .SelectMany(v => v)
-            .FirstOrDefault(symbol => symbol.Name.Text == name.Text);
+            .Select(symbols => symbols.FirstOrDefault(symbol => symbol.Name.Text == name.Text)!)
+            .FirstOrDefault(symbol => symbol != null);
         
         if (symbol != null)
             return symbol;

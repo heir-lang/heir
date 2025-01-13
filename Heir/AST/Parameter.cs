@@ -25,6 +25,7 @@ public sealed class Parameter(IdentifierName name, TypeRef? type, Literal? initi
         Console.WriteLine();
         Console.Write($"{string.Concat(Enumerable.Repeat("  ", indent + 1))}Initializer -> {(Initializer == null ? "none" : "\n")}");
         Initializer?.Display(indent + 2);
+        Console.WriteLine();
         Console.Write($"{string.Concat(Enumerable.Repeat("  ", indent))})");
     }
 }

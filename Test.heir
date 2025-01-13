@@ -1,1 +1,5 @@
-return "abc";
+fn say_hello(name: string) {
+    return "hello " + name + "!";
+}
+
+## say_hello("johnny");

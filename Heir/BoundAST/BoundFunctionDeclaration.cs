@@ -29,21 +29,21 @@ public sealed class BoundFunctionDeclaration(
     public override void Display(int indent = 0)
     {
         Console.WriteLine($"{string.Concat(Enumerable.Repeat("  ", indent))}BoundFunctionDeclaration(");
-        Console.WriteLine($"{string.Concat(Enumerable.Repeat("  ", indent + 1))}Name -> {Symbol.ToString()},");
+        Console.WriteLine($"{string.Concat(Enumerable.Repeat("  ", indent + 1))}Symbol -> {Symbol.ToString()},");
         Console.WriteLine();
         Console.WriteLine($"{string.Concat(Enumerable.Repeat("  ", indent + 1))}Parameters -> [");
         var i = 0;
         foreach (var parameter in Parameters)
         {
             parameter.Display(indent + 2);
-            if (i++ < parameters.Count - 1)
+            if (i++ < Parameters.Count - 1)
                 Console.WriteLine(',');
         }
+        Console.WriteLine();
         Console.WriteLine($"{string.Concat(Enumerable.Repeat("  ", indent + 1))}]");
         Console.WriteLine();
         Console.WriteLine($"{string.Concat(Enumerable.Repeat("  ", indent + 1))}Body ->");
         Body.Display(indent + 2);
-        Console.WriteLine(',');
         Console.WriteLine();
         Console.Write($"{string.Concat(Enumerable.Repeat("  ", indent))})");
     }

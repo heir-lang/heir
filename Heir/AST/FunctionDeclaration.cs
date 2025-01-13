@@ -38,9 +38,10 @@ public sealed class FunctionDeclaration(
         foreach (var parameter in Parameters)
         {
             parameter.Display(indent + 2);
-            if (i++ < parameters.Count - 1)
+            if (i++ < Parameters.Count - 1)
                 Console.WriteLine(',');
         }
+        Console.WriteLine();
         Console.WriteLine($"{string.Concat(Enumerable.Repeat("  ", indent + 1))}]");
         Console.WriteLine();
         Console.WriteLine($"{string.Concat(Enumerable.Repeat("  ", indent + 1))}Body ->");
@@ -49,7 +50,6 @@ public sealed class FunctionDeclaration(
         Console.WriteLine();
         Console.Write($"{string.Concat(Enumerable.Repeat("  ", indent + 1))}ReturnType -> {(ReturnType == null ? "(inferred)" : "\n")}");
         ReturnType?.Display(indent + 2);
-        Console.WriteLine(',');
         Console.WriteLine();
         Console.Write($"{string.Concat(Enumerable.Repeat("  ", indent))})");
     }

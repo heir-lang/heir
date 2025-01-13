@@ -37,7 +37,7 @@ public sealed class Parser(TokenStream tokenStream)
             return ParseVariableDeclaration();
         
         if (Tokens.Match(SyntaxKind.FnKeyword))
-            return ParseVariableDeclaration();
+            return ParseFunctionDeclaration();
         
         if (Tokens.Match(SyntaxKind.ReturnKeyword))
             return ParseReturnStatement();

@@ -45,6 +45,7 @@ public class BoundBlock : BoundStatement
         foreach (var statement in Statements)
             statement.Display(indent + 1);
 
+        Console.WriteLine();
         Console.Write($"{string.Concat(Enumerable.Repeat("  ", indent))})");
     }
 
