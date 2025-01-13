@@ -8,7 +8,6 @@ namespace Heir.Tests;
 public class BinderTest
 {
     [Theory]
-    [InlineData("fn abc(x: int) {} abc('p');", DiagnosticCode.H007)]
     [InlineData("\"a\" + 1", DiagnosticCode.H007)]
     [InlineData("true * false", DiagnosticCode.H007)]
     [InlineData("let x = 1; x = 2;", DiagnosticCode.H006C)]

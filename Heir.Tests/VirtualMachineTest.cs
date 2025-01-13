@@ -7,8 +7,8 @@ namespace Heir.Tests;
 public class VirtualMachineTest
 {
     [Theory]
-    [InlineData("let mut x = 1; ++x;", 1.0)]
-    [InlineData("let mut y = 2; --y;", 2.0)]
+    [InlineData("let mut x = 1; ++x;", 2.0)]
+    [InlineData("let mut y = 2; --y;", 1.0)]
     [InlineData("let mut z = 1; ++z; z;", 2.0)]
     public void Evaluates_IncrementDecrement(string input, object? expectedValue)
     {
@@ -114,7 +114,7 @@ public class VirtualMachineTest
     [InlineData("10 / 2", 5.0)]
     [InlineData("9 // 2", 4L)]
     [InlineData("9 % 2", 1.0)]
-    [InlineData("14 << 1", 28)]
+    [InlineData("14 << 1", 28L)]
     [InlineData("11 & 7", 3L)]
     [InlineData("4 | 9", 13L)]
     [InlineData("5 ~ 3", 6L)]

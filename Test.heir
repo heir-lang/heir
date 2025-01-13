@@ -1,1 +1,2 @@
-fn abc { return 123; }
+fn abc(x: int) {}
+abc('p');

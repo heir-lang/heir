@@ -88,7 +88,7 @@ public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder) 
         if (boundOperatorType == BoundBinaryOperatorType.Assignment)
             return PushName((Name)binaryOp.Left)
                 .Concat(rightInstructions)
-                .Append(new Instruction(binaryOp, OpCode.STORE))
+                .Append(new Instruction(binaryOp, OpCode.STORE, true))
                 .ToList();
 
         if (BoundBinaryOperator.InvertedOperations.TryGetValue(boundOperatorType, out var invertedOpCode))
@@ -105,7 +105,7 @@ public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder) 
                         .Concat(leftInstructions)
                         .Concat(rightInstructions)
                         .Append(new Instruction(binaryOp, opCode))
-                        .Append(new Instruction(binaryOp, OpCode.STORE))
+                        .Append(new Instruction(binaryOp, OpCode.STORE, true))
                 ).ToList();
         }
 

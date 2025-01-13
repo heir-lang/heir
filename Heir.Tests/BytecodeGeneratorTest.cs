@@ -122,7 +122,7 @@ public class BytecodeGeneratorTest
         Assert.Equal(OpCode.PUSH, pushRight.OpCode);
         Assert.Equal(2L, pushRight.Operand);
         Assert.Equal(OpCode.STORE, store.OpCode);
-        Assert.Null(store.Operand);
+        Assert.True(store.Operand as bool?);
     }
 
     [Theory]
@@ -148,7 +148,7 @@ public class BytecodeGeneratorTest
         Assert.Equal(opCode, operation.OpCode);
         Assert.Null(operation.Operand);
         Assert.Equal(OpCode.STORE, store.OpCode);
-        Assert.Null(store.Operand);
+        Assert.True(store.Operand as bool?);
     }
 
     [Theory]
@@ -189,7 +189,7 @@ public class BytecodeGeneratorTest
         Assert.Equal(opCode, operation.OpCode);
         Assert.Null(operation.Operand);
         Assert.Equal(OpCode.STORE, store.OpCode);
-        Assert.Null(store.Operand);
+        Assert.True(store.Operand as bool?);
     }
 
     [Theory]
