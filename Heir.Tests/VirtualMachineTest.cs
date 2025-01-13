@@ -27,6 +27,33 @@ public class VirtualMachineTest
     }
 
     [Theory]
+    [InlineData("fn double(n: int) -> n * 2; double(10);", 20.0)]
+    [InlineData("fn increment(n: int, amount = 1) -> n + amount; increment(5);", 6.0)]
+    [InlineData("fn increment(n: int, amount = 1) -> n + amount; increment(5, 5);", 10.0)]
+    [InlineData("fn say_hello(name: string): string { return \"hello, \" + name + \"!\" } say_hello(\"johnny\");", "hello, johnny!")]
+    public void Evaluates_Invocation(string input, object? expectedValue)
+    {
+        var (value, _) = Evaluate(input);
+        Assert.Equal(expectedValue, value);
+    }
+    
+    [Fact]
+    public void Evaluates_FunctionDeclarations()
+    {
+        const string name = "abc";
+        var (resultValue, vm) = Evaluate($"fn {name}(x: int) -> 123 + x;");
+        Assert.True(vm.Scope.IsDeclared(name));
+        Assert.True(vm.Scope.IsDefined(name));
+        Assert.Null(resultValue);
+        
+        var value = vm.Scope.Lookup(name);
+        Assert.IsType<Function>(value);
+        
+        var function = (Function)value;
+        Assert.Equal(name, function.Name);
+    }
+
+    [Theory]
     [InlineData("let x = 1;", "x", 1L)]
     [InlineData("let mut y: int = 2;", "y", 2L)]
     public void Evaluates_VariableDeclarations(string input, string name, object? expectedValue)
