@@ -1,5 +1,5 @@
-fn say_hello(name): string {
-    return "hello " + name + "!";
-}
+let mut i: int = 0;
+fn increment: int -> ++i;
 
-say_hello("johnny");
+increment();
+increment();

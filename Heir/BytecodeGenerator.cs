@@ -122,22 +122,19 @@ public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder) 
             SyntaxKind.Tilde => value.Append(new Instruction(unaryOp, OpCode.BNOT)),
             SyntaxKind.Minus => value.Append(new Instruction(unaryOp, OpCode.UNM)),
 
+            // TODO: return
             SyntaxKind.PlusPlus => PushName((Name)unaryOp.Operand)
                 .Concat(value.Append(new Instruction(unaryOp, OpCode.PUSH, 1)))
                 .Concat([
                     new Instruction(unaryOp, OpCode.ADD),
-                    new Instruction(unaryOp, OpCode.STORE),
-                    new Instruction(unaryOp, OpCode.PUSH, 1),
-                    new Instruction(unaryOp, OpCode.SUB),
+                    new Instruction(unaryOp, OpCode.STORE, true)
                 ]),
 
             SyntaxKind.MinusMinus => PushName((Name)unaryOp.Operand)
                 .Concat(value.Append(new Instruction(unaryOp, OpCode.PUSH, 1)))
                 .Concat([
                     new Instruction(unaryOp, OpCode.SUB),
-                    new Instruction(unaryOp, OpCode.STORE),
-                    new Instruction(unaryOp, OpCode.PUSH, 1),
-                    new Instruction(unaryOp, OpCode.ADD),
+                    new Instruction(unaryOp, OpCode.STORE, true)
                 ]),
 
             _ => null!

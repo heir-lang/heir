@@ -25,7 +25,7 @@ public sealed class Parser(TokenStream tokenStream)
     private List<Statement> ParseStatementsUntil(Func<bool> predicate)
     {
         var statements = new List<Statement>();
-        while (!predicate())
+        while (!predicate() && !Tokens.IsAtEnd)
             statements.Add(ParseStatement());
 
         return statements;
@@ -122,15 +122,13 @@ public sealed class Parser(TokenStream tokenStream)
         var parameters = new List<Parameter>();
         if (Tokens.Match(SyntaxKind.LParen))
         {
-            while (!Tokens.Check(SyntaxKind.RParen) && !Tokens.IsAtEnd)
+            while (!Tokens.Match(SyntaxKind.RParen) && !Tokens.IsAtEnd)
             {
                 var expression = ParseParameter();
                 if (expression is not Parameter parameter) continue;
                 
                 parameters.Add(parameter);
             }
-            
-            Tokens.Consume(SyntaxKind.RParen);
         }
         
         TypeRef? returnType = null;
@@ -139,7 +137,7 @@ public sealed class Parser(TokenStream tokenStream)
 
         Block body;
         if (Tokens.Match(SyntaxKind.DashRArrow))
-            body = new Block([new ExpressionStatement(ParseExpression())]);
+            body = new Block([new Return(TokenFactory.Keyword(SyntaxKind.ReturnKeyword), ParseExpression())]);
         else
         {
             Tokens.Consume(SyntaxKind.LBrace);
@@ -267,7 +265,6 @@ public sealed class Parser(TokenStream tokenStream)
     private Invocation ParseInvocation(Expression expression)
     {
         var arguments = ParseArguments();
-        
         return new Invocation(expression, arguments);
     }
 
