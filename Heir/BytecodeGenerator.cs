@@ -13,11 +13,11 @@ public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder) 
 
     public Bytecode GenerateBytecode() => new(GenerateBytecode(_syntaxTree), diagnostics);
 
-    public List<Instruction> VisitSyntaxTree(SyntaxTree syntaxTree)
+    public List<Instruction> VisitSyntaxTree(SyntaxTree tree)
     {
-        var statementsBytecode = GenerateStatementsBytecode(syntaxTree.Statements).ToList();
+        var statementsBytecode = GenerateStatementsBytecode(tree.Statements).ToList();
         if (statementsBytecode.Last().OpCode != OpCode.RETURN)
-            statementsBytecode.Add(new Instruction(syntaxTree, OpCode.EXIT));
+            statementsBytecode.Add(new Instruction(tree, OpCode.EXIT));
         
         return statementsBytecode;
     }

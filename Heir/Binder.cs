@@ -37,8 +37,8 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : S
     public BoundExpression GetBoundNode(Expression expression) => (BoundExpression)_boundNodes[expression];
     public BoundSyntaxNode GetBoundNode(SyntaxNode node) => _boundNodes[node];
 
-    public BoundStatement VisitSyntaxTree(SyntaxTree syntaxTree) =>
-        new BoundSyntaxTree(BindStatements(syntaxTree.Statements), diagnostics);
+    public BoundStatement VisitSyntaxTree(SyntaxTree tree) =>
+        new BoundSyntaxTree(BindStatements(tree.Statements), diagnostics);
 
     public BoundStatement VisitBlock(Block block) => new BoundBlock(BindStatements(block.Statements));
 
@@ -104,6 +104,13 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : S
 
         var symbol = DefineSymbol(parameter.Name.Token, type, true);
         return new BoundParameter(symbol, initializer);
+    }
+
+    public BoundExpression VisitInvocationExpression(Invocation invocation)
+    {
+        var callee = Bind(invocation.Callee);
+        var arguments = invocation.Arguments.ConvertAll(Bind);
+        return new BoundInvocation(callee, arguments);
     }
 
     public BoundExpression VisitAssignmentOpExpression(AssignmentOp assignmentOp)

@@ -3,22 +3,22 @@ using Heir.Types;
 
 namespace Heir.BoundAST;
 
-public class BoundInvocation(BoundExpression expression, List<BoundExpression> arguments) : BoundExpression
+public class BoundInvocation(BoundExpression callee, List<BoundExpression> arguments) : BoundExpression
 {
-    public override BaseType Type => Expression.Type is FunctionType functionType
+    public override BaseType Type => Callee.Type is FunctionType functionType
         ? functionType.ReturnType
-        : Expression.Type;
+        : Callee.Type;
 
-    public BoundExpression Expression { get; } = expression;
+    public BoundExpression Callee { get; } = callee;
     public List<BoundExpression> Arguments { get; } = arguments;
 
     public override R Accept<R>(Visitor<R> visitor) => visitor.VisitBoundInvocationExpression(this);
-    public override List<Token> GetTokens() => Expression.GetTokens();
+    public override List<Token> GetTokens() => Callee.GetTokens();
 
     public override void Display(int indent = 0)
     {
         Console.WriteLine($"{string.Concat(Enumerable.Repeat("  ", indent))}BoundInvocation(");
-        Expression.Display(indent + 1);
+        Callee.Display(indent + 1);
         Console.WriteLine(',');
         Console.WriteLine();
         Console.WriteLine($"{string.Concat(Enumerable.Repeat("  ", indent + 1))}Arguments -> [");

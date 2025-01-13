@@ -45,7 +45,29 @@ public class TypeChecker(DiagnosticBag diagnostics, BoundSyntaxTree syntaxTree) 
         Assert(parameter.Initializer, parameter.Symbol.Type);
         return null;
     }
-    
+
+    public object? VisitBoundInvocationExpression(BoundInvocation invocation)
+    {
+        Check(invocation.Callee);
+
+        if (invocation.Callee.Type is not FunctionType functionType)
+            return null;
+
+        var expectedTypes = functionType.ParameterTypes.ToList();
+        var index = 0;
+        foreach (var argument in invocation.Arguments)
+        {
+            KeyValuePair<string, BaseType>? parameterTypeInfo = expectedTypes.ElementAtOrDefault(index++);
+            if (parameterTypeInfo is null) continue;
+            
+            var (parameterName, expectedType) = parameterTypeInfo.Value;
+            Check(argument);
+            Assert(argument, expectedType, $"Argument type '{argument.Type.ToString()}' is not assignable to type '{expectedType.ToString()}' of parameter '{parameterName}'");
+        }
+
+        return null;
+    }
+
     public object? VisitBoundAssignmentOpExpression(BoundAssignmentOp assignmentOp)
     {
         Check(assignmentOp.Right);

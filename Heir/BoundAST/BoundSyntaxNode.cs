@@ -39,7 +39,7 @@ namespace Heir.BoundAST
             public R VisitBoundObjectLiteralExpression(BoundObjectLiteral objectLiteral);
             public R VisitBoundNoOp(BoundNoOp noOp);
             public R VisitBoundParameter(BoundParameter boundParameter);
-            public R VisitBoundInvocationExpression(BoundInvocation boundInvocation);
+            public R VisitBoundInvocationExpression(BoundInvocation invocation);
         }
     }
 

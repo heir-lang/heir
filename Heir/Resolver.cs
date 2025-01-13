@@ -25,9 +25,9 @@ namespace Heir
             Resolve(syntaxTree);
         }
 
-        public object? VisitSyntaxTree(SyntaxTree syntaxTree)
+        public object? VisitSyntaxTree(SyntaxTree tree)
         {
-            ResolveStatements(syntaxTree.Statements);
+            ResolveStatements(tree.Statements);
             return null;
         }
 
@@ -72,6 +72,15 @@ namespace Heir
         public object? VisitExpressionStatement(ExpressionStatement expressionStatement)
         {
             Resolve(expressionStatement.Expression);
+            return null;
+        }
+
+        public object? VisitInvocationExpression(Invocation invocation)
+        {
+            Resolve(invocation.Callee);
+            foreach (var argument in invocation.Arguments)
+                Resolve(argument);
+
             return null;
         }
 
