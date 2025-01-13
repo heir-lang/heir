@@ -56,6 +56,12 @@ public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder) 
         new(parameter, OpCode.STORE, false)
     ];
 
+    public List<Instruction> VisitInvocationExpression(Invocation invocation) =>
+    [
+        ..GenerateBytecode(invocation.Callee),
+        new(invocation, OpCode.CALL, invocation.Arguments.ConvertAll(GenerateBytecode))
+    ];
+    
     public List<Instruction> VisitReturnStatement(Return @return) => [..GenerateBytecode(@return.Expression), new(@return, OpCode.RETURN)];
 
     public List<Instruction> VisitExpressionStatement(ExpressionStatement expressionStatement) => GenerateBytecode(expressionStatement.Expression);

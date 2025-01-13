@@ -90,6 +90,33 @@ public sealed class VirtualMachine
                 Advance();
                 break;
 
+            case OpCode.CALL:
+            {
+                var calleeFrame = _stack.Pop();
+                if (instruction.Operand is not List<List<Instruction>> argumentsBytecode)
+                {
+                    Diagnostics.Error(DiagnosticCode.HDEV,
+                        "Failed to execute CALL op-code: Provided operand is not a list of argument bytecodes",
+                        calleeFrame.Node.GetFirstToken());
+                    
+                    Advance();
+                    break;
+                }
+                if (calleeFrame.Value is not Function function)
+                {
+                    Diagnostics.Error(DiagnosticCode.HDEV,
+                        "Failed to execute CALL op-code: Loaded callee is not a function",
+                        calleeFrame.Node.GetFirstToken());
+                    
+                    Advance();
+                    break;
+                }
+
+                function.Call(this, argumentsBytecode);                
+                Advance();
+                break;
+            }
+
             case OpCode.PUSH:
             case OpCode.PUSHNONE:
                 _stack.Push(CreateStackFrameFromInstruction());

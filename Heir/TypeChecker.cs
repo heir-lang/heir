@@ -51,7 +51,10 @@ public class TypeChecker(DiagnosticBag diagnostics, BoundSyntaxTree syntaxTree) 
         Check(invocation.Callee);
 
         if (invocation.Callee.Type is not FunctionType functionType)
+        {
+            diagnostics.Error(DiagnosticCode.H018, $"Attempt to call value of type '{invocation.Callee.Type.ToString()}'", invocation.Callee);
             return null;
+        }
 
         var expectedTypes = functionType.ParameterTypes.ToList();
         var index = 0;
