@@ -122,7 +122,7 @@ public sealed class Parser(TokenStream tokenStream)
         var parameters = new List<Parameter>();
         if (Tokens.Match(SyntaxKind.LParen))
         {
-            while (!Tokens.Match(SyntaxKind.RParen) && !Tokens.IsAtEnd)
+            while (!Tokens.Check(SyntaxKind.RParen) && !Tokens.IsAtEnd)
             {
                 var expression = ParseParameter();
                 if (expression is not Parameter parameter) continue;
@@ -130,6 +130,7 @@ public sealed class Parser(TokenStream tokenStream)
                 parameters.Add(parameter);
                 Tokens.Match(SyntaxKind.Comma);
             }
+            Tokens.Consume(SyntaxKind.RParen);
         }
         
         TypeRef? returnType = null;
@@ -272,12 +273,13 @@ public sealed class Parser(TokenStream tokenStream)
     private List<Expression> ParseArguments()
     {
         var arguments = new List<Expression>();
-        while (!Tokens.Match(SyntaxKind.RParen) && !Tokens.IsAtEnd)
+        while (!Tokens.Check(SyntaxKind.RParen) && !Tokens.IsAtEnd)
         {
             arguments.Add(ParseExpression());
             Tokens.Match(SyntaxKind.Comma);
         }
-        
+
+        Tokens.Consume(SyntaxKind.RParen);
         return arguments;
     }
 

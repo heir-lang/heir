@@ -64,7 +64,7 @@ namespace Heir.Syntax
             if (token == null || !token.IsKind(kind))
                 Diagnostics.Error(DiagnosticCode.H004,
                     $"Expected {kind}, got '{token?.Kind.ToString() ?? "EOF"}'",
-                    token ?? Peek(-2)!);
+                    token ?? Peek(-2) ?? Peek(-3)!);
 
             return token;
         }

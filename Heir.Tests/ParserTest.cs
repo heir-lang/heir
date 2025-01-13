@@ -7,15 +7,18 @@ namespace Heir.Tests;
 public class ParserTest
 {
     [Theory]
+    [InlineData("fn abc(x = x) {}", DiagnosticCode.H016)]
+    [InlineData("fn abc(x) {}", DiagnosticCode.H012)]
     [InlineData("let x", DiagnosticCode.H012)]
     [InlineData("1 = 2", DiagnosticCode.H006B)]
     [InlineData("++1", DiagnosticCode.H006)]
     [InlineData("--3", DiagnosticCode.H006)]
     [InlineData("()", DiagnosticCode.H004D)]
+    [InlineData("fn", DiagnosticCode.H004C)]
     [InlineData("let", DiagnosticCode.H004C)]
+    [InlineData("fn abc(", DiagnosticCode.H004)]
     [InlineData("(1", DiagnosticCode.H004)]
     [InlineData("]", DiagnosticCode.H001B)]
-    [InlineData("fn abc(x) {}", DiagnosticCode.H012)]
     public void ThrowsWith(string input, DiagnosticCode expectedCode)
     {
         var tree = Parse(input);
