@@ -8,7 +8,7 @@ var testFile = SourceFile.FromPath("./Test.heir", isMainFile: true);
 var syntaxTree = testFile.Parse();
 syntaxTree.Display();
 Console.WriteLine();
-testFile.Bind().GetBoundNode(syntaxTree).Display();
+// testFile.Bind().GetBoundNode(syntaxTree).Display();
 //Console.WriteLine();
 //Console.WriteLine(testFile.GenerateBytecode().ToString());
 //Console.WriteLine();

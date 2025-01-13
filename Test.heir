@@ -1,5 +1,6 @@
-fn say_hello(name: string) {
+fn say_hello(name = "bob"): string {
     return "hello " + name + "!";
 }
 
+say_hello();
 say_hello("johnny");

@@ -112,7 +112,8 @@ public sealed class VirtualMachine
                     break;
                 }
 
-                function.Call(this, argumentsBytecode);                
+                var result = function.Call(this, argumentsBytecode);
+                _stack.Push(new(calleeFrame.Node, result));
                 Advance();
                 break;
             }

@@ -69,7 +69,6 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : S
             new KeyValuePair<string, BaseType>(parameter.Symbol.Name.Text, parameter.Type));
         
         var boundBody = (BoundBlock)Bind(functionDeclaration.Body);
-        
         var type = new FunctionType(
             new Dictionary<string, BaseType>(parameterTypePairs),
             functionDeclaration.ReturnType != null
