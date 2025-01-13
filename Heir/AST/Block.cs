@@ -13,7 +13,10 @@ public class Block(List<Statement> statements) : Statement
     {
         Console.WriteLine($"{string.Concat(Enumerable.Repeat("  ", indent))}Block(");
         foreach (var statement in Statements)
+        {
             statement.Display(indent + 1);
+            Console.WriteLine(',');
+        }
 
         Console.WriteLine();
         Console.Write($"{string.Concat(Enumerable.Repeat("  ", indent))})");

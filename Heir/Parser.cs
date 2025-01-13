@@ -106,7 +106,17 @@ public sealed class Parser(TokenStream tokenStream)
     private Return ParseReturnStatement()
     {
         var keyword = Tokens.Previous!;
-        var expression = ParseExpression();
+        var noExpression = Tokens.Check(SyntaxKind.RBrace) ||
+                                Tokens.Current is TriviaToken
+                                {
+                                    TriviaKind: TriviaKind.EOF or TriviaKind.Semicolons
+                                } ||
+                                Tokens.IsAtEnd;
+        
+        var expression = noExpression
+            ? new Literal(TokenFactory.NoneLiteral())
+            : ParseExpression();
+        
         return new Return(keyword, expression);
     }
     

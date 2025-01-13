@@ -1,2 +1,6 @@
-fn abc(x: int) {}
-abc('p');
+let mut i = 0;
+fn abc {
+    return;
+}
+
+abc();

@@ -34,6 +34,8 @@
         public static Token FloatLiteral(string text, Location startLocation, Location endLocation) =>
             new(SyntaxKind.FloatLiteral, text, Convert.ToDouble(text), startLocation, endLocation);
 
+        public static Token NoneLiteral() => NoneLiteral(_blankLocation, _blankLocation);
+        
         public static Token NoneLiteral(Location startLocation, Location endLocation) =>
             new(SyntaxKind.NoneKeyword, "none", null, startLocation, endLocation);
 
