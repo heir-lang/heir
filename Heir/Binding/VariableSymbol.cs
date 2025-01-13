@@ -11,6 +11,6 @@ namespace Heir.Binding
         public T Type { get; } = type;
         public bool IsMutable { get; } = isMutable;
 
-        public new string ToString() => $"{Type.ToString()} {Name.Text}";
+        public new string ToString() => $"{Name.Text}: {Type.ToString()}";
     }
 }

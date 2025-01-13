@@ -23,13 +23,16 @@ namespace Heir.Syntax
         {
             return new TokenStream(Diagnostics, _tokens.Where(token => !token.IsKind(SyntaxKind.Trivia)).ToArray());
         }
+        
+        public bool Match(SyntaxKind kind) => Match(kind, out _);
 
-        public bool Match(SyntaxKind kind)
+        public bool Match(SyntaxKind kind, out Token matchedToken)
         {
             var isMatch = Check(kind);
             if (isMatch)
                 Advance();
 
+            matchedToken = Previous!;
             return isMatch;
         }
 
@@ -54,11 +57,8 @@ namespace Heir.Syntax
         {
             var token = Advance();
             if (token != null)
-                foreach (var typeKind in SyntaxFacts.TypeSyntaxes)
-                {
-                    if (!token.IsKind(typeKind)) continue;
+                if (SyntaxFacts.TypeSyntaxes.Any(typeKind => token.IsKind(typeKind)))
                     return token;
-                }
 
             Diagnostics.Error(DiagnosticCode.H004B, $"Expected type, got '{token?.Kind.ToString() ?? "EOF"}'", token ?? Peek(-2)!);
             return null;

@@ -9,7 +9,7 @@ public class Return(Token keyword, Expression expression) : Statement
     public Expression Expression { get; } = expression;
 
     public override R Accept<R>(Visitor<R> visitor) => visitor.VisitReturnStatement(this);
-    public override List<Token> GetTokens() => Expression.GetTokens();
+    public override List<Token> GetTokens() => [Keyword, ..Expression.GetTokens()];
 
     public override void Display(int indent = 0)
     {

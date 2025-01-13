@@ -51,7 +51,34 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : S
         var symbol = DefineSymbol(variableDeclaration.Name.Token, type, variableDeclaration.IsMutable);
         return new BoundVariableDeclaration(symbol, initializer, variableDeclaration.IsMutable);
     }
-    
+
+    public BoundStatement VisitFunctionDeclaration(FunctionDeclaration functionDeclaration)
+    {
+        var enclosingContext = _context;
+        _context = Context.Parameters;
+        var boundParameters = functionDeclaration.Parameters
+            .ConvertAll(Bind)
+            .OfType<BoundParameter>()
+            .ToList();
+        
+        _context = enclosingContext;
+        var parameterTypePairs = boundParameters.ConvertAll(parameter =>
+            new KeyValuePair<string, BaseType>(parameter.Symbol.Name.Text, parameter.Type));
+        
+        var boundBody = (BoundBlock)Bind(functionDeclaration.Body);
+        var returnType = functionDeclaration.ReturnType != null
+            ? BaseType.FromTypeRef(functionDeclaration.ReturnType)
+            : boundBody.Type;
+
+        var type = new FunctionType(
+            new Dictionary<string, BaseType>(parameterTypePairs),
+            returnType
+        );
+        
+        var symbol = DefineSymbol(functionDeclaration.Name.Token, type, false);
+        return new BoundFunctionDeclaration(functionDeclaration.Keyword, symbol, boundParameters, boundBody);
+    }
+
     public BoundStatement VisitReturnStatement(Return @return)
     {
         var expression = Bind(@return.Expression);
@@ -62,6 +89,18 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : S
     {
         var expression = Bind(expressionStatement.Expression);
         return new BoundExpressionStatement(expression);
+    }
+
+    public BoundExpression VisitParameter(Parameter parameter)
+    {
+        var identifier = Bind(parameter.Name);
+        var initializer = parameter.Initializer != null ? Bind(parameter.Initializer) : null;
+        var type = parameter.Type != null
+            ? BaseType.FromTypeRef(parameter.Type)
+            : initializer?.Type ?? IntrinsicTypes.Any;
+
+        var symbol = DefineSymbol(parameter.Name.Token, type, true);
+        return new BoundParameter(symbol, initializer);
     }
 
     public BoundExpression VisitAssignmentOpExpression(AssignmentOp assignmentOp)
@@ -186,7 +225,10 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : S
 
     private VariableSymbol? FindSymbol(Token name)
     {
-        var symbol = _variableScopes.SelectMany(v => v).FirstOrDefault(symbol => symbol.Name.Text == name.Text);
+        var symbol = _variableScopes
+            .SelectMany(v => v)
+            .FirstOrDefault(symbol => symbol.Name.Text == name.Text);
+        
         if (symbol != null)
             return symbol;
 
@@ -198,12 +240,12 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : S
 
     private BoundSyntaxNode Bind(SyntaxNode node)
     {
-        if (node is Expression expression)
-            return Bind(expression);
-        else if (node is Statement statement)
-            return Bind(statement);
-
-        return null!; // poop
+        return node switch
+        {
+            Expression expression => Bind(expression),
+            Statement statement => Bind(statement),
+            _ => null!
+        };
     }
 
     private BoundStatement Bind(Statement statement)

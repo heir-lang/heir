@@ -19,5 +19,6 @@ public abstract class Expression : SyntaxNode
         public R VisitParenthesizedTypeRef(ParenthesizedType parenthesizedType);
         public R VisitUnionTypeRef(UnionType unionType);
         public R VisitIntersectionTypeRef(IntersectionType intersectionType);
+        public R VisitParameter(Parameter parameter);
     }
 }

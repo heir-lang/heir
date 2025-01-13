@@ -5,7 +5,7 @@ namespace Heir.BoundAST;
 
 public class BoundBlock : BoundStatement
 {
-    public override BaseType? Type { get; }
+    public override BaseType Type { get; }
     public List<BoundStatement> Statements { get; }
 
     public BoundBlock(List<BoundStatement> statements)
