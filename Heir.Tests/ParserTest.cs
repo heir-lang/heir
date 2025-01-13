@@ -124,7 +124,7 @@ public class ParserTest
     [InlineData("abc();", 0)]
     [InlineData("abc(69);", 1)]
     [InlineData("abc(69, 420);", 2)]
-    public void Parses_Invocations(string input, int expectedArgumentCount)
+    public void Parses_Invocation(string input, int expectedArgumentCount)
     {
         var tree = Parse(input);
         var statement = tree.Statements.First();

@@ -8,6 +8,7 @@ namespace Heir.Tests;
 public class BinderTest
 {
     [Theory]
+    [InlineData("fn abc(x: int) {} abc('p');", DiagnosticCode.H007)]
     [InlineData("\"a\" + 1", DiagnosticCode.H007)]
     [InlineData("true * false", DiagnosticCode.H007)]
     [InlineData("let x = 1; x = 2;", DiagnosticCode.H006C)]
@@ -16,6 +17,128 @@ public class BinderTest
         var boundTree = Bind(input);
         Assert.True(boundTree.Diagnostics.HasErrors);
         Assert.Contains(boundTree.Diagnostics, diagnostic => diagnostic.Code == expectedErrorCode);
+    }
+
+    [Theory]
+    [InlineData("fn add(x: int, y = 1): int { return x + y; }")]
+    [InlineData("fn add(x: int, y = 1): int -> x + y;")]
+    [InlineData("fn add(x: int, y = 1) { return x + y; }")]
+    [InlineData("fn add(x: int, y = 1) -> x + y;")]
+    [InlineData("fn add(x: int, y: int = 1) { return x + y; }")]
+    public void Binds_FunctionDeclarations_WithParameters(string input)
+    {
+        var tree = Bind(input);
+        var statement = tree.Statements.First();
+        Assert.IsType<BoundFunctionDeclaration>(statement);
+        
+        var functionDeclaration = (BoundFunctionDeclaration)statement;
+        Assert.Equal(SyntaxKind.FnKeyword, functionDeclaration.Keyword.Kind);
+        Assert.Equal("add", functionDeclaration.Symbol.Name.Text);
+        Assert.Equal(2, functionDeclaration.Parameters.Count);
+        
+        var xParameter = functionDeclaration.Parameters.First();
+        var yParameter = functionDeclaration.Parameters.Last();
+        Assert.Equal("x", xParameter.Symbol.Name.Text);
+        Assert.Equal("y", yParameter.Symbol.Name.Text);
+        Assert.IsType<PrimitiveType>(xParameter.Type);
+        Assert.IsType<PrimitiveType>(yParameter.Type);
+        Assert.Null(xParameter.Initializer);
+        Assert.IsType<BoundLiteral>(yParameter.Initializer);
+        
+        var xType = (PrimitiveType)xParameter.Type;
+        var yType = (PrimitiveType)xParameter.Type;
+        Assert.Equal(PrimitiveTypeKind.Int, xType.PrimitiveKind);
+        Assert.Equal(PrimitiveTypeKind.Int, yType.PrimitiveKind);
+
+        Assert.Single(functionDeclaration.Body.Statements);
+        Assert.IsType<BoundReturn>(functionDeclaration.Body.Statements.First());
+        
+        var returnStatement = (BoundReturn)functionDeclaration.Body.Statements.First();
+        Assert.IsType<BoundBinaryOp>(returnStatement.Expression);
+        
+        var binaryOp = (BoundBinaryOp)returnStatement.Expression;
+        Assert.IsType<UnionType>(binaryOp.Type);
+
+        var binaryOpType = (UnionType)binaryOp.Type;
+        Assert.Equal(2, binaryOpType.Types.Count);
+        Assert.IsType<PrimitiveType>(binaryOpType.Types.First());
+        Assert.IsType<PrimitiveType>(binaryOpType.Types.Last());
+
+        var binaryOpType1 = (PrimitiveType)binaryOpType.Types.First();
+        var binaryOpType2 = (PrimitiveType)binaryOpType.Types.Last();
+        Assert.Equal(PrimitiveTypeKind.Int, binaryOpType1.PrimitiveKind);
+        Assert.Equal(PrimitiveTypeKind.Float, binaryOpType2.PrimitiveKind);
+        Assert.Equal(BoundBinaryOperatorType.Addition, binaryOp.Operator.Type);
+        Assert.IsType<BoundIdentifierName>(binaryOp.Left);
+        Assert.IsType<BoundIdentifierName>(binaryOp.Right);
+
+        var left = (BoundIdentifierName)binaryOp.Left;
+        var right = (BoundIdentifierName)binaryOp.Right;
+        Assert.Equal("x", left.Symbol.Name.Text);
+        Assert.Equal("y", right.Symbol.Name.Text);
+        Assert.IsType<PrimitiveType>(left.Type);
+        Assert.IsType<PrimitiveType>(right.Type);
+    }
+
+    [Theory]
+    [InlineData("fn abc: int { return 123; }")]
+    [InlineData("fn abc: int -> 123;")]
+    [InlineData("fn abc { return 123; }")]
+    [InlineData("fn abc -> 123;")]
+    public void Binds_FunctionDeclarations(string input)
+    {
+        var boundTree = Bind(input);
+        var statement = boundTree.Statements.First();
+        Assert.IsType<BoundFunctionDeclaration>(statement);
+        
+        var functionDeclaration = (BoundFunctionDeclaration)statement;
+        Assert.Empty(functionDeclaration.Parameters);
+        Assert.Empty(functionDeclaration.Type.ParameterTypes);
+        Assert.Equal("abc", functionDeclaration.Symbol.Name.Text);
+        Assert.IsType<PrimitiveType>(functionDeclaration.Type.ReturnType);
+        
+        var returnType = (PrimitiveType)functionDeclaration.Type.ReturnType;
+        Assert.Equal(PrimitiveTypeKind.Int, returnType.PrimitiveKind);
+        Assert.Single(functionDeclaration.Body.Statements);
+        Assert.IsType<BoundReturn>(functionDeclaration.Body.Statements.First());
+        
+        var returnStatement = (BoundReturn)functionDeclaration.Body.Statements.First();
+        Assert.IsType<BoundLiteral>(returnStatement.Expression);
+        
+        var literal = (BoundLiteral)returnStatement.Expression;
+        Assert.Equal(123L, literal.Token.Value);
+    }
+    
+    [Theory]
+    [InlineData("fn abc(x = 0, y = 0) {} abc();", 0)]
+    [InlineData("fn abc(x = 0, y = 0) {} abc(69);", 1)]
+    [InlineData("fn abc(x = 0, y = 0) {} abc(69, 420);", 2)]
+    public void Binds_Invocation(string input, int expectedArgumentCount)
+    {
+        var tree = Bind(input);
+        var statement = tree.Statements.Last();
+        Assert.IsType<BoundExpressionStatement>(statement);
+        
+        var expressionStatement = (BoundExpressionStatement)statement;
+        Assert.IsType<BoundInvocation>(expressionStatement.Expression);
+        
+        var invocation = (BoundInvocation)expressionStatement.Expression;
+        Assert.IsType<BoundIdentifierName>(invocation.Callee);
+        
+        var calleeName = (BoundIdentifierName)invocation.Callee;
+        Assert.Equal("abc", calleeName.Symbol.Name.Text);
+        Assert.IsType<FunctionType>(calleeName.Type);
+        
+        var functionType = (FunctionType)calleeName.Type;
+        Assert.Equal(2, functionType.ParameterTypes.Count);
+        Assert.IsType<PrimitiveType>(functionType.ReturnType);
+        
+        var returnType = (PrimitiveType)functionType.ReturnType;
+        Assert.Equal(PrimitiveTypeKind.None, returnType.PrimitiveKind);
+        
+        Assert.Equal(expectedArgumentCount, invocation.Arguments.Count);
+        foreach (var argument in invocation.Arguments)
+            Assert.IsType<BoundLiteral>(argument);
     }
 
     [Fact]

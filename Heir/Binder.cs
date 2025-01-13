@@ -9,20 +9,13 @@ namespace Heir;
 
 using PropertyPair = KeyValuePair<LiteralType, InterfaceMemberSignature>;
 
-internal enum Context
-{
-    Global,
-    Parameters
-}
-
 public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : Statement.Visitor<BoundStatement>, Expression.Visitor<BoundExpression>
 {
     public SyntaxTree SyntaxTree { get; } = syntaxTree;
 
     private readonly Dictionary<SyntaxNode, BoundSyntaxNode> _boundNodes = [];
     private readonly Stack<Stack<VariableSymbol<BaseType>>> _variableScopes = [];
-    private Context _context = Context.Global;
-
+    
     public BoundSyntaxTree Bind()
     {
         BeginScope();
@@ -57,14 +50,11 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : S
 
     public BoundStatement VisitFunctionDeclaration(FunctionDeclaration functionDeclaration)
     {
-        var enclosingContext = _context;
-        _context = Context.Parameters;
         var boundParameters = functionDeclaration.Parameters
             .ConvertAll(Bind)
             .OfType<BoundParameter>()
             .ToList();
         
-        _context = enclosingContext;
         var parameterTypePairs = boundParameters.ConvertAll(parameter =>
             new KeyValuePair<string, BaseType>(parameter.Symbol.Name.Text, parameter.Type));
         
