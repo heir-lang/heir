@@ -15,15 +15,14 @@ namespace Heir
     {
         public DiagnosticBag Diagnostics { get; } = diagnostics;
 
-        private readonly SyntaxTree _syntaxTree = syntaxTree;
         private readonly Stack<Dictionary<string, bool>> _scopes = [];
         private ScopeContext _scopeContext = ScopeContext.Global;
-        private bool _withinFunction = false;
+        private bool _withinFunction;
 
         public void Resolve()
         {
             BeginScope();
-            Resolve(_syntaxTree);
+            Resolve(syntaxTree);
         }
 
         public object? VisitSyntaxTree(SyntaxTree syntaxTree)
@@ -40,6 +39,13 @@ namespace Heir
 
             Define(variableDeclaration.Name.Token);
             return null;
+        }
+
+        public object? VisitFunctionDeclaration(FunctionDeclaration functionDeclaration)
+        {
+            Declare(functionDeclaration.Name.Token);
+            Define(functionDeclaration.Name.Token);
+            return ResolveFunction(functionDeclaration);
         }
 
         public object? VisitBlock(Block block)
@@ -63,17 +69,24 @@ namespace Heir
             return null;
         }
 
+        public object? VisitExpressionStatement(ExpressionStatement expressionStatement)
+        {
+            Resolve(expressionStatement.Expression);
+            return null;
+        }
+
+        public object? VisitParameter(Parameter parameter)
+        {
+            Declare(parameter.Name.Token);
+            Define(parameter.Name.Token);
+            return null;
+        }
+
         public object? VisitAssignmentOpExpression(AssignmentOp assignmentOp) => VisitBinaryOpExpression(assignmentOp);
         public object? VisitBinaryOpExpression(BinaryOp binaryOp)
         {
             Resolve(binaryOp.Left);
             Resolve(binaryOp.Right);
-            return null;
-        }
-
-        public object? VisitExpressionStatement(ExpressionStatement expressionStatement)
-        {
-            Resolve(expressionStatement.Expression);
             return null;
         }
 
@@ -148,6 +161,21 @@ namespace Heir
         public object? VisitUnaryOpExpression(UnaryOp unaryOp)
         {
             Resolve(unaryOp.Operand);
+            return null;
+        }
+
+        private object? ResolveFunction(FunctionDeclaration functionDeclaration)
+        {
+            var enclosingWithin = _withinFunction;
+            _withinFunction = true;
+            BeginScope();
+
+            foreach (var parameter in functionDeclaration.Parameters)
+                Resolve(parameter);
+
+            Resolve(functionDeclaration.Body);
+            EndScope();
+            _withinFunction = enclosingWithin;
             return null;
         }
 
