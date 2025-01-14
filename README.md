@@ -4,7 +4,7 @@
 
 
 ## Contributions
-Though I cannot guarantee the lifetime or dedication to this project, contributions are welcome and encouraged and I will review them ASAP.
+Though I cannot guarantee the lifetime or dedication of this project, contributions are welcome and encouraged and I will review them ASAP.
 
 ## Roadmap
 - [x] lexing
@@ -83,4 +83,9 @@ Though I cannot guarantee the lifetime or dedication to this project, contributi
 - [x] binding
 - [x] typechecking
 - [x] bytecode generator
+- [ ] intrinsics (built-ins)
+    - [ ] injectable libraries
+    - [ ] functions
+    - [ ] classes
+    - [ ] types
 - [ ] hvm (heir virtual machine)
