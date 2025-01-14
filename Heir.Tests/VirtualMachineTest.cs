@@ -1,11 +1,19 @@
-﻿using Heir.Runtime;
-using Heir.Runtime.Values;
+﻿using Heir.Runtime.Values;
 using static Heir.Tests.Common;
 
 namespace Heir.Tests;
 
 public class VirtualMachineTest
 {
+    [Theory]
+    [InlineData("fn abc -> abc(); abc();", DiagnosticCode.H017)]
+    public void ThrowsWith(string input, DiagnosticCode expectedDiagnosticCode)
+    {
+        var (_, vm) = Evaluate(input);
+        Assert.True(vm.Diagnostics.HasErrors);
+        Assert.Contains(vm.Diagnostics, diagnostic => diagnostic.Code == expectedDiagnosticCode);
+    }
+    
     [Theory]
     [InlineData("let mut x = 1; ++x;", 2.0)]
     [InlineData("let mut y = 2; --y;", 1.0)]
@@ -35,6 +43,25 @@ public class VirtualMachineTest
     {
         var (value, _) = Evaluate(input);
         Assert.Equal(expectedValue, value);
+    }
+
+    [Fact]
+    public void Evaluates_GeneratorFunction()
+    {
+        const string input = """
+                             fn create_greeter(greeting: string) {
+                                 fn greet(name: string) ->
+                                     greeting + ", " + name + "!";
+                                     
+                                 return greet;
+                             }
+
+                             let greet_english = create_greeter("Hello");
+                             greet_english("John");
+                             """;
+        
+        var (value, _) = Evaluate(input);
+        Assert.Equal("Hello, John!", value);
     }
     
     [Fact]
