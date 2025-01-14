@@ -1,4 +1,5 @@
-﻿using Heir.AST.Abstract;
+﻿using Heir.AST;
+using Heir.AST.Abstract;
 using Heir.CodeGeneration;
 using Heir.Runtime;
 using Heir.Runtime.HookedExceptions;
@@ -19,7 +20,7 @@ public sealed class VirtualMachine
 {
     public DiagnosticBag Diagnostics { get; }
     public Scope GlobalScope { get; }
-    public Scope Scope { get; private set; }
+    public Scope Scope { get; set; }
     public int RecursionDepth { get; private set; }
     
     private const int _maxRecursionDepth = 300; // can only handle about this much for now 💀
@@ -86,10 +87,37 @@ public sealed class VirtualMachine
                 break;
             case OpCode.ENDSCOPE:
                 Scope = _enclosingScope;
-                _enclosingScope = Scope.Enclosing ?? Scope;
+                _enclosingScope = Scope.Enclosing ?? GlobalScope;
                 Advance();
                 break;
 
+            case OpCode.PROC:
+            {
+                if (instruction.Root is not FunctionDeclaration functionDeclaration)
+                {
+                    Diagnostics.Error(DiagnosticCode.HDEV,
+                        "Failed to execute PROC op-code: Provided node is not a FunctionDeclaration",
+                        instruction.Root.GetFirstToken());
+                    
+                    Advance();
+                    break;
+                }
+
+                if (instruction.Operand is not List<Instruction> bodyBytecode)
+                {
+                    Diagnostics.Error(DiagnosticCode.HDEV,
+                        "Failed to execute PROC op-code: Provided operand is not the function body's bytecode",
+                        functionDeclaration.GetFirstToken());
+                    
+                    Advance();
+                    break;
+                }
+                
+                var function = new Function(functionDeclaration, bodyBytecode, new Scope(Scope));
+                _stack.Push(new(functionDeclaration, function));
+                Advance();
+                break;
+            }
             case OpCode.CALL:
             {
                 var calleeFrame = _stack.Pop();

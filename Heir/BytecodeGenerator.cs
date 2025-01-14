@@ -39,12 +39,10 @@ public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder) 
     public List<Instruction> VisitFunctionDeclaration(FunctionDeclaration functionDeclaration)
     {
         var bodyBytecode = GenerateBytecode(functionDeclaration.Body);
-        var function = new Function(functionDeclaration, bodyBytecode);
-        
         return
         [
-            new(functionDeclaration.Name, OpCode.PUSH, function.Name),
-            new(functionDeclaration, OpCode.PUSH, function),
+            new(functionDeclaration.Name, OpCode.PUSH, functionDeclaration.Name.Token.Text),
+            new(functionDeclaration, OpCode.PROC, bodyBytecode),
             new(functionDeclaration, OpCode.STORE, false)
         ];
     }

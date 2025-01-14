@@ -18,6 +18,7 @@ public enum OpCode : byte
     STORE,
     LOAD,
     RETURN,
+    PROC,
     CALL,
 
     INDEX,

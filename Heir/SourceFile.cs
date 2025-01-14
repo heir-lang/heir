@@ -47,7 +47,7 @@ namespace Heir
                 if (Diagnostics.Count <= 0)
                     return (IsMainFile ? value : null, vm);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 WriteDiagnostics();
             }

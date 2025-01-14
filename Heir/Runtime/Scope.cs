@@ -2,6 +2,9 @@
 
 public sealed class Scope(Scope? enclosing = null)
 {
+    private static int _cumulativeID;
+    
+    public int ID { get; } = _cumulativeID++;
     public Scope? Enclosing { get; } = enclosing;
 
     private readonly Dictionary<string, bool> _defined = [];
@@ -46,9 +49,10 @@ public sealed class Scope(Scope? enclosing = null)
     public T? Lookup<T>(string name) => (T?)Lookup(name);
     public object? Lookup(string name)
     {
-        return _values.TryGetValue(name, out var value)
+        var foundValue = _values.TryGetValue(name, out var value);
+        return foundValue && value != null
             ? value
-            : Enclosing?.Lookup(name);
+            : Enclosing?.Lookup(name) ?? value;
     }
 
     public T? LookupAt<T>(string name, uint distance) => (T?)LookupAt(name, distance);
