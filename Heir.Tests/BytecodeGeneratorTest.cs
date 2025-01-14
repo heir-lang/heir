@@ -221,8 +221,9 @@ public class BytecodeGeneratorTest
         var operation = bytecode[2];
         Assert.Equal(OpCode.PUSH, pushIdentifier.OpCode);
         Assert.Equal("abc", pushIdentifier.Operand);
-        Assert.Equal(OpCode.PUSH, pushValue.OpCode);
-        Assert.IsType<Function>(pushValue.Operand);
+        Assert.Equal(OpCode.PROC, pushValue.OpCode);
+        Assert.IsType<AST.FunctionDeclaration>(pushValue.Root);
+        Assert.IsType<List<Instruction>>(pushValue.Operand);
         Assert.Equal(OpCode.STORE, operation.OpCode);
         Assert.False(operation.Operand as bool?);
     }
