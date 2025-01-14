@@ -1,6 +1,5 @@
-let mut i = 0;
 fn abc {
-    return;
+    abc();
 }
 
 abc();

@@ -41,11 +41,17 @@ namespace Heir
                 return (null, vm);
             }
 
-            var value = vm.Evaluate();
-            if (Diagnostics.Count <= 0)
-                return (IsMainFile ? value : null, vm);
+            try
+            {
+                var value = vm.Evaluate();
+                if (Diagnostics.Count <= 0)
+                    return (IsMainFile ? value : null, vm);
+            }
+            catch (Exception e)
+            {
+                WriteDiagnostics();
+            }
             
-            WriteDiagnostics();
             return (null, vm);
         }
 

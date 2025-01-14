@@ -22,7 +22,7 @@ public sealed class VirtualMachine
     public Scope Scope { get; private set; }
     public int RecursionDepth { get; private set; }
     
-    private const int _maxRecursionDepth = 1000;
+    private const int _maxRecursionDepth = 300; // can only handle about this much for now 💀
     private readonly Stack<StackFrame> _stack = [];
     private readonly Bytecode _bytecode;
     private Scope _enclosingScope;
@@ -61,9 +61,9 @@ public sealed class VirtualMachine
     public void EndRecursion(int level = 1) => RecursionDepth -= level;
     public void BeginRecursion(Token token)
     {
-        RecursionDepth++;
-        if (RecursionDepth < _maxRecursionDepth) return;
-        Diagnostics.Error(DiagnosticCode.H017, $"Stack overflow: Recursion depth of ${_maxRecursionDepth} exceeded", token);
+        if (RecursionDepth++ < _maxRecursionDepth) return;
+        Diagnostics.Error(DiagnosticCode.H017, $"Stack overflow: Recursion depth of {_maxRecursionDepth} exceeded", token);
+        throw new Exception();
     }
     
     private StackFrame? EvaluateInstruction(Instruction instruction)

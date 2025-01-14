@@ -58,15 +58,27 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : S
         var parameterTypePairs = boundParameters.ConvertAll(parameter =>
             new KeyValuePair<string, BaseType>(parameter.Symbol.Name.Text, parameter.Type));
         
-        var boundBody = (BoundBlock)Bind(functionDeclaration.Body);
-        var type = new FunctionType(
-            new Dictionary<string, BaseType>(parameterTypePairs),
+        var parameterTypes = new Dictionary<string, BaseType>(parameterTypePairs);
+        var placeholderType = new FunctionType(
+            parameterTypes,
             functionDeclaration.ReturnType != null
                 ? BaseType.FromTypeRef(functionDeclaration.ReturnType)
-                : boundBody.Type
+                : new AnyType()
         );
         
-        var symbol = DefineSymbol(functionDeclaration.Name.Token, type, false);
+        var placeholderSymbol = DefineSymbol<BaseType>(functionDeclaration.Name.Token, placeholderType, false);
+        var boundBody = (BoundBlock)Bind(functionDeclaration.Body);
+        var returnType = functionDeclaration.ReturnType != null
+            ? BaseType.FromTypeRef(functionDeclaration.ReturnType)
+            : boundBody.Type;
+
+        var finalType = new FunctionType(
+            new Dictionary<string, BaseType>(parameterTypePairs),
+            returnType
+        );
+
+        UndefineSymbol(placeholderSymbol);
+        var symbol = DefineSymbol(functionDeclaration.Name.Token, finalType, false);
         return new BoundFunctionDeclaration(functionDeclaration.Keyword, symbol, boundParameters, boundBody);
     }
 
@@ -220,6 +232,16 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : S
         return symbol;
     }
 
+    private void UndefineSymbol(VariableSymbol<BaseType> variableSymbol)
+    {
+        if (!_variableScopes.TryPop(out var scope)) return;
+
+        var newScope = scope.ToList();
+        newScope.Remove(variableSymbol);
+        _variableScopes.Push(new Stack<VariableSymbol<BaseType>>(newScope));
+    }
+            
+
     private void BeginScope() => _variableScopes.Push([]);
     private Stack<VariableSymbol<BaseType>> EndScope() => _variableScopes.Pop();
 
@@ -251,14 +273,14 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : S
     private BoundStatement Bind(Statement statement)
     {
         var boundStatement = statement.Accept(this);
-        _boundNodes.Add(statement, boundStatement);
+        _boundNodes.TryAdd(statement, boundStatement);
         return boundStatement;
     }
 
     private BoundExpression Bind(Expression expression)
     {
         var boundExpression = expression.Accept(this);
-        _boundNodes.Add(expression, boundExpression);
+        _boundNodes.TryAdd(expression, boundExpression);
         return boundExpression;
     }
 }
