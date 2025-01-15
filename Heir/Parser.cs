@@ -41,7 +41,10 @@ public sealed class Parser(TokenStream tokenStream)
         
         if (Tokens.Match(SyntaxKind.ReturnKeyword))
             return ParseReturnStatement();
-
+        
+        if (Tokens.Match(SyntaxKind.IfKeyword))
+            return ParseIfStatement();
+        
         if (Tokens.Match(SyntaxKind.LBrace))
         {
             var token = Tokens.Previous!.TransformKind(SyntaxKind.ObjectLiteral);
@@ -101,6 +104,19 @@ public sealed class Parser(TokenStream tokenStream)
         Tokens.Consume(SyntaxKind.Colon);
         var value = ParseExpression();
         return new(key, value);
+    }
+
+    private If ParseIfStatement()
+    {
+        var keyword = Tokens.Previous!;
+        var condition = ParseExpression();
+        var body = ParseStatement();
+
+        Statement? elseBranch = null;
+        if (Tokens.Match(SyntaxKind.ElseKeyword))
+            elseBranch = ParseStatement();
+        
+        return new If(keyword, condition, body, elseBranch);
     }
 
     private Return ParseReturnStatement()

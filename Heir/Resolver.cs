@@ -69,6 +69,17 @@ public sealed class Resolver(DiagnosticBag diagnostics, SyntaxTree syntaxTree) :
         return null;
     }
 
+    public object? VisitIfStatement(If @if)
+    {
+        Resolve(@if.Condition);
+        Resolve(@if.Body);
+        if (@if.ElseBranch == null)
+            return null;
+        
+        Resolve(@if.ElseBranch);
+        return null;
+    }
+
     public object? VisitExpressionStatement(ExpressionStatement expressionStatement)
     {
         Resolve(expressionStatement.Expression);

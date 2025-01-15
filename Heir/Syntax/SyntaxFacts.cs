@@ -4,6 +4,23 @@ namespace Heir.Syntax
 {
     public static class SyntaxFacts
     {
+        public static readonly BiDictionary<string, SyntaxKind> KeywordMap = new(new Dictionary<string, SyntaxKind>
+        {
+            { "let", SyntaxKind.LetKeyword },
+            { "mut", SyntaxKind.MutKeyword },
+            { "fn", SyntaxKind.FnKeyword },
+            { "return", SyntaxKind.ReturnKeyword },
+            { "if", SyntaxKind.IfKeyword },
+            { "else", SyntaxKind.ElseKeyword },
+
+            { "int", SyntaxKind.IntKeyword },
+            { "float", SyntaxKind.FloatKeyword },
+            { "string", SyntaxKind.StringKeyword },
+            { "char", SyntaxKind.CharKeyword },
+            { "bool", SyntaxKind.BoolKeyword },
+            { "none", SyntaxKind.NoneKeyword }
+        });
+        
         public static readonly HashSet<SyntaxKind> TypeSyntaxes =
         [
             SyntaxKind.Identifier,
@@ -113,21 +130,6 @@ namespace Heir.Syntax
 
             { "?", SyntaxKind.Question },
             { "=", SyntaxKind.Equals },
-        });
-
-        public static readonly BiDictionary<string, SyntaxKind> KeywordMap = new(new Dictionary<string, SyntaxKind>
-        {
-            { "let", SyntaxKind.LetKeyword },
-            { "mut", SyntaxKind.MutKeyword },
-            { "fn", SyntaxKind.FnKeyword },
-            { "return", SyntaxKind.ReturnKeyword },
-
-            { "int", SyntaxKind.IntKeyword },
-            { "float", SyntaxKind.FloatKeyword },
-            { "string", SyntaxKind.StringKeyword },
-            { "char", SyntaxKind.CharKeyword },
-            { "bool", SyntaxKind.BoolKeyword },
-            { "none", SyntaxKind.NoneKeyword }
         });
     }
 }

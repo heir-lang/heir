@@ -2,6 +2,7 @@
 {
     public enum SyntaxKind
     {
+        /// See <see cref="TriviaKind"/>
         Trivia,
 
         LParen, // brackets
@@ -50,7 +51,7 @@
         Carat,
         CaratEquals,
 
-        Ampersand, // bitops
+        Ampersand, // bitwise ops
         Pipe,
         Tilde,
         AmpersandEquals,
@@ -74,9 +75,10 @@
         MutKeyword,
         FnKeyword,
         ReturnKeyword,
-
-            // type keywords
-        IntKeyword,
+        IfKeyword,
+        ElseKeyword,
+        
+        IntKeyword, // type keywords
         FloatKeyword,
         StringKeyword,
         CharKeyword,

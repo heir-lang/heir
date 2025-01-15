@@ -13,5 +13,6 @@ public abstract class Statement : SyntaxNode
         public R VisitNoOp(NoOpStatement noOp);
         public R VisitReturnStatement(Return @return);
         public R VisitFunctionDeclaration(FunctionDeclaration functionDeclaration);
+        public R VisitIfStatement(If @if);
     }
 }
