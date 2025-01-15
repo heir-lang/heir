@@ -16,13 +16,12 @@ public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder) 
     public List<Instruction> VisitSyntaxTree(SyntaxTree tree)
     {
         var statementsBytecode = GenerateStatementsBytecode(tree.Statements).ToList();
-        if (statementsBytecode.Last().OpCode != OpCode.RETURN)
+        if (statementsBytecode.LastOrDefault()?.OpCode != OpCode.RETURN)
             statementsBytecode.Add(new Instruction(tree, OpCode.EXIT));
         
         return statementsBytecode;
     }
 
-    // TODO: create scope
     public List<Instruction> VisitBlock(Block block) =>
         GenerateStatementsBytecode(block.Statements)
             .Prepend(new Instruction(block, OpCode.BEGINSCOPE))
@@ -144,7 +143,6 @@ public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder) 
             SyntaxKind.Tilde => value.Append(new Instruction(unaryOp, OpCode.BNOT)),
             SyntaxKind.Minus => value.Append(new Instruction(unaryOp, OpCode.UNM)),
 
-            // TODO: return
             SyntaxKind.PlusPlus => PushName((Name)unaryOp.Operand)
                 .Concat(value.Append(new Instruction(unaryOp, OpCode.PUSH, 1)))
                 .Concat([

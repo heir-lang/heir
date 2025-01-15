@@ -1,5 +1,5 @@
-﻿using Heir;
-using Heir.Runtime.Values;
+﻿using Spectre.Console;
+using Heir;
 
 var program = new HeirProgram();
 var testFile = SourceFile.FromPath("./Test.heir", isMainFile: true);
@@ -15,9 +15,4 @@ var testFile = SourceFile.FromPath("./Test.heir", isMainFile: true);
 program.LoadFile(testFile);
 
 var result = program.Evaluate();
-var indent = 0;
-var resultString = result is ObjectValue objectValue ?
-    objectValue.ToString(ref indent)
-    : result ?? "none";
-
-Console.WriteLine(resultString); // TODO: some sort of repr function
+AnsiConsole.MarkupLine(Utility.Repr(result, true));

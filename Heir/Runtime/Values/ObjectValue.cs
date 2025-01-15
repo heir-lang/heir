@@ -4,7 +4,7 @@ namespace Heir.Runtime.Values;
 
 public sealed class ObjectValue(IEnumerable<KeyValuePair<object, object?>> pairs) : Dictionary<object, object?>(pairs), IValue
 {
-    public string ToString(ref int indent)
+    public string ToString(ref int indent, bool colors = false)
     {
         var result = new StringBuilder("{");
         if (Count > 0)
@@ -17,15 +17,15 @@ public sealed class ObjectValue(IEnumerable<KeyValuePair<object, object?>> pairs
         {
             result.Append(string.Join("", Enumerable.Repeat("  ", indent)));
             result.Append('[');
-            result.Append(property.Key.ToString());
+            result.Append(Utility.Repr(property.Key, colors));
             result.Append("]: ");
 
             var newIndent = indent + 1;
             var valueString = property.Value is ObjectValue objectValue
-                ? objectValue.ToString(ref newIndent)
-                : property.Value?.ToString() ?? "none";
+                ? objectValue.ToString(ref newIndent, colors)
+                : Utility.Repr(property.Value, colors);
             
-            result.Append(valueString); // TODO:repr function thing again
+            result.Append(valueString);
             if (Keys.ToList().IndexOf(property.Key) != Count - 1)
                 result.AppendLine(",");
         }

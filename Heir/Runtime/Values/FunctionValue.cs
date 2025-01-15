@@ -3,7 +3,7 @@ using Heir.CodeGeneration;
 
 namespace Heir.Runtime.Values;
 
-public sealed class Function(FunctionDeclaration declaration, List<Instruction> bodyBytecode, Scope closure)
+public sealed class FunctionValue(FunctionDeclaration declaration, List<Instruction> bodyBytecode, Scope closure)
 {
     public Guid ID { get; } = Guid.NewGuid();
     public string Name { get; } = declaration.Name.Token.Text;

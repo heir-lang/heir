@@ -94,9 +94,9 @@ public class VirtualMachineTest
         Assert.Null(resultValue);
         
         var value = vm.Scope.Lookup(name);
-        Assert.IsType<Function>(value);
+        Assert.IsType<FunctionValue>(value);
         
-        var function = (Function)value;
+        var function = (FunctionValue)value;
         Assert.Equal(name, function.Name);
     }
 

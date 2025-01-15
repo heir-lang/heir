@@ -2,7 +2,6 @@
 [![CI Status](https://github.com/R-unic/heir/actions/workflows/ci.yml/badge.svg)](https://github.com/R-unic/heir/actions/workflows)
 [![Coverage Status](https://coveralls.io/repos/github/R-unic/heir/badge.svg)](https://coveralls.io/github/R-unic/heir)
 
-
 ## Contributions
 Though I cannot guarantee the lifetime or dedication of this project, contributions are welcome and encouraged and I will review them ASAP.
 
@@ -89,3 +88,4 @@ Though I cannot guarantee the lifetime or dedication of this project, contributi
     - [ ] classes
     - [ ] types
 - [ ] hvm (heir virtual machine)
+    - [ ] tail call optimization (create `CALLSELF` opcode and reuse the last `CallStackFrame` instead of creating a new one)

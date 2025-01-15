@@ -115,7 +115,7 @@ public sealed class VirtualMachine
                     break;
                 }
                 
-                var function = new Function(functionDeclaration, bodyBytecode, new Scope(Scope));
+                var function = new FunctionValue(functionDeclaration, bodyBytecode, new Scope(Scope));
                 Stack.Push(new(functionDeclaration, function));
                 Advance();
                 break;
@@ -132,7 +132,7 @@ public sealed class VirtualMachine
                     Advance();
                     break;
                 }
-                if (calleeFrame.Value is not Function function)
+                if (calleeFrame.Value is not FunctionValue function)
                 {
                     Diagnostics.Error(DiagnosticCode.HDEV,
                         "Failed to execute CALL op-code: Loaded callee is not a function",
