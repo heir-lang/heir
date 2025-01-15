@@ -39,6 +39,13 @@ public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder) 
     public List<Instruction> VisitFunctionDeclaration(FunctionDeclaration functionDeclaration)
     {
         var bodyBytecode = GenerateBytecode(functionDeclaration.Body);
+        var hasExplicitReturn = bodyBytecode.Exists(instruction => instruction.OpCode == OpCode.RETURN);
+        if (!hasExplicitReturn)
+            bodyBytecode.AddRange([
+                new(functionDeclaration.Body, OpCode.PUSHNONE),
+                new(functionDeclaration.Body, OpCode.RETURN)
+            ]);
+        
         return
         [
             new(functionDeclaration.Name, OpCode.PUSH, functionDeclaration.Name.Token.Text),

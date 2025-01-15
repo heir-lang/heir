@@ -1,9 +1,3 @@
-fn create_greeter(greeting: string) {
-    fn greet(name: string) ->
-        greeting + ", " + name + "!";
-        
-    return greet;
-}
+fn abc -> abc();
 
-let greet_english = create_greeter("Hello");
-greet_english("John");
+abc();

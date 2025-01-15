@@ -1,8 +1,8 @@
 namespace Heir.CodeGeneration;
 
-public class Bytecode(List<Instruction> instructions, DiagnosticBag diagnostics)
+public class Bytecode(IEnumerable<Instruction> instructions, DiagnosticBag diagnostics)
 {
-    public IReadOnlyList<Instruction> Instructions => instructions.AsReadOnly();
+    public IReadOnlyList<Instruction> Instructions => instructions.ToList().AsReadOnly();
     public DiagnosticBag Diagnostics { get; } = diagnostics;
     public int Count => Instructions.Count;
 

@@ -10,22 +10,31 @@ namespace Heir;
 
 internal sealed class ExitMarker;
 
-internal sealed class StackFrame(SyntaxNode node, object? value)
+public sealed class StackFrame(SyntaxNode node, object? value)
 {
     public SyntaxNode Node { get; } = node;
     public object? Value { get; } = value;
+}
+
+internal sealed class CallStackFrame(IReadOnlyList<Instruction> bytecode, Scope closure, int enclosingPointer)
+{
+    public IReadOnlyList<Instruction> Bytecode { get; } = bytecode;
+    public Scope Closure { get; } = closure;
+    public int EnclosingPointer { get; } = enclosingPointer;
 }
 
 public sealed class VirtualMachine
 {
     public DiagnosticBag Diagnostics { get; }
     public Scope GlobalScope { get; }
-    public Scope Scope { get; set; }
+    public Scope Scope { get; private set; }
+    public Stack<StackFrame> Stack { get; } = [];
     public int RecursionDepth { get; private set; }
     
-    private const int _maxRecursionDepth = 300; // can only handle about this much for now 💀
-    private readonly Stack<StackFrame> _stack = [];
-    private readonly Bytecode _bytecode;
+    private const int _maxRecursionDepth = 2000;
+    private readonly Stack<CallStackFrame> _callStack = [];
+
+    private Bytecode _bytecode;
     private Scope _enclosingScope;
     private int _pointer;
 
@@ -48,13 +57,10 @@ public sealed class VirtualMachine
         {
             var instruction = _bytecode[_pointer];
             var result = EvaluateInstruction(instruction);
-            if (instruction.OpCode == OpCode.RETURN)
-                return result?.Value;
-
             if (result?.Value is ExitMarker) break;
         }
 
-        return _stack.TryPop(out var stackFrame)
+        return Stack.TryPop(out var stackFrame)
             ? stackFrame.Value
             : null;
     }
@@ -76,9 +82,6 @@ public sealed class VirtualMachine
             case OpCode.NOOP:
                 Advance();
                 break;
-            
-            case OpCode.RETURN:
-                return _stack.Pop();
 
             case OpCode.BEGINSCOPE:
                 _enclosingScope = Scope;
@@ -114,13 +117,13 @@ public sealed class VirtualMachine
                 }
                 
                 var function = new Function(functionDeclaration, bodyBytecode, new Scope(Scope));
-                _stack.Push(new(functionDeclaration, function));
+                Stack.Push(new(functionDeclaration, function));
                 Advance();
                 break;
             }
             case OpCode.CALL:
             {
-                var calleeFrame = _stack.Pop();
+                var calleeFrame = Stack.Pop();
                 if (instruction.Operand is not List<List<Instruction>> argumentsBytecode)
                 {
                     Diagnostics.Error(DiagnosticCode.HDEV,
@@ -140,15 +143,51 @@ public sealed class VirtualMachine
                     break;
                 }
 
-                var result = function.Call(this, argumentsBytecode);
-                _stack.Push(new(calleeFrame.Node, result));
-                Advance();
+                var index = 0;
+                List<Instruction> argumentDefinitionBytecode = [];
+                foreach (var parameter in function.Declaration.Parameters)
+                {
+                    var argumentBytecode = argumentsBytecode.ElementAtOrDefault(index++) ??
+                                           [new(parameter, OpCode.PUSH, parameter.Initializer?.Token.Value)];
+                    
+                    argumentDefinitionBytecode.AddRange([
+                        new(parameter, OpCode.PUSH, parameter.Name.Token.Text),
+                        ..argumentBytecode,
+                        new(parameter, OpCode.STORE, false)
+                    ]);
+                }
+                
+                var vm = new VirtualMachine(new(argumentDefinitionBytecode, Diagnostics), function.Closure, RecursionDepth);
+                vm.Evaluate();
+                
+                _callStack.Push(new(_bytecode.Instructions, Scope, _pointer + 1));
+                BeginRecursion(function.Declaration.Name.Token);
+                _bytecode = new Bytecode(function.BodyBytecode, Diagnostics);
+                Scope = function.Closure;
+                _pointer = 0;
+                break;
+            }
+
+            case OpCode.RETURN:
+            {
+                if (_callStack.TryPop(out var returnState))
+                {
+                    _bytecode = new Bytecode(returnState.Bytecode, Diagnostics);
+                    _pointer = returnState.EnclosingPointer;
+                    Scope = returnState.Closure;
+                    EndRecursion();
+                }
+                else
+                {
+                    Advance();
+                }
+                
                 break;
             }
 
             case OpCode.PUSH:
             case OpCode.PUSHNONE:
-                _stack.Push(CreateStackFrameFromInstruction());
+                Stack.Push(CreateStackFrameFromInstruction());
                 Advance();
                 break;
             case OpCode.PUSHOBJECT:
@@ -169,37 +208,37 @@ public sealed class VirtualMachine
                         })
                 );
 
-                _stack.Push(new StackFrame(bytecodeDictionaryFrame.Node, evaluatedDictionary));
+                Stack.Push(new StackFrame(bytecodeDictionaryFrame.Node, evaluatedDictionary));
                 Advance();
                 break;
             }
 
             case OpCode.POP:
             {
-                _stack.Pop();
+                Stack.Pop();
                 Advance();
                 break;
             }
             case OpCode.SWAP:
             {
-                var right = _stack.Pop();
-                var left = _stack.Pop();
-                _stack.Push(right);
-                _stack.Push(left);
+                var right = Stack.Pop();
+                var left = Stack.Pop();
+                Stack.Push(right);
+                Stack.Push(left);
                 Advance();
                 break;
             }
             case OpCode.DUP:
             {
-                var value = _stack.Peek();
-                _stack.Push(value);
+                var value = Stack.Peek();
+                Stack.Push(value);
                 Advance();
                 break;
             }
 
             case OpCode.LOAD:
             {
-                var nameFrame = _stack.Pop();
+                var nameFrame = Stack.Pop();
                 if (nameFrame.Value is not string name)
                 {
                     Diagnostics.Error(DiagnosticCode.HDEV,
@@ -211,14 +250,14 @@ public sealed class VirtualMachine
                 }
 
                 var value = Scope.Lookup(name);
-                _stack.Push(new StackFrame(nameFrame.Node, value));
+                Stack.Push(new StackFrame(nameFrame.Node, value));
                 Advance();
                 break;
             }
             case OpCode.STORE:
             {
-                var initializer = _stack.Pop();
-                var nameFrame = _stack.Pop();
+                var initializer = Stack.Pop();
+                var nameFrame = Stack.Pop();
                 if (nameFrame.Value is not string name)
                 {
                     Diagnostics.Error(DiagnosticCode.HDEV,
@@ -235,7 +274,7 @@ public sealed class VirtualMachine
                     Scope.Define(name, initializer.Value);
 
                 if (instruction.Operand is true)
-                    _stack.Push(initializer);
+                    Stack.Push(initializer);
 
                 Advance();
                 break;
@@ -243,210 +282,210 @@ public sealed class VirtualMachine
 
             case OpCode.CONCAT:
             {
-                var right = _stack.Pop();
-                var left = _stack.Pop();
+                var right = Stack.Pop();
+                var left = Stack.Pop();
                 var result = Convert.ToString(left.Value) + Convert.ToString(right.Value);
 
-                _stack.Push(new StackFrame(right.Node, result));
+                Stack.Push(new StackFrame(right.Node, result));
                 Advance();
                 break;
             }
             case OpCode.ADD:
             {
-                var right = _stack.Pop();
-                var left = _stack.Pop();
+                var right = Stack.Pop();
+                var left = Stack.Pop();
                 var result = Convert.ToDouble(left.Value) + Convert.ToDouble(right.Value);
 
-                _stack.Push(new StackFrame(right.Node, result));
+                Stack.Push(new StackFrame(right.Node, result));
                 Advance();
                 break;
             }
             case OpCode.SUB:
             {
-                var right = _stack.Pop();
-                var left = _stack.Pop();
+                var right = Stack.Pop();
+                var left = Stack.Pop();
                 var result = Convert.ToDouble(left.Value) - Convert.ToDouble(right.Value);
 
-                _stack.Push(new StackFrame(right.Node, result));
+                Stack.Push(new StackFrame(right.Node, result));
                 Advance();
                 break;
             }
             case OpCode.MUL:
             {
-                var right = _stack.Pop();
-                var left = _stack.Pop();
+                var right = Stack.Pop();
+                var left = Stack.Pop();
                 var result = Convert.ToDouble(left.Value) * Convert.ToDouble(right.Value);
 
-                _stack.Push(new StackFrame(right.Node, result));
+                Stack.Push(new StackFrame(right.Node, result));
                 Advance();
                 break;
             }
             case OpCode.DIV:
             {
-                var right = _stack.Pop();
-                var left = _stack.Pop();
+                var right = Stack.Pop();
+                var left = Stack.Pop();
                 var result = Convert.ToDouble(left.Value) / Convert.ToDouble(right.Value);
 
-                _stack.Push(new StackFrame(right.Node, result));
+                Stack.Push(new StackFrame(right.Node, result));
                 Advance();
                 break;
             }
             case OpCode.IDIV:
             {
-                var right = _stack.Pop();
-                var left = _stack.Pop();
+                var right = Stack.Pop();
+                var left = Stack.Pop();
                 var result = Convert.ToInt64(Math.Floor(Convert.ToDouble(left.Value) / Convert.ToDouble(right.Value)));
 
-                _stack.Push(new StackFrame(right.Node, result));
+                Stack.Push(new StackFrame(right.Node, result));
                 Advance();
                 break;
             }
             case OpCode.MOD:
             {
-                var right = _stack.Pop();
-                var left = _stack.Pop();
+                var right = Stack.Pop();
+                var left = Stack.Pop();
                 var result = Convert.ToDouble(left.Value) % Convert.ToDouble(right.Value);
 
-                _stack.Push(new StackFrame(right.Node, result));
+                Stack.Push(new StackFrame(right.Node, result));
                 Advance();
                 break;
             }
             case OpCode.POW:
             {
-                var right = _stack.Pop();
-                var left = _stack.Pop();
+                var right = Stack.Pop();
+                var left = Stack.Pop();
                 var result = Math.Pow(Convert.ToDouble(left.Value), Convert.ToDouble(right.Value));
 
-                _stack.Push(new StackFrame(right.Node, result));
+                Stack.Push(new StackFrame(right.Node, result));
                 Advance();
                 break;
             }
             case OpCode.BAND:
             {
-                var right = _stack.Pop();
-                var left = _stack.Pop();
+                var right = Stack.Pop();
+                var left = Stack.Pop();
                 var result = Convert.ToInt64(left.Value) & Convert.ToInt64(right.Value);
 
-                _stack.Push(new StackFrame(right.Node, result));
+                Stack.Push(new StackFrame(right.Node, result));
                 Advance();
                 break;
             }
             case OpCode.BOR:
             {
-                var right = _stack.Pop();
-                var left = _stack.Pop();
+                var right = Stack.Pop();
+                var left = Stack.Pop();
                 var result = Convert.ToInt64(left.Value) | Convert.ToInt64(right.Value);
 
-                _stack.Push(new StackFrame(right.Node, result));
+                Stack.Push(new StackFrame(right.Node, result));
                 Advance();
                 break;
             }
             case OpCode.BXOR:
             {
-                var right = _stack.Pop();
-                var left = _stack.Pop();
+                var right = Stack.Pop();
+                var left = Stack.Pop();
                 var result = Convert.ToInt64(left.Value) ^ Convert.ToInt64(right.Value);
 
-                _stack.Push(new StackFrame(right.Node, result));
+                Stack.Push(new StackFrame(right.Node, result));
                 Advance();
                 break;
             }
             case OpCode.BSHL:
             {
-                var right = _stack.Pop();
-                var left = _stack.Pop();
+                var right = Stack.Pop();
+                var left = Stack.Pop();
                 var result = Convert.ToInt64(Convert.ToInt32(left.Value) << Convert.ToInt32(right.Value));
 
-                _stack.Push(new StackFrame(right.Node, result));
+                Stack.Push(new StackFrame(right.Node, result));
                 Advance();
                 break;
             }
             case OpCode.BSHR:
             {
-                var right = _stack.Pop();
-                var left = _stack.Pop();
+                var right = Stack.Pop();
+                var left = Stack.Pop();
                 var result = Convert.ToInt64(Convert.ToInt32(left.Value) >> Convert.ToInt32(right.Value));
 
-                _stack.Push(new StackFrame(right.Node, result));
+                Stack.Push(new StackFrame(right.Node, result));
                 Advance();
                 break;
             }
             case OpCode.UNM:
             {
-                var operand = _stack.Pop();
+                var operand = Stack.Pop();
                 var result = -Convert.ToDouble(operand.Value);
 
-                _stack.Push(new StackFrame(operand.Node, result));
+                Stack.Push(new StackFrame(operand.Node, result));
                 Advance();
                 break;
             }
 
             case OpCode.AND:
             {
-                var right = _stack.Pop();
-                var left = _stack.Pop();
+                var right = Stack.Pop();
+                var left = Stack.Pop();
                 var result = Convert.ToBoolean(left.Value) && Convert.ToBoolean(right.Value);
 
-                _stack.Push(new StackFrame(right.Node, result));
+                Stack.Push(new StackFrame(right.Node, result));
                 Advance();
                 break;
             }
             case OpCode.OR:
             {
-                var right = _stack.Pop();
-                var left = _stack.Pop();
+                var right = Stack.Pop();
+                var left = Stack.Pop();
                 var result = Convert.ToBoolean(left.Value) || Convert.ToBoolean(right.Value);
 
-                _stack.Push(new StackFrame(right.Node, result));
+                Stack.Push(new StackFrame(right.Node, result));
                 Advance();
                 break;
             }
             case OpCode.EQ:
             {
-                var right = _stack.Pop();
-                var left = _stack.Pop();
+                var right = Stack.Pop();
+                var left = Stack.Pop();
                 var equalityComparer = EqualityComparer<object>.Default;
 
-                _stack.Push(new StackFrame(right.Node, equalityComparer.Equals(left.Value, right.Value)));
+                Stack.Push(new StackFrame(right.Node, equalityComparer.Equals(left.Value, right.Value)));
                 Advance();
                 break;
             }
             case OpCode.LT:
             {
-                var right = _stack.Pop();
-                var left = _stack.Pop();
+                var right = Stack.Pop();
+                var left = Stack.Pop();
                 var result = Convert.ToDouble(left.Value) < Convert.ToDouble(right.Value);
 
-                _stack.Push(new StackFrame(right.Node, result));
+                Stack.Push(new StackFrame(right.Node, result));
                 Advance();
                 break;
             }
             case OpCode.LTE:
             {
-                var right = _stack.Pop();
-                var left = _stack.Pop();
+                var right = Stack.Pop();
+                var left = Stack.Pop();
                 var result = Convert.ToDouble(left.Value) <= Convert.ToDouble(right.Value);
 
-                _stack.Push(new StackFrame(right.Node, result));
+                Stack.Push(new StackFrame(right.Node, result));
                 Advance();
                 break;
             }
 
             case OpCode.NOT:
             {
-                var operand = _stack.Pop();
+                var operand = Stack.Pop();
                 var result = !Convert.ToBoolean(operand.Value);
 
-                _stack.Push(new StackFrame(operand.Node, result));
+                Stack.Push(new StackFrame(operand.Node, result));
                 Advance();
                 break;
             }
             case OpCode.BNOT:
             {
-                var operand = _stack.Pop();
+                var operand = Stack.Pop();
                 var result = ~Convert.ToInt64(operand.Value);
 
-                _stack.Push(new StackFrame(operand.Node, result));
+                Stack.Push(new StackFrame(operand.Node, result));
                 Advance();
                 break;
             }
@@ -462,7 +501,7 @@ public sealed class VirtualMachine
             }
             case OpCode.JNZ:
             {
-                var frame = _stack.Pop();
+                var frame = Stack.Pop();
                 if (frame.Value is int n && n != 0)
                 {
                     if (instruction.Operand is int index)
@@ -479,7 +518,7 @@ public sealed class VirtualMachine
             }
             case OpCode.JZ:
             {
-                var frame = _stack.Pop();
+                var frame = Stack.Pop();
                 if (frame.Value is 0)
                 {
                     if (instruction.Operand is int index)
