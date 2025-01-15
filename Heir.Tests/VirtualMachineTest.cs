@@ -55,6 +55,7 @@ public class VirtualMachineTest
     }
 
     [Theory]
+    [InlineData("fn fib(n: int) { if n <= 1 return n; return fib(n - 1) + fib(n - 2); } fib(12);", 144.0)]
     [InlineData("fn double(n: int) -> n * 2; double(10);", 20.0)]
     [InlineData("fn increment(n: int, amount = 1) -> n + amount; increment(5);", 6.0)]
     [InlineData("fn increment(n: int, amount = 1) -> n + amount; increment(5, 5);", 10.0)]
