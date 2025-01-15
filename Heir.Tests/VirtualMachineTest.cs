@@ -13,6 +13,26 @@ public class VirtualMachineTest
         Assert.True(vm.Diagnostics.HasErrors);
         Assert.Contains(vm.Diagnostics, diagnostic => diagnostic.Code == expectedDiagnosticCode);
     }
+
+    [Theory]
+    [InlineData("1", 2.0)]
+    [InlineData("2", 4.0)]
+    [InlineData("3", 15.0)]
+    public void Evaluates_IfStatements(string xValue, double expectedValue)
+    {
+        var input = $"""
+                     let x = {xValue};
+                     if x == 1
+                         x + 1;
+                     else if x == 2
+                         x + 2;
+                     else
+                         x * 5;
+                     """;
+        
+        var (value, _) = Evaluate(input);
+        Assert.Equal(expectedValue, value);
+    }
     
     [Theory]
     [InlineData("let mut x = 1; ++x;", 2.0)]

@@ -15,6 +15,59 @@ public class BytecodeGeneratorTest
         Assert.Equal(OpCode.EXIT, instruction.OpCode);
         Assert.Null(instruction.Operand);
     }
+
+    [Fact]
+    public void Generates_IfStatement()
+    {
+        const string input = """
+                             if x == 1
+                                 x + 1;
+                             else if x == 2
+                                 x + 2;
+                             else
+                                 x * 5;
+                             """;
+        
+        var bytecode = GenerateBytecode(input);
+        Assert.Equal(OpCode.PUSH, bytecode[0].OpCode);
+        Assert.Equal("x", bytecode[0].Operand);
+        Assert.Equal(OpCode.LOAD, bytecode[1].OpCode);
+        Assert.Equal(OpCode.PUSH, bytecode[2].OpCode);
+        Assert.Equal(1L, bytecode[2].Operand);
+        Assert.Equal(OpCode.EQ, bytecode[3].OpCode);
+        Assert.Equal(OpCode.JNZ, bytecode[4].OpCode);
+        Assert.Equal(16, bytecode[4].Operand);
+        Assert.Equal(OpCode.PUSH, bytecode[5].OpCode);
+        Assert.Equal("x", bytecode[5].Operand);
+        Assert.Equal(OpCode.LOAD, bytecode[6].OpCode);
+        Assert.Equal(OpCode.PUSH, bytecode[7].OpCode);
+        Assert.Equal(2L, bytecode[7].Operand);
+        Assert.Equal(OpCode.EQ, bytecode[8].OpCode);
+        Assert.Equal(OpCode.JNZ, bytecode[9].OpCode);
+        Assert.Equal(6, bytecode[9].Operand);
+        Assert.Equal(OpCode.PUSH, bytecode[10].OpCode);
+        Assert.Equal("x", bytecode[10].Operand);
+        Assert.Equal(OpCode.LOAD, bytecode[11].OpCode);
+        Assert.Equal(OpCode.PUSH, bytecode[12].OpCode);
+        Assert.Equal(5L, bytecode[12].Operand);
+        Assert.Equal(OpCode.MUL, bytecode[13].OpCode);
+        Assert.Equal(OpCode.JMP, bytecode[14].OpCode);
+        Assert.Equal(5, bytecode[14].Operand);
+        Assert.Equal(OpCode.PUSH, bytecode[15].OpCode);
+        Assert.Equal("x", bytecode[15].Operand);
+        Assert.Equal(OpCode.LOAD, bytecode[16].OpCode);
+        Assert.Equal(OpCode.PUSH, bytecode[17].OpCode);
+        Assert.Equal(2L, bytecode[17].Operand);
+        Assert.Equal(OpCode.ADD, bytecode[18].OpCode);
+        Assert.Equal(OpCode.JMP, bytecode[19].OpCode);
+        Assert.Equal(5, bytecode[19].Operand);
+        Assert.Equal(OpCode.PUSH, bytecode[20].OpCode);
+        Assert.Equal("x", bytecode[20].Operand);
+        Assert.Equal(OpCode.LOAD, bytecode[21].OpCode);
+        Assert.Equal(OpCode.PUSH, bytecode[22].OpCode);
+        Assert.Equal(1L, bytecode[22].Operand);
+        Assert.Equal(OpCode.ADD, bytecode[23].OpCode);
+    }
     
     [Fact]
     public void Generates_Return()
