@@ -9,9 +9,9 @@ public enum OpCode : byte
     PUSHOBJECT,
     PUSHNONE,
     POP,
-    JMP,
-    JZ,
-    JNZ,
+    JMP, // jump to the instruction at the provided offset
+    JZ, // jump if value on stack is false or 0
+    JNZ, // jump if value on stack is true or 1
     SWAP,
     DUP,
 

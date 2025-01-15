@@ -32,7 +32,6 @@ public sealed class If(Token keyword, Expression condition, Statement body, Stat
         Console.WriteLine();
         Console.Write($"{string.Concat(Enumerable.Repeat("  ", indent + 1))}ElseBranch ->{(ElseBranch == null ? " (none)" : "\n")}");
         ElseBranch?.Display(indent + 2);
-        Console.WriteLine(',');
         Console.WriteLine();
         Console.Write($"{string.Concat(Enumerable.Repeat("  ", indent))})");
     }

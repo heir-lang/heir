@@ -35,7 +35,6 @@ public sealed class BoundIf(Token keyword, BoundExpression condition, BoundState
         Console.WriteLine();
         Console.Write($"{string.Concat(Enumerable.Repeat("  ", indent + 1))}ElseBranch ->{(ElseBranch == null ? " (none)" : "\n")}");
         ElseBranch?.Display(indent + 2);
-        Console.WriteLine(',');
         Console.WriteLine();
         Console.Write($"{string.Concat(Enumerable.Repeat("  ", indent))})");
     }

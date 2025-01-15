@@ -54,6 +54,23 @@ public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder) 
         ];
     }
 
+    public List<Instruction> VisitIfStatement(If @if)
+    {
+        var conditionBytecode = GenerateBytecode(@if.Condition);
+        var bodyBytecode = GenerateBytecode(@if.Body);
+        var elseBranchBytecode = @if.ElseBranch != null
+            ? GenerateBytecode(@if.ElseBranch)
+            : [];
+        
+        return [
+            ..conditionBytecode,
+            new(@if, OpCode.JNZ, elseBranchBytecode.Count + 2),
+            ..elseBranchBytecode,
+            new(@if, OpCode.JMP, bodyBytecode.Count + 1),
+            ..bodyBytecode
+        ];
+    }
+
     public List<Instruction> VisitParameter(Parameter parameter) =>
     [
         new(parameter.Name, OpCode.PUSH, parameter.Name.Token.Text),

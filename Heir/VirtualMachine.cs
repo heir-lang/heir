@@ -492,8 +492,8 @@ public sealed class VirtualMachine
 
             case OpCode.JMP:
             {
-                if (instruction.Operand is int index)
-                    _pointer = index;
+                if (instruction.Operand is int offset)
+                    Advance(offset);
                 else
                     NonIntegerOperand(instruction);
 
@@ -502,33 +502,31 @@ public sealed class VirtualMachine
             case OpCode.JNZ:
             {
                 var frame = Stack.Pop();
-                if (frame.Value is int n && n != 0)
+                if (frame.Value is not 0 and not false)
                 {
-                    if (instruction.Operand is int index)
-                        _pointer = index;
+                    if (instruction.Operand is int offset)
+                        Advance(offset);
                     else
                         NonIntegerOperand(instruction);
                 }
                 else
-                {
                     Advance();
-                }
 
                 break;
             }
             case OpCode.JZ:
             {
                 var frame = Stack.Pop();
-                if (frame.Value is 0)
+                if (frame.Value is 0 or false)
                 {
-                    if (instruction.Operand is int index)
-                        _pointer = index;
+                    if (instruction.Operand is int offset)
+                        Advance(offset);
                     else
                         NonIntegerOperand(instruction);
                 }
                 else
                     Advance();
-
+                
                 break;
             }
             
