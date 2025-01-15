@@ -35,7 +35,18 @@ public class TypeChecker(DiagnosticBag diagnostics, BoundSyntaxTree syntaxTree) 
         Assert(variableDeclaration.Initializer, variableDeclaration.Symbol.Type);
         return null;
     }
-    
+
+    public object? VisitBoundIfStatement(BoundIf @if)
+    {
+        Check(@if.Condition);
+        Check(@if.Body);
+        if (@if.ElseBranch == null)
+            return null;
+        
+        Check(@if.ElseBranch);
+        return null;
+    }
+
     public object? VisitBoundParameter(BoundParameter parameter)
     {
         if (parameter.Initializer == null)

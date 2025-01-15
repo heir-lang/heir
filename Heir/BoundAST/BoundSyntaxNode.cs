@@ -19,6 +19,7 @@ namespace Heir.BoundAST
             public R VisitBoundNoOp(BoundNoOpStatement noOp);
             public R VisitBoundReturnStatement(BoundReturn @return);
             public R VisitBoundFunctionDeclaration(BoundFunctionDeclaration declaration);
+            public R VisitBoundIfStatement(BoundIf @if);
         }
     }
 

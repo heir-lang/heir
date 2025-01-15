@@ -88,6 +88,15 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : S
         return new BoundReturn(@return.Keyword, expression);
     }
 
+    public BoundStatement VisitIfStatement(If @if)
+    {
+        var condition = Bind(@if.Condition);
+        var body = Bind(@if.Body);
+        var elseBranch = @if.ElseBranch != null ? Bind(@if.ElseBranch) : null;
+        
+        return new BoundIf(@if.Keyword, condition, body, elseBranch);
+    }
+
     public BoundStatement VisitExpressionStatement(ExpressionStatement expressionStatement)
     {
         var expression = Bind(expressionStatement.Expression);
