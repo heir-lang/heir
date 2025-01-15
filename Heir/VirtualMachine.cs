@@ -16,9 +16,9 @@ public sealed class StackFrame(SyntaxNode node, object? value)
     public object? Value { get; } = value;
 }
 
-internal sealed class CallStackFrame(IReadOnlyList<Instruction> bytecode, Scope closure, int enclosingPointer)
+internal sealed class CallStackFrame(Bytecode bytecode, Scope closure, int enclosingPointer)
 {
-    public IReadOnlyList<Instruction> Bytecode { get; } = bytecode;
+    public Bytecode Bytecode { get; } = bytecode;
     public Scope Closure { get; } = closure;
     public int EnclosingPointer { get; } = enclosingPointer;
 }
@@ -52,14 +52,13 @@ public sealed class VirtualMachine
 
     public object? Evaluate()
     {
-        var length = _bytecode.Count;
-        while (_pointer < length)
+        while (_pointer < _bytecode.Count)
         {
             var instruction = _bytecode[_pointer];
             var result = EvaluateInstruction(instruction);
             if (result?.Value is ExitMarker) break;
         }
-
+        
         return Stack.TryPop(out var stackFrame)
             ? stackFrame.Value
             : null;
@@ -150,21 +149,22 @@ public sealed class VirtualMachine
                     var argumentBytecode = argumentsBytecode.ElementAtOrDefault(index++) ??
                                            [new(parameter, OpCode.PUSH, parameter.Initializer?.Token.Value)];
                     
+                    var argumentVM = new VirtualMachine(new(argumentBytecode, Diagnostics), Scope, RecursionDepth);
+                    var argumentValue = argumentVM.Evaluate();
                     argumentDefinitionBytecode.AddRange([
                         new(parameter, OpCode.PUSH, parameter.Name.Token.Text),
-                        ..argumentBytecode,
+                        new(parameter, OpCode.PUSH, argumentValue),
                         new(parameter, OpCode.STORE, false)
                     ]);
                 }
                 
-                var vm = new VirtualMachine(new(argumentDefinitionBytecode, Diagnostics), function.Closure, RecursionDepth);
-                vm.Evaluate();
-                
-                _callStack.Push(new(_bytecode.Instructions, Scope, _pointer + 1));
+                List<Instruction> bodyBytecode = [new(function.Declaration, OpCode.BEGINSCOPE), ..argumentDefinitionBytecode, ..function.BodyBytecode.Skip(1)];
+                _callStack.Push(new(_bytecode, Scope, _pointer + 1));
                 BeginRecursion(function.Declaration.Name.Token);
-                _bytecode = new Bytecode(function.BodyBytecode, Diagnostics);
-                Scope = function.Closure;
+                _bytecode = new Bytecode(bodyBytecode, Diagnostics);
                 _pointer = 0;
+                Scope = function.Closure;
+                
                 break;
             }
 
@@ -172,15 +172,13 @@ public sealed class VirtualMachine
             {
                 if (_callStack.TryPop(out var returnState))
                 {
-                    _bytecode = new Bytecode(returnState.Bytecode, Diagnostics);
+                    _bytecode = returnState.Bytecode;
                     _pointer = returnState.EnclosingPointer;
                     Scope = returnState.Closure;
                     EndRecursion();
                 }
                 else
-                {
                     Advance();
-                }
                 
                 break;
             }
@@ -295,7 +293,7 @@ public sealed class VirtualMachine
                 var right = Stack.Pop();
                 var left = Stack.Pop();
                 var result = Convert.ToDouble(left.Value) + Convert.ToDouble(right.Value);
-
+                
                 Stack.Push(new StackFrame(right.Node, result));
                 Advance();
                 break;
@@ -305,7 +303,7 @@ public sealed class VirtualMachine
                 var right = Stack.Pop();
                 var left = Stack.Pop();
                 var result = Convert.ToDouble(left.Value) - Convert.ToDouble(right.Value);
-
+                
                 Stack.Push(new StackFrame(right.Node, result));
                 Advance();
                 break;
@@ -511,7 +509,7 @@ public sealed class VirtualMachine
                 }
                 else
                     Advance();
-
+                
                 break;
             }
             case OpCode.JZ:
@@ -552,6 +550,15 @@ public sealed class VirtualMachine
     {
         var instruction = _bytecode[_pointer + offset];
         return new StackFrame(instruction.Root, instruction.Operand);
+    }
+    
+    private void StackDump()
+    {
+        Console.WriteLine("Stack contents:");
+        foreach (var frame in Stack)
+        {
+            Console.WriteLine(frame.Value ?? "null");
+        }
     }
 
     private void Advance(int amount = 1) => _pointer += amount;
