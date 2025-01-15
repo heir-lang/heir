@@ -34,6 +34,8 @@ public sealed class Resolver(DiagnosticBag diagnostics, SyntaxTree syntaxTree) :
     public object? VisitVariableDeclaration(VariableDeclaration variableDeclaration)
     {
         Declare(variableDeclaration.Name.Token);
+        if (variableDeclaration.Type != null)
+            Resolve(variableDeclaration.Type);
         if (variableDeclaration.Initializer != null)
             Resolve(variableDeclaration.Initializer);
 
@@ -99,6 +101,9 @@ public sealed class Resolver(DiagnosticBag diagnostics, SyntaxTree syntaxTree) :
     {
         Declare(parameter.Name.Token);
         Define(parameter.Name.Token);
+        if (parameter.Type != null)
+            Resolve(parameter.Type);
+        
         return null;
     }
 
@@ -121,7 +126,7 @@ public sealed class Resolver(DiagnosticBag diagnostics, SyntaxTree syntaxTree) :
         }
         if (!IsDefined(identifierName.Token))
         {
-            Diagnostics.Error(DiagnosticCode.H011, $"'{name}' is not defined in this scope", identifierName.Token);
+            Diagnostics.Error(DiagnosticCode.H011, $"Cannot find name '{name}'", identifierName.Token);
             return null;
         }
 
@@ -144,7 +149,19 @@ public sealed class Resolver(DiagnosticBag diagnostics, SyntaxTree syntaxTree) :
 
     public object? VisitSingularTypeRef(SingularType singularType)
     {
-        // TODO: scope resolving just like identifiers
+        var scope = _scopes.LastOrDefault();
+        var name = singularType.Token.Text;
+        if (scope != null && scope.TryGetValue(name, out var value) && value == false)
+        {
+            Diagnostics.Error(DiagnosticCode.H010, $"Cannot read type '{name}' in it's own declaration", singularType.Token);
+            return null;
+        }
+        if (!IsDefined(singularType.Token) && !SyntaxFacts.TypeSyntaxes.Contains(singularType.Token.Kind))
+        {
+            Diagnostics.Error(DiagnosticCode.H011, $"Cannot find name '{name}'", singularType.Token);
+            return null;
+        }
+        
         return null;
     }
 
@@ -189,6 +206,8 @@ public sealed class Resolver(DiagnosticBag diagnostics, SyntaxTree syntaxTree) :
         var enclosingWithin = _withinFunction;
         _withinFunction = true;
         BeginScope();
+        if (functionDeclaration.ReturnType != null)
+            Resolve(functionDeclaration.ReturnType);
 
         foreach (var parameter in functionDeclaration.Parameters)
             Resolve(parameter);

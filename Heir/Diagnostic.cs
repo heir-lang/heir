@@ -27,7 +27,7 @@ public sealed class Diagnostic(SourceFile sourceFile, DiagnosticCode code, strin
         var locationDisplay = StartLocation.ToString();
 
         var erroneousCodeColumnLength = EndLocation.Column - StartLocation.Column;
-        var erroneousCodeDistance = EndLocation.Column - erroneousCodeColumnLength;
+        var erroneousCodeDistance = EndLocation.Column - erroneousCodeColumnLength - 1;
         var erroneousCodeLineLength = EndLocation.Line - (StartLocation.Line - 1);
         var lines = SourceFile.Source
             .Split('\n')
@@ -45,7 +45,7 @@ public sealed class Diagnostic(SourceFile sourceFile, DiagnosticCode code, strin
             codeDisplay += $"{StartLocation.Line + offset}{padding} | {(line != trimmed ? " " + trimmed : trimmed)}\n";
         }
 
-        codeDisplay += $" {padding} | {string.Join("", Enumerable.Repeat(' ', EndLocation.Column - StartLocation.Column - 1))}~\n";
+        codeDisplay += $" {padding}    {string.Join("", Enumerable.Repeat(' ', erroneousCodeDistance))}{string.Join("", Enumerable.Repeat('~', erroneousCodeColumnLength))}\n";
 
         if (colors)
         {
