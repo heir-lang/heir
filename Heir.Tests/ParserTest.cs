@@ -46,6 +46,48 @@ public class ParserTest
         Assert.False(tree.Diagnostics.HasErrors);
     }
 
+    [Fact]
+    public void Parses_IfStatements()
+    {
+        const string input = """
+                             if a
+                                69 + 420;
+                             else if b
+                                420 - 69;
+                             else
+                                69;
+                             """;
+        
+        var tree = Parse(input);
+        var statement = tree.Statements.First();
+        Assert.IsType<If>(statement);
+        
+        var ifStatement = (If)statement;
+        Assert.IsType<IdentifierName>(ifStatement.Condition);
+        Assert.IsType<ExpressionStatement>(ifStatement.Body);
+        Assert.IsType<If>(ifStatement.ElseBranch);
+        
+        var mainCondition = (IdentifierName)ifStatement.Condition;
+        Assert.Equal("a", mainCondition.Token.Text);
+        
+        var mainBody = (ExpressionStatement)ifStatement.Body;
+        Assert.IsType<BinaryOp>(mainBody.Expression);
+        
+        var elseIf = (If)ifStatement.ElseBranch;
+        Assert.IsType<IdentifierName>(elseIf.Condition);
+        Assert.IsType<ExpressionStatement>(elseIf.Body);
+        Assert.IsType<ExpressionStatement>(elseIf.ElseBranch);
+        
+        var elseIfCondition = (IdentifierName)elseIf.Condition;
+        Assert.Equal("b", elseIfCondition.Token.Text);
+        
+        var elseIfBody = (ExpressionStatement)elseIf.Body;
+        Assert.IsType<BinaryOp>(elseIfBody.Expression);
+        
+        var elseBranch = (ExpressionStatement)elseIf.ElseBranch;
+        Assert.IsType<Literal>(elseBranch.Expression);
+    }
+
     [Theory]
     [InlineData("fn add(x: int, y = 1): int -> x + y;", true)]
     [InlineData("fn add(x: int, y: int = 1): int { return x + y; }", false)]

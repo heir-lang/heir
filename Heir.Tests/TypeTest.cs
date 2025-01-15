@@ -9,11 +9,11 @@ public class TypeTest
     {
         {
             var a = PrimitiveType.Int;
-            var b = new AnyType();
+            var b = IntrinsicTypes.Any;
             Assert.True(a.IsAssignableTo(b));
         }
         {
-            var a = new AnyType();
+            var a = IntrinsicTypes.Any;
             var b = PrimitiveType.String;
             Assert.True(a.IsAssignableTo(b));
         }

@@ -17,6 +17,52 @@ public class BinderTest
         Assert.True(boundTree.Diagnostics.HasErrors);
         Assert.Contains(boundTree.Diagnostics, diagnostic => diagnostic.Code == expectedErrorCode);
     }
+    
+    [Fact]
+    public void Binds_IfStatements()
+    {
+        const string input = """
+                             if a
+                                69 + 420;
+                             else if b
+                                420 - 69;
+                             else
+                                69;
+                             """;
+        
+        var tree = Bind(input);
+        var statement = tree.Statements.First();
+        Assert.IsType<BoundIf>(statement);
+        
+        var ifStatement = (BoundIf)statement;
+        Assert.IsType<BoundIdentifierName>(ifStatement.Condition);
+        Assert.IsType<BoundExpressionStatement>(ifStatement.Body);
+        Assert.IsType<BoundIf>(ifStatement.ElseBranch);
+        Assert.Null(ifStatement.Type);
+        
+        var mainCondition = (BoundIdentifierName)ifStatement.Condition;
+        Assert.Equal("a", mainCondition.Symbol.Name.Text);
+        
+        var mainBody = (BoundExpressionStatement)ifStatement.Body;
+        Assert.IsType<BoundBinaryOp>(mainBody.Expression);
+        Assert.IsType<UnionType>(mainBody.Expression.Type);
+        
+        var elseIf = (BoundIf)ifStatement.ElseBranch;
+        Assert.IsType<BoundIdentifierName>(elseIf.Condition);
+        Assert.IsType<BoundExpressionStatement>(elseIf.Body);
+        Assert.IsType<BoundExpressionStatement>(elseIf.ElseBranch);
+        
+        var elseIfCondition = (BoundIdentifierName)elseIf.Condition;
+        Assert.Equal("b", elseIfCondition.Symbol.Name.Text);
+        
+        var elseIfBody = (BoundExpressionStatement)elseIf.Body;
+        Assert.IsType<BoundBinaryOp>(elseIfBody.Expression);
+        Assert.IsType<UnionType>(elseIfBody.Expression.Type);
+        
+        var elseBranch = (BoundExpressionStatement)elseIf.ElseBranch;
+        Assert.IsType<BoundLiteral>(elseBranch.Expression);
+        Assert.IsType<PrimitiveType>(elseBranch.Expression.Type);
+    }
 
     [Theory]
     [InlineData("fn add(x: int, y = 1): int { return x + y; }")]

@@ -63,7 +63,7 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : S
             parameterTypes,
             functionDeclaration.ReturnType != null
                 ? BaseType.FromTypeRef(functionDeclaration.ReturnType)
-                : new AnyType()
+                : IntrinsicTypes.Any
         );
         
         var placeholderSymbol = DefineSymbol<BaseType>(functionDeclaration.Name.Token, placeholderType, false);
@@ -162,10 +162,9 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : S
 
     public BoundExpression VisitIdentifierNameExpression(IdentifierName identifierName)
     {
-        var symbol = FindSymbol(identifierName.Token);
-        if (symbol == null)
-            return new BoundNoOp();
-
+        var symbol = FindSymbol(identifierName.Token) ??
+            new VariableSymbol<BaseType>(identifierName.Token, IntrinsicTypes.Any, false);
+        
         return new BoundIdentifierName(symbol);
     }
 
