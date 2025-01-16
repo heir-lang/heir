@@ -3,10 +3,10 @@ using Spectre.Console;
 
 namespace Heir.Runtime.Intrinsics.Global;
 
-public delegate void PrintIntrinsic(object? value);
+public delegate void PrintIntrinsic(object?[]? values);
 
 public class PrintFunction()
-    : IntrinsicFunction<PrintIntrinsic>(
+    : IntrinsicFunction(
         "print",
         new()
         {
@@ -16,11 +16,16 @@ public class PrintFunction()
         true
     )
 {
-    public override PrintIntrinsic Call { get; } = value =>
+    public override BaseDelegate Invoke { get; } = values =>
     {
-        if (value is string)
-            Console.WriteLine(value);
-        else
-            AnsiConsole.MarkupLine(Utility.Repr(value, true));
+        foreach (var value in values ?? [])
+        {
+            if (value is string)
+                Console.WriteLine(value);
+            else
+                AnsiConsole.MarkupLine(Utility.Repr(value, true));
+        }
+
+        return null;
     };
 }

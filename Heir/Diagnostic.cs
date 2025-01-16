@@ -45,7 +45,7 @@ public sealed class Diagnostic(SourceFile sourceFile, DiagnosticCode code, strin
             codeDisplay += $"{StartLocation.Line + offset}{padding} | {(line != trimmed ? " " + trimmed : trimmed)}\n";
         }
 
-        codeDisplay += $" {padding}    {(erroneousCodeDistance == 0 ? "" : string.Join("", Enumerable.Repeat(' ', erroneousCodeDistance)))}{(erroneousCodeColumnLength == 0 ? "" : string.Join("", Enumerable.Repeat('~', erroneousCodeColumnLength)))}\n";
+        codeDisplay += $" {padding}    {(erroneousCodeDistance <= 0 ? "" : string.Join("", Enumerable.Repeat(' ', erroneousCodeDistance)))}{(erroneousCodeColumnLength <= 0 ? "" : string.Join("", Enumerable.Repeat('~', erroneousCodeColumnLength)))}\n";
 
         if (colors)
         {
@@ -61,7 +61,7 @@ public sealed class Diagnostic(SourceFile sourceFile, DiagnosticCode code, strin
                 codeDisplay += $"[invert white]{StartLocation.Line + offset}{padding}[/] [grey]|[/] {(offset == 0 ? "[white]" : "[grey58]")}{(line != trimmed ? " " + trimmed : trimmed)}[/]\n";
             }
 
-            codeDisplay += $" {padding}    [red]{string.Join("", Enumerable.Repeat(' ', erroneousCodeDistance))}{string.Join("", Enumerable.Repeat('~', erroneousCodeColumnLength))}[/]\n";
+            codeDisplay += $" {padding}    [red]{(erroneousCodeDistance <= 0 ? "" : string.Join("", Enumerable.Repeat(' ', erroneousCodeDistance)))}{(erroneousCodeColumnLength <= 0 ? "" : string.Join("", Enumerable.Repeat('~', erroneousCodeColumnLength)))}[/]\n";
 
             switch (Level)
             {

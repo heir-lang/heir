@@ -4,9 +4,11 @@ namespace Heir.Runtime.Intrinsics;
 
 public class IntrinsicRegistrar(IntrinsicValue intrinsicValue)
 {
+    private static Location _intrinsicLocation = new("intrinsic", 0, 0, 0);
+    
     public bool IsGlobal { get; } = intrinsicValue.IsGlobal;
     
-    private readonly Token _nameToken = TokenFactory.Identifier(intrinsicValue.Name, Location.Empty, Location.Empty);
+    private readonly Token _nameToken = TokenFactory.Identifier(intrinsicValue.Name, _intrinsicLocation, _intrinsicLocation);
     
     public void RegisterInResolver(Resolver resolver)
     {
