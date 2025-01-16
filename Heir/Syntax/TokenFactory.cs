@@ -2,10 +2,8 @@
 {
     public static class TokenFactory
     {
-        private static readonly Location _blankLocation = new Location("anonymous", 0, 0, 0);
-        
         public static Token Keyword(SyntaxKind kind) => 
-            new(kind, SyntaxFacts.KeywordMap.GetKey(kind), null, _blankLocation, _blankLocation);
+            new(kind, SyntaxFacts.KeywordMap.GetKey(kind), null, Location.Empty, Location.Empty);
         
         public static Token Keyword(SyntaxKind kind, Location startLocation, Location endLocation) => 
             new(kind, SyntaxFacts.KeywordMap.GetKey(kind), null, startLocation, endLocation);
@@ -34,7 +32,7 @@
         public static Token FloatLiteral(string text, Location startLocation, Location endLocation) =>
             new(SyntaxKind.FloatLiteral, text, Convert.ToDouble(text), startLocation, endLocation);
 
-        public static Token NoneLiteral() => NoneLiteral(_blankLocation, _blankLocation);
+        public static Token NoneLiteral() => NoneLiteral(Location.Empty, Location.Empty);
         
         public static Token NoneLiteral(Location startLocation, Location endLocation) =>
             new(SyntaxKind.NoneKeyword, "none", null, startLocation, endLocation);

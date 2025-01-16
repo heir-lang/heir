@@ -3,6 +3,7 @@ using Heir.AST.Abstract;
 using Heir.CodeGeneration;
 using Heir.Runtime;
 using Heir.Runtime.HookedExceptions;
+using Heir.Runtime.Intrinsics;
 using Heir.Runtime.Values;
 using Heir.Syntax;
 
@@ -52,6 +53,7 @@ public sealed class VirtualMachine
 
     public object? Evaluate()
     {
+        Intrinsics.RegisterGlobalValues(GlobalScope);
         while (_pointer < _bytecode.Count)
         {
             var instruction = _bytecode[_pointer];

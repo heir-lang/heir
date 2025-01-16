@@ -45,7 +45,7 @@ public sealed class Diagnostic(SourceFile sourceFile, DiagnosticCode code, strin
             codeDisplay += $"{StartLocation.Line + offset}{padding} | {(line != trimmed ? " " + trimmed : trimmed)}\n";
         }
 
-        codeDisplay += $" {padding}    {string.Join("", Enumerable.Repeat(' ', erroneousCodeDistance))}{string.Join("", Enumerable.Repeat('~', erroneousCodeColumnLength))}\n";
+        codeDisplay += $" {padding}    {(erroneousCodeDistance == 0 ? "" : string.Join("", Enumerable.Repeat(' ', erroneousCodeDistance)))}{(erroneousCodeColumnLength == 0 ? "" : string.Join("", Enumerable.Repeat('~', erroneousCodeColumnLength)))}\n";
 
         if (colors)
         {
