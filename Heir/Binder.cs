@@ -2,6 +2,7 @@
 using Heir.AST.Abstract;
 using Heir.Binding;
 using Heir.BoundAST;
+using Heir.Runtime.Intrinsics;
 using Heir.Syntax;
 using Heir.Types;
 
@@ -19,6 +20,7 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : S
     public BoundSyntaxTree Bind()
     {
         BeginScope();
+        Intrinsics.RegisterGlobalSymbols(this);
         var tree = (BoundSyntaxTree)Bind(SyntaxTree);
         EndScope();
 
@@ -29,6 +31,34 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : S
     public BoundStatement GetBoundNode(Statement statement) => (BoundStatement)_boundNodes[statement];
     public BoundExpression GetBoundNode(Expression expression) => (BoundExpression)_boundNodes[expression];
     public BoundSyntaxNode GetBoundNode(SyntaxNode node) => _boundNodes[node];
+    
+    public VariableSymbol<BaseType> DefineSymbol(Token name, BaseType type, bool isMutable) =>
+        DefineSymbol<BaseType>(name, type, isMutable);
+
+    public VariableSymbol<TType> DefineSymbol<TType>(Token name, TType type, bool isMutable) where TType : BaseType
+    {
+        // this is so braindead
+        var symbol = new VariableSymbol<TType>(name, type, isMutable);
+        if (_variableScopes.TryPeek(out var scope))
+            scope.Push(new VariableSymbol<BaseType>(name, type, isMutable));
+
+        return symbol;
+    }
+
+    public VariableSymbol<BaseType>? FindSymbol(Token name, bool errorIfNotFound = true)
+    {
+        var symbol = _variableScopes
+            .SelectMany(v => v)
+            .FirstOrDefault(symbol => symbol.Name.Text == name.Text);
+        
+        if (symbol != null)
+            return symbol;
+
+        if (errorIfNotFound)
+            diagnostics.Error(DiagnosticCode.H005, $"Failed to find variable symbol for '{name.Text}'", name);
+        
+        return null;
+    }
 
     public BoundStatement VisitSyntaxTree(SyntaxTree tree) =>
         new BoundSyntaxTree(BindStatements(tree.Statements), diagnostics);
@@ -232,19 +262,6 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : S
         return new BoundParenthesized(expression);
     }
 
-    private VariableSymbol<BaseType> DefineSymbol(Token name, BaseType type, bool isMutable) =>
-        DefineSymbol<BaseType>(name, type, isMutable);
-
-    private VariableSymbol<TType> DefineSymbol<TType>(Token name, TType type, bool isMutable) where TType : BaseType
-    {
-        // this is so braindead
-        var symbol = new VariableSymbol<TType>(name, type, isMutable);
-        if (_variableScopes.TryPeek(out var scope))
-            scope.Push(new VariableSymbol<BaseType>(name, type, isMutable));
-
-        return symbol;
-    }
-
     private void UndefineSymbol(VariableSymbol<BaseType> variableSymbol)
     {
         if (!_variableScopes.TryPop(out var scope)) return;
@@ -253,25 +270,9 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : S
         newScope.Remove(variableSymbol);
         _variableScopes.Push(new Stack<VariableSymbol<BaseType>>(newScope));
     }
-            
-
+    
     private void BeginScope() => _variableScopes.Push([]);
     private void EndScope() => _variableScopes.Pop();
-
-    public VariableSymbol<BaseType>? FindSymbol(Token name, bool errorIfNotFound = true)
-    {
-        var symbol = _variableScopes
-            .SelectMany(v => v)
-            .FirstOrDefault(symbol => symbol.Name.Text == name.Text);
-        
-        if (symbol != null)
-            return symbol;
-
-        if (errorIfNotFound)
-            diagnostics.Error(DiagnosticCode.H005, $"Failed to find variable symbol for '{name.Text}'", name);
-        
-        return null;
-    }
 
     private List<BoundStatement> BindStatements(List<Statement> statements) => statements.ConvertAll(Bind);
 

@@ -1,5 +1,6 @@
 ﻿using Heir.AST;
 using Heir.AST.Abstract;
+using Heir.Runtime.Intrinsics;
 using Heir.Syntax;
 
 namespace Heir;
@@ -19,15 +20,32 @@ public sealed class Resolver(DiagnosticBag diagnostics, SyntaxTree syntaxTree) :
     private ScopeContext _scopeContext = ScopeContext.Global;
     private bool _withinFunction;
 
-    public void Resolve()
+    public void Resolve() => Resolve(syntaxTree);
+    
+    public void Define(Token identifier)
     {
-        BeginScope();
-        Resolve(syntaxTree);
+        if (_scopes.Count == 0) return;
+        if (!_scopes.TryPeek(out var scope)) return;
+
+        scope[identifier.Text] = true;
+    }
+
+    public void Declare(Token identifier)
+    {
+        if (_scopes.Count == 0) return;
+        if (!_scopes.TryPeek(out var scope)) return;
+        if (scope.TryAdd(identifier.Text, false)) return;
+            
+        Diagnostics.Error(DiagnosticCode.H009, $"Variable '{identifier.Text}' is already declared in this scope", identifier);
     }
 
     public object? VisitSyntaxTree(SyntaxTree tree)
     {
+        BeginScope();
+        Intrinsics.RegisterResolverGlobals(this);
         ResolveStatements(tree.Statements);
+        EndScope();
+        
         return null;
     }
 
@@ -219,23 +237,6 @@ public sealed class Resolver(DiagnosticBag diagnostics, SyntaxTree syntaxTree) :
         return null;
     }
 
-    private void Define(Token identifier)
-    {
-        if (_scopes.Count == 0) return;
-        if (!_scopes.TryPeek(out var scope)) return;
-
-        scope[identifier.Text] = true;
-    }
-
-    private void Declare(Token identifier)
-    {
-        if (_scopes.Count == 0) return;
-        if (!_scopes.TryPeek(out var scope)) return;
-        if (scope.TryAdd(identifier.Text, false)) return;
-            
-        Diagnostics.Error(DiagnosticCode.H009, $"Variable '{identifier.Text}' is already declared in this scope", identifier);
-    }
-
     private bool IsDefined(Token identifier)
     {
         for (var i = _scopes.Count - 1; i >= 0; i--)
@@ -252,8 +253,8 @@ public sealed class Resolver(DiagnosticBag diagnostics, SyntaxTree syntaxTree) :
     private void EndScope() => _scopes.Pop();
 
     private void ResolveStatements(List<Statement> statements) => statements.ForEach(Resolve);
-    private void Resolve(Expression expression) => expression.Accept(this);
-    private void Resolve(Statement statement) => statement.Accept(this);
+    public void Resolve(Expression expression) => expression.Accept(this);
+    public void Resolve(Statement statement) => statement.Accept(this);
     private void Resolve(SyntaxNode node)
     {
         switch (node)

@@ -11,7 +11,5 @@ public sealed class FunctionValue(FunctionDeclaration declaration, List<Instruct
     public List<Instruction> BodyBytecode { get; } = bodyBytecode;
     public Scope Closure { get; } = closure;
 
-
-
     public override string ToString() => $"<function: {ID}>";
 }

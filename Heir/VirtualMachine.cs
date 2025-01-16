@@ -3,6 +3,7 @@ using Heir.AST.Abstract;
 using Heir.CodeGeneration;
 using Heir.Runtime;
 using Heir.Runtime.HookedExceptions;
+using Heir.Runtime.Intrinsics;
 using Heir.Runtime.Values;
 using Heir.Syntax;
 
@@ -52,6 +53,7 @@ public sealed class VirtualMachine
 
     public object? Evaluate()
     {
+        Intrinsics.RegisterGlobalValues(GlobalScope);
         while (_pointer < _bytecode.Count)
         {
             var instruction = _bytecode[_pointer];
@@ -59,7 +61,7 @@ public sealed class VirtualMachine
             if (result?.Value is ExitMarker) break;
         }
         
-        return Stack.TryPop(out var stackFrame)
+        return Stack.TryPeek(out var stackFrame)
             ? stackFrame.Value
             : null;
     }
@@ -132,38 +134,72 @@ public sealed class VirtualMachine
                     Advance();
                     break;
                 }
-                if (calleeFrame.Value is not FunctionValue function)
+                if (calleeFrame.Value is not FunctionValue and not IntrinsicFunction)
                 {
                     Diagnostics.Error(DiagnosticCode.HDEV,
                         "Failed to execute CALL op-code: Loaded callee is not a function",
                         calleeFrame.Node.GetFirstToken());
                     
-                    Advance();
+                    // Advance();
                     break;
                 }
 
-                var index = 0;
-                List<Instruction> argumentDefinitionBytecode = [];
-                foreach (var parameter in function.Declaration.Parameters)
+                if (calleeFrame.Value is FunctionValue function)
                 {
-                    var argumentBytecode = argumentsBytecode.ElementAtOrDefault(index++) ??
-                                           [new(parameter, OpCode.PUSH, parameter.Initializer?.Token.Value)];
+                    List<Instruction> argumentsBytecodeWithDefaults = [];
+                    var parameterNodeList = function.Declaration.Parameters;
+                    var bytecodeIndex = 0;
+                    foreach (var parameter in parameterNodeList)
+                    {
+                        var argumentBytecode = argumentsBytecode.ElementAtOrDefault(bytecodeIndex++);
+                        if (argumentBytecode != null)
+                        {
+                            argumentsBytecodeWithDefaults.AddRange(argumentBytecode);
+                            continue;
+                        }
                     
-                    var argumentVM = new VirtualMachine(new(argumentBytecode, Diagnostics), Scope, RecursionDepth);
-                    var argumentValue = argumentVM.Evaluate();
-                    argumentDefinitionBytecode.AddRange([
-                        new(parameter, OpCode.PUSH, parameter.Name.Token.Text),
-                        new(parameter, OpCode.PUSH, argumentValue),
-                        new(parameter, OpCode.STORE, false)
-                    ]);
-                }
+                        argumentsBytecodeWithDefaults.Add(new(parameter, OpCode.PUSH, parameter.Initializer?.Token.Value));
+                    }
+
+                    var argumentVM = new VirtualMachine(new(argumentsBytecodeWithDefaults, Diagnostics), Scope, RecursionDepth);
+                    argumentVM.Evaluate();
+
+                    var parameterIndex = 0;
+                    var argumentDefinitionBytecode = argumentVM.Stack
+                        .TakeLast(parameterNodeList.Count)
+                        .SelectMany<StackFrame, Instruction>(argumentFrame =>
+                        {
+                            var parameter = parameterNodeList.ElementAtOrDefault(parameterIndex++);
+                            return
+                            [
+                                new(argumentFrame.Node, OpCode.PUSH, parameter?.Name.Token.Text ?? "???"),
+                                new(argumentFrame.Node, OpCode.PUSH, argumentFrame.Value),
+                                new(argumentFrame.Node, OpCode.STORE, false)
+                            ];
+                        })
+                        .ToList();
                 
-                List<Instruction> bodyBytecode = [new(function.Declaration, OpCode.BEGINSCOPE), ..argumentDefinitionBytecode, ..function.BodyBytecode.Skip(1)];
-                _callStack.Push(new(_bytecode, Scope, _pointer + 1));
-                BeginRecursion(function.Declaration.Name.Token);
-                _bytecode = new Bytecode(bodyBytecode, Diagnostics);
-                _pointer = 0;
-                Scope = function.Closure;
+                    List<Instruction> bodyBytecode = [new(function.Declaration, OpCode.BEGINSCOPE), ..argumentDefinitionBytecode, ..function.BodyBytecode.Skip(1)];
+                    _callStack.Push(new(_bytecode, Scope, _pointer + 1));
+                    BeginRecursion(function.Declaration.Name.Token);
+                    _bytecode = new Bytecode(bodyBytecode, Diagnostics);
+                    _pointer = 0;
+                    Scope = function.Closure;
+                }
+                else if (calleeFrame.Value is IntrinsicFunction intrinsicFunction)
+                {
+                    var argumentVM = new VirtualMachine(new(argumentsBytecode.SelectMany(v => v), Diagnostics), new Scope(Scope), RecursionDepth);
+                    argumentVM.Evaluate();
+                    
+                    var argumentValues = argumentVM.Stack
+                        .TakeLast(argumentsBytecode.Count)
+                        .Select(frame => frame.Value)
+                        .ToArray();
+                    
+                    var result = intrinsicFunction.Invoke(argumentValues);
+                    Stack.Push(new(instruction.Root, result));
+                    Advance();
+                }
                 
                 break;
             }
@@ -293,7 +329,7 @@ public sealed class VirtualMachine
                 var right = Stack.Pop();
                 var left = Stack.Pop();
                 var result = Convert.ToDouble(left.Value) + Convert.ToDouble(right.Value);
-                
+
                 Stack.Push(new StackFrame(right.Node, result));
                 Advance();
                 break;
