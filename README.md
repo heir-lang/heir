@@ -57,7 +57,7 @@ Though I cannot guarantee the lifetime or dedication of this project, contributi
         - [ ] interface
         - [ ] class
       - [ ] control flow
-        - [ ] if 
+        - [x] if 
         - [ ] while 
         - [ ] for 
         - [ ] switch
@@ -84,7 +84,7 @@ Though I cannot guarantee the lifetime or dedication of this project, contributi
 - [x] bytecode generator
 - [ ] intrinsics (built-ins)
     - [ ] injectable libraries
-    - [ ] functions
+    - [x] functions
     - [ ] classes
     - [ ] types
 - [ ] hvm (heir virtual machine)
