@@ -4,7 +4,7 @@ namespace Heir.Runtime.Intrinsics;
 
 public class IntrinsicRegistrar(IntrinsicValue intrinsicValue)
 {
-    private static Location _intrinsicLocation = new("intrinsic", 0, 0, 0);
+    private static readonly Location _intrinsicLocation = new("intrinsic", 0, 0, 0);
     
     public bool IsGlobal { get; } = intrinsicValue.IsGlobal;
     
