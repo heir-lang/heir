@@ -33,6 +33,9 @@ public abstract class BaseType
         };
     }
 
+    public bool IsNone() =>
+        this is PrimitiveType { PrimitiveKind: PrimitiveTypeKind.None };
+
     public bool IsAssignableTo(BaseType other)
     {
         if (this is AnyType || other is AnyType)
