@@ -60,7 +60,6 @@ public class TypeChecker(DiagnosticBag diagnostics, BoundSyntaxTree syntaxTree) 
     public object? VisitBoundInvocationExpression(BoundInvocation invocation)
     {
         Check(invocation.Callee);
-
         if (invocation.Callee.Type is not FunctionType functionType)
         {
             diagnostics.Error(DiagnosticCode.H018, $"Attempt to call value of type '{invocation.Callee.Type.ToString()}'", invocation.Callee);
