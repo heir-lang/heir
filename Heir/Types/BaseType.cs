@@ -5,12 +5,20 @@ namespace Heir.Types;
 
 public abstract class BaseType
 {
-    public bool IsNullable => this is UnionType union && union.Types.Contains(PrimitiveType.None);
+    public bool IsNullable => IsNone || (this is UnionType union && union.Types.Any(type => type.IsNone));
+    public bool IsNone => this is PrimitiveType { PrimitiveKind: PrimitiveTypeKind.None };
     
     public abstract TypeKind Kind { get; }
 
     public abstract string ToString(bool colors = false);
 
+    public static BaseType Nullable(BaseType type)
+    {
+        return type.IsNullable || type is AnyType
+            ? type
+            : new UnionType([type, PrimitiveType.None]);
+    }
+    
     public static BaseType FromTypeRef(TypeRef typeRef)
     {
         return typeRef switch
@@ -32,9 +40,6 @@ public abstract class BaseType
             _ => PrimitiveType.None
         };
     }
-
-    public bool IsNone() =>
-        this is PrimitiveType { PrimitiveKind: PrimitiveTypeKind.None };
 
     public bool IsAssignableTo(BaseType other)
     {

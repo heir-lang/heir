@@ -56,8 +56,15 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : S
             .ToList();
         
         var parameterTypePairs = boundParameters.ConvertAll(parameter =>
-            new KeyValuePair<string, BaseType>(parameter.Symbol.Name.Text, parameter.Type));
+            new KeyValuePair<string, BaseType>(parameter.Symbol.Name.Text, parameter.Initializer != null
+                ? BaseType.Nullable(parameter.Type)
+                : parameter.Type));
         
+        // TODO: fix this!
+        // if heir is left to infer a function return type, then we do not know the
+        // return type of a recursive call within the function.
+        // in this example the type of x is any:
+        // fn abc { let x = abc(); return 123; }
         var parameterTypes = new Dictionary<string, BaseType>(parameterTypePairs);
         var placeholderType = new FunctionType(
             parameterTypes,
@@ -68,13 +75,11 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : S
         
         var placeholderSymbol = DefineSymbol<BaseType>(functionDeclaration.Name.Token, placeholderType, false);
         var boundBody = (BoundBlock)Bind(functionDeclaration.Body);
-        var returnType = functionDeclaration.ReturnType != null
-            ? BaseType.FromTypeRef(functionDeclaration.ReturnType)
-            : boundBody.Type;
-
         var finalType = new FunctionType(
-            new Dictionary<string, BaseType>(parameterTypePairs),
-            returnType
+            parameterTypes,
+            functionDeclaration.ReturnType != null
+                ? BaseType.FromTypeRef(functionDeclaration.ReturnType)
+                : boundBody.Type
         );
 
         UndefineSymbol(placeholderSymbol);
@@ -108,7 +113,7 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : S
         var initializer = parameter.Initializer != null ? Bind(parameter.Initializer) : null;
         var type = parameter.Type != null
             ? BaseType.FromTypeRef(parameter.Type)
-            : initializer?.Type ?? IntrinsicTypes.Any;
+            : initializer != null ? initializer.Type : IntrinsicTypes.Any;
 
         var symbol = DefineSymbol(parameter.Name.Token, type, true);
         return new BoundParameter(symbol, initializer);
@@ -251,9 +256,9 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : S
             
 
     private void BeginScope() => _variableScopes.Push([]);
-    private Stack<VariableSymbol<BaseType>> EndScope() => _variableScopes.Pop();
+    private void EndScope() => _variableScopes.Pop();
 
-    private VariableSymbol<BaseType>? FindSymbol(Token name)
+    public VariableSymbol<BaseType>? FindSymbol(Token name, bool errorIfNotFound = true)
     {
         var symbol = _variableScopes
             .SelectMany(v => v)
@@ -262,7 +267,9 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : S
         if (symbol != null)
             return symbol;
 
-        diagnostics.Error(DiagnosticCode.H005, $"Failed to find variable symbol for '{name.Text}'", name);
+        if (errorIfNotFound)
+            diagnostics.Error(DiagnosticCode.H005, $"Failed to find variable symbol for '{name.Text}'", name);
+        
         return null;
     }
 

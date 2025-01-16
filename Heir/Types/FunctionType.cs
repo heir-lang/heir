@@ -8,6 +8,15 @@ public sealed class FunctionType(Dictionary<string, BaseType> parameterTypes, Ba
     
     public Dictionary<string, BaseType> ParameterTypes { get; } = parameterTypes;
     public BaseType ReturnType { get; } = returnType;
+    public Range Arity
+    {
+        get
+        {
+            var parameters = ParameterTypes.Values.ToList();
+            var nonNullableParameters = parameters.FindAll(type => !type.IsNullable);
+            return nonNullableParameters.Count..parameters.Count;
+        }
+    }
 
     public override string ToString(bool colors = false)
     {

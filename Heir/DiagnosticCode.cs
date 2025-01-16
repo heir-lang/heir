@@ -29,5 +29,6 @@ public enum DiagnosticCode : byte
     H015,
     H016,
     H017,
-    H018
+    H018,
+    H019
 }

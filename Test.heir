@@ -1,5 +1,5 @@
-fn balls {
-    return "balls";
+fn balls(x: int, y = 1, z: int = 4) {
+    return 69 * x + y - z;
 }
 
-balls(1);
+balls(2, 3, 5, 4);

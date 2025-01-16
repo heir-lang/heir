@@ -67,6 +67,19 @@ public class TypeChecker(DiagnosticBag diagnostics, BoundSyntaxTree syntaxTree) 
             return null;
         }
 
+        var argumentCount = invocation.Arguments.Count;
+        var minimumArguments = functionType.Arity.Start.Value;
+        var maximumArguments = functionType.Arity.End.Value;
+        if (argumentCount < minimumArguments || argumentCount > maximumArguments)
+        {
+            var argumentCountDisplay = minimumArguments == maximumArguments
+                ? minimumArguments.ToString()
+                : minimumArguments + "-" + maximumArguments;
+            
+            diagnostics.Error(DiagnosticCode.H019, $"Expected {argumentCountDisplay} argument{(maximumArguments != 1 ? "s" : "")}, got {argumentCount}", invocation.Callee);
+            return null;
+        }
+            
         var expectedTypes = functionType.ParameterTypes.ToList();
         var index = 0;
         foreach (var argument in invocation.Arguments)
