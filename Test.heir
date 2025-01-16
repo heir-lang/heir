@@ -1,5 +1,5 @@
-fn fib(n: int) {
-    if n <= 1 return n;
-    return fib(n - 1) + fib(n - 2);
+fn balls {
+    return "balls";
 }
-fib(12);
+
+balls(1);

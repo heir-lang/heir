@@ -19,9 +19,9 @@ public static class Utility
             case bool:
                 return (colors ? "[violet]" : "") + value.ToString()?.ToLower() + ColorReset(colors);
             case char:
-                return (colors ? "[green]" : "") + "'" + value + "'" + ColorReset(colors);
+                return (colors ? "[springgreen3_1]" : "") + "'" + value + "'" + ColorReset(colors);
             case string:
-                return (colors ? "[green]" : "") + '"' + value + '"' + ColorReset(colors);
+                return (colors ? "[springgreen3_1]" : "") + '"' + value + '"' + ColorReset(colors);
             case long or ulong or int or uint or short or ushort or byte or sbyte or double or float or decimal:
                 return (colors ? "[orange3]" : "") + value + ColorReset(colors);
             case null:
