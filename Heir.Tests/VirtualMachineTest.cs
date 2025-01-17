@@ -14,6 +14,13 @@ public class VirtualMachineTest
         Assert.Contains(vm.Diagnostics, diagnostic => diagnostic.Code == expectedDiagnosticCode);
     }
 
+    [Fact]
+    public void Evaluates_NowIntrinsicFunction()
+    {
+        var (value, _) = Evaluate("now()");
+        Assert.IsType<double>(value);
+    }
+
     [Theory]
     [InlineData("1", 2.0)]
     [InlineData("2", 4.0)]

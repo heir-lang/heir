@@ -6,7 +6,7 @@ fn fib(n: int) {
 }
 
 let t1 = now();
-let v = fib(20);
+let v = fib(15);
 let elapsed = now() - t1;
 print(elapsed * 1000);
 print(v);
