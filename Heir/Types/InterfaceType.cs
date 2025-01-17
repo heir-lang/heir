@@ -13,6 +13,9 @@ public sealed class InterfaceType(
 
     public Dictionary<LiteralType, InterfaceMemberSignature> Members { get; } = members;
     public Dictionary<PrimitiveType, BaseType> IndexSignatures { get; } = indexSignatures;
+    public BaseType IndexType { get; } = members.Count + indexSignatures.Count == 1
+        ? members.Keys.FirstOrDefault() ?? (BaseType)indexSignatures.Keys.First()
+        : new UnionType([..members.Keys, ..indexSignatures.Keys]);
         
     public string ToString(bool colors, int indent = 0)
     {

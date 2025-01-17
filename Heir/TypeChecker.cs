@@ -63,13 +63,13 @@ public class TypeChecker(DiagnosticBag diagnostics, BoundSyntaxTree syntaxTree) 
         Check(elementAccess.IndexExpression);
         
         // TODO: in the future check for indexable literal types (like strings), and also arrays
-        if (elementAccess.Expression.Type is not InterfaceType)
+        if (elementAccess.Expression.Type is not InterfaceType interfaceType)
         {
             diagnostics.Error(DiagnosticCode.H018, $"Attempt to index '{elementAccess.Expression.Type.ToString()}'", elementAccess.Expression);
             return null;
         }
         
-        Assert(elementAccess.IndexExpression, IntrinsicTypes.Index);
+        Assert(elementAccess.IndexExpression, interfaceType.IndexType);
         return null;
     }
 

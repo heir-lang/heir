@@ -2,4 +2,4 @@ let foo = {
     bar: "baz"
 };
 
-print(foo["bar"]);
+print(foo["a"]);
