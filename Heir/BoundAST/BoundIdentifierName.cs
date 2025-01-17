@@ -13,5 +13,5 @@ public class BoundIdentifierName(VariableSymbol<BaseType> symbol) : BoundName
     public override List<Token> GetTokens() => [Symbol.Name];
 
     public override void Display(int indent = 0) =>
-        Console.Write($"{string.Concat(Enumerable.Repeat("  ", indent))}BoundIdentifierName({Symbol.Name.Text})");
+        Console.Write($"{string.Concat(Enumerable.Repeat("  ", indent))}BoundIdentifierName({Symbol.ToString()})");
 }

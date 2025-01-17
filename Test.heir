@@ -1,12 +1,5 @@
-fn fib(n: int) {
-    if n <= 1
-        return n;
-        
-    return fib(n - 1) + fib(n - 2);
-}
+let foo = {
+    bar: "baz"
+};
 
-let t1 = now();
-let v = fib(15);
-let elapsed = now() - t1;
-print(elapsed * 1000);
-print(v);
+print(foo["bar"]);

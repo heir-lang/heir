@@ -1,5 +1,6 @@
 ﻿using Heir.Syntax;
 using System.Linq;
+using Spectre.Console;
 
 namespace Heir;
 
@@ -58,7 +59,7 @@ public sealed class Diagnostic(SourceFile sourceFile, DiagnosticCode code, strin
             {
                 var offset = lineNumber++;
                 var trimmed = line.Trim();
-                codeDisplay += $"[invert white]{StartLocation.Line + offset}{padding}[/] [grey]|[/] {(offset == 0 ? "[white]" : "[grey58]")}{(line != trimmed ? " " + trimmed : trimmed)}[/]\n";
+                codeDisplay += $"[invert white]{StartLocation.Line + offset}{padding}[/] [grey]|[/] {(offset == 0 ? "[white]" : "[grey58]")}{Markup.Escape(line != trimmed ? " " + trimmed : trimmed)}[/]\n";
             }
 
             codeDisplay += $" {padding}    [red]{(erroneousCodeDistance <= 0 ? "" : string.Join("", Enumerable.Repeat(' ', erroneousCodeDistance)))}{(erroneousCodeColumnLength <= 0 ? "" : string.Join("", Enumerable.Repeat('~', erroneousCodeColumnLength)))}[/]\n";

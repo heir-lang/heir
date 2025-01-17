@@ -26,7 +26,7 @@ public class BoundElementAccess(BoundExpression expression, BoundExpression inde
         Expression.Display(indent + 2);
         Console.WriteLine(',');
         Console.WriteLine();
-        Console.WriteLine($"{string.Concat(Enumerable.Repeat("  ", indent + 1))}Arguments ->");
+        Console.WriteLine($"{string.Concat(Enumerable.Repeat("  ", indent + 1))}IndexExpression ->");
         IndexExpression.Display(indent + 2);
         Console.WriteLine();
         Console.Write($"{string.Concat(Enumerable.Repeat("  ", indent))})");

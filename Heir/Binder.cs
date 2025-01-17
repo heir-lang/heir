@@ -220,7 +220,7 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : S
             var boundKey = Bind(pair.Key);
             var keyType = boundKey switch
             {
-                BoundLiteral literal when literal.Token.Kind == SyntaxKind.StringLiteral || literal.Token.Kind == SyntaxKind.IntLiteral =>
+                BoundLiteral { Token.Kind: SyntaxKind.StringLiteral or SyntaxKind.IntLiteral } literal =>
                     new LiteralType(literal.Token.Value),
 
                 _ => boundKey.Type
@@ -228,8 +228,7 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : S
 
             properties.Add(keyType, Bind(pair.Value));
         }
-
-            
+        
         var indexSignatures = new Dictionary<PrimitiveType, BaseType>();
         var pairs = properties.ToList();
         var typeProperties = new List<PropertyPair>();

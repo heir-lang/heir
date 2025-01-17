@@ -7,7 +7,8 @@ using Heir.Runtime.Values;
 
 namespace Heir;
 
-public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder) : Statement.Visitor<List<Instruction>>, Expression.Visitor<List<Instruction>>
+public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder)
+    : Statement.Visitor<List<Instruction>>, Expression.Visitor<List<Instruction>>
 {
     private readonly SyntaxTree _syntaxTree = binder.SyntaxTree;
 
@@ -18,7 +19,7 @@ public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder) 
         var statementsBytecode = GenerateStatementsBytecode(tree.Statements).ToList();
         if (statementsBytecode.LastOrDefault()?.OpCode != OpCode.RETURN)
             statementsBytecode.Add(new Instruction(tree, OpCode.EXIT));
-        
+
         return statementsBytecode;
     }
 
@@ -38,13 +39,14 @@ public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder) 
     public List<Instruction> VisitFunctionDeclaration(FunctionDeclaration functionDeclaration)
     {
         var bodyBytecode = GenerateBytecode(functionDeclaration.Body);
-        var hasExplicitReturn = bodyBytecode.Last().OpCode == OpCode.RETURN || bodyBytecode.SkipLast(1).Last().OpCode == OpCode.RETURN;
+        var hasExplicitReturn = bodyBytecode.Last().OpCode == OpCode.RETURN ||
+                                bodyBytecode.SkipLast(1).Last().OpCode == OpCode.RETURN;
         if (!hasExplicitReturn)
             bodyBytecode.AddRange([
                 new(functionDeclaration.Body, OpCode.PUSHNONE),
                 new(functionDeclaration.Body, OpCode.RETURN)
             ]);
-        
+
         return
         [
             new(functionDeclaration.Name, OpCode.PUSH, functionDeclaration.Name.Token.Text),
@@ -60,8 +62,9 @@ public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder) 
         var elseBranchBytecode = @if.ElseBranch != null
             ? GenerateBytecode(@if.ElseBranch)
             : [];
-        
-        return [
+
+        return
+        [
             ..conditionBytecode,
             new(@if, OpCode.JNZ, elseBranchBytecode.Count + 2),
             ..elseBranchBytecode,
@@ -75,6 +78,13 @@ public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder) 
         new(parameter.Name, OpCode.PUSH, parameter.Name.Token.Text),
         ..parameter.Initializer != null ? GenerateBytecode(parameter.Initializer) : [],
         new(parameter, OpCode.STORE, false)
+    ];
+
+    public List<Instruction> VisitElementAccessExpression(ElementAccess elementAccess) =>
+    [
+        ..GenerateBytecode(elementAccess.Expression),
+        ..GenerateBytecode(elementAccess.IndexExpression),
+        new(elementAccess, OpCode.INDEX)
     ];
 
     public List<Instruction> VisitInvocationExpression(Invocation invocation) =>

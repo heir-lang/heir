@@ -512,7 +512,7 @@ public sealed class Parser(TokenStream tokenStream)
             if (Tokens.Match(SyntaxKind.LParen))
                 expression = ParseInvocation(expression);
             if (Tokens.Match(SyntaxKind.LBracket))
-                expression = ParseInvocation(expression);
+                expression = ParseElementAccess(expression);
             else
                 break; // No more postfix operators
         }

@@ -131,7 +131,6 @@ public sealed class VirtualMachine
                         "Failed to execute CALL op-code: Provided operand is not a list of argument bytecodes",
                         calleeFrame.Node.GetFirstToken());
                     
-                    Advance();
                     break;
                 }
                 if (calleeFrame.Value is not FunctionValue and not IntrinsicFunction)
@@ -140,7 +139,6 @@ public sealed class VirtualMachine
                         "Failed to execute CALL op-code: Loaded callee is not a function",
                         calleeFrame.Node.GetFirstToken());
                     
-                    // Advance();
                     break;
                 }
 
@@ -203,7 +201,6 @@ public sealed class VirtualMachine
                 
                 break;
             }
-
             case OpCode.RETURN:
             {
                 if (_callStack.TryPop(out var returnState))
@@ -216,6 +213,33 @@ public sealed class VirtualMachine
                 else
                     Advance();
                 
+                break;
+            }
+
+            case OpCode.INDEX:
+            {
+                var indexFrame = Stack.Pop();
+                var objectFrame = Stack.Pop();
+                if (objectFrame.Value is not Dictionary<object, object?> objectDictionary)
+                {
+                    Diagnostics.Error(DiagnosticCode.HDEV,
+                        "Failed to execute INDEX op-code: Loaded object is not an object dictionary",
+                        objectFrame.Node.GetFirstToken());
+                    
+                    break;
+                }
+                if (indexFrame.Value is null)
+                {
+                    Diagnostics.Error(DiagnosticCode.HDEV,
+                        "Failed to execute INDEX op-code: Loaded index is null",
+                        objectFrame.Node.GetFirstToken());
+                    
+                    break;
+                }
+                
+                var value = objectDictionary[indexFrame.Value];
+                Stack.Push(new(objectFrame.Node, value));
+                Advance();
                 break;
             }
 
