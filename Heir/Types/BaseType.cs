@@ -57,8 +57,8 @@ public abstract class BaseType
                            .IsAssignableTo(parameterType) ?? false);
         }
 
-        if (other is FunctionType otherFunctionType)
-            return otherFunctionType.IsAssignableTo(this);
+        if (other is FunctionType)
+            return other.IsAssignableTo(this);
         
         if (this is ParenthesizedType parenthesized)
             return parenthesized.Type.IsAssignableTo(other);
@@ -78,8 +78,27 @@ public abstract class BaseType
         if (this is IntersectionType intersection)
             return intersection.Types.Any(type => type.IsAssignableTo(other));
         
-        if (this is LiteralType literal && other is LiteralType otherLiteral)
-            return literal.Value == otherLiteral.Value;
+        if (this is LiteralType literalType)
+        {
+            if (other is LiteralType otherLiteralType)
+                return literalType.Value == otherLiteralType.Value;
+            
+            if (other is SingularType otherSingularType)
+            {
+                switch (otherSingularType.Name)
+                {
+                    case "string" when literalType.Value is string:
+                    case "char" when literalType.Value is char:
+                    case "bool" when literalType.Value is bool:
+                    case "int" or "float" when literalType.Value is long or double:
+                    case "none" when literalType.Value is null:
+                        return true;
+                }
+            }
+        }
+        
+        if (other is LiteralType)
+            return other.IsAssignableTo(this);
         
         if (this is SingularType singular && other is SingularType otherSingular)
             return singular.Name == otherSingular.Name;
