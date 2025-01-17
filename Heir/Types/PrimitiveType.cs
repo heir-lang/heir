@@ -23,7 +23,7 @@ public class PrimitiveType : SingularType
 
     public PrimitiveTypeKind PrimitiveKind { get; }
 
-    private PrimitiveType(PrimitiveTypeKind primitiveTypeKind)
+    protected PrimitiveType(PrimitiveTypeKind primitiveTypeKind)
         : base(primitiveTypeKind.ToString().ToLower())
     {
         PrimitiveKind = primitiveTypeKind;
@@ -33,13 +33,11 @@ public class PrimitiveType : SingularType
     {
         var primitiveTypeKind = value switch
         {
-            long => PrimitiveTypeKind.Int,
-            double => PrimitiveTypeKind.Float,
             string => PrimitiveTypeKind.String,
             char => PrimitiveTypeKind.Char,
+            long or ulong or int or uint or short or ushort or byte or sbyte => PrimitiveTypeKind.Int,
+            double or float or decimal => PrimitiveTypeKind.Float,
             bool => PrimitiveTypeKind.Bool,
-            null => PrimitiveTypeKind.None,
-
             _ => PrimitiveTypeKind.None
         };
 

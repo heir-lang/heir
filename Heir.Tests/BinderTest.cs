@@ -61,7 +61,7 @@ public class BinderTest
         
         var elseBranch = (BoundExpressionStatement)elseIf.ElseBranch;
         Assert.IsType<BoundLiteral>(elseBranch.Expression);
-        Assert.IsType<PrimitiveType>(elseBranch.Expression.Type);
+        Assert.IsAssignableFrom<PrimitiveType>(elseBranch.Expression.Type);
     }
 
     [Theory]
@@ -85,13 +85,13 @@ public class BinderTest
         var yParameter = functionDeclaration.Parameters.Last();
         Assert.Equal("x", xParameter.Symbol.Name.Text);
         Assert.Equal("y", yParameter.Symbol.Name.Text);
-        Assert.IsType<PrimitiveType>(xParameter.Type);
-        Assert.IsType<PrimitiveType>(yParameter.Type);
+        Assert.IsAssignableFrom<PrimitiveType>(xParameter.Type);
+        Assert.IsAssignableFrom<PrimitiveType>(yParameter.Type);
         Assert.Null(xParameter.Initializer);
         Assert.IsType<BoundLiteral>(yParameter.Initializer);
         
         var xType = (PrimitiveType)xParameter.Type;
-        var yType = (PrimitiveType)xParameter.Type;
+        var yType = (PrimitiveType)yParameter.Type;
         Assert.Equal(PrimitiveTypeKind.Int, xType.PrimitiveKind);
         Assert.Equal(PrimitiveTypeKind.Int, yType.PrimitiveKind);
 
@@ -106,8 +106,8 @@ public class BinderTest
 
         var binaryOpType = (UnionType)binaryOp.Type;
         Assert.Equal(2, binaryOpType.Types.Count);
-        Assert.IsType<PrimitiveType>(binaryOpType.Types.First());
-        Assert.IsType<PrimitiveType>(binaryOpType.Types.Last());
+        Assert.IsAssignableFrom<PrimitiveType>(binaryOpType.Types.First());
+        Assert.IsAssignableFrom<PrimitiveType>(binaryOpType.Types.Last());
 
         var binaryOpType1 = (PrimitiveType)binaryOpType.Types.First();
         var binaryOpType2 = (PrimitiveType)binaryOpType.Types.Last();
@@ -121,8 +121,8 @@ public class BinderTest
         var right = (BoundIdentifierName)binaryOp.Right;
         Assert.Equal("x", left.Symbol.Name.Text);
         Assert.Equal("y", right.Symbol.Name.Text);
-        Assert.IsType<PrimitiveType>(left.Type);
-        Assert.IsType<PrimitiveType>(right.Type);
+        Assert.IsAssignableFrom<PrimitiveType>(left.Type);
+        Assert.IsAssignableFrom<PrimitiveType>(right.Type);
     }
 
     [Theory]
@@ -140,7 +140,7 @@ public class BinderTest
         Assert.Empty(functionDeclaration.Parameters);
         Assert.Empty(functionDeclaration.Type.ParameterTypes);
         Assert.Equal("abc", functionDeclaration.Symbol.Name.Text);
-        Assert.IsType<PrimitiveType>(functionDeclaration.Type.ReturnType);
+        Assert.IsAssignableFrom<PrimitiveType>(functionDeclaration.Type.ReturnType);
         
         var returnType = (PrimitiveType)functionDeclaration.Type.ReturnType;
         Assert.Equal(PrimitiveTypeKind.Int, returnType.PrimitiveKind);
@@ -176,7 +176,7 @@ public class BinderTest
         
         var functionType = (FunctionType)calleeName.Type;
         Assert.Equal(2, functionType.ParameterTypes.Count);
-        Assert.IsType<PrimitiveType>(functionType.ReturnType);
+        Assert.IsAssignableFrom<PrimitiveType>(functionType.ReturnType);
         
         var returnType = (PrimitiveType)functionType.ReturnType;
         Assert.Equal(PrimitiveTypeKind.None, returnType.PrimitiveKind);
@@ -194,11 +194,11 @@ public class BinderTest
         Assert.IsType<BoundReturn>(statement);
         
         var returnStatement = (BoundReturn)statement;
-        Assert.IsType<PrimitiveType>(returnStatement.Type);
+        Assert.IsType<LiteralType>(returnStatement.Type);
         Assert.IsType<BoundLiteral>(returnStatement.Expression);
         
-        var primitiveType = (PrimitiveType)returnStatement.Type;
-        Assert.Equal(PrimitiveTypeKind.Int, primitiveType.PrimitiveKind);
+        var literalType = (LiteralType)returnStatement.Type;
+        Assert.Equal(123L, literalType.Value);
     }
 
     [Fact]
@@ -251,8 +251,8 @@ public class BinderTest
         Assert.NotNull(declaration.Type);
         Assert.IsType<PrimitiveType>(declaration.Type);
 
-        var type = (PrimitiveType)declaration.Type;
-        Assert.Equal("int", type.Name);
+        var primitiveType = (PrimitiveType)declaration.Type;
+        Assert.Equal(PrimitiveTypeKind.Int, primitiveType.PrimitiveKind);
     }
 
     [Theory]
@@ -274,13 +274,13 @@ public class BinderTest
         var keyType = objectLiteral.Properties.Keys.First();
         var value = objectLiteral.Properties.Values.First();
         Assert.IsType<LiteralType>(keyType);
-        Assert.IsType<PrimitiveType>(value.Type);
+        Assert.IsType<LiteralType>(value.Type);
         Assert.IsType<BoundLiteral>(value);
 
         var keyLiteralType = (LiteralType)keyType;
-        var valueLiteralType = (PrimitiveType)value.Type;
+        var valueLiteralType = (LiteralType)value.Type;
         Assert.Equal(keyValue, keyLiteralType.Value);
-        Assert.Equal(PrimitiveTypeKind.Bool, valueLiteralType.PrimitiveKind);
+        Assert.Equal(true, valueLiteralType.Value);
     }
 
     [Theory]
@@ -325,9 +325,9 @@ public class BinderTest
         Assert.IsType<BoundBinaryOp>(node);
 
         var binaryOp = (BoundBinaryOp)node;
-        Assert.IsType<PrimitiveType>(binaryOp.Left.Type);
-        Assert.IsType<PrimitiveType>(binaryOp.Right.Type);
-        Assert.IsType<PrimitiveType>(binaryOp.Type);
+        Assert.IsAssignableFrom<PrimitiveType>(binaryOp.Left.Type);
+        Assert.IsAssignableFrom<PrimitiveType>(binaryOp.Right.Type);
+        Assert.IsAssignableFrom<PrimitiveType>(binaryOp.Type);
 
         var returnType = (PrimitiveType)binaryOp.Type;
         Assert.Equal(returnTypeKind, returnType.PrimitiveKind);
@@ -346,15 +346,15 @@ public class BinderTest
         Assert.IsType<BoundBinaryOp>(node);
 
         var binaryOp = (BoundBinaryOp)node;
-        Assert.IsType<PrimitiveType>(binaryOp.Left.Type);
-        Assert.IsType<PrimitiveType>(binaryOp.Right.Type);
+        Assert.IsAssignableFrom<PrimitiveType>(binaryOp.Left.Type);
+        Assert.IsAssignableFrom<PrimitiveType>(binaryOp.Right.Type);
         Assert.IsType<UnionType>(binaryOp.Type);
 
         var returnType = (UnionType)binaryOp.Type;
         var typeA = returnType.Types.First();
         var typeB = returnType.Types.Last();
-        Assert.IsType<PrimitiveType>(typeA);
-        Assert.IsType<PrimitiveType>(typeB);
+        Assert.IsAssignableFrom<PrimitiveType>(typeA);
+        Assert.IsAssignableFrom<PrimitiveType>(typeB);
         Assert.Equal(typeAKind, ((PrimitiveType)typeA).PrimitiveKind);
         Assert.Equal(typeBKind, ((PrimitiveType)typeB).PrimitiveKind);
         Assert.Equal(TypeKind.Union, returnType.Kind);
@@ -373,8 +373,8 @@ public class BinderTest
         Assert.IsType<BoundUnaryOp>(node);
 
         var unaryOp = (BoundUnaryOp)node;
-        Assert.IsType<PrimitiveType>(unaryOp.Operand.Type);
-        Assert.IsType<PrimitiveType>(unaryOp.Type);
+        Assert.IsAssignableFrom<PrimitiveType>(unaryOp.Operand.Type);
+        Assert.IsAssignableFrom<PrimitiveType>(unaryOp.Type);
 
         var returnType = (PrimitiveType)unaryOp.Type;
         Assert.Equal(returnTypeKind, returnType.PrimitiveKind);
@@ -393,14 +393,14 @@ public class BinderTest
         Assert.IsType<BoundUnaryOp>(node);
 
         var unaryOp = (BoundUnaryOp)node;
-        Assert.IsType<PrimitiveType>(unaryOp.Operand.Type);
+        Assert.IsAssignableFrom<PrimitiveType>(unaryOp.Operand.Type);
         Assert.IsType<UnionType>(unaryOp.Type);
 
         var returnType = (UnionType)unaryOp.Type;
         var typeA = returnType.Types.First();
         var typeB = returnType.Types.Last();
-        Assert.IsType<PrimitiveType>(typeA);
-        Assert.IsType<PrimitiveType>(typeB);
+        Assert.IsAssignableFrom<PrimitiveType>(typeA);
+        Assert.IsAssignableFrom<PrimitiveType>(typeB);
         Assert.Equal(typeAKind, ((PrimitiveType)typeA).PrimitiveKind);
         Assert.Equal(typeBKind, ((PrimitiveType)typeB).PrimitiveKind);
         Assert.Equal(TypeKind.Union, returnType.Kind);

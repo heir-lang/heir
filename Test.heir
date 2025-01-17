@@ -1,5 +1,2 @@
-let foo = {
-    bar: "baz"
-};
-
-print(foo["a"]);
+let mut x = 1;
+x = 2;

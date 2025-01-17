@@ -74,6 +74,9 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : S
         else
             type = initializer?.Type ?? IntrinsicTypes.Any;
 
+        if (variableDeclaration.Type == null && variableDeclaration.IsMutable && type is LiteralType literalType)
+            type = literalType.AsPrimitive();
+
         var symbol = DefineSymbol(variableDeclaration.Name.Token, type, variableDeclaration.IsMutable);
         return new BoundVariableDeclaration(symbol, initializer, variableDeclaration.IsMutable);
     }
@@ -144,6 +147,9 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : S
         var type = parameter.Type != null
             ? BaseType.FromTypeRef(parameter.Type)
             : initializer != null ? initializer.Type : IntrinsicTypes.Any;
+        
+        if (parameter.Type == null && type is LiteralType literalType)
+            type = literalType.AsPrimitive();
 
         var symbol = DefineSymbol(parameter.Name.Token, type, true);
         return new BoundParameter(symbol, initializer);
