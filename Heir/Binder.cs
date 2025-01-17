@@ -149,6 +149,13 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : S
         return new BoundParameter(symbol, initializer);
     }
 
+    public BoundExpression VisitElementAccessExpression(ElementAccess elementAccess)
+    {
+        var expression = Bind(elementAccess.Expression);
+        var indexExpression = Bind(elementAccess.IndexExpression);
+        return new BoundElementAccess(expression, indexExpression);
+    }
+
     public BoundExpression VisitInvocationExpression(Invocation invocation)
     {
         var callee = Bind(invocation.Callee);

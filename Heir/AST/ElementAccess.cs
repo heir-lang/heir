@@ -13,7 +13,7 @@ public class ElementAccess(Expression expression, Expression indexExpression) : 
 
     public override void Display(int indent = 0)
     {
-        Console.WriteLine($"{string.Concat(Enumerable.Repeat("  ", indent))}Invocation(");
+        Console.WriteLine($"{string.Concat(Enumerable.Repeat("  ", indent))}ElementAccess(");
         Console.WriteLine($"{string.Concat(Enumerable.Repeat("  ", indent + 1))}Expression ->");
         Expression.Display(indent + 2);
         Console.WriteLine(',');
