@@ -16,9 +16,9 @@ public sealed class ObjectValue(IEnumerable<KeyValuePair<object, object?>> pairs
         foreach (var property in this)
         {
             result.Append(string.Join("", Enumerable.Repeat("  ", indent)));
-            result.Append('[');
+            result.Append("[[");
             result.Append(Utility.Repr(property.Key, colors));
-            result.Append("]: ");
+            result.Append("]]: ");
 
             var newIndent = indent + 1;
             var valueString = property.Value is ObjectValue objectValue

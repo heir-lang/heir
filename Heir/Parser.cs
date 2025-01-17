@@ -290,10 +290,18 @@ public sealed class Parser(TokenStream tokenStream)
         return new SingularType(token ?? Tokens.Previous!);
     }
     
-    private Invocation ParseInvocation(Expression expression)
+    private Invocation ParseInvocation(Expression callee)
     {
         var arguments = ParseArguments();
-        return new Invocation(expression, arguments);
+        return new Invocation(callee, arguments);
+    }
+    
+    private ElementAccess ParseElementAccess(Expression expression)
+    {
+        var indexExpression = ParseExpression();
+        Tokens.Consume(SyntaxKind.RBracket);
+        
+        return new ElementAccess(expression, indexExpression);
     }
 
     private List<Expression> ParseArguments()
@@ -502,6 +510,8 @@ public sealed class Parser(TokenStream tokenStream)
         while (!Tokens.IsAtEnd)
         {
             if (Tokens.Match(SyntaxKind.LParen))
+                expression = ParseInvocation(expression);
+            if (Tokens.Match(SyntaxKind.LBracket))
                 expression = ParseInvocation(expression);
             else
                 break; // No more postfix operators

@@ -21,5 +21,6 @@ public abstract class Expression : SyntaxNode
         public R VisitIntersectionTypeRef(IntersectionType intersectionType);
         public R VisitParameter(Parameter parameter);
         public R VisitInvocationExpression(Invocation invocation);
+        public R VisitElementAccessExpression(ElementAccess elementAccess);
     }
 }
