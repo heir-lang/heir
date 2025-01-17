@@ -6,7 +6,8 @@ public static class Intrinsics
 {
     private static readonly List<IntrinsicValue> _intrinsics =
     [
-        new PrintFunction()
+        new PrintFunction(),
+        new NowFunction()
     ];
     
     private static readonly List<IntrinsicRegistrar> _registrars =

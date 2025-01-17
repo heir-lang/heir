@@ -3,8 +3,6 @@ using Spectre.Console;
 
 namespace Heir.Runtime.Intrinsics.Global;
 
-public delegate void PrintIntrinsic(object?[]? values);
-
 public class PrintFunction()
     : IntrinsicFunction(
         "print",
