@@ -61,9 +61,11 @@ public class VirtualMachineTest
         Assert.Equal(expectedValue, value);
     }
     
-    [Theory]
+    [Theory] 
     [InlineData("let foo = { bar: \"baz\" }; foo[\"bar\"];", "baz")]
     [InlineData("let foo = { bar: \"baz\", boof: \"rah\" }; foo[\"boof\"];", "rah")]
+    [InlineData("({ abc: \"def\" })[\"abc\"];", "def")]
+    [InlineData("let a = { b: { c: 123 } }; a[\"b\"][\"c\"];", 123L)]
     public void Evaluates_ElementAccess(string input, object? expectedValue)
     {
         var (value, _) = Evaluate(input);
