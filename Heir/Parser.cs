@@ -303,6 +303,12 @@ public sealed class Parser(TokenStream tokenStream)
         
         return new ElementAccess(expression, indexExpression);
     }
+    
+    private MemberAccess ParseMemberAccess(Expression expression)
+    {
+        var name = new IdentifierName(Tokens.Consume(SyntaxKind.Identifier)!);
+        return new MemberAccess(expression, name);
+    }
 
     private List<Expression> ParseArguments()
     {
@@ -507,15 +513,14 @@ public sealed class Parser(TokenStream tokenStream)
     private Expression ParsePostfix()
     {
         var expression = ParsePrimary();
-        while (!Tokens.IsAtEnd)
-        {
-            if (Tokens.Match(SyntaxKind.LParen))
-                expression = ParseInvocation(expression);
-            if (Tokens.Match(SyntaxKind.LBracket))
-                expression = ParseElementAccess(expression);
-            else
-                break; // No more postfix operators
-        }
+        while (Tokens.Match(SyntaxKind.Dot))
+            expression = ParseMemberAccess(expression);
+        
+        while (Tokens.Match(SyntaxKind.LParen))
+            expression = ParseInvocation(expression);
+        
+        while (Tokens.Match(SyntaxKind.LBracket))
+           expression = ParseElementAccess(expression);
 
         return expression;
     }

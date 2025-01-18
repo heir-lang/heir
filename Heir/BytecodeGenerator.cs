@@ -79,6 +79,13 @@ public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder)
         ..parameter.Initializer != null ? GenerateBytecode(parameter.Initializer) : [],
         new(parameter, OpCode.STORE, false)
     ];
+    
+    public List<Instruction> VisitMemberAccessExpression(MemberAccess memberAccess) =>
+    [
+        ..GenerateBytecode(memberAccess.Expression),
+        ..PushName(memberAccess.Name),
+        new(memberAccess, OpCode.INDEX)
+    ];
 
     public List<Instruction> VisitElementAccessExpression(ElementAccess elementAccess) =>
     [

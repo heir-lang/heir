@@ -1,2 +1,3 @@
-let foo = {};
-foo["bar"];
+let foo = { bar: { baz: 69 } };
+print(foo["bar"]["baz"]);
+print(foo.bar.baz);

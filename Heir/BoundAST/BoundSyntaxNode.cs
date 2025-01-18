@@ -42,6 +42,7 @@ namespace Heir.BoundAST
             public R VisitBoundParameter(BoundParameter boundParameter);
             public R VisitBoundInvocationExpression(BoundInvocation invocation);
             public R VisitBoundElementAccessExpression(BoundElementAccess elementAccess);
+            public R VisitBoundMemberAccessExpression(BoundMemberAccess memberAccess);
         }
     }
 

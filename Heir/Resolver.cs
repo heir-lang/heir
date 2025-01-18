@@ -105,6 +105,12 @@ public sealed class Resolver(DiagnosticBag diagnostics, SyntaxTree syntaxTree) :
         Resolve(expressionStatement.Expression);
         return null;
     }
+    
+    public object? VisitMemberAccessExpression(MemberAccess memberAccess)
+    {
+        Resolve(memberAccess.Expression);
+        return null;
+    }
 
     public object? VisitElementAccessExpression(ElementAccess elementAccess)
     {

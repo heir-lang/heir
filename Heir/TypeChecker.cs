@@ -56,6 +56,27 @@ public class TypeChecker(DiagnosticBag diagnostics, BoundSyntaxTree syntaxTree) 
         Assert(parameter.Initializer, parameter.Symbol.Type);
         return null;
     }
+    
+    public object? VisitBoundMemberAccessExpression(BoundMemberAccess memberAccess)
+    {
+        Check(memberAccess.Expression);
+        Check(memberAccess.Name);
+        
+        // TODO: in the future check for indexable literal types (like strings), and also arrays
+        if (memberAccess.Expression.Type is not InterfaceType interfaceType)
+        {
+            diagnostics.Error(DiagnosticCode.H018, $"Attempt to index '{memberAccess.Expression.Type.ToString()}'", memberAccess.Expression);
+            return null;
+        }
+        
+        if (memberAccess.Type == memberAccess.Expression.Type)
+        {
+            diagnostics.Error(DiagnosticCode.H013, $"No member '{memberAccess.Name.Symbol.Name.Text}' exists on type '{interfaceType.Name}'", memberAccess.Name);
+            return null;
+        }
+        
+        return null;
+    }
 
     public object? VisitBoundElementAccessExpression(BoundElementAccess elementAccess)
     {
