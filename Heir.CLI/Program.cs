@@ -1,11 +1,11 @@
-﻿using Spectre.Console;
-using CommandLine;
-using Heir;
-using Heir.AST;
+﻿using CommandLine;
+using Spectre.Console;
+
+namespace Heir.CLI;
 
 public static class Program
 {
-    public class Options
+    private class Options
     {
         [Option('t', "tokens", Required = false, HelpText = "Output the emitted tokens.")]
         public bool ShowTokens { get; set; }
@@ -35,7 +35,27 @@ public static class Program
     private static void StartRepl(Options options)
     {
         Console.WriteLine("Welcome to the Heir REPL!");
-        // AnsiConsole.MarkupLine(Utility.Repr(result, true));
+        
+        var program = new HeirProgram();
+        var source = "";
+        
+        
+        SourceFile? file = null;
+        while (true)
+        {
+            Console.Write("> ");
+            var input = Console.ReadLine();
+            source += input + "\n";
+
+            if (file != null)
+                program.UnloadFile(file);
+
+            file = new SourceFile(source, "repl", true);
+            program.LoadFile(file);
+            
+            var result = program.Evaluate();
+            AnsiConsole.MarkupLine(Utility.Repr(result, true));
+        }
     }
 
     private static void ExecuteFile(Options options)
