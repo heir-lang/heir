@@ -12,6 +12,6 @@ namespace Heir.BoundAST
         public override List<Token> GetTokens() => [Token];
 
         public override void Display(int indent = 0) =>
-            Console.Write($"{string.Concat(Enumerable.Repeat("  ", indent))}BoundLiteral({Token.Kind}, {Utility.Repr(Token.Value)})");
+            Console.Write($"{string.Concat(Enumerable.Repeat("  ", indent))}BoundLiteral({Type.ToString()})");
     }
 }

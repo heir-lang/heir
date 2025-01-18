@@ -20,7 +20,6 @@ public sealed class InterfaceType(
     public string ToString(bool colors, int indent = 0)
     {
         var result = new StringBuilder(Name == _defaultInterfaceName ? "" : Name + " ");
-        result.Append(string.Join("", Enumerable.Repeat("  ", indent)));
         result.Append('{');
         if (IndexSignatures.Count > 0 || Members.Count > 0)
             indent++;
@@ -28,22 +27,22 @@ public sealed class InterfaceType(
         foreach (var signature in IndexSignatures)
         {
             result.AppendLine();
-            result.Append(string.Join("", Enumerable.Repeat("  ", indent + 1)));
+            result.Append(string.Join("", Enumerable.Repeat("  ", indent)));
             result.Append('[' + (colors ? "[" : ""));
             result.Append(signature.Key.ToString());
             result.Append((colors ? "]" : "") + "]: ");
-            result.Append(signature.Value is InterfaceType interfaceType ? interfaceType.ToString(colors, indent + 2) : signature.Value.ToString(colors));
+            result.Append(signature.Value is InterfaceType interfaceType ? interfaceType.ToString(colors, indent + 1) : signature.Value.ToString(colors));
             result.Append(';');
         }
 
         foreach (var member in Members)
         {
             result.AppendLine();
-            result.Append(string.Join("", Enumerable.Repeat("  ", indent + 1)));
-            result.Append(member.Key.ToString(colors));
-            result.Append(": ");
+            result.Append(string.Join("", Enumerable.Repeat("  ", indent)));
             result.Append(member.Value.IsMutable ? "mut " : "");
-            result.Append(member.Value.ValueType is InterfaceType interfaceType ? interfaceType.ToString(colors, indent + 2) : member.Value.ValueType.ToString(colors));
+            result.Append(member.Key.Value);
+            result.Append(": ");
+            result.Append(member.Value.ValueType is InterfaceType interfaceType ? interfaceType.ToString(colors, indent + 1) : member.Value.ValueType.ToString(colors));
             result.Append(';');
         }
 

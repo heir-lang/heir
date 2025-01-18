@@ -19,6 +19,7 @@ public sealed class BoundVariableDeclaration(VariableSymbol<BaseType> symbol, Bo
     {
         Console.WriteLine($"{string.Concat(Enumerable.Repeat("  ", indent))}BoundVariableDeclaration(");
         Console.WriteLine($"{string.Concat(Enumerable.Repeat("  ", indent + 1))}Symbol -> {Symbol.ToString()},");
+        Console.WriteLine();
         Console.Write($"{string.Concat(Enumerable.Repeat("  ", indent + 1))}Initializer -> {(Initializer == null ? "none" : "\n")}");
         Initializer?.Display(indent + 2);
         Console.WriteLine(",");

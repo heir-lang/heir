@@ -80,21 +80,13 @@ public abstract class BaseType
         
         if (this is LiteralType literalType)
         {
+
             if (other is LiteralType otherLiteralType)
-                return literalType.Value == otherLiteralType.Value;
-            
-            if (other is SingularType otherSingularType)
-            {
-                switch (otherSingularType.Name)
-                {
-                    case "string" when literalType.Value is string:
-                    case "char" when literalType.Value is char:
-                    case "bool" when literalType.Value is bool:
-                    case "int" or "float" when literalType.Value is long or double:
-                    case "none" when literalType.Value is null:
-                        return true;
-                }
-            }
+                return EqualityComparer<object?>.Default.Equals(literalType.Value, otherLiteralType.Value);
+
+            var primitiveType = PrimitiveType.FromValue(literalType.Value);
+            if (primitiveType != null && other is PrimitiveType otherPrimitiveType)
+                return primitiveType.PrimitiveKind == otherPrimitiveType.PrimitiveKind;
         }
         
         if (other is LiteralType)

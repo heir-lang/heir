@@ -224,15 +224,8 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : S
         foreach (var pair in propertyPairs)
         {
             var boundKey = Bind(pair.Key);
-            var keyType = boundKey switch
-            {
-                BoundLiteral { Token.Kind: SyntaxKind.StringLiteral or SyntaxKind.IntLiteral } literal =>
-                    new LiteralType(literal.Token.Value),
-
-                _ => boundKey.Type
-            };
-
-            properties.Add(keyType, Bind(pair.Value));
+            var boundValue = Bind(pair.Value);
+            properties.Add(boundKey.Type, boundValue);
         }
         
         var indexSignatures = new Dictionary<PrimitiveType, BaseType>();

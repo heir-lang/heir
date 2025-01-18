@@ -64,7 +64,7 @@ Though I cannot guarantee the lifetime or dedication of this project, contributi
     - [x] blocks
     - [x] variable declaration
     - [x] statements
-    - [ ] indexing (`a["b"]`)
+    - [x] indexing (`a["b"]`)
     - [ ] dot access (`a.b`)
     - [x] method calls
     - [x] method declaration

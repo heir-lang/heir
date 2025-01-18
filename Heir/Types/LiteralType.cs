@@ -14,7 +14,7 @@ public class LiteralType(object? value) : PrimitiveType(
     public override TypeKind Kind => TypeKind.Literal;
     public object? Value { get; } = value;
     
-    public PrimitiveType AsPrimitive() => FromValue(Value);
-
+    public PrimitiveType AsPrimitive() => FromValue(Value) ?? None;
+    
     public override string ToString(bool colors = false) => Utility.Repr(Value, colors);
 }

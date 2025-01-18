@@ -29,18 +29,21 @@ public class PrimitiveType : SingularType
         PrimitiveKind = primitiveTypeKind;
     }
 
-    public static PrimitiveType FromValue(object? value)
+    public static PrimitiveType? FromValue(object? value)
     {
-        var primitiveTypeKind = value switch
+        PrimitiveTypeKind? primitiveTypeKind = value switch
         {
             string => PrimitiveTypeKind.String,
             char => PrimitiveTypeKind.Char,
             long or ulong or int or uint or short or ushort or byte or sbyte => PrimitiveTypeKind.Int,
             double or float or decimal => PrimitiveTypeKind.Float,
             bool => PrimitiveTypeKind.Bool,
-            _ => PrimitiveTypeKind.None
+            null => PrimitiveTypeKind.None,
+            _ => null
         };
 
-        return new PrimitiveType(primitiveTypeKind);
+        return primitiveTypeKind is not null
+            ? new PrimitiveType((PrimitiveTypeKind)primitiveTypeKind)
+            : null;
     }
 }

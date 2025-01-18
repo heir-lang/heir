@@ -15,18 +15,17 @@ public class BoundObjectLiteral(Token token, Dictionary<BaseType, BoundExpressio
     public override void Display(int indent = 0)
     {
         Console.WriteLine($"{string.Concat(Enumerable.Repeat("  ", indent))}BoundObjectLiteral(");
-        Console.WriteLine($"{string.Concat(Enumerable.Repeat("  ", indent + 1))}Type ->");
-        Console.WriteLine(Type.ToString(false, indent + 2) + ",");
+        Console.Write($"{string.Concat(Enumerable.Repeat("  ", indent + 1))}Type -> ");
+        Console.WriteLine(Type.ToString(false, indent + 1) + ",");
         Console.WriteLine($"{string.Concat(Enumerable.Repeat("  ", indent + 1))}Keys -> [");
-        foreach (var key in Properties.Keys)
-            Console.WriteLine($"{string.Concat(Enumerable.Repeat("  ", indent + 2))}{key.ToString()},");
-            
+        Console.WriteLine(string.Join(",\n", Properties.Keys.Select(key => $"{string.Concat(Enumerable.Repeat("  ", indent + 2))}{key.ToString()}")) );
         Console.WriteLine($"{string.Concat(Enumerable.Repeat("  ", indent + 1))}],");
         Console.WriteLine($"{string.Concat(Enumerable.Repeat("  ", indent + 1))}Values -> [");
+        var i = 0;
         foreach (var value in Properties.Values)
         {
             value.Display(indent + 2);
-            Console.WriteLine(",");
+            Console.WriteLine(i++ < Properties.Count - 1 ? "," : "");
         }
         Console.WriteLine($"{string.Concat(Enumerable.Repeat("  ", indent + 1))}]");
         Console.Write($"{string.Concat(Enumerable.Repeat("  ", indent))})");
