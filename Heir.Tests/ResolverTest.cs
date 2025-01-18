@@ -16,11 +16,11 @@ public class ResolverTest
         Assert.Contains(diagnostics, diagnostic => diagnostic.Code == expectedErrorCode);
     }
     
-    // [Theory]
-    // [InlineData("fn abc(): int { return 123; }")]
-    // public void DoesNotThrowWith(string input)
-    // {
-    //     var diagnostics = Resolve(input);
-    //     Assert.False(diagnostics.HasErrors);
-    // }
+    [Theory]
+    [InlineData("fn abc: int { return 123; }")]
+    public void DoesNotThrowWith(string input)
+    {
+        var diagnostics = Resolve(input);
+        Assert.False(diagnostics.HasErrors);
+    }
 }

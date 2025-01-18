@@ -129,8 +129,20 @@ public class TypeTest
     [Fact]
     public void LiteralTypes_AreAssignableTo()
     {
-        var a = new LiteralType("hello");
-        var b = new LiteralType("hello");
-        Assert.True(a.IsAssignableTo(b));
+        {
+            var a = new LiteralType("hello");
+            var b = new LiteralType("hello");
+            Assert.True(a.IsAssignableTo(b));
+        }
+        {
+            var a = PrimitiveType.String;
+            var b = new LiteralType("hello");
+            Assert.False(a.IsAssignableTo(b));
+        }
+        {
+            var a = new LiteralType("hello");
+            var b = PrimitiveType.String;
+            Assert.True(a.IsAssignableTo(b));
+        }
     }
 }

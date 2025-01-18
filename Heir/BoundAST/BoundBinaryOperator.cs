@@ -89,8 +89,8 @@ namespace Heir.BoundAST
             ResultType = resultType;
         }
 
-        private static BoundBinaryOperator[] _operators =
-        {
+        private static readonly BoundBinaryOperator[] _operators =
+        [
             new(SyntaxKind.Plus, BoundBinaryOperatorType.Addition, IntrinsicTypes.Number),
             new(SyntaxKind.PlusEquals, BoundBinaryOperatorType.Addition, IntrinsicTypes.Number),
             new(SyntaxKind.Plus, BoundBinaryOperatorType.Concatenation, PrimitiveType.String),
@@ -137,10 +137,16 @@ namespace Heir.BoundAST
             new(SyntaxKind.PipePipe, BoundBinaryOperatorType.LogicalOr, PrimitiveType.Bool),
 
             new(SyntaxKind.Equals, BoundBinaryOperatorType.Assignment, IntrinsicTypes.Any)
-        };
+        ];
 
         public static BoundBinaryOperator? Bind(Token token, BaseType leftType, BaseType rightType)
         {
+            if (leftType is LiteralType leftLiteral)
+                leftType = leftLiteral.AsPrimitive();
+            
+            if (rightType is LiteralType rightLiteral)
+                rightType = rightLiteral.AsPrimitive();
+            
             foreach (var op in _operators)
             {
                 if (!token.IsKind(op.SyntaxKind)) continue;

@@ -17,6 +17,24 @@ public class BytecodeGeneratorTest
     }
 
     [Fact]
+    public void Generates_Index_ForElementAccess()
+    {
+        var bytecode = GenerateBytecode("let abc = { buh: true }; abc[\"buh\"];").Skip(3);
+        var pushAbc = bytecode[0];
+        var loadAbc = bytecode[1];
+        var pushBuhLiteral  = bytecode[2];
+        var index = bytecode[3];
+        Assert.Equal(OpCode.PUSH, pushAbc.OpCode);
+        Assert.Equal("abc", pushAbc.Operand);
+        Assert.Equal(OpCode.LOAD, loadAbc.OpCode);
+        Assert.Null(loadAbc.Operand);
+        Assert.Equal(OpCode.PUSH, pushBuhLiteral.OpCode);
+        Assert.Equal("buh", pushBuhLiteral.Operand);
+        Assert.Equal(OpCode.INDEX, index.OpCode);
+        Assert.Null(index.Operand);
+    }
+
+    [Fact]
     public void Generates_IfStatement()
     {
         const string input = """

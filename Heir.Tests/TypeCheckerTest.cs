@@ -10,10 +10,12 @@ public class TypeCheckerTest
     [InlineData("fn abc(x: int) -> none; abc(1, 2);", DiagnosticCode.H019)]
     [InlineData("fn abc(x: int) -> none; abc();", DiagnosticCode.H019)]
     [InlineData("fn abc -> none; abc(1);", DiagnosticCode.H019)]
+    [InlineData("1[1]", DiagnosticCode.H018)]
     [InlineData("1()", DiagnosticCode.H018)]
     [InlineData("let mut x = 1; x = 'a'", DiagnosticCode.H007)]
     [InlineData("fn abc: int -> 'a'", DiagnosticCode.H007)]
     [InlineData("fn abc(x: int) {} abc('a')", DiagnosticCode.H007)]
+    [InlineData("let foo = {}; foo['a']", DiagnosticCode.H007)]
     public void ThrowsWith(string input, DiagnosticCode expectedDiagnosticCode)
     {
         var diagnostics = TypeCheck(input);
@@ -23,6 +25,7 @@ public class TypeCheckerTest
 
     [Theory]
     [InlineData("let mut x: int | char = 1; x = 'a';")]
+    [InlineData("let foo = { bar: \"baz\" }; foo[\"bar\"];")]
     public void DoesNotThrowWith(string input)
     {
         var diagnostics = TypeCheck(input);

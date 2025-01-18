@@ -161,6 +161,27 @@ public class ParserTest
         var literal = (Literal)returnStatement.Expression;
         Assert.Equal(123L, literal.Token.Value);
     }
+    
+    [Fact]
+    public void Parses_ElementAccess()
+    {
+        var tree = Parse("abc[\"bb\"];");
+        var statement = tree.Statements.First();
+        Assert.IsType<ExpressionStatement>(statement);
+        
+        var expressionStatement = (ExpressionStatement)statement;
+        Assert.IsType<ElementAccess>(expressionStatement.Expression);
+        
+        var elementAccess = (ElementAccess)expressionStatement.Expression;
+        Assert.IsType<IdentifierName>(elementAccess.Expression);
+        
+        var expressionName = (IdentifierName)elementAccess.Expression;
+        Assert.Equal("abc", expressionName.Token.Text);
+        Assert.IsType<Literal>(elementAccess.IndexExpression);
+        
+        var indexExpression = (Literal)elementAccess.IndexExpression;
+        Assert.Equal("bb", indexExpression.Token.Value);
+    }
 
     [Theory]
     [InlineData("abc();", 0)]

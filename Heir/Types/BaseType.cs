@@ -80,17 +80,16 @@ public abstract class BaseType
         
         if (this is LiteralType literalType)
         {
-
             if (other is LiteralType otherLiteralType)
-                return EqualityComparer<object?>.Default.Equals(literalType.Value, otherLiteralType.Value);
+                return literalType.Equals(otherLiteralType);
 
             var primitiveType = PrimitiveType.FromValue(literalType.Value);
             if (primitiveType != null && other is PrimitiveType otherPrimitiveType)
-                return primitiveType.PrimitiveKind == otherPrimitiveType.PrimitiveKind;
+                return primitiveType.IsAssignableTo(otherPrimitiveType);
         }
         
         if (other is LiteralType)
-            return other.IsAssignableTo(this);
+            return false;
         
         if (this is SingularType singular && other is SingularType otherSingular)
             return singular.Name == otherSingular.Name;

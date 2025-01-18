@@ -1,5 +1,2 @@
-let foo = {
-    baz: "bar"
-};
-
-print(foo["baz"]);
+let foo = {};
+foo["bar"];

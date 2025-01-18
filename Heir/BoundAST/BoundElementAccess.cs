@@ -3,18 +3,38 @@ using Heir.Types;
 
 namespace Heir.BoundAST;
 
-public class BoundElementAccess(BoundExpression expression, BoundExpression indexExpression) : BoundExpression
+public class BoundElementAccess : BoundExpression
 {
-    public override BaseType Type => Expression.Type is InterfaceType interfaceType
-        ? IndexExpression.Type is LiteralType literalType && interfaceType.Members.TryGetValue(literalType, out var member)
-            ? member.ValueType
-            : IndexExpression.Type is PrimitiveType primitiveType && interfaceType.IndexSignatures.TryGetValue(primitiveType, out var indexSignature)
-                ? indexSignature
-                : Expression.Type
-        : Expression.Type;
+    public sealed override BaseType Type { get; }
+
+    public BoundExpression Expression { get; }
+    public BoundExpression IndexExpression { get; }
     
-    public BoundExpression Expression { get; } = expression;
-    public BoundExpression IndexExpression { get; } = indexExpression;
+    public BoundElementAccess(BoundExpression expression, BoundExpression indexExpression)
+    {
+        Expression = expression;
+        IndexExpression = indexExpression;
+
+        if (Expression.Type is InterfaceType interfaceType)
+        {
+            Type = IndexExpression.Type switch
+            {
+                LiteralType literalType when interfaceType.Members.TryGetValue(literalType, out var member) => member.ValueType,
+                
+                LiteralType literalType when
+                    interfaceType.IndexSignatures.TryGetValue(literalType.AsPrimitive(), out var primitiveMember) => primitiveMember,
+                
+                PrimitiveType primitiveType when 
+                    interfaceType.IndexSignatures.TryGetValue(primitiveType, out var indexSignature) => indexSignature,
+                
+                _ => Expression.Type
+            };
+
+            return;
+        }
+        
+        Type = Expression.Type;
+    }
 
     public override R Accept<R>(Visitor<R> visitor) => visitor.VisitBoundElementAccessExpression(this);
     public override List<Token> GetTokens() => [..Expression.GetTokens(), ..IndexExpression.GetTokens()];

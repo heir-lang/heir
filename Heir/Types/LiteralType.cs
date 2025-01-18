@@ -15,6 +15,11 @@ public class LiteralType(object? value) : PrimitiveType(
     public object? Value { get; } = value;
     
     public PrimitiveType AsPrimitive() => FromValue(Value) ?? None;
-    
+
+    public override bool Equals(object? obj) => obj is LiteralType otherLiteralType &&
+                                                EqualityComparer<object?>.Default.Equals(Value, otherLiteralType.Value);
+
+    public override int GetHashCode() => Value?.GetHashCode() ?? 0;
+
     public override string ToString(bool colors = false) => Utility.Repr(Value, colors);
 }

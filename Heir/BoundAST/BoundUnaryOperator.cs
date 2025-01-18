@@ -42,17 +42,20 @@ namespace Heir.BoundAST
             ResultType = resultType;
         }
 
-        private static BoundUnaryOperator[] _operators =
-        {
-            new BoundUnaryOperator(SyntaxKind.Minus, BoundUnaryOperatorType.Negate, IntrinsicTypes.Number),
-            new BoundUnaryOperator(SyntaxKind.PlusPlus, BoundUnaryOperatorType.Increment, IntrinsicTypes.Number),
-            new BoundUnaryOperator(SyntaxKind.MinusMinus, BoundUnaryOperatorType.Decrement, IntrinsicTypes.Number),
-            new BoundUnaryOperator(SyntaxKind.Bang, BoundUnaryOperatorType.LogicalNot, PrimitiveType.Bool),
-            new BoundUnaryOperator(SyntaxKind.Tilde, BoundUnaryOperatorType.BitwiseNot, PrimitiveType.Int)
-        };
+        private static readonly BoundUnaryOperator[] _operators =
+        [
+            new(SyntaxKind.Minus, BoundUnaryOperatorType.Negate, IntrinsicTypes.Number),
+            new(SyntaxKind.PlusPlus, BoundUnaryOperatorType.Increment, IntrinsicTypes.Number),
+            new(SyntaxKind.MinusMinus, BoundUnaryOperatorType.Decrement, IntrinsicTypes.Number),
+            new(SyntaxKind.Bang, BoundUnaryOperatorType.LogicalNot, PrimitiveType.Bool),
+            new(SyntaxKind.Tilde, BoundUnaryOperatorType.BitwiseNot, PrimitiveType.Int)
+        ];
 
         public static BoundUnaryOperator? Bind(Token token, BaseType operandType)
         {
+            if (operandType is LiteralType literalType)
+                operandType = literalType.AsPrimitive();
+            
             foreach (var op in _operators)
             {
                 if (!token.IsKind(op.SyntaxKind)) continue;

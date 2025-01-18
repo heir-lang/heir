@@ -60,6 +60,15 @@ public class VirtualMachineTest
         var (value, _) = Evaluate(input);
         Assert.Equal(expectedValue, value);
     }
+    
+    [Theory]
+    [InlineData("let foo = { bar: \"baz\" }; foo[\"bar\"];", "baz")]
+    [InlineData("let foo = { bar: \"baz\", boof: \"rah\" }; foo[\"boof\"];", "rah")]
+    public void Evaluates_ElementAccess(string input, object? expectedValue)
+    {
+        var (value, _) = Evaluate(input);
+        Assert.Equal(expectedValue, value);
+    }
 
     [Theory]
     [InlineData("fn fib(n: int) { if n <= 1 return n; return fib(n - 1) + fib(n - 2); } fib(12);", 144.0)]
