@@ -62,10 +62,23 @@ public class VirtualMachineTest
     }
     
     [Theory] 
+    [InlineData("let foo = { bar: \"baz\" }; foo.bar;", "baz")]
+    [InlineData("let foo = { bar: \"baz\", boof: \"rah\" }; foo.boof;", "rah")]
+    [InlineData("({ abc: \"def\" }).abc;", "def")]
+    [InlineData("let a = { b: { c: 123 } }; a.b.c;", 123L)]
+    [InlineData("fn brah -> { a: 123 }; let foo = { bar: brah }; foo.bar().a;", 123L)]
+    public void Evaluates_MemberAccess(string input, object? expectedValue)
+    {
+        var (value, _) = Evaluate(input);
+        Assert.Equal(expectedValue, value);
+    }
+    
+    [Theory] 
     [InlineData("let foo = { bar: \"baz\" }; foo[\"bar\"];", "baz")]
     [InlineData("let foo = { bar: \"baz\", boof: \"rah\" }; foo[\"boof\"];", "rah")]
     [InlineData("({ abc: \"def\" })[\"abc\"];", "def")]
     [InlineData("let a = { b: { c: 123 } }; a[\"b\"][\"c\"];", 123L)]
+    [InlineData("fn brah -> { a: 123 }; let foo = { bar: brah }; foo[\"bar\"]()[\"a\"];", 123L)]
     public void Evaluates_ElementAccess(string input, object? expectedValue)
     {
         var (value, _) = Evaluate(input);

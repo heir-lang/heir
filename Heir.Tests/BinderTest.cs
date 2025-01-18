@@ -17,14 +17,40 @@ public class BinderTest
         Assert.True(boundTree.Diagnostics.HasErrors);
         Assert.Contains(boundTree.Diagnostics, diagnostic => diagnostic.Code == expectedErrorCode);
     }
+    
+    [Fact]
+    public void Binds_MemberAccess()
+    {
+        const string input = """
+                             let foo = { bar: "baz" };
+
+                             foo.bar;
+                             """;
+        
+        var tree = Bind(input);
+        var statement = tree.Statements.Last();
+        Assert.IsType<BoundExpressionStatement>(statement);
+        
+        var expressionStatement = (BoundExpressionStatement)statement;
+        Assert.IsType<BoundMemberAccess>(expressionStatement.Expression);
+        
+        var memberAccess = (BoundMemberAccess)expressionStatement.Expression;
+        Assert.IsType<BoundIdentifierName>(memberAccess.Expression);
+        Assert.IsType<InterfaceType>(memberAccess.Expression.Type);
+        
+        var interfaceType = (InterfaceType)memberAccess.Expression.Type;
+        Assert.Single(interfaceType.Members);
+        Assert.IsType<LiteralType>(memberAccess.Type);
+        
+        var type = (LiteralType)memberAccess.Type;
+        Assert.Equal("baz", type.Value);
+    }
 
     [Fact]
     public void Binds_ElementAccess()
     {
         const string input = """
-                             let foo = {
-                                bar: "baz"
-                             };
+                             let foo = { bar: "baz" };
                              
                              foo["bar"];
                              """;

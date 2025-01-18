@@ -15,11 +15,13 @@ public class BytecodeGeneratorTest
         Assert.Equal(OpCode.EXIT, instruction.OpCode);
         Assert.Null(instruction.Operand);
     }
-
-    [Fact]
-    public void Generates_Index_ForElementAccess()
+    
+    [Theory]
+    [InlineData("abc[\"buh\"]")]
+    [InlineData("abc.buh")]
+    public void Generates_Index(string indexExpression)
     {
-        var bytecode = GenerateBytecode("let abc = { buh: true }; abc[\"buh\"];").Skip(3);
+        var bytecode = GenerateBytecode("let abc = { buh: true }; " + indexExpression + ";").Skip(3);
         var pushAbc = bytecode[0];
         var loadAbc = bytecode[1];
         var pushBuhLiteral  = bytecode[2];

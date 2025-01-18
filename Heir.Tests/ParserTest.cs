@@ -163,6 +163,24 @@ public class ParserTest
     }
     
     [Fact]
+    public void Parses_MemberAccess()
+    {
+        var tree = Parse("abc.bb;");
+        var statement = tree.Statements.First();
+        Assert.IsType<ExpressionStatement>(statement);
+        
+        var expressionStatement = (ExpressionStatement)statement;
+        Assert.IsType<MemberAccess>(expressionStatement.Expression);
+        
+        var memberAccess = (MemberAccess)expressionStatement.Expression;
+        Assert.IsType<IdentifierName>(memberAccess.Expression);
+        
+        var expressionName = (IdentifierName)memberAccess.Expression;
+        Assert.Equal("abc", expressionName.Token.Text);
+        Assert.Equal("bb", memberAccess.Name.Token.Text);
+    }
+    
+    [Fact]
     public void Parses_ElementAccess()
     {
         var tree = Parse("abc[\"bb\"];");
