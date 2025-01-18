@@ -18,6 +18,8 @@ public class BoundInvocation(BoundExpression callee, List<BoundExpression> argum
     public override void Display(int indent = 0)
     {
         Console.WriteLine($"{string.Concat(Enumerable.Repeat("  ", indent))}BoundInvocation(");
+        Console.WriteLine($"{string.Concat(Enumerable.Repeat("  ", indent + 1))}CalleeType -> {Callee.Type.ToString()},");
+        Console.WriteLine();
         Console.WriteLine($"{string.Concat(Enumerable.Repeat("  ", indent + 1))}Callee ->");
         Callee.Display(indent + 2);
         Console.WriteLine(',');

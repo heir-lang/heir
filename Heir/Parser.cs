@@ -513,14 +513,18 @@ public sealed class Parser(TokenStream tokenStream)
     private Expression ParsePostfix()
     {
         var expression = ParsePrimary();
-        while (Tokens.Match(SyntaxKind.Dot))
-            expression = ParseMemberAccess(expression);
-        
-        while (Tokens.Match(SyntaxKind.LParen))
-            expression = ParseInvocation(expression);
-        
-        while (Tokens.Match(SyntaxKind.LBracket))
-           expression = ParseElementAccess(expression);
+
+        while (true)
+        {
+            if (Tokens.Match(SyntaxKind.Dot))
+                expression = ParseMemberAccess(expression);
+            else if (Tokens.Match(SyntaxKind.LBracket))
+                expression = ParseElementAccess(expression);
+            else if (Tokens.Match(SyntaxKind.LParen))
+                expression = ParseInvocation(expression);
+            else
+                break; // No more postfix operations
+        }
 
         return expression;
     }

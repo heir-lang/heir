@@ -136,7 +136,7 @@ public sealed class VirtualMachine
                 if (calleeFrame.Value is not FunctionValue and not IntrinsicFunction)
                 {
                     Diagnostics.Error(DiagnosticCode.HDEV,
-                        "Failed to execute CALL op-code: Loaded callee is not a function",
+                        $"Failed to execute CALL op-code: Loaded callee is not a function, got {calleeFrame.Value?.GetType().ToString() ?? "null"}.\nCallee frame node: {calleeFrame.Node}",
                         calleeFrame.Node.GetFirstToken());
                     
                     break;
@@ -258,8 +258,8 @@ public sealed class VirtualMachine
                         .ToList()
                         .ConvertAll(pair =>
                         {
-                            var keyVM = new VirtualMachine(new Bytecode(pair.Key, Diagnostics));
-                            var valueVM = new VirtualMachine(new Bytecode(pair.Value, Diagnostics));
+                            var keyVM = new VirtualMachine(new Bytecode(pair.Key, Diagnostics), Scope);
+                            var valueVM = new VirtualMachine(new Bytecode(pair.Value, Diagnostics), Scope);
                             var key = keyVM.Evaluate()!;
                             var value = valueVM.Evaluate();
                             return new KeyValuePair<object, object?>(key, value);

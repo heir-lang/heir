@@ -1,3 +1,4 @@
-let foo = { bar: { baz: 69 } };
-print(foo["bar"]["baz"]);
-print(foo.bar.baz);
+fn brah -> { a: 123 };
+
+let foo = { bar: brah };
+print(foo.bar()["a"]);
