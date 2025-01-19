@@ -14,9 +14,9 @@ public class PrintFunction()
         true
     )
 {
-    public override BaseDelegate Invoke { get; } = values =>
+    public override BaseDelegate Invoke { get; } = args =>
     {
-        foreach (var value in values ?? [])
+        foreach (var value in args)
         {
             if (value is string)
                 Console.WriteLine(value);

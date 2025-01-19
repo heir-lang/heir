@@ -99,7 +99,12 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : S
         // in this example the type of x is any:
         // fn abc { let x = abc(); return 123; }
         var parameterTypes = new Dictionary<string, BaseType>(parameterTypePairs);
+        var defaults = new Dictionary<string, object?>(boundParameters.ConvertAll(parameter =>
+            new KeyValuePair<string, object?>(parameter.Symbol.Name.Text, parameter.Initializer?.Token.Value)
+        ));
+        
         var placeholderType = new FunctionType(
+            defaults,
             parameterTypes,
             functionDeclaration.ReturnType != null
                 ? BaseType.FromTypeRef(functionDeclaration.ReturnType)
@@ -109,6 +114,7 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : S
         var placeholderSymbol = DefineSymbol<BaseType>(functionDeclaration.Name.Token, placeholderType, false);
         var boundBody = (BoundBlock)Bind(functionDeclaration.Body);
         var finalType = new FunctionType(
+            defaults,
             parameterTypes,
             functionDeclaration.ReturnType != null
                 ? BaseType.FromTypeRef(functionDeclaration.ReturnType)
@@ -143,7 +149,9 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : S
 
     public BoundExpression VisitParameter(Parameter parameter)
     {
-        var initializer = parameter.Initializer != null ? Bind(parameter.Initializer) : null;
+        var initializer = parameter.Initializer != null
+            ? (BoundLiteral)Bind(parameter.Initializer)
+            : null;
         var type = parameter.Type != null
             ? BaseType.FromTypeRef(parameter.Type)
             : initializer != null ? initializer.Type : IntrinsicTypes.Any;

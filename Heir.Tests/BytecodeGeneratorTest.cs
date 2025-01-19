@@ -308,19 +308,19 @@ public class BytecodeGeneratorTest
         var pushIdentifier = bytecode[0];
         var load = bytecode[1];
         var call = bytecode[2];
+        var pushXArgument = bytecode[3];
         Assert.Equal(OpCode.PUSH, pushIdentifier.OpCode);
         Assert.Equal("abc", pushIdentifier.Operand);
         Assert.Equal(OpCode.LOAD, load.OpCode);
         Assert.Null(load.Operand);
         Assert.Equal(OpCode.CALL, call.OpCode);
-        Assert.IsType<List<List<Instruction>>>(call.Operand);
+        Assert.IsType<ValueTuple<int, List<string>>>(call.Operand);
         
-        var argumentsBytecode = (List<List<Instruction>>)call.Operand;
-        Assert.Single(argumentsBytecode);
+        var (argumentInstructionsCount, parameterNames) = (ValueTuple<int, List<string>>)call.Operand;
+        Assert.Equal(1, argumentInstructionsCount);
+        Assert.Single(parameterNames);
         
-        var argumentBytecode = argumentsBytecode.First();
-        var pushValue = argumentBytecode[0];
-        Assert.Equal(OpCode.PUSH, pushValue.OpCode);
-        Assert.Equal(69L, pushValue.Operand);
+        Assert.Equal(OpCode.PUSH, pushXArgument.OpCode);
+        Assert.Equal(69L, pushXArgument.Operand);
     }
 }

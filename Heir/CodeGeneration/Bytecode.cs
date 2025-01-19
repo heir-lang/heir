@@ -10,7 +10,16 @@ public class Bytecode(IEnumerable<Instruction> instructions, DiagnosticBag diagn
 
     public Bytecode Skip(int count) =>
         new(instructions.Skip(count).ToList(), Diagnostics);
+    
+    public Bytecode SkipLast(int count) =>
+        new(instructions.SkipLast(count).ToList(), Diagnostics);
 
+    public Bytecode Take(int count) =>
+        new(instructions.Take(count).ToList(), Diagnostics);
+    
+    public Bytecode TakeLast(int count) =>
+        new(instructions.TakeLast(count).ToList(), Diagnostics);
+    
     public override string ToString() =>
         string.Join('\n', Instructions.Select(instruction => instruction.ToString()));
 }

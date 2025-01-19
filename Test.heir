@@ -1,4 +1,3 @@
-fn brah -> { a: 123 };
+fn add(x: int, y: int) -> x + y;
 
-let foo = { bar: brah };
-print(foo.bar()["a"]);
+print(add(5, 2));

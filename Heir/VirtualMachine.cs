@@ -6,6 +6,7 @@ using Heir.Runtime.HookedExceptions;
 using Heir.Runtime.Intrinsics;
 using Heir.Runtime.Values;
 using Heir.Syntax;
+using Spectre.Console;
 
 namespace Heir;
 
@@ -124,60 +125,52 @@ public sealed class VirtualMachine
             }
             case OpCode.CALL:
             {
-                var calleeFrame = Stack.Pop();
-                if (instruction.Operand is not List<List<Instruction>> argumentsBytecode)
+                if (instruction.Operand is not ValueTuple<int, List<string>> data)
                 {
                     Diagnostics.Error(DiagnosticCode.HDEV,
-                        "Failed to execute CALL op-code: Provided operand is not a list of argument bytecodes",
-                        calleeFrame.Node.GetFirstToken());
-                    
-                    break;
-                }
-                if (calleeFrame.Value is not FunctionValue and not IntrinsicFunction)
-                {
-                    Diagnostics.Error(DiagnosticCode.HDEV,
-                        $"Failed to execute CALL op-code: Loaded callee is not a function, got {calleeFrame.Value?.GetType().ToString() ?? "null"}.\nCallee frame node: {calleeFrame.Node}",
-                        calleeFrame.Node.GetFirstToken());
+                        $"Failed to execute CALL op-code: Provided operand is not an tuple containing parameter names & the amount of argument instructions.\nGot: {Markup.Escape(instruction.Operand?.GetType().ToString() ?? "null")}",
+                        instruction.Root.GetFirstToken());
                     
                     break;
                 }
 
+                var (argumentInstructionsCount, parameterNames) = data;
+                var argumentsBytecode = _bytecode.Skip(_pointer + 1).Take(argumentInstructionsCount);
+                var argumentVM = new VirtualMachine(argumentsBytecode, Scope, RecursionDepth);
+                argumentVM.Evaluate();
+
+                var parameterIndex = 0;
+                var argumentDefinitionBytecode = argumentVM.Stack
+                    .TakeLast(parameterNames.Count)
+                    .Reverse()
+                    .SelectMany<StackFrame, Instruction>(argumentFrame =>
+                    {
+                        var parameterName = parameterNames.ElementAtOrDefault(parameterIndex++);
+                        return
+                        [
+                            new(argumentFrame.Node, OpCode.PUSH, parameterName ?? "???"),
+                            new(argumentFrame.Node, OpCode.PUSH, argumentFrame.Value),
+                            new(argumentFrame.Node, OpCode.STORE, false)
+                        ];
+                    })
+                    .ToList();
+                
+                var calleeFrame = Stack.Pop();
+                if (calleeFrame.Value is not FunctionValue and not IntrinsicFunction)
+                    Diagnostics.Error(DiagnosticCode.HDEV,
+                        $"Failed to execute CALL op-code: Loaded callee is not a function, got {Markup.Escape(calleeFrame.Value?.GetType().ToString() ?? "null")}.\nCallee frame node: {calleeFrame.Node}",
+                        calleeFrame.Node.GetFirstToken());
+                
                 if (calleeFrame.Value is FunctionValue function)
                 {
-                    List<Instruction> argumentsBytecodeWithDefaults = [];
-                    var parameterNodeList = function.Declaration.Parameters;
-                    var bytecodeIndex = 0;
-                    foreach (var parameter in parameterNodeList)
-                    {
-                        var argumentBytecode = argumentsBytecode.ElementAtOrDefault(bytecodeIndex++);
-                        if (argumentBytecode != null)
-                        {
-                            argumentsBytecodeWithDefaults.AddRange(argumentBytecode);
-                            continue;
-                        }
+                    Advance(argumentInstructionsCount);
+                    List<Instruction> bodyBytecode =
+                    [
+                        new(function.Declaration, OpCode.BEGINSCOPE),
+                        ..argumentDefinitionBytecode,
+                        ..function.BodyBytecode.Skip(1)
+                    ];
                     
-                        argumentsBytecodeWithDefaults.Add(new(parameter, OpCode.PUSH, parameter.Initializer?.Token.Value));
-                    }
-
-                    var argumentVM = new VirtualMachine(new(argumentsBytecodeWithDefaults, Diagnostics), Scope, RecursionDepth);
-                    argumentVM.Evaluate();
-
-                    var parameterIndex = 0;
-                    var argumentDefinitionBytecode = argumentVM.Stack
-                        .TakeLast(parameterNodeList.Count)
-                        .SelectMany<StackFrame, Instruction>(argumentFrame =>
-                        {
-                            var parameter = parameterNodeList.ElementAtOrDefault(parameterIndex++);
-                            return
-                            [
-                                new(argumentFrame.Node, OpCode.PUSH, parameter?.Name.Token.Text ?? "???"),
-                                new(argumentFrame.Node, OpCode.PUSH, argumentFrame.Value),
-                                new(argumentFrame.Node, OpCode.STORE, false)
-                            ];
-                        })
-                        .ToList();
-                
-                    List<Instruction> bodyBytecode = [new(function.Declaration, OpCode.BEGINSCOPE), ..argumentDefinitionBytecode, ..function.BodyBytecode.Skip(1)];
                     _callStack.Push(new(_bytecode, Scope, _pointer + 1));
                     BeginRecursion(function.Declaration.Name.Token);
                     _bytecode = new Bytecode(bodyBytecode, Diagnostics);
@@ -186,13 +179,10 @@ public sealed class VirtualMachine
                 }
                 else if (calleeFrame.Value is IntrinsicFunction intrinsicFunction)
                 {
-                    var argumentVM = new VirtualMachine(new(argumentsBytecode.SelectMany(v => v), Diagnostics), new Scope(Scope), RecursionDepth);
-                    argumentVM.Evaluate();
-                    
                     var argumentValues = argumentVM.Stack
                         .TakeLast(argumentsBytecode.Count)
                         .Select(frame => frame.Value)
-                        .ToArray();
+                        .ToList();
                     
                     var result = intrinsicFunction.Invoke(argumentValues);
                     Stack.Push(new(instruction.Root, result));

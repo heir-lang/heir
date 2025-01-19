@@ -4,6 +4,11 @@ using Heir.AST.Abstract;
 using Heir.BoundAST;
 using Heir.CodeGeneration;
 using Heir.Runtime.Values;
+using Heir.Types;
+using IntersectionType = Heir.AST.IntersectionType;
+using ParenthesizedType = Heir.AST.ParenthesizedType;
+using SingularType = Heir.AST.SingularType;
+using UnionType = Heir.AST.UnionType;
 
 namespace Heir;
 
@@ -94,15 +99,45 @@ public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder)
         new(elementAccess, OpCode.INDEX)
     ];
 
-    public List<Instruction> VisitInvocationExpression(Invocation invocation) =>
-    [
-        ..GenerateBytecode(invocation.Callee),
-        new(invocation, OpCode.CALL, invocation.Arguments.ConvertAll(GenerateBytecode))
-    ];
+    public List<Instruction> VisitInvocationExpression(Invocation invocation)
+    {
+        var boundInvocation = (BoundInvocation)binder.GetBoundNode(invocation);
+        var argumentsBytecode = invocation.Arguments.ConvertAll(GenerateBytecode);
+        if (boundInvocation.Callee.Type is not FunctionType functionType)
+            return NoOp(invocation);
+        
+        // Console.WriteLine(new Bytecode(argumentsBytecode, diagnostics));
+        List<Instruction> argumentsBytecodeWithDefaults = [];
+        var parameterTypes = functionType.ParameterTypes;
+        var bytecodeIndex = 0;
+        foreach (var (name, type) in parameterTypes)
+        {
+            var defaultValue = functionType.Defaults.GetValueOrDefault(name);
+            var argumentBytecode = argumentsBytecode.ElementAtOrDefault(bytecodeIndex++);
+            if (argumentBytecode != null)
+            {
+                argumentsBytecodeWithDefaults.AddRange(argumentBytecode);
+                continue;
+            }
+                
+            argumentsBytecodeWithDefaults.Add(new(invocation, OpCode.PUSH, defaultValue));
+        }
+        
+        return [
+            ..GenerateBytecode(invocation.Callee),
+            new(invocation, OpCode.CALL, (argumentsBytecodeWithDefaults.Count, functionType.ParameterTypes.Keys.ToList())),
+            ..argumentsBytecodeWithDefaults
+        ];
+    }
     
-    public List<Instruction> VisitReturnStatement(Return @return) => [..GenerateBytecode(@return.Expression), new(@return, OpCode.RETURN)];
+    public List<Instruction> VisitReturnStatement(Return @return) =>
+    [
+        ..GenerateBytecode(@return.Expression),
+        new(@return, OpCode.RETURN)
+    ];
 
-    public List<Instruction> VisitExpressionStatement(ExpressionStatement expressionStatement) => GenerateBytecode(expressionStatement.Expression);
+    public List<Instruction> VisitExpressionStatement(ExpressionStatement expressionStatement) =>
+        GenerateBytecode(expressionStatement.Expression);
 
     public List<Instruction> VisitNoOp(NoOp noOp) => NoOp(noOp);
     public List<Instruction> VisitNoOp(NoOpStatement noOp) => NoOp(noOp);
