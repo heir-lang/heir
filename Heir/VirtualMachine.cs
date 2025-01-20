@@ -82,25 +82,16 @@ public sealed class VirtualMachine
 
             case OpCode.PROC:
             {
-                if (instruction.Root is not FunctionDeclaration functionDeclaration)
-                {
-                    Diagnostics.RuntimeError(DiagnosticCode.HDEV,
-                        "Failed to execute PROC op-code: Provided node is not a FunctionDeclaration",
-                        instruction.Root?.GetFirstToken());
-                    break; // C# DUMB
-                }
-
                 if (instruction.Operand is not List<Instruction> bodyBytecode)
                 {
                     Diagnostics.RuntimeError(DiagnosticCode.HDEV,
                         "Failed to execute PROC op-code: Provided operand is not the function body's bytecode",
-                        functionDeclaration.GetFirstToken());
+                        instruction.Root?.GetFirstToken());
                     break; // C# DUMB
                 }
-                    
                 
-                var function = new FunctionValue(functionDeclaration, bodyBytecode, new Scope(Scope));
-                Stack.Push(new(functionDeclaration, function));
+                var function = new FunctionValue(bodyBytecode, new Scope(Scope));
+                Stack.Push(new(instruction.Root, function));
                 Advance();
                 break;
             }
@@ -147,7 +138,7 @@ public sealed class VirtualMachine
                     Advance(argumentInstructionsCount);
                     List<Instruction> bodyBytecode =
                     [
-                        new(function.Declaration, OpCode.BEGINSCOPE),
+                        new(calleeFrame.Node, OpCode.BEGINSCOPE),
                         ..argumentDefinitionBytecode,
                         ..function.BodyBytecode.Skip(1)
                     ];
@@ -158,11 +149,10 @@ public sealed class VirtualMachine
                                      currentState.Closure.Equals(Scope) &&
                                      IsLastOperationBeforeReturn(currentState.Bytecode.Instructions, currentState.EnclosingPointer - 1);
                     
-                    Console.WriteLine("is tail: " + isTailCall);
                     if (!isTailCall)
                         _callStack.Push(new(_bytecode, Scope, _pointer + 1));
 
-                    BeginRecursion(function.Declaration.Name.Token);
+                    BeginRecursion(instruction.Root?.GetFirstToken() ?? TokenFactory.Identifier("???", Location.Empty, Location.Empty));
                     _bytecode = new Bytecode(bodyBytecode);
                     _pointer = 0;
                     Scope = function.Closure;

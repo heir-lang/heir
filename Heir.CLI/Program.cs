@@ -20,6 +20,11 @@ public static class Program
         [Option('e', "benchmark", Required = false, HelpText = "Output the amount of time taken to evaluate the program.")]
         public bool ShowBenchmark { get; set; }
         
+        [Option("load-bytecode", Required = false, HelpText = "Execute a .bin file containing bytecode using the HVM.")]
+        public bool LoadBytecode { get; set; }
+        [Option('o', "save-bytecode", Required = false, HelpText = "Save bytecode to this file path instead of executing it")]
+        public string? BytecodeOutputPath { get; set; }
+        
         [Value(0, MetaName = "file-path", HelpText = "Path to the file to be executed with Heir.")]
         public string? FilePath { get; set; }
     }
@@ -29,20 +34,53 @@ public static class Program
         CommandLine.Parser.Default.ParseArguments<Options>(args)
             .WithParsed(options =>
             {
-                if (options.FilePath != null)
+                if (options.LoadBytecode)
                 {
-                    SourceFile file;
-                    try
+                    if (options.FilePath == null)
                     {
-                        file = SourceFile.FromPath(options.FilePath, isMainFile: true);
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine($"Error reading file: {ex.Message}");
+                        Console.WriteLine("Failed to call HVM: No file path provided");
                         Environment.Exit(1);
                         return;
                     }
-                    ExecuteFile(file, options);
+                    if (!options.FilePath.EndsWith(".bin"))
+                    {
+                        Console.WriteLine($"Failed to call HVM: Provided invalid bytecode file type, got {Path.GetExtension(options.FilePath)}");
+                        Environment.Exit(1);
+                        return;
+                    }
+                }
+                
+                if (options.FilePath != null)
+                {
+                    if (options.LoadBytecode)
+                    {
+                        using var fileStream = File.OpenRead(options.FilePath);
+                        var deserializedBytecode = BytecodeDeserializer.Deserialize(fileStream);
+
+                        var sourceFile = new SourceFile(deserializedBytecode.ToString(), options.FilePath, true);
+                        var vm = new VirtualMachine(deserializedBytecode, new DiagnosticBag(sourceFile));
+                        var stopwatch = Stopwatch.StartNew();
+                        vm.Evaluate();
+                        stopwatch.Stop();
+        
+                        if (options.ShowBenchmark)
+                            Console.WriteLine($"Took {stopwatch.ElapsedMilliseconds} ms");
+                    }
+                    else
+                    {
+                        SourceFile file;
+                        try
+                        {
+                            file = SourceFile.FromPath(options.FilePath, isMainFile: true);
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine($"Error reading file: {ex.Message}");
+                            Environment.Exit(1);
+                            return;
+                        }
+                        ExecuteFile(file, options);
+                    }
                 }
                 else
                     StartRepl(options);
@@ -70,24 +108,20 @@ public static class Program
     {
         ShowInfo(options, file);
         var bytecode = file.GenerateBytecode(); // generate bytecode before timing
-        // {
-        //     using var fileStream = File.Create("bytecode.bin");
-        //     BytecodeSerializer.Serialize(bytecode, fileStream);
-        // }
-        //
-        // {
-        //     using var fileStream = File.OpenRead("bytecode.bin");
-        //     var deserializedBytecode = BytecodeDeserializer.Deserialize(fileStream);
-        //     Console.WriteLine(deserializedBytecode.ToString());
-        // }
+        if (options.BytecodeOutputPath != null) {
+            using var fileStream = File.Create(options.BytecodeOutputPath);
+            BytecodeSerializer.Serialize(bytecode, fileStream);
+            
+            return null;
+        }
         
         var stopwatch = Stopwatch.StartNew();
         var (result, _) = file.Evaluate();
         stopwatch.Stop();
-        
+    
         if (options.ShowBenchmark)
             Console.WriteLine($"Took {stopwatch.ElapsedMilliseconds} ms");
-            
+        
         return result;
     }
 
