@@ -1,9 +1,14 @@
 # Heir
 [![CI Status](https://github.com/R-unic/heir/actions/workflows/ci.yml/badge.svg)](https://github.com/R-unic/heir/actions/workflows)
-[![Coverage Status](https://coveralls.io/repos/github/R-unic/heir/badge.svg)](https://coveralls.io/github/R-unic/heir)
+[![Coverage Status](https://coveralls.io/repos/github/R-unic/heir/badge.svg?branch=master)](https://coveralls.io/github/R-unic/heir)
 
 ## Contributions
 Though I cannot guarantee the lifetime or dedication of this project, contributions are welcome and encouraged and I will review them ASAP.
+
+## Community
+Join the Discord community!
+<br>
+https://discord.gg/AEbNTEVNAd
 
 ## Roadmap
 - [x] lexing
@@ -65,7 +70,7 @@ Though I cannot guarantee the lifetime or dedication of this project, contributi
     - [x] variable declaration
     - [x] statements
     - [x] indexing (`a["b"]`)
-    - [ ] dot access (`a.b`)
+    - [X] dot access (`a.b`)
     - [x] method calls
     - [x] method declaration
     - [ ] array literals
@@ -82,10 +87,11 @@ Though I cannot guarantee the lifetime or dedication of this project, contributi
 - [x] binding
 - [x] typechecking
 - [x] bytecode generator
+  - [x] bytecode binary serialization/deserialization
 - [ ] intrinsics (built-ins)
     - [ ] injectable libraries
     - [x] functions
     - [ ] classes
     - [ ] types
 - [ ] hvm (heir virtual machine)
-    - [ ] tail call optimization (create `CALLSELF` opcode and reuse the last `CallStackFrame` instead of creating a new one)
+    - [X] tail call optimization
