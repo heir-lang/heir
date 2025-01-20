@@ -51,8 +51,15 @@ public sealed class DiagnosticBag(SourceFile sourceFile) : HashSet<Diagnostic>
     public void RuntimeError(DiagnosticCode code, string message, Token? token)
     {
         Error(code, message, token?.StartLocation, token?.EndLocation);
-        AnsiConsole.MarkupLine(ToString(true));
         throw new Exception();
+    }
+
+    public void Write(bool colors = true)
+    {
+        if (colors)
+            AnsiConsole.MarkupLine(ToString(true));
+        else
+            Console.WriteLine(ToString(false));
     }
     
     public string ToString(bool colors) => string.Join('\n', this.Select(diagnostic => diagnostic.ToString(colors)));

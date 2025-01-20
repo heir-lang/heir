@@ -4,10 +4,12 @@ internal enum OperandType : byte
 {
     String,
     Char,
-    Number,
+    Long,
+    Int,
+    Double,
     Bool,
     Bytecode,
     Null,
-    List,
+    StringList,
     IntStringListTuple
 }

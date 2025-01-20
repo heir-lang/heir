@@ -34,27 +34,31 @@ public static class BytecodeDeserializer
                 var codepoint = reader.ReadByte();
                 return Encoding.UTF8.GetChars([codepoint]).First();
             }
-            case OperandType.Number:
+            case OperandType.Long:
                 return reader.ReadInt64();
+            case OperandType.Int:
+                return reader.ReadInt32();
+            case OperandType.Double:
+                return reader.ReadDouble();
             case OperandType.Bool:
                 return Convert.ToBoolean(reader.ReadByte());
             case OperandType.Bytecode:
                 return DeserializeBytecodeOperand(reader);
 
-            case OperandType.List:
+            case OperandType.StringList:
             {
                 var length = reader.ReadInt32();
                 
-                var list = new List<object?>();
+                var list = new List<string>();
                 for (var i = 0; i < length; i++)
-                    list.Add(DeserializeOperand(reader));
+                    list.Add((string)DeserializeOperand(reader)!);
 
                 return list;
             }
             case OperandType.IntStringListTuple:
             {
-                var item1 = DeserializeOperand(reader);
-                var item2 = DeserializeOperand(reader);
+                var item1 = (int)DeserializeOperand(reader)!;
+                var item2 = (List<string>)DeserializeOperand(reader)!;
                 return (item1, item2);
             }
             

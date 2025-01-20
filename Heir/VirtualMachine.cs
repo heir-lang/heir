@@ -1,11 +1,8 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using Heir.AST;
+﻿using Heir.Syntax;
 using Heir.CodeGeneration;
 using Heir.Runtime;
-using Heir.Runtime.HookedExceptions;
 using Heir.Runtime.Intrinsics;
 using Heir.Runtime.Values;
-using Heir.Syntax;
 using Spectre.Console;
 
 namespace Heir;
@@ -100,7 +97,7 @@ public sealed class VirtualMachine
                 if (instruction.Operand is not ValueTuple<int, List<string>> data)
                 {
                     Diagnostics.RuntimeError(DiagnosticCode.HDEV,
-                        $"Failed to execute CALL op-code: Provided operand is not an tuple containing parameter names & the amount of argument instructions.\nGot: {Markup.Escape(instruction.Operand?.GetType().ToString() ?? "null")}",
+                        $"Failed to execute CALL op-code: Provided operand is not a tuple containing parameter names & the amount of argument instructions.\nGot: {Markup.Escape(instruction.Operand?.GetType().ToString() ?? "null")}",
                         instruction.Root?.GetFirstToken());
 
                     break;

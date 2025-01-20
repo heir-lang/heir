@@ -58,13 +58,23 @@ public static class Program
                         var deserializedBytecode = BytecodeDeserializer.Deserialize(fileStream);
 
                         var sourceFile = new SourceFile(deserializedBytecode.ToString(), options.FilePath, true);
-                        var vm = new VirtualMachine(deserializedBytecode, new DiagnosticBag(sourceFile));
+                        var diagnostics = new DiagnosticBag(sourceFile);
+                        var vm = new VirtualMachine(deserializedBytecode, diagnostics);
                         var stopwatch = Stopwatch.StartNew();
-                        vm.Evaluate();
-                        stopwatch.Stop();
-        
-                        if (options.ShowBenchmark)
-                            Console.WriteLine($"Took {stopwatch.ElapsedMilliseconds} ms");
+                        try
+                        {
+                            vm.Evaluate();
+                        }
+                        catch (Exception)
+                        {
+                            diagnostics.Write();
+                        }
+                        finally
+                        {
+                            stopwatch.Stop();
+                            if (options.ShowBenchmark)
+                                Console.WriteLine($"Took {stopwatch.ElapsedMilliseconds} ms");
+                        }
                     }
                     else
                     {

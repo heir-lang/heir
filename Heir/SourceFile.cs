@@ -37,7 +37,7 @@ namespace Heir
             var vm = new VirtualMachine(bytecode, Diagnostics);
             if (Diagnostics.Count > 0)
             {
-                WriteDiagnostics();
+                Diagnostics.Write();
                 return (null, vm);
             }
 
@@ -49,7 +49,7 @@ namespace Heir
             }
             catch (Exception)
             {
-                WriteDiagnostics();
+                Diagnostics.Write();
             }
             
             return (null, vm);
@@ -115,7 +115,5 @@ namespace Heir
             _tokens = lexer.GetTokens();
             return _tokens;
         }
-
-        private void WriteDiagnostics() => AnsiConsole.MarkupLine(Diagnostics.ToString(true));
     }
 }

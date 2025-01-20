@@ -32,9 +32,17 @@ public static class BytecodeSerializer
                 writer.Write(utf8Bytes.First());
                 break;
             }
-            case long or ulong or int or uint or short or ushort or byte or sbyte or double or float or decimal:
-                writer.Write((byte)OperandType.Number);
+            case long or ulong:
+                writer.Write((byte)OperandType.Long);
                 writer.Write(Convert.ToInt64(operand));
+                break;
+            case int or uint or short or ushort or byte or sbyte:
+                writer.Write((byte)OperandType.Int);
+                writer.Write(Convert.ToInt32(operand));
+                break;
+           case double or float or decimal:
+                writer.Write((byte)OperandType.Double);
+                writer.Write(Convert.ToDouble(operand));
                 break;
             case bool:
                 writer.Write((byte)OperandType.Bool);
@@ -51,8 +59,8 @@ public static class BytecodeSerializer
                 SerializeOperand(tuple.Item2, writer);
                 break;
             }
-            case IList list:
-                writer.Write((byte)OperandType.List);
+            case List<string> list:
+                writer.Write((byte)OperandType.StringList);
                 writer.Write(list.Count);
                 foreach (var element in list)
                     SerializeOperand(element, writer);
