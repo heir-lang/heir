@@ -52,7 +52,7 @@ public sealed class DiagnosticBag(SourceFile sourceFile) : HashSet<Diagnostic>
     {
         Error(code, message, token?.StartLocation, token?.EndLocation);
         AnsiConsole.MarkupLine(ToString(true));
-        Environment.Exit((int)code);
+        throw new Exception();
     }
     
     public string ToString(bool colors) => string.Join('\n', this.Select(diagnostic => diagnostic.ToString(colors)));

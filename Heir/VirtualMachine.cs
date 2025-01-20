@@ -376,7 +376,7 @@ public sealed class VirtualMachine
                         $"Unhandled binary int operation for op-code {instruction.OpCode}",
                         instruction.Root?.GetFirstToken());
 
-                var result = calculate(left, right);
+                var result = Convert.ToInt64(calculate(left, right));
                 Stack.Push(new StackFrame(instruction.Root, result));
                 Advance();
                 break;
