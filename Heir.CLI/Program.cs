@@ -1,4 +1,5 @@
-﻿using CommandLine;
+﻿using System.Diagnostics;
+using CommandLine;
 using Spectre.Console;
 
 namespace Heir.CLI;
@@ -15,6 +16,8 @@ public static class Program
         public bool ShowBoundAST { get; set; }
         [Option('c', "bytecode", Required = false, HelpText = "Output the emitted bytecode.")]
         public bool ShowBytecode { get; set; }
+        [Option('e', "benchmark", Required = false, HelpText = "Output the amount of time taken to evaluate the program.")]
+        public bool ShowBenchmark { get; set; }
         
         [Value(0, MetaName = "file-path", HelpText = "Path to the file to be executed with Heir.")]
         public string? FilePath { get; set; }
@@ -26,7 +29,20 @@ public static class Program
             .WithParsed(options =>
             {
                 if (options.FilePath != null)
-                    ExecuteFile(options);
+                {
+                    SourceFile file;
+                    try
+                    {
+                        file = SourceFile.FromPath(options.FilePath, isMainFile: true);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Error reading file: {ex.Message}");
+                        Environment.Exit(1);
+                        return;
+                    }
+                    ExecuteFile(file, options);
+                }
                 else
                     StartRepl(options);
             });
@@ -35,49 +51,38 @@ public static class Program
     private static void StartRepl(Options options)
     {
         Console.WriteLine("Welcome to the Heir REPL!");
-        
-        var program = new HeirProgram();
         var source = "";
         
-        
-        SourceFile? file = null;
         while (true)
         {
             Console.Write("> ");
             var input = Console.ReadLine();
             source += input + "\n";
-
-            if (file != null)
-                program.UnloadFile(file);
-
-            file = new SourceFile(source, "repl", true);
-            program.LoadFile(file);
             
-            var result = program.Evaluate();
+            var file = new SourceFile(source, "repl", true);
+            var result = ExecuteFile(file, options);
             AnsiConsole.MarkupLine(Utility.Repr(result, true));
         }
     }
 
-    private static void ExecuteFile(Options options)
+    private static object? ExecuteFile(SourceFile file, Options options)
     {
         var program = new HeirProgram();
-        SourceFile file;
-        try
-        {
-            file = SourceFile.FromPath(options.FilePath!, isMainFile: true);
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Error reading file: {ex.Message}");
-            return;
-        }
 
-        ShowInternals(options, file);
+        ShowInfo(options, file);
         program.LoadFile(file);
-        program.Evaluate();
+        
+        var stopwatch = Stopwatch.StartNew();
+        var result = program.Evaluate();
+        stopwatch.Stop();
+        
+        if (options.ShowBenchmark)
+            Console.WriteLine($"Took {stopwatch.ElapsedMilliseconds} ms");
+            
+        return result;
     }
 
-    private static void ShowInternals(Options options, SourceFile file)
+    private static void ShowInfo(Options options, SourceFile file)
     {
         if (options.ShowTokens)
         {

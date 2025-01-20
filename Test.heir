@@ -1,10 +1,9 @@
 fn balls(n: int): int {
     if n <= 1 return n;
-    return balls(n / 2);
+    return balls(n - 10);
 }
 
 let t1 = now();
-let r = balls(10);
+let r = balls(199990);
 let elapsed = now() - t1;
 print(r);
-print(elapsed * 1000);
