@@ -23,6 +23,11 @@ internal sealed class CallStackFrame(Bytecode bytecode, Scope closure, int enclo
     public Bytecode Bytecode { get; } = bytecode;
     public Scope Closure { get; } = closure;
     public int EnclosingPointer { get; } = enclosingPointer;
+
+    public bool Equals(CallStackFrame other) =>
+        EnclosingPointer == other.EnclosingPointer &&
+        Bytecode.Equals(other.Bytecode) &&
+        Closure.Equals(other.Closure);
 }
 
 public sealed class VirtualMachine
@@ -168,10 +173,14 @@ public sealed class VirtualMachine
                         ..argumentDefinitionBytecode,
                         ..function.BodyBytecode.Skip(1)
                     ];
-
-                    var isTailCall = _callStack.TryPeek(out var currentState) &&
-                                  currentState.EnclosingPointer == _pointer + 1;
                     
+                    var isTailCall = _callStack.TryPeek(out var currentState) &&
+                                     currentState.EnclosingPointer == _pointer + 1 &&
+                                     currentState.Bytecode.Contains(function.BodyBytecode.Skip(1).ToList()) &&
+                                     currentState.Closure.Equals(Scope) &&
+                                     IsLastOperationBeforeReturn(currentState.Bytecode.Instructions, currentState.EnclosingPointer - 1);
+                    
+                    Console.WriteLine("is tail: " + isTailCall);
                     if (!isTailCall)
                         _callStack.Push(new(_bytecode, Scope, _pointer + 1));
 
@@ -543,10 +552,9 @@ public sealed class VirtualMachine
 
             case OpCode.JMP:
             {
+                CheckNonIntegerOperand(instruction);
                 if (instruction.Operand is int offset)
                     Advance(offset);
-                else
-                    NonIntegerOperand(instruction);
 
                 break;
             }
@@ -555,10 +563,9 @@ public sealed class VirtualMachine
                 var frame = Stack.Pop();
                 if (frame.Value is not 0 and not false)
                 {
+                    CheckNonIntegerOperand(instruction);
                     if (instruction.Operand is int offset)
                         Advance(offset);
-                    else
-                        NonIntegerOperand(instruction);
                 }
                 else
                     Advance();
@@ -570,10 +577,9 @@ public sealed class VirtualMachine
                 var frame = Stack.Pop();
                 if (frame.Value is 0 or false)
                 {
+                    CheckNonIntegerOperand(instruction);
                     if (instruction.Operand is int offset)
                         Advance(offset);
-                    else
-                        NonIntegerOperand(instruction);
                 }
                 else
                     Advance();
@@ -593,17 +599,34 @@ public sealed class VirtualMachine
 
         return null;
     }
+    
+    /// <returns>Whether the current instruction at the given pointer is the last meaningful one before a RETURN instruction</returns>
+    private static bool IsLastOperationBeforeReturn(IReadOnlyList<Instruction> instructions, int pointer) =>
+        IsLastOperation(instructions, pointer, OpCode.RETURN);
+    
+    /// <returns>Whether the current instruction at the given pointer is the last meaningful one before the given terminator</returns>
+    private static bool IsLastOperation(IReadOnlyList<Instruction> instructions, int pointer, OpCode terminator = OpCode.EXIT)
+    {
+        var instruction = instructions.ElementAtOrDefault(pointer + 1);
+        return instruction != null && instruction.OpCode == terminator;
+    }
 
-    private void NonIntegerOperand(Instruction instruction) =>
+    /// <exception cref="DiagnosticCode.H001C">If the given instruction's operand is not an <see cref="int"/></exception>
+    private void CheckNonIntegerOperand(Instruction instruction)
+    {
+        if (instruction.Operand is int) return;
         Diagnostics.Error(DiagnosticCode.H001C,
-            $"Invalid bytecode! {instruction.OpCode} opcode was used with non-integer operand.",
+            $"Invalid bytecode! {instruction.OpCode} opcode was used with non-integer operand. Got: {instruction.Operand?.GetType().ToString() ?? "null"}",
             instruction.Root?.GetFirstToken());
+    }
 
     private StackFrame CreateStackFrameFromInstruction(int offset = 0)
     {
         var instruction = _bytecode[_pointer + offset];
         return new StackFrame(instruction.Root, instruction.Operand);
     }
+
+    private void Advance(int amount = 1) => _pointer += amount;
     
     private void StackDump()
     {
@@ -613,6 +636,4 @@ public sealed class VirtualMachine
             Console.WriteLine(frame.Value ?? "null");
         }
     }
-
-    private void Advance(int amount = 1) => _pointer += amount;
 }

@@ -70,16 +70,16 @@ public static class Program
     {
         ShowInfo(options, file);
         var bytecode = file.GenerateBytecode(); // generate bytecode before timing
-        {
-            using var fileStream = File.Create("bytecode.bin");
-            BytecodeSerializer.Serialize(bytecode, fileStream);
-        }
-
-        {
-            using var fileStream = File.OpenRead("bytecode.bin");
-            var deserializedBytecode = BytecodeDeserializer.Deserialize(fileStream);
-            Console.WriteLine(deserializedBytecode.ToString());
-        }
+        // {
+        //     using var fileStream = File.Create("bytecode.bin");
+        //     BytecodeSerializer.Serialize(bytecode, fileStream);
+        // }
+        //
+        // {
+        //     using var fileStream = File.OpenRead("bytecode.bin");
+        //     var deserializedBytecode = BytecodeDeserializer.Deserialize(fileStream);
+        //     Console.WriteLine(deserializedBytecode.ToString());
+        // }
         
         var stopwatch = Stopwatch.StartNew();
         var (result, _) = file.Evaluate();

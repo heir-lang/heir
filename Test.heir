@@ -1,2 +1,7 @@
-fn abc(x: int) -> x * 2;
-abc(69);
+fn fib(n: int): int {
+    if n <= 1 return n;
+    return fib(n - 1)
+}
+    
+let r = fib(20);
+print(r); 

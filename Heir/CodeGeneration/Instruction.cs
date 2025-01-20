@@ -7,6 +7,10 @@ public class Instruction(SyntaxNode? node, OpCode opCode, object? operand = null
     public SyntaxNode? Root { get; } = node!;
     public OpCode OpCode { get; } = opCode;
     public object? Operand { get; } = operand;
+    
+    public bool Equals(Instruction other) =>
+        OpCode == other.OpCode &&
+        Operand?.Equals(other.Operand) == true;
 
     public override string ToString()
     {
