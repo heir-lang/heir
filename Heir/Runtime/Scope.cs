@@ -2,9 +2,6 @@
 
 public sealed class Scope(Scope? enclosing = null)
 {
-    private static int _cumulativeID;
-    
-    public int ID { get; } = _cumulativeID++;
     public Scope? Enclosing { get; } = enclosing;
 
     private readonly Dictionary<string, bool> _defined = [];

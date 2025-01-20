@@ -31,7 +31,7 @@ public sealed class VirtualMachine
     public Scope GlobalScope { get; }
     public Scope Scope { get; private set; }
     public Stack<StackFrame> Stack { get; } = [];
-    public int RecursionDepth { get; private set; }
+    private int _recursionDepth;
     
     private const int _maxRecursionDepth = 2000;
     private readonly Stack<CallStackFrame> _callStack = [];
@@ -47,11 +47,9 @@ public sealed class VirtualMachine
         Scope = scope ?? GlobalScope;
         _enclosingScope = Scope;
         _bytecode = bytecode;
-        RecursionDepth = recursionDepth;
+        _recursionDepth = recursionDepth;
     }
-
-    public T? Evaluate<T>() => (T?)Evaluate();
-
+    
     public object? Evaluate()
     {
         Intrinsics.RegisterGlobalValues(GlobalScope);
@@ -67,10 +65,10 @@ public sealed class VirtualMachine
             : null;
     }
 
-    public void EndRecursion(int level = 1) => RecursionDepth -= level;
+    public void EndRecursion(int level = 1) => _recursionDepth -= level;
     public void BeginRecursion(Token token)
     {
-        if (RecursionDepth++ < _maxRecursionDepth) return;
+        if (_recursionDepth++ < _maxRecursionDepth) return;
         Diagnostics.Error(DiagnosticCode.H017, $"Stack overflow: Recursion depth of {_maxRecursionDepth} exceeded", token);
         throw new Exception();
     }
@@ -136,7 +134,7 @@ public sealed class VirtualMachine
 
                 var (argumentInstructionsCount, parameterNames) = data;
                 var argumentsBytecode = _bytecode.Skip(_pointer + 1).Take(argumentInstructionsCount);
-                var argumentVM = new VirtualMachine(argumentsBytecode, Scope, RecursionDepth);
+                var argumentVM = new VirtualMachine(argumentsBytecode, Scope, _recursionDepth);
                 argumentVM.Evaluate();
 
                 var parameterIndex = 0;
