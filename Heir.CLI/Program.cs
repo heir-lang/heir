@@ -67,13 +67,11 @@ public static class Program
 
     private static object? ExecuteFile(SourceFile file, Options options)
     {
-        var program = new HeirProgram();
-
         ShowInfo(options, file);
-        program.LoadFile(file);
+        file.GenerateBytecode(); // generate bytecode before timing
         
         var stopwatch = Stopwatch.StartNew();
-        var result = program.Evaluate();
+        var (result, _) = file.Evaluate();
         stopwatch.Stop();
         
         if (options.ShowBenchmark)
