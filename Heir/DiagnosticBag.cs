@@ -1,6 +1,8 @@
 ﻿using Heir.Syntax;
 using System.Collections;
+using System.Diagnostics.CodeAnalysis;
 using Heir.AST.Abstract;
+using Spectre.Console;
 
 namespace Heir;
 
@@ -43,6 +45,14 @@ public sealed class DiagnosticBag(SourceFile sourceFile) : HashSet<Diagnostic>
     {
         var diagnostic = new Diagnostic(sourceFile, code, message, startLocation ?? Location.Empty, endLocation ?? startLocation ?? Location.Empty, DiagnosticLevel.Error);
         Add(diagnostic);
+    }
+
+    [DoesNotReturn]
+    public void RuntimeError(DiagnosticCode code, string message, Token? token)
+    {
+        Error(code, message, token?.StartLocation, token?.EndLocation);
+        AnsiConsole.MarkupLine(ToString(true));
+        Environment.Exit((int)code);
     }
     
     public string ToString(bool colors) => string.Join('\n', this.Select(diagnostic => diagnostic.ToString(colors)));

@@ -1,5 +1,5 @@
-﻿using Heir.AST;
-using Heir.AST.Abstract;
+﻿using System.Diagnostics.CodeAnalysis;
+using Heir.AST;
 using Heir.CodeGeneration;
 using Heir.Runtime;
 using Heir.Runtime.HookedExceptions;
@@ -11,24 +11,6 @@ using Spectre.Console;
 namespace Heir;
 
 internal sealed class ExitMarker;
-
-public sealed class StackFrame(SyntaxNode? node, object? value)
-{
-    public SyntaxNode? Node { get; } = node;
-    public object? Value { get; } = value;
-}
-
-internal sealed class CallStackFrame(Bytecode bytecode, Scope closure, int enclosingPointer)
-{
-    public Bytecode Bytecode { get; } = bytecode;
-    public Scope Closure { get; } = closure;
-    public int EnclosingPointer { get; } = enclosingPointer;
-
-    public bool Equals(CallStackFrame other) =>
-        EnclosingPointer == other.EnclosingPointer &&
-        Bytecode.Equals(other.Bytecode) &&
-        Closure.Equals(other.Closure);
-}
 
 public sealed class VirtualMachine
 {
@@ -74,8 +56,7 @@ public sealed class VirtualMachine
     public void BeginRecursion(Token token)
     {
         if (_recursionDepth++ < _maxRecursionDepth) return;
-        Diagnostics.Error(DiagnosticCode.H017, $"Stack overflow: Recursion depth of {_maxRecursionDepth} exceeded", token);
-        throw new Exception();
+        Diagnostics.RuntimeError(DiagnosticCode.H017, $"Stack overflow: Recursion depth of {_maxRecursionDepth} exceeded", token);
     }
     
     private StackFrame? EvaluateInstruction(Instruction instruction)
@@ -83,7 +64,7 @@ public sealed class VirtualMachine
         switch (instruction.OpCode)
         {
             case OpCode.EXIT:
-                return new StackFrame(instruction.Root, new ExitMarker());
+                return StackFrame.ExitMarker;
             case OpCode.NOOP:
                 Advance();
                 break;
@@ -103,23 +84,20 @@ public sealed class VirtualMachine
             {
                 if (instruction.Root is not FunctionDeclaration functionDeclaration)
                 {
-                    Diagnostics.Error(DiagnosticCode.HDEV,
+                    Diagnostics.RuntimeError(DiagnosticCode.HDEV,
                         "Failed to execute PROC op-code: Provided node is not a FunctionDeclaration",
                         instruction.Root?.GetFirstToken());
-                    
-                    Advance();
-                    break;
+                    break; // C# DUMB
                 }
 
                 if (instruction.Operand is not List<Instruction> bodyBytecode)
                 {
-                    Diagnostics.Error(DiagnosticCode.HDEV,
+                    Diagnostics.RuntimeError(DiagnosticCode.HDEV,
                         "Failed to execute PROC op-code: Provided operand is not the function body's bytecode",
                         functionDeclaration.GetFirstToken());
-                    
-                    Advance();
-                    break;
+                    break; // C# DUMB
                 }
+                    
                 
                 var function = new FunctionValue(functionDeclaration, bodyBytecode, new Scope(Scope));
                 Stack.Push(new(functionDeclaration, function));
@@ -130,10 +108,10 @@ public sealed class VirtualMachine
             {
                 if (instruction.Operand is not ValueTuple<int, List<string>> data)
                 {
-                    Diagnostics.Error(DiagnosticCode.HDEV,
+                    Diagnostics.RuntimeError(DiagnosticCode.HDEV,
                         $"Failed to execute CALL op-code: Provided operand is not an tuple containing parameter names & the amount of argument instructions.\nGot: {Markup.Escape(instruction.Operand?.GetType().ToString() ?? "null")}",
                         instruction.Root?.GetFirstToken());
-                    
+
                     break;
                 }
 
@@ -160,7 +138,7 @@ public sealed class VirtualMachine
                 
                 var calleeFrame = Stack.Pop();
                 if (calleeFrame.Value is not FunctionValue and not IntrinsicFunction)
-                    Diagnostics.Error(DiagnosticCode.HDEV,
+                    Diagnostics.RuntimeError(DiagnosticCode.HDEV,
                         $"Failed to execute CALL op-code: Loaded callee is not a function, got {Markup.Escape(calleeFrame.Value?.GetType().ToString() ?? "null")}.\nCallee frame node: {calleeFrame.Node}",
                         instruction.Root?.GetFirstToken());
                 
@@ -222,18 +200,16 @@ public sealed class VirtualMachine
             {
                 var indexFrame = Stack.Pop();
                 var objectFrame = Stack.Pop();
+                
+                if (indexFrame.Value is null)
+                    Diagnostics.RuntimeError(DiagnosticCode.HDEV,
+                        "Failed to execute INDEX op-code: Loaded index is null",
+                        instruction.Root?.GetFirstToken());
+                
                 if (objectFrame.Value is not Dictionary<object, object?> objectDictionary)
                 {
-                    Diagnostics.Error(DiagnosticCode.HDEV,
+                    Diagnostics.RuntimeError(DiagnosticCode.HDEV,
                         "Failed to execute INDEX op-code: Loaded object is not an object dictionary",
-                        instruction.Root?.GetFirstToken());
-                    
-                    break;
-                }
-                if (indexFrame.Value is null)
-                {
-                    Diagnostics.Error(DiagnosticCode.HDEV,
-                        "Failed to execute INDEX op-code: Loaded index is null",
                         instruction.Root?.GetFirstToken());
                     
                     break;
@@ -301,11 +277,10 @@ public sealed class VirtualMachine
                 var nameFrame = Stack.Pop();
                 if (nameFrame.Value is not string name)
                 {
-                    Diagnostics.Error(DiagnosticCode.HDEV,
+                    Diagnostics.RuntimeError(DiagnosticCode.HDEV,
                         $"Failed to execute LOAD op-code: No variable name was located in the stack, got {nameFrame.Value ?? "none"}",
                         nameFrame.Node?.GetFirstToken());
                     
-                    Advance();
                     break;
                 }
 
@@ -320,11 +295,10 @@ public sealed class VirtualMachine
                 var nameFrame = Stack.Pop();
                 if (nameFrame.Value is not string name)
                 {
-                    Diagnostics.Error(DiagnosticCode.HDEV,
+                    Diagnostics.RuntimeError(DiagnosticCode.HDEV,
                         $"Failed to execute STORE op-code: No variable name was located in the stack, got {nameFrame.Value ?? "none"}",
                         initializer.Node?.GetFirstToken());
                     
-                    Advance();
                     break;
                 }
 
@@ -350,123 +324,60 @@ public sealed class VirtualMachine
                 Advance();
                 break;
             }
+            
             case OpCode.ADD:
-            {
-                var right = Stack.Pop();
-                var left = Stack.Pop();
-                var result = Convert.ToDouble(left.Value) + Convert.ToDouble(right.Value);
-
-                Stack.Push(new StackFrame(right.Node, result));
-                Advance();
-                break;
-            }
             case OpCode.SUB:
-            {
-                var right = Stack.Pop();
-                var left = Stack.Pop();
-                var result = Convert.ToDouble(left.Value) - Convert.ToDouble(right.Value);
-                
-                Stack.Push(new StackFrame(right.Node, result));
-                Advance();
-                break;
-            }
             case OpCode.MUL:
-            {
-                var right = Stack.Pop();
-                var left = Stack.Pop();
-                var result = Convert.ToDouble(left.Value) * Convert.ToDouble(right.Value);
-
-                Stack.Push(new StackFrame(right.Node, result));
-                Advance();
-                break;
-            }
             case OpCode.DIV:
-            {
-                var right = Stack.Pop();
-                var left = Stack.Pop();
-                var result = Convert.ToDouble(left.Value) / Convert.ToDouble(right.Value);
-
-                Stack.Push(new StackFrame(right.Node, result));
-                Advance();
-                break;
-            }
             case OpCode.IDIV:
-            {
-                var right = Stack.Pop();
-                var left = Stack.Pop();
-                var result = Convert.ToInt64(Math.Floor(Convert.ToDouble(left.Value) / Convert.ToDouble(right.Value)));
-
-                Stack.Push(new StackFrame(right.Node, result));
-                Advance();
-                break;
-            }
             case OpCode.MOD:
-            {
-                var right = Stack.Pop();
-                var left = Stack.Pop();
-                var result = Convert.ToDouble(left.Value) % Convert.ToDouble(right.Value);
-
-                Stack.Push(new StackFrame(right.Node, result));
-                Advance();
-                break;
-            }
             case OpCode.POW:
+            case OpCode.LT:
+            case OpCode.LTE:
             {
-                var right = Stack.Pop();
-                var left = Stack.Pop();
-                var result = Math.Pow(Convert.ToDouble(left.Value), Convert.ToDouble(right.Value));
+                var right = Convert.ToDouble(Stack.Pop().Value);
+                var left = Convert.ToDouble(Stack.Pop().Value);
+                var calculate = BinaryTypeOperations.Double.GetValueOrDefault(instruction.OpCode);
+                if (calculate == null)
+                    Diagnostics.RuntimeError(DiagnosticCode.HDEV,
+                        $"Unhandled binary double operation for op-code {instruction.OpCode}",
+                        instruction.Root?.GetFirstToken());
 
-                Stack.Push(new StackFrame(right.Node, result));
+                var result = calculate(left, right);
+                Stack.Push(new StackFrame(instruction.Root, result));
                 Advance();
                 break;
             }
             case OpCode.BAND:
-            {
-                var right = Stack.Pop();
-                var left = Stack.Pop();
-                var result = Convert.ToInt64(left.Value) & Convert.ToInt64(right.Value);
-
-                Stack.Push(new StackFrame(right.Node, result));
-                Advance();
-                break;
-            }
             case OpCode.BOR:
-            {
-                var right = Stack.Pop();
-                var left = Stack.Pop();
-                var result = Convert.ToInt64(left.Value) | Convert.ToInt64(right.Value);
-
-                Stack.Push(new StackFrame(right.Node, result));
-                Advance();
-                break;
-            }
             case OpCode.BXOR:
             {
-                var right = Stack.Pop();
-                var left = Stack.Pop();
-                var result = Convert.ToInt64(left.Value) ^ Convert.ToInt64(right.Value);
+                var right = Convert.ToInt64(Stack.Pop().Value);
+                var left = Convert.ToInt64(Stack.Pop().Value);
+                var calculate = BinaryTypeOperations.Long.GetValueOrDefault(instruction.OpCode);
+                if (calculate == null)
+                    Diagnostics.RuntimeError(DiagnosticCode.HDEV,
+                        $"Unhandled binary long operation for op-code {instruction.OpCode}",
+                        instruction.Root?.GetFirstToken());
 
-                Stack.Push(new StackFrame(right.Node, result));
+                var result = calculate(left, right);
+                Stack.Push(new StackFrame(instruction.Root, result));
                 Advance();
                 break;
             }
             case OpCode.BSHL:
-            {
-                var right = Stack.Pop();
-                var left = Stack.Pop();
-                var result = Convert.ToInt64(Convert.ToInt32(left.Value) << Convert.ToInt32(right.Value));
-
-                Stack.Push(new StackFrame(right.Node, result));
-                Advance();
-                break;
-            }
             case OpCode.BSHR:
             {
-                var right = Stack.Pop();
-                var left = Stack.Pop();
-                var result = Convert.ToInt64(Convert.ToInt32(left.Value) >> Convert.ToInt32(right.Value));
+                var right = Convert.ToInt32(Stack.Pop().Value);
+                var left = Convert.ToInt32(Stack.Pop().Value);
+                var calculate = BinaryTypeOperations.Int.GetValueOrDefault(instruction.OpCode);
+                if (calculate == null)
+                    Diagnostics.RuntimeError(DiagnosticCode.HDEV,
+                        $"Unhandled binary int operation for op-code {instruction.OpCode}",
+                        instruction.Root?.GetFirstToken());
 
-                Stack.Push(new StackFrame(right.Node, result));
+                var result = calculate(left, right);
+                Stack.Push(new StackFrame(instruction.Root, result));
                 Advance();
                 break;
             }
@@ -481,22 +392,18 @@ public sealed class VirtualMachine
             }
 
             case OpCode.AND:
-            {
-                var right = Stack.Pop();
-                var left = Stack.Pop();
-                var result = Convert.ToBoolean(left.Value) && Convert.ToBoolean(right.Value);
-
-                Stack.Push(new StackFrame(right.Node, result));
-                Advance();
-                break;
-            }
             case OpCode.OR:
             {
-                var right = Stack.Pop();
-                var left = Stack.Pop();
-                var result = Convert.ToBoolean(left.Value) || Convert.ToBoolean(right.Value);
+                var right = Convert.ToBoolean(Stack.Pop().Value);
+                var left = Convert.ToBoolean(Stack.Pop().Value);
+                var calculate = BinaryTypeOperations.Bool.GetValueOrDefault(instruction.OpCode);
+                if (calculate == null)
+                    Diagnostics.RuntimeError(DiagnosticCode.HDEV,
+                        $"Unhandled binary bool operation for op-code {instruction.OpCode}",
+                        instruction.Root?.GetFirstToken());
 
-                Stack.Push(new StackFrame(right.Node, result));
+                var result = calculate(left, right);
+                Stack.Push(new StackFrame(instruction.Root, result));
                 Advance();
                 break;
             }
@@ -507,26 +414,6 @@ public sealed class VirtualMachine
                 var equalityComparer = EqualityComparer<object>.Default;
 
                 Stack.Push(new StackFrame(right.Node, equalityComparer.Equals(left.Value, right.Value)));
-                Advance();
-                break;
-            }
-            case OpCode.LT:
-            {
-                var right = Stack.Pop();
-                var left = Stack.Pop();
-                var result = Convert.ToDouble(left.Value) < Convert.ToDouble(right.Value);
-
-                Stack.Push(new StackFrame(right.Node, result));
-                Advance();
-                break;
-            }
-            case OpCode.LTE:
-            {
-                var right = Stack.Pop();
-                var left = Stack.Pop();
-                var result = Convert.ToDouble(left.Value) <= Convert.ToDouble(right.Value);
-
-                Stack.Push(new StackFrame(right.Node, result));
                 Advance();
                 break;
             }
@@ -552,21 +439,14 @@ public sealed class VirtualMachine
 
             case OpCode.JMP:
             {
-                CheckNonIntegerOperand(instruction);
-                if (instruction.Operand is int offset)
-                    Advance(offset);
-
+                JumpUsingOffsetOperand(instruction);
                 break;
             }
             case OpCode.JNZ:
             {
                 var frame = Stack.Pop();
                 if (frame.Value is not 0 and not false)
-                {
-                    CheckNonIntegerOperand(instruction);
-                    if (instruction.Operand is int offset)
-                        Advance(offset);
-                }
+                    JumpUsingOffsetOperand(instruction);
                 else
                     Advance();
                 
@@ -576,11 +456,7 @@ public sealed class VirtualMachine
             {
                 var frame = Stack.Pop();
                 if (frame.Value is 0 or false)
-                {
-                    CheckNonIntegerOperand(instruction);
-                    if (instruction.Operand is int offset)
-                        Advance(offset);
-                }
+                    JumpUsingOffsetOperand(instruction);
                 else
                     Advance();
                 
@@ -589,17 +465,17 @@ public sealed class VirtualMachine
             
             default:
             {
-                Diagnostics.Error(DiagnosticCode.H001D,
+                Diagnostics.RuntimeError(DiagnosticCode.HDEV,
                     $"Unhandled opcode \"{instruction.OpCode}\"",
                     instruction.Root?.GetFirstToken());
                 
-                return new StackFrame(instruction.Root, new ExitMarker());
+                break;
             }
         }
 
         return null;
     }
-    
+
     /// <returns>Whether the current instruction at the given pointer is the last meaningful one before a RETURN instruction</returns>
     private static bool IsLastOperationBeforeReturn(IReadOnlyList<Instruction> instructions, int pointer) =>
         IsLastOperation(instructions, pointer, OpCode.RETURN);
@@ -610,12 +486,21 @@ public sealed class VirtualMachine
         var instruction = instructions.ElementAtOrDefault(pointer + 1);
         return instruction != null && instruction.OpCode == terminator;
     }
+    
+    /// <summary>Jumps ahead by the amount provided in the instruction's operand</summary>
+    /// <exception cref="DiagnosticCode.H001C">If the given instruction's operand is not an <see cref="int"/></exception>
+    private void JumpUsingOffsetOperand(Instruction instruction)
+    {
+        CheckNonIntegerOperand(instruction);
+        if (instruction.Operand is int offset)
+            Advance(offset);
+    }
 
     /// <exception cref="DiagnosticCode.H001C">If the given instruction's operand is not an <see cref="int"/></exception>
     private void CheckNonIntegerOperand(Instruction instruction)
     {
         if (instruction.Operand is int) return;
-        Diagnostics.Error(DiagnosticCode.H001C,
+        Diagnostics.RuntimeError(DiagnosticCode.H001C,
             $"Invalid bytecode! {instruction.OpCode} opcode was used with non-integer operand. Got: {instruction.Operand?.GetType().ToString() ?? "null"}",
             instruction.Root?.GetFirstToken());
     }
