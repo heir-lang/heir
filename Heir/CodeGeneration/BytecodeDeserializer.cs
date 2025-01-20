@@ -48,7 +48,6 @@ public static class BytecodeDeserializer
             case OperandType.StringList:
             {
                 var length = reader.ReadInt32();
-                
                 var list = new List<string>();
                 for (var i = 0; i < length; i++)
                     list.Add((string)DeserializeOperand(reader)!);
