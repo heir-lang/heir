@@ -36,12 +36,12 @@ public sealed class DiagnosticBag(SourceFile sourceFile) : HashSet<Diagnostic>
     public void Error(DiagnosticCode code, string message, Token startToken, Token endToken) =>
         Error(code, message, startToken.StartLocation, endToken.EndLocation);
 
-    public void Error(DiagnosticCode code, string message, Token token) =>
-        Error(code, message, token.StartLocation, token.EndLocation);
-
-    public void Error(DiagnosticCode code, string message, Location startLocation, Location? endLocation = null)
+    public void Error(DiagnosticCode code, string message, Token? token) =>
+        Error(code, message, token?.StartLocation, token?.EndLocation);
+    
+    public void Error(DiagnosticCode code, string message, Location? startLocation, Location? endLocation)
     {
-        var diagnostic = new Diagnostic(sourceFile, code, message, startLocation, endLocation ?? startLocation, DiagnosticLevel.Error);
+        var diagnostic = new Diagnostic(sourceFile, code, message, startLocation ?? Location.Empty, endLocation ?? startLocation ?? Location.Empty, DiagnosticLevel.Error);
         Add(diagnostic);
     }
     

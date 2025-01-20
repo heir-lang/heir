@@ -1,9 +1,7 @@
-fn balls(n: int): int {
+fn fib(n: int): int {
     if n <= 1 return n;
-    return balls(n - 10);
+    return fib(n - 1)
 }
-
-let t1 = now();
-let r = balls(199990);
-let elapsed = now() - t1;
-print(r);
+    
+let r = fib(20);
+print(r); 

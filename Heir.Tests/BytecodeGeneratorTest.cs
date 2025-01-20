@@ -11,7 +11,7 @@ public class BytecodeGeneratorTest
     public void Generates_Exit()
     {
         var bytecode = GenerateBytecode("69");
-        var instruction = bytecode.Instructions.Last();
+        var instruction = bytecode[^1];
         Assert.Equal(OpCode.EXIT, instruction.OpCode);
         Assert.Null(instruction.Operand);
     }

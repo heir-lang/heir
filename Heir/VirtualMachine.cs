@@ -12,9 +12,9 @@ namespace Heir;
 
 internal sealed class ExitMarker;
 
-public sealed class StackFrame(SyntaxNode node, object? value)
+public sealed class StackFrame(SyntaxNode? node, object? value)
 {
-    public SyntaxNode Node { get; } = node;
+    public SyntaxNode? Node { get; } = node;
     public object? Value { get; } = value;
 }
 
@@ -23,6 +23,11 @@ internal sealed class CallStackFrame(Bytecode bytecode, Scope closure, int enclo
     public Bytecode Bytecode { get; } = bytecode;
     public Scope Closure { get; } = closure;
     public int EnclosingPointer { get; } = enclosingPointer;
+
+    public bool Equals(CallStackFrame other) =>
+        EnclosingPointer == other.EnclosingPointer &&
+        Bytecode.Equals(other.Bytecode) &&
+        Closure.Equals(other.Closure);
 }
 
 public sealed class VirtualMachine
@@ -40,9 +45,9 @@ public sealed class VirtualMachine
     private Scope _enclosingScope;
     private int _pointer;
 
-    public VirtualMachine(Bytecode bytecode, Scope? scope = null, int recursionDepth = 0)
+    public VirtualMachine(Bytecode bytecode, DiagnosticBag diagnostics, Scope? scope = null, int recursionDepth = 0)
     {
-        Diagnostics = bytecode.Diagnostics;
+        Diagnostics = diagnostics;
         GlobalScope = new Scope();
         Scope = scope ?? GlobalScope;
         _enclosingScope = Scope;
@@ -100,7 +105,7 @@ public sealed class VirtualMachine
                 {
                     Diagnostics.Error(DiagnosticCode.HDEV,
                         "Failed to execute PROC op-code: Provided node is not a FunctionDeclaration",
-                        instruction.Root.GetFirstToken());
+                        instruction.Root?.GetFirstToken());
                     
                     Advance();
                     break;
@@ -127,14 +132,14 @@ public sealed class VirtualMachine
                 {
                     Diagnostics.Error(DiagnosticCode.HDEV,
                         $"Failed to execute CALL op-code: Provided operand is not an tuple containing parameter names & the amount of argument instructions.\nGot: {Markup.Escape(instruction.Operand?.GetType().ToString() ?? "null")}",
-                        instruction.Root.GetFirstToken());
+                        instruction.Root?.GetFirstToken());
                     
                     break;
                 }
 
                 var (argumentInstructionsCount, parameterNames) = data;
                 var argumentsBytecode = _bytecode.Skip(_pointer + 1).Take(argumentInstructionsCount);
-                var argumentVM = new VirtualMachine(argumentsBytecode, Scope, _recursionDepth);
+                var argumentVM = new VirtualMachine(argumentsBytecode, Diagnostics, Scope, _recursionDepth);
                 argumentVM.Evaluate();
 
                 var parameterIndex = 0;
@@ -157,7 +162,7 @@ public sealed class VirtualMachine
                 if (calleeFrame.Value is not FunctionValue and not IntrinsicFunction)
                     Diagnostics.Error(DiagnosticCode.HDEV,
                         $"Failed to execute CALL op-code: Loaded callee is not a function, got {Markup.Escape(calleeFrame.Value?.GetType().ToString() ?? "null")}.\nCallee frame node: {calleeFrame.Node}",
-                        calleeFrame.Node.GetFirstToken());
+                        instruction.Root?.GetFirstToken());
                 
                 if (calleeFrame.Value is FunctionValue function)
                 {
@@ -168,15 +173,19 @@ public sealed class VirtualMachine
                         ..argumentDefinitionBytecode,
                         ..function.BodyBytecode.Skip(1)
                     ];
-
-                    var isTailCall = _callStack.TryPeek(out var currentState) &&
-                                  currentState.EnclosingPointer == _pointer + 1;
                     
+                    var isTailCall = _callStack.TryPeek(out var currentState) &&
+                                     currentState.EnclosingPointer == _pointer + 1 &&
+                                     currentState.Bytecode.Contains(function.BodyBytecode.Skip(1).ToList()) &&
+                                     currentState.Closure.Equals(Scope) &&
+                                     IsLastOperationBeforeReturn(currentState.Bytecode.Instructions, currentState.EnclosingPointer - 1);
+                    
+                    Console.WriteLine("is tail: " + isTailCall);
                     if (!isTailCall)
                         _callStack.Push(new(_bytecode, Scope, _pointer + 1));
 
                     BeginRecursion(function.Declaration.Name.Token);
-                    _bytecode = new Bytecode(bodyBytecode, Diagnostics);
+                    _bytecode = new Bytecode(bodyBytecode);
                     _pointer = 0;
                     Scope = function.Closure;
                 }
@@ -217,7 +226,7 @@ public sealed class VirtualMachine
                 {
                     Diagnostics.Error(DiagnosticCode.HDEV,
                         "Failed to execute INDEX op-code: Loaded object is not an object dictionary",
-                        objectFrame.Node.GetFirstToken());
+                        instruction.Root?.GetFirstToken());
                     
                     break;
                 }
@@ -225,7 +234,7 @@ public sealed class VirtualMachine
                 {
                     Diagnostics.Error(DiagnosticCode.HDEV,
                         "Failed to execute INDEX op-code: Loaded index is null",
-                        objectFrame.Node.GetFirstToken());
+                        instruction.Root?.GetFirstToken());
                     
                     break;
                 }
@@ -251,8 +260,8 @@ public sealed class VirtualMachine
                         .ToList()
                         .ConvertAll(pair =>
                         {
-                            var keyVM = new VirtualMachine(new Bytecode(pair.Key, Diagnostics), Scope);
-                            var valueVM = new VirtualMachine(new Bytecode(pair.Value, Diagnostics), Scope);
+                            var keyVM = new VirtualMachine(new Bytecode(pair.Key), Diagnostics, Scope);
+                            var valueVM = new VirtualMachine(new Bytecode(pair.Value), Diagnostics, Scope);
                             var key = keyVM.Evaluate()!;
                             var value = valueVM.Evaluate();
                             return new KeyValuePair<object, object?>(key, value);
@@ -294,7 +303,7 @@ public sealed class VirtualMachine
                 {
                     Diagnostics.Error(DiagnosticCode.HDEV,
                         $"Failed to execute LOAD op-code: No variable name was located in the stack, got {nameFrame.Value ?? "none"}",
-                        nameFrame.Node.GetFirstToken());
+                        nameFrame.Node?.GetFirstToken());
                     
                     Advance();
                     break;
@@ -313,7 +322,7 @@ public sealed class VirtualMachine
                 {
                     Diagnostics.Error(DiagnosticCode.HDEV,
                         $"Failed to execute STORE op-code: No variable name was located in the stack, got {nameFrame.Value ?? "none"}",
-                        initializer.Node.GetFirstToken());
+                        initializer.Node?.GetFirstToken());
                     
                     Advance();
                     break;
@@ -543,10 +552,9 @@ public sealed class VirtualMachine
 
             case OpCode.JMP:
             {
+                CheckNonIntegerOperand(instruction);
                 if (instruction.Operand is int offset)
                     Advance(offset);
-                else
-                    NonIntegerOperand(instruction);
 
                 break;
             }
@@ -555,10 +563,9 @@ public sealed class VirtualMachine
                 var frame = Stack.Pop();
                 if (frame.Value is not 0 and not false)
                 {
+                    CheckNonIntegerOperand(instruction);
                     if (instruction.Operand is int offset)
                         Advance(offset);
-                    else
-                        NonIntegerOperand(instruction);
                 }
                 else
                     Advance();
@@ -570,10 +577,9 @@ public sealed class VirtualMachine
                 var frame = Stack.Pop();
                 if (frame.Value is 0 or false)
                 {
+                    CheckNonIntegerOperand(instruction);
                     if (instruction.Operand is int offset)
                         Advance(offset);
-                    else
-                        NonIntegerOperand(instruction);
                 }
                 else
                     Advance();
@@ -585,7 +591,7 @@ public sealed class VirtualMachine
             {
                 Diagnostics.Error(DiagnosticCode.H001D,
                     $"Unhandled opcode \"{instruction.OpCode}\"",
-                    instruction.Root.GetFirstToken());
+                    instruction.Root?.GetFirstToken());
                 
                 return new StackFrame(instruction.Root, new ExitMarker());
             }
@@ -593,17 +599,34 @@ public sealed class VirtualMachine
 
         return null;
     }
+    
+    /// <returns>Whether the current instruction at the given pointer is the last meaningful one before a RETURN instruction</returns>
+    private static bool IsLastOperationBeforeReturn(IReadOnlyList<Instruction> instructions, int pointer) =>
+        IsLastOperation(instructions, pointer, OpCode.RETURN);
+    
+    /// <returns>Whether the current instruction at the given pointer is the last meaningful one before the given terminator</returns>
+    private static bool IsLastOperation(IReadOnlyList<Instruction> instructions, int pointer, OpCode terminator = OpCode.EXIT)
+    {
+        var instruction = instructions.ElementAtOrDefault(pointer + 1);
+        return instruction != null && instruction.OpCode == terminator;
+    }
 
-    private void NonIntegerOperand(Instruction instruction) =>
+    /// <exception cref="DiagnosticCode.H001C">If the given instruction's operand is not an <see cref="int"/></exception>
+    private void CheckNonIntegerOperand(Instruction instruction)
+    {
+        if (instruction.Operand is int) return;
         Diagnostics.Error(DiagnosticCode.H001C,
-            $"Invalid bytecode! {instruction.OpCode} opcode was used with non-integer operand.",
-            instruction.Root.GetFirstToken());
+            $"Invalid bytecode! {instruction.OpCode} opcode was used with non-integer operand. Got: {instruction.Operand?.GetType().ToString() ?? "null"}",
+            instruction.Root?.GetFirstToken());
+    }
 
     private StackFrame CreateStackFrameFromInstruction(int offset = 0)
     {
         var instruction = _bytecode[_pointer + offset];
         return new StackFrame(instruction.Root, instruction.Operand);
     }
+
+    private void Advance(int amount = 1) => _pointer += amount;
     
     private void StackDump()
     {
@@ -613,6 +636,4 @@ public sealed class VirtualMachine
             Console.WriteLine(frame.Value ?? "null");
         }
     }
-
-    private void Advance(int amount = 1) => _pointer += amount;
 }

@@ -34,7 +34,9 @@ public sealed class Scope(Scope? enclosing = null)
         _defined[name] = value != null;
     }
 
-    public bool IsDeclared(string name) => _defined.TryGetValue(name, out _) || (Enclosing?.IsDeclared(name) ?? false);
+    public bool IsDeclared(string name) =>
+        _defined.TryGetValue(name, out _) || (Enclosing?.IsDeclared(name) ?? false);
+    
     public bool IsDefined(string name)
     {
         if (_defined.TryGetValue(name, out var isDefined))
@@ -43,7 +45,6 @@ public sealed class Scope(Scope? enclosing = null)
         return Enclosing?.IsDefined(name) ?? false;
     }
 
-    public T? Lookup<T>(string name) => (T?)Lookup(name);
     public object? Lookup(string name)
     {
         var foundValue = _values.TryGetValue(name, out var value);
@@ -52,7 +53,6 @@ public sealed class Scope(Scope? enclosing = null)
             : Enclosing?.Lookup(name) ?? value;
     }
 
-    public T? LookupAt<T>(string name, uint distance) => (T?)LookupAt(name, distance);
     public object? LookupAt(string name, uint distance)
     {
         var values = Ancestor(distance)?._values;
@@ -72,5 +72,16 @@ public sealed class Scope(Scope? enclosing = null)
         }
 
         return env;
+    }
+
+    public bool Equals(Scope other, bool requiresEqualValues = false)
+    {
+        var enclosingScopeMatches = Enclosing == null || other.Enclosing == null // if either are null
+            ? Enclosing == null && other.Enclosing == null // make sure both are null
+            : Enclosing.Equals(other.Enclosing); // otherwise just check for equality on the enclosing scope
+
+        return Utility.DictionariesAreEqual(_defined, other._defined) &&
+               !requiresEqualValues || Utility.DictionariesAreEqual(_values, other._values) &&
+               enclosingScopeMatches;
     }
 }
