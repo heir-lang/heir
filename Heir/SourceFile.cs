@@ -34,7 +34,7 @@ namespace Heir
         public (object?, VirtualMachine) Evaluate()
         {
             var bytecode = GenerateBytecode();
-            var vm = new VirtualMachine(bytecode);
+            var vm = new VirtualMachine(bytecode, Diagnostics);
             if (Diagnostics.Count > 0)
             {
                 WriteDiagnostics();

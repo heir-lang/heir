@@ -40,9 +40,9 @@ public sealed class VirtualMachine
     private Scope _enclosingScope;
     private int _pointer;
 
-    public VirtualMachine(Bytecode bytecode, Scope? scope = null, int recursionDepth = 0)
+    public VirtualMachine(Bytecode bytecode, DiagnosticBag diagnostics, Scope? scope = null, int recursionDepth = 0)
     {
-        Diagnostics = bytecode.Diagnostics;
+        Diagnostics = diagnostics;
         GlobalScope = new Scope();
         Scope = scope ?? GlobalScope;
         _enclosingScope = Scope;
@@ -134,7 +134,7 @@ public sealed class VirtualMachine
 
                 var (argumentInstructionsCount, parameterNames) = data;
                 var argumentsBytecode = _bytecode.Skip(_pointer + 1).Take(argumentInstructionsCount);
-                var argumentVM = new VirtualMachine(argumentsBytecode, Scope, _recursionDepth);
+                var argumentVM = new VirtualMachine(argumentsBytecode, Diagnostics, Scope, _recursionDepth);
                 argumentVM.Evaluate();
 
                 var parameterIndex = 0;
@@ -176,7 +176,7 @@ public sealed class VirtualMachine
                         _callStack.Push(new(_bytecode, Scope, _pointer + 1));
 
                     BeginRecursion(function.Declaration.Name.Token);
-                    _bytecode = new Bytecode(bodyBytecode, Diagnostics);
+                    _bytecode = new Bytecode(bodyBytecode);
                     _pointer = 0;
                     Scope = function.Closure;
                 }
@@ -251,8 +251,8 @@ public sealed class VirtualMachine
                         .ToList()
                         .ConvertAll(pair =>
                         {
-                            var keyVM = new VirtualMachine(new Bytecode(pair.Key, Diagnostics), Scope);
-                            var valueVM = new VirtualMachine(new Bytecode(pair.Value, Diagnostics), Scope);
+                            var keyVM = new VirtualMachine(new Bytecode(pair.Key), Diagnostics, Scope);
+                            var valueVM = new VirtualMachine(new Bytecode(pair.Value), Diagnostics, Scope);
                             var key = keyVM.Evaluate()!;
                             var value = valueVM.Evaluate();
                             return new KeyValuePair<object, object?>(key, value);

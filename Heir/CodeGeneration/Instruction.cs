@@ -12,7 +12,7 @@ public class Instruction(SyntaxNode node, OpCode opCode, object? operand = null)
     {
         if (Operand is List<Instruction> rawBytecode)
         {
-            var bytecode = new Bytecode(rawBytecode, new DiagnosticBag(new SourceFile("", null, false)));
+            var bytecode = new Bytecode(rawBytecode);
             return $"{OpCode} (bytecode) - {Root.GetFirstToken().StartLocation}\n"
                 + string.Join('\n', bytecode.ToString().Split('\n').Select(line => "  " + line));
         }

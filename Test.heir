@@ -3,7 +3,5 @@ fn balls(n: int): int {
     return balls(n - 10);
 }
 
-let t1 = now();
 let r = balls(199990);
-let elapsed = now() - t1;
 print(r);
