@@ -33,7 +33,7 @@ public sealed class VirtualMachine
     public Stack<StackFrame> Stack { get; } = [];
     private int _recursionDepth;
     
-    private const int _maxRecursionDepth = 2000;
+    private const int _maxRecursionDepth = 20000;
     private readonly Stack<CallStackFrame> _callStack = [];
 
     private Bytecode _bytecode;
@@ -168,8 +168,13 @@ public sealed class VirtualMachine
                         ..argumentDefinitionBytecode,
                         ..function.BodyBytecode.Skip(1)
                     ];
+
+                    var isTailCall = _callStack.TryPeek(out var currentState) &&
+                                  currentState.EnclosingPointer == _pointer + 1;
                     
-                    _callStack.Push(new(_bytecode, Scope, _pointer + 1));
+                    if (!isTailCall)
+                        _callStack.Push(new(_bytecode, Scope, _pointer + 1));
+
                     BeginRecursion(function.Declaration.Name.Token);
                     _bytecode = new Bytecode(bodyBytecode, Diagnostics);
                     _pointer = 0;
