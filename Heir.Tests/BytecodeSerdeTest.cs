@@ -5,7 +5,17 @@ namespace Heir.Tests;
 public class BytecodeSerdeTest
 {
     [Fact]
-    public void Serde_Proc()
+    public void Serde_CALL()
+    {
+        var bytecode = new Bytecode([
+            new(null, OpCode.CALL, (2, new List<string>(["a", "b"])))
+        ]);
+
+        TestSerde(bytecode);
+    }
+
+    [Fact]
+    public void Serde_PROC()
     {
         var bytecode = new Bytecode([
             new(null, OpCode.PROC, new List<Instruction>([
@@ -14,12 +24,7 @@ public class BytecodeSerdeTest
             ]))
         ]);
 
-        using var stream = new MemoryStream();
-        BytecodeSerializer.Serialize(bytecode, stream, true);
-        stream.Position = 0;
-            
-        var deserializedBytecode = BytecodeDeserializer.Deserialize(stream);
-        AssertBytecodeEqual(bytecode, deserializedBytecode);
+        TestSerde(bytecode);
     }
 
     [Fact]
@@ -33,6 +38,11 @@ public class BytecodeSerdeTest
             new(null, OpCode.PUSH, "abc")
         ]);
 
+        TestSerde(bytecode);
+    }
+    
+    private static void TestSerde(Bytecode bytecode)
+    {
         using var stream = new MemoryStream();
         BytecodeSerializer.Serialize(bytecode, stream, true);
         stream.Position = 0;
@@ -49,8 +59,23 @@ public class BytecodeSerdeTest
             var deserializedInstruction = deserializedBytecode.Instructions.ElementAtOrDefault(i);
             Assert.NotNull(deserializedInstruction);
             Assert.Equal(instruction.OpCode, deserializedInstruction.OpCode);
-            if (instruction.Operand is List<Instruction> instructions && deserializedInstruction.Operand is List<Instruction> deserializedInstructions)
+            if (instruction.Operand is List<Instruction> instructions &&
+                deserializedInstruction.Operand is List<Instruction> deserializedInstructions)
+            {
                 AssertBytecodeEqual(new(instructions), new(deserializedInstructions));
+            }
+            else if (instruction.Operand is ValueTuple<int, List<string>> data &&
+                     deserializedInstruction.Operand is ValueTuple<int, List<string>> deserializedData)
+            {
+                Assert.Equal(data.Item1, deserializedData.Item1);
+
+                var index = 0;
+                var elementInspectors = data.Item2.ConvertAll<Action<string>>(_ =>
+                    item => Assert.Equal(deserializedData.Item2[index++], item))
+                    .ToArray();
+                
+                Assert.Collection(data.Item2, elementInspectors);
+            }
             else
                 Assert.Equal(instruction.Operand, deserializedInstruction.Operand);
         }
