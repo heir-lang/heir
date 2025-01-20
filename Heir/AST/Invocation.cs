@@ -7,6 +7,7 @@ public class Invocation(Expression callee, List<Expression> arguments) : Express
 {
     public Expression Callee { get; } = callee;
     public List<Expression> Arguments { get; } = arguments;
+    public bool IsTailCall { get; set; } = false;
 
     public override R Accept<R>(Visitor<R> visitor) => visitor.VisitInvocationExpression(this);
     public override List<Token> GetTokens() => [..Callee.GetTokens(), ..Arguments.SelectMany(argument => argument.GetTokens())];

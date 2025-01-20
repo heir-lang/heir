@@ -512,6 +512,7 @@ public sealed class Parser(TokenStream tokenStream)
     
     private Expression ParsePostfix()
     {
+        var isReturning = Tokens.Previous?.IsKind(SyntaxKind.ReturnKeyword) ?? false;
         var expression = ParsePrimary();
 
         while (true)

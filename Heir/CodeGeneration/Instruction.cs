@@ -1,19 +1,24 @@
-﻿using Heir.AST;
-using Heir.AST.Abstract;
+﻿using Heir.AST.Abstract;
 
-namespace Heir.CodeGeneration
+namespace Heir.CodeGeneration;
+
+public class Instruction(SyntaxNode node, OpCode opCode, object? operand = null)
 {
-    public class Instruction(SyntaxNode node, OpCode opCode, object? operand = null)
-        : Instruction<object>(node, opCode, operand)
-    { 
-    }
+    public SyntaxNode Root { get; } = node;
+    public OpCode OpCode { get; } = opCode;
+    public object? Operand { get; } = operand;
 
-    public class Instruction<T>(SyntaxNode node, OpCode opCode, T? operand = default)
+    public override string ToString()
     {
-        public SyntaxNode Root { get; } = node;
-        public OpCode OpCode { get; } = opCode;
-        public T? Operand { get; } = operand;
-
-        public override string ToString() => Operand != null ? $"{OpCode} {Operand} - {Root.GetFirstToken().StartLocation.ToString()}" : OpCode.ToString();
+        if (Operand is List<Instruction> rawBytecode)
+        {
+            var bytecode = new Bytecode(rawBytecode, new DiagnosticBag(new SourceFile("", null, false)));
+            return $"{OpCode} (bytecode) - {Root.GetFirstToken().StartLocation}\n"
+                + string.Join('\n', bytecode.ToString().Split('\n').Select(line => "  " + line));
+        }
+        
+        return Operand != null
+            ? $"{OpCode} {Operand} - {Root.GetFirstToken().StartLocation}"
+            : OpCode.ToString();
     }
 }
