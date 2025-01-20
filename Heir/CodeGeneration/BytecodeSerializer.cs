@@ -6,9 +6,9 @@ namespace Heir.CodeGeneration;
 
 public static class BytecodeSerializer
 {
-    public static void Serialize(Bytecode bytecode, Stream stream)
+    public static void Serialize(Bytecode bytecode, Stream stream, bool leaveOpen = false)
     {
-        using var writer = new BinaryWriter(stream);
+        using var writer = new BinaryWriter(stream, Encoding.Default, leaveOpen);
         writer.Write(bytecode.Version);
         SerializeBytecodeOperand(bytecode.Instructions, writer);
     }
