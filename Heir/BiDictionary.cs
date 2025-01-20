@@ -8,7 +8,6 @@
         public readonly Dictionary<TValue, TKey> Reverse = new();
         public int Count => Forward.Count;
 
-
         public BiDictionary(IDictionary<TKey, TValue> initialItems)
         {
             foreach (var pair in initialItems)
@@ -17,16 +16,12 @@
 
         public TValue? TryGetValue(TKey key)
         {
-            TValue? value;
-            Forward.TryGetValue(key, out value);
-
+            Forward.TryGetValue(key, out var value);
             return value;
         }
         public TKey? TryGetKey(TValue value)
         {
-            TKey? key;
-            Reverse.TryGetValue(value, out key);
-
+            Reverse.TryGetValue(value, out var key);
             return key;
         }
         public TValue GetValue(TKey key) => Forward[key];
