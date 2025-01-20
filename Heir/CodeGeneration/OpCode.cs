@@ -85,7 +85,7 @@ public enum OpCode : byte
     /// </example>
     CALL,
 
-    /// <summary>Indexes the second to last frame in the stack using the last frame in the stack (assuming it's a <see cref="Dictionary"/> of objects)</summary>
+    /// <summary>Indexes the second to last frame in the stack using the last frame in the stack (assuming it's an <see cref="Runtime.Values.ObjectValue"/>)</summary>
     INDEX,
     /// <summary>Concatenates the last two frames in the stack together (assuming they're <see cref="string"/>s)</summary>
     CONCAT,

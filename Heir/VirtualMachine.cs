@@ -193,7 +193,7 @@ public sealed class VirtualMachine
                         "Failed to execute INDEX op-code: Loaded index is null",
                         instruction.Root?.GetFirstToken());
                 
-                if (objectFrame.Value is not Dictionary<object, object?> objectDictionary)
+                if (objectFrame.Value is not ObjectValue objectValue)
                 {
                     Diagnostics.RuntimeError(DiagnosticCode.HDEV,
                         "Failed to execute INDEX op-code: Loaded object is not an object dictionary",
@@ -202,7 +202,7 @@ public sealed class VirtualMachine
                     break;
                 }
                 
-                var value = objectDictionary[indexFrame.Value];
+                var value = objectValue[indexFrame.Value];
                 Stack.Push(new(objectFrame.Node, value));
                 Advance();
                 break;
