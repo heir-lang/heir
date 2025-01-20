@@ -2,7 +2,7 @@ namespace Heir.CodeGeneration;
 
 public class Bytecode(IEnumerable<Instruction> instructions)
 {
-    public int Version { get; } = 1;
+    public byte Version { get; init; } = 1;
     public IReadOnlyList<Instruction> Instructions { get; } = instructions.ToList().AsReadOnly();
     public int Count => Instructions.Count;
 

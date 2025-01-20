@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using CommandLine;
+using Heir.CodeGeneration;
 using Spectre.Console;
 
 namespace Heir.CLI;
@@ -68,7 +69,17 @@ public static class Program
     private static object? ExecuteFile(SourceFile file, Options options)
     {
         ShowInfo(options, file);
-        file.GenerateBytecode(); // generate bytecode before timing
+        var bytecode = file.GenerateBytecode(); // generate bytecode before timing
+        {
+            using var fileStream = File.Create("bytecode.bin");
+            BytecodeSerializer.Serialize(bytecode, fileStream);
+        }
+
+        {
+            using var fileStream = File.OpenRead("bytecode.bin");
+            var deserializedBytecode = BytecodeDeserializer.Deserialize(fileStream);
+            Console.WriteLine(deserializedBytecode.ToString());
+        }
         
         var stopwatch = Stopwatch.StartNew();
         var (result, _) = file.Evaluate();

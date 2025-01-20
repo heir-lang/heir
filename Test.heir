@@ -1,7 +1,2 @@
-fn balls(n: int): int {
-    if n <= 1 return n;
-    return balls(n - 10);
-}
-
-let r = balls(199990);
-print(r);
+fn abc(x: int) -> x * 2;
+abc(69);

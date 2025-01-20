@@ -12,9 +12,9 @@ namespace Heir;
 
 internal sealed class ExitMarker;
 
-public sealed class StackFrame(SyntaxNode node, object? value)
+public sealed class StackFrame(SyntaxNode? node, object? value)
 {
-    public SyntaxNode Node { get; } = node;
+    public SyntaxNode? Node { get; } = node;
     public object? Value { get; } = value;
 }
 
@@ -100,7 +100,7 @@ public sealed class VirtualMachine
                 {
                     Diagnostics.Error(DiagnosticCode.HDEV,
                         "Failed to execute PROC op-code: Provided node is not a FunctionDeclaration",
-                        instruction.Root.GetFirstToken());
+                        instruction.Root?.GetFirstToken());
                     
                     Advance();
                     break;
@@ -127,7 +127,7 @@ public sealed class VirtualMachine
                 {
                     Diagnostics.Error(DiagnosticCode.HDEV,
                         $"Failed to execute CALL op-code: Provided operand is not an tuple containing parameter names & the amount of argument instructions.\nGot: {Markup.Escape(instruction.Operand?.GetType().ToString() ?? "null")}",
-                        instruction.Root.GetFirstToken());
+                        instruction.Root?.GetFirstToken());
                     
                     break;
                 }
@@ -157,7 +157,7 @@ public sealed class VirtualMachine
                 if (calleeFrame.Value is not FunctionValue and not IntrinsicFunction)
                     Diagnostics.Error(DiagnosticCode.HDEV,
                         $"Failed to execute CALL op-code: Loaded callee is not a function, got {Markup.Escape(calleeFrame.Value?.GetType().ToString() ?? "null")}.\nCallee frame node: {calleeFrame.Node}",
-                        calleeFrame.Node.GetFirstToken());
+                        instruction.Root?.GetFirstToken());
                 
                 if (calleeFrame.Value is FunctionValue function)
                 {
@@ -217,7 +217,7 @@ public sealed class VirtualMachine
                 {
                     Diagnostics.Error(DiagnosticCode.HDEV,
                         "Failed to execute INDEX op-code: Loaded object is not an object dictionary",
-                        objectFrame.Node.GetFirstToken());
+                        instruction.Root?.GetFirstToken());
                     
                     break;
                 }
@@ -225,7 +225,7 @@ public sealed class VirtualMachine
                 {
                     Diagnostics.Error(DiagnosticCode.HDEV,
                         "Failed to execute INDEX op-code: Loaded index is null",
-                        objectFrame.Node.GetFirstToken());
+                        instruction.Root?.GetFirstToken());
                     
                     break;
                 }
@@ -294,7 +294,7 @@ public sealed class VirtualMachine
                 {
                     Diagnostics.Error(DiagnosticCode.HDEV,
                         $"Failed to execute LOAD op-code: No variable name was located in the stack, got {nameFrame.Value ?? "none"}",
-                        nameFrame.Node.GetFirstToken());
+                        nameFrame.Node?.GetFirstToken());
                     
                     Advance();
                     break;
@@ -313,7 +313,7 @@ public sealed class VirtualMachine
                 {
                     Diagnostics.Error(DiagnosticCode.HDEV,
                         $"Failed to execute STORE op-code: No variable name was located in the stack, got {nameFrame.Value ?? "none"}",
-                        initializer.Node.GetFirstToken());
+                        initializer.Node?.GetFirstToken());
                     
                     Advance();
                     break;
@@ -585,7 +585,7 @@ public sealed class VirtualMachine
             {
                 Diagnostics.Error(DiagnosticCode.H001D,
                     $"Unhandled opcode \"{instruction.OpCode}\"",
-                    instruction.Root.GetFirstToken());
+                    instruction.Root?.GetFirstToken());
                 
                 return new StackFrame(instruction.Root, new ExitMarker());
             }
@@ -597,7 +597,7 @@ public sealed class VirtualMachine
     private void NonIntegerOperand(Instruction instruction) =>
         Diagnostics.Error(DiagnosticCode.H001C,
             $"Invalid bytecode! {instruction.OpCode} opcode was used with non-integer operand.",
-            instruction.Root.GetFirstToken());
+            instruction.Root?.GetFirstToken());
 
     private StackFrame CreateStackFrameFromInstruction(int offset = 0)
     {
