@@ -1,0 +1,902 @@
+### YamlMime:ManagedReference
+items:
+- uid: Heir.Syntax.TokenFactory
+  commentId: T:Heir.Syntax.TokenFactory
+  id: TokenFactory
+  parent: Heir.Syntax
+  children:
+  - Heir.Syntax.TokenFactory.BoolLiteral(System.String,Heir.Syntax.Location,Heir.Syntax.Location)
+  - Heir.Syntax.TokenFactory.CharLiteral(System.String,Heir.Syntax.Location,Heir.Syntax.Location)
+  - Heir.Syntax.TokenFactory.FloatLiteral(System.String,Heir.Syntax.Location,Heir.Syntax.Location)
+  - Heir.Syntax.TokenFactory.Identifier(System.String,Heir.Syntax.Location,Heir.Syntax.Location)
+  - Heir.Syntax.TokenFactory.IntLiteral(System.String,Heir.Syntax.Location,Heir.Syntax.Location,System.Int32)
+  - Heir.Syntax.TokenFactory.Keyword(Heir.Syntax.SyntaxKind)
+  - Heir.Syntax.TokenFactory.Keyword(Heir.Syntax.SyntaxKind,Heir.Syntax.Location,Heir.Syntax.Location)
+  - Heir.Syntax.TokenFactory.NoneLiteral
+  - Heir.Syntax.TokenFactory.NoneLiteral(Heir.Syntax.Location,Heir.Syntax.Location)
+  - Heir.Syntax.TokenFactory.Operator(Heir.Syntax.SyntaxKind,System.String,Heir.Syntax.Location,Heir.Syntax.Location)
+  - Heir.Syntax.TokenFactory.StringFromIdentifier(Heir.Syntax.Token)
+  - Heir.Syntax.TokenFactory.StringLiteral(System.String,Heir.Syntax.Location,Heir.Syntax.Location)
+  - Heir.Syntax.TokenFactory.Trivia(Heir.Syntax.TriviaKind,System.String,Heir.Syntax.Location,Heir.Syntax.Location)
+  langs:
+  - csharp
+  - vb
+  name: TokenFactory
+  nameWithType: TokenFactory
+  fullName: Heir.Syntax.TokenFactory
+  type: Class
+  source:
+    remote:
+      path: Heir/Syntax/TokenFactory.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: TokenFactory
+    path: Heir/Syntax/TokenFactory.cs
+    startLine: 2
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: public static class TokenFactory
+    content.vb: Public Module TokenFactory
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Heir.Syntax.TokenFactory.Keyword(Heir.Syntax.SyntaxKind)
+  commentId: M:Heir.Syntax.TokenFactory.Keyword(Heir.Syntax.SyntaxKind)
+  id: Keyword(Heir.Syntax.SyntaxKind)
+  parent: Heir.Syntax.TokenFactory
+  langs:
+  - csharp
+  - vb
+  name: Keyword(SyntaxKind)
+  nameWithType: TokenFactory.Keyword(SyntaxKind)
+  fullName: Heir.Syntax.TokenFactory.Keyword(Heir.Syntax.SyntaxKind)
+  type: Method
+  source:
+    remote:
+      path: Heir/Syntax/TokenFactory.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Keyword
+    path: Heir/Syntax/TokenFactory.cs
+    startLine: 4
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: public static Token Keyword(SyntaxKind kind)
+    parameters:
+    - id: kind
+      type: Heir.Syntax.SyntaxKind
+    return:
+      type: Heir.Syntax.Token
+    content.vb: Public Shared Function Keyword(kind As SyntaxKind) As Token
+  overload: Heir.Syntax.TokenFactory.Keyword*
+- uid: Heir.Syntax.TokenFactory.Keyword(Heir.Syntax.SyntaxKind,Heir.Syntax.Location,Heir.Syntax.Location)
+  commentId: M:Heir.Syntax.TokenFactory.Keyword(Heir.Syntax.SyntaxKind,Heir.Syntax.Location,Heir.Syntax.Location)
+  id: Keyword(Heir.Syntax.SyntaxKind,Heir.Syntax.Location,Heir.Syntax.Location)
+  parent: Heir.Syntax.TokenFactory
+  langs:
+  - csharp
+  - vb
+  name: Keyword(SyntaxKind, Location, Location)
+  nameWithType: TokenFactory.Keyword(SyntaxKind, Location, Location)
+  fullName: Heir.Syntax.TokenFactory.Keyword(Heir.Syntax.SyntaxKind, Heir.Syntax.Location, Heir.Syntax.Location)
+  type: Method
+  source:
+    remote:
+      path: Heir/Syntax/TokenFactory.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Keyword
+    path: Heir/Syntax/TokenFactory.cs
+    startLine: 7
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: public static Token Keyword(SyntaxKind kind, Location startLocation, Location endLocation)
+    parameters:
+    - id: kind
+      type: Heir.Syntax.SyntaxKind
+    - id: startLocation
+      type: Heir.Syntax.Location
+    - id: endLocation
+      type: Heir.Syntax.Location
+    return:
+      type: Heir.Syntax.Token
+    content.vb: Public Shared Function Keyword(kind As SyntaxKind, startLocation As Location, endLocation As Location) As Token
+  overload: Heir.Syntax.TokenFactory.Keyword*
+- uid: Heir.Syntax.TokenFactory.Identifier(System.String,Heir.Syntax.Location,Heir.Syntax.Location)
+  commentId: M:Heir.Syntax.TokenFactory.Identifier(System.String,Heir.Syntax.Location,Heir.Syntax.Location)
+  id: Identifier(System.String,Heir.Syntax.Location,Heir.Syntax.Location)
+  parent: Heir.Syntax.TokenFactory
+  langs:
+  - csharp
+  - vb
+  name: Identifier(string, Location, Location)
+  nameWithType: TokenFactory.Identifier(string, Location, Location)
+  fullName: Heir.Syntax.TokenFactory.Identifier(string, Heir.Syntax.Location, Heir.Syntax.Location)
+  type: Method
+  source:
+    remote:
+      path: Heir/Syntax/TokenFactory.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Identifier
+    path: Heir/Syntax/TokenFactory.cs
+    startLine: 10
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: public static Token Identifier(string text, Location startLocation, Location endLocation)
+    parameters:
+    - id: text
+      type: System.String
+    - id: startLocation
+      type: Heir.Syntax.Location
+    - id: endLocation
+      type: Heir.Syntax.Location
+    return:
+      type: Heir.Syntax.Token
+    content.vb: Public Shared Function Identifier(text As String, startLocation As Location, endLocation As Location) As Token
+  overload: Heir.Syntax.TokenFactory.Identifier*
+  nameWithType.vb: TokenFactory.Identifier(String, Location, Location)
+  fullName.vb: Heir.Syntax.TokenFactory.Identifier(String, Heir.Syntax.Location, Heir.Syntax.Location)
+  name.vb: Identifier(String, Location, Location)
+- uid: Heir.Syntax.TokenFactory.StringFromIdentifier(Heir.Syntax.Token)
+  commentId: M:Heir.Syntax.TokenFactory.StringFromIdentifier(Heir.Syntax.Token)
+  id: StringFromIdentifier(Heir.Syntax.Token)
+  parent: Heir.Syntax.TokenFactory
+  langs:
+  - csharp
+  - vb
+  name: StringFromIdentifier(Token)
+  nameWithType: TokenFactory.StringFromIdentifier(Token)
+  fullName: Heir.Syntax.TokenFactory.StringFromIdentifier(Heir.Syntax.Token)
+  type: Method
+  source:
+    remote:
+      path: Heir/Syntax/TokenFactory.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: StringFromIdentifier
+    path: Heir/Syntax/TokenFactory.cs
+    startLine: 13
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: public static Token StringFromIdentifier(Token identifier)
+    parameters:
+    - id: identifier
+      type: Heir.Syntax.Token
+    return:
+      type: Heir.Syntax.Token
+    content.vb: Public Shared Function StringFromIdentifier(identifier As Token) As Token
+  overload: Heir.Syntax.TokenFactory.StringFromIdentifier*
+- uid: Heir.Syntax.TokenFactory.Operator(Heir.Syntax.SyntaxKind,System.String,Heir.Syntax.Location,Heir.Syntax.Location)
+  commentId: M:Heir.Syntax.TokenFactory.Operator(Heir.Syntax.SyntaxKind,System.String,Heir.Syntax.Location,Heir.Syntax.Location)
+  id: Operator(Heir.Syntax.SyntaxKind,System.String,Heir.Syntax.Location,Heir.Syntax.Location)
+  parent: Heir.Syntax.TokenFactory
+  langs:
+  - csharp
+  - vb
+  name: Operator(SyntaxKind, string, Location, Location)
+  nameWithType: TokenFactory.Operator(SyntaxKind, string, Location, Location)
+  fullName: Heir.Syntax.TokenFactory.Operator(Heir.Syntax.SyntaxKind, string, Heir.Syntax.Location, Heir.Syntax.Location)
+  type: Method
+  source:
+    remote:
+      path: Heir/Syntax/TokenFactory.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Operator
+    path: Heir/Syntax/TokenFactory.cs
+    startLine: 16
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: public static Token Operator(SyntaxKind kind, string text, Location startLocation, Location endLocation)
+    parameters:
+    - id: kind
+      type: Heir.Syntax.SyntaxKind
+    - id: text
+      type: System.String
+    - id: startLocation
+      type: Heir.Syntax.Location
+    - id: endLocation
+      type: Heir.Syntax.Location
+    return:
+      type: Heir.Syntax.Token
+    content.vb: Public Shared Function [Operator](kind As SyntaxKind, text As String, startLocation As Location, endLocation As Location) As Token
+  overload: Heir.Syntax.TokenFactory.Operator*
+  nameWithType.vb: TokenFactory.Operator(SyntaxKind, String, Location, Location)
+  fullName.vb: Heir.Syntax.TokenFactory.Operator(Heir.Syntax.SyntaxKind, String, Heir.Syntax.Location, Heir.Syntax.Location)
+  name.vb: Operator(SyntaxKind, String, Location, Location)
+- uid: Heir.Syntax.TokenFactory.BoolLiteral(System.String,Heir.Syntax.Location,Heir.Syntax.Location)
+  commentId: M:Heir.Syntax.TokenFactory.BoolLiteral(System.String,Heir.Syntax.Location,Heir.Syntax.Location)
+  id: BoolLiteral(System.String,Heir.Syntax.Location,Heir.Syntax.Location)
+  parent: Heir.Syntax.TokenFactory
+  langs:
+  - csharp
+  - vb
+  name: BoolLiteral(string, Location, Location)
+  nameWithType: TokenFactory.BoolLiteral(string, Location, Location)
+  fullName: Heir.Syntax.TokenFactory.BoolLiteral(string, Heir.Syntax.Location, Heir.Syntax.Location)
+  type: Method
+  source:
+    remote:
+      path: Heir/Syntax/TokenFactory.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: BoolLiteral
+    path: Heir/Syntax/TokenFactory.cs
+    startLine: 19
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: public static Token BoolLiteral(string text, Location startLocation, Location endLocation)
+    parameters:
+    - id: text
+      type: System.String
+    - id: startLocation
+      type: Heir.Syntax.Location
+    - id: endLocation
+      type: Heir.Syntax.Location
+    return:
+      type: Heir.Syntax.Token
+    content.vb: Public Shared Function BoolLiteral(text As String, startLocation As Location, endLocation As Location) As Token
+  overload: Heir.Syntax.TokenFactory.BoolLiteral*
+  nameWithType.vb: TokenFactory.BoolLiteral(String, Location, Location)
+  fullName.vb: Heir.Syntax.TokenFactory.BoolLiteral(String, Heir.Syntax.Location, Heir.Syntax.Location)
+  name.vb: BoolLiteral(String, Location, Location)
+- uid: Heir.Syntax.TokenFactory.StringLiteral(System.String,Heir.Syntax.Location,Heir.Syntax.Location)
+  commentId: M:Heir.Syntax.TokenFactory.StringLiteral(System.String,Heir.Syntax.Location,Heir.Syntax.Location)
+  id: StringLiteral(System.String,Heir.Syntax.Location,Heir.Syntax.Location)
+  parent: Heir.Syntax.TokenFactory
+  langs:
+  - csharp
+  - vb
+  name: StringLiteral(string, Location, Location)
+  nameWithType: TokenFactory.StringLiteral(string, Location, Location)
+  fullName: Heir.Syntax.TokenFactory.StringLiteral(string, Heir.Syntax.Location, Heir.Syntax.Location)
+  type: Method
+  source:
+    remote:
+      path: Heir/Syntax/TokenFactory.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: StringLiteral
+    path: Heir/Syntax/TokenFactory.cs
+    startLine: 22
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: public static Token StringLiteral(string text, Location startLocation, Location endLocation)
+    parameters:
+    - id: text
+      type: System.String
+    - id: startLocation
+      type: Heir.Syntax.Location
+    - id: endLocation
+      type: Heir.Syntax.Location
+    return:
+      type: Heir.Syntax.Token
+    content.vb: Public Shared Function StringLiteral(text As String, startLocation As Location, endLocation As Location) As Token
+  overload: Heir.Syntax.TokenFactory.StringLiteral*
+  nameWithType.vb: TokenFactory.StringLiteral(String, Location, Location)
+  fullName.vb: Heir.Syntax.TokenFactory.StringLiteral(String, Heir.Syntax.Location, Heir.Syntax.Location)
+  name.vb: StringLiteral(String, Location, Location)
+- uid: Heir.Syntax.TokenFactory.CharLiteral(System.String,Heir.Syntax.Location,Heir.Syntax.Location)
+  commentId: M:Heir.Syntax.TokenFactory.CharLiteral(System.String,Heir.Syntax.Location,Heir.Syntax.Location)
+  id: CharLiteral(System.String,Heir.Syntax.Location,Heir.Syntax.Location)
+  parent: Heir.Syntax.TokenFactory
+  langs:
+  - csharp
+  - vb
+  name: CharLiteral(string, Location, Location)
+  nameWithType: TokenFactory.CharLiteral(string, Location, Location)
+  fullName: Heir.Syntax.TokenFactory.CharLiteral(string, Heir.Syntax.Location, Heir.Syntax.Location)
+  type: Method
+  source:
+    remote:
+      path: Heir/Syntax/TokenFactory.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: CharLiteral
+    path: Heir/Syntax/TokenFactory.cs
+    startLine: 25
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: public static Token CharLiteral(string text, Location startLocation, Location endLocation)
+    parameters:
+    - id: text
+      type: System.String
+    - id: startLocation
+      type: Heir.Syntax.Location
+    - id: endLocation
+      type: Heir.Syntax.Location
+    return:
+      type: Heir.Syntax.Token
+    content.vb: Public Shared Function CharLiteral(text As String, startLocation As Location, endLocation As Location) As Token
+  overload: Heir.Syntax.TokenFactory.CharLiteral*
+  nameWithType.vb: TokenFactory.CharLiteral(String, Location, Location)
+  fullName.vb: Heir.Syntax.TokenFactory.CharLiteral(String, Heir.Syntax.Location, Heir.Syntax.Location)
+  name.vb: CharLiteral(String, Location, Location)
+- uid: Heir.Syntax.TokenFactory.IntLiteral(System.String,Heir.Syntax.Location,Heir.Syntax.Location,System.Int32)
+  commentId: M:Heir.Syntax.TokenFactory.IntLiteral(System.String,Heir.Syntax.Location,Heir.Syntax.Location,System.Int32)
+  id: IntLiteral(System.String,Heir.Syntax.Location,Heir.Syntax.Location,System.Int32)
+  parent: Heir.Syntax.TokenFactory
+  langs:
+  - csharp
+  - vb
+  name: IntLiteral(string, Location, Location, int)
+  nameWithType: TokenFactory.IntLiteral(string, Location, Location, int)
+  fullName: Heir.Syntax.TokenFactory.IntLiteral(string, Heir.Syntax.Location, Heir.Syntax.Location, int)
+  type: Method
+  source:
+    remote:
+      path: Heir/Syntax/TokenFactory.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: IntLiteral
+    path: Heir/Syntax/TokenFactory.cs
+    startLine: 28
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: public static Token IntLiteral(string text, Location startLocation, Location endLocation, int radix = 10)
+    parameters:
+    - id: text
+      type: System.String
+    - id: startLocation
+      type: Heir.Syntax.Location
+    - id: endLocation
+      type: Heir.Syntax.Location
+    - id: radix
+      type: System.Int32
+    return:
+      type: Heir.Syntax.Token
+    content.vb: Public Shared Function IntLiteral(text As String, startLocation As Location, endLocation As Location, radix As Integer = 10) As Token
+  overload: Heir.Syntax.TokenFactory.IntLiteral*
+  nameWithType.vb: TokenFactory.IntLiteral(String, Location, Location, Integer)
+  fullName.vb: Heir.Syntax.TokenFactory.IntLiteral(String, Heir.Syntax.Location, Heir.Syntax.Location, Integer)
+  name.vb: IntLiteral(String, Location, Location, Integer)
+- uid: Heir.Syntax.TokenFactory.FloatLiteral(System.String,Heir.Syntax.Location,Heir.Syntax.Location)
+  commentId: M:Heir.Syntax.TokenFactory.FloatLiteral(System.String,Heir.Syntax.Location,Heir.Syntax.Location)
+  id: FloatLiteral(System.String,Heir.Syntax.Location,Heir.Syntax.Location)
+  parent: Heir.Syntax.TokenFactory
+  langs:
+  - csharp
+  - vb
+  name: FloatLiteral(string, Location, Location)
+  nameWithType: TokenFactory.FloatLiteral(string, Location, Location)
+  fullName: Heir.Syntax.TokenFactory.FloatLiteral(string, Heir.Syntax.Location, Heir.Syntax.Location)
+  type: Method
+  source:
+    remote:
+      path: Heir/Syntax/TokenFactory.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: FloatLiteral
+    path: Heir/Syntax/TokenFactory.cs
+    startLine: 31
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: public static Token FloatLiteral(string text, Location startLocation, Location endLocation)
+    parameters:
+    - id: text
+      type: System.String
+    - id: startLocation
+      type: Heir.Syntax.Location
+    - id: endLocation
+      type: Heir.Syntax.Location
+    return:
+      type: Heir.Syntax.Token
+    content.vb: Public Shared Function FloatLiteral(text As String, startLocation As Location, endLocation As Location) As Token
+  overload: Heir.Syntax.TokenFactory.FloatLiteral*
+  nameWithType.vb: TokenFactory.FloatLiteral(String, Location, Location)
+  fullName.vb: Heir.Syntax.TokenFactory.FloatLiteral(String, Heir.Syntax.Location, Heir.Syntax.Location)
+  name.vb: FloatLiteral(String, Location, Location)
+- uid: Heir.Syntax.TokenFactory.NoneLiteral
+  commentId: M:Heir.Syntax.TokenFactory.NoneLiteral
+  id: NoneLiteral
+  parent: Heir.Syntax.TokenFactory
+  langs:
+  - csharp
+  - vb
+  name: NoneLiteral()
+  nameWithType: TokenFactory.NoneLiteral()
+  fullName: Heir.Syntax.TokenFactory.NoneLiteral()
+  type: Method
+  source:
+    remote:
+      path: Heir/Syntax/TokenFactory.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: NoneLiteral
+    path: Heir/Syntax/TokenFactory.cs
+    startLine: 34
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: public static Token NoneLiteral()
+    return:
+      type: Heir.Syntax.Token
+    content.vb: Public Shared Function NoneLiteral() As Token
+  overload: Heir.Syntax.TokenFactory.NoneLiteral*
+- uid: Heir.Syntax.TokenFactory.NoneLiteral(Heir.Syntax.Location,Heir.Syntax.Location)
+  commentId: M:Heir.Syntax.TokenFactory.NoneLiteral(Heir.Syntax.Location,Heir.Syntax.Location)
+  id: NoneLiteral(Heir.Syntax.Location,Heir.Syntax.Location)
+  parent: Heir.Syntax.TokenFactory
+  langs:
+  - csharp
+  - vb
+  name: NoneLiteral(Location, Location)
+  nameWithType: TokenFactory.NoneLiteral(Location, Location)
+  fullName: Heir.Syntax.TokenFactory.NoneLiteral(Heir.Syntax.Location, Heir.Syntax.Location)
+  type: Method
+  source:
+    remote:
+      path: Heir/Syntax/TokenFactory.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: NoneLiteral
+    path: Heir/Syntax/TokenFactory.cs
+    startLine: 36
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: public static Token NoneLiteral(Location startLocation, Location endLocation)
+    parameters:
+    - id: startLocation
+      type: Heir.Syntax.Location
+    - id: endLocation
+      type: Heir.Syntax.Location
+    return:
+      type: Heir.Syntax.Token
+    content.vb: Public Shared Function NoneLiteral(startLocation As Location, endLocation As Location) As Token
+  overload: Heir.Syntax.TokenFactory.NoneLiteral*
+- uid: Heir.Syntax.TokenFactory.Trivia(Heir.Syntax.TriviaKind,System.String,Heir.Syntax.Location,Heir.Syntax.Location)
+  commentId: M:Heir.Syntax.TokenFactory.Trivia(Heir.Syntax.TriviaKind,System.String,Heir.Syntax.Location,Heir.Syntax.Location)
+  id: Trivia(Heir.Syntax.TriviaKind,System.String,Heir.Syntax.Location,Heir.Syntax.Location)
+  parent: Heir.Syntax.TokenFactory
+  langs:
+  - csharp
+  - vb
+  name: Trivia(TriviaKind, string, Location, Location)
+  nameWithType: TokenFactory.Trivia(TriviaKind, string, Location, Location)
+  fullName: Heir.Syntax.TokenFactory.Trivia(Heir.Syntax.TriviaKind, string, Heir.Syntax.Location, Heir.Syntax.Location)
+  type: Method
+  source:
+    remote:
+      path: Heir/Syntax/TokenFactory.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Trivia
+    path: Heir/Syntax/TokenFactory.cs
+    startLine: 39
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: public static TriviaToken Trivia(TriviaKind kind, string text, Location startLocation, Location endLocation)
+    parameters:
+    - id: kind
+      type: Heir.Syntax.TriviaKind
+    - id: text
+      type: System.String
+    - id: startLocation
+      type: Heir.Syntax.Location
+    - id: endLocation
+      type: Heir.Syntax.Location
+    return:
+      type: Heir.Syntax.TriviaToken
+    content.vb: Public Shared Function Trivia(kind As TriviaKind, text As String, startLocation As Location, endLocation As Location) As TriviaToken
+  overload: Heir.Syntax.TokenFactory.Trivia*
+  nameWithType.vb: TokenFactory.Trivia(TriviaKind, String, Location, Location)
+  fullName.vb: Heir.Syntax.TokenFactory.Trivia(Heir.Syntax.TriviaKind, String, Heir.Syntax.Location, Heir.Syntax.Location)
+  name.vb: Trivia(TriviaKind, String, Location, Location)
+references:
+- uid: Heir.Syntax
+  commentId: N:Heir.Syntax
+  href: Heir.html
+  name: Heir.Syntax
+  nameWithType: Heir.Syntax
+  fullName: Heir.Syntax
+  spec.csharp:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.Syntax
+    name: Syntax
+    href: Heir.Syntax.html
+  spec.vb:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.Syntax
+    name: Syntax
+    href: Heir.Syntax.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Heir.Syntax.TokenFactory.Keyword*
+  commentId: Overload:Heir.Syntax.TokenFactory.Keyword
+  href: Heir.Syntax.TokenFactory.html#Heir_Syntax_TokenFactory_Keyword_Heir_Syntax_SyntaxKind_
+  name: Keyword
+  nameWithType: TokenFactory.Keyword
+  fullName: Heir.Syntax.TokenFactory.Keyword
+- uid: Heir.Syntax.SyntaxKind
+  commentId: T:Heir.Syntax.SyntaxKind
+  parent: Heir.Syntax
+  href: Heir.Syntax.SyntaxKind.html
+  name: SyntaxKind
+  nameWithType: SyntaxKind
+  fullName: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.Token
+  commentId: T:Heir.Syntax.Token
+  parent: Heir.Syntax
+  href: Heir.Syntax.Token.html
+  name: Token
+  nameWithType: Token
+  fullName: Heir.Syntax.Token
+- uid: Heir.Syntax.Location
+  commentId: T:Heir.Syntax.Location
+  parent: Heir.Syntax
+  href: Heir.Syntax.Location.html
+  name: Location
+  nameWithType: Location
+  fullName: Heir.Syntax.Location
+- uid: Heir.Syntax.TokenFactory.Identifier*
+  commentId: Overload:Heir.Syntax.TokenFactory.Identifier
+  href: Heir.Syntax.TokenFactory.html#Heir_Syntax_TokenFactory_Identifier_System_String_Heir_Syntax_Location_Heir_Syntax_Location_
+  name: Identifier
+  nameWithType: TokenFactory.Identifier
+  fullName: Heir.Syntax.TokenFactory.Identifier
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Heir.Syntax.TokenFactory.StringFromIdentifier*
+  commentId: Overload:Heir.Syntax.TokenFactory.StringFromIdentifier
+  href: Heir.Syntax.TokenFactory.html#Heir_Syntax_TokenFactory_StringFromIdentifier_Heir_Syntax_Token_
+  name: StringFromIdentifier
+  nameWithType: TokenFactory.StringFromIdentifier
+  fullName: Heir.Syntax.TokenFactory.StringFromIdentifier
+- uid: Heir.Syntax.TokenFactory.Operator*
+  commentId: Overload:Heir.Syntax.TokenFactory.Operator
+  href: Heir.Syntax.TokenFactory.html#Heir_Syntax_TokenFactory_Operator_Heir_Syntax_SyntaxKind_System_String_Heir_Syntax_Location_Heir_Syntax_Location_
+  name: Operator
+  nameWithType: TokenFactory.Operator
+  fullName: Heir.Syntax.TokenFactory.Operator
+- uid: Heir.Syntax.TokenFactory.BoolLiteral*
+  commentId: Overload:Heir.Syntax.TokenFactory.BoolLiteral
+  href: Heir.Syntax.TokenFactory.html#Heir_Syntax_TokenFactory_BoolLiteral_System_String_Heir_Syntax_Location_Heir_Syntax_Location_
+  name: BoolLiteral
+  nameWithType: TokenFactory.BoolLiteral
+  fullName: Heir.Syntax.TokenFactory.BoolLiteral
+- uid: Heir.Syntax.TokenFactory.StringLiteral*
+  commentId: Overload:Heir.Syntax.TokenFactory.StringLiteral
+  href: Heir.Syntax.TokenFactory.html#Heir_Syntax_TokenFactory_StringLiteral_System_String_Heir_Syntax_Location_Heir_Syntax_Location_
+  name: StringLiteral
+  nameWithType: TokenFactory.StringLiteral
+  fullName: Heir.Syntax.TokenFactory.StringLiteral
+- uid: Heir.Syntax.TokenFactory.CharLiteral*
+  commentId: Overload:Heir.Syntax.TokenFactory.CharLiteral
+  href: Heir.Syntax.TokenFactory.html#Heir_Syntax_TokenFactory_CharLiteral_System_String_Heir_Syntax_Location_Heir_Syntax_Location_
+  name: CharLiteral
+  nameWithType: TokenFactory.CharLiteral
+  fullName: Heir.Syntax.TokenFactory.CharLiteral
+- uid: Heir.Syntax.TokenFactory.IntLiteral*
+  commentId: Overload:Heir.Syntax.TokenFactory.IntLiteral
+  href: Heir.Syntax.TokenFactory.html#Heir_Syntax_TokenFactory_IntLiteral_System_String_Heir_Syntax_Location_Heir_Syntax_Location_System_Int32_
+  name: IntLiteral
+  nameWithType: TokenFactory.IntLiteral
+  fullName: Heir.Syntax.TokenFactory.IntLiteral
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Heir.Syntax.TokenFactory.FloatLiteral*
+  commentId: Overload:Heir.Syntax.TokenFactory.FloatLiteral
+  href: Heir.Syntax.TokenFactory.html#Heir_Syntax_TokenFactory_FloatLiteral_System_String_Heir_Syntax_Location_Heir_Syntax_Location_
+  name: FloatLiteral
+  nameWithType: TokenFactory.FloatLiteral
+  fullName: Heir.Syntax.TokenFactory.FloatLiteral
+- uid: Heir.Syntax.TokenFactory.NoneLiteral*
+  commentId: Overload:Heir.Syntax.TokenFactory.NoneLiteral
+  href: Heir.Syntax.TokenFactory.html#Heir_Syntax_TokenFactory_NoneLiteral
+  name: NoneLiteral
+  nameWithType: TokenFactory.NoneLiteral
+  fullName: Heir.Syntax.TokenFactory.NoneLiteral
+- uid: Heir.Syntax.TokenFactory.Trivia*
+  commentId: Overload:Heir.Syntax.TokenFactory.Trivia
+  href: Heir.Syntax.TokenFactory.html#Heir_Syntax_TokenFactory_Trivia_Heir_Syntax_TriviaKind_System_String_Heir_Syntax_Location_Heir_Syntax_Location_
+  name: Trivia
+  nameWithType: TokenFactory.Trivia
+  fullName: Heir.Syntax.TokenFactory.Trivia
+- uid: Heir.Syntax.TriviaKind
+  commentId: T:Heir.Syntax.TriviaKind
+  parent: Heir.Syntax
+  href: Heir.Syntax.TriviaKind.html
+  name: TriviaKind
+  nameWithType: TriviaKind
+  fullName: Heir.Syntax.TriviaKind
+- uid: Heir.Syntax.TriviaToken
+  commentId: T:Heir.Syntax.TriviaToken
+  parent: Heir.Syntax
+  href: Heir.Syntax.TriviaToken.html
+  name: TriviaToken
+  nameWithType: TriviaToken
+  fullName: Heir.Syntax.TriviaToken

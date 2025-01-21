@@ -1,0 +1,585 @@
+### YamlMime:ManagedReference
+items:
+- uid: Heir.Syntax.Location
+  commentId: T:Heir.Syntax.Location
+  id: Location
+  parent: Heir.Syntax
+  children:
+  - Heir.Syntax.Location.#ctor(System.String,System.Int32,System.Int32,System.Int32)
+  - Heir.Syntax.Location.Column
+  - Heir.Syntax.Location.Empty
+  - Heir.Syntax.Location.FileName
+  - Heir.Syntax.Location.Line
+  - Heir.Syntax.Location.Position
+  - Heir.Syntax.Location.ToString
+  langs:
+  - csharp
+  - vb
+  name: Location
+  nameWithType: Location
+  fullName: Heir.Syntax.Location
+  type: Class
+  source:
+    remote:
+      path: Heir/Syntax/Location.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Location
+    path: Heir/Syntax/Location.cs
+    startLine: 2
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: public class Location
+    content.vb: Public Class Location
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+- uid: Heir.Syntax.Location.#ctor(System.String,System.Int32,System.Int32,System.Int32)
+  commentId: M:Heir.Syntax.Location.#ctor(System.String,System.Int32,System.Int32,System.Int32)
+  id: '#ctor(System.String,System.Int32,System.Int32,System.Int32)'
+  parent: Heir.Syntax.Location
+  langs:
+  - csharp
+  - vb
+  name: Location(string, int, int, int)
+  nameWithType: Location.Location(string, int, int, int)
+  fullName: Heir.Syntax.Location.Location(string, int, int, int)
+  type: Constructor
+  source:
+    remote:
+      path: Heir/Syntax/Location.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: .ctor
+    path: Heir/Syntax/Location.cs
+    startLine: 2
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: public Location(string fileName, int line, int column, int position)
+    parameters:
+    - id: fileName
+      type: System.String
+    - id: line
+      type: System.Int32
+    - id: column
+      type: System.Int32
+    - id: position
+      type: System.Int32
+    content.vb: Public Sub New(fileName As String, line As Integer, column As Integer, position As Integer)
+  overload: Heir.Syntax.Location.#ctor*
+  nameWithType.vb: Location.New(String, Integer, Integer, Integer)
+  fullName.vb: Heir.Syntax.Location.New(String, Integer, Integer, Integer)
+  name.vb: New(String, Integer, Integer, Integer)
+- uid: Heir.Syntax.Location.Empty
+  commentId: F:Heir.Syntax.Location.Empty
+  id: Empty
+  parent: Heir.Syntax.Location
+  langs:
+  - csharp
+  - vb
+  name: Empty
+  nameWithType: Location.Empty
+  fullName: Heir.Syntax.Location.Empty
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/Location.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Empty
+    path: Heir/Syntax/Location.cs
+    startLine: 4
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: public static Location Empty
+    return:
+      type: Heir.Syntax.Location
+    content.vb: Public Shared Empty As Location
+- uid: Heir.Syntax.Location.FileName
+  commentId: P:Heir.Syntax.Location.FileName
+  id: FileName
+  parent: Heir.Syntax.Location
+  langs:
+  - csharp
+  - vb
+  name: FileName
+  nameWithType: Location.FileName
+  fullName: Heir.Syntax.Location.FileName
+  type: Property
+  source:
+    remote:
+      path: Heir/Syntax/Location.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: FileName
+    path: Heir/Syntax/Location.cs
+    startLine: 6
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: public string FileName { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public ReadOnly Property FileName As String
+  overload: Heir.Syntax.Location.FileName*
+- uid: Heir.Syntax.Location.Line
+  commentId: P:Heir.Syntax.Location.Line
+  id: Line
+  parent: Heir.Syntax.Location
+  langs:
+  - csharp
+  - vb
+  name: Line
+  nameWithType: Location.Line
+  fullName: Heir.Syntax.Location.Line
+  type: Property
+  source:
+    remote:
+      path: Heir/Syntax/Location.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Line
+    path: Heir/Syntax/Location.cs
+    startLine: 7
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: public int Line { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property Line As Integer
+  overload: Heir.Syntax.Location.Line*
+- uid: Heir.Syntax.Location.Column
+  commentId: P:Heir.Syntax.Location.Column
+  id: Column
+  parent: Heir.Syntax.Location
+  langs:
+  - csharp
+  - vb
+  name: Column
+  nameWithType: Location.Column
+  fullName: Heir.Syntax.Location.Column
+  type: Property
+  source:
+    remote:
+      path: Heir/Syntax/Location.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Column
+    path: Heir/Syntax/Location.cs
+    startLine: 8
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: public int Column { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property Column As Integer
+  overload: Heir.Syntax.Location.Column*
+- uid: Heir.Syntax.Location.Position
+  commentId: P:Heir.Syntax.Location.Position
+  id: Position
+  parent: Heir.Syntax.Location
+  langs:
+  - csharp
+  - vb
+  name: Position
+  nameWithType: Location.Position
+  fullName: Heir.Syntax.Location.Position
+  type: Property
+  source:
+    remote:
+      path: Heir/Syntax/Location.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Position
+    path: Heir/Syntax/Location.cs
+    startLine: 9
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: public int Position { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property Position As Integer
+  overload: Heir.Syntax.Location.Position*
+- uid: Heir.Syntax.Location.ToString
+  commentId: M:Heir.Syntax.Location.ToString
+  id: ToString
+  parent: Heir.Syntax.Location
+  langs:
+  - csharp
+  - vb
+  name: ToString()
+  nameWithType: Location.ToString()
+  fullName: Heir.Syntax.Location.ToString()
+  type: Method
+  source:
+    remote:
+      path: Heir/Syntax/Location.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: ToString
+    path: Heir/Syntax/Location.cs
+    startLine: 11
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  summary: Returns a string that represents the current object.
+  example: []
+  syntax:
+    content: public override string ToString()
+    return:
+      type: System.String
+      description: A string that represents the current object.
+    content.vb: Public Overrides Function ToString() As String
+  overridden: System.Object.ToString
+  overload: Heir.Syntax.Location.ToString*
+references:
+- uid: Heir.Syntax
+  commentId: N:Heir.Syntax
+  href: Heir.html
+  name: Heir.Syntax
+  nameWithType: Heir.Syntax
+  fullName: Heir.Syntax
+  spec.csharp:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.Syntax
+    name: Syntax
+    href: Heir.Syntax.html
+  spec.vb:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.Syntax
+    name: Syntax
+    href: Heir.Syntax.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Heir.Syntax.Location.#ctor*
+  commentId: Overload:Heir.Syntax.Location.#ctor
+  href: Heir.Syntax.Location.html#Heir_Syntax_Location__ctor_System_String_System_Int32_System_Int32_System_Int32_
+  name: Location
+  nameWithType: Location.Location
+  fullName: Heir.Syntax.Location.Location
+  nameWithType.vb: Location.New
+  fullName.vb: Heir.Syntax.Location.New
+  name.vb: New
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Heir.Syntax.Location
+  commentId: T:Heir.Syntax.Location
+  parent: Heir.Syntax
+  href: Heir.Syntax.Location.html
+  name: Location
+  nameWithType: Location
+  fullName: Heir.Syntax.Location
+- uid: Heir.Syntax.Location.FileName*
+  commentId: Overload:Heir.Syntax.Location.FileName
+  href: Heir.Syntax.Location.html#Heir_Syntax_Location_FileName
+  name: FileName
+  nameWithType: Location.FileName
+  fullName: Heir.Syntax.Location.FileName
+- uid: Heir.Syntax.Location.Line*
+  commentId: Overload:Heir.Syntax.Location.Line
+  href: Heir.Syntax.Location.html#Heir_Syntax_Location_Line
+  name: Line
+  nameWithType: Location.Line
+  fullName: Heir.Syntax.Location.Line
+- uid: Heir.Syntax.Location.Column*
+  commentId: Overload:Heir.Syntax.Location.Column
+  href: Heir.Syntax.Location.html#Heir_Syntax_Location_Column
+  name: Column
+  nameWithType: Location.Column
+  fullName: Heir.Syntax.Location.Column
+- uid: Heir.Syntax.Location.Position*
+  commentId: Overload:Heir.Syntax.Location.Position
+  href: Heir.Syntax.Location.html#Heir_Syntax_Location_Position
+  name: Position
+  nameWithType: Location.Position
+  fullName: Heir.Syntax.Location.Position
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: Heir.Syntax.Location.ToString*
+  commentId: Overload:Heir.Syntax.Location.ToString
+  href: Heir.Syntax.Location.html#Heir_Syntax_Location_ToString
+  name: ToString
+  nameWithType: Location.ToString
+  fullName: Heir.Syntax.Location.ToString

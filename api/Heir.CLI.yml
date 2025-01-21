@@ -1,0 +1,23 @@
+### YamlMime:ManagedReference
+items:
+- uid: Heir.CLI
+  commentId: N:Heir.CLI
+  id: Heir.CLI
+  children:
+  - Heir.CLI.Program
+  langs:
+  - csharp
+  - vb
+  name: Heir.CLI
+  nameWithType: Heir.CLI
+  fullName: Heir.CLI
+  type: Namespace
+  assemblies:
+  - Heir.CLI
+references:
+- uid: Heir.CLI.Program
+  commentId: T:Heir.CLI.Program
+  href: Heir.CLI.Program.html
+  name: Program
+  nameWithType: Program
+  fullName: Heir.CLI.Program

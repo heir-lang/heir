@@ -1,0 +1,811 @@
+### YamlMime:ManagedReference
+items:
+- uid: Heir.Types.PrimitiveType
+  commentId: T:Heir.Types.PrimitiveType
+  id: PrimitiveType
+  parent: Heir.Types
+  children:
+  - Heir.Types.PrimitiveType.#ctor(Heir.Types.PrimitiveTypeKind)
+  - Heir.Types.PrimitiveType.Bool
+  - Heir.Types.PrimitiveType.Char
+  - Heir.Types.PrimitiveType.Float
+  - Heir.Types.PrimitiveType.FromValue(System.Object)
+  - Heir.Types.PrimitiveType.Int
+  - Heir.Types.PrimitiveType.Kind
+  - Heir.Types.PrimitiveType.None
+  - Heir.Types.PrimitiveType.PrimitiveKind
+  - Heir.Types.PrimitiveType.String
+  langs:
+  - csharp
+  - vb
+  name: PrimitiveType
+  nameWithType: PrimitiveType
+  fullName: Heir.Types.PrimitiveType
+  type: Class
+  source:
+    remote:
+      path: Heir/Types/PrimitiveType.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: PrimitiveType
+    path: Heir/Types/PrimitiveType.cs
+    startLine: 12
+  assemblies:
+  - Heir
+  namespace: Heir.Types
+  syntax:
+    content: 'public class PrimitiveType : SingularType'
+    content.vb: Public Class PrimitiveType Inherits SingularType
+  inheritance:
+  - System.Object
+  - Heir.Types.BaseType
+  - Heir.Types.SingularType
+  derivedClasses:
+  - Heir.Types.LiteralType
+  inheritedMembers:
+  - Heir.Types.SingularType.Name
+  - Heir.Types.SingularType.TypeArguments
+  - Heir.Types.SingularType.ToString(System.Boolean)
+  - Heir.Types.BaseType.IsNullable
+  - Heir.Types.BaseType.IsNone
+  - Heir.Types.BaseType.Nullable(Heir.Types.BaseType)
+  - Heir.Types.BaseType.FromTypeRef(Heir.AST.Abstract.TypeRef)
+  - Heir.Types.BaseType.IsAssignableTo(Heir.Types.BaseType)
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Heir.Types.PrimitiveType.Int
+  commentId: F:Heir.Types.PrimitiveType.Int
+  id: Int
+  parent: Heir.Types.PrimitiveType
+  langs:
+  - csharp
+  - vb
+  name: Int
+  nameWithType: PrimitiveType.Int
+  fullName: Heir.Types.PrimitiveType.Int
+  type: Field
+  source:
+    remote:
+      path: Heir/Types/PrimitiveType.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Int
+    path: Heir/Types/PrimitiveType.cs
+    startLine: 14
+  assemblies:
+  - Heir
+  namespace: Heir.Types
+  syntax:
+    content: public static readonly PrimitiveType Int
+    return:
+      type: Heir.Types.PrimitiveType
+    content.vb: Public Shared ReadOnly Int As PrimitiveType
+- uid: Heir.Types.PrimitiveType.Float
+  commentId: F:Heir.Types.PrimitiveType.Float
+  id: Float
+  parent: Heir.Types.PrimitiveType
+  langs:
+  - csharp
+  - vb
+  name: Float
+  nameWithType: PrimitiveType.Float
+  fullName: Heir.Types.PrimitiveType.Float
+  type: Field
+  source:
+    remote:
+      path: Heir/Types/PrimitiveType.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Float
+    path: Heir/Types/PrimitiveType.cs
+    startLine: 15
+  assemblies:
+  - Heir
+  namespace: Heir.Types
+  syntax:
+    content: public static readonly PrimitiveType Float
+    return:
+      type: Heir.Types.PrimitiveType
+    content.vb: Public Shared ReadOnly Float As PrimitiveType
+- uid: Heir.Types.PrimitiveType.String
+  commentId: F:Heir.Types.PrimitiveType.String
+  id: String
+  parent: Heir.Types.PrimitiveType
+  langs:
+  - csharp
+  - vb
+  name: String
+  nameWithType: PrimitiveType.String
+  fullName: Heir.Types.PrimitiveType.String
+  type: Field
+  source:
+    remote:
+      path: Heir/Types/PrimitiveType.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: String
+    path: Heir/Types/PrimitiveType.cs
+    startLine: 16
+  assemblies:
+  - Heir
+  namespace: Heir.Types
+  syntax:
+    content: public static readonly PrimitiveType String
+    return:
+      type: Heir.Types.PrimitiveType
+    content.vb: Public Shared ReadOnly [String] As PrimitiveType
+- uid: Heir.Types.PrimitiveType.Char
+  commentId: F:Heir.Types.PrimitiveType.Char
+  id: Char
+  parent: Heir.Types.PrimitiveType
+  langs:
+  - csharp
+  - vb
+  name: Char
+  nameWithType: PrimitiveType.Char
+  fullName: Heir.Types.PrimitiveType.Char
+  type: Field
+  source:
+    remote:
+      path: Heir/Types/PrimitiveType.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Char
+    path: Heir/Types/PrimitiveType.cs
+    startLine: 17
+  assemblies:
+  - Heir
+  namespace: Heir.Types
+  syntax:
+    content: public static readonly PrimitiveType Char
+    return:
+      type: Heir.Types.PrimitiveType
+    content.vb: Public Shared ReadOnly [Char] As PrimitiveType
+- uid: Heir.Types.PrimitiveType.Bool
+  commentId: F:Heir.Types.PrimitiveType.Bool
+  id: Bool
+  parent: Heir.Types.PrimitiveType
+  langs:
+  - csharp
+  - vb
+  name: Bool
+  nameWithType: PrimitiveType.Bool
+  fullName: Heir.Types.PrimitiveType.Bool
+  type: Field
+  source:
+    remote:
+      path: Heir/Types/PrimitiveType.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Bool
+    path: Heir/Types/PrimitiveType.cs
+    startLine: 18
+  assemblies:
+  - Heir
+  namespace: Heir.Types
+  syntax:
+    content: public static readonly PrimitiveType Bool
+    return:
+      type: Heir.Types.PrimitiveType
+    content.vb: Public Shared ReadOnly Bool As PrimitiveType
+- uid: Heir.Types.PrimitiveType.None
+  commentId: F:Heir.Types.PrimitiveType.None
+  id: None
+  parent: Heir.Types.PrimitiveType
+  langs:
+  - csharp
+  - vb
+  name: None
+  nameWithType: PrimitiveType.None
+  fullName: Heir.Types.PrimitiveType.None
+  type: Field
+  source:
+    remote:
+      path: Heir/Types/PrimitiveType.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: None
+    path: Heir/Types/PrimitiveType.cs
+    startLine: 19
+  assemblies:
+  - Heir
+  namespace: Heir.Types
+  syntax:
+    content: public static readonly PrimitiveType None
+    return:
+      type: Heir.Types.PrimitiveType
+    content.vb: Public Shared ReadOnly None As PrimitiveType
+- uid: Heir.Types.PrimitiveType.Kind
+  commentId: P:Heir.Types.PrimitiveType.Kind
+  id: Kind
+  parent: Heir.Types.PrimitiveType
+  langs:
+  - csharp
+  - vb
+  name: Kind
+  nameWithType: PrimitiveType.Kind
+  fullName: Heir.Types.PrimitiveType.Kind
+  type: Property
+  source:
+    remote:
+      path: Heir/Types/PrimitiveType.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Kind
+    path: Heir/Types/PrimitiveType.cs
+    startLine: 21
+  assemblies:
+  - Heir
+  namespace: Heir.Types
+  example: []
+  syntax:
+    content: public override TypeKind Kind { get; }
+    parameters: []
+    return:
+      type: Heir.Types.TypeKind
+    content.vb: Public Overrides ReadOnly Property Kind As TypeKind
+  overridden: Heir.Types.SingularType.Kind
+  overload: Heir.Types.PrimitiveType.Kind*
+- uid: Heir.Types.PrimitiveType.PrimitiveKind
+  commentId: P:Heir.Types.PrimitiveType.PrimitiveKind
+  id: PrimitiveKind
+  parent: Heir.Types.PrimitiveType
+  langs:
+  - csharp
+  - vb
+  name: PrimitiveKind
+  nameWithType: PrimitiveType.PrimitiveKind
+  fullName: Heir.Types.PrimitiveType.PrimitiveKind
+  type: Property
+  source:
+    remote:
+      path: Heir/Types/PrimitiveType.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: PrimitiveKind
+    path: Heir/Types/PrimitiveType.cs
+    startLine: 23
+  assemblies:
+  - Heir
+  namespace: Heir.Types
+  syntax:
+    content: public PrimitiveTypeKind PrimitiveKind { get; }
+    parameters: []
+    return:
+      type: Heir.Types.PrimitiveTypeKind
+    content.vb: Public ReadOnly Property PrimitiveKind As PrimitiveTypeKind
+  overload: Heir.Types.PrimitiveType.PrimitiveKind*
+- uid: Heir.Types.PrimitiveType.#ctor(Heir.Types.PrimitiveTypeKind)
+  commentId: M:Heir.Types.PrimitiveType.#ctor(Heir.Types.PrimitiveTypeKind)
+  id: '#ctor(Heir.Types.PrimitiveTypeKind)'
+  parent: Heir.Types.PrimitiveType
+  langs:
+  - csharp
+  - vb
+  name: PrimitiveType(PrimitiveTypeKind)
+  nameWithType: PrimitiveType.PrimitiveType(PrimitiveTypeKind)
+  fullName: Heir.Types.PrimitiveType.PrimitiveType(Heir.Types.PrimitiveTypeKind)
+  type: Constructor
+  source:
+    remote:
+      path: Heir/Types/PrimitiveType.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: .ctor
+    path: Heir/Types/PrimitiveType.cs
+    startLine: 25
+  assemblies:
+  - Heir
+  namespace: Heir.Types
+  syntax:
+    content: protected PrimitiveType(PrimitiveTypeKind primitiveTypeKind)
+    parameters:
+    - id: primitiveTypeKind
+      type: Heir.Types.PrimitiveTypeKind
+    content.vb: Protected Sub New(primitiveTypeKind As PrimitiveTypeKind)
+  overload: Heir.Types.PrimitiveType.#ctor*
+  nameWithType.vb: PrimitiveType.New(PrimitiveTypeKind)
+  fullName.vb: Heir.Types.PrimitiveType.New(Heir.Types.PrimitiveTypeKind)
+  name.vb: New(PrimitiveTypeKind)
+- uid: Heir.Types.PrimitiveType.FromValue(System.Object)
+  commentId: M:Heir.Types.PrimitiveType.FromValue(System.Object)
+  id: FromValue(System.Object)
+  parent: Heir.Types.PrimitiveType
+  langs:
+  - csharp
+  - vb
+  name: FromValue(object?)
+  nameWithType: PrimitiveType.FromValue(object?)
+  fullName: Heir.Types.PrimitiveType.FromValue(object?)
+  type: Method
+  source:
+    remote:
+      path: Heir/Types/PrimitiveType.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: FromValue
+    path: Heir/Types/PrimitiveType.cs
+    startLine: 31
+  assemblies:
+  - Heir
+  namespace: Heir.Types
+  syntax:
+    content: public static PrimitiveType? FromValue(object? value)
+    parameters:
+    - id: value
+      type: System.Object
+    return:
+      type: Heir.Types.PrimitiveType
+    content.vb: Public Shared Function FromValue(value As Object) As PrimitiveType
+  overload: Heir.Types.PrimitiveType.FromValue*
+  nameWithType.vb: PrimitiveType.FromValue(Object)
+  fullName.vb: Heir.Types.PrimitiveType.FromValue(Object)
+  name.vb: FromValue(Object)
+references:
+- uid: Heir.Types
+  commentId: N:Heir.Types
+  href: Heir.html
+  name: Heir.Types
+  nameWithType: Heir.Types
+  fullName: Heir.Types
+  spec.csharp:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.Types
+    name: Types
+    href: Heir.Types.html
+  spec.vb:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.Types
+    name: Types
+    href: Heir.Types.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Heir.Types.BaseType
+  commentId: T:Heir.Types.BaseType
+  parent: Heir.Types
+  href: Heir.Types.BaseType.html
+  name: BaseType
+  nameWithType: BaseType
+  fullName: Heir.Types.BaseType
+- uid: Heir.Types.SingularType
+  commentId: T:Heir.Types.SingularType
+  parent: Heir.Types
+  href: Heir.Types.SingularType.html
+  name: SingularType
+  nameWithType: SingularType
+  fullName: Heir.Types.SingularType
+- uid: Heir.Types.SingularType.Name
+  commentId: P:Heir.Types.SingularType.Name
+  parent: Heir.Types.SingularType
+  href: Heir.Types.SingularType.html#Heir_Types_SingularType_Name
+  name: Name
+  nameWithType: SingularType.Name
+  fullName: Heir.Types.SingularType.Name
+- uid: Heir.Types.SingularType.TypeArguments
+  commentId: P:Heir.Types.SingularType.TypeArguments
+  parent: Heir.Types.SingularType
+  href: Heir.Types.SingularType.html#Heir_Types_SingularType_TypeArguments
+  name: TypeArguments
+  nameWithType: SingularType.TypeArguments
+  fullName: Heir.Types.SingularType.TypeArguments
+- uid: Heir.Types.SingularType.ToString(System.Boolean)
+  commentId: M:Heir.Types.SingularType.ToString(System.Boolean)
+  parent: Heir.Types.SingularType
+  isExternal: true
+  href: Heir.Types.SingularType.html#Heir_Types_SingularType_ToString_System_Boolean_
+  name: ToString(bool)
+  nameWithType: SingularType.ToString(bool)
+  fullName: Heir.Types.SingularType.ToString(bool)
+  nameWithType.vb: SingularType.ToString(Boolean)
+  fullName.vb: Heir.Types.SingularType.ToString(Boolean)
+  name.vb: ToString(Boolean)
+  spec.csharp:
+  - uid: Heir.Types.SingularType.ToString(System.Boolean)
+    name: ToString
+    href: Heir.Types.SingularType.html#Heir_Types_SingularType_ToString_System_Boolean_
+  - name: (
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: Heir.Types.SingularType.ToString(System.Boolean)
+    name: ToString
+    href: Heir.Types.SingularType.html#Heir_Types_SingularType_ToString_System_Boolean_
+  - name: (
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: Heir.Types.BaseType.IsNullable
+  commentId: P:Heir.Types.BaseType.IsNullable
+  parent: Heir.Types.BaseType
+  href: Heir.Types.BaseType.html#Heir_Types_BaseType_IsNullable
+  name: IsNullable
+  nameWithType: BaseType.IsNullable
+  fullName: Heir.Types.BaseType.IsNullable
+- uid: Heir.Types.BaseType.IsNone
+  commentId: P:Heir.Types.BaseType.IsNone
+  parent: Heir.Types.BaseType
+  href: Heir.Types.BaseType.html#Heir_Types_BaseType_IsNone
+  name: IsNone
+  nameWithType: BaseType.IsNone
+  fullName: Heir.Types.BaseType.IsNone
+- uid: Heir.Types.BaseType.Nullable(Heir.Types.BaseType)
+  commentId: M:Heir.Types.BaseType.Nullable(Heir.Types.BaseType)
+  parent: Heir.Types.BaseType
+  href: Heir.Types.BaseType.html#Heir_Types_BaseType_Nullable_Heir_Types_BaseType_
+  name: Nullable(BaseType)
+  nameWithType: BaseType.Nullable(BaseType)
+  fullName: Heir.Types.BaseType.Nullable(Heir.Types.BaseType)
+  spec.csharp:
+  - uid: Heir.Types.BaseType.Nullable(Heir.Types.BaseType)
+    name: Nullable
+    href: Heir.Types.BaseType.html#Heir_Types_BaseType_Nullable_Heir_Types_BaseType_
+  - name: (
+  - uid: Heir.Types.BaseType
+    name: BaseType
+    href: Heir.Types.BaseType.html
+  - name: )
+  spec.vb:
+  - uid: Heir.Types.BaseType.Nullable(Heir.Types.BaseType)
+    name: Nullable
+    href: Heir.Types.BaseType.html#Heir_Types_BaseType_Nullable_Heir_Types_BaseType_
+  - name: (
+  - uid: Heir.Types.BaseType
+    name: BaseType
+    href: Heir.Types.BaseType.html
+  - name: )
+- uid: Heir.Types.BaseType.FromTypeRef(Heir.AST.Abstract.TypeRef)
+  commentId: M:Heir.Types.BaseType.FromTypeRef(Heir.AST.Abstract.TypeRef)
+  parent: Heir.Types.BaseType
+  href: Heir.Types.BaseType.html#Heir_Types_BaseType_FromTypeRef_Heir_AST_Abstract_TypeRef_
+  name: FromTypeRef(TypeRef)
+  nameWithType: BaseType.FromTypeRef(TypeRef)
+  fullName: Heir.Types.BaseType.FromTypeRef(Heir.AST.Abstract.TypeRef)
+  spec.csharp:
+  - uid: Heir.Types.BaseType.FromTypeRef(Heir.AST.Abstract.TypeRef)
+    name: FromTypeRef
+    href: Heir.Types.BaseType.html#Heir_Types_BaseType_FromTypeRef_Heir_AST_Abstract_TypeRef_
+  - name: (
+  - uid: Heir.AST.Abstract.TypeRef
+    name: TypeRef
+    href: Heir.AST.Abstract.TypeRef.html
+  - name: )
+  spec.vb:
+  - uid: Heir.Types.BaseType.FromTypeRef(Heir.AST.Abstract.TypeRef)
+    name: FromTypeRef
+    href: Heir.Types.BaseType.html#Heir_Types_BaseType_FromTypeRef_Heir_AST_Abstract_TypeRef_
+  - name: (
+  - uid: Heir.AST.Abstract.TypeRef
+    name: TypeRef
+    href: Heir.AST.Abstract.TypeRef.html
+  - name: )
+- uid: Heir.Types.BaseType.IsAssignableTo(Heir.Types.BaseType)
+  commentId: M:Heir.Types.BaseType.IsAssignableTo(Heir.Types.BaseType)
+  parent: Heir.Types.BaseType
+  href: Heir.Types.BaseType.html#Heir_Types_BaseType_IsAssignableTo_Heir_Types_BaseType_
+  name: IsAssignableTo(BaseType)
+  nameWithType: BaseType.IsAssignableTo(BaseType)
+  fullName: Heir.Types.BaseType.IsAssignableTo(Heir.Types.BaseType)
+  spec.csharp:
+  - uid: Heir.Types.BaseType.IsAssignableTo(Heir.Types.BaseType)
+    name: IsAssignableTo
+    href: Heir.Types.BaseType.html#Heir_Types_BaseType_IsAssignableTo_Heir_Types_BaseType_
+  - name: (
+  - uid: Heir.Types.BaseType
+    name: BaseType
+    href: Heir.Types.BaseType.html
+  - name: )
+  spec.vb:
+  - uid: Heir.Types.BaseType.IsAssignableTo(Heir.Types.BaseType)
+    name: IsAssignableTo
+    href: Heir.Types.BaseType.html#Heir_Types_BaseType_IsAssignableTo_Heir_Types_BaseType_
+  - name: (
+  - uid: Heir.Types.BaseType
+    name: BaseType
+    href: Heir.Types.BaseType.html
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Heir.Types.PrimitiveType
+  commentId: T:Heir.Types.PrimitiveType
+  parent: Heir.Types
+  href: Heir.Types.PrimitiveType.html
+  name: PrimitiveType
+  nameWithType: PrimitiveType
+  fullName: Heir.Types.PrimitiveType
+- uid: Heir.Types.SingularType.Kind
+  commentId: P:Heir.Types.SingularType.Kind
+  parent: Heir.Types.SingularType
+  href: Heir.Types.SingularType.html#Heir_Types_SingularType_Kind
+  name: Kind
+  nameWithType: SingularType.Kind
+  fullName: Heir.Types.SingularType.Kind
+- uid: Heir.Types.PrimitiveType.Kind*
+  commentId: Overload:Heir.Types.PrimitiveType.Kind
+  href: Heir.Types.PrimitiveType.html#Heir_Types_PrimitiveType_Kind
+  name: Kind
+  nameWithType: PrimitiveType.Kind
+  fullName: Heir.Types.PrimitiveType.Kind
+- uid: Heir.Types.TypeKind
+  commentId: T:Heir.Types.TypeKind
+  parent: Heir.Types
+  href: Heir.Types.TypeKind.html
+  name: TypeKind
+  nameWithType: TypeKind
+  fullName: Heir.Types.TypeKind
+- uid: Heir.Types.PrimitiveType.PrimitiveKind*
+  commentId: Overload:Heir.Types.PrimitiveType.PrimitiveKind
+  href: Heir.Types.PrimitiveType.html#Heir_Types_PrimitiveType_PrimitiveKind
+  name: PrimitiveKind
+  nameWithType: PrimitiveType.PrimitiveKind
+  fullName: Heir.Types.PrimitiveType.PrimitiveKind
+- uid: Heir.Types.PrimitiveTypeKind
+  commentId: T:Heir.Types.PrimitiveTypeKind
+  parent: Heir.Types
+  href: Heir.Types.PrimitiveTypeKind.html
+  name: PrimitiveTypeKind
+  nameWithType: PrimitiveTypeKind
+  fullName: Heir.Types.PrimitiveTypeKind
+- uid: Heir.Types.PrimitiveType.#ctor*
+  commentId: Overload:Heir.Types.PrimitiveType.#ctor
+  href: Heir.Types.PrimitiveType.html#Heir_Types_PrimitiveType__ctor_Heir_Types_PrimitiveTypeKind_
+  name: PrimitiveType
+  nameWithType: PrimitiveType.PrimitiveType
+  fullName: Heir.Types.PrimitiveType.PrimitiveType
+  nameWithType.vb: PrimitiveType.New
+  fullName.vb: Heir.Types.PrimitiveType.New
+  name.vb: New
+- uid: Heir.Types.PrimitiveType.FromValue*
+  commentId: Overload:Heir.Types.PrimitiveType.FromValue
+  href: Heir.Types.PrimitiveType.html#Heir_Types_PrimitiveType_FromValue_System_Object_
+  name: FromValue
+  nameWithType: PrimitiveType.FromValue
+  fullName: Heir.Types.PrimitiveType.FromValue

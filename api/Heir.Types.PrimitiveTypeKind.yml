@@ -1,0 +1,220 @@
+### YamlMime:ManagedReference
+items:
+- uid: Heir.Types.PrimitiveTypeKind
+  commentId: T:Heir.Types.PrimitiveTypeKind
+  id: PrimitiveTypeKind
+  parent: Heir.Types
+  children:
+  - Heir.Types.PrimitiveTypeKind.Bool
+  - Heir.Types.PrimitiveTypeKind.Char
+  - Heir.Types.PrimitiveTypeKind.Float
+  - Heir.Types.PrimitiveTypeKind.Int
+  - Heir.Types.PrimitiveTypeKind.None
+  - Heir.Types.PrimitiveTypeKind.String
+  langs:
+  - csharp
+  - vb
+  name: PrimitiveTypeKind
+  nameWithType: PrimitiveTypeKind
+  fullName: Heir.Types.PrimitiveTypeKind
+  type: Enum
+  source:
+    remote:
+      path: Heir/Types/PrimitiveType.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: PrimitiveTypeKind
+    path: Heir/Types/PrimitiveType.cs
+    startLine: 2
+  assemblies:
+  - Heir
+  namespace: Heir.Types
+  syntax:
+    content: public enum PrimitiveTypeKind
+    content.vb: Public Enum PrimitiveTypeKind
+- uid: Heir.Types.PrimitiveTypeKind.Int
+  commentId: F:Heir.Types.PrimitiveTypeKind.Int
+  id: Int
+  parent: Heir.Types.PrimitiveTypeKind
+  langs:
+  - csharp
+  - vb
+  name: Int
+  nameWithType: PrimitiveTypeKind.Int
+  fullName: Heir.Types.PrimitiveTypeKind.Int
+  type: Field
+  source:
+    remote:
+      path: Heir/Types/PrimitiveType.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Int
+    path: Heir/Types/PrimitiveType.cs
+    startLine: 4
+  assemblies:
+  - Heir
+  namespace: Heir.Types
+  syntax:
+    content: Int = 0
+    return:
+      type: Heir.Types.PrimitiveTypeKind
+- uid: Heir.Types.PrimitiveTypeKind.Float
+  commentId: F:Heir.Types.PrimitiveTypeKind.Float
+  id: Float
+  parent: Heir.Types.PrimitiveTypeKind
+  langs:
+  - csharp
+  - vb
+  name: Float
+  nameWithType: PrimitiveTypeKind.Float
+  fullName: Heir.Types.PrimitiveTypeKind.Float
+  type: Field
+  source:
+    remote:
+      path: Heir/Types/PrimitiveType.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Float
+    path: Heir/Types/PrimitiveType.cs
+    startLine: 5
+  assemblies:
+  - Heir
+  namespace: Heir.Types
+  syntax:
+    content: Float = 1
+    return:
+      type: Heir.Types.PrimitiveTypeKind
+- uid: Heir.Types.PrimitiveTypeKind.String
+  commentId: F:Heir.Types.PrimitiveTypeKind.String
+  id: String
+  parent: Heir.Types.PrimitiveTypeKind
+  langs:
+  - csharp
+  - vb
+  name: String
+  nameWithType: PrimitiveTypeKind.String
+  fullName: Heir.Types.PrimitiveTypeKind.String
+  type: Field
+  source:
+    remote:
+      path: Heir/Types/PrimitiveType.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: String
+    path: Heir/Types/PrimitiveType.cs
+    startLine: 6
+  assemblies:
+  - Heir
+  namespace: Heir.Types
+  syntax:
+    content: String = 2
+    return:
+      type: Heir.Types.PrimitiveTypeKind
+- uid: Heir.Types.PrimitiveTypeKind.Char
+  commentId: F:Heir.Types.PrimitiveTypeKind.Char
+  id: Char
+  parent: Heir.Types.PrimitiveTypeKind
+  langs:
+  - csharp
+  - vb
+  name: Char
+  nameWithType: PrimitiveTypeKind.Char
+  fullName: Heir.Types.PrimitiveTypeKind.Char
+  type: Field
+  source:
+    remote:
+      path: Heir/Types/PrimitiveType.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Char
+    path: Heir/Types/PrimitiveType.cs
+    startLine: 7
+  assemblies:
+  - Heir
+  namespace: Heir.Types
+  syntax:
+    content: Char = 3
+    return:
+      type: Heir.Types.PrimitiveTypeKind
+- uid: Heir.Types.PrimitiveTypeKind.Bool
+  commentId: F:Heir.Types.PrimitiveTypeKind.Bool
+  id: Bool
+  parent: Heir.Types.PrimitiveTypeKind
+  langs:
+  - csharp
+  - vb
+  name: Bool
+  nameWithType: PrimitiveTypeKind.Bool
+  fullName: Heir.Types.PrimitiveTypeKind.Bool
+  type: Field
+  source:
+    remote:
+      path: Heir/Types/PrimitiveType.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Bool
+    path: Heir/Types/PrimitiveType.cs
+    startLine: 8
+  assemblies:
+  - Heir
+  namespace: Heir.Types
+  syntax:
+    content: Bool = 4
+    return:
+      type: Heir.Types.PrimitiveTypeKind
+- uid: Heir.Types.PrimitiveTypeKind.None
+  commentId: F:Heir.Types.PrimitiveTypeKind.None
+  id: None
+  parent: Heir.Types.PrimitiveTypeKind
+  langs:
+  - csharp
+  - vb
+  name: None
+  nameWithType: PrimitiveTypeKind.None
+  fullName: Heir.Types.PrimitiveTypeKind.None
+  type: Field
+  source:
+    remote:
+      path: Heir/Types/PrimitiveType.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: None
+    path: Heir/Types/PrimitiveType.cs
+    startLine: 9
+  assemblies:
+  - Heir
+  namespace: Heir.Types
+  syntax:
+    content: None = 5
+    return:
+      type: Heir.Types.PrimitiveTypeKind
+references:
+- uid: Heir.Types
+  commentId: N:Heir.Types
+  href: Heir.html
+  name: Heir.Types
+  nameWithType: Heir.Types
+  fullName: Heir.Types
+  spec.csharp:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.Types
+    name: Types
+    href: Heir.Types.html
+  spec.vb:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.Types
+    name: Types
+    href: Heir.Types.html
+- uid: Heir.Types.PrimitiveTypeKind
+  commentId: T:Heir.Types.PrimitiveTypeKind
+  parent: Heir.Types
+  href: Heir.Types.PrimitiveTypeKind.html
+  name: PrimitiveTypeKind
+  nameWithType: PrimitiveTypeKind
+  fullName: Heir.Types.PrimitiveTypeKind

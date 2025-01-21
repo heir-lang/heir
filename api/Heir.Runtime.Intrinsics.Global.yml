@@ -1,0 +1,30 @@
+### YamlMime:ManagedReference
+items:
+- uid: Heir.Runtime.Intrinsics.Global
+  commentId: N:Heir.Runtime.Intrinsics.Global
+  id: Heir.Runtime.Intrinsics.Global
+  children:
+  - Heir.Runtime.Intrinsics.Global.NowFunction
+  - Heir.Runtime.Intrinsics.Global.PrintFunction
+  langs:
+  - csharp
+  - vb
+  name: Heir.Runtime.Intrinsics.Global
+  nameWithType: Heir.Runtime.Intrinsics.Global
+  fullName: Heir.Runtime.Intrinsics.Global
+  type: Namespace
+  assemblies:
+  - Heir
+references:
+- uid: Heir.Runtime.Intrinsics.Global.NowFunction
+  commentId: T:Heir.Runtime.Intrinsics.Global.NowFunction
+  href: Heir.Runtime.Intrinsics.Global.NowFunction.html
+  name: NowFunction
+  nameWithType: NowFunction
+  fullName: Heir.Runtime.Intrinsics.Global.NowFunction
+- uid: Heir.Runtime.Intrinsics.Global.PrintFunction
+  commentId: T:Heir.Runtime.Intrinsics.Global.PrintFunction
+  href: Heir.Runtime.Intrinsics.Global.PrintFunction.html
+  name: PrintFunction
+  nameWithType: PrintFunction
+  fullName: Heir.Runtime.Intrinsics.Global.PrintFunction

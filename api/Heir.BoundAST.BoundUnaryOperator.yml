@@ -1,0 +1,678 @@
+### YamlMime:ManagedReference
+items:
+- uid: Heir.BoundAST.BoundUnaryOperator
+  commentId: T:Heir.BoundAST.BoundUnaryOperator
+  id: BoundUnaryOperator
+  parent: Heir.BoundAST
+  children:
+  - Heir.BoundAST.BoundUnaryOperator.Bind(Heir.Syntax.Token,Heir.Types.BaseType)
+  - Heir.BoundAST.BoundUnaryOperator.OpCodeMap
+  - Heir.BoundAST.BoundUnaryOperator.OperandType
+  - Heir.BoundAST.BoundUnaryOperator.ResultType
+  - Heir.BoundAST.BoundUnaryOperator.SyntaxKind
+  - Heir.BoundAST.BoundUnaryOperator.Type
+  langs:
+  - csharp
+  - vb
+  name: BoundUnaryOperator
+  nameWithType: BoundUnaryOperator
+  fullName: Heir.BoundAST.BoundUnaryOperator
+  type: Class
+  source:
+    remote:
+      path: Heir/BoundAST/BoundUnaryOperator.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: BoundUnaryOperator
+    path: Heir/BoundAST/BoundUnaryOperator.cs
+    startLine: 15
+  assemblies:
+  - Heir
+  namespace: Heir.BoundAST
+  syntax:
+    content: public sealed class BoundUnaryOperator
+    content.vb: Public NotInheritable Class BoundUnaryOperator
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Heir.BoundAST.BoundUnaryOperator.OpCodeMap
+  commentId: F:Heir.BoundAST.BoundUnaryOperator.OpCodeMap
+  id: OpCodeMap
+  parent: Heir.BoundAST.BoundUnaryOperator
+  langs:
+  - csharp
+  - vb
+  name: OpCodeMap
+  nameWithType: BoundUnaryOperator.OpCodeMap
+  fullName: Heir.BoundAST.BoundUnaryOperator.OpCodeMap
+  type: Field
+  source:
+    remote:
+      path: Heir/BoundAST/BoundUnaryOperator.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: OpCodeMap
+    path: Heir/BoundAST/BoundUnaryOperator.cs
+    startLine: 17
+  assemblies:
+  - Heir
+  namespace: Heir.BoundAST
+  syntax:
+    content: public static readonly Dictionary<BoundUnaryOperatorType, OpCode> OpCodeMap
+    return:
+      type: System.Collections.Generic.Dictionary{Heir.BoundAST.BoundUnaryOperatorType,Heir.CodeGeneration.OpCode}
+    content.vb: Public Shared ReadOnly OpCodeMap As Dictionary(Of BoundUnaryOperatorType, OpCode)
+- uid: Heir.BoundAST.BoundUnaryOperator.SyntaxKind
+  commentId: P:Heir.BoundAST.BoundUnaryOperator.SyntaxKind
+  id: SyntaxKind
+  parent: Heir.BoundAST.BoundUnaryOperator
+  langs:
+  - csharp
+  - vb
+  name: SyntaxKind
+  nameWithType: BoundUnaryOperator.SyntaxKind
+  fullName: Heir.BoundAST.BoundUnaryOperator.SyntaxKind
+  type: Property
+  source:
+    remote:
+      path: Heir/BoundAST/BoundUnaryOperator.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: SyntaxKind
+    path: Heir/BoundAST/BoundUnaryOperator.cs
+    startLine: 26
+  assemblies:
+  - Heir
+  namespace: Heir.BoundAST
+  syntax:
+    content: public SyntaxKind SyntaxKind { get; }
+    parameters: []
+    return:
+      type: Heir.Syntax.SyntaxKind
+    content.vb: Public ReadOnly Property SyntaxKind As SyntaxKind
+  overload: Heir.BoundAST.BoundUnaryOperator.SyntaxKind*
+- uid: Heir.BoundAST.BoundUnaryOperator.Type
+  commentId: P:Heir.BoundAST.BoundUnaryOperator.Type
+  id: Type
+  parent: Heir.BoundAST.BoundUnaryOperator
+  langs:
+  - csharp
+  - vb
+  name: Type
+  nameWithType: BoundUnaryOperator.Type
+  fullName: Heir.BoundAST.BoundUnaryOperator.Type
+  type: Property
+  source:
+    remote:
+      path: Heir/BoundAST/BoundUnaryOperator.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Type
+    path: Heir/BoundAST/BoundUnaryOperator.cs
+    startLine: 27
+  assemblies:
+  - Heir
+  namespace: Heir.BoundAST
+  syntax:
+    content: public BoundUnaryOperatorType Type { get; }
+    parameters: []
+    return:
+      type: Heir.BoundAST.BoundUnaryOperatorType
+    content.vb: Public ReadOnly Property Type As BoundUnaryOperatorType
+  overload: Heir.BoundAST.BoundUnaryOperator.Type*
+- uid: Heir.BoundAST.BoundUnaryOperator.OperandType
+  commentId: P:Heir.BoundAST.BoundUnaryOperator.OperandType
+  id: OperandType
+  parent: Heir.BoundAST.BoundUnaryOperator
+  langs:
+  - csharp
+  - vb
+  name: OperandType
+  nameWithType: BoundUnaryOperator.OperandType
+  fullName: Heir.BoundAST.BoundUnaryOperator.OperandType
+  type: Property
+  source:
+    remote:
+      path: Heir/BoundAST/BoundUnaryOperator.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: OperandType
+    path: Heir/BoundAST/BoundUnaryOperator.cs
+    startLine: 28
+  assemblies:
+  - Heir
+  namespace: Heir.BoundAST
+  syntax:
+    content: public BaseType OperandType { get; }
+    parameters: []
+    return:
+      type: Heir.Types.BaseType
+    content.vb: Public ReadOnly Property OperandType As BaseType
+  overload: Heir.BoundAST.BoundUnaryOperator.OperandType*
+- uid: Heir.BoundAST.BoundUnaryOperator.ResultType
+  commentId: P:Heir.BoundAST.BoundUnaryOperator.ResultType
+  id: ResultType
+  parent: Heir.BoundAST.BoundUnaryOperator
+  langs:
+  - csharp
+  - vb
+  name: ResultType
+  nameWithType: BoundUnaryOperator.ResultType
+  fullName: Heir.BoundAST.BoundUnaryOperator.ResultType
+  type: Property
+  source:
+    remote:
+      path: Heir/BoundAST/BoundUnaryOperator.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: ResultType
+    path: Heir/BoundAST/BoundUnaryOperator.cs
+    startLine: 29
+  assemblies:
+  - Heir
+  namespace: Heir.BoundAST
+  syntax:
+    content: public BaseType ResultType { get; }
+    parameters: []
+    return:
+      type: Heir.Types.BaseType
+    content.vb: Public ReadOnly Property ResultType As BaseType
+  overload: Heir.BoundAST.BoundUnaryOperator.ResultType*
+- uid: Heir.BoundAST.BoundUnaryOperator.Bind(Heir.Syntax.Token,Heir.Types.BaseType)
+  commentId: M:Heir.BoundAST.BoundUnaryOperator.Bind(Heir.Syntax.Token,Heir.Types.BaseType)
+  id: Bind(Heir.Syntax.Token,Heir.Types.BaseType)
+  parent: Heir.BoundAST.BoundUnaryOperator
+  langs:
+  - csharp
+  - vb
+  name: Bind(Token, BaseType)
+  nameWithType: BoundUnaryOperator.Bind(Token, BaseType)
+  fullName: Heir.BoundAST.BoundUnaryOperator.Bind(Heir.Syntax.Token, Heir.Types.BaseType)
+  type: Method
+  source:
+    remote:
+      path: Heir/BoundAST/BoundUnaryOperator.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Bind
+    path: Heir/BoundAST/BoundUnaryOperator.cs
+    startLine: 53
+  assemblies:
+  - Heir
+  namespace: Heir.BoundAST
+  syntax:
+    content: public static BoundUnaryOperator? Bind(Token token, BaseType operandType)
+    parameters:
+    - id: token
+      type: Heir.Syntax.Token
+    - id: operandType
+      type: Heir.Types.BaseType
+    return:
+      type: Heir.BoundAST.BoundUnaryOperator
+    content.vb: Public Shared Function Bind(token As Token, operandType As BaseType) As BoundUnaryOperator
+  overload: Heir.BoundAST.BoundUnaryOperator.Bind*
+references:
+- uid: Heir.BoundAST
+  commentId: N:Heir.BoundAST
+  href: Heir.html
+  name: Heir.BoundAST
+  nameWithType: Heir.BoundAST
+  fullName: Heir.BoundAST
+  spec.csharp:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.BoundAST
+    name: BoundAST
+    href: Heir.BoundAST.html
+  spec.vb:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.BoundAST
+    name: BoundAST
+    href: Heir.BoundAST.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Collections.Generic.Dictionary{Heir.BoundAST.BoundUnaryOperatorType,Heir.CodeGeneration.OpCode}
+  commentId: T:System.Collections.Generic.Dictionary{Heir.BoundAST.BoundUnaryOperatorType,Heir.CodeGeneration.OpCode}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.Dictionary`2
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  name: Dictionary<BoundUnaryOperatorType, OpCode>
+  nameWithType: Dictionary<BoundUnaryOperatorType, OpCode>
+  fullName: System.Collections.Generic.Dictionary<Heir.BoundAST.BoundUnaryOperatorType, Heir.CodeGeneration.OpCode>
+  nameWithType.vb: Dictionary(Of BoundUnaryOperatorType, OpCode)
+  fullName.vb: System.Collections.Generic.Dictionary(Of Heir.BoundAST.BoundUnaryOperatorType, Heir.CodeGeneration.OpCode)
+  name.vb: Dictionary(Of BoundUnaryOperatorType, OpCode)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: <
+  - uid: Heir.BoundAST.BoundUnaryOperatorType
+    name: BoundUnaryOperatorType
+    href: Heir.BoundAST.BoundUnaryOperatorType.html
+  - name: ','
+  - name: " "
+  - uid: Heir.CodeGeneration.OpCode
+    name: OpCode
+    href: Heir.CodeGeneration.OpCode.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Heir.BoundAST.BoundUnaryOperatorType
+    name: BoundUnaryOperatorType
+    href: Heir.BoundAST.BoundUnaryOperatorType.html
+  - name: ','
+  - name: " "
+  - uid: Heir.CodeGeneration.OpCode
+    name: OpCode
+    href: Heir.CodeGeneration.OpCode.html
+  - name: )
+- uid: System.Collections.Generic.Dictionary`2
+  commentId: T:System.Collections.Generic.Dictionary`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  name: Dictionary<TKey, TValue>
+  nameWithType: Dictionary<TKey, TValue>
+  fullName: System.Collections.Generic.Dictionary<TKey, TValue>
+  nameWithType.vb: Dictionary(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.Dictionary(Of TKey, TValue)
+  name.vb: Dictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: <
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: Heir.BoundAST.BoundUnaryOperator.SyntaxKind*
+  commentId: Overload:Heir.BoundAST.BoundUnaryOperator.SyntaxKind
+  href: Heir.BoundAST.BoundUnaryOperator.html#Heir_BoundAST_BoundUnaryOperator_SyntaxKind
+  name: SyntaxKind
+  nameWithType: BoundUnaryOperator.SyntaxKind
+  fullName: Heir.BoundAST.BoundUnaryOperator.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind
+  commentId: T:Heir.Syntax.SyntaxKind
+  parent: Heir.Syntax
+  href: Heir.Syntax.SyntaxKind.html
+  name: SyntaxKind
+  nameWithType: SyntaxKind
+  fullName: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax
+  commentId: N:Heir.Syntax
+  href: Heir.html
+  name: Heir.Syntax
+  nameWithType: Heir.Syntax
+  fullName: Heir.Syntax
+  spec.csharp:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.Syntax
+    name: Syntax
+    href: Heir.Syntax.html
+  spec.vb:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.Syntax
+    name: Syntax
+    href: Heir.Syntax.html
+- uid: Heir.BoundAST.BoundUnaryOperator.Type*
+  commentId: Overload:Heir.BoundAST.BoundUnaryOperator.Type
+  href: Heir.BoundAST.BoundUnaryOperator.html#Heir_BoundAST_BoundUnaryOperator_Type
+  name: Type
+  nameWithType: BoundUnaryOperator.Type
+  fullName: Heir.BoundAST.BoundUnaryOperator.Type
+- uid: Heir.BoundAST.BoundUnaryOperatorType
+  commentId: T:Heir.BoundAST.BoundUnaryOperatorType
+  parent: Heir.BoundAST
+  href: Heir.BoundAST.BoundUnaryOperatorType.html
+  name: BoundUnaryOperatorType
+  nameWithType: BoundUnaryOperatorType
+  fullName: Heir.BoundAST.BoundUnaryOperatorType
+- uid: Heir.BoundAST.BoundUnaryOperator.OperandType*
+  commentId: Overload:Heir.BoundAST.BoundUnaryOperator.OperandType
+  href: Heir.BoundAST.BoundUnaryOperator.html#Heir_BoundAST_BoundUnaryOperator_OperandType
+  name: OperandType
+  nameWithType: BoundUnaryOperator.OperandType
+  fullName: Heir.BoundAST.BoundUnaryOperator.OperandType
+- uid: Heir.Types.BaseType
+  commentId: T:Heir.Types.BaseType
+  parent: Heir.Types
+  href: Heir.Types.BaseType.html
+  name: BaseType
+  nameWithType: BaseType
+  fullName: Heir.Types.BaseType
+- uid: Heir.Types
+  commentId: N:Heir.Types
+  href: Heir.html
+  name: Heir.Types
+  nameWithType: Heir.Types
+  fullName: Heir.Types
+  spec.csharp:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.Types
+    name: Types
+    href: Heir.Types.html
+  spec.vb:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.Types
+    name: Types
+    href: Heir.Types.html
+- uid: Heir.BoundAST.BoundUnaryOperator.ResultType*
+  commentId: Overload:Heir.BoundAST.BoundUnaryOperator.ResultType
+  href: Heir.BoundAST.BoundUnaryOperator.html#Heir_BoundAST_BoundUnaryOperator_ResultType
+  name: ResultType
+  nameWithType: BoundUnaryOperator.ResultType
+  fullName: Heir.BoundAST.BoundUnaryOperator.ResultType
+- uid: Heir.BoundAST.BoundUnaryOperator.Bind*
+  commentId: Overload:Heir.BoundAST.BoundUnaryOperator.Bind
+  href: Heir.BoundAST.BoundUnaryOperator.html#Heir_BoundAST_BoundUnaryOperator_Bind_Heir_Syntax_Token_Heir_Types_BaseType_
+  name: Bind
+  nameWithType: BoundUnaryOperator.Bind
+  fullName: Heir.BoundAST.BoundUnaryOperator.Bind
+- uid: Heir.Syntax.Token
+  commentId: T:Heir.Syntax.Token
+  parent: Heir.Syntax
+  href: Heir.Syntax.Token.html
+  name: Token
+  nameWithType: Token
+  fullName: Heir.Syntax.Token
+- uid: Heir.BoundAST.BoundUnaryOperator
+  commentId: T:Heir.BoundAST.BoundUnaryOperator
+  parent: Heir.BoundAST
+  href: Heir.BoundAST.BoundUnaryOperator.html
+  name: BoundUnaryOperator
+  nameWithType: BoundUnaryOperator
+  fullName: Heir.BoundAST.BoundUnaryOperator

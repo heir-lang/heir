@@ -1,0 +1,1117 @@
+### YamlMime:ManagedReference
+items:
+- uid: Heir.BoundAST.BoundIf
+  commentId: T:Heir.BoundAST.BoundIf
+  id: BoundIf
+  parent: Heir.BoundAST
+  children:
+  - Heir.BoundAST.BoundIf.#ctor(Heir.Syntax.Token,Heir.BoundAST.BoundExpression,Heir.BoundAST.BoundStatement,Heir.BoundAST.BoundStatement)
+  - Heir.BoundAST.BoundIf.Accept``1(Heir.BoundAST.BoundStatement.Visitor{``0})
+  - Heir.BoundAST.BoundIf.Body
+  - Heir.BoundAST.BoundIf.Condition
+  - Heir.BoundAST.BoundIf.Display(System.Int32)
+  - Heir.BoundAST.BoundIf.ElseBranch
+  - Heir.BoundAST.BoundIf.GetTokens
+  - Heir.BoundAST.BoundIf.Keyword
+  - Heir.BoundAST.BoundIf.Type
+  langs:
+  - csharp
+  - vb
+  name: BoundIf
+  nameWithType: BoundIf
+  fullName: Heir.BoundAST.BoundIf
+  type: Class
+  source:
+    remote:
+      path: Heir/BoundAST/BoundIf.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: BoundIf
+    path: Heir/BoundAST/BoundIf.cs
+    startLine: 5
+  assemblies:
+  - Heir
+  namespace: Heir.BoundAST
+  syntax:
+    content: 'public sealed class BoundIf : BoundStatement'
+    content.vb: Public NotInheritable Class BoundIf Inherits BoundStatement
+  inheritance:
+  - System.Object
+  - Heir.AST.Abstract.SyntaxNode
+  - Heir.BoundAST.BoundSyntaxNode
+  - Heir.BoundAST.BoundStatement
+  inheritedMembers:
+  - Heir.AST.Abstract.SyntaxNode.GetFirstToken
+  - Heir.AST.Abstract.SyntaxNode.GetLastToken
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Heir.BoundAST.BoundIf.#ctor(Heir.Syntax.Token,Heir.BoundAST.BoundExpression,Heir.BoundAST.BoundStatement,Heir.BoundAST.BoundStatement)
+  commentId: M:Heir.BoundAST.BoundIf.#ctor(Heir.Syntax.Token,Heir.BoundAST.BoundExpression,Heir.BoundAST.BoundStatement,Heir.BoundAST.BoundStatement)
+  id: '#ctor(Heir.Syntax.Token,Heir.BoundAST.BoundExpression,Heir.BoundAST.BoundStatement,Heir.BoundAST.BoundStatement)'
+  parent: Heir.BoundAST.BoundIf
+  langs:
+  - csharp
+  - vb
+  name: BoundIf(Token, BoundExpression, BoundStatement, BoundStatement?)
+  nameWithType: BoundIf.BoundIf(Token, BoundExpression, BoundStatement, BoundStatement?)
+  fullName: Heir.BoundAST.BoundIf.BoundIf(Heir.Syntax.Token, Heir.BoundAST.BoundExpression, Heir.BoundAST.BoundStatement, Heir.BoundAST.BoundStatement?)
+  type: Constructor
+  source:
+    remote:
+      path: Heir/BoundAST/BoundIf.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: .ctor
+    path: Heir/BoundAST/BoundIf.cs
+    startLine: 5
+  assemblies:
+  - Heir
+  namespace: Heir.BoundAST
+  syntax:
+    content: public BoundIf(Token keyword, BoundExpression condition, BoundStatement body, BoundStatement? elseBranch)
+    parameters:
+    - id: keyword
+      type: Heir.Syntax.Token
+    - id: condition
+      type: Heir.BoundAST.BoundExpression
+    - id: body
+      type: Heir.BoundAST.BoundStatement
+    - id: elseBranch
+      type: Heir.BoundAST.BoundStatement
+    content.vb: Public Sub New(keyword As Token, condition As BoundExpression, body As BoundStatement, elseBranch As BoundStatement)
+  overload: Heir.BoundAST.BoundIf.#ctor*
+  nameWithType.vb: BoundIf.New(Token, BoundExpression, BoundStatement, BoundStatement)
+  fullName.vb: Heir.BoundAST.BoundIf.New(Heir.Syntax.Token, Heir.BoundAST.BoundExpression, Heir.BoundAST.BoundStatement, Heir.BoundAST.BoundStatement)
+  name.vb: New(Token, BoundExpression, BoundStatement, BoundStatement)
+- uid: Heir.BoundAST.BoundIf.Type
+  commentId: P:Heir.BoundAST.BoundIf.Type
+  id: Type
+  parent: Heir.BoundAST.BoundIf
+  langs:
+  - csharp
+  - vb
+  name: Type
+  nameWithType: BoundIf.Type
+  fullName: Heir.BoundAST.BoundIf.Type
+  type: Property
+  source:
+    remote:
+      path: Heir/BoundAST/BoundIf.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Type
+    path: Heir/BoundAST/BoundIf.cs
+    startLine: 8
+  assemblies:
+  - Heir
+  namespace: Heir.BoundAST
+  example: []
+  syntax:
+    content: public override BaseType? Type { get; }
+    parameters: []
+    return:
+      type: Heir.Types.BaseType
+    content.vb: Public Overrides ReadOnly Property Type As BaseType
+  overridden: Heir.BoundAST.BoundStatement.Type
+  overload: Heir.BoundAST.BoundIf.Type*
+- uid: Heir.BoundAST.BoundIf.Keyword
+  commentId: P:Heir.BoundAST.BoundIf.Keyword
+  id: Keyword
+  parent: Heir.BoundAST.BoundIf
+  langs:
+  - csharp
+  - vb
+  name: Keyword
+  nameWithType: BoundIf.Keyword
+  fullName: Heir.BoundAST.BoundIf.Keyword
+  type: Property
+  source:
+    remote:
+      path: Heir/BoundAST/BoundIf.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Keyword
+    path: Heir/BoundAST/BoundIf.cs
+    startLine: 10
+  assemblies:
+  - Heir
+  namespace: Heir.BoundAST
+  syntax:
+    content: public Token Keyword { get; }
+    parameters: []
+    return:
+      type: Heir.Syntax.Token
+    content.vb: Public ReadOnly Property Keyword As Token
+  overload: Heir.BoundAST.BoundIf.Keyword*
+- uid: Heir.BoundAST.BoundIf.Condition
+  commentId: P:Heir.BoundAST.BoundIf.Condition
+  id: Condition
+  parent: Heir.BoundAST.BoundIf
+  langs:
+  - csharp
+  - vb
+  name: Condition
+  nameWithType: BoundIf.Condition
+  fullName: Heir.BoundAST.BoundIf.Condition
+  type: Property
+  source:
+    remote:
+      path: Heir/BoundAST/BoundIf.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Condition
+    path: Heir/BoundAST/BoundIf.cs
+    startLine: 11
+  assemblies:
+  - Heir
+  namespace: Heir.BoundAST
+  syntax:
+    content: public BoundExpression Condition { get; }
+    parameters: []
+    return:
+      type: Heir.BoundAST.BoundExpression
+    content.vb: Public ReadOnly Property Condition As BoundExpression
+  overload: Heir.BoundAST.BoundIf.Condition*
+- uid: Heir.BoundAST.BoundIf.Body
+  commentId: P:Heir.BoundAST.BoundIf.Body
+  id: Body
+  parent: Heir.BoundAST.BoundIf
+  langs:
+  - csharp
+  - vb
+  name: Body
+  nameWithType: BoundIf.Body
+  fullName: Heir.BoundAST.BoundIf.Body
+  type: Property
+  source:
+    remote:
+      path: Heir/BoundAST/BoundIf.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Body
+    path: Heir/BoundAST/BoundIf.cs
+    startLine: 12
+  assemblies:
+  - Heir
+  namespace: Heir.BoundAST
+  syntax:
+    content: public BoundStatement Body { get; }
+    parameters: []
+    return:
+      type: Heir.BoundAST.BoundStatement
+    content.vb: Public ReadOnly Property Body As BoundStatement
+  overload: Heir.BoundAST.BoundIf.Body*
+- uid: Heir.BoundAST.BoundIf.ElseBranch
+  commentId: P:Heir.BoundAST.BoundIf.ElseBranch
+  id: ElseBranch
+  parent: Heir.BoundAST.BoundIf
+  langs:
+  - csharp
+  - vb
+  name: ElseBranch
+  nameWithType: BoundIf.ElseBranch
+  fullName: Heir.BoundAST.BoundIf.ElseBranch
+  type: Property
+  source:
+    remote:
+      path: Heir/BoundAST/BoundIf.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: ElseBranch
+    path: Heir/BoundAST/BoundIf.cs
+    startLine: 13
+  assemblies:
+  - Heir
+  namespace: Heir.BoundAST
+  syntax:
+    content: public BoundStatement? ElseBranch { get; }
+    parameters: []
+    return:
+      type: Heir.BoundAST.BoundStatement
+    content.vb: Public ReadOnly Property ElseBranch As BoundStatement
+  overload: Heir.BoundAST.BoundIf.ElseBranch*
+- uid: Heir.BoundAST.BoundIf.Accept``1(Heir.BoundAST.BoundStatement.Visitor{``0})
+  commentId: M:Heir.BoundAST.BoundIf.Accept``1(Heir.BoundAST.BoundStatement.Visitor{``0})
+  id: Accept``1(Heir.BoundAST.BoundStatement.Visitor{``0})
+  parent: Heir.BoundAST.BoundIf
+  langs:
+  - csharp
+  - vb
+  name: Accept<R>(Visitor<R>)
+  nameWithType: BoundIf.Accept<R>(BoundStatement.Visitor<R>)
+  fullName: Heir.BoundAST.BoundIf.Accept<R>(Heir.BoundAST.BoundStatement.Visitor<R>)
+  type: Method
+  source:
+    remote:
+      path: Heir/BoundAST/BoundIf.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Accept
+    path: Heir/BoundAST/BoundIf.cs
+    startLine: 15
+  assemblies:
+  - Heir
+  namespace: Heir.BoundAST
+  example: []
+  syntax:
+    content: public override R Accept<R>(BoundStatement.Visitor<R> visitor)
+    parameters:
+    - id: visitor
+      type: Heir.BoundAST.BoundStatement.Visitor{{R}}
+    typeParameters:
+    - id: R
+    return:
+      type: '{R}'
+    content.vb: Public Overrides Function Accept(Of R)(visitor As BoundStatement.Visitor(Of R)) As R
+  overridden: Heir.BoundAST.BoundStatement.Accept``1(Heir.BoundAST.BoundStatement.Visitor{{R}})
+  overload: Heir.BoundAST.BoundIf.Accept*
+  nameWithType.vb: BoundIf.Accept(Of R)(BoundStatement.Visitor(Of R))
+  fullName.vb: Heir.BoundAST.BoundIf.Accept(Of R)(Heir.BoundAST.BoundStatement.Visitor(Of R))
+  name.vb: Accept(Of R)(Visitor(Of R))
+- uid: Heir.BoundAST.BoundIf.GetTokens
+  commentId: M:Heir.BoundAST.BoundIf.GetTokens
+  id: GetTokens
+  parent: Heir.BoundAST.BoundIf
+  langs:
+  - csharp
+  - vb
+  name: GetTokens()
+  nameWithType: BoundIf.GetTokens()
+  fullName: Heir.BoundAST.BoundIf.GetTokens()
+  type: Method
+  source:
+    remote:
+      path: Heir/BoundAST/BoundIf.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: GetTokens
+    path: Heir/BoundAST/BoundIf.cs
+    startLine: 16
+  assemblies:
+  - Heir
+  namespace: Heir.BoundAST
+  example: []
+  syntax:
+    content: public override List<Token> GetTokens()
+    return:
+      type: System.Collections.Generic.List{Heir.Syntax.Token}
+    content.vb: Public Overrides Function GetTokens() As List(Of Token)
+  overridden: Heir.AST.Abstract.SyntaxNode.GetTokens
+  overload: Heir.BoundAST.BoundIf.GetTokens*
+- uid: Heir.BoundAST.BoundIf.Display(System.Int32)
+  commentId: M:Heir.BoundAST.BoundIf.Display(System.Int32)
+  id: Display(System.Int32)
+  parent: Heir.BoundAST.BoundIf
+  langs:
+  - csharp
+  - vb
+  name: Display(int)
+  nameWithType: BoundIf.Display(int)
+  fullName: Heir.BoundAST.BoundIf.Display(int)
+  type: Method
+  source:
+    remote:
+      path: Heir/BoundAST/BoundIf.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Display
+    path: Heir/BoundAST/BoundIf.cs
+    startLine: 24
+  assemblies:
+  - Heir
+  namespace: Heir.BoundAST
+  example: []
+  syntax:
+    content: public override void Display(int indent = 0)
+    parameters:
+    - id: indent
+      type: System.Int32
+    content.vb: Public Overrides Sub Display(indent As Integer = 0)
+  overridden: Heir.AST.Abstract.SyntaxNode.Display(System.Int32)
+  overload: Heir.BoundAST.BoundIf.Display*
+  nameWithType.vb: BoundIf.Display(Integer)
+  fullName.vb: Heir.BoundAST.BoundIf.Display(Integer)
+  name.vb: Display(Integer)
+references:
+- uid: Heir.BoundAST
+  commentId: N:Heir.BoundAST
+  href: Heir.html
+  name: Heir.BoundAST
+  nameWithType: Heir.BoundAST
+  fullName: Heir.BoundAST
+  spec.csharp:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.BoundAST
+    name: BoundAST
+    href: Heir.BoundAST.html
+  spec.vb:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.BoundAST
+    name: BoundAST
+    href: Heir.BoundAST.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Heir.AST.Abstract.SyntaxNode
+  commentId: T:Heir.AST.Abstract.SyntaxNode
+  parent: Heir.AST.Abstract
+  href: Heir.AST.Abstract.SyntaxNode.html
+  name: SyntaxNode
+  nameWithType: SyntaxNode
+  fullName: Heir.AST.Abstract.SyntaxNode
+- uid: Heir.BoundAST.BoundSyntaxNode
+  commentId: T:Heir.BoundAST.BoundSyntaxNode
+  parent: Heir.BoundAST
+  href: Heir.BoundAST.BoundSyntaxNode.html
+  name: BoundSyntaxNode
+  nameWithType: BoundSyntaxNode
+  fullName: Heir.BoundAST.BoundSyntaxNode
+- uid: Heir.BoundAST.BoundStatement
+  commentId: T:Heir.BoundAST.BoundStatement
+  parent: Heir.BoundAST
+  href: Heir.BoundAST.BoundStatement.html
+  name: BoundStatement
+  nameWithType: BoundStatement
+  fullName: Heir.BoundAST.BoundStatement
+- uid: Heir.AST.Abstract.SyntaxNode.GetFirstToken
+  commentId: M:Heir.AST.Abstract.SyntaxNode.GetFirstToken
+  parent: Heir.AST.Abstract.SyntaxNode
+  href: Heir.AST.Abstract.SyntaxNode.html#Heir_AST_Abstract_SyntaxNode_GetFirstToken
+  name: GetFirstToken()
+  nameWithType: SyntaxNode.GetFirstToken()
+  fullName: Heir.AST.Abstract.SyntaxNode.GetFirstToken()
+  spec.csharp:
+  - uid: Heir.AST.Abstract.SyntaxNode.GetFirstToken
+    name: GetFirstToken
+    href: Heir.AST.Abstract.SyntaxNode.html#Heir_AST_Abstract_SyntaxNode_GetFirstToken
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Heir.AST.Abstract.SyntaxNode.GetFirstToken
+    name: GetFirstToken
+    href: Heir.AST.Abstract.SyntaxNode.html#Heir_AST_Abstract_SyntaxNode_GetFirstToken
+  - name: (
+  - name: )
+- uid: Heir.AST.Abstract.SyntaxNode.GetLastToken
+  commentId: M:Heir.AST.Abstract.SyntaxNode.GetLastToken
+  parent: Heir.AST.Abstract.SyntaxNode
+  href: Heir.AST.Abstract.SyntaxNode.html#Heir_AST_Abstract_SyntaxNode_GetLastToken
+  name: GetLastToken()
+  nameWithType: SyntaxNode.GetLastToken()
+  fullName: Heir.AST.Abstract.SyntaxNode.GetLastToken()
+  spec.csharp:
+  - uid: Heir.AST.Abstract.SyntaxNode.GetLastToken
+    name: GetLastToken
+    href: Heir.AST.Abstract.SyntaxNode.html#Heir_AST_Abstract_SyntaxNode_GetLastToken
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Heir.AST.Abstract.SyntaxNode.GetLastToken
+    name: GetLastToken
+    href: Heir.AST.Abstract.SyntaxNode.html#Heir_AST_Abstract_SyntaxNode_GetLastToken
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Heir.AST.Abstract
+  commentId: N:Heir.AST.Abstract
+  href: Heir.html
+  name: Heir.AST.Abstract
+  nameWithType: Heir.AST.Abstract
+  fullName: Heir.AST.Abstract
+  spec.csharp:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.AST
+    name: AST
+    href: Heir.AST.html
+  - name: .
+  - uid: Heir.AST.Abstract
+    name: Abstract
+    href: Heir.AST.Abstract.html
+  spec.vb:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.AST
+    name: AST
+    href: Heir.AST.html
+  - name: .
+  - uid: Heir.AST.Abstract
+    name: Abstract
+    href: Heir.AST.Abstract.html
+- uid: Heir.BoundAST.BoundIf.#ctor*
+  commentId: Overload:Heir.BoundAST.BoundIf.#ctor
+  href: Heir.BoundAST.BoundIf.html#Heir_BoundAST_BoundIf__ctor_Heir_Syntax_Token_Heir_BoundAST_BoundExpression_Heir_BoundAST_BoundStatement_Heir_BoundAST_BoundStatement_
+  name: BoundIf
+  nameWithType: BoundIf.BoundIf
+  fullName: Heir.BoundAST.BoundIf.BoundIf
+  nameWithType.vb: BoundIf.New
+  fullName.vb: Heir.BoundAST.BoundIf.New
+  name.vb: New
+- uid: Heir.Syntax.Token
+  commentId: T:Heir.Syntax.Token
+  parent: Heir.Syntax
+  href: Heir.Syntax.Token.html
+  name: Token
+  nameWithType: Token
+  fullName: Heir.Syntax.Token
+- uid: Heir.BoundAST.BoundExpression
+  commentId: T:Heir.BoundAST.BoundExpression
+  parent: Heir.BoundAST
+  href: Heir.BoundAST.BoundExpression.html
+  name: BoundExpression
+  nameWithType: BoundExpression
+  fullName: Heir.BoundAST.BoundExpression
+- uid: Heir.Syntax
+  commentId: N:Heir.Syntax
+  href: Heir.html
+  name: Heir.Syntax
+  nameWithType: Heir.Syntax
+  fullName: Heir.Syntax
+  spec.csharp:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.Syntax
+    name: Syntax
+    href: Heir.Syntax.html
+  spec.vb:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.Syntax
+    name: Syntax
+    href: Heir.Syntax.html
+- uid: Heir.BoundAST.BoundStatement.Type
+  commentId: P:Heir.BoundAST.BoundStatement.Type
+  parent: Heir.BoundAST.BoundStatement
+  href: Heir.BoundAST.BoundStatement.html#Heir_BoundAST_BoundStatement_Type
+  name: Type
+  nameWithType: BoundStatement.Type
+  fullName: Heir.BoundAST.BoundStatement.Type
+- uid: Heir.BoundAST.BoundIf.Type*
+  commentId: Overload:Heir.BoundAST.BoundIf.Type
+  href: Heir.BoundAST.BoundIf.html#Heir_BoundAST_BoundIf_Type
+  name: Type
+  nameWithType: BoundIf.Type
+  fullName: Heir.BoundAST.BoundIf.Type
+- uid: Heir.Types.BaseType
+  commentId: T:Heir.Types.BaseType
+  parent: Heir.Types
+  href: Heir.Types.BaseType.html
+  name: BaseType
+  nameWithType: BaseType
+  fullName: Heir.Types.BaseType
+- uid: Heir.Types
+  commentId: N:Heir.Types
+  href: Heir.html
+  name: Heir.Types
+  nameWithType: Heir.Types
+  fullName: Heir.Types
+  spec.csharp:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.Types
+    name: Types
+    href: Heir.Types.html
+  spec.vb:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.Types
+    name: Types
+    href: Heir.Types.html
+- uid: Heir.BoundAST.BoundIf.Keyword*
+  commentId: Overload:Heir.BoundAST.BoundIf.Keyword
+  href: Heir.BoundAST.BoundIf.html#Heir_BoundAST_BoundIf_Keyword
+  name: Keyword
+  nameWithType: BoundIf.Keyword
+  fullName: Heir.BoundAST.BoundIf.Keyword
+- uid: Heir.BoundAST.BoundIf.Condition*
+  commentId: Overload:Heir.BoundAST.BoundIf.Condition
+  href: Heir.BoundAST.BoundIf.html#Heir_BoundAST_BoundIf_Condition
+  name: Condition
+  nameWithType: BoundIf.Condition
+  fullName: Heir.BoundAST.BoundIf.Condition
+- uid: Heir.BoundAST.BoundIf.Body*
+  commentId: Overload:Heir.BoundAST.BoundIf.Body
+  href: Heir.BoundAST.BoundIf.html#Heir_BoundAST_BoundIf_Body
+  name: Body
+  nameWithType: BoundIf.Body
+  fullName: Heir.BoundAST.BoundIf.Body
+- uid: Heir.BoundAST.BoundIf.ElseBranch*
+  commentId: Overload:Heir.BoundAST.BoundIf.ElseBranch
+  href: Heir.BoundAST.BoundIf.html#Heir_BoundAST_BoundIf_ElseBranch
+  name: ElseBranch
+  nameWithType: BoundIf.ElseBranch
+  fullName: Heir.BoundAST.BoundIf.ElseBranch
+- uid: Heir.BoundAST.BoundStatement.Accept``1(Heir.BoundAST.BoundStatement.Visitor{{R}})
+  commentId: M:Heir.BoundAST.BoundStatement.Accept``1(Heir.BoundAST.BoundStatement.Visitor{``0})
+  parent: Heir.BoundAST.BoundStatement
+  definition: Heir.BoundAST.BoundStatement.Accept``1(Heir.BoundAST.BoundStatement.Visitor{``0})
+  href: Heir.BoundAST.BoundStatement.html#Heir_BoundAST_BoundStatement_Accept__1_Heir_BoundAST_BoundStatement_Visitor___0__
+  name: Accept<R>(Visitor<R>)
+  nameWithType: BoundStatement.Accept<R>(BoundStatement.Visitor<R>)
+  fullName: Heir.BoundAST.BoundStatement.Accept<R>(Heir.BoundAST.BoundStatement.Visitor<R>)
+  nameWithType.vb: BoundStatement.Accept(Of R)(BoundStatement.Visitor(Of R))
+  fullName.vb: Heir.BoundAST.BoundStatement.Accept(Of R)(Heir.BoundAST.BoundStatement.Visitor(Of R))
+  name.vb: Accept(Of R)(Visitor(Of R))
+  spec.csharp:
+  - uid: Heir.BoundAST.BoundStatement.Accept``1(Heir.BoundAST.BoundStatement.Visitor{``0})
+    name: Accept
+    href: Heir.BoundAST.BoundStatement.html#Heir_BoundAST_BoundStatement_Accept__1_Heir_BoundAST_BoundStatement_Visitor___0__
+  - name: <
+  - name: R
+  - name: '>'
+  - name: (
+  - uid: Heir.BoundAST.BoundStatement.Visitor`1
+    name: Visitor
+    href: Heir.BoundAST.BoundStatement.Visitor-1.html
+  - name: <
+  - name: R
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: Heir.BoundAST.BoundStatement.Accept``1(Heir.BoundAST.BoundStatement.Visitor{``0})
+    name: Accept
+    href: Heir.BoundAST.BoundStatement.html#Heir_BoundAST_BoundStatement_Accept__1_Heir_BoundAST_BoundStatement_Visitor___0__
+  - name: (
+  - name: Of
+  - name: " "
+  - name: R
+  - name: )
+  - name: (
+  - uid: Heir.BoundAST.BoundStatement.Visitor`1
+    name: Visitor
+    href: Heir.BoundAST.BoundStatement.Visitor-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: R
+  - name: )
+  - name: )
+- uid: Heir.BoundAST.BoundIf.Accept*
+  commentId: Overload:Heir.BoundAST.BoundIf.Accept
+  href: Heir.BoundAST.BoundIf.html#Heir_BoundAST_BoundIf_Accept__1_Heir_BoundAST_BoundStatement_Visitor___0__
+  name: Accept
+  nameWithType: BoundIf.Accept
+  fullName: Heir.BoundAST.BoundIf.Accept
+- uid: Heir.BoundAST.BoundStatement.Visitor{{R}}
+  commentId: T:Heir.BoundAST.BoundStatement.Visitor{``0}
+  parent: Heir.BoundAST
+  definition: Heir.BoundAST.BoundStatement.Visitor`1
+  href: Heir.BoundAST.BoundStatement.html
+  name: BoundStatement.Visitor<R>
+  nameWithType: BoundStatement.Visitor<R>
+  fullName: Heir.BoundAST.BoundStatement.Visitor<R>
+  nameWithType.vb: BoundStatement.Visitor(Of R)
+  fullName.vb: Heir.BoundAST.BoundStatement.Visitor(Of R)
+  name.vb: BoundStatement.Visitor(Of R)
+  spec.csharp:
+  - uid: Heir.BoundAST.BoundStatement
+    name: BoundStatement
+    href: Heir.BoundAST.BoundStatement.html
+  - name: .
+  - uid: Heir.BoundAST.BoundStatement.Visitor`1
+    name: Visitor
+    href: Heir.BoundAST.BoundStatement.Visitor-1.html
+  - name: <
+  - name: R
+  - name: '>'
+  spec.vb:
+  - uid: Heir.BoundAST.BoundStatement
+    name: BoundStatement
+    href: Heir.BoundAST.BoundStatement.html
+  - name: .
+  - uid: Heir.BoundAST.BoundStatement.Visitor`1
+    name: Visitor
+    href: Heir.BoundAST.BoundStatement.Visitor-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: R
+  - name: )
+- uid: '{R}'
+  commentId: '!:R'
+  definition: R
+  name: R
+  nameWithType: R
+  fullName: R
+- uid: Heir.BoundAST.BoundStatement.Accept``1(Heir.BoundAST.BoundStatement.Visitor{``0})
+  commentId: M:Heir.BoundAST.BoundStatement.Accept``1(Heir.BoundAST.BoundStatement.Visitor{``0})
+  href: Heir.BoundAST.BoundStatement.html#Heir_BoundAST_BoundStatement_Accept__1_Heir_BoundAST_BoundStatement_Visitor___0__
+  name: Accept<R>(Visitor<R>)
+  nameWithType: BoundStatement.Accept<R>(BoundStatement.Visitor<R>)
+  fullName: Heir.BoundAST.BoundStatement.Accept<R>(Heir.BoundAST.BoundStatement.Visitor<R>)
+  nameWithType.vb: BoundStatement.Accept(Of R)(BoundStatement.Visitor(Of R))
+  fullName.vb: Heir.BoundAST.BoundStatement.Accept(Of R)(Heir.BoundAST.BoundStatement.Visitor(Of R))
+  name.vb: Accept(Of R)(Visitor(Of R))
+  spec.csharp:
+  - uid: Heir.BoundAST.BoundStatement.Accept``1(Heir.BoundAST.BoundStatement.Visitor{``0})
+    name: Accept
+    href: Heir.BoundAST.BoundStatement.html#Heir_BoundAST_BoundStatement_Accept__1_Heir_BoundAST_BoundStatement_Visitor___0__
+  - name: <
+  - name: R
+  - name: '>'
+  - name: (
+  - uid: Heir.BoundAST.BoundStatement.Visitor`1
+    name: Visitor
+    href: Heir.BoundAST.BoundStatement.Visitor-1.html
+  - name: <
+  - name: R
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: Heir.BoundAST.BoundStatement.Accept``1(Heir.BoundAST.BoundStatement.Visitor{``0})
+    name: Accept
+    href: Heir.BoundAST.BoundStatement.html#Heir_BoundAST_BoundStatement_Accept__1_Heir_BoundAST_BoundStatement_Visitor___0__
+  - name: (
+  - name: Of
+  - name: " "
+  - name: R
+  - name: )
+  - name: (
+  - uid: Heir.BoundAST.BoundStatement.Visitor`1
+    name: Visitor
+    href: Heir.BoundAST.BoundStatement.Visitor-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: R
+  - name: )
+  - name: )
+- uid: Heir.BoundAST.BoundStatement.Visitor`1
+  commentId: T:Heir.BoundAST.BoundStatement.Visitor`1
+  href: Heir.BoundAST.BoundStatement.html
+  name: BoundStatement.Visitor<R>
+  nameWithType: BoundStatement.Visitor<R>
+  fullName: Heir.BoundAST.BoundStatement.Visitor<R>
+  nameWithType.vb: BoundStatement.Visitor(Of R)
+  fullName.vb: Heir.BoundAST.BoundStatement.Visitor(Of R)
+  name.vb: BoundStatement.Visitor(Of R)
+  spec.csharp:
+  - uid: Heir.BoundAST.BoundStatement
+    name: BoundStatement
+    href: Heir.BoundAST.BoundStatement.html
+  - name: .
+  - uid: Heir.BoundAST.BoundStatement.Visitor`1
+    name: Visitor
+    href: Heir.BoundAST.BoundStatement.Visitor-1.html
+  - name: <
+  - name: R
+  - name: '>'
+  spec.vb:
+  - uid: Heir.BoundAST.BoundStatement
+    name: BoundStatement
+    href: Heir.BoundAST.BoundStatement.html
+  - name: .
+  - uid: Heir.BoundAST.BoundStatement.Visitor`1
+    name: Visitor
+    href: Heir.BoundAST.BoundStatement.Visitor-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: R
+  - name: )
+- uid: R
+  name: R
+  nameWithType: R
+  fullName: R
+- uid: Heir.AST.Abstract.SyntaxNode.GetTokens
+  commentId: M:Heir.AST.Abstract.SyntaxNode.GetTokens
+  parent: Heir.AST.Abstract.SyntaxNode
+  href: Heir.AST.Abstract.SyntaxNode.html#Heir_AST_Abstract_SyntaxNode_GetTokens
+  name: GetTokens()
+  nameWithType: SyntaxNode.GetTokens()
+  fullName: Heir.AST.Abstract.SyntaxNode.GetTokens()
+  spec.csharp:
+  - uid: Heir.AST.Abstract.SyntaxNode.GetTokens
+    name: GetTokens
+    href: Heir.AST.Abstract.SyntaxNode.html#Heir_AST_Abstract_SyntaxNode_GetTokens
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Heir.AST.Abstract.SyntaxNode.GetTokens
+    name: GetTokens
+    href: Heir.AST.Abstract.SyntaxNode.html#Heir_AST_Abstract_SyntaxNode_GetTokens
+  - name: (
+  - name: )
+- uid: Heir.BoundAST.BoundIf.GetTokens*
+  commentId: Overload:Heir.BoundAST.BoundIf.GetTokens
+  href: Heir.BoundAST.BoundIf.html#Heir_BoundAST_BoundIf_GetTokens
+  name: GetTokens
+  nameWithType: BoundIf.GetTokens
+  fullName: Heir.BoundAST.BoundIf.GetTokens
+- uid: System.Collections.Generic.List{Heir.Syntax.Token}
+  commentId: T:System.Collections.Generic.List{Heir.Syntax.Token}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<Token>
+  nameWithType: List<Token>
+  fullName: System.Collections.Generic.List<Heir.Syntax.Token>
+  nameWithType.vb: List(Of Token)
+  fullName.vb: System.Collections.Generic.List(Of Heir.Syntax.Token)
+  name.vb: List(Of Token)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: Heir.Syntax.Token
+    name: Token
+    href: Heir.Syntax.Token.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Heir.Syntax.Token
+    name: Token
+    href: Heir.Syntax.Token.html
+  - name: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: Heir.AST.Abstract.SyntaxNode.Display(System.Int32)
+  commentId: M:Heir.AST.Abstract.SyntaxNode.Display(System.Int32)
+  parent: Heir.AST.Abstract.SyntaxNode
+  isExternal: true
+  href: Heir.AST.Abstract.SyntaxNode.html#Heir_AST_Abstract_SyntaxNode_Display_System_Int32_
+  name: Display(int)
+  nameWithType: SyntaxNode.Display(int)
+  fullName: Heir.AST.Abstract.SyntaxNode.Display(int)
+  nameWithType.vb: SyntaxNode.Display(Integer)
+  fullName.vb: Heir.AST.Abstract.SyntaxNode.Display(Integer)
+  name.vb: Display(Integer)
+  spec.csharp:
+  - uid: Heir.AST.Abstract.SyntaxNode.Display(System.Int32)
+    name: Display
+    href: Heir.AST.Abstract.SyntaxNode.html#Heir_AST_Abstract_SyntaxNode_Display_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Heir.AST.Abstract.SyntaxNode.Display(System.Int32)
+    name: Display
+    href: Heir.AST.Abstract.SyntaxNode.html#Heir_AST_Abstract_SyntaxNode_Display_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Heir.BoundAST.BoundIf.Display*
+  commentId: Overload:Heir.BoundAST.BoundIf.Display
+  href: Heir.BoundAST.BoundIf.html#Heir_BoundAST_BoundIf_Display_System_Int32_
+  name: Display
+  nameWithType: BoundIf.Display
+  fullName: Heir.BoundAST.BoundIf.Display
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer

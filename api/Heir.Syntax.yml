@@ -1,0 +1,100 @@
+### YamlMime:ManagedReference
+items:
+- uid: Heir.Syntax
+  commentId: N:Heir.Syntax
+  id: Heir.Syntax
+  children:
+  - Heir.Syntax.Location
+  - Heir.Syntax.SyntaxFacts
+  - Heir.Syntax.SyntaxKind
+  - Heir.Syntax.Token
+  - Heir.Syntax.TokenFactory
+  - Heir.Syntax.TokenStream
+  - Heir.Syntax.TriviaKind
+  - Heir.Syntax.TriviaToken
+  langs:
+  - csharp
+  - vb
+  name: Heir.Syntax
+  nameWithType: Heir.Syntax
+  fullName: Heir.Syntax
+  type: Namespace
+  assemblies:
+  - Heir
+references:
+- uid: Heir.Syntax.Location
+  commentId: T:Heir.Syntax.Location
+  parent: Heir.Syntax
+  href: Heir.Syntax.Location.html
+  name: Location
+  nameWithType: Location
+  fullName: Heir.Syntax.Location
+- uid: Heir.Syntax.SyntaxFacts
+  commentId: T:Heir.Syntax.SyntaxFacts
+  href: Heir.Syntax.SyntaxFacts.html
+  name: SyntaxFacts
+  nameWithType: SyntaxFacts
+  fullName: Heir.Syntax.SyntaxFacts
+- uid: Heir.Syntax.SyntaxKind
+  commentId: T:Heir.Syntax.SyntaxKind
+  parent: Heir.Syntax
+  href: Heir.Syntax.SyntaxKind.html
+  name: SyntaxKind
+  nameWithType: SyntaxKind
+  fullName: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.Token
+  commentId: T:Heir.Syntax.Token
+  parent: Heir.Syntax
+  href: Heir.Syntax.Token.html
+  name: Token
+  nameWithType: Token
+  fullName: Heir.Syntax.Token
+- uid: Heir.Syntax.TokenFactory
+  commentId: T:Heir.Syntax.TokenFactory
+  href: Heir.Syntax.TokenFactory.html
+  name: TokenFactory
+  nameWithType: TokenFactory
+  fullName: Heir.Syntax.TokenFactory
+- uid: Heir.Syntax.TokenStream
+  commentId: T:Heir.Syntax.TokenStream
+  parent: Heir.Syntax
+  href: Heir.Syntax.TokenStream.html
+  name: TokenStream
+  nameWithType: TokenStream
+  fullName: Heir.Syntax.TokenStream
+- uid: Heir.Syntax.TriviaKind
+  commentId: T:Heir.Syntax.TriviaKind
+  parent: Heir.Syntax
+  href: Heir.Syntax.TriviaKind.html
+  name: TriviaKind
+  nameWithType: TriviaKind
+  fullName: Heir.Syntax.TriviaKind
+- uid: Heir.Syntax.TriviaToken
+  commentId: T:Heir.Syntax.TriviaToken
+  parent: Heir.Syntax
+  href: Heir.Syntax.TriviaToken.html
+  name: TriviaToken
+  nameWithType: TriviaToken
+  fullName: Heir.Syntax.TriviaToken
+- uid: Heir.Syntax
+  commentId: N:Heir.Syntax
+  href: Heir.html
+  name: Heir.Syntax
+  nameWithType: Heir.Syntax
+  fullName: Heir.Syntax
+  spec.csharp:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.Syntax
+    name: Syntax
+    href: Heir.Syntax.html
+  spec.vb:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.Syntax
+    name: Syntax
+    href: Heir.Syntax.html

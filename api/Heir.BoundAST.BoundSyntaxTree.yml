@@ -1,0 +1,799 @@
+### YamlMime:ManagedReference
+items:
+- uid: Heir.BoundAST.BoundSyntaxTree
+  commentId: T:Heir.BoundAST.BoundSyntaxTree
+  id: BoundSyntaxTree
+  parent: Heir.BoundAST
+  children:
+  - Heir.BoundAST.BoundSyntaxTree.#ctor(System.Collections.Generic.List{Heir.BoundAST.BoundStatement},Heir.DiagnosticBag)
+  - Heir.BoundAST.BoundSyntaxTree.Diagnostics
+  - Heir.BoundAST.BoundSyntaxTree.Display(System.Int32)
+  langs:
+  - csharp
+  - vb
+  name: BoundSyntaxTree
+  nameWithType: BoundSyntaxTree
+  fullName: Heir.BoundAST.BoundSyntaxTree
+  type: Class
+  source:
+    remote:
+      path: Heir/BoundAST/BoundSyntaxTree.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: BoundSyntaxTree
+    path: Heir/BoundAST/BoundSyntaxTree.cs
+    startLine: 2
+  assemblies:
+  - Heir
+  namespace: Heir.BoundAST
+  syntax:
+    content: 'public class BoundSyntaxTree : BoundBlock'
+    content.vb: Public Class BoundSyntaxTree Inherits BoundBlock
+  inheritance:
+  - System.Object
+  - Heir.AST.Abstract.SyntaxNode
+  - Heir.BoundAST.BoundSyntaxNode
+  - Heir.BoundAST.BoundStatement
+  - Heir.BoundAST.BoundBlock
+  inheritedMembers:
+  - Heir.BoundAST.BoundBlock.Type
+  - Heir.BoundAST.BoundBlock.Statements
+  - Heir.BoundAST.BoundBlock.Accept``1(Heir.BoundAST.BoundStatement.Visitor{{R}})
+  - Heir.BoundAST.BoundBlock.GetTokens
+  - Heir.AST.Abstract.SyntaxNode.GetFirstToken
+  - Heir.AST.Abstract.SyntaxNode.GetLastToken
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Heir.BoundAST.BoundSyntaxTree.#ctor(System.Collections.Generic.List{Heir.BoundAST.BoundStatement},Heir.DiagnosticBag)
+  commentId: M:Heir.BoundAST.BoundSyntaxTree.#ctor(System.Collections.Generic.List{Heir.BoundAST.BoundStatement},Heir.DiagnosticBag)
+  id: '#ctor(System.Collections.Generic.List{Heir.BoundAST.BoundStatement},Heir.DiagnosticBag)'
+  parent: Heir.BoundAST.BoundSyntaxTree
+  langs:
+  - csharp
+  - vb
+  name: BoundSyntaxTree(List<BoundStatement>, DiagnosticBag)
+  nameWithType: BoundSyntaxTree.BoundSyntaxTree(List<BoundStatement>, DiagnosticBag)
+  fullName: Heir.BoundAST.BoundSyntaxTree.BoundSyntaxTree(System.Collections.Generic.List<Heir.BoundAST.BoundStatement>, Heir.DiagnosticBag)
+  type: Constructor
+  source:
+    remote:
+      path: Heir/BoundAST/BoundSyntaxTree.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: .ctor
+    path: Heir/BoundAST/BoundSyntaxTree.cs
+    startLine: 2
+  assemblies:
+  - Heir
+  namespace: Heir.BoundAST
+  syntax:
+    content: public BoundSyntaxTree(List<BoundStatement> statements, DiagnosticBag diagnostics)
+    parameters:
+    - id: statements
+      type: System.Collections.Generic.List{Heir.BoundAST.BoundStatement}
+    - id: diagnostics
+      type: Heir.DiagnosticBag
+    content.vb: Public Sub New(statements As List(Of BoundStatement), diagnostics As DiagnosticBag)
+  overload: Heir.BoundAST.BoundSyntaxTree.#ctor*
+  nameWithType.vb: BoundSyntaxTree.New(List(Of BoundStatement), DiagnosticBag)
+  fullName.vb: Heir.BoundAST.BoundSyntaxTree.New(System.Collections.Generic.List(Of Heir.BoundAST.BoundStatement), Heir.DiagnosticBag)
+  name.vb: New(List(Of BoundStatement), DiagnosticBag)
+- uid: Heir.BoundAST.BoundSyntaxTree.Diagnostics
+  commentId: P:Heir.BoundAST.BoundSyntaxTree.Diagnostics
+  id: Diagnostics
+  parent: Heir.BoundAST.BoundSyntaxTree
+  langs:
+  - csharp
+  - vb
+  name: Diagnostics
+  nameWithType: BoundSyntaxTree.Diagnostics
+  fullName: Heir.BoundAST.BoundSyntaxTree.Diagnostics
+  type: Property
+  source:
+    remote:
+      path: Heir/BoundAST/BoundSyntaxTree.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Diagnostics
+    path: Heir/BoundAST/BoundSyntaxTree.cs
+    startLine: 4
+  assemblies:
+  - Heir
+  namespace: Heir.BoundAST
+  syntax:
+    content: public DiagnosticBag Diagnostics { get; }
+    parameters: []
+    return:
+      type: Heir.DiagnosticBag
+    content.vb: Public ReadOnly Property Diagnostics As DiagnosticBag
+  overload: Heir.BoundAST.BoundSyntaxTree.Diagnostics*
+- uid: Heir.BoundAST.BoundSyntaxTree.Display(System.Int32)
+  commentId: M:Heir.BoundAST.BoundSyntaxTree.Display(System.Int32)
+  id: Display(System.Int32)
+  parent: Heir.BoundAST.BoundSyntaxTree
+  langs:
+  - csharp
+  - vb
+  name: Display(int)
+  nameWithType: BoundSyntaxTree.Display(int)
+  fullName: Heir.BoundAST.BoundSyntaxTree.Display(int)
+  type: Method
+  source:
+    remote:
+      path: Heir/BoundAST/BoundSyntaxTree.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Display
+    path: Heir/BoundAST/BoundSyntaxTree.cs
+    startLine: 6
+  assemblies:
+  - Heir
+  namespace: Heir.BoundAST
+  example: []
+  syntax:
+    content: public override void Display(int indent = 0)
+    parameters:
+    - id: indent
+      type: System.Int32
+    content.vb: Public Overrides Sub Display(indent As Integer = 0)
+  overridden: Heir.BoundAST.BoundBlock.Display(System.Int32)
+  overload: Heir.BoundAST.BoundSyntaxTree.Display*
+  nameWithType.vb: BoundSyntaxTree.Display(Integer)
+  fullName.vb: Heir.BoundAST.BoundSyntaxTree.Display(Integer)
+  name.vb: Display(Integer)
+references:
+- uid: Heir.BoundAST
+  commentId: N:Heir.BoundAST
+  href: Heir.html
+  name: Heir.BoundAST
+  nameWithType: Heir.BoundAST
+  fullName: Heir.BoundAST
+  spec.csharp:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.BoundAST
+    name: BoundAST
+    href: Heir.BoundAST.html
+  spec.vb:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.BoundAST
+    name: BoundAST
+    href: Heir.BoundAST.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Heir.AST.Abstract.SyntaxNode
+  commentId: T:Heir.AST.Abstract.SyntaxNode
+  parent: Heir.AST.Abstract
+  href: Heir.AST.Abstract.SyntaxNode.html
+  name: SyntaxNode
+  nameWithType: SyntaxNode
+  fullName: Heir.AST.Abstract.SyntaxNode
+- uid: Heir.BoundAST.BoundSyntaxNode
+  commentId: T:Heir.BoundAST.BoundSyntaxNode
+  parent: Heir.BoundAST
+  href: Heir.BoundAST.BoundSyntaxNode.html
+  name: BoundSyntaxNode
+  nameWithType: BoundSyntaxNode
+  fullName: Heir.BoundAST.BoundSyntaxNode
+- uid: Heir.BoundAST.BoundStatement
+  commentId: T:Heir.BoundAST.BoundStatement
+  parent: Heir.BoundAST
+  href: Heir.BoundAST.BoundStatement.html
+  name: BoundStatement
+  nameWithType: BoundStatement
+  fullName: Heir.BoundAST.BoundStatement
+- uid: Heir.BoundAST.BoundBlock
+  commentId: T:Heir.BoundAST.BoundBlock
+  parent: Heir.BoundAST
+  href: Heir.BoundAST.BoundBlock.html
+  name: BoundBlock
+  nameWithType: BoundBlock
+  fullName: Heir.BoundAST.BoundBlock
+- uid: Heir.BoundAST.BoundBlock.Type
+  commentId: P:Heir.BoundAST.BoundBlock.Type
+  parent: Heir.BoundAST.BoundBlock
+  href: Heir.BoundAST.BoundBlock.html#Heir_BoundAST_BoundBlock_Type
+  name: Type
+  nameWithType: BoundBlock.Type
+  fullName: Heir.BoundAST.BoundBlock.Type
+- uid: Heir.BoundAST.BoundBlock.Statements
+  commentId: P:Heir.BoundAST.BoundBlock.Statements
+  parent: Heir.BoundAST.BoundBlock
+  href: Heir.BoundAST.BoundBlock.html#Heir_BoundAST_BoundBlock_Statements
+  name: Statements
+  nameWithType: BoundBlock.Statements
+  fullName: Heir.BoundAST.BoundBlock.Statements
+- uid: Heir.BoundAST.BoundBlock.Accept``1(Heir.BoundAST.BoundStatement.Visitor{{R}})
+  commentId: M:Heir.BoundAST.BoundBlock.Accept``1(Heir.BoundAST.BoundStatement.Visitor{``0})
+  parent: Heir.BoundAST.BoundBlock
+  definition: Heir.BoundAST.BoundBlock.Accept``1(Heir.BoundAST.BoundStatement.Visitor{``0})
+  href: Heir.BoundAST.BoundBlock.html#Heir_BoundAST_BoundBlock_Accept__1_Heir_BoundAST_BoundStatement_Visitor___0__
+  name: Accept<R>(Visitor<R>)
+  nameWithType: BoundBlock.Accept<R>(BoundStatement.Visitor<R>)
+  fullName: Heir.BoundAST.BoundBlock.Accept<R>(Heir.BoundAST.BoundStatement.Visitor<R>)
+  nameWithType.vb: BoundBlock.Accept(Of R)(BoundStatement.Visitor(Of R))
+  fullName.vb: Heir.BoundAST.BoundBlock.Accept(Of R)(Heir.BoundAST.BoundStatement.Visitor(Of R))
+  name.vb: Accept(Of R)(Visitor(Of R))
+  spec.csharp:
+  - uid: Heir.BoundAST.BoundBlock.Accept``1(Heir.BoundAST.BoundStatement.Visitor{``0})
+    name: Accept
+    href: Heir.BoundAST.BoundBlock.html#Heir_BoundAST_BoundBlock_Accept__1_Heir_BoundAST_BoundStatement_Visitor___0__
+  - name: <
+  - name: R
+  - name: '>'
+  - name: (
+  - uid: Heir.BoundAST.BoundStatement.Visitor`1
+    name: Visitor
+    href: Heir.BoundAST.BoundStatement.Visitor-1.html
+  - name: <
+  - name: R
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: Heir.BoundAST.BoundBlock.Accept``1(Heir.BoundAST.BoundStatement.Visitor{``0})
+    name: Accept
+    href: Heir.BoundAST.BoundBlock.html#Heir_BoundAST_BoundBlock_Accept__1_Heir_BoundAST_BoundStatement_Visitor___0__
+  - name: (
+  - name: Of
+  - name: " "
+  - name: R
+  - name: )
+  - name: (
+  - uid: Heir.BoundAST.BoundStatement.Visitor`1
+    name: Visitor
+    href: Heir.BoundAST.BoundStatement.Visitor-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: R
+  - name: )
+  - name: )
+- uid: Heir.BoundAST.BoundBlock.GetTokens
+  commentId: M:Heir.BoundAST.BoundBlock.GetTokens
+  parent: Heir.BoundAST.BoundBlock
+  href: Heir.BoundAST.BoundBlock.html#Heir_BoundAST_BoundBlock_GetTokens
+  name: GetTokens()
+  nameWithType: BoundBlock.GetTokens()
+  fullName: Heir.BoundAST.BoundBlock.GetTokens()
+  spec.csharp:
+  - uid: Heir.BoundAST.BoundBlock.GetTokens
+    name: GetTokens
+    href: Heir.BoundAST.BoundBlock.html#Heir_BoundAST_BoundBlock_GetTokens
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Heir.BoundAST.BoundBlock.GetTokens
+    name: GetTokens
+    href: Heir.BoundAST.BoundBlock.html#Heir_BoundAST_BoundBlock_GetTokens
+  - name: (
+  - name: )
+- uid: Heir.AST.Abstract.SyntaxNode.GetFirstToken
+  commentId: M:Heir.AST.Abstract.SyntaxNode.GetFirstToken
+  parent: Heir.AST.Abstract.SyntaxNode
+  href: Heir.AST.Abstract.SyntaxNode.html#Heir_AST_Abstract_SyntaxNode_GetFirstToken
+  name: GetFirstToken()
+  nameWithType: SyntaxNode.GetFirstToken()
+  fullName: Heir.AST.Abstract.SyntaxNode.GetFirstToken()
+  spec.csharp:
+  - uid: Heir.AST.Abstract.SyntaxNode.GetFirstToken
+    name: GetFirstToken
+    href: Heir.AST.Abstract.SyntaxNode.html#Heir_AST_Abstract_SyntaxNode_GetFirstToken
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Heir.AST.Abstract.SyntaxNode.GetFirstToken
+    name: GetFirstToken
+    href: Heir.AST.Abstract.SyntaxNode.html#Heir_AST_Abstract_SyntaxNode_GetFirstToken
+  - name: (
+  - name: )
+- uid: Heir.AST.Abstract.SyntaxNode.GetLastToken
+  commentId: M:Heir.AST.Abstract.SyntaxNode.GetLastToken
+  parent: Heir.AST.Abstract.SyntaxNode
+  href: Heir.AST.Abstract.SyntaxNode.html#Heir_AST_Abstract_SyntaxNode_GetLastToken
+  name: GetLastToken()
+  nameWithType: SyntaxNode.GetLastToken()
+  fullName: Heir.AST.Abstract.SyntaxNode.GetLastToken()
+  spec.csharp:
+  - uid: Heir.AST.Abstract.SyntaxNode.GetLastToken
+    name: GetLastToken
+    href: Heir.AST.Abstract.SyntaxNode.html#Heir_AST_Abstract_SyntaxNode_GetLastToken
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Heir.AST.Abstract.SyntaxNode.GetLastToken
+    name: GetLastToken
+    href: Heir.AST.Abstract.SyntaxNode.html#Heir_AST_Abstract_SyntaxNode_GetLastToken
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Heir.AST.Abstract
+  commentId: N:Heir.AST.Abstract
+  href: Heir.html
+  name: Heir.AST.Abstract
+  nameWithType: Heir.AST.Abstract
+  fullName: Heir.AST.Abstract
+  spec.csharp:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.AST
+    name: AST
+    href: Heir.AST.html
+  - name: .
+  - uid: Heir.AST.Abstract
+    name: Abstract
+    href: Heir.AST.Abstract.html
+  spec.vb:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.AST
+    name: AST
+    href: Heir.AST.html
+  - name: .
+  - uid: Heir.AST.Abstract
+    name: Abstract
+    href: Heir.AST.Abstract.html
+- uid: Heir.BoundAST.BoundBlock.Accept``1(Heir.BoundAST.BoundStatement.Visitor{``0})
+  commentId: M:Heir.BoundAST.BoundBlock.Accept``1(Heir.BoundAST.BoundStatement.Visitor{``0})
+  href: Heir.BoundAST.BoundBlock.html#Heir_BoundAST_BoundBlock_Accept__1_Heir_BoundAST_BoundStatement_Visitor___0__
+  name: Accept<R>(Visitor<R>)
+  nameWithType: BoundBlock.Accept<R>(BoundStatement.Visitor<R>)
+  fullName: Heir.BoundAST.BoundBlock.Accept<R>(Heir.BoundAST.BoundStatement.Visitor<R>)
+  nameWithType.vb: BoundBlock.Accept(Of R)(BoundStatement.Visitor(Of R))
+  fullName.vb: Heir.BoundAST.BoundBlock.Accept(Of R)(Heir.BoundAST.BoundStatement.Visitor(Of R))
+  name.vb: Accept(Of R)(Visitor(Of R))
+  spec.csharp:
+  - uid: Heir.BoundAST.BoundBlock.Accept``1(Heir.BoundAST.BoundStatement.Visitor{``0})
+    name: Accept
+    href: Heir.BoundAST.BoundBlock.html#Heir_BoundAST_BoundBlock_Accept__1_Heir_BoundAST_BoundStatement_Visitor___0__
+  - name: <
+  - name: R
+  - name: '>'
+  - name: (
+  - uid: Heir.BoundAST.BoundStatement.Visitor`1
+    name: Visitor
+    href: Heir.BoundAST.BoundStatement.Visitor-1.html
+  - name: <
+  - name: R
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: Heir.BoundAST.BoundBlock.Accept``1(Heir.BoundAST.BoundStatement.Visitor{``0})
+    name: Accept
+    href: Heir.BoundAST.BoundBlock.html#Heir_BoundAST_BoundBlock_Accept__1_Heir_BoundAST_BoundStatement_Visitor___0__
+  - name: (
+  - name: Of
+  - name: " "
+  - name: R
+  - name: )
+  - name: (
+  - uid: Heir.BoundAST.BoundStatement.Visitor`1
+    name: Visitor
+    href: Heir.BoundAST.BoundStatement.Visitor-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: R
+  - name: )
+  - name: )
+- uid: Heir.BoundAST.BoundSyntaxTree.#ctor*
+  commentId: Overload:Heir.BoundAST.BoundSyntaxTree.#ctor
+  href: Heir.BoundAST.BoundSyntaxTree.html#Heir_BoundAST_BoundSyntaxTree__ctor_System_Collections_Generic_List_Heir_BoundAST_BoundStatement__Heir_DiagnosticBag_
+  name: BoundSyntaxTree
+  nameWithType: BoundSyntaxTree.BoundSyntaxTree
+  fullName: Heir.BoundAST.BoundSyntaxTree.BoundSyntaxTree
+  nameWithType.vb: BoundSyntaxTree.New
+  fullName.vb: Heir.BoundAST.BoundSyntaxTree.New
+  name.vb: New
+- uid: System.Collections.Generic.List{Heir.BoundAST.BoundStatement}
+  commentId: T:System.Collections.Generic.List{Heir.BoundAST.BoundStatement}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<BoundStatement>
+  nameWithType: List<BoundStatement>
+  fullName: System.Collections.Generic.List<Heir.BoundAST.BoundStatement>
+  nameWithType.vb: List(Of BoundStatement)
+  fullName.vb: System.Collections.Generic.List(Of Heir.BoundAST.BoundStatement)
+  name.vb: List(Of BoundStatement)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: Heir.BoundAST.BoundStatement
+    name: BoundStatement
+    href: Heir.BoundAST.BoundStatement.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Heir.BoundAST.BoundStatement
+    name: BoundStatement
+    href: Heir.BoundAST.BoundStatement.html
+  - name: )
+- uid: Heir.DiagnosticBag
+  commentId: T:Heir.DiagnosticBag
+  parent: Heir
+  href: Heir.DiagnosticBag.html
+  name: DiagnosticBag
+  nameWithType: DiagnosticBag
+  fullName: Heir.DiagnosticBag
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: Heir
+  commentId: N:Heir
+  href: Heir.html
+  name: Heir
+  nameWithType: Heir
+  fullName: Heir
+- uid: Heir.BoundAST.BoundSyntaxTree.Diagnostics*
+  commentId: Overload:Heir.BoundAST.BoundSyntaxTree.Diagnostics
+  href: Heir.BoundAST.BoundSyntaxTree.html#Heir_BoundAST_BoundSyntaxTree_Diagnostics
+  name: Diagnostics
+  nameWithType: BoundSyntaxTree.Diagnostics
+  fullName: Heir.BoundAST.BoundSyntaxTree.Diagnostics
+- uid: Heir.BoundAST.BoundBlock.Display(System.Int32)
+  commentId: M:Heir.BoundAST.BoundBlock.Display(System.Int32)
+  parent: Heir.BoundAST.BoundBlock
+  isExternal: true
+  href: Heir.BoundAST.BoundBlock.html#Heir_BoundAST_BoundBlock_Display_System_Int32_
+  name: Display(int)
+  nameWithType: BoundBlock.Display(int)
+  fullName: Heir.BoundAST.BoundBlock.Display(int)
+  nameWithType.vb: BoundBlock.Display(Integer)
+  fullName.vb: Heir.BoundAST.BoundBlock.Display(Integer)
+  name.vb: Display(Integer)
+  spec.csharp:
+  - uid: Heir.BoundAST.BoundBlock.Display(System.Int32)
+    name: Display
+    href: Heir.BoundAST.BoundBlock.html#Heir_BoundAST_BoundBlock_Display_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Heir.BoundAST.BoundBlock.Display(System.Int32)
+    name: Display
+    href: Heir.BoundAST.BoundBlock.html#Heir_BoundAST_BoundBlock_Display_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Heir.BoundAST.BoundSyntaxTree.Display*
+  commentId: Overload:Heir.BoundAST.BoundSyntaxTree.Display
+  href: Heir.BoundAST.BoundSyntaxTree.html#Heir_BoundAST_BoundSyntaxTree_Display_System_Int32_
+  name: Display
+  nameWithType: BoundSyntaxTree.Display
+  fullName: Heir.BoundAST.BoundSyntaxTree.Display
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer

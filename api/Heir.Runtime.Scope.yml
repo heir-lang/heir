@@ -1,0 +1,766 @@
+### YamlMime:ManagedReference
+items:
+- uid: Heir.Runtime.Scope
+  commentId: T:Heir.Runtime.Scope
+  id: Scope
+  parent: Heir.Runtime
+  children:
+  - Heir.Runtime.Scope.#ctor(Heir.Runtime.Scope)
+  - Heir.Runtime.Scope.Ancestor(System.UInt32)
+  - Heir.Runtime.Scope.Assign(System.String,System.Object)
+  - Heir.Runtime.Scope.AssignAt(System.String,System.Object,System.UInt32)
+  - Heir.Runtime.Scope.Define(System.String,System.Object)
+  - Heir.Runtime.Scope.Enclosing
+  - Heir.Runtime.Scope.Equals(Heir.Runtime.Scope,System.Boolean)
+  - Heir.Runtime.Scope.IsDeclared(System.String)
+  - Heir.Runtime.Scope.IsDefined(System.String)
+  - Heir.Runtime.Scope.Lookup(System.String)
+  - Heir.Runtime.Scope.LookupAt(System.String,System.UInt32)
+  langs:
+  - csharp
+  - vb
+  name: Scope
+  nameWithType: Scope
+  fullName: Heir.Runtime.Scope
+  type: Class
+  source:
+    remote:
+      path: Heir/Runtime/Scope.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Scope
+    path: Heir/Runtime/Scope.cs
+    startLine: 2
+  assemblies:
+  - Heir
+  namespace: Heir.Runtime
+  syntax:
+    content: public sealed class Scope
+    content.vb: Public NotInheritable Class Scope
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Heir.Runtime.Scope.#ctor(Heir.Runtime.Scope)
+  commentId: M:Heir.Runtime.Scope.#ctor(Heir.Runtime.Scope)
+  id: '#ctor(Heir.Runtime.Scope)'
+  parent: Heir.Runtime.Scope
+  langs:
+  - csharp
+  - vb
+  name: Scope(Scope?)
+  nameWithType: Scope.Scope(Scope?)
+  fullName: Heir.Runtime.Scope.Scope(Heir.Runtime.Scope?)
+  type: Constructor
+  source:
+    remote:
+      path: Heir/Runtime/Scope.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: .ctor
+    path: Heir/Runtime/Scope.cs
+    startLine: 2
+  assemblies:
+  - Heir
+  namespace: Heir.Runtime
+  syntax:
+    content: public Scope(Scope? enclosing = null)
+    parameters:
+    - id: enclosing
+      type: Heir.Runtime.Scope
+    content.vb: Public Sub New(enclosing As Scope = Nothing)
+  overload: Heir.Runtime.Scope.#ctor*
+  nameWithType.vb: Scope.New(Scope)
+  fullName.vb: Heir.Runtime.Scope.New(Heir.Runtime.Scope)
+  name.vb: New(Scope)
+- uid: Heir.Runtime.Scope.Enclosing
+  commentId: P:Heir.Runtime.Scope.Enclosing
+  id: Enclosing
+  parent: Heir.Runtime.Scope
+  langs:
+  - csharp
+  - vb
+  name: Enclosing
+  nameWithType: Scope.Enclosing
+  fullName: Heir.Runtime.Scope.Enclosing
+  type: Property
+  source:
+    remote:
+      path: Heir/Runtime/Scope.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Enclosing
+    path: Heir/Runtime/Scope.cs
+    startLine: 4
+  assemblies:
+  - Heir
+  namespace: Heir.Runtime
+  syntax:
+    content: public Scope? Enclosing { get; }
+    parameters: []
+    return:
+      type: Heir.Runtime.Scope
+    content.vb: Public ReadOnly Property Enclosing As Scope
+  overload: Heir.Runtime.Scope.Enclosing*
+- uid: Heir.Runtime.Scope.AssignAt(System.String,System.Object,System.UInt32)
+  commentId: M:Heir.Runtime.Scope.AssignAt(System.String,System.Object,System.UInt32)
+  id: AssignAt(System.String,System.Object,System.UInt32)
+  parent: Heir.Runtime.Scope
+  langs:
+  - csharp
+  - vb
+  name: AssignAt(string, object?, uint)
+  nameWithType: Scope.AssignAt(string, object?, uint)
+  fullName: Heir.Runtime.Scope.AssignAt(string, object?, uint)
+  type: Method
+  source:
+    remote:
+      path: Heir/Runtime/Scope.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: AssignAt
+    path: Heir/Runtime/Scope.cs
+    startLine: 9
+  assemblies:
+  - Heir
+  namespace: Heir.Runtime
+  syntax:
+    content: public void AssignAt(string name, object? value, uint distance)
+    parameters:
+    - id: name
+      type: System.String
+    - id: value
+      type: System.Object
+    - id: distance
+      type: System.UInt32
+    content.vb: Public Sub AssignAt(name As String, value As Object, distance As UInteger)
+  overload: Heir.Runtime.Scope.AssignAt*
+  nameWithType.vb: Scope.AssignAt(String, Object, UInteger)
+  fullName.vb: Heir.Runtime.Scope.AssignAt(String, Object, UInteger)
+  name.vb: AssignAt(String, Object, UInteger)
+- uid: Heir.Runtime.Scope.Assign(System.String,System.Object)
+  commentId: M:Heir.Runtime.Scope.Assign(System.String,System.Object)
+  id: Assign(System.String,System.Object)
+  parent: Heir.Runtime.Scope
+  langs:
+  - csharp
+  - vb
+  name: Assign(string, object?)
+  nameWithType: Scope.Assign(string, object?)
+  fullName: Heir.Runtime.Scope.Assign(string, object?)
+  type: Method
+  source:
+    remote:
+      path: Heir/Runtime/Scope.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Assign
+    path: Heir/Runtime/Scope.cs
+    startLine: 18
+  assemblies:
+  - Heir
+  namespace: Heir.Runtime
+  syntax:
+    content: public void Assign(string name, object? value)
+    parameters:
+    - id: name
+      type: System.String
+    - id: value
+      type: System.Object
+    content.vb: Public Sub Assign(name As String, value As Object)
+  overload: Heir.Runtime.Scope.Assign*
+  nameWithType.vb: Scope.Assign(String, Object)
+  fullName.vb: Heir.Runtime.Scope.Assign(String, Object)
+  name.vb: Assign(String, Object)
+- uid: Heir.Runtime.Scope.Define(System.String,System.Object)
+  commentId: M:Heir.Runtime.Scope.Define(System.String,System.Object)
+  id: Define(System.String,System.Object)
+  parent: Heir.Runtime.Scope
+  langs:
+  - csharp
+  - vb
+  name: Define(string, object?)
+  nameWithType: Scope.Define(string, object?)
+  fullName: Heir.Runtime.Scope.Define(string, object?)
+  type: Method
+  source:
+    remote:
+      path: Heir/Runtime/Scope.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Define
+    path: Heir/Runtime/Scope.cs
+    startLine: 30
+  assemblies:
+  - Heir
+  namespace: Heir.Runtime
+  syntax:
+    content: public void Define(string name, object? value)
+    parameters:
+    - id: name
+      type: System.String
+    - id: value
+      type: System.Object
+    content.vb: Public Sub Define(name As String, value As Object)
+  overload: Heir.Runtime.Scope.Define*
+  nameWithType.vb: Scope.Define(String, Object)
+  fullName.vb: Heir.Runtime.Scope.Define(String, Object)
+  name.vb: Define(String, Object)
+- uid: Heir.Runtime.Scope.IsDeclared(System.String)
+  commentId: M:Heir.Runtime.Scope.IsDeclared(System.String)
+  id: IsDeclared(System.String)
+  parent: Heir.Runtime.Scope
+  langs:
+  - csharp
+  - vb
+  name: IsDeclared(string)
+  nameWithType: Scope.IsDeclared(string)
+  fullName: Heir.Runtime.Scope.IsDeclared(string)
+  type: Method
+  source:
+    remote:
+      path: Heir/Runtime/Scope.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: IsDeclared
+    path: Heir/Runtime/Scope.cs
+    startLine: 36
+  assemblies:
+  - Heir
+  namespace: Heir.Runtime
+  syntax:
+    content: public bool IsDeclared(string name)
+    parameters:
+    - id: name
+      type: System.String
+    return:
+      type: System.Boolean
+    content.vb: Public Function IsDeclared(name As String) As Boolean
+  overload: Heir.Runtime.Scope.IsDeclared*
+  nameWithType.vb: Scope.IsDeclared(String)
+  fullName.vb: Heir.Runtime.Scope.IsDeclared(String)
+  name.vb: IsDeclared(String)
+- uid: Heir.Runtime.Scope.IsDefined(System.String)
+  commentId: M:Heir.Runtime.Scope.IsDefined(System.String)
+  id: IsDefined(System.String)
+  parent: Heir.Runtime.Scope
+  langs:
+  - csharp
+  - vb
+  name: IsDefined(string)
+  nameWithType: Scope.IsDefined(string)
+  fullName: Heir.Runtime.Scope.IsDefined(string)
+  type: Method
+  source:
+    remote:
+      path: Heir/Runtime/Scope.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: IsDefined
+    path: Heir/Runtime/Scope.cs
+    startLine: 39
+  assemblies:
+  - Heir
+  namespace: Heir.Runtime
+  syntax:
+    content: public bool IsDefined(string name)
+    parameters:
+    - id: name
+      type: System.String
+    return:
+      type: System.Boolean
+    content.vb: Public Function IsDefined(name As String) As Boolean
+  overload: Heir.Runtime.Scope.IsDefined*
+  nameWithType.vb: Scope.IsDefined(String)
+  fullName.vb: Heir.Runtime.Scope.IsDefined(String)
+  name.vb: IsDefined(String)
+- uid: Heir.Runtime.Scope.Lookup(System.String)
+  commentId: M:Heir.Runtime.Scope.Lookup(System.String)
+  id: Lookup(System.String)
+  parent: Heir.Runtime.Scope
+  langs:
+  - csharp
+  - vb
+  name: Lookup(string)
+  nameWithType: Scope.Lookup(string)
+  fullName: Heir.Runtime.Scope.Lookup(string)
+  type: Method
+  source:
+    remote:
+      path: Heir/Runtime/Scope.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Lookup
+    path: Heir/Runtime/Scope.cs
+    startLine: 47
+  assemblies:
+  - Heir
+  namespace: Heir.Runtime
+  syntax:
+    content: public object? Lookup(string name)
+    parameters:
+    - id: name
+      type: System.String
+    return:
+      type: System.Object
+    content.vb: Public Function Lookup(name As String) As Object
+  overload: Heir.Runtime.Scope.Lookup*
+  nameWithType.vb: Scope.Lookup(String)
+  fullName.vb: Heir.Runtime.Scope.Lookup(String)
+  name.vb: Lookup(String)
+- uid: Heir.Runtime.Scope.LookupAt(System.String,System.UInt32)
+  commentId: M:Heir.Runtime.Scope.LookupAt(System.String,System.UInt32)
+  id: LookupAt(System.String,System.UInt32)
+  parent: Heir.Runtime.Scope
+  langs:
+  - csharp
+  - vb
+  name: LookupAt(string, uint)
+  nameWithType: Scope.LookupAt(string, uint)
+  fullName: Heir.Runtime.Scope.LookupAt(string, uint)
+  type: Method
+  source:
+    remote:
+      path: Heir/Runtime/Scope.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: LookupAt
+    path: Heir/Runtime/Scope.cs
+    startLine: 55
+  assemblies:
+  - Heir
+  namespace: Heir.Runtime
+  syntax:
+    content: public object? LookupAt(string name, uint distance)
+    parameters:
+    - id: name
+      type: System.String
+    - id: distance
+      type: System.UInt32
+    return:
+      type: System.Object
+    content.vb: Public Function LookupAt(name As String, distance As UInteger) As Object
+  overload: Heir.Runtime.Scope.LookupAt*
+  nameWithType.vb: Scope.LookupAt(String, UInteger)
+  fullName.vb: Heir.Runtime.Scope.LookupAt(String, UInteger)
+  name.vb: LookupAt(String, UInteger)
+- uid: Heir.Runtime.Scope.Ancestor(System.UInt32)
+  commentId: M:Heir.Runtime.Scope.Ancestor(System.UInt32)
+  id: Ancestor(System.UInt32)
+  parent: Heir.Runtime.Scope
+  langs:
+  - csharp
+  - vb
+  name: Ancestor(uint)
+  nameWithType: Scope.Ancestor(uint)
+  fullName: Heir.Runtime.Scope.Ancestor(uint)
+  type: Method
+  source:
+    remote:
+      path: Heir/Runtime/Scope.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Ancestor
+    path: Heir/Runtime/Scope.cs
+    startLine: 64
+  assemblies:
+  - Heir
+  namespace: Heir.Runtime
+  syntax:
+    content: public Scope? Ancestor(uint distance)
+    parameters:
+    - id: distance
+      type: System.UInt32
+    return:
+      type: Heir.Runtime.Scope
+    content.vb: Public Function Ancestor(distance As UInteger) As Scope
+  overload: Heir.Runtime.Scope.Ancestor*
+  nameWithType.vb: Scope.Ancestor(UInteger)
+  fullName.vb: Heir.Runtime.Scope.Ancestor(UInteger)
+  name.vb: Ancestor(UInteger)
+- uid: Heir.Runtime.Scope.Equals(Heir.Runtime.Scope,System.Boolean)
+  commentId: M:Heir.Runtime.Scope.Equals(Heir.Runtime.Scope,System.Boolean)
+  id: Equals(Heir.Runtime.Scope,System.Boolean)
+  parent: Heir.Runtime.Scope
+  langs:
+  - csharp
+  - vb
+  name: Equals(Scope, bool)
+  nameWithType: Scope.Equals(Scope, bool)
+  fullName: Heir.Runtime.Scope.Equals(Heir.Runtime.Scope, bool)
+  type: Method
+  source:
+    remote:
+      path: Heir/Runtime/Scope.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Equals
+    path: Heir/Runtime/Scope.cs
+    startLine: 76
+  assemblies:
+  - Heir
+  namespace: Heir.Runtime
+  syntax:
+    content: public bool Equals(Scope other, bool requiresEqualValues = false)
+    parameters:
+    - id: other
+      type: Heir.Runtime.Scope
+    - id: requiresEqualValues
+      type: System.Boolean
+    return:
+      type: System.Boolean
+    content.vb: Public Function Equals(other As Scope, requiresEqualValues As Boolean = False) As Boolean
+  overload: Heir.Runtime.Scope.Equals*
+  nameWithType.vb: Scope.Equals(Scope, Boolean)
+  fullName.vb: Heir.Runtime.Scope.Equals(Heir.Runtime.Scope, Boolean)
+  name.vb: Equals(Scope, Boolean)
+references:
+- uid: Heir.Runtime
+  commentId: N:Heir.Runtime
+  href: Heir.html
+  name: Heir.Runtime
+  nameWithType: Heir.Runtime
+  fullName: Heir.Runtime
+  spec.csharp:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.Runtime
+    name: Runtime
+    href: Heir.Runtime.html
+  spec.vb:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.Runtime
+    name: Runtime
+    href: Heir.Runtime.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Heir.Runtime.Scope.#ctor*
+  commentId: Overload:Heir.Runtime.Scope.#ctor
+  href: Heir.Runtime.Scope.html#Heir_Runtime_Scope__ctor_Heir_Runtime_Scope_
+  name: Scope
+  nameWithType: Scope.Scope
+  fullName: Heir.Runtime.Scope.Scope
+  nameWithType.vb: Scope.New
+  fullName.vb: Heir.Runtime.Scope.New
+  name.vb: New
+- uid: Heir.Runtime.Scope
+  commentId: T:Heir.Runtime.Scope
+  parent: Heir.Runtime
+  href: Heir.Runtime.Scope.html
+  name: Scope
+  nameWithType: Scope
+  fullName: Heir.Runtime.Scope
+- uid: Heir.Runtime.Scope.Enclosing*
+  commentId: Overload:Heir.Runtime.Scope.Enclosing
+  href: Heir.Runtime.Scope.html#Heir_Runtime_Scope_Enclosing
+  name: Enclosing
+  nameWithType: Scope.Enclosing
+  fullName: Heir.Runtime.Scope.Enclosing
+- uid: Heir.Runtime.Scope.AssignAt*
+  commentId: Overload:Heir.Runtime.Scope.AssignAt
+  href: Heir.Runtime.Scope.html#Heir_Runtime_Scope_AssignAt_System_String_System_Object_System_UInt32_
+  name: AssignAt
+  nameWithType: Scope.AssignAt
+  fullName: Heir.Runtime.Scope.AssignAt
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.UInt32
+  commentId: T:System.UInt32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.uint32
+  name: uint
+  nameWithType: uint
+  fullName: uint
+  nameWithType.vb: UInteger
+  fullName.vb: UInteger
+  name.vb: UInteger
+- uid: Heir.Runtime.Scope.Assign*
+  commentId: Overload:Heir.Runtime.Scope.Assign
+  href: Heir.Runtime.Scope.html#Heir_Runtime_Scope_Assign_System_String_System_Object_
+  name: Assign
+  nameWithType: Scope.Assign
+  fullName: Heir.Runtime.Scope.Assign
+- uid: Heir.Runtime.Scope.Define*
+  commentId: Overload:Heir.Runtime.Scope.Define
+  href: Heir.Runtime.Scope.html#Heir_Runtime_Scope_Define_System_String_System_Object_
+  name: Define
+  nameWithType: Scope.Define
+  fullName: Heir.Runtime.Scope.Define
+- uid: Heir.Runtime.Scope.IsDeclared*
+  commentId: Overload:Heir.Runtime.Scope.IsDeclared
+  href: Heir.Runtime.Scope.html#Heir_Runtime_Scope_IsDeclared_System_String_
+  name: IsDeclared
+  nameWithType: Scope.IsDeclared
+  fullName: Heir.Runtime.Scope.IsDeclared
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Heir.Runtime.Scope.IsDefined*
+  commentId: Overload:Heir.Runtime.Scope.IsDefined
+  href: Heir.Runtime.Scope.html#Heir_Runtime_Scope_IsDefined_System_String_
+  name: IsDefined
+  nameWithType: Scope.IsDefined
+  fullName: Heir.Runtime.Scope.IsDefined
+- uid: Heir.Runtime.Scope.Lookup*
+  commentId: Overload:Heir.Runtime.Scope.Lookup
+  href: Heir.Runtime.Scope.html#Heir_Runtime_Scope_Lookup_System_String_
+  name: Lookup
+  nameWithType: Scope.Lookup
+  fullName: Heir.Runtime.Scope.Lookup
+- uid: Heir.Runtime.Scope.LookupAt*
+  commentId: Overload:Heir.Runtime.Scope.LookupAt
+  href: Heir.Runtime.Scope.html#Heir_Runtime_Scope_LookupAt_System_String_System_UInt32_
+  name: LookupAt
+  nameWithType: Scope.LookupAt
+  fullName: Heir.Runtime.Scope.LookupAt
+- uid: Heir.Runtime.Scope.Ancestor*
+  commentId: Overload:Heir.Runtime.Scope.Ancestor
+  href: Heir.Runtime.Scope.html#Heir_Runtime_Scope_Ancestor_System_UInt32_
+  name: Ancestor
+  nameWithType: Scope.Ancestor
+  fullName: Heir.Runtime.Scope.Ancestor
+- uid: Heir.Runtime.Scope.Equals*
+  commentId: Overload:Heir.Runtime.Scope.Equals
+  href: Heir.Runtime.Scope.html#Heir_Runtime_Scope_Equals_Heir_Runtime_Scope_System_Boolean_
+  name: Equals
+  nameWithType: Scope.Equals
+  fullName: Heir.Runtime.Scope.Equals

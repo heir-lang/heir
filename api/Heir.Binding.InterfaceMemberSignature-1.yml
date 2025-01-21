@@ -1,0 +1,450 @@
+### YamlMime:ManagedReference
+items:
+- uid: Heir.Binding.InterfaceMemberSignature`1
+  commentId: T:Heir.Binding.InterfaceMemberSignature`1
+  id: InterfaceMemberSignature`1
+  parent: Heir.Binding
+  children:
+  - Heir.Binding.InterfaceMemberSignature`1.#ctor(`0,System.Boolean)
+  - Heir.Binding.InterfaceMemberSignature`1.IsMutable
+  - Heir.Binding.InterfaceMemberSignature`1.ValueType
+  langs:
+  - csharp
+  - vb
+  name: InterfaceMemberSignature<T>
+  nameWithType: InterfaceMemberSignature<T>
+  fullName: Heir.Binding.InterfaceMemberSignature<T>
+  type: Class
+  source:
+    remote:
+      path: Heir/Binding/InterfaceMemberSignature.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: InterfaceMemberSignature
+    path: Heir/Binding/InterfaceMemberSignature.cs
+    startLine: 6
+  assemblies:
+  - Heir
+  namespace: Heir.Binding
+  syntax:
+    content: 'public class InterfaceMemberSignature<T> where T : BaseType'
+    typeParameters:
+    - id: T
+    content.vb: Public Class InterfaceMemberSignature(Of T As BaseType)
+  inheritance:
+  - System.Object
+  derivedClasses:
+  - Heir.Binding.InterfaceMemberSignature
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  nameWithType.vb: InterfaceMemberSignature(Of T)
+  fullName.vb: Heir.Binding.InterfaceMemberSignature(Of T)
+  name.vb: InterfaceMemberSignature(Of T)
+- uid: Heir.Binding.InterfaceMemberSignature`1.#ctor(`0,System.Boolean)
+  commentId: M:Heir.Binding.InterfaceMemberSignature`1.#ctor(`0,System.Boolean)
+  id: '#ctor(`0,System.Boolean)'
+  parent: Heir.Binding.InterfaceMemberSignature`1
+  langs:
+  - csharp
+  - vb
+  name: InterfaceMemberSignature(T, bool)
+  nameWithType: InterfaceMemberSignature<T>.InterfaceMemberSignature(T, bool)
+  fullName: Heir.Binding.InterfaceMemberSignature<T>.InterfaceMemberSignature(T, bool)
+  type: Constructor
+  source:
+    remote:
+      path: Heir/Binding/InterfaceMemberSignature.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: .ctor
+    path: Heir/Binding/InterfaceMemberSignature.cs
+    startLine: 6
+  assemblies:
+  - Heir
+  namespace: Heir.Binding
+  syntax:
+    content: public InterfaceMemberSignature(T valueType, bool isMutable)
+    parameters:
+    - id: valueType
+      type: '{T}'
+    - id: isMutable
+      type: System.Boolean
+    content.vb: Public Sub New(valueType As T, isMutable As Boolean)
+  overload: Heir.Binding.InterfaceMemberSignature`1.#ctor*
+  nameWithType.vb: InterfaceMemberSignature(Of T).New(T, Boolean)
+  fullName.vb: Heir.Binding.InterfaceMemberSignature(Of T).New(T, Boolean)
+  name.vb: New(T, Boolean)
+- uid: Heir.Binding.InterfaceMemberSignature`1.ValueType
+  commentId: P:Heir.Binding.InterfaceMemberSignature`1.ValueType
+  id: ValueType
+  parent: Heir.Binding.InterfaceMemberSignature`1
+  langs:
+  - csharp
+  - vb
+  name: ValueType
+  nameWithType: InterfaceMemberSignature<T>.ValueType
+  fullName: Heir.Binding.InterfaceMemberSignature<T>.ValueType
+  type: Property
+  source:
+    remote:
+      path: Heir/Binding/InterfaceMemberSignature.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: ValueType
+    path: Heir/Binding/InterfaceMemberSignature.cs
+    startLine: 8
+  assemblies:
+  - Heir
+  namespace: Heir.Binding
+  syntax:
+    content: public T ValueType { get; }
+    parameters: []
+    return:
+      type: '{T}'
+    content.vb: Public ReadOnly Property ValueType As T
+  overload: Heir.Binding.InterfaceMemberSignature`1.ValueType*
+  nameWithType.vb: InterfaceMemberSignature(Of T).ValueType
+  fullName.vb: Heir.Binding.InterfaceMemberSignature(Of T).ValueType
+- uid: Heir.Binding.InterfaceMemberSignature`1.IsMutable
+  commentId: P:Heir.Binding.InterfaceMemberSignature`1.IsMutable
+  id: IsMutable
+  parent: Heir.Binding.InterfaceMemberSignature`1
+  langs:
+  - csharp
+  - vb
+  name: IsMutable
+  nameWithType: InterfaceMemberSignature<T>.IsMutable
+  fullName: Heir.Binding.InterfaceMemberSignature<T>.IsMutable
+  type: Property
+  source:
+    remote:
+      path: Heir/Binding/InterfaceMemberSignature.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: IsMutable
+    path: Heir/Binding/InterfaceMemberSignature.cs
+    startLine: 9
+  assemblies:
+  - Heir
+  namespace: Heir.Binding
+  syntax:
+    content: public bool IsMutable { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property IsMutable As Boolean
+  overload: Heir.Binding.InterfaceMemberSignature`1.IsMutable*
+  nameWithType.vb: InterfaceMemberSignature(Of T).IsMutable
+  fullName.vb: Heir.Binding.InterfaceMemberSignature(Of T).IsMutable
+references:
+- uid: Heir.Binding
+  commentId: N:Heir.Binding
+  href: Heir.html
+  name: Heir.Binding
+  nameWithType: Heir.Binding
+  fullName: Heir.Binding
+  spec.csharp:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.Binding
+    name: Binding
+    href: Heir.Binding.html
+  spec.vb:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.Binding
+    name: Binding
+    href: Heir.Binding.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Heir.Binding.InterfaceMemberSignature`1.#ctor*
+  commentId: Overload:Heir.Binding.InterfaceMemberSignature`1.#ctor
+  href: Heir.Binding.InterfaceMemberSignature-1.html#Heir_Binding_InterfaceMemberSignature_1__ctor__0_System_Boolean_
+  name: InterfaceMemberSignature
+  nameWithType: InterfaceMemberSignature<T>.InterfaceMemberSignature
+  fullName: Heir.Binding.InterfaceMemberSignature<T>.InterfaceMemberSignature
+  nameWithType.vb: InterfaceMemberSignature(Of T).New
+  fullName.vb: Heir.Binding.InterfaceMemberSignature(Of T).New
+  name.vb: New
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: Heir.Binding.InterfaceMemberSignature`1.ValueType*
+  commentId: Overload:Heir.Binding.InterfaceMemberSignature`1.ValueType
+  href: Heir.Binding.InterfaceMemberSignature-1.html#Heir_Binding_InterfaceMemberSignature_1_ValueType
+  name: ValueType
+  nameWithType: InterfaceMemberSignature<T>.ValueType
+  fullName: Heir.Binding.InterfaceMemberSignature<T>.ValueType
+  nameWithType.vb: InterfaceMemberSignature(Of T).ValueType
+  fullName.vb: Heir.Binding.InterfaceMemberSignature(Of T).ValueType
+- uid: Heir.Binding.InterfaceMemberSignature`1.IsMutable*
+  commentId: Overload:Heir.Binding.InterfaceMemberSignature`1.IsMutable
+  href: Heir.Binding.InterfaceMemberSignature-1.html#Heir_Binding_InterfaceMemberSignature_1_IsMutable
+  name: IsMutable
+  nameWithType: InterfaceMemberSignature<T>.IsMutable
+  fullName: Heir.Binding.InterfaceMemberSignature<T>.IsMutable
+  nameWithType.vb: InterfaceMemberSignature(Of T).IsMutable
+  fullName.vb: Heir.Binding.InterfaceMemberSignature(Of T).IsMutable

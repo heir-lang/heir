@@ -1,0 +1,544 @@
+### YamlMime:ManagedReference
+items:
+- uid: Heir.HeirProgram
+  commentId: T:Heir.HeirProgram
+  id: HeirProgram
+  parent: Heir
+  children:
+  - Heir.HeirProgram.Evaluate
+  - Heir.HeirProgram.LoadFile(Heir.SourceFile)
+  - Heir.HeirProgram.LoadFiles(System.Collections.Generic.HashSet{Heir.SourceFile})
+  - Heir.HeirProgram.SourceFiles
+  - Heir.HeirProgram.UnloadFile(Heir.SourceFile)
+  langs:
+  - csharp
+  - vb
+  name: HeirProgram
+  nameWithType: HeirProgram
+  fullName: Heir.HeirProgram
+  type: Class
+  source:
+    remote:
+      path: Heir/HeirProgram.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: HeirProgram
+    path: Heir/HeirProgram.cs
+    startLine: 2
+  assemblies:
+  - Heir
+  namespace: Heir
+  syntax:
+    content: public sealed class HeirProgram
+    content.vb: Public NotInheritable Class HeirProgram
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Heir.HeirProgram.SourceFiles
+  commentId: P:Heir.HeirProgram.SourceFiles
+  id: SourceFiles
+  parent: Heir.HeirProgram
+  langs:
+  - csharp
+  - vb
+  name: SourceFiles
+  nameWithType: HeirProgram.SourceFiles
+  fullName: Heir.HeirProgram.SourceFiles
+  type: Property
+  source:
+    remote:
+      path: Heir/HeirProgram.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: SourceFiles
+    path: Heir/HeirProgram.cs
+    startLine: 4
+  assemblies:
+  - Heir
+  namespace: Heir
+  syntax:
+    content: public HashSet<SourceFile> SourceFiles { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.HashSet{Heir.SourceFile}
+    content.vb: Public ReadOnly Property SourceFiles As HashSet(Of SourceFile)
+  overload: Heir.HeirProgram.SourceFiles*
+- uid: Heir.HeirProgram.UnloadFile(Heir.SourceFile)
+  commentId: M:Heir.HeirProgram.UnloadFile(Heir.SourceFile)
+  id: UnloadFile(Heir.SourceFile)
+  parent: Heir.HeirProgram
+  langs:
+  - csharp
+  - vb
+  name: UnloadFile(SourceFile)
+  nameWithType: HeirProgram.UnloadFile(SourceFile)
+  fullName: Heir.HeirProgram.UnloadFile(Heir.SourceFile)
+  type: Method
+  source:
+    remote:
+      path: Heir/HeirProgram.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: UnloadFile
+    path: Heir/HeirProgram.cs
+    startLine: 6
+  assemblies:
+  - Heir
+  namespace: Heir
+  syntax:
+    content: public void UnloadFile(SourceFile sourceFile)
+    parameters:
+    - id: sourceFile
+      type: Heir.SourceFile
+    content.vb: Public Sub UnloadFile(sourceFile As SourceFile)
+  overload: Heir.HeirProgram.UnloadFile*
+- uid: Heir.HeirProgram.LoadFile(Heir.SourceFile)
+  commentId: M:Heir.HeirProgram.LoadFile(Heir.SourceFile)
+  id: LoadFile(Heir.SourceFile)
+  parent: Heir.HeirProgram
+  langs:
+  - csharp
+  - vb
+  name: LoadFile(SourceFile)
+  nameWithType: HeirProgram.LoadFile(SourceFile)
+  fullName: Heir.HeirProgram.LoadFile(Heir.SourceFile)
+  type: Method
+  source:
+    remote:
+      path: Heir/HeirProgram.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: LoadFile
+    path: Heir/HeirProgram.cs
+    startLine: 7
+  assemblies:
+  - Heir
+  namespace: Heir
+  syntax:
+    content: public void LoadFile(SourceFile sourceFile)
+    parameters:
+    - id: sourceFile
+      type: Heir.SourceFile
+    content.vb: Public Sub LoadFile(sourceFile As SourceFile)
+  overload: Heir.HeirProgram.LoadFile*
+- uid: Heir.HeirProgram.LoadFiles(System.Collections.Generic.HashSet{Heir.SourceFile})
+  commentId: M:Heir.HeirProgram.LoadFiles(System.Collections.Generic.HashSet{Heir.SourceFile})
+  id: LoadFiles(System.Collections.Generic.HashSet{Heir.SourceFile})
+  parent: Heir.HeirProgram
+  langs:
+  - csharp
+  - vb
+  name: LoadFiles(HashSet<SourceFile>)
+  nameWithType: HeirProgram.LoadFiles(HashSet<SourceFile>)
+  fullName: Heir.HeirProgram.LoadFiles(System.Collections.Generic.HashSet<Heir.SourceFile>)
+  type: Method
+  source:
+    remote:
+      path: Heir/HeirProgram.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: LoadFiles
+    path: Heir/HeirProgram.cs
+    startLine: 8
+  assemblies:
+  - Heir
+  namespace: Heir
+  syntax:
+    content: public void LoadFiles(HashSet<SourceFile> sourceFiles)
+    parameters:
+    - id: sourceFiles
+      type: System.Collections.Generic.HashSet{Heir.SourceFile}
+    content.vb: Public Sub LoadFiles(sourceFiles As HashSet(Of SourceFile))
+  overload: Heir.HeirProgram.LoadFiles*
+  nameWithType.vb: HeirProgram.LoadFiles(HashSet(Of SourceFile))
+  fullName.vb: Heir.HeirProgram.LoadFiles(System.Collections.Generic.HashSet(Of Heir.SourceFile))
+  name.vb: LoadFiles(HashSet(Of SourceFile))
+- uid: Heir.HeirProgram.Evaluate
+  commentId: M:Heir.HeirProgram.Evaluate
+  id: Evaluate
+  parent: Heir.HeirProgram
+  langs:
+  - csharp
+  - vb
+  name: Evaluate()
+  nameWithType: HeirProgram.Evaluate()
+  fullName: Heir.HeirProgram.Evaluate()
+  type: Method
+  source:
+    remote:
+      path: Heir/HeirProgram.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Evaluate
+    path: Heir/HeirProgram.cs
+    startLine: 14
+  assemblies:
+  - Heir
+  namespace: Heir
+  syntax:
+    content: public object? Evaluate()
+    return:
+      type: System.Object
+    content.vb: Public Function Evaluate() As Object
+  overload: Heir.HeirProgram.Evaluate*
+references:
+- uid: Heir
+  commentId: N:Heir
+  href: Heir.html
+  name: Heir
+  nameWithType: Heir
+  fullName: Heir
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Heir.HeirProgram.SourceFiles*
+  commentId: Overload:Heir.HeirProgram.SourceFiles
+  href: Heir.HeirProgram.html#Heir_HeirProgram_SourceFiles
+  name: SourceFiles
+  nameWithType: HeirProgram.SourceFiles
+  fullName: Heir.HeirProgram.SourceFiles
+- uid: System.Collections.Generic.HashSet{Heir.SourceFile}
+  commentId: T:System.Collections.Generic.HashSet{Heir.SourceFile}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.HashSet`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  name: HashSet<SourceFile>
+  nameWithType: HashSet<SourceFile>
+  fullName: System.Collections.Generic.HashSet<Heir.SourceFile>
+  nameWithType.vb: HashSet(Of SourceFile)
+  fullName.vb: System.Collections.Generic.HashSet(Of Heir.SourceFile)
+  name.vb: HashSet(Of SourceFile)
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet`1
+    name: HashSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  - name: <
+  - uid: Heir.SourceFile
+    name: SourceFile
+    href: Heir.SourceFile.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet`1
+    name: HashSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Heir.SourceFile
+    name: SourceFile
+    href: Heir.SourceFile.html
+  - name: )
+- uid: System.Collections.Generic.HashSet`1
+  commentId: T:System.Collections.Generic.HashSet`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  name: HashSet<T>
+  nameWithType: HashSet<T>
+  fullName: System.Collections.Generic.HashSet<T>
+  nameWithType.vb: HashSet(Of T)
+  fullName.vb: System.Collections.Generic.HashSet(Of T)
+  name.vb: HashSet(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet`1
+    name: HashSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet`1
+    name: HashSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: Heir.HeirProgram.UnloadFile*
+  commentId: Overload:Heir.HeirProgram.UnloadFile
+  href: Heir.HeirProgram.html#Heir_HeirProgram_UnloadFile_Heir_SourceFile_
+  name: UnloadFile
+  nameWithType: HeirProgram.UnloadFile
+  fullName: Heir.HeirProgram.UnloadFile
+- uid: Heir.SourceFile
+  commentId: T:Heir.SourceFile
+  parent: Heir
+  href: Heir.SourceFile.html
+  name: SourceFile
+  nameWithType: SourceFile
+  fullName: Heir.SourceFile
+- uid: Heir.HeirProgram.LoadFile*
+  commentId: Overload:Heir.HeirProgram.LoadFile
+  href: Heir.HeirProgram.html#Heir_HeirProgram_LoadFile_Heir_SourceFile_
+  name: LoadFile
+  nameWithType: HeirProgram.LoadFile
+  fullName: Heir.HeirProgram.LoadFile
+- uid: Heir.HeirProgram.LoadFiles*
+  commentId: Overload:Heir.HeirProgram.LoadFiles
+  href: Heir.HeirProgram.html#Heir_HeirProgram_LoadFiles_System_Collections_Generic_HashSet_Heir_SourceFile__
+  name: LoadFiles
+  nameWithType: HeirProgram.LoadFiles
+  fullName: Heir.HeirProgram.LoadFiles
+- uid: Heir.HeirProgram.Evaluate*
+  commentId: Overload:Heir.HeirProgram.Evaluate
+  href: Heir.HeirProgram.html#Heir_HeirProgram_Evaluate
+  name: Evaluate
+  nameWithType: HeirProgram.Evaluate
+  fullName: Heir.HeirProgram.Evaluate

@@ -1,0 +1,3293 @@
+### YamlMime:ManagedReference
+items:
+- uid: Heir.Resolver
+  commentId: T:Heir.Resolver
+  id: Resolver
+  parent: Heir
+  children:
+  - Heir.Resolver.#ctor(Heir.DiagnosticBag,Heir.AST.SyntaxTree)
+  - Heir.Resolver.Declare(Heir.Syntax.Token)
+  - Heir.Resolver.Define(Heir.Syntax.Token)
+  - Heir.Resolver.Diagnostics
+  - Heir.Resolver.Resolve
+  - Heir.Resolver.Resolve(Heir.AST.Abstract.Expression)
+  - Heir.Resolver.Resolve(Heir.AST.Abstract.Statement)
+  - Heir.Resolver.VisitAssignmentOpExpression(Heir.AST.AssignmentOp)
+  - Heir.Resolver.VisitBinaryOpExpression(Heir.AST.BinaryOp)
+  - Heir.Resolver.VisitBlock(Heir.AST.Block)
+  - Heir.Resolver.VisitElementAccessExpression(Heir.AST.ElementAccess)
+  - Heir.Resolver.VisitExpressionStatement(Heir.AST.ExpressionStatement)
+  - Heir.Resolver.VisitFunctionDeclaration(Heir.AST.FunctionDeclaration)
+  - Heir.Resolver.VisitIdentifierNameExpression(Heir.AST.IdentifierName)
+  - Heir.Resolver.VisitIfStatement(Heir.AST.If)
+  - Heir.Resolver.VisitIntersectionTypeRef(Heir.AST.IntersectionType)
+  - Heir.Resolver.VisitInvocationExpression(Heir.AST.Invocation)
+  - Heir.Resolver.VisitLiteralExpression(Heir.AST.Literal)
+  - Heir.Resolver.VisitMemberAccessExpression(Heir.AST.MemberAccess)
+  - Heir.Resolver.VisitNoOp(Heir.AST.NoOp)
+  - Heir.Resolver.VisitNoOp(Heir.AST.NoOpStatement)
+  - Heir.Resolver.VisitNoOp(Heir.AST.NoOpType)
+  - Heir.Resolver.VisitObjectLiteralExpression(Heir.AST.ObjectLiteral)
+  - Heir.Resolver.VisitParameter(Heir.AST.Parameter)
+  - Heir.Resolver.VisitParenthesizedExpression(Heir.AST.Parenthesized)
+  - Heir.Resolver.VisitParenthesizedTypeRef(Heir.AST.ParenthesizedType)
+  - Heir.Resolver.VisitReturnStatement(Heir.AST.Return)
+  - Heir.Resolver.VisitSingularTypeRef(Heir.AST.SingularType)
+  - Heir.Resolver.VisitSyntaxTree(Heir.AST.SyntaxTree)
+  - Heir.Resolver.VisitUnaryOpExpression(Heir.AST.UnaryOp)
+  - Heir.Resolver.VisitUnionTypeRef(Heir.AST.UnionType)
+  - Heir.Resolver.VisitVariableDeclaration(Heir.AST.VariableDeclaration)
+  langs:
+  - csharp
+  - vb
+  name: Resolver
+  nameWithType: Resolver
+  fullName: Heir.Resolver
+  type: Class
+  source:
+    remote:
+      path: Heir/Resolver.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Resolver
+    path: Heir/Resolver.cs
+    startLine: 14
+  assemblies:
+  - Heir
+  namespace: Heir
+  syntax:
+    content: 'public sealed class Resolver : Expression.Visitor<object?>, Statement.Visitor<object?>'
+    content.vb: Public NotInheritable Class Resolver Implements Expression.Visitor(Of Object), Statement.Visitor(Of Object)
+  inheritance:
+  - System.Object
+  implements:
+  - Heir.AST.Abstract.Expression.Visitor{System.Object}
+  - Heir.AST.Abstract.Statement.Visitor{System.Object}
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Heir.Resolver.#ctor(Heir.DiagnosticBag,Heir.AST.SyntaxTree)
+  commentId: M:Heir.Resolver.#ctor(Heir.DiagnosticBag,Heir.AST.SyntaxTree)
+  id: '#ctor(Heir.DiagnosticBag,Heir.AST.SyntaxTree)'
+  parent: Heir.Resolver
+  langs:
+  - csharp
+  - vb
+  name: Resolver(DiagnosticBag, SyntaxTree)
+  nameWithType: Resolver.Resolver(DiagnosticBag, SyntaxTree)
+  fullName: Heir.Resolver.Resolver(Heir.DiagnosticBag, Heir.AST.SyntaxTree)
+  type: Constructor
+  source:
+    remote:
+      path: Heir/Resolver.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: .ctor
+    path: Heir/Resolver.cs
+    startLine: 14
+  assemblies:
+  - Heir
+  namespace: Heir
+  syntax:
+    content: public Resolver(DiagnosticBag diagnostics, SyntaxTree syntaxTree)
+    parameters:
+    - id: diagnostics
+      type: Heir.DiagnosticBag
+    - id: syntaxTree
+      type: Heir.AST.SyntaxTree
+    content.vb: Public Sub New(diagnostics As DiagnosticBag, syntaxTree As SyntaxTree)
+  overload: Heir.Resolver.#ctor*
+  nameWithType.vb: Resolver.New(DiagnosticBag, SyntaxTree)
+  fullName.vb: Heir.Resolver.New(Heir.DiagnosticBag, Heir.AST.SyntaxTree)
+  name.vb: New(DiagnosticBag, SyntaxTree)
+- uid: Heir.Resolver.Diagnostics
+  commentId: P:Heir.Resolver.Diagnostics
+  id: Diagnostics
+  parent: Heir.Resolver
+  langs:
+  - csharp
+  - vb
+  name: Diagnostics
+  nameWithType: Resolver.Diagnostics
+  fullName: Heir.Resolver.Diagnostics
+  type: Property
+  source:
+    remote:
+      path: Heir/Resolver.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Diagnostics
+    path: Heir/Resolver.cs
+    startLine: 16
+  assemblies:
+  - Heir
+  namespace: Heir
+  syntax:
+    content: public DiagnosticBag Diagnostics { get; }
+    parameters: []
+    return:
+      type: Heir.DiagnosticBag
+    content.vb: Public ReadOnly Property Diagnostics As DiagnosticBag
+  overload: Heir.Resolver.Diagnostics*
+- uid: Heir.Resolver.Resolve
+  commentId: M:Heir.Resolver.Resolve
+  id: Resolve
+  parent: Heir.Resolver
+  langs:
+  - csharp
+  - vb
+  name: Resolve()
+  nameWithType: Resolver.Resolve()
+  fullName: Heir.Resolver.Resolve()
+  type: Method
+  source:
+    remote:
+      path: Heir/Resolver.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Resolve
+    path: Heir/Resolver.cs
+    startLine: 22
+  assemblies:
+  - Heir
+  namespace: Heir
+  syntax:
+    content: public void Resolve()
+    content.vb: Public Sub Resolve()
+  overload: Heir.Resolver.Resolve*
+- uid: Heir.Resolver.Define(Heir.Syntax.Token)
+  commentId: M:Heir.Resolver.Define(Heir.Syntax.Token)
+  id: Define(Heir.Syntax.Token)
+  parent: Heir.Resolver
+  langs:
+  - csharp
+  - vb
+  name: Define(Token)
+  nameWithType: Resolver.Define(Token)
+  fullName: Heir.Resolver.Define(Heir.Syntax.Token)
+  type: Method
+  source:
+    remote:
+      path: Heir/Resolver.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Define
+    path: Heir/Resolver.cs
+    startLine: 24
+  assemblies:
+  - Heir
+  namespace: Heir
+  syntax:
+    content: public void Define(Token identifier)
+    parameters:
+    - id: identifier
+      type: Heir.Syntax.Token
+    content.vb: Public Sub Define(identifier As Token)
+  overload: Heir.Resolver.Define*
+- uid: Heir.Resolver.Declare(Heir.Syntax.Token)
+  commentId: M:Heir.Resolver.Declare(Heir.Syntax.Token)
+  id: Declare(Heir.Syntax.Token)
+  parent: Heir.Resolver
+  langs:
+  - csharp
+  - vb
+  name: Declare(Token)
+  nameWithType: Resolver.Declare(Token)
+  fullName: Heir.Resolver.Declare(Heir.Syntax.Token)
+  type: Method
+  source:
+    remote:
+      path: Heir/Resolver.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Declare
+    path: Heir/Resolver.cs
+    startLine: 32
+  assemblies:
+  - Heir
+  namespace: Heir
+  syntax:
+    content: public void Declare(Token identifier)
+    parameters:
+    - id: identifier
+      type: Heir.Syntax.Token
+    content.vb: Public Sub [Declare](identifier As Token)
+  overload: Heir.Resolver.Declare*
+- uid: Heir.Resolver.VisitSyntaxTree(Heir.AST.SyntaxTree)
+  commentId: M:Heir.Resolver.VisitSyntaxTree(Heir.AST.SyntaxTree)
+  id: VisitSyntaxTree(Heir.AST.SyntaxTree)
+  parent: Heir.Resolver
+  langs:
+  - csharp
+  - vb
+  name: VisitSyntaxTree(SyntaxTree)
+  nameWithType: Resolver.VisitSyntaxTree(SyntaxTree)
+  fullName: Heir.Resolver.VisitSyntaxTree(Heir.AST.SyntaxTree)
+  type: Method
+  source:
+    remote:
+      path: Heir/Resolver.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: VisitSyntaxTree
+    path: Heir/Resolver.cs
+    startLine: 41
+  assemblies:
+  - Heir
+  namespace: Heir
+  example: []
+  syntax:
+    content: public object? VisitSyntaxTree(SyntaxTree tree)
+    parameters:
+    - id: tree
+      type: Heir.AST.SyntaxTree
+    return:
+      type: System.Object
+    content.vb: Public Function VisitSyntaxTree(tree As SyntaxTree) As Object
+  overload: Heir.Resolver.VisitSyntaxTree*
+  implements:
+  - Heir.AST.Abstract.Statement.Visitor{System.Object}.VisitSyntaxTree(Heir.AST.SyntaxTree)
+- uid: Heir.Resolver.VisitVariableDeclaration(Heir.AST.VariableDeclaration)
+  commentId: M:Heir.Resolver.VisitVariableDeclaration(Heir.AST.VariableDeclaration)
+  id: VisitVariableDeclaration(Heir.AST.VariableDeclaration)
+  parent: Heir.Resolver
+  langs:
+  - csharp
+  - vb
+  name: VisitVariableDeclaration(VariableDeclaration)
+  nameWithType: Resolver.VisitVariableDeclaration(VariableDeclaration)
+  fullName: Heir.Resolver.VisitVariableDeclaration(Heir.AST.VariableDeclaration)
+  type: Method
+  source:
+    remote:
+      path: Heir/Resolver.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: VisitVariableDeclaration
+    path: Heir/Resolver.cs
+    startLine: 51
+  assemblies:
+  - Heir
+  namespace: Heir
+  example: []
+  syntax:
+    content: public object? VisitVariableDeclaration(VariableDeclaration variableDeclaration)
+    parameters:
+    - id: variableDeclaration
+      type: Heir.AST.VariableDeclaration
+    return:
+      type: System.Object
+    content.vb: Public Function VisitVariableDeclaration(variableDeclaration As VariableDeclaration) As Object
+  overload: Heir.Resolver.VisitVariableDeclaration*
+  implements:
+  - Heir.AST.Abstract.Statement.Visitor{System.Object}.VisitVariableDeclaration(Heir.AST.VariableDeclaration)
+- uid: Heir.Resolver.VisitFunctionDeclaration(Heir.AST.FunctionDeclaration)
+  commentId: M:Heir.Resolver.VisitFunctionDeclaration(Heir.AST.FunctionDeclaration)
+  id: VisitFunctionDeclaration(Heir.AST.FunctionDeclaration)
+  parent: Heir.Resolver
+  langs:
+  - csharp
+  - vb
+  name: VisitFunctionDeclaration(FunctionDeclaration)
+  nameWithType: Resolver.VisitFunctionDeclaration(FunctionDeclaration)
+  fullName: Heir.Resolver.VisitFunctionDeclaration(Heir.AST.FunctionDeclaration)
+  type: Method
+  source:
+    remote:
+      path: Heir/Resolver.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: VisitFunctionDeclaration
+    path: Heir/Resolver.cs
+    startLine: 63
+  assemblies:
+  - Heir
+  namespace: Heir
+  example: []
+  syntax:
+    content: public object? VisitFunctionDeclaration(FunctionDeclaration functionDeclaration)
+    parameters:
+    - id: functionDeclaration
+      type: Heir.AST.FunctionDeclaration
+    return:
+      type: System.Object
+    content.vb: Public Function VisitFunctionDeclaration(functionDeclaration As FunctionDeclaration) As Object
+  overload: Heir.Resolver.VisitFunctionDeclaration*
+  implements:
+  - Heir.AST.Abstract.Statement.Visitor{System.Object}.VisitFunctionDeclaration(Heir.AST.FunctionDeclaration)
+- uid: Heir.Resolver.VisitBlock(Heir.AST.Block)
+  commentId: M:Heir.Resolver.VisitBlock(Heir.AST.Block)
+  id: VisitBlock(Heir.AST.Block)
+  parent: Heir.Resolver
+  langs:
+  - csharp
+  - vb
+  name: VisitBlock(Block)
+  nameWithType: Resolver.VisitBlock(Block)
+  fullName: Heir.Resolver.VisitBlock(Heir.AST.Block)
+  type: Method
+  source:
+    remote:
+      path: Heir/Resolver.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: VisitBlock
+    path: Heir/Resolver.cs
+    startLine: 70
+  assemblies:
+  - Heir
+  namespace: Heir
+  example: []
+  syntax:
+    content: public object? VisitBlock(Block block)
+    parameters:
+    - id: block
+      type: Heir.AST.Block
+    return:
+      type: System.Object
+    content.vb: Public Function VisitBlock(block As Block) As Object
+  overload: Heir.Resolver.VisitBlock*
+  implements:
+  - Heir.AST.Abstract.Statement.Visitor{System.Object}.VisitBlock(Heir.AST.Block)
+- uid: Heir.Resolver.VisitReturnStatement(Heir.AST.Return)
+  commentId: M:Heir.Resolver.VisitReturnStatement(Heir.AST.Return)
+  id: VisitReturnStatement(Heir.AST.Return)
+  parent: Heir.Resolver
+  langs:
+  - csharp
+  - vb
+  name: VisitReturnStatement(Return)
+  nameWithType: Resolver.VisitReturnStatement(Return)
+  fullName: Heir.Resolver.VisitReturnStatement(Heir.AST.Return)
+  type: Method
+  source:
+    remote:
+      path: Heir/Resolver.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: VisitReturnStatement
+    path: Heir/Resolver.cs
+    startLine: 82
+  assemblies:
+  - Heir
+  namespace: Heir
+  example: []
+  syntax:
+    content: public object? VisitReturnStatement(Return @return)
+    parameters:
+    - id: return
+      type: Heir.AST.Return
+    return:
+      type: System.Object
+    content.vb: Public Function VisitReturnStatement([return] As [Return]) As Object
+  overload: Heir.Resolver.VisitReturnStatement*
+  implements:
+  - Heir.AST.Abstract.Statement.Visitor{System.Object}.VisitReturnStatement(Heir.AST.Return)
+- uid: Heir.Resolver.VisitIfStatement(Heir.AST.If)
+  commentId: M:Heir.Resolver.VisitIfStatement(Heir.AST.If)
+  id: VisitIfStatement(Heir.AST.If)
+  parent: Heir.Resolver
+  langs:
+  - csharp
+  - vb
+  name: VisitIfStatement(If)
+  nameWithType: Resolver.VisitIfStatement(If)
+  fullName: Heir.Resolver.VisitIfStatement(Heir.AST.If)
+  type: Method
+  source:
+    remote:
+      path: Heir/Resolver.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: VisitIfStatement
+    path: Heir/Resolver.cs
+    startLine: 94
+  assemblies:
+  - Heir
+  namespace: Heir
+  example: []
+  syntax:
+    content: public object? VisitIfStatement(If @if)
+    parameters:
+    - id: if
+      type: Heir.AST.If
+    return:
+      type: System.Object
+    content.vb: Public Function VisitIfStatement([if] As [If]) As Object
+  overload: Heir.Resolver.VisitIfStatement*
+  implements:
+  - Heir.AST.Abstract.Statement.Visitor{System.Object}.VisitIfStatement(Heir.AST.If)
+- uid: Heir.Resolver.VisitExpressionStatement(Heir.AST.ExpressionStatement)
+  commentId: M:Heir.Resolver.VisitExpressionStatement(Heir.AST.ExpressionStatement)
+  id: VisitExpressionStatement(Heir.AST.ExpressionStatement)
+  parent: Heir.Resolver
+  langs:
+  - csharp
+  - vb
+  name: VisitExpressionStatement(ExpressionStatement)
+  nameWithType: Resolver.VisitExpressionStatement(ExpressionStatement)
+  fullName: Heir.Resolver.VisitExpressionStatement(Heir.AST.ExpressionStatement)
+  type: Method
+  source:
+    remote:
+      path: Heir/Resolver.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: VisitExpressionStatement
+    path: Heir/Resolver.cs
+    startLine: 105
+  assemblies:
+  - Heir
+  namespace: Heir
+  example: []
+  syntax:
+    content: public object? VisitExpressionStatement(ExpressionStatement expressionStatement)
+    parameters:
+    - id: expressionStatement
+      type: Heir.AST.ExpressionStatement
+    return:
+      type: System.Object
+    content.vb: Public Function VisitExpressionStatement(expressionStatement As ExpressionStatement) As Object
+  overload: Heir.Resolver.VisitExpressionStatement*
+  implements:
+  - Heir.AST.Abstract.Statement.Visitor{System.Object}.VisitExpressionStatement(Heir.AST.ExpressionStatement)
+- uid: Heir.Resolver.VisitMemberAccessExpression(Heir.AST.MemberAccess)
+  commentId: M:Heir.Resolver.VisitMemberAccessExpression(Heir.AST.MemberAccess)
+  id: VisitMemberAccessExpression(Heir.AST.MemberAccess)
+  parent: Heir.Resolver
+  langs:
+  - csharp
+  - vb
+  name: VisitMemberAccessExpression(MemberAccess)
+  nameWithType: Resolver.VisitMemberAccessExpression(MemberAccess)
+  fullName: Heir.Resolver.VisitMemberAccessExpression(Heir.AST.MemberAccess)
+  type: Method
+  source:
+    remote:
+      path: Heir/Resolver.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: VisitMemberAccessExpression
+    path: Heir/Resolver.cs
+    startLine: 111
+  assemblies:
+  - Heir
+  namespace: Heir
+  example: []
+  syntax:
+    content: public object? VisitMemberAccessExpression(MemberAccess memberAccess)
+    parameters:
+    - id: memberAccess
+      type: Heir.AST.MemberAccess
+    return:
+      type: System.Object
+    content.vb: Public Function VisitMemberAccessExpression(memberAccess As MemberAccess) As Object
+  overload: Heir.Resolver.VisitMemberAccessExpression*
+  implements:
+  - Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitMemberAccessExpression(Heir.AST.MemberAccess)
+- uid: Heir.Resolver.VisitElementAccessExpression(Heir.AST.ElementAccess)
+  commentId: M:Heir.Resolver.VisitElementAccessExpression(Heir.AST.ElementAccess)
+  id: VisitElementAccessExpression(Heir.AST.ElementAccess)
+  parent: Heir.Resolver
+  langs:
+  - csharp
+  - vb
+  name: VisitElementAccessExpression(ElementAccess)
+  nameWithType: Resolver.VisitElementAccessExpression(ElementAccess)
+  fullName: Heir.Resolver.VisitElementAccessExpression(Heir.AST.ElementAccess)
+  type: Method
+  source:
+    remote:
+      path: Heir/Resolver.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: VisitElementAccessExpression
+    path: Heir/Resolver.cs
+    startLine: 117
+  assemblies:
+  - Heir
+  namespace: Heir
+  example: []
+  syntax:
+    content: public object? VisitElementAccessExpression(ElementAccess elementAccess)
+    parameters:
+    - id: elementAccess
+      type: Heir.AST.ElementAccess
+    return:
+      type: System.Object
+    content.vb: Public Function VisitElementAccessExpression(elementAccess As ElementAccess) As Object
+  overload: Heir.Resolver.VisitElementAccessExpression*
+  implements:
+  - Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitElementAccessExpression(Heir.AST.ElementAccess)
+- uid: Heir.Resolver.VisitInvocationExpression(Heir.AST.Invocation)
+  commentId: M:Heir.Resolver.VisitInvocationExpression(Heir.AST.Invocation)
+  id: VisitInvocationExpression(Heir.AST.Invocation)
+  parent: Heir.Resolver
+  langs:
+  - csharp
+  - vb
+  name: VisitInvocationExpression(Invocation)
+  nameWithType: Resolver.VisitInvocationExpression(Invocation)
+  fullName: Heir.Resolver.VisitInvocationExpression(Heir.AST.Invocation)
+  type: Method
+  source:
+    remote:
+      path: Heir/Resolver.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: VisitInvocationExpression
+    path: Heir/Resolver.cs
+    startLine: 124
+  assemblies:
+  - Heir
+  namespace: Heir
+  example: []
+  syntax:
+    content: public object? VisitInvocationExpression(Invocation invocation)
+    parameters:
+    - id: invocation
+      type: Heir.AST.Invocation
+    return:
+      type: System.Object
+    content.vb: Public Function VisitInvocationExpression(invocation As Invocation) As Object
+  overload: Heir.Resolver.VisitInvocationExpression*
+  implements:
+  - Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitInvocationExpression(Heir.AST.Invocation)
+- uid: Heir.Resolver.VisitParameter(Heir.AST.Parameter)
+  commentId: M:Heir.Resolver.VisitParameter(Heir.AST.Parameter)
+  id: VisitParameter(Heir.AST.Parameter)
+  parent: Heir.Resolver
+  langs:
+  - csharp
+  - vb
+  name: VisitParameter(Parameter)
+  nameWithType: Resolver.VisitParameter(Parameter)
+  fullName: Heir.Resolver.VisitParameter(Heir.AST.Parameter)
+  type: Method
+  source:
+    remote:
+      path: Heir/Resolver.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: VisitParameter
+    path: Heir/Resolver.cs
+    startLine: 133
+  assemblies:
+  - Heir
+  namespace: Heir
+  example: []
+  syntax:
+    content: public object? VisitParameter(Parameter parameter)
+    parameters:
+    - id: parameter
+      type: Heir.AST.Parameter
+    return:
+      type: System.Object
+    content.vb: Public Function VisitParameter(parameter As Parameter) As Object
+  overload: Heir.Resolver.VisitParameter*
+  implements:
+  - Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitParameter(Heir.AST.Parameter)
+- uid: Heir.Resolver.VisitAssignmentOpExpression(Heir.AST.AssignmentOp)
+  commentId: M:Heir.Resolver.VisitAssignmentOpExpression(Heir.AST.AssignmentOp)
+  id: VisitAssignmentOpExpression(Heir.AST.AssignmentOp)
+  parent: Heir.Resolver
+  langs:
+  - csharp
+  - vb
+  name: VisitAssignmentOpExpression(AssignmentOp)
+  nameWithType: Resolver.VisitAssignmentOpExpression(AssignmentOp)
+  fullName: Heir.Resolver.VisitAssignmentOpExpression(Heir.AST.AssignmentOp)
+  type: Method
+  source:
+    remote:
+      path: Heir/Resolver.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: VisitAssignmentOpExpression
+    path: Heir/Resolver.cs
+    startLine: 143
+  assemblies:
+  - Heir
+  namespace: Heir
+  example: []
+  syntax:
+    content: public object? VisitAssignmentOpExpression(AssignmentOp assignmentOp)
+    parameters:
+    - id: assignmentOp
+      type: Heir.AST.AssignmentOp
+    return:
+      type: System.Object
+    content.vb: Public Function VisitAssignmentOpExpression(assignmentOp As AssignmentOp) As Object
+  overload: Heir.Resolver.VisitAssignmentOpExpression*
+  implements:
+  - Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitAssignmentOpExpression(Heir.AST.AssignmentOp)
+- uid: Heir.Resolver.VisitBinaryOpExpression(Heir.AST.BinaryOp)
+  commentId: M:Heir.Resolver.VisitBinaryOpExpression(Heir.AST.BinaryOp)
+  id: VisitBinaryOpExpression(Heir.AST.BinaryOp)
+  parent: Heir.Resolver
+  langs:
+  - csharp
+  - vb
+  name: VisitBinaryOpExpression(BinaryOp)
+  nameWithType: Resolver.VisitBinaryOpExpression(BinaryOp)
+  fullName: Heir.Resolver.VisitBinaryOpExpression(Heir.AST.BinaryOp)
+  type: Method
+  source:
+    remote:
+      path: Heir/Resolver.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: VisitBinaryOpExpression
+    path: Heir/Resolver.cs
+    startLine: 144
+  assemblies:
+  - Heir
+  namespace: Heir
+  example: []
+  syntax:
+    content: public object? VisitBinaryOpExpression(BinaryOp binaryOp)
+    parameters:
+    - id: binaryOp
+      type: Heir.AST.BinaryOp
+    return:
+      type: System.Object
+    content.vb: Public Function VisitBinaryOpExpression(binaryOp As BinaryOp) As Object
+  overload: Heir.Resolver.VisitBinaryOpExpression*
+  implements:
+  - Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitBinaryOpExpression(Heir.AST.BinaryOp)
+- uid: Heir.Resolver.VisitIdentifierNameExpression(Heir.AST.IdentifierName)
+  commentId: M:Heir.Resolver.VisitIdentifierNameExpression(Heir.AST.IdentifierName)
+  id: VisitIdentifierNameExpression(Heir.AST.IdentifierName)
+  parent: Heir.Resolver
+  langs:
+  - csharp
+  - vb
+  name: VisitIdentifierNameExpression(IdentifierName)
+  nameWithType: Resolver.VisitIdentifierNameExpression(IdentifierName)
+  fullName: Heir.Resolver.VisitIdentifierNameExpression(Heir.AST.IdentifierName)
+  type: Method
+  source:
+    remote:
+      path: Heir/Resolver.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: VisitIdentifierNameExpression
+    path: Heir/Resolver.cs
+    startLine: 151
+  assemblies:
+  - Heir
+  namespace: Heir
+  example: []
+  syntax:
+    content: public object? VisitIdentifierNameExpression(IdentifierName identifierName)
+    parameters:
+    - id: identifierName
+      type: Heir.AST.IdentifierName
+    return:
+      type: System.Object
+    content.vb: Public Function VisitIdentifierNameExpression(identifierName As IdentifierName) As Object
+  overload: Heir.Resolver.VisitIdentifierNameExpression*
+  implements:
+  - Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitIdentifierNameExpression(Heir.AST.IdentifierName)
+- uid: Heir.Resolver.VisitLiteralExpression(Heir.AST.Literal)
+  commentId: M:Heir.Resolver.VisitLiteralExpression(Heir.AST.Literal)
+  id: VisitLiteralExpression(Heir.AST.Literal)
+  parent: Heir.Resolver
+  langs:
+  - csharp
+  - vb
+  name: VisitLiteralExpression(Literal)
+  nameWithType: Resolver.VisitLiteralExpression(Literal)
+  fullName: Heir.Resolver.VisitLiteralExpression(Heir.AST.Literal)
+  type: Method
+  source:
+    remote:
+      path: Heir/Resolver.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: VisitLiteralExpression
+    path: Heir/Resolver.cs
+    startLine: 169
+  assemblies:
+  - Heir
+  namespace: Heir
+  example: []
+  syntax:
+    content: public object? VisitLiteralExpression(Literal literal)
+    parameters:
+    - id: literal
+      type: Heir.AST.Literal
+    return:
+      type: System.Object
+    content.vb: Public Function VisitLiteralExpression(literal As Literal) As Object
+  overload: Heir.Resolver.VisitLiteralExpression*
+  implements:
+  - Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitLiteralExpression(Heir.AST.Literal)
+- uid: Heir.Resolver.VisitObjectLiteralExpression(Heir.AST.ObjectLiteral)
+  commentId: M:Heir.Resolver.VisitObjectLiteralExpression(Heir.AST.ObjectLiteral)
+  id: VisitObjectLiteralExpression(Heir.AST.ObjectLiteral)
+  parent: Heir.Resolver
+  langs:
+  - csharp
+  - vb
+  name: VisitObjectLiteralExpression(ObjectLiteral)
+  nameWithType: Resolver.VisitObjectLiteralExpression(ObjectLiteral)
+  fullName: Heir.Resolver.VisitObjectLiteralExpression(Heir.AST.ObjectLiteral)
+  type: Method
+  source:
+    remote:
+      path: Heir/Resolver.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: VisitObjectLiteralExpression
+    path: Heir/Resolver.cs
+    startLine: 170
+  assemblies:
+  - Heir
+  namespace: Heir
+  example: []
+  syntax:
+    content: public object? VisitObjectLiteralExpression(ObjectLiteral objectLiteral)
+    parameters:
+    - id: objectLiteral
+      type: Heir.AST.ObjectLiteral
+    return:
+      type: System.Object
+    content.vb: Public Function VisitObjectLiteralExpression(objectLiteral As ObjectLiteral) As Object
+  overload: Heir.Resolver.VisitObjectLiteralExpression*
+  implements:
+  - Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitObjectLiteralExpression(Heir.AST.ObjectLiteral)
+- uid: Heir.Resolver.VisitNoOp(Heir.AST.NoOp)
+  commentId: M:Heir.Resolver.VisitNoOp(Heir.AST.NoOp)
+  id: VisitNoOp(Heir.AST.NoOp)
+  parent: Heir.Resolver
+  langs:
+  - csharp
+  - vb
+  name: VisitNoOp(NoOp)
+  nameWithType: Resolver.VisitNoOp(NoOp)
+  fullName: Heir.Resolver.VisitNoOp(Heir.AST.NoOp)
+  type: Method
+  source:
+    remote:
+      path: Heir/Resolver.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: VisitNoOp
+    path: Heir/Resolver.cs
+    startLine: 180
+  assemblies:
+  - Heir
+  namespace: Heir
+  example: []
+  syntax:
+    content: public object? VisitNoOp(NoOp noOp)
+    parameters:
+    - id: noOp
+      type: Heir.AST.NoOp
+    return:
+      type: System.Object
+    content.vb: Public Function VisitNoOp(noOp As NoOp) As Object
+  overload: Heir.Resolver.VisitNoOp*
+  implements:
+  - Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitNoOp(Heir.AST.NoOp)
+- uid: Heir.Resolver.VisitNoOp(Heir.AST.NoOpType)
+  commentId: M:Heir.Resolver.VisitNoOp(Heir.AST.NoOpType)
+  id: VisitNoOp(Heir.AST.NoOpType)
+  parent: Heir.Resolver
+  langs:
+  - csharp
+  - vb
+  name: VisitNoOp(NoOpType)
+  nameWithType: Resolver.VisitNoOp(NoOpType)
+  fullName: Heir.Resolver.VisitNoOp(Heir.AST.NoOpType)
+  type: Method
+  source:
+    remote:
+      path: Heir/Resolver.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: VisitNoOp
+    path: Heir/Resolver.cs
+    startLine: 181
+  assemblies:
+  - Heir
+  namespace: Heir
+  example: []
+  syntax:
+    content: public object? VisitNoOp(NoOpType noOp)
+    parameters:
+    - id: noOp
+      type: Heir.AST.NoOpType
+    return:
+      type: System.Object
+    content.vb: Public Function VisitNoOp(noOp As NoOpType) As Object
+  overload: Heir.Resolver.VisitNoOp*
+  implements:
+  - Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitNoOp(Heir.AST.NoOpType)
+- uid: Heir.Resolver.VisitSingularTypeRef(Heir.AST.SingularType)
+  commentId: M:Heir.Resolver.VisitSingularTypeRef(Heir.AST.SingularType)
+  id: VisitSingularTypeRef(Heir.AST.SingularType)
+  parent: Heir.Resolver
+  langs:
+  - csharp
+  - vb
+  name: VisitSingularTypeRef(SingularType)
+  nameWithType: Resolver.VisitSingularTypeRef(SingularType)
+  fullName: Heir.Resolver.VisitSingularTypeRef(Heir.AST.SingularType)
+  type: Method
+  source:
+    remote:
+      path: Heir/Resolver.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: VisitSingularTypeRef
+    path: Heir/Resolver.cs
+    startLine: 183
+  assemblies:
+  - Heir
+  namespace: Heir
+  example: []
+  syntax:
+    content: public object? VisitSingularTypeRef(SingularType singularType)
+    parameters:
+    - id: singularType
+      type: Heir.AST.SingularType
+    return:
+      type: System.Object
+    content.vb: Public Function VisitSingularTypeRef(singularType As SingularType) As Object
+  overload: Heir.Resolver.VisitSingularTypeRef*
+  implements:
+  - Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitSingularTypeRef(Heir.AST.SingularType)
+- uid: Heir.Resolver.VisitParenthesizedTypeRef(Heir.AST.ParenthesizedType)
+  commentId: M:Heir.Resolver.VisitParenthesizedTypeRef(Heir.AST.ParenthesizedType)
+  id: VisitParenthesizedTypeRef(Heir.AST.ParenthesizedType)
+  parent: Heir.Resolver
+  langs:
+  - csharp
+  - vb
+  name: VisitParenthesizedTypeRef(ParenthesizedType)
+  nameWithType: Resolver.VisitParenthesizedTypeRef(ParenthesizedType)
+  fullName: Heir.Resolver.VisitParenthesizedTypeRef(Heir.AST.ParenthesizedType)
+  type: Method
+  source:
+    remote:
+      path: Heir/Resolver.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: VisitParenthesizedTypeRef
+    path: Heir/Resolver.cs
+    startLine: 201
+  assemblies:
+  - Heir
+  namespace: Heir
+  example: []
+  syntax:
+    content: public object? VisitParenthesizedTypeRef(ParenthesizedType parenthesizedType)
+    parameters:
+    - id: parenthesizedType
+      type: Heir.AST.ParenthesizedType
+    return:
+      type: System.Object
+    content.vb: Public Function VisitParenthesizedTypeRef(parenthesizedType As ParenthesizedType) As Object
+  overload: Heir.Resolver.VisitParenthesizedTypeRef*
+  implements:
+  - Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitParenthesizedTypeRef(Heir.AST.ParenthesizedType)
+- uid: Heir.Resolver.VisitUnionTypeRef(Heir.AST.UnionType)
+  commentId: M:Heir.Resolver.VisitUnionTypeRef(Heir.AST.UnionType)
+  id: VisitUnionTypeRef(Heir.AST.UnionType)
+  parent: Heir.Resolver
+  langs:
+  - csharp
+  - vb
+  name: VisitUnionTypeRef(UnionType)
+  nameWithType: Resolver.VisitUnionTypeRef(UnionType)
+  fullName: Heir.Resolver.VisitUnionTypeRef(Heir.AST.UnionType)
+  type: Method
+  source:
+    remote:
+      path: Heir/Resolver.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: VisitUnionTypeRef
+    path: Heir/Resolver.cs
+    startLine: 207
+  assemblies:
+  - Heir
+  namespace: Heir
+  example: []
+  syntax:
+    content: public object? VisitUnionTypeRef(UnionType unionType)
+    parameters:
+    - id: unionType
+      type: Heir.AST.UnionType
+    return:
+      type: System.Object
+    content.vb: Public Function VisitUnionTypeRef(unionType As UnionType) As Object
+  overload: Heir.Resolver.VisitUnionTypeRef*
+  implements:
+  - Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitUnionTypeRef(Heir.AST.UnionType)
+- uid: Heir.Resolver.VisitIntersectionTypeRef(Heir.AST.IntersectionType)
+  commentId: M:Heir.Resolver.VisitIntersectionTypeRef(Heir.AST.IntersectionType)
+  id: VisitIntersectionTypeRef(Heir.AST.IntersectionType)
+  parent: Heir.Resolver
+  langs:
+  - csharp
+  - vb
+  name: VisitIntersectionTypeRef(IntersectionType)
+  nameWithType: Resolver.VisitIntersectionTypeRef(IntersectionType)
+  fullName: Heir.Resolver.VisitIntersectionTypeRef(Heir.AST.IntersectionType)
+  type: Method
+  source:
+    remote:
+      path: Heir/Resolver.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: VisitIntersectionTypeRef
+    path: Heir/Resolver.cs
+    startLine: 215
+  assemblies:
+  - Heir
+  namespace: Heir
+  example: []
+  syntax:
+    content: public object? VisitIntersectionTypeRef(IntersectionType intersectionType)
+    parameters:
+    - id: intersectionType
+      type: Heir.AST.IntersectionType
+    return:
+      type: System.Object
+    content.vb: Public Function VisitIntersectionTypeRef(intersectionType As IntersectionType) As Object
+  overload: Heir.Resolver.VisitIntersectionTypeRef*
+  implements:
+  - Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitIntersectionTypeRef(Heir.AST.IntersectionType)
+- uid: Heir.Resolver.VisitNoOp(Heir.AST.NoOpStatement)
+  commentId: M:Heir.Resolver.VisitNoOp(Heir.AST.NoOpStatement)
+  id: VisitNoOp(Heir.AST.NoOpStatement)
+  parent: Heir.Resolver
+  langs:
+  - csharp
+  - vb
+  name: VisitNoOp(NoOpStatement)
+  nameWithType: Resolver.VisitNoOp(NoOpStatement)
+  fullName: Heir.Resolver.VisitNoOp(Heir.AST.NoOpStatement)
+  type: Method
+  source:
+    remote:
+      path: Heir/Resolver.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: VisitNoOp
+    path: Heir/Resolver.cs
+    startLine: 223
+  assemblies:
+  - Heir
+  namespace: Heir
+  example: []
+  syntax:
+    content: public object? VisitNoOp(NoOpStatement noOp)
+    parameters:
+    - id: noOp
+      type: Heir.AST.NoOpStatement
+    return:
+      type: System.Object
+    content.vb: Public Function VisitNoOp(noOp As NoOpStatement) As Object
+  overload: Heir.Resolver.VisitNoOp*
+  implements:
+  - Heir.AST.Abstract.Statement.Visitor{System.Object}.VisitNoOp(Heir.AST.NoOpStatement)
+- uid: Heir.Resolver.VisitParenthesizedExpression(Heir.AST.Parenthesized)
+  commentId: M:Heir.Resolver.VisitParenthesizedExpression(Heir.AST.Parenthesized)
+  id: VisitParenthesizedExpression(Heir.AST.Parenthesized)
+  parent: Heir.Resolver
+  langs:
+  - csharp
+  - vb
+  name: VisitParenthesizedExpression(Parenthesized)
+  nameWithType: Resolver.VisitParenthesizedExpression(Parenthesized)
+  fullName: Heir.Resolver.VisitParenthesizedExpression(Heir.AST.Parenthesized)
+  type: Method
+  source:
+    remote:
+      path: Heir/Resolver.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: VisitParenthesizedExpression
+    path: Heir/Resolver.cs
+    startLine: 225
+  assemblies:
+  - Heir
+  namespace: Heir
+  example: []
+  syntax:
+    content: public object? VisitParenthesizedExpression(Parenthesized parenthesized)
+    parameters:
+    - id: parenthesized
+      type: Heir.AST.Parenthesized
+    return:
+      type: System.Object
+    content.vb: Public Function VisitParenthesizedExpression(parenthesized As Parenthesized) As Object
+  overload: Heir.Resolver.VisitParenthesizedExpression*
+  implements:
+  - Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitParenthesizedExpression(Heir.AST.Parenthesized)
+- uid: Heir.Resolver.VisitUnaryOpExpression(Heir.AST.UnaryOp)
+  commentId: M:Heir.Resolver.VisitUnaryOpExpression(Heir.AST.UnaryOp)
+  id: VisitUnaryOpExpression(Heir.AST.UnaryOp)
+  parent: Heir.Resolver
+  langs:
+  - csharp
+  - vb
+  name: VisitUnaryOpExpression(UnaryOp)
+  nameWithType: Resolver.VisitUnaryOpExpression(UnaryOp)
+  fullName: Heir.Resolver.VisitUnaryOpExpression(Heir.AST.UnaryOp)
+  type: Method
+  source:
+    remote:
+      path: Heir/Resolver.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: VisitUnaryOpExpression
+    path: Heir/Resolver.cs
+    startLine: 231
+  assemblies:
+  - Heir
+  namespace: Heir
+  example: []
+  syntax:
+    content: public object? VisitUnaryOpExpression(UnaryOp unaryOp)
+    parameters:
+    - id: unaryOp
+      type: Heir.AST.UnaryOp
+    return:
+      type: System.Object
+    content.vb: Public Function VisitUnaryOpExpression(unaryOp As UnaryOp) As Object
+  overload: Heir.Resolver.VisitUnaryOpExpression*
+  implements:
+  - Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitUnaryOpExpression(Heir.AST.UnaryOp)
+- uid: Heir.Resolver.Resolve(Heir.AST.Abstract.Expression)
+  commentId: M:Heir.Resolver.Resolve(Heir.AST.Abstract.Expression)
+  id: Resolve(Heir.AST.Abstract.Expression)
+  parent: Heir.Resolver
+  langs:
+  - csharp
+  - vb
+  name: Resolve(Expression)
+  nameWithType: Resolver.Resolve(Expression)
+  fullName: Heir.Resolver.Resolve(Heir.AST.Abstract.Expression)
+  type: Method
+  source:
+    remote:
+      path: Heir/Resolver.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Resolve
+    path: Heir/Resolver.cs
+    startLine: 271
+  assemblies:
+  - Heir
+  namespace: Heir
+  syntax:
+    content: public void Resolve(Expression expression)
+    parameters:
+    - id: expression
+      type: Heir.AST.Abstract.Expression
+    content.vb: Public Sub Resolve(expression As Expression)
+  overload: Heir.Resolver.Resolve*
+- uid: Heir.Resolver.Resolve(Heir.AST.Abstract.Statement)
+  commentId: M:Heir.Resolver.Resolve(Heir.AST.Abstract.Statement)
+  id: Resolve(Heir.AST.Abstract.Statement)
+  parent: Heir.Resolver
+  langs:
+  - csharp
+  - vb
+  name: Resolve(Statement)
+  nameWithType: Resolver.Resolve(Statement)
+  fullName: Heir.Resolver.Resolve(Heir.AST.Abstract.Statement)
+  type: Method
+  source:
+    remote:
+      path: Heir/Resolver.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Resolve
+    path: Heir/Resolver.cs
+    startLine: 272
+  assemblies:
+  - Heir
+  namespace: Heir
+  syntax:
+    content: public void Resolve(Statement statement)
+    parameters:
+    - id: statement
+      type: Heir.AST.Abstract.Statement
+    content.vb: Public Sub Resolve(statement As Statement)
+  overload: Heir.Resolver.Resolve*
+references:
+- uid: Heir
+  commentId: N:Heir
+  href: Heir.html
+  name: Heir
+  nameWithType: Heir
+  fullName: Heir
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Heir.AST.Abstract.Expression.Visitor{System.Object}
+  commentId: T:Heir.AST.Abstract.Expression.Visitor{System.Object}
+  parent: Heir.AST.Abstract
+  definition: Heir.AST.Abstract.Expression.Visitor`1
+  href: Heir.AST.Abstract.Expression.html
+  name: Expression.Visitor<object>
+  nameWithType: Expression.Visitor<object>
+  fullName: Heir.AST.Abstract.Expression.Visitor<object>
+  nameWithType.vb: Expression.Visitor(Of Object)
+  fullName.vb: Heir.AST.Abstract.Expression.Visitor(Of Object)
+  name.vb: Expression.Visitor(Of Object)
+  spec.csharp:
+  - uid: Heir.AST.Abstract.Expression
+    name: Expression
+    href: Heir.AST.Abstract.Expression.html
+  - name: .
+  - uid: Heir.AST.Abstract.Expression.Visitor`1
+    name: Visitor
+    href: Heir.AST.Abstract.Expression.Visitor-1.html
+  - name: <
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: '>'
+  spec.vb:
+  - uid: Heir.AST.Abstract.Expression
+    name: Expression
+    href: Heir.AST.Abstract.Expression.html
+  - name: .
+  - uid: Heir.AST.Abstract.Expression.Visitor`1
+    name: Visitor
+    href: Heir.AST.Abstract.Expression.Visitor-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Heir.AST.Abstract.Statement.Visitor{System.Object}
+  commentId: T:Heir.AST.Abstract.Statement.Visitor{System.Object}
+  parent: Heir.AST.Abstract
+  definition: Heir.AST.Abstract.Statement.Visitor`1
+  href: Heir.AST.Abstract.Statement.html
+  name: Statement.Visitor<object>
+  nameWithType: Statement.Visitor<object>
+  fullName: Heir.AST.Abstract.Statement.Visitor<object>
+  nameWithType.vb: Statement.Visitor(Of Object)
+  fullName.vb: Heir.AST.Abstract.Statement.Visitor(Of Object)
+  name.vb: Statement.Visitor(Of Object)
+  spec.csharp:
+  - uid: Heir.AST.Abstract.Statement
+    name: Statement
+    href: Heir.AST.Abstract.Statement.html
+  - name: .
+  - uid: Heir.AST.Abstract.Statement.Visitor`1
+    name: Visitor
+    href: Heir.AST.Abstract.Statement.Visitor-1.html
+  - name: <
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: '>'
+  spec.vb:
+  - uid: Heir.AST.Abstract.Statement
+    name: Statement
+    href: Heir.AST.Abstract.Statement.html
+  - name: .
+  - uid: Heir.AST.Abstract.Statement.Visitor`1
+    name: Visitor
+    href: Heir.AST.Abstract.Statement.Visitor-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Heir.AST.Abstract.Expression.Visitor`1
+  commentId: T:Heir.AST.Abstract.Expression.Visitor`1
+  href: Heir.AST.Abstract.Expression.html
+  name: Expression.Visitor<R>
+  nameWithType: Expression.Visitor<R>
+  fullName: Heir.AST.Abstract.Expression.Visitor<R>
+  nameWithType.vb: Expression.Visitor(Of R)
+  fullName.vb: Heir.AST.Abstract.Expression.Visitor(Of R)
+  name.vb: Expression.Visitor(Of R)
+  spec.csharp:
+  - uid: Heir.AST.Abstract.Expression
+    name: Expression
+    href: Heir.AST.Abstract.Expression.html
+  - name: .
+  - uid: Heir.AST.Abstract.Expression.Visitor`1
+    name: Visitor
+    href: Heir.AST.Abstract.Expression.Visitor-1.html
+  - name: <
+  - name: R
+  - name: '>'
+  spec.vb:
+  - uid: Heir.AST.Abstract.Expression
+    name: Expression
+    href: Heir.AST.Abstract.Expression.html
+  - name: .
+  - uid: Heir.AST.Abstract.Expression.Visitor`1
+    name: Visitor
+    href: Heir.AST.Abstract.Expression.Visitor-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: R
+  - name: )
+- uid: Heir.AST.Abstract
+  commentId: N:Heir.AST.Abstract
+  href: Heir.html
+  name: Heir.AST.Abstract
+  nameWithType: Heir.AST.Abstract
+  fullName: Heir.AST.Abstract
+  spec.csharp:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.AST
+    name: AST
+    href: Heir.AST.html
+  - name: .
+  - uid: Heir.AST.Abstract
+    name: Abstract
+    href: Heir.AST.Abstract.html
+  spec.vb:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.AST
+    name: AST
+    href: Heir.AST.html
+  - name: .
+  - uid: Heir.AST.Abstract
+    name: Abstract
+    href: Heir.AST.Abstract.html
+- uid: Heir.AST.Abstract.Statement.Visitor`1
+  commentId: T:Heir.AST.Abstract.Statement.Visitor`1
+  href: Heir.AST.Abstract.Statement.html
+  name: Statement.Visitor<R>
+  nameWithType: Statement.Visitor<R>
+  fullName: Heir.AST.Abstract.Statement.Visitor<R>
+  nameWithType.vb: Statement.Visitor(Of R)
+  fullName.vb: Heir.AST.Abstract.Statement.Visitor(Of R)
+  name.vb: Statement.Visitor(Of R)
+  spec.csharp:
+  - uid: Heir.AST.Abstract.Statement
+    name: Statement
+    href: Heir.AST.Abstract.Statement.html
+  - name: .
+  - uid: Heir.AST.Abstract.Statement.Visitor`1
+    name: Visitor
+    href: Heir.AST.Abstract.Statement.Visitor-1.html
+  - name: <
+  - name: R
+  - name: '>'
+  spec.vb:
+  - uid: Heir.AST.Abstract.Statement
+    name: Statement
+    href: Heir.AST.Abstract.Statement.html
+  - name: .
+  - uid: Heir.AST.Abstract.Statement.Visitor`1
+    name: Visitor
+    href: Heir.AST.Abstract.Statement.Visitor-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: R
+  - name: )
+- uid: Heir.Resolver.#ctor*
+  commentId: Overload:Heir.Resolver.#ctor
+  href: Heir.Resolver.html#Heir_Resolver__ctor_Heir_DiagnosticBag_Heir_AST_SyntaxTree_
+  name: Resolver
+  nameWithType: Resolver.Resolver
+  fullName: Heir.Resolver.Resolver
+  nameWithType.vb: Resolver.New
+  fullName.vb: Heir.Resolver.New
+  name.vb: New
+- uid: Heir.DiagnosticBag
+  commentId: T:Heir.DiagnosticBag
+  parent: Heir
+  href: Heir.DiagnosticBag.html
+  name: DiagnosticBag
+  nameWithType: DiagnosticBag
+  fullName: Heir.DiagnosticBag
+- uid: Heir.AST.SyntaxTree
+  commentId: T:Heir.AST.SyntaxTree
+  parent: Heir.AST
+  href: Heir.AST.SyntaxTree.html
+  name: SyntaxTree
+  nameWithType: SyntaxTree
+  fullName: Heir.AST.SyntaxTree
+- uid: Heir.AST
+  commentId: N:Heir.AST
+  href: Heir.html
+  name: Heir.AST
+  nameWithType: Heir.AST
+  fullName: Heir.AST
+  spec.csharp:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.AST
+    name: AST
+    href: Heir.AST.html
+  spec.vb:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.AST
+    name: AST
+    href: Heir.AST.html
+- uid: Heir.Resolver.Diagnostics*
+  commentId: Overload:Heir.Resolver.Diagnostics
+  href: Heir.Resolver.html#Heir_Resolver_Diagnostics
+  name: Diagnostics
+  nameWithType: Resolver.Diagnostics
+  fullName: Heir.Resolver.Diagnostics
+- uid: Heir.Resolver.Resolve*
+  commentId: Overload:Heir.Resolver.Resolve
+  href: Heir.Resolver.html#Heir_Resolver_Resolve
+  name: Resolve
+  nameWithType: Resolver.Resolve
+  fullName: Heir.Resolver.Resolve
+- uid: Heir.Resolver.Define*
+  commentId: Overload:Heir.Resolver.Define
+  href: Heir.Resolver.html#Heir_Resolver_Define_Heir_Syntax_Token_
+  name: Define
+  nameWithType: Resolver.Define
+  fullName: Heir.Resolver.Define
+- uid: Heir.Syntax.Token
+  commentId: T:Heir.Syntax.Token
+  parent: Heir.Syntax
+  href: Heir.Syntax.Token.html
+  name: Token
+  nameWithType: Token
+  fullName: Heir.Syntax.Token
+- uid: Heir.Syntax
+  commentId: N:Heir.Syntax
+  href: Heir.html
+  name: Heir.Syntax
+  nameWithType: Heir.Syntax
+  fullName: Heir.Syntax
+  spec.csharp:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.Syntax
+    name: Syntax
+    href: Heir.Syntax.html
+  spec.vb:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.Syntax
+    name: Syntax
+    href: Heir.Syntax.html
+- uid: Heir.Resolver.Declare*
+  commentId: Overload:Heir.Resolver.Declare
+  href: Heir.Resolver.html#Heir_Resolver_Declare_Heir_Syntax_Token_
+  name: Declare
+  nameWithType: Resolver.Declare
+  fullName: Heir.Resolver.Declare
+- uid: Heir.Resolver.VisitSyntaxTree*
+  commentId: Overload:Heir.Resolver.VisitSyntaxTree
+  href: Heir.Resolver.html#Heir_Resolver_VisitSyntaxTree_Heir_AST_SyntaxTree_
+  name: VisitSyntaxTree
+  nameWithType: Resolver.VisitSyntaxTree
+  fullName: Heir.Resolver.VisitSyntaxTree
+- uid: Heir.AST.Abstract.Statement.Visitor{System.Object}.VisitSyntaxTree(Heir.AST.SyntaxTree)
+  commentId: M:Heir.AST.Abstract.Statement.Visitor{System.Object}.VisitSyntaxTree(Heir.AST.SyntaxTree)
+  parent: Heir.AST.Abstract.Statement.Visitor{System.Object}
+  definition: Heir.AST.Abstract.Statement.Visitor`1.VisitSyntaxTree(Heir.AST.SyntaxTree)
+  href: Heir.AST.Abstract.Statement.Visitor-1.html#Heir_AST_Abstract_Statement_Visitor_1_VisitSyntaxTree_Heir_AST_SyntaxTree_
+  name: VisitSyntaxTree(SyntaxTree)
+  nameWithType: Statement.Visitor<object>.VisitSyntaxTree(SyntaxTree)
+  fullName: Heir.AST.Abstract.Statement.Visitor<object>.VisitSyntaxTree(Heir.AST.SyntaxTree)
+  nameWithType.vb: Statement.Visitor(Of Object).VisitSyntaxTree(SyntaxTree)
+  fullName.vb: Heir.AST.Abstract.Statement.Visitor(Of Object).VisitSyntaxTree(Heir.AST.SyntaxTree)
+  spec.csharp:
+  - uid: Heir.AST.Abstract.Statement.Visitor{System.Object}.VisitSyntaxTree(Heir.AST.SyntaxTree)
+    name: VisitSyntaxTree
+    href: Heir.AST.Abstract.Statement.Visitor-1.html#Heir_AST_Abstract_Statement_Visitor_1_VisitSyntaxTree_Heir_AST_SyntaxTree_
+  - name: (
+  - uid: Heir.AST.SyntaxTree
+    name: SyntaxTree
+    href: Heir.AST.SyntaxTree.html
+  - name: )
+  spec.vb:
+  - uid: Heir.AST.Abstract.Statement.Visitor{System.Object}.VisitSyntaxTree(Heir.AST.SyntaxTree)
+    name: VisitSyntaxTree
+    href: Heir.AST.Abstract.Statement.Visitor-1.html#Heir_AST_Abstract_Statement_Visitor_1_VisitSyntaxTree_Heir_AST_SyntaxTree_
+  - name: (
+  - uid: Heir.AST.SyntaxTree
+    name: SyntaxTree
+    href: Heir.AST.SyntaxTree.html
+  - name: )
+- uid: Heir.AST.Abstract.Statement.Visitor`1.VisitSyntaxTree(Heir.AST.SyntaxTree)
+  commentId: M:Heir.AST.Abstract.Statement.Visitor`1.VisitSyntaxTree(Heir.AST.SyntaxTree)
+  href: Heir.AST.Abstract.Statement.Visitor-1.html#Heir_AST_Abstract_Statement_Visitor_1_VisitSyntaxTree_Heir_AST_SyntaxTree_
+  name: VisitSyntaxTree(SyntaxTree)
+  nameWithType: Statement.Visitor<R>.VisitSyntaxTree(SyntaxTree)
+  fullName: Heir.AST.Abstract.Statement.Visitor<R>.VisitSyntaxTree(Heir.AST.SyntaxTree)
+  nameWithType.vb: Statement.Visitor(Of R).VisitSyntaxTree(SyntaxTree)
+  fullName.vb: Heir.AST.Abstract.Statement.Visitor(Of R).VisitSyntaxTree(Heir.AST.SyntaxTree)
+  spec.csharp:
+  - uid: Heir.AST.Abstract.Statement.Visitor`1.VisitSyntaxTree(Heir.AST.SyntaxTree)
+    name: VisitSyntaxTree
+    href: Heir.AST.Abstract.Statement.Visitor-1.html#Heir_AST_Abstract_Statement_Visitor_1_VisitSyntaxTree_Heir_AST_SyntaxTree_
+  - name: (
+  - uid: Heir.AST.SyntaxTree
+    name: SyntaxTree
+    href: Heir.AST.SyntaxTree.html
+  - name: )
+  spec.vb:
+  - uid: Heir.AST.Abstract.Statement.Visitor`1.VisitSyntaxTree(Heir.AST.SyntaxTree)
+    name: VisitSyntaxTree
+    href: Heir.AST.Abstract.Statement.Visitor-1.html#Heir_AST_Abstract_Statement_Visitor_1_VisitSyntaxTree_Heir_AST_SyntaxTree_
+  - name: (
+  - uid: Heir.AST.SyntaxTree
+    name: SyntaxTree
+    href: Heir.AST.SyntaxTree.html
+  - name: )
+- uid: Heir.Resolver.VisitVariableDeclaration*
+  commentId: Overload:Heir.Resolver.VisitVariableDeclaration
+  href: Heir.Resolver.html#Heir_Resolver_VisitVariableDeclaration_Heir_AST_VariableDeclaration_
+  name: VisitVariableDeclaration
+  nameWithType: Resolver.VisitVariableDeclaration
+  fullName: Heir.Resolver.VisitVariableDeclaration
+- uid: Heir.AST.Abstract.Statement.Visitor{System.Object}.VisitVariableDeclaration(Heir.AST.VariableDeclaration)
+  commentId: M:Heir.AST.Abstract.Statement.Visitor{System.Object}.VisitVariableDeclaration(Heir.AST.VariableDeclaration)
+  parent: Heir.AST.Abstract.Statement.Visitor{System.Object}
+  definition: Heir.AST.Abstract.Statement.Visitor`1.VisitVariableDeclaration(Heir.AST.VariableDeclaration)
+  href: Heir.AST.Abstract.Statement.Visitor-1.html#Heir_AST_Abstract_Statement_Visitor_1_VisitVariableDeclaration_Heir_AST_VariableDeclaration_
+  name: VisitVariableDeclaration(VariableDeclaration)
+  nameWithType: Statement.Visitor<object>.VisitVariableDeclaration(VariableDeclaration)
+  fullName: Heir.AST.Abstract.Statement.Visitor<object>.VisitVariableDeclaration(Heir.AST.VariableDeclaration)
+  nameWithType.vb: Statement.Visitor(Of Object).VisitVariableDeclaration(VariableDeclaration)
+  fullName.vb: Heir.AST.Abstract.Statement.Visitor(Of Object).VisitVariableDeclaration(Heir.AST.VariableDeclaration)
+  spec.csharp:
+  - uid: Heir.AST.Abstract.Statement.Visitor{System.Object}.VisitVariableDeclaration(Heir.AST.VariableDeclaration)
+    name: VisitVariableDeclaration
+    href: Heir.AST.Abstract.Statement.Visitor-1.html#Heir_AST_Abstract_Statement_Visitor_1_VisitVariableDeclaration_Heir_AST_VariableDeclaration_
+  - name: (
+  - uid: Heir.AST.VariableDeclaration
+    name: VariableDeclaration
+    href: Heir.AST.VariableDeclaration.html
+  - name: )
+  spec.vb:
+  - uid: Heir.AST.Abstract.Statement.Visitor{System.Object}.VisitVariableDeclaration(Heir.AST.VariableDeclaration)
+    name: VisitVariableDeclaration
+    href: Heir.AST.Abstract.Statement.Visitor-1.html#Heir_AST_Abstract_Statement_Visitor_1_VisitVariableDeclaration_Heir_AST_VariableDeclaration_
+  - name: (
+  - uid: Heir.AST.VariableDeclaration
+    name: VariableDeclaration
+    href: Heir.AST.VariableDeclaration.html
+  - name: )
+- uid: Heir.AST.VariableDeclaration
+  commentId: T:Heir.AST.VariableDeclaration
+  parent: Heir.AST
+  href: Heir.AST.VariableDeclaration.html
+  name: VariableDeclaration
+  nameWithType: VariableDeclaration
+  fullName: Heir.AST.VariableDeclaration
+- uid: Heir.AST.Abstract.Statement.Visitor`1.VisitVariableDeclaration(Heir.AST.VariableDeclaration)
+  commentId: M:Heir.AST.Abstract.Statement.Visitor`1.VisitVariableDeclaration(Heir.AST.VariableDeclaration)
+  href: Heir.AST.Abstract.Statement.Visitor-1.html#Heir_AST_Abstract_Statement_Visitor_1_VisitVariableDeclaration_Heir_AST_VariableDeclaration_
+  name: VisitVariableDeclaration(VariableDeclaration)
+  nameWithType: Statement.Visitor<R>.VisitVariableDeclaration(VariableDeclaration)
+  fullName: Heir.AST.Abstract.Statement.Visitor<R>.VisitVariableDeclaration(Heir.AST.VariableDeclaration)
+  nameWithType.vb: Statement.Visitor(Of R).VisitVariableDeclaration(VariableDeclaration)
+  fullName.vb: Heir.AST.Abstract.Statement.Visitor(Of R).VisitVariableDeclaration(Heir.AST.VariableDeclaration)
+  spec.csharp:
+  - uid: Heir.AST.Abstract.Statement.Visitor`1.VisitVariableDeclaration(Heir.AST.VariableDeclaration)
+    name: VisitVariableDeclaration
+    href: Heir.AST.Abstract.Statement.Visitor-1.html#Heir_AST_Abstract_Statement_Visitor_1_VisitVariableDeclaration_Heir_AST_VariableDeclaration_
+  - name: (
+  - uid: Heir.AST.VariableDeclaration
+    name: VariableDeclaration
+    href: Heir.AST.VariableDeclaration.html
+  - name: )
+  spec.vb:
+  - uid: Heir.AST.Abstract.Statement.Visitor`1.VisitVariableDeclaration(Heir.AST.VariableDeclaration)
+    name: VisitVariableDeclaration
+    href: Heir.AST.Abstract.Statement.Visitor-1.html#Heir_AST_Abstract_Statement_Visitor_1_VisitVariableDeclaration_Heir_AST_VariableDeclaration_
+  - name: (
+  - uid: Heir.AST.VariableDeclaration
+    name: VariableDeclaration
+    href: Heir.AST.VariableDeclaration.html
+  - name: )
+- uid: Heir.Resolver.VisitFunctionDeclaration*
+  commentId: Overload:Heir.Resolver.VisitFunctionDeclaration
+  href: Heir.Resolver.html#Heir_Resolver_VisitFunctionDeclaration_Heir_AST_FunctionDeclaration_
+  name: VisitFunctionDeclaration
+  nameWithType: Resolver.VisitFunctionDeclaration
+  fullName: Heir.Resolver.VisitFunctionDeclaration
+- uid: Heir.AST.Abstract.Statement.Visitor{System.Object}.VisitFunctionDeclaration(Heir.AST.FunctionDeclaration)
+  commentId: M:Heir.AST.Abstract.Statement.Visitor{System.Object}.VisitFunctionDeclaration(Heir.AST.FunctionDeclaration)
+  parent: Heir.AST.Abstract.Statement.Visitor{System.Object}
+  definition: Heir.AST.Abstract.Statement.Visitor`1.VisitFunctionDeclaration(Heir.AST.FunctionDeclaration)
+  href: Heir.AST.Abstract.Statement.Visitor-1.html#Heir_AST_Abstract_Statement_Visitor_1_VisitFunctionDeclaration_Heir_AST_FunctionDeclaration_
+  name: VisitFunctionDeclaration(FunctionDeclaration)
+  nameWithType: Statement.Visitor<object>.VisitFunctionDeclaration(FunctionDeclaration)
+  fullName: Heir.AST.Abstract.Statement.Visitor<object>.VisitFunctionDeclaration(Heir.AST.FunctionDeclaration)
+  nameWithType.vb: Statement.Visitor(Of Object).VisitFunctionDeclaration(FunctionDeclaration)
+  fullName.vb: Heir.AST.Abstract.Statement.Visitor(Of Object).VisitFunctionDeclaration(Heir.AST.FunctionDeclaration)
+  spec.csharp:
+  - uid: Heir.AST.Abstract.Statement.Visitor{System.Object}.VisitFunctionDeclaration(Heir.AST.FunctionDeclaration)
+    name: VisitFunctionDeclaration
+    href: Heir.AST.Abstract.Statement.Visitor-1.html#Heir_AST_Abstract_Statement_Visitor_1_VisitFunctionDeclaration_Heir_AST_FunctionDeclaration_
+  - name: (
+  - uid: Heir.AST.FunctionDeclaration
+    name: FunctionDeclaration
+    href: Heir.AST.FunctionDeclaration.html
+  - name: )
+  spec.vb:
+  - uid: Heir.AST.Abstract.Statement.Visitor{System.Object}.VisitFunctionDeclaration(Heir.AST.FunctionDeclaration)
+    name: VisitFunctionDeclaration
+    href: Heir.AST.Abstract.Statement.Visitor-1.html#Heir_AST_Abstract_Statement_Visitor_1_VisitFunctionDeclaration_Heir_AST_FunctionDeclaration_
+  - name: (
+  - uid: Heir.AST.FunctionDeclaration
+    name: FunctionDeclaration
+    href: Heir.AST.FunctionDeclaration.html
+  - name: )
+- uid: Heir.AST.FunctionDeclaration
+  commentId: T:Heir.AST.FunctionDeclaration
+  parent: Heir.AST
+  href: Heir.AST.FunctionDeclaration.html
+  name: FunctionDeclaration
+  nameWithType: FunctionDeclaration
+  fullName: Heir.AST.FunctionDeclaration
+- uid: Heir.AST.Abstract.Statement.Visitor`1.VisitFunctionDeclaration(Heir.AST.FunctionDeclaration)
+  commentId: M:Heir.AST.Abstract.Statement.Visitor`1.VisitFunctionDeclaration(Heir.AST.FunctionDeclaration)
+  href: Heir.AST.Abstract.Statement.Visitor-1.html#Heir_AST_Abstract_Statement_Visitor_1_VisitFunctionDeclaration_Heir_AST_FunctionDeclaration_
+  name: VisitFunctionDeclaration(FunctionDeclaration)
+  nameWithType: Statement.Visitor<R>.VisitFunctionDeclaration(FunctionDeclaration)
+  fullName: Heir.AST.Abstract.Statement.Visitor<R>.VisitFunctionDeclaration(Heir.AST.FunctionDeclaration)
+  nameWithType.vb: Statement.Visitor(Of R).VisitFunctionDeclaration(FunctionDeclaration)
+  fullName.vb: Heir.AST.Abstract.Statement.Visitor(Of R).VisitFunctionDeclaration(Heir.AST.FunctionDeclaration)
+  spec.csharp:
+  - uid: Heir.AST.Abstract.Statement.Visitor`1.VisitFunctionDeclaration(Heir.AST.FunctionDeclaration)
+    name: VisitFunctionDeclaration
+    href: Heir.AST.Abstract.Statement.Visitor-1.html#Heir_AST_Abstract_Statement_Visitor_1_VisitFunctionDeclaration_Heir_AST_FunctionDeclaration_
+  - name: (
+  - uid: Heir.AST.FunctionDeclaration
+    name: FunctionDeclaration
+    href: Heir.AST.FunctionDeclaration.html
+  - name: )
+  spec.vb:
+  - uid: Heir.AST.Abstract.Statement.Visitor`1.VisitFunctionDeclaration(Heir.AST.FunctionDeclaration)
+    name: VisitFunctionDeclaration
+    href: Heir.AST.Abstract.Statement.Visitor-1.html#Heir_AST_Abstract_Statement_Visitor_1_VisitFunctionDeclaration_Heir_AST_FunctionDeclaration_
+  - name: (
+  - uid: Heir.AST.FunctionDeclaration
+    name: FunctionDeclaration
+    href: Heir.AST.FunctionDeclaration.html
+  - name: )
+- uid: Heir.Resolver.VisitBlock*
+  commentId: Overload:Heir.Resolver.VisitBlock
+  href: Heir.Resolver.html#Heir_Resolver_VisitBlock_Heir_AST_Block_
+  name: VisitBlock
+  nameWithType: Resolver.VisitBlock
+  fullName: Heir.Resolver.VisitBlock
+- uid: Heir.AST.Abstract.Statement.Visitor{System.Object}.VisitBlock(Heir.AST.Block)
+  commentId: M:Heir.AST.Abstract.Statement.Visitor{System.Object}.VisitBlock(Heir.AST.Block)
+  parent: Heir.AST.Abstract.Statement.Visitor{System.Object}
+  definition: Heir.AST.Abstract.Statement.Visitor`1.VisitBlock(Heir.AST.Block)
+  href: Heir.AST.Abstract.Statement.Visitor-1.html#Heir_AST_Abstract_Statement_Visitor_1_VisitBlock_Heir_AST_Block_
+  name: VisitBlock(Block)
+  nameWithType: Statement.Visitor<object>.VisitBlock(Block)
+  fullName: Heir.AST.Abstract.Statement.Visitor<object>.VisitBlock(Heir.AST.Block)
+  nameWithType.vb: Statement.Visitor(Of Object).VisitBlock(Block)
+  fullName.vb: Heir.AST.Abstract.Statement.Visitor(Of Object).VisitBlock(Heir.AST.Block)
+  spec.csharp:
+  - uid: Heir.AST.Abstract.Statement.Visitor{System.Object}.VisitBlock(Heir.AST.Block)
+    name: VisitBlock
+    href: Heir.AST.Abstract.Statement.Visitor-1.html#Heir_AST_Abstract_Statement_Visitor_1_VisitBlock_Heir_AST_Block_
+  - name: (
+  - uid: Heir.AST.Block
+    name: Block
+    href: Heir.AST.Block.html
+  - name: )
+  spec.vb:
+  - uid: Heir.AST.Abstract.Statement.Visitor{System.Object}.VisitBlock(Heir.AST.Block)
+    name: VisitBlock
+    href: Heir.AST.Abstract.Statement.Visitor-1.html#Heir_AST_Abstract_Statement_Visitor_1_VisitBlock_Heir_AST_Block_
+  - name: (
+  - uid: Heir.AST.Block
+    name: Block
+    href: Heir.AST.Block.html
+  - name: )
+- uid: Heir.AST.Block
+  commentId: T:Heir.AST.Block
+  parent: Heir.AST
+  href: Heir.AST.Block.html
+  name: Block
+  nameWithType: Block
+  fullName: Heir.AST.Block
+- uid: Heir.AST.Abstract.Statement.Visitor`1.VisitBlock(Heir.AST.Block)
+  commentId: M:Heir.AST.Abstract.Statement.Visitor`1.VisitBlock(Heir.AST.Block)
+  href: Heir.AST.Abstract.Statement.Visitor-1.html#Heir_AST_Abstract_Statement_Visitor_1_VisitBlock_Heir_AST_Block_
+  name: VisitBlock(Block)
+  nameWithType: Statement.Visitor<R>.VisitBlock(Block)
+  fullName: Heir.AST.Abstract.Statement.Visitor<R>.VisitBlock(Heir.AST.Block)
+  nameWithType.vb: Statement.Visitor(Of R).VisitBlock(Block)
+  fullName.vb: Heir.AST.Abstract.Statement.Visitor(Of R).VisitBlock(Heir.AST.Block)
+  spec.csharp:
+  - uid: Heir.AST.Abstract.Statement.Visitor`1.VisitBlock(Heir.AST.Block)
+    name: VisitBlock
+    href: Heir.AST.Abstract.Statement.Visitor-1.html#Heir_AST_Abstract_Statement_Visitor_1_VisitBlock_Heir_AST_Block_
+  - name: (
+  - uid: Heir.AST.Block
+    name: Block
+    href: Heir.AST.Block.html
+  - name: )
+  spec.vb:
+  - uid: Heir.AST.Abstract.Statement.Visitor`1.VisitBlock(Heir.AST.Block)
+    name: VisitBlock
+    href: Heir.AST.Abstract.Statement.Visitor-1.html#Heir_AST_Abstract_Statement_Visitor_1_VisitBlock_Heir_AST_Block_
+  - name: (
+  - uid: Heir.AST.Block
+    name: Block
+    href: Heir.AST.Block.html
+  - name: )
+- uid: Heir.Resolver.VisitReturnStatement*
+  commentId: Overload:Heir.Resolver.VisitReturnStatement
+  href: Heir.Resolver.html#Heir_Resolver_VisitReturnStatement_Heir_AST_Return_
+  name: VisitReturnStatement
+  nameWithType: Resolver.VisitReturnStatement
+  fullName: Heir.Resolver.VisitReturnStatement
+- uid: Heir.AST.Abstract.Statement.Visitor{System.Object}.VisitReturnStatement(Heir.AST.Return)
+  commentId: M:Heir.AST.Abstract.Statement.Visitor{System.Object}.VisitReturnStatement(Heir.AST.Return)
+  parent: Heir.AST.Abstract.Statement.Visitor{System.Object}
+  definition: Heir.AST.Abstract.Statement.Visitor`1.VisitReturnStatement(Heir.AST.Return)
+  href: Heir.AST.Abstract.Statement.Visitor-1.html#Heir_AST_Abstract_Statement_Visitor_1_VisitReturnStatement_Heir_AST_Return_
+  name: VisitReturnStatement(Return)
+  nameWithType: Statement.Visitor<object>.VisitReturnStatement(Return)
+  fullName: Heir.AST.Abstract.Statement.Visitor<object>.VisitReturnStatement(Heir.AST.Return)
+  nameWithType.vb: Statement.Visitor(Of Object).VisitReturnStatement(Return)
+  fullName.vb: Heir.AST.Abstract.Statement.Visitor(Of Object).VisitReturnStatement(Heir.AST.Return)
+  spec.csharp:
+  - uid: Heir.AST.Abstract.Statement.Visitor{System.Object}.VisitReturnStatement(Heir.AST.Return)
+    name: VisitReturnStatement
+    href: Heir.AST.Abstract.Statement.Visitor-1.html#Heir_AST_Abstract_Statement_Visitor_1_VisitReturnStatement_Heir_AST_Return_
+  - name: (
+  - uid: Heir.AST.Return
+    name: Return
+    href: Heir.AST.Return.html
+  - name: )
+  spec.vb:
+  - uid: Heir.AST.Abstract.Statement.Visitor{System.Object}.VisitReturnStatement(Heir.AST.Return)
+    name: VisitReturnStatement
+    href: Heir.AST.Abstract.Statement.Visitor-1.html#Heir_AST_Abstract_Statement_Visitor_1_VisitReturnStatement_Heir_AST_Return_
+  - name: (
+  - uid: Heir.AST.Return
+    name: Return
+    href: Heir.AST.Return.html
+  - name: )
+- uid: Heir.AST.Return
+  commentId: T:Heir.AST.Return
+  parent: Heir.AST
+  href: Heir.AST.Return.html
+  name: Return
+  nameWithType: Return
+  fullName: Heir.AST.Return
+- uid: Heir.AST.Abstract.Statement.Visitor`1.VisitReturnStatement(Heir.AST.Return)
+  commentId: M:Heir.AST.Abstract.Statement.Visitor`1.VisitReturnStatement(Heir.AST.Return)
+  href: Heir.AST.Abstract.Statement.Visitor-1.html#Heir_AST_Abstract_Statement_Visitor_1_VisitReturnStatement_Heir_AST_Return_
+  name: VisitReturnStatement(Return)
+  nameWithType: Statement.Visitor<R>.VisitReturnStatement(Return)
+  fullName: Heir.AST.Abstract.Statement.Visitor<R>.VisitReturnStatement(Heir.AST.Return)
+  nameWithType.vb: Statement.Visitor(Of R).VisitReturnStatement(Return)
+  fullName.vb: Heir.AST.Abstract.Statement.Visitor(Of R).VisitReturnStatement(Heir.AST.Return)
+  spec.csharp:
+  - uid: Heir.AST.Abstract.Statement.Visitor`1.VisitReturnStatement(Heir.AST.Return)
+    name: VisitReturnStatement
+    href: Heir.AST.Abstract.Statement.Visitor-1.html#Heir_AST_Abstract_Statement_Visitor_1_VisitReturnStatement_Heir_AST_Return_
+  - name: (
+  - uid: Heir.AST.Return
+    name: Return
+    href: Heir.AST.Return.html
+  - name: )
+  spec.vb:
+  - uid: Heir.AST.Abstract.Statement.Visitor`1.VisitReturnStatement(Heir.AST.Return)
+    name: VisitReturnStatement
+    href: Heir.AST.Abstract.Statement.Visitor-1.html#Heir_AST_Abstract_Statement_Visitor_1_VisitReturnStatement_Heir_AST_Return_
+  - name: (
+  - uid: Heir.AST.Return
+    name: Return
+    href: Heir.AST.Return.html
+  - name: )
+- uid: Heir.Resolver.VisitIfStatement*
+  commentId: Overload:Heir.Resolver.VisitIfStatement
+  href: Heir.Resolver.html#Heir_Resolver_VisitIfStatement_Heir_AST_If_
+  name: VisitIfStatement
+  nameWithType: Resolver.VisitIfStatement
+  fullName: Heir.Resolver.VisitIfStatement
+- uid: Heir.AST.Abstract.Statement.Visitor{System.Object}.VisitIfStatement(Heir.AST.If)
+  commentId: M:Heir.AST.Abstract.Statement.Visitor{System.Object}.VisitIfStatement(Heir.AST.If)
+  parent: Heir.AST.Abstract.Statement.Visitor{System.Object}
+  definition: Heir.AST.Abstract.Statement.Visitor`1.VisitIfStatement(Heir.AST.If)
+  href: Heir.AST.Abstract.Statement.Visitor-1.html#Heir_AST_Abstract_Statement_Visitor_1_VisitIfStatement_Heir_AST_If_
+  name: VisitIfStatement(If)
+  nameWithType: Statement.Visitor<object>.VisitIfStatement(If)
+  fullName: Heir.AST.Abstract.Statement.Visitor<object>.VisitIfStatement(Heir.AST.If)
+  nameWithType.vb: Statement.Visitor(Of Object).VisitIfStatement(If)
+  fullName.vb: Heir.AST.Abstract.Statement.Visitor(Of Object).VisitIfStatement(Heir.AST.If)
+  spec.csharp:
+  - uid: Heir.AST.Abstract.Statement.Visitor{System.Object}.VisitIfStatement(Heir.AST.If)
+    name: VisitIfStatement
+    href: Heir.AST.Abstract.Statement.Visitor-1.html#Heir_AST_Abstract_Statement_Visitor_1_VisitIfStatement_Heir_AST_If_
+  - name: (
+  - uid: Heir.AST.If
+    name: If
+    href: Heir.AST.If.html
+  - name: )
+  spec.vb:
+  - uid: Heir.AST.Abstract.Statement.Visitor{System.Object}.VisitIfStatement(Heir.AST.If)
+    name: VisitIfStatement
+    href: Heir.AST.Abstract.Statement.Visitor-1.html#Heir_AST_Abstract_Statement_Visitor_1_VisitIfStatement_Heir_AST_If_
+  - name: (
+  - uid: Heir.AST.If
+    name: If
+    href: Heir.AST.If.html
+  - name: )
+- uid: Heir.AST.If
+  commentId: T:Heir.AST.If
+  parent: Heir.AST
+  href: Heir.AST.If.html
+  name: If
+  nameWithType: If
+  fullName: Heir.AST.If
+- uid: Heir.AST.Abstract.Statement.Visitor`1.VisitIfStatement(Heir.AST.If)
+  commentId: M:Heir.AST.Abstract.Statement.Visitor`1.VisitIfStatement(Heir.AST.If)
+  href: Heir.AST.Abstract.Statement.Visitor-1.html#Heir_AST_Abstract_Statement_Visitor_1_VisitIfStatement_Heir_AST_If_
+  name: VisitIfStatement(If)
+  nameWithType: Statement.Visitor<R>.VisitIfStatement(If)
+  fullName: Heir.AST.Abstract.Statement.Visitor<R>.VisitIfStatement(Heir.AST.If)
+  nameWithType.vb: Statement.Visitor(Of R).VisitIfStatement(If)
+  fullName.vb: Heir.AST.Abstract.Statement.Visitor(Of R).VisitIfStatement(Heir.AST.If)
+  spec.csharp:
+  - uid: Heir.AST.Abstract.Statement.Visitor`1.VisitIfStatement(Heir.AST.If)
+    name: VisitIfStatement
+    href: Heir.AST.Abstract.Statement.Visitor-1.html#Heir_AST_Abstract_Statement_Visitor_1_VisitIfStatement_Heir_AST_If_
+  - name: (
+  - uid: Heir.AST.If
+    name: If
+    href: Heir.AST.If.html
+  - name: )
+  spec.vb:
+  - uid: Heir.AST.Abstract.Statement.Visitor`1.VisitIfStatement(Heir.AST.If)
+    name: VisitIfStatement
+    href: Heir.AST.Abstract.Statement.Visitor-1.html#Heir_AST_Abstract_Statement_Visitor_1_VisitIfStatement_Heir_AST_If_
+  - name: (
+  - uid: Heir.AST.If
+    name: If
+    href: Heir.AST.If.html
+  - name: )
+- uid: Heir.Resolver.VisitExpressionStatement*
+  commentId: Overload:Heir.Resolver.VisitExpressionStatement
+  href: Heir.Resolver.html#Heir_Resolver_VisitExpressionStatement_Heir_AST_ExpressionStatement_
+  name: VisitExpressionStatement
+  nameWithType: Resolver.VisitExpressionStatement
+  fullName: Heir.Resolver.VisitExpressionStatement
+- uid: Heir.AST.Abstract.Statement.Visitor{System.Object}.VisitExpressionStatement(Heir.AST.ExpressionStatement)
+  commentId: M:Heir.AST.Abstract.Statement.Visitor{System.Object}.VisitExpressionStatement(Heir.AST.ExpressionStatement)
+  parent: Heir.AST.Abstract.Statement.Visitor{System.Object}
+  definition: Heir.AST.Abstract.Statement.Visitor`1.VisitExpressionStatement(Heir.AST.ExpressionStatement)
+  href: Heir.AST.Abstract.Statement.Visitor-1.html#Heir_AST_Abstract_Statement_Visitor_1_VisitExpressionStatement_Heir_AST_ExpressionStatement_
+  name: VisitExpressionStatement(ExpressionStatement)
+  nameWithType: Statement.Visitor<object>.VisitExpressionStatement(ExpressionStatement)
+  fullName: Heir.AST.Abstract.Statement.Visitor<object>.VisitExpressionStatement(Heir.AST.ExpressionStatement)
+  nameWithType.vb: Statement.Visitor(Of Object).VisitExpressionStatement(ExpressionStatement)
+  fullName.vb: Heir.AST.Abstract.Statement.Visitor(Of Object).VisitExpressionStatement(Heir.AST.ExpressionStatement)
+  spec.csharp:
+  - uid: Heir.AST.Abstract.Statement.Visitor{System.Object}.VisitExpressionStatement(Heir.AST.ExpressionStatement)
+    name: VisitExpressionStatement
+    href: Heir.AST.Abstract.Statement.Visitor-1.html#Heir_AST_Abstract_Statement_Visitor_1_VisitExpressionStatement_Heir_AST_ExpressionStatement_
+  - name: (
+  - uid: Heir.AST.ExpressionStatement
+    name: ExpressionStatement
+    href: Heir.AST.ExpressionStatement.html
+  - name: )
+  spec.vb:
+  - uid: Heir.AST.Abstract.Statement.Visitor{System.Object}.VisitExpressionStatement(Heir.AST.ExpressionStatement)
+    name: VisitExpressionStatement
+    href: Heir.AST.Abstract.Statement.Visitor-1.html#Heir_AST_Abstract_Statement_Visitor_1_VisitExpressionStatement_Heir_AST_ExpressionStatement_
+  - name: (
+  - uid: Heir.AST.ExpressionStatement
+    name: ExpressionStatement
+    href: Heir.AST.ExpressionStatement.html
+  - name: )
+- uid: Heir.AST.ExpressionStatement
+  commentId: T:Heir.AST.ExpressionStatement
+  parent: Heir.AST
+  href: Heir.AST.ExpressionStatement.html
+  name: ExpressionStatement
+  nameWithType: ExpressionStatement
+  fullName: Heir.AST.ExpressionStatement
+- uid: Heir.AST.Abstract.Statement.Visitor`1.VisitExpressionStatement(Heir.AST.ExpressionStatement)
+  commentId: M:Heir.AST.Abstract.Statement.Visitor`1.VisitExpressionStatement(Heir.AST.ExpressionStatement)
+  href: Heir.AST.Abstract.Statement.Visitor-1.html#Heir_AST_Abstract_Statement_Visitor_1_VisitExpressionStatement_Heir_AST_ExpressionStatement_
+  name: VisitExpressionStatement(ExpressionStatement)
+  nameWithType: Statement.Visitor<R>.VisitExpressionStatement(ExpressionStatement)
+  fullName: Heir.AST.Abstract.Statement.Visitor<R>.VisitExpressionStatement(Heir.AST.ExpressionStatement)
+  nameWithType.vb: Statement.Visitor(Of R).VisitExpressionStatement(ExpressionStatement)
+  fullName.vb: Heir.AST.Abstract.Statement.Visitor(Of R).VisitExpressionStatement(Heir.AST.ExpressionStatement)
+  spec.csharp:
+  - uid: Heir.AST.Abstract.Statement.Visitor`1.VisitExpressionStatement(Heir.AST.ExpressionStatement)
+    name: VisitExpressionStatement
+    href: Heir.AST.Abstract.Statement.Visitor-1.html#Heir_AST_Abstract_Statement_Visitor_1_VisitExpressionStatement_Heir_AST_ExpressionStatement_
+  - name: (
+  - uid: Heir.AST.ExpressionStatement
+    name: ExpressionStatement
+    href: Heir.AST.ExpressionStatement.html
+  - name: )
+  spec.vb:
+  - uid: Heir.AST.Abstract.Statement.Visitor`1.VisitExpressionStatement(Heir.AST.ExpressionStatement)
+    name: VisitExpressionStatement
+    href: Heir.AST.Abstract.Statement.Visitor-1.html#Heir_AST_Abstract_Statement_Visitor_1_VisitExpressionStatement_Heir_AST_ExpressionStatement_
+  - name: (
+  - uid: Heir.AST.ExpressionStatement
+    name: ExpressionStatement
+    href: Heir.AST.ExpressionStatement.html
+  - name: )
+- uid: Heir.Resolver.VisitMemberAccessExpression*
+  commentId: Overload:Heir.Resolver.VisitMemberAccessExpression
+  href: Heir.Resolver.html#Heir_Resolver_VisitMemberAccessExpression_Heir_AST_MemberAccess_
+  name: VisitMemberAccessExpression
+  nameWithType: Resolver.VisitMemberAccessExpression
+  fullName: Heir.Resolver.VisitMemberAccessExpression
+- uid: Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitMemberAccessExpression(Heir.AST.MemberAccess)
+  commentId: M:Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitMemberAccessExpression(Heir.AST.MemberAccess)
+  parent: Heir.AST.Abstract.Expression.Visitor{System.Object}
+  definition: Heir.AST.Abstract.Expression.Visitor`1.VisitMemberAccessExpression(Heir.AST.MemberAccess)
+  href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitMemberAccessExpression_Heir_AST_MemberAccess_
+  name: VisitMemberAccessExpression(MemberAccess)
+  nameWithType: Expression.Visitor<object>.VisitMemberAccessExpression(MemberAccess)
+  fullName: Heir.AST.Abstract.Expression.Visitor<object>.VisitMemberAccessExpression(Heir.AST.MemberAccess)
+  nameWithType.vb: Expression.Visitor(Of Object).VisitMemberAccessExpression(MemberAccess)
+  fullName.vb: Heir.AST.Abstract.Expression.Visitor(Of Object).VisitMemberAccessExpression(Heir.AST.MemberAccess)
+  spec.csharp:
+  - uid: Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitMemberAccessExpression(Heir.AST.MemberAccess)
+    name: VisitMemberAccessExpression
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitMemberAccessExpression_Heir_AST_MemberAccess_
+  - name: (
+  - uid: Heir.AST.MemberAccess
+    name: MemberAccess
+    href: Heir.AST.MemberAccess.html
+  - name: )
+  spec.vb:
+  - uid: Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitMemberAccessExpression(Heir.AST.MemberAccess)
+    name: VisitMemberAccessExpression
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitMemberAccessExpression_Heir_AST_MemberAccess_
+  - name: (
+  - uid: Heir.AST.MemberAccess
+    name: MemberAccess
+    href: Heir.AST.MemberAccess.html
+  - name: )
+- uid: Heir.AST.MemberAccess
+  commentId: T:Heir.AST.MemberAccess
+  parent: Heir.AST
+  href: Heir.AST.MemberAccess.html
+  name: MemberAccess
+  nameWithType: MemberAccess
+  fullName: Heir.AST.MemberAccess
+- uid: Heir.AST.Abstract.Expression.Visitor`1.VisitMemberAccessExpression(Heir.AST.MemberAccess)
+  commentId: M:Heir.AST.Abstract.Expression.Visitor`1.VisitMemberAccessExpression(Heir.AST.MemberAccess)
+  href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitMemberAccessExpression_Heir_AST_MemberAccess_
+  name: VisitMemberAccessExpression(MemberAccess)
+  nameWithType: Expression.Visitor<R>.VisitMemberAccessExpression(MemberAccess)
+  fullName: Heir.AST.Abstract.Expression.Visitor<R>.VisitMemberAccessExpression(Heir.AST.MemberAccess)
+  nameWithType.vb: Expression.Visitor(Of R).VisitMemberAccessExpression(MemberAccess)
+  fullName.vb: Heir.AST.Abstract.Expression.Visitor(Of R).VisitMemberAccessExpression(Heir.AST.MemberAccess)
+  spec.csharp:
+  - uid: Heir.AST.Abstract.Expression.Visitor`1.VisitMemberAccessExpression(Heir.AST.MemberAccess)
+    name: VisitMemberAccessExpression
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitMemberAccessExpression_Heir_AST_MemberAccess_
+  - name: (
+  - uid: Heir.AST.MemberAccess
+    name: MemberAccess
+    href: Heir.AST.MemberAccess.html
+  - name: )
+  spec.vb:
+  - uid: Heir.AST.Abstract.Expression.Visitor`1.VisitMemberAccessExpression(Heir.AST.MemberAccess)
+    name: VisitMemberAccessExpression
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitMemberAccessExpression_Heir_AST_MemberAccess_
+  - name: (
+  - uid: Heir.AST.MemberAccess
+    name: MemberAccess
+    href: Heir.AST.MemberAccess.html
+  - name: )
+- uid: Heir.Resolver.VisitElementAccessExpression*
+  commentId: Overload:Heir.Resolver.VisitElementAccessExpression
+  href: Heir.Resolver.html#Heir_Resolver_VisitElementAccessExpression_Heir_AST_ElementAccess_
+  name: VisitElementAccessExpression
+  nameWithType: Resolver.VisitElementAccessExpression
+  fullName: Heir.Resolver.VisitElementAccessExpression
+- uid: Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitElementAccessExpression(Heir.AST.ElementAccess)
+  commentId: M:Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitElementAccessExpression(Heir.AST.ElementAccess)
+  parent: Heir.AST.Abstract.Expression.Visitor{System.Object}
+  definition: Heir.AST.Abstract.Expression.Visitor`1.VisitElementAccessExpression(Heir.AST.ElementAccess)
+  href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitElementAccessExpression_Heir_AST_ElementAccess_
+  name: VisitElementAccessExpression(ElementAccess)
+  nameWithType: Expression.Visitor<object>.VisitElementAccessExpression(ElementAccess)
+  fullName: Heir.AST.Abstract.Expression.Visitor<object>.VisitElementAccessExpression(Heir.AST.ElementAccess)
+  nameWithType.vb: Expression.Visitor(Of Object).VisitElementAccessExpression(ElementAccess)
+  fullName.vb: Heir.AST.Abstract.Expression.Visitor(Of Object).VisitElementAccessExpression(Heir.AST.ElementAccess)
+  spec.csharp:
+  - uid: Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitElementAccessExpression(Heir.AST.ElementAccess)
+    name: VisitElementAccessExpression
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitElementAccessExpression_Heir_AST_ElementAccess_
+  - name: (
+  - uid: Heir.AST.ElementAccess
+    name: ElementAccess
+    href: Heir.AST.ElementAccess.html
+  - name: )
+  spec.vb:
+  - uid: Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitElementAccessExpression(Heir.AST.ElementAccess)
+    name: VisitElementAccessExpression
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitElementAccessExpression_Heir_AST_ElementAccess_
+  - name: (
+  - uid: Heir.AST.ElementAccess
+    name: ElementAccess
+    href: Heir.AST.ElementAccess.html
+  - name: )
+- uid: Heir.AST.ElementAccess
+  commentId: T:Heir.AST.ElementAccess
+  parent: Heir.AST
+  href: Heir.AST.ElementAccess.html
+  name: ElementAccess
+  nameWithType: ElementAccess
+  fullName: Heir.AST.ElementAccess
+- uid: Heir.AST.Abstract.Expression.Visitor`1.VisitElementAccessExpression(Heir.AST.ElementAccess)
+  commentId: M:Heir.AST.Abstract.Expression.Visitor`1.VisitElementAccessExpression(Heir.AST.ElementAccess)
+  href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitElementAccessExpression_Heir_AST_ElementAccess_
+  name: VisitElementAccessExpression(ElementAccess)
+  nameWithType: Expression.Visitor<R>.VisitElementAccessExpression(ElementAccess)
+  fullName: Heir.AST.Abstract.Expression.Visitor<R>.VisitElementAccessExpression(Heir.AST.ElementAccess)
+  nameWithType.vb: Expression.Visitor(Of R).VisitElementAccessExpression(ElementAccess)
+  fullName.vb: Heir.AST.Abstract.Expression.Visitor(Of R).VisitElementAccessExpression(Heir.AST.ElementAccess)
+  spec.csharp:
+  - uid: Heir.AST.Abstract.Expression.Visitor`1.VisitElementAccessExpression(Heir.AST.ElementAccess)
+    name: VisitElementAccessExpression
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitElementAccessExpression_Heir_AST_ElementAccess_
+  - name: (
+  - uid: Heir.AST.ElementAccess
+    name: ElementAccess
+    href: Heir.AST.ElementAccess.html
+  - name: )
+  spec.vb:
+  - uid: Heir.AST.Abstract.Expression.Visitor`1.VisitElementAccessExpression(Heir.AST.ElementAccess)
+    name: VisitElementAccessExpression
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitElementAccessExpression_Heir_AST_ElementAccess_
+  - name: (
+  - uid: Heir.AST.ElementAccess
+    name: ElementAccess
+    href: Heir.AST.ElementAccess.html
+  - name: )
+- uid: Heir.Resolver.VisitInvocationExpression*
+  commentId: Overload:Heir.Resolver.VisitInvocationExpression
+  href: Heir.Resolver.html#Heir_Resolver_VisitInvocationExpression_Heir_AST_Invocation_
+  name: VisitInvocationExpression
+  nameWithType: Resolver.VisitInvocationExpression
+  fullName: Heir.Resolver.VisitInvocationExpression
+- uid: Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitInvocationExpression(Heir.AST.Invocation)
+  commentId: M:Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitInvocationExpression(Heir.AST.Invocation)
+  parent: Heir.AST.Abstract.Expression.Visitor{System.Object}
+  definition: Heir.AST.Abstract.Expression.Visitor`1.VisitInvocationExpression(Heir.AST.Invocation)
+  href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitInvocationExpression_Heir_AST_Invocation_
+  name: VisitInvocationExpression(Invocation)
+  nameWithType: Expression.Visitor<object>.VisitInvocationExpression(Invocation)
+  fullName: Heir.AST.Abstract.Expression.Visitor<object>.VisitInvocationExpression(Heir.AST.Invocation)
+  nameWithType.vb: Expression.Visitor(Of Object).VisitInvocationExpression(Invocation)
+  fullName.vb: Heir.AST.Abstract.Expression.Visitor(Of Object).VisitInvocationExpression(Heir.AST.Invocation)
+  spec.csharp:
+  - uid: Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitInvocationExpression(Heir.AST.Invocation)
+    name: VisitInvocationExpression
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitInvocationExpression_Heir_AST_Invocation_
+  - name: (
+  - uid: Heir.AST.Invocation
+    name: Invocation
+    href: Heir.AST.Invocation.html
+  - name: )
+  spec.vb:
+  - uid: Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitInvocationExpression(Heir.AST.Invocation)
+    name: VisitInvocationExpression
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitInvocationExpression_Heir_AST_Invocation_
+  - name: (
+  - uid: Heir.AST.Invocation
+    name: Invocation
+    href: Heir.AST.Invocation.html
+  - name: )
+- uid: Heir.AST.Invocation
+  commentId: T:Heir.AST.Invocation
+  parent: Heir.AST
+  href: Heir.AST.Invocation.html
+  name: Invocation
+  nameWithType: Invocation
+  fullName: Heir.AST.Invocation
+- uid: Heir.AST.Abstract.Expression.Visitor`1.VisitInvocationExpression(Heir.AST.Invocation)
+  commentId: M:Heir.AST.Abstract.Expression.Visitor`1.VisitInvocationExpression(Heir.AST.Invocation)
+  href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitInvocationExpression_Heir_AST_Invocation_
+  name: VisitInvocationExpression(Invocation)
+  nameWithType: Expression.Visitor<R>.VisitInvocationExpression(Invocation)
+  fullName: Heir.AST.Abstract.Expression.Visitor<R>.VisitInvocationExpression(Heir.AST.Invocation)
+  nameWithType.vb: Expression.Visitor(Of R).VisitInvocationExpression(Invocation)
+  fullName.vb: Heir.AST.Abstract.Expression.Visitor(Of R).VisitInvocationExpression(Heir.AST.Invocation)
+  spec.csharp:
+  - uid: Heir.AST.Abstract.Expression.Visitor`1.VisitInvocationExpression(Heir.AST.Invocation)
+    name: VisitInvocationExpression
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitInvocationExpression_Heir_AST_Invocation_
+  - name: (
+  - uid: Heir.AST.Invocation
+    name: Invocation
+    href: Heir.AST.Invocation.html
+  - name: )
+  spec.vb:
+  - uid: Heir.AST.Abstract.Expression.Visitor`1.VisitInvocationExpression(Heir.AST.Invocation)
+    name: VisitInvocationExpression
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitInvocationExpression_Heir_AST_Invocation_
+  - name: (
+  - uid: Heir.AST.Invocation
+    name: Invocation
+    href: Heir.AST.Invocation.html
+  - name: )
+- uid: Heir.Resolver.VisitParameter*
+  commentId: Overload:Heir.Resolver.VisitParameter
+  href: Heir.Resolver.html#Heir_Resolver_VisitParameter_Heir_AST_Parameter_
+  name: VisitParameter
+  nameWithType: Resolver.VisitParameter
+  fullName: Heir.Resolver.VisitParameter
+- uid: Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitParameter(Heir.AST.Parameter)
+  commentId: M:Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitParameter(Heir.AST.Parameter)
+  parent: Heir.AST.Abstract.Expression.Visitor{System.Object}
+  definition: Heir.AST.Abstract.Expression.Visitor`1.VisitParameter(Heir.AST.Parameter)
+  href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitParameter_Heir_AST_Parameter_
+  name: VisitParameter(Parameter)
+  nameWithType: Expression.Visitor<object>.VisitParameter(Parameter)
+  fullName: Heir.AST.Abstract.Expression.Visitor<object>.VisitParameter(Heir.AST.Parameter)
+  nameWithType.vb: Expression.Visitor(Of Object).VisitParameter(Parameter)
+  fullName.vb: Heir.AST.Abstract.Expression.Visitor(Of Object).VisitParameter(Heir.AST.Parameter)
+  spec.csharp:
+  - uid: Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitParameter(Heir.AST.Parameter)
+    name: VisitParameter
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitParameter_Heir_AST_Parameter_
+  - name: (
+  - uid: Heir.AST.Parameter
+    name: Parameter
+    href: Heir.AST.Parameter.html
+  - name: )
+  spec.vb:
+  - uid: Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitParameter(Heir.AST.Parameter)
+    name: VisitParameter
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitParameter_Heir_AST_Parameter_
+  - name: (
+  - uid: Heir.AST.Parameter
+    name: Parameter
+    href: Heir.AST.Parameter.html
+  - name: )
+- uid: Heir.AST.Parameter
+  commentId: T:Heir.AST.Parameter
+  parent: Heir.AST
+  href: Heir.AST.Parameter.html
+  name: Parameter
+  nameWithType: Parameter
+  fullName: Heir.AST.Parameter
+- uid: Heir.AST.Abstract.Expression.Visitor`1.VisitParameter(Heir.AST.Parameter)
+  commentId: M:Heir.AST.Abstract.Expression.Visitor`1.VisitParameter(Heir.AST.Parameter)
+  href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitParameter_Heir_AST_Parameter_
+  name: VisitParameter(Parameter)
+  nameWithType: Expression.Visitor<R>.VisitParameter(Parameter)
+  fullName: Heir.AST.Abstract.Expression.Visitor<R>.VisitParameter(Heir.AST.Parameter)
+  nameWithType.vb: Expression.Visitor(Of R).VisitParameter(Parameter)
+  fullName.vb: Heir.AST.Abstract.Expression.Visitor(Of R).VisitParameter(Heir.AST.Parameter)
+  spec.csharp:
+  - uid: Heir.AST.Abstract.Expression.Visitor`1.VisitParameter(Heir.AST.Parameter)
+    name: VisitParameter
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitParameter_Heir_AST_Parameter_
+  - name: (
+  - uid: Heir.AST.Parameter
+    name: Parameter
+    href: Heir.AST.Parameter.html
+  - name: )
+  spec.vb:
+  - uid: Heir.AST.Abstract.Expression.Visitor`1.VisitParameter(Heir.AST.Parameter)
+    name: VisitParameter
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitParameter_Heir_AST_Parameter_
+  - name: (
+  - uid: Heir.AST.Parameter
+    name: Parameter
+    href: Heir.AST.Parameter.html
+  - name: )
+- uid: Heir.Resolver.VisitAssignmentOpExpression*
+  commentId: Overload:Heir.Resolver.VisitAssignmentOpExpression
+  href: Heir.Resolver.html#Heir_Resolver_VisitAssignmentOpExpression_Heir_AST_AssignmentOp_
+  name: VisitAssignmentOpExpression
+  nameWithType: Resolver.VisitAssignmentOpExpression
+  fullName: Heir.Resolver.VisitAssignmentOpExpression
+- uid: Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitAssignmentOpExpression(Heir.AST.AssignmentOp)
+  commentId: M:Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitAssignmentOpExpression(Heir.AST.AssignmentOp)
+  parent: Heir.AST.Abstract.Expression.Visitor{System.Object}
+  definition: Heir.AST.Abstract.Expression.Visitor`1.VisitAssignmentOpExpression(Heir.AST.AssignmentOp)
+  href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitAssignmentOpExpression_Heir_AST_AssignmentOp_
+  name: VisitAssignmentOpExpression(AssignmentOp)
+  nameWithType: Expression.Visitor<object>.VisitAssignmentOpExpression(AssignmentOp)
+  fullName: Heir.AST.Abstract.Expression.Visitor<object>.VisitAssignmentOpExpression(Heir.AST.AssignmentOp)
+  nameWithType.vb: Expression.Visitor(Of Object).VisitAssignmentOpExpression(AssignmentOp)
+  fullName.vb: Heir.AST.Abstract.Expression.Visitor(Of Object).VisitAssignmentOpExpression(Heir.AST.AssignmentOp)
+  spec.csharp:
+  - uid: Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitAssignmentOpExpression(Heir.AST.AssignmentOp)
+    name: VisitAssignmentOpExpression
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitAssignmentOpExpression_Heir_AST_AssignmentOp_
+  - name: (
+  - uid: Heir.AST.AssignmentOp
+    name: AssignmentOp
+    href: Heir.AST.AssignmentOp.html
+  - name: )
+  spec.vb:
+  - uid: Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitAssignmentOpExpression(Heir.AST.AssignmentOp)
+    name: VisitAssignmentOpExpression
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitAssignmentOpExpression_Heir_AST_AssignmentOp_
+  - name: (
+  - uid: Heir.AST.AssignmentOp
+    name: AssignmentOp
+    href: Heir.AST.AssignmentOp.html
+  - name: )
+- uid: Heir.AST.AssignmentOp
+  commentId: T:Heir.AST.AssignmentOp
+  parent: Heir.AST
+  href: Heir.AST.AssignmentOp.html
+  name: AssignmentOp
+  nameWithType: AssignmentOp
+  fullName: Heir.AST.AssignmentOp
+- uid: Heir.AST.Abstract.Expression.Visitor`1.VisitAssignmentOpExpression(Heir.AST.AssignmentOp)
+  commentId: M:Heir.AST.Abstract.Expression.Visitor`1.VisitAssignmentOpExpression(Heir.AST.AssignmentOp)
+  href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitAssignmentOpExpression_Heir_AST_AssignmentOp_
+  name: VisitAssignmentOpExpression(AssignmentOp)
+  nameWithType: Expression.Visitor<R>.VisitAssignmentOpExpression(AssignmentOp)
+  fullName: Heir.AST.Abstract.Expression.Visitor<R>.VisitAssignmentOpExpression(Heir.AST.AssignmentOp)
+  nameWithType.vb: Expression.Visitor(Of R).VisitAssignmentOpExpression(AssignmentOp)
+  fullName.vb: Heir.AST.Abstract.Expression.Visitor(Of R).VisitAssignmentOpExpression(Heir.AST.AssignmentOp)
+  spec.csharp:
+  - uid: Heir.AST.Abstract.Expression.Visitor`1.VisitAssignmentOpExpression(Heir.AST.AssignmentOp)
+    name: VisitAssignmentOpExpression
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitAssignmentOpExpression_Heir_AST_AssignmentOp_
+  - name: (
+  - uid: Heir.AST.AssignmentOp
+    name: AssignmentOp
+    href: Heir.AST.AssignmentOp.html
+  - name: )
+  spec.vb:
+  - uid: Heir.AST.Abstract.Expression.Visitor`1.VisitAssignmentOpExpression(Heir.AST.AssignmentOp)
+    name: VisitAssignmentOpExpression
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitAssignmentOpExpression_Heir_AST_AssignmentOp_
+  - name: (
+  - uid: Heir.AST.AssignmentOp
+    name: AssignmentOp
+    href: Heir.AST.AssignmentOp.html
+  - name: )
+- uid: Heir.Resolver.VisitBinaryOpExpression*
+  commentId: Overload:Heir.Resolver.VisitBinaryOpExpression
+  href: Heir.Resolver.html#Heir_Resolver_VisitBinaryOpExpression_Heir_AST_BinaryOp_
+  name: VisitBinaryOpExpression
+  nameWithType: Resolver.VisitBinaryOpExpression
+  fullName: Heir.Resolver.VisitBinaryOpExpression
+- uid: Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitBinaryOpExpression(Heir.AST.BinaryOp)
+  commentId: M:Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitBinaryOpExpression(Heir.AST.BinaryOp)
+  parent: Heir.AST.Abstract.Expression.Visitor{System.Object}
+  definition: Heir.AST.Abstract.Expression.Visitor`1.VisitBinaryOpExpression(Heir.AST.BinaryOp)
+  href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitBinaryOpExpression_Heir_AST_BinaryOp_
+  name: VisitBinaryOpExpression(BinaryOp)
+  nameWithType: Expression.Visitor<object>.VisitBinaryOpExpression(BinaryOp)
+  fullName: Heir.AST.Abstract.Expression.Visitor<object>.VisitBinaryOpExpression(Heir.AST.BinaryOp)
+  nameWithType.vb: Expression.Visitor(Of Object).VisitBinaryOpExpression(BinaryOp)
+  fullName.vb: Heir.AST.Abstract.Expression.Visitor(Of Object).VisitBinaryOpExpression(Heir.AST.BinaryOp)
+  spec.csharp:
+  - uid: Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitBinaryOpExpression(Heir.AST.BinaryOp)
+    name: VisitBinaryOpExpression
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitBinaryOpExpression_Heir_AST_BinaryOp_
+  - name: (
+  - uid: Heir.AST.BinaryOp
+    name: BinaryOp
+    href: Heir.AST.BinaryOp.html
+  - name: )
+  spec.vb:
+  - uid: Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitBinaryOpExpression(Heir.AST.BinaryOp)
+    name: VisitBinaryOpExpression
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitBinaryOpExpression_Heir_AST_BinaryOp_
+  - name: (
+  - uid: Heir.AST.BinaryOp
+    name: BinaryOp
+    href: Heir.AST.BinaryOp.html
+  - name: )
+- uid: Heir.AST.BinaryOp
+  commentId: T:Heir.AST.BinaryOp
+  parent: Heir.AST
+  href: Heir.AST.BinaryOp.html
+  name: BinaryOp
+  nameWithType: BinaryOp
+  fullName: Heir.AST.BinaryOp
+- uid: Heir.AST.Abstract.Expression.Visitor`1.VisitBinaryOpExpression(Heir.AST.BinaryOp)
+  commentId: M:Heir.AST.Abstract.Expression.Visitor`1.VisitBinaryOpExpression(Heir.AST.BinaryOp)
+  href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitBinaryOpExpression_Heir_AST_BinaryOp_
+  name: VisitBinaryOpExpression(BinaryOp)
+  nameWithType: Expression.Visitor<R>.VisitBinaryOpExpression(BinaryOp)
+  fullName: Heir.AST.Abstract.Expression.Visitor<R>.VisitBinaryOpExpression(Heir.AST.BinaryOp)
+  nameWithType.vb: Expression.Visitor(Of R).VisitBinaryOpExpression(BinaryOp)
+  fullName.vb: Heir.AST.Abstract.Expression.Visitor(Of R).VisitBinaryOpExpression(Heir.AST.BinaryOp)
+  spec.csharp:
+  - uid: Heir.AST.Abstract.Expression.Visitor`1.VisitBinaryOpExpression(Heir.AST.BinaryOp)
+    name: VisitBinaryOpExpression
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitBinaryOpExpression_Heir_AST_BinaryOp_
+  - name: (
+  - uid: Heir.AST.BinaryOp
+    name: BinaryOp
+    href: Heir.AST.BinaryOp.html
+  - name: )
+  spec.vb:
+  - uid: Heir.AST.Abstract.Expression.Visitor`1.VisitBinaryOpExpression(Heir.AST.BinaryOp)
+    name: VisitBinaryOpExpression
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitBinaryOpExpression_Heir_AST_BinaryOp_
+  - name: (
+  - uid: Heir.AST.BinaryOp
+    name: BinaryOp
+    href: Heir.AST.BinaryOp.html
+  - name: )
+- uid: Heir.Resolver.VisitIdentifierNameExpression*
+  commentId: Overload:Heir.Resolver.VisitIdentifierNameExpression
+  href: Heir.Resolver.html#Heir_Resolver_VisitIdentifierNameExpression_Heir_AST_IdentifierName_
+  name: VisitIdentifierNameExpression
+  nameWithType: Resolver.VisitIdentifierNameExpression
+  fullName: Heir.Resolver.VisitIdentifierNameExpression
+- uid: Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitIdentifierNameExpression(Heir.AST.IdentifierName)
+  commentId: M:Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitIdentifierNameExpression(Heir.AST.IdentifierName)
+  parent: Heir.AST.Abstract.Expression.Visitor{System.Object}
+  definition: Heir.AST.Abstract.Expression.Visitor`1.VisitIdentifierNameExpression(Heir.AST.IdentifierName)
+  href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitIdentifierNameExpression_Heir_AST_IdentifierName_
+  name: VisitIdentifierNameExpression(IdentifierName)
+  nameWithType: Expression.Visitor<object>.VisitIdentifierNameExpression(IdentifierName)
+  fullName: Heir.AST.Abstract.Expression.Visitor<object>.VisitIdentifierNameExpression(Heir.AST.IdentifierName)
+  nameWithType.vb: Expression.Visitor(Of Object).VisitIdentifierNameExpression(IdentifierName)
+  fullName.vb: Heir.AST.Abstract.Expression.Visitor(Of Object).VisitIdentifierNameExpression(Heir.AST.IdentifierName)
+  spec.csharp:
+  - uid: Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitIdentifierNameExpression(Heir.AST.IdentifierName)
+    name: VisitIdentifierNameExpression
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitIdentifierNameExpression_Heir_AST_IdentifierName_
+  - name: (
+  - uid: Heir.AST.IdentifierName
+    name: IdentifierName
+    href: Heir.AST.IdentifierName.html
+  - name: )
+  spec.vb:
+  - uid: Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitIdentifierNameExpression(Heir.AST.IdentifierName)
+    name: VisitIdentifierNameExpression
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitIdentifierNameExpression_Heir_AST_IdentifierName_
+  - name: (
+  - uid: Heir.AST.IdentifierName
+    name: IdentifierName
+    href: Heir.AST.IdentifierName.html
+  - name: )
+- uid: Heir.AST.IdentifierName
+  commentId: T:Heir.AST.IdentifierName
+  parent: Heir.AST
+  href: Heir.AST.IdentifierName.html
+  name: IdentifierName
+  nameWithType: IdentifierName
+  fullName: Heir.AST.IdentifierName
+- uid: Heir.AST.Abstract.Expression.Visitor`1.VisitIdentifierNameExpression(Heir.AST.IdentifierName)
+  commentId: M:Heir.AST.Abstract.Expression.Visitor`1.VisitIdentifierNameExpression(Heir.AST.IdentifierName)
+  href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitIdentifierNameExpression_Heir_AST_IdentifierName_
+  name: VisitIdentifierNameExpression(IdentifierName)
+  nameWithType: Expression.Visitor<R>.VisitIdentifierNameExpression(IdentifierName)
+  fullName: Heir.AST.Abstract.Expression.Visitor<R>.VisitIdentifierNameExpression(Heir.AST.IdentifierName)
+  nameWithType.vb: Expression.Visitor(Of R).VisitIdentifierNameExpression(IdentifierName)
+  fullName.vb: Heir.AST.Abstract.Expression.Visitor(Of R).VisitIdentifierNameExpression(Heir.AST.IdentifierName)
+  spec.csharp:
+  - uid: Heir.AST.Abstract.Expression.Visitor`1.VisitIdentifierNameExpression(Heir.AST.IdentifierName)
+    name: VisitIdentifierNameExpression
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitIdentifierNameExpression_Heir_AST_IdentifierName_
+  - name: (
+  - uid: Heir.AST.IdentifierName
+    name: IdentifierName
+    href: Heir.AST.IdentifierName.html
+  - name: )
+  spec.vb:
+  - uid: Heir.AST.Abstract.Expression.Visitor`1.VisitIdentifierNameExpression(Heir.AST.IdentifierName)
+    name: VisitIdentifierNameExpression
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitIdentifierNameExpression_Heir_AST_IdentifierName_
+  - name: (
+  - uid: Heir.AST.IdentifierName
+    name: IdentifierName
+    href: Heir.AST.IdentifierName.html
+  - name: )
+- uid: Heir.Resolver.VisitLiteralExpression*
+  commentId: Overload:Heir.Resolver.VisitLiteralExpression
+  href: Heir.Resolver.html#Heir_Resolver_VisitLiteralExpression_Heir_AST_Literal_
+  name: VisitLiteralExpression
+  nameWithType: Resolver.VisitLiteralExpression
+  fullName: Heir.Resolver.VisitLiteralExpression
+- uid: Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitLiteralExpression(Heir.AST.Literal)
+  commentId: M:Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitLiteralExpression(Heir.AST.Literal)
+  parent: Heir.AST.Abstract.Expression.Visitor{System.Object}
+  definition: Heir.AST.Abstract.Expression.Visitor`1.VisitLiteralExpression(Heir.AST.Literal)
+  href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitLiteralExpression_Heir_AST_Literal_
+  name: VisitLiteralExpression(Literal)
+  nameWithType: Expression.Visitor<object>.VisitLiteralExpression(Literal)
+  fullName: Heir.AST.Abstract.Expression.Visitor<object>.VisitLiteralExpression(Heir.AST.Literal)
+  nameWithType.vb: Expression.Visitor(Of Object).VisitLiteralExpression(Literal)
+  fullName.vb: Heir.AST.Abstract.Expression.Visitor(Of Object).VisitLiteralExpression(Heir.AST.Literal)
+  spec.csharp:
+  - uid: Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitLiteralExpression(Heir.AST.Literal)
+    name: VisitLiteralExpression
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitLiteralExpression_Heir_AST_Literal_
+  - name: (
+  - uid: Heir.AST.Literal
+    name: Literal
+    href: Heir.AST.Literal.html
+  - name: )
+  spec.vb:
+  - uid: Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitLiteralExpression(Heir.AST.Literal)
+    name: VisitLiteralExpression
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitLiteralExpression_Heir_AST_Literal_
+  - name: (
+  - uid: Heir.AST.Literal
+    name: Literal
+    href: Heir.AST.Literal.html
+  - name: )
+- uid: Heir.AST.Literal
+  commentId: T:Heir.AST.Literal
+  parent: Heir.AST
+  href: Heir.AST.Literal.html
+  name: Literal
+  nameWithType: Literal
+  fullName: Heir.AST.Literal
+- uid: Heir.AST.Abstract.Expression.Visitor`1.VisitLiteralExpression(Heir.AST.Literal)
+  commentId: M:Heir.AST.Abstract.Expression.Visitor`1.VisitLiteralExpression(Heir.AST.Literal)
+  href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitLiteralExpression_Heir_AST_Literal_
+  name: VisitLiteralExpression(Literal)
+  nameWithType: Expression.Visitor<R>.VisitLiteralExpression(Literal)
+  fullName: Heir.AST.Abstract.Expression.Visitor<R>.VisitLiteralExpression(Heir.AST.Literal)
+  nameWithType.vb: Expression.Visitor(Of R).VisitLiteralExpression(Literal)
+  fullName.vb: Heir.AST.Abstract.Expression.Visitor(Of R).VisitLiteralExpression(Heir.AST.Literal)
+  spec.csharp:
+  - uid: Heir.AST.Abstract.Expression.Visitor`1.VisitLiteralExpression(Heir.AST.Literal)
+    name: VisitLiteralExpression
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitLiteralExpression_Heir_AST_Literal_
+  - name: (
+  - uid: Heir.AST.Literal
+    name: Literal
+    href: Heir.AST.Literal.html
+  - name: )
+  spec.vb:
+  - uid: Heir.AST.Abstract.Expression.Visitor`1.VisitLiteralExpression(Heir.AST.Literal)
+    name: VisitLiteralExpression
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitLiteralExpression_Heir_AST_Literal_
+  - name: (
+  - uid: Heir.AST.Literal
+    name: Literal
+    href: Heir.AST.Literal.html
+  - name: )
+- uid: Heir.Resolver.VisitObjectLiteralExpression*
+  commentId: Overload:Heir.Resolver.VisitObjectLiteralExpression
+  href: Heir.Resolver.html#Heir_Resolver_VisitObjectLiteralExpression_Heir_AST_ObjectLiteral_
+  name: VisitObjectLiteralExpression
+  nameWithType: Resolver.VisitObjectLiteralExpression
+  fullName: Heir.Resolver.VisitObjectLiteralExpression
+- uid: Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitObjectLiteralExpression(Heir.AST.ObjectLiteral)
+  commentId: M:Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitObjectLiteralExpression(Heir.AST.ObjectLiteral)
+  parent: Heir.AST.Abstract.Expression.Visitor{System.Object}
+  definition: Heir.AST.Abstract.Expression.Visitor`1.VisitObjectLiteralExpression(Heir.AST.ObjectLiteral)
+  href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitObjectLiteralExpression_Heir_AST_ObjectLiteral_
+  name: VisitObjectLiteralExpression(ObjectLiteral)
+  nameWithType: Expression.Visitor<object>.VisitObjectLiteralExpression(ObjectLiteral)
+  fullName: Heir.AST.Abstract.Expression.Visitor<object>.VisitObjectLiteralExpression(Heir.AST.ObjectLiteral)
+  nameWithType.vb: Expression.Visitor(Of Object).VisitObjectLiteralExpression(ObjectLiteral)
+  fullName.vb: Heir.AST.Abstract.Expression.Visitor(Of Object).VisitObjectLiteralExpression(Heir.AST.ObjectLiteral)
+  spec.csharp:
+  - uid: Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitObjectLiteralExpression(Heir.AST.ObjectLiteral)
+    name: VisitObjectLiteralExpression
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitObjectLiteralExpression_Heir_AST_ObjectLiteral_
+  - name: (
+  - uid: Heir.AST.ObjectLiteral
+    name: ObjectLiteral
+    href: Heir.AST.ObjectLiteral.html
+  - name: )
+  spec.vb:
+  - uid: Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitObjectLiteralExpression(Heir.AST.ObjectLiteral)
+    name: VisitObjectLiteralExpression
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitObjectLiteralExpression_Heir_AST_ObjectLiteral_
+  - name: (
+  - uid: Heir.AST.ObjectLiteral
+    name: ObjectLiteral
+    href: Heir.AST.ObjectLiteral.html
+  - name: )
+- uid: Heir.AST.ObjectLiteral
+  commentId: T:Heir.AST.ObjectLiteral
+  parent: Heir.AST
+  href: Heir.AST.ObjectLiteral.html
+  name: ObjectLiteral
+  nameWithType: ObjectLiteral
+  fullName: Heir.AST.ObjectLiteral
+- uid: Heir.AST.Abstract.Expression.Visitor`1.VisitObjectLiteralExpression(Heir.AST.ObjectLiteral)
+  commentId: M:Heir.AST.Abstract.Expression.Visitor`1.VisitObjectLiteralExpression(Heir.AST.ObjectLiteral)
+  href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitObjectLiteralExpression_Heir_AST_ObjectLiteral_
+  name: VisitObjectLiteralExpression(ObjectLiteral)
+  nameWithType: Expression.Visitor<R>.VisitObjectLiteralExpression(ObjectLiteral)
+  fullName: Heir.AST.Abstract.Expression.Visitor<R>.VisitObjectLiteralExpression(Heir.AST.ObjectLiteral)
+  nameWithType.vb: Expression.Visitor(Of R).VisitObjectLiteralExpression(ObjectLiteral)
+  fullName.vb: Heir.AST.Abstract.Expression.Visitor(Of R).VisitObjectLiteralExpression(Heir.AST.ObjectLiteral)
+  spec.csharp:
+  - uid: Heir.AST.Abstract.Expression.Visitor`1.VisitObjectLiteralExpression(Heir.AST.ObjectLiteral)
+    name: VisitObjectLiteralExpression
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitObjectLiteralExpression_Heir_AST_ObjectLiteral_
+  - name: (
+  - uid: Heir.AST.ObjectLiteral
+    name: ObjectLiteral
+    href: Heir.AST.ObjectLiteral.html
+  - name: )
+  spec.vb:
+  - uid: Heir.AST.Abstract.Expression.Visitor`1.VisitObjectLiteralExpression(Heir.AST.ObjectLiteral)
+    name: VisitObjectLiteralExpression
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitObjectLiteralExpression_Heir_AST_ObjectLiteral_
+  - name: (
+  - uid: Heir.AST.ObjectLiteral
+    name: ObjectLiteral
+    href: Heir.AST.ObjectLiteral.html
+  - name: )
+- uid: Heir.Resolver.VisitNoOp*
+  commentId: Overload:Heir.Resolver.VisitNoOp
+  href: Heir.Resolver.html#Heir_Resolver_VisitNoOp_Heir_AST_NoOp_
+  name: VisitNoOp
+  nameWithType: Resolver.VisitNoOp
+  fullName: Heir.Resolver.VisitNoOp
+- uid: Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitNoOp(Heir.AST.NoOp)
+  commentId: M:Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitNoOp(Heir.AST.NoOp)
+  parent: Heir.AST.Abstract.Expression.Visitor{System.Object}
+  definition: Heir.AST.Abstract.Expression.Visitor`1.VisitNoOp(Heir.AST.NoOp)
+  href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitNoOp_Heir_AST_NoOp_
+  name: VisitNoOp(NoOp)
+  nameWithType: Expression.Visitor<object>.VisitNoOp(NoOp)
+  fullName: Heir.AST.Abstract.Expression.Visitor<object>.VisitNoOp(Heir.AST.NoOp)
+  nameWithType.vb: Expression.Visitor(Of Object).VisitNoOp(NoOp)
+  fullName.vb: Heir.AST.Abstract.Expression.Visitor(Of Object).VisitNoOp(Heir.AST.NoOp)
+  spec.csharp:
+  - uid: Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitNoOp(Heir.AST.NoOp)
+    name: VisitNoOp
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitNoOp_Heir_AST_NoOp_
+  - name: (
+  - uid: Heir.AST.NoOp
+    name: NoOp
+    href: Heir.AST.NoOp.html
+  - name: )
+  spec.vb:
+  - uid: Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitNoOp(Heir.AST.NoOp)
+    name: VisitNoOp
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitNoOp_Heir_AST_NoOp_
+  - name: (
+  - uid: Heir.AST.NoOp
+    name: NoOp
+    href: Heir.AST.NoOp.html
+  - name: )
+- uid: Heir.AST.NoOp
+  commentId: T:Heir.AST.NoOp
+  parent: Heir.AST
+  href: Heir.AST.NoOp.html
+  name: NoOp
+  nameWithType: NoOp
+  fullName: Heir.AST.NoOp
+- uid: Heir.AST.Abstract.Expression.Visitor`1.VisitNoOp(Heir.AST.NoOp)
+  commentId: M:Heir.AST.Abstract.Expression.Visitor`1.VisitNoOp(Heir.AST.NoOp)
+  href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitNoOp_Heir_AST_NoOp_
+  name: VisitNoOp(NoOp)
+  nameWithType: Expression.Visitor<R>.VisitNoOp(NoOp)
+  fullName: Heir.AST.Abstract.Expression.Visitor<R>.VisitNoOp(Heir.AST.NoOp)
+  nameWithType.vb: Expression.Visitor(Of R).VisitNoOp(NoOp)
+  fullName.vb: Heir.AST.Abstract.Expression.Visitor(Of R).VisitNoOp(Heir.AST.NoOp)
+  spec.csharp:
+  - uid: Heir.AST.Abstract.Expression.Visitor`1.VisitNoOp(Heir.AST.NoOp)
+    name: VisitNoOp
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitNoOp_Heir_AST_NoOp_
+  - name: (
+  - uid: Heir.AST.NoOp
+    name: NoOp
+    href: Heir.AST.NoOp.html
+  - name: )
+  spec.vb:
+  - uid: Heir.AST.Abstract.Expression.Visitor`1.VisitNoOp(Heir.AST.NoOp)
+    name: VisitNoOp
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitNoOp_Heir_AST_NoOp_
+  - name: (
+  - uid: Heir.AST.NoOp
+    name: NoOp
+    href: Heir.AST.NoOp.html
+  - name: )
+- uid: Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitNoOp(Heir.AST.NoOpType)
+  commentId: M:Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitNoOp(Heir.AST.NoOpType)
+  parent: Heir.AST.Abstract.Expression.Visitor{System.Object}
+  definition: Heir.AST.Abstract.Expression.Visitor`1.VisitNoOp(Heir.AST.NoOpType)
+  href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitNoOp_Heir_AST_NoOpType_
+  name: VisitNoOp(NoOpType)
+  nameWithType: Expression.Visitor<object>.VisitNoOp(NoOpType)
+  fullName: Heir.AST.Abstract.Expression.Visitor<object>.VisitNoOp(Heir.AST.NoOpType)
+  nameWithType.vb: Expression.Visitor(Of Object).VisitNoOp(NoOpType)
+  fullName.vb: Heir.AST.Abstract.Expression.Visitor(Of Object).VisitNoOp(Heir.AST.NoOpType)
+  spec.csharp:
+  - uid: Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitNoOp(Heir.AST.NoOpType)
+    name: VisitNoOp
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitNoOp_Heir_AST_NoOpType_
+  - name: (
+  - uid: Heir.AST.NoOpType
+    name: NoOpType
+    href: Heir.AST.NoOpType.html
+  - name: )
+  spec.vb:
+  - uid: Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitNoOp(Heir.AST.NoOpType)
+    name: VisitNoOp
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitNoOp_Heir_AST_NoOpType_
+  - name: (
+  - uid: Heir.AST.NoOpType
+    name: NoOpType
+    href: Heir.AST.NoOpType.html
+  - name: )
+- uid: Heir.AST.NoOpType
+  commentId: T:Heir.AST.NoOpType
+  parent: Heir.AST
+  href: Heir.AST.NoOpType.html
+  name: NoOpType
+  nameWithType: NoOpType
+  fullName: Heir.AST.NoOpType
+- uid: Heir.AST.Abstract.Expression.Visitor`1.VisitNoOp(Heir.AST.NoOpType)
+  commentId: M:Heir.AST.Abstract.Expression.Visitor`1.VisitNoOp(Heir.AST.NoOpType)
+  href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitNoOp_Heir_AST_NoOpType_
+  name: VisitNoOp(NoOpType)
+  nameWithType: Expression.Visitor<R>.VisitNoOp(NoOpType)
+  fullName: Heir.AST.Abstract.Expression.Visitor<R>.VisitNoOp(Heir.AST.NoOpType)
+  nameWithType.vb: Expression.Visitor(Of R).VisitNoOp(NoOpType)
+  fullName.vb: Heir.AST.Abstract.Expression.Visitor(Of R).VisitNoOp(Heir.AST.NoOpType)
+  spec.csharp:
+  - uid: Heir.AST.Abstract.Expression.Visitor`1.VisitNoOp(Heir.AST.NoOpType)
+    name: VisitNoOp
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitNoOp_Heir_AST_NoOpType_
+  - name: (
+  - uid: Heir.AST.NoOpType
+    name: NoOpType
+    href: Heir.AST.NoOpType.html
+  - name: )
+  spec.vb:
+  - uid: Heir.AST.Abstract.Expression.Visitor`1.VisitNoOp(Heir.AST.NoOpType)
+    name: VisitNoOp
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitNoOp_Heir_AST_NoOpType_
+  - name: (
+  - uid: Heir.AST.NoOpType
+    name: NoOpType
+    href: Heir.AST.NoOpType.html
+  - name: )
+- uid: Heir.Resolver.VisitSingularTypeRef*
+  commentId: Overload:Heir.Resolver.VisitSingularTypeRef
+  href: Heir.Resolver.html#Heir_Resolver_VisitSingularTypeRef_Heir_AST_SingularType_
+  name: VisitSingularTypeRef
+  nameWithType: Resolver.VisitSingularTypeRef
+  fullName: Heir.Resolver.VisitSingularTypeRef
+- uid: Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitSingularTypeRef(Heir.AST.SingularType)
+  commentId: M:Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitSingularTypeRef(Heir.AST.SingularType)
+  parent: Heir.AST.Abstract.Expression.Visitor{System.Object}
+  definition: Heir.AST.Abstract.Expression.Visitor`1.VisitSingularTypeRef(Heir.AST.SingularType)
+  href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitSingularTypeRef_Heir_AST_SingularType_
+  name: VisitSingularTypeRef(SingularType)
+  nameWithType: Expression.Visitor<object>.VisitSingularTypeRef(SingularType)
+  fullName: Heir.AST.Abstract.Expression.Visitor<object>.VisitSingularTypeRef(Heir.AST.SingularType)
+  nameWithType.vb: Expression.Visitor(Of Object).VisitSingularTypeRef(SingularType)
+  fullName.vb: Heir.AST.Abstract.Expression.Visitor(Of Object).VisitSingularTypeRef(Heir.AST.SingularType)
+  spec.csharp:
+  - uid: Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitSingularTypeRef(Heir.AST.SingularType)
+    name: VisitSingularTypeRef
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitSingularTypeRef_Heir_AST_SingularType_
+  - name: (
+  - uid: Heir.AST.SingularType
+    name: SingularType
+    href: Heir.AST.SingularType.html
+  - name: )
+  spec.vb:
+  - uid: Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitSingularTypeRef(Heir.AST.SingularType)
+    name: VisitSingularTypeRef
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitSingularTypeRef_Heir_AST_SingularType_
+  - name: (
+  - uid: Heir.AST.SingularType
+    name: SingularType
+    href: Heir.AST.SingularType.html
+  - name: )
+- uid: Heir.AST.SingularType
+  commentId: T:Heir.AST.SingularType
+  parent: Heir.AST
+  href: Heir.AST.SingularType.html
+  name: SingularType
+  nameWithType: SingularType
+  fullName: Heir.AST.SingularType
+- uid: Heir.AST.Abstract.Expression.Visitor`1.VisitSingularTypeRef(Heir.AST.SingularType)
+  commentId: M:Heir.AST.Abstract.Expression.Visitor`1.VisitSingularTypeRef(Heir.AST.SingularType)
+  href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitSingularTypeRef_Heir_AST_SingularType_
+  name: VisitSingularTypeRef(SingularType)
+  nameWithType: Expression.Visitor<R>.VisitSingularTypeRef(SingularType)
+  fullName: Heir.AST.Abstract.Expression.Visitor<R>.VisitSingularTypeRef(Heir.AST.SingularType)
+  nameWithType.vb: Expression.Visitor(Of R).VisitSingularTypeRef(SingularType)
+  fullName.vb: Heir.AST.Abstract.Expression.Visitor(Of R).VisitSingularTypeRef(Heir.AST.SingularType)
+  spec.csharp:
+  - uid: Heir.AST.Abstract.Expression.Visitor`1.VisitSingularTypeRef(Heir.AST.SingularType)
+    name: VisitSingularTypeRef
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitSingularTypeRef_Heir_AST_SingularType_
+  - name: (
+  - uid: Heir.AST.SingularType
+    name: SingularType
+    href: Heir.AST.SingularType.html
+  - name: )
+  spec.vb:
+  - uid: Heir.AST.Abstract.Expression.Visitor`1.VisitSingularTypeRef(Heir.AST.SingularType)
+    name: VisitSingularTypeRef
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitSingularTypeRef_Heir_AST_SingularType_
+  - name: (
+  - uid: Heir.AST.SingularType
+    name: SingularType
+    href: Heir.AST.SingularType.html
+  - name: )
+- uid: Heir.Resolver.VisitParenthesizedTypeRef*
+  commentId: Overload:Heir.Resolver.VisitParenthesizedTypeRef
+  href: Heir.Resolver.html#Heir_Resolver_VisitParenthesizedTypeRef_Heir_AST_ParenthesizedType_
+  name: VisitParenthesizedTypeRef
+  nameWithType: Resolver.VisitParenthesizedTypeRef
+  fullName: Heir.Resolver.VisitParenthesizedTypeRef
+- uid: Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitParenthesizedTypeRef(Heir.AST.ParenthesizedType)
+  commentId: M:Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitParenthesizedTypeRef(Heir.AST.ParenthesizedType)
+  parent: Heir.AST.Abstract.Expression.Visitor{System.Object}
+  definition: Heir.AST.Abstract.Expression.Visitor`1.VisitParenthesizedTypeRef(Heir.AST.ParenthesizedType)
+  href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitParenthesizedTypeRef_Heir_AST_ParenthesizedType_
+  name: VisitParenthesizedTypeRef(ParenthesizedType)
+  nameWithType: Expression.Visitor<object>.VisitParenthesizedTypeRef(ParenthesizedType)
+  fullName: Heir.AST.Abstract.Expression.Visitor<object>.VisitParenthesizedTypeRef(Heir.AST.ParenthesizedType)
+  nameWithType.vb: Expression.Visitor(Of Object).VisitParenthesizedTypeRef(ParenthesizedType)
+  fullName.vb: Heir.AST.Abstract.Expression.Visitor(Of Object).VisitParenthesizedTypeRef(Heir.AST.ParenthesizedType)
+  spec.csharp:
+  - uid: Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitParenthesizedTypeRef(Heir.AST.ParenthesizedType)
+    name: VisitParenthesizedTypeRef
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitParenthesizedTypeRef_Heir_AST_ParenthesizedType_
+  - name: (
+  - uid: Heir.AST.ParenthesizedType
+    name: ParenthesizedType
+    href: Heir.AST.ParenthesizedType.html
+  - name: )
+  spec.vb:
+  - uid: Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitParenthesizedTypeRef(Heir.AST.ParenthesizedType)
+    name: VisitParenthesizedTypeRef
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitParenthesizedTypeRef_Heir_AST_ParenthesizedType_
+  - name: (
+  - uid: Heir.AST.ParenthesizedType
+    name: ParenthesizedType
+    href: Heir.AST.ParenthesizedType.html
+  - name: )
+- uid: Heir.AST.ParenthesizedType
+  commentId: T:Heir.AST.ParenthesizedType
+  parent: Heir.AST
+  href: Heir.AST.ParenthesizedType.html
+  name: ParenthesizedType
+  nameWithType: ParenthesizedType
+  fullName: Heir.AST.ParenthesizedType
+- uid: Heir.AST.Abstract.Expression.Visitor`1.VisitParenthesizedTypeRef(Heir.AST.ParenthesizedType)
+  commentId: M:Heir.AST.Abstract.Expression.Visitor`1.VisitParenthesizedTypeRef(Heir.AST.ParenthesizedType)
+  href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitParenthesizedTypeRef_Heir_AST_ParenthesizedType_
+  name: VisitParenthesizedTypeRef(ParenthesizedType)
+  nameWithType: Expression.Visitor<R>.VisitParenthesizedTypeRef(ParenthesizedType)
+  fullName: Heir.AST.Abstract.Expression.Visitor<R>.VisitParenthesizedTypeRef(Heir.AST.ParenthesizedType)
+  nameWithType.vb: Expression.Visitor(Of R).VisitParenthesizedTypeRef(ParenthesizedType)
+  fullName.vb: Heir.AST.Abstract.Expression.Visitor(Of R).VisitParenthesizedTypeRef(Heir.AST.ParenthesizedType)
+  spec.csharp:
+  - uid: Heir.AST.Abstract.Expression.Visitor`1.VisitParenthesizedTypeRef(Heir.AST.ParenthesizedType)
+    name: VisitParenthesizedTypeRef
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitParenthesizedTypeRef_Heir_AST_ParenthesizedType_
+  - name: (
+  - uid: Heir.AST.ParenthesizedType
+    name: ParenthesizedType
+    href: Heir.AST.ParenthesizedType.html
+  - name: )
+  spec.vb:
+  - uid: Heir.AST.Abstract.Expression.Visitor`1.VisitParenthesizedTypeRef(Heir.AST.ParenthesizedType)
+    name: VisitParenthesizedTypeRef
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitParenthesizedTypeRef_Heir_AST_ParenthesizedType_
+  - name: (
+  - uid: Heir.AST.ParenthesizedType
+    name: ParenthesizedType
+    href: Heir.AST.ParenthesizedType.html
+  - name: )
+- uid: Heir.Resolver.VisitUnionTypeRef*
+  commentId: Overload:Heir.Resolver.VisitUnionTypeRef
+  href: Heir.Resolver.html#Heir_Resolver_VisitUnionTypeRef_Heir_AST_UnionType_
+  name: VisitUnionTypeRef
+  nameWithType: Resolver.VisitUnionTypeRef
+  fullName: Heir.Resolver.VisitUnionTypeRef
+- uid: Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitUnionTypeRef(Heir.AST.UnionType)
+  commentId: M:Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitUnionTypeRef(Heir.AST.UnionType)
+  parent: Heir.AST.Abstract.Expression.Visitor{System.Object}
+  definition: Heir.AST.Abstract.Expression.Visitor`1.VisitUnionTypeRef(Heir.AST.UnionType)
+  href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitUnionTypeRef_Heir_AST_UnionType_
+  name: VisitUnionTypeRef(UnionType)
+  nameWithType: Expression.Visitor<object>.VisitUnionTypeRef(UnionType)
+  fullName: Heir.AST.Abstract.Expression.Visitor<object>.VisitUnionTypeRef(Heir.AST.UnionType)
+  nameWithType.vb: Expression.Visitor(Of Object).VisitUnionTypeRef(UnionType)
+  fullName.vb: Heir.AST.Abstract.Expression.Visitor(Of Object).VisitUnionTypeRef(Heir.AST.UnionType)
+  spec.csharp:
+  - uid: Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitUnionTypeRef(Heir.AST.UnionType)
+    name: VisitUnionTypeRef
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitUnionTypeRef_Heir_AST_UnionType_
+  - name: (
+  - uid: Heir.AST.UnionType
+    name: UnionType
+    href: Heir.AST.UnionType.html
+  - name: )
+  spec.vb:
+  - uid: Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitUnionTypeRef(Heir.AST.UnionType)
+    name: VisitUnionTypeRef
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitUnionTypeRef_Heir_AST_UnionType_
+  - name: (
+  - uid: Heir.AST.UnionType
+    name: UnionType
+    href: Heir.AST.UnionType.html
+  - name: )
+- uid: Heir.AST.UnionType
+  commentId: T:Heir.AST.UnionType
+  parent: Heir.AST
+  href: Heir.AST.UnionType.html
+  name: UnionType
+  nameWithType: UnionType
+  fullName: Heir.AST.UnionType
+- uid: Heir.AST.Abstract.Expression.Visitor`1.VisitUnionTypeRef(Heir.AST.UnionType)
+  commentId: M:Heir.AST.Abstract.Expression.Visitor`1.VisitUnionTypeRef(Heir.AST.UnionType)
+  href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitUnionTypeRef_Heir_AST_UnionType_
+  name: VisitUnionTypeRef(UnionType)
+  nameWithType: Expression.Visitor<R>.VisitUnionTypeRef(UnionType)
+  fullName: Heir.AST.Abstract.Expression.Visitor<R>.VisitUnionTypeRef(Heir.AST.UnionType)
+  nameWithType.vb: Expression.Visitor(Of R).VisitUnionTypeRef(UnionType)
+  fullName.vb: Heir.AST.Abstract.Expression.Visitor(Of R).VisitUnionTypeRef(Heir.AST.UnionType)
+  spec.csharp:
+  - uid: Heir.AST.Abstract.Expression.Visitor`1.VisitUnionTypeRef(Heir.AST.UnionType)
+    name: VisitUnionTypeRef
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitUnionTypeRef_Heir_AST_UnionType_
+  - name: (
+  - uid: Heir.AST.UnionType
+    name: UnionType
+    href: Heir.AST.UnionType.html
+  - name: )
+  spec.vb:
+  - uid: Heir.AST.Abstract.Expression.Visitor`1.VisitUnionTypeRef(Heir.AST.UnionType)
+    name: VisitUnionTypeRef
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitUnionTypeRef_Heir_AST_UnionType_
+  - name: (
+  - uid: Heir.AST.UnionType
+    name: UnionType
+    href: Heir.AST.UnionType.html
+  - name: )
+- uid: Heir.Resolver.VisitIntersectionTypeRef*
+  commentId: Overload:Heir.Resolver.VisitIntersectionTypeRef
+  href: Heir.Resolver.html#Heir_Resolver_VisitIntersectionTypeRef_Heir_AST_IntersectionType_
+  name: VisitIntersectionTypeRef
+  nameWithType: Resolver.VisitIntersectionTypeRef
+  fullName: Heir.Resolver.VisitIntersectionTypeRef
+- uid: Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitIntersectionTypeRef(Heir.AST.IntersectionType)
+  commentId: M:Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitIntersectionTypeRef(Heir.AST.IntersectionType)
+  parent: Heir.AST.Abstract.Expression.Visitor{System.Object}
+  definition: Heir.AST.Abstract.Expression.Visitor`1.VisitIntersectionTypeRef(Heir.AST.IntersectionType)
+  href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitIntersectionTypeRef_Heir_AST_IntersectionType_
+  name: VisitIntersectionTypeRef(IntersectionType)
+  nameWithType: Expression.Visitor<object>.VisitIntersectionTypeRef(IntersectionType)
+  fullName: Heir.AST.Abstract.Expression.Visitor<object>.VisitIntersectionTypeRef(Heir.AST.IntersectionType)
+  nameWithType.vb: Expression.Visitor(Of Object).VisitIntersectionTypeRef(IntersectionType)
+  fullName.vb: Heir.AST.Abstract.Expression.Visitor(Of Object).VisitIntersectionTypeRef(Heir.AST.IntersectionType)
+  spec.csharp:
+  - uid: Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitIntersectionTypeRef(Heir.AST.IntersectionType)
+    name: VisitIntersectionTypeRef
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitIntersectionTypeRef_Heir_AST_IntersectionType_
+  - name: (
+  - uid: Heir.AST.IntersectionType
+    name: IntersectionType
+    href: Heir.AST.IntersectionType.html
+  - name: )
+  spec.vb:
+  - uid: Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitIntersectionTypeRef(Heir.AST.IntersectionType)
+    name: VisitIntersectionTypeRef
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitIntersectionTypeRef_Heir_AST_IntersectionType_
+  - name: (
+  - uid: Heir.AST.IntersectionType
+    name: IntersectionType
+    href: Heir.AST.IntersectionType.html
+  - name: )
+- uid: Heir.AST.IntersectionType
+  commentId: T:Heir.AST.IntersectionType
+  parent: Heir.AST
+  href: Heir.AST.IntersectionType.html
+  name: IntersectionType
+  nameWithType: IntersectionType
+  fullName: Heir.AST.IntersectionType
+- uid: Heir.AST.Abstract.Expression.Visitor`1.VisitIntersectionTypeRef(Heir.AST.IntersectionType)
+  commentId: M:Heir.AST.Abstract.Expression.Visitor`1.VisitIntersectionTypeRef(Heir.AST.IntersectionType)
+  href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitIntersectionTypeRef_Heir_AST_IntersectionType_
+  name: VisitIntersectionTypeRef(IntersectionType)
+  nameWithType: Expression.Visitor<R>.VisitIntersectionTypeRef(IntersectionType)
+  fullName: Heir.AST.Abstract.Expression.Visitor<R>.VisitIntersectionTypeRef(Heir.AST.IntersectionType)
+  nameWithType.vb: Expression.Visitor(Of R).VisitIntersectionTypeRef(IntersectionType)
+  fullName.vb: Heir.AST.Abstract.Expression.Visitor(Of R).VisitIntersectionTypeRef(Heir.AST.IntersectionType)
+  spec.csharp:
+  - uid: Heir.AST.Abstract.Expression.Visitor`1.VisitIntersectionTypeRef(Heir.AST.IntersectionType)
+    name: VisitIntersectionTypeRef
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitIntersectionTypeRef_Heir_AST_IntersectionType_
+  - name: (
+  - uid: Heir.AST.IntersectionType
+    name: IntersectionType
+    href: Heir.AST.IntersectionType.html
+  - name: )
+  spec.vb:
+  - uid: Heir.AST.Abstract.Expression.Visitor`1.VisitIntersectionTypeRef(Heir.AST.IntersectionType)
+    name: VisitIntersectionTypeRef
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitIntersectionTypeRef_Heir_AST_IntersectionType_
+  - name: (
+  - uid: Heir.AST.IntersectionType
+    name: IntersectionType
+    href: Heir.AST.IntersectionType.html
+  - name: )
+- uid: Heir.AST.Abstract.Statement.Visitor{System.Object}.VisitNoOp(Heir.AST.NoOpStatement)
+  commentId: M:Heir.AST.Abstract.Statement.Visitor{System.Object}.VisitNoOp(Heir.AST.NoOpStatement)
+  parent: Heir.AST.Abstract.Statement.Visitor{System.Object}
+  definition: Heir.AST.Abstract.Statement.Visitor`1.VisitNoOp(Heir.AST.NoOpStatement)
+  href: Heir.AST.Abstract.Statement.Visitor-1.html#Heir_AST_Abstract_Statement_Visitor_1_VisitNoOp_Heir_AST_NoOpStatement_
+  name: VisitNoOp(NoOpStatement)
+  nameWithType: Statement.Visitor<object>.VisitNoOp(NoOpStatement)
+  fullName: Heir.AST.Abstract.Statement.Visitor<object>.VisitNoOp(Heir.AST.NoOpStatement)
+  nameWithType.vb: Statement.Visitor(Of Object).VisitNoOp(NoOpStatement)
+  fullName.vb: Heir.AST.Abstract.Statement.Visitor(Of Object).VisitNoOp(Heir.AST.NoOpStatement)
+  spec.csharp:
+  - uid: Heir.AST.Abstract.Statement.Visitor{System.Object}.VisitNoOp(Heir.AST.NoOpStatement)
+    name: VisitNoOp
+    href: Heir.AST.Abstract.Statement.Visitor-1.html#Heir_AST_Abstract_Statement_Visitor_1_VisitNoOp_Heir_AST_NoOpStatement_
+  - name: (
+  - uid: Heir.AST.NoOpStatement
+    name: NoOpStatement
+    href: Heir.AST.NoOpStatement.html
+  - name: )
+  spec.vb:
+  - uid: Heir.AST.Abstract.Statement.Visitor{System.Object}.VisitNoOp(Heir.AST.NoOpStatement)
+    name: VisitNoOp
+    href: Heir.AST.Abstract.Statement.Visitor-1.html#Heir_AST_Abstract_Statement_Visitor_1_VisitNoOp_Heir_AST_NoOpStatement_
+  - name: (
+  - uid: Heir.AST.NoOpStatement
+    name: NoOpStatement
+    href: Heir.AST.NoOpStatement.html
+  - name: )
+- uid: Heir.AST.NoOpStatement
+  commentId: T:Heir.AST.NoOpStatement
+  parent: Heir.AST
+  href: Heir.AST.NoOpStatement.html
+  name: NoOpStatement
+  nameWithType: NoOpStatement
+  fullName: Heir.AST.NoOpStatement
+- uid: Heir.AST.Abstract.Statement.Visitor`1.VisitNoOp(Heir.AST.NoOpStatement)
+  commentId: M:Heir.AST.Abstract.Statement.Visitor`1.VisitNoOp(Heir.AST.NoOpStatement)
+  href: Heir.AST.Abstract.Statement.Visitor-1.html#Heir_AST_Abstract_Statement_Visitor_1_VisitNoOp_Heir_AST_NoOpStatement_
+  name: VisitNoOp(NoOpStatement)
+  nameWithType: Statement.Visitor<R>.VisitNoOp(NoOpStatement)
+  fullName: Heir.AST.Abstract.Statement.Visitor<R>.VisitNoOp(Heir.AST.NoOpStatement)
+  nameWithType.vb: Statement.Visitor(Of R).VisitNoOp(NoOpStatement)
+  fullName.vb: Heir.AST.Abstract.Statement.Visitor(Of R).VisitNoOp(Heir.AST.NoOpStatement)
+  spec.csharp:
+  - uid: Heir.AST.Abstract.Statement.Visitor`1.VisitNoOp(Heir.AST.NoOpStatement)
+    name: VisitNoOp
+    href: Heir.AST.Abstract.Statement.Visitor-1.html#Heir_AST_Abstract_Statement_Visitor_1_VisitNoOp_Heir_AST_NoOpStatement_
+  - name: (
+  - uid: Heir.AST.NoOpStatement
+    name: NoOpStatement
+    href: Heir.AST.NoOpStatement.html
+  - name: )
+  spec.vb:
+  - uid: Heir.AST.Abstract.Statement.Visitor`1.VisitNoOp(Heir.AST.NoOpStatement)
+    name: VisitNoOp
+    href: Heir.AST.Abstract.Statement.Visitor-1.html#Heir_AST_Abstract_Statement_Visitor_1_VisitNoOp_Heir_AST_NoOpStatement_
+  - name: (
+  - uid: Heir.AST.NoOpStatement
+    name: NoOpStatement
+    href: Heir.AST.NoOpStatement.html
+  - name: )
+- uid: Heir.Resolver.VisitParenthesizedExpression*
+  commentId: Overload:Heir.Resolver.VisitParenthesizedExpression
+  href: Heir.Resolver.html#Heir_Resolver_VisitParenthesizedExpression_Heir_AST_Parenthesized_
+  name: VisitParenthesizedExpression
+  nameWithType: Resolver.VisitParenthesizedExpression
+  fullName: Heir.Resolver.VisitParenthesizedExpression
+- uid: Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitParenthesizedExpression(Heir.AST.Parenthesized)
+  commentId: M:Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitParenthesizedExpression(Heir.AST.Parenthesized)
+  parent: Heir.AST.Abstract.Expression.Visitor{System.Object}
+  definition: Heir.AST.Abstract.Expression.Visitor`1.VisitParenthesizedExpression(Heir.AST.Parenthesized)
+  href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitParenthesizedExpression_Heir_AST_Parenthesized_
+  name: VisitParenthesizedExpression(Parenthesized)
+  nameWithType: Expression.Visitor<object>.VisitParenthesizedExpression(Parenthesized)
+  fullName: Heir.AST.Abstract.Expression.Visitor<object>.VisitParenthesizedExpression(Heir.AST.Parenthesized)
+  nameWithType.vb: Expression.Visitor(Of Object).VisitParenthesizedExpression(Parenthesized)
+  fullName.vb: Heir.AST.Abstract.Expression.Visitor(Of Object).VisitParenthesizedExpression(Heir.AST.Parenthesized)
+  spec.csharp:
+  - uid: Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitParenthesizedExpression(Heir.AST.Parenthesized)
+    name: VisitParenthesizedExpression
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitParenthesizedExpression_Heir_AST_Parenthesized_
+  - name: (
+  - uid: Heir.AST.Parenthesized
+    name: Parenthesized
+    href: Heir.AST.Parenthesized.html
+  - name: )
+  spec.vb:
+  - uid: Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitParenthesizedExpression(Heir.AST.Parenthesized)
+    name: VisitParenthesizedExpression
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitParenthesizedExpression_Heir_AST_Parenthesized_
+  - name: (
+  - uid: Heir.AST.Parenthesized
+    name: Parenthesized
+    href: Heir.AST.Parenthesized.html
+  - name: )
+- uid: Heir.AST.Parenthesized
+  commentId: T:Heir.AST.Parenthesized
+  parent: Heir.AST
+  href: Heir.AST.Parenthesized.html
+  name: Parenthesized
+  nameWithType: Parenthesized
+  fullName: Heir.AST.Parenthesized
+- uid: Heir.AST.Abstract.Expression.Visitor`1.VisitParenthesizedExpression(Heir.AST.Parenthesized)
+  commentId: M:Heir.AST.Abstract.Expression.Visitor`1.VisitParenthesizedExpression(Heir.AST.Parenthesized)
+  href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitParenthesizedExpression_Heir_AST_Parenthesized_
+  name: VisitParenthesizedExpression(Parenthesized)
+  nameWithType: Expression.Visitor<R>.VisitParenthesizedExpression(Parenthesized)
+  fullName: Heir.AST.Abstract.Expression.Visitor<R>.VisitParenthesizedExpression(Heir.AST.Parenthesized)
+  nameWithType.vb: Expression.Visitor(Of R).VisitParenthesizedExpression(Parenthesized)
+  fullName.vb: Heir.AST.Abstract.Expression.Visitor(Of R).VisitParenthesizedExpression(Heir.AST.Parenthesized)
+  spec.csharp:
+  - uid: Heir.AST.Abstract.Expression.Visitor`1.VisitParenthesizedExpression(Heir.AST.Parenthesized)
+    name: VisitParenthesizedExpression
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitParenthesizedExpression_Heir_AST_Parenthesized_
+  - name: (
+  - uid: Heir.AST.Parenthesized
+    name: Parenthesized
+    href: Heir.AST.Parenthesized.html
+  - name: )
+  spec.vb:
+  - uid: Heir.AST.Abstract.Expression.Visitor`1.VisitParenthesizedExpression(Heir.AST.Parenthesized)
+    name: VisitParenthesizedExpression
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitParenthesizedExpression_Heir_AST_Parenthesized_
+  - name: (
+  - uid: Heir.AST.Parenthesized
+    name: Parenthesized
+    href: Heir.AST.Parenthesized.html
+  - name: )
+- uid: Heir.Resolver.VisitUnaryOpExpression*
+  commentId: Overload:Heir.Resolver.VisitUnaryOpExpression
+  href: Heir.Resolver.html#Heir_Resolver_VisitUnaryOpExpression_Heir_AST_UnaryOp_
+  name: VisitUnaryOpExpression
+  nameWithType: Resolver.VisitUnaryOpExpression
+  fullName: Heir.Resolver.VisitUnaryOpExpression
+- uid: Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitUnaryOpExpression(Heir.AST.UnaryOp)
+  commentId: M:Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitUnaryOpExpression(Heir.AST.UnaryOp)
+  parent: Heir.AST.Abstract.Expression.Visitor{System.Object}
+  definition: Heir.AST.Abstract.Expression.Visitor`1.VisitUnaryOpExpression(Heir.AST.UnaryOp)
+  href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitUnaryOpExpression_Heir_AST_UnaryOp_
+  name: VisitUnaryOpExpression(UnaryOp)
+  nameWithType: Expression.Visitor<object>.VisitUnaryOpExpression(UnaryOp)
+  fullName: Heir.AST.Abstract.Expression.Visitor<object>.VisitUnaryOpExpression(Heir.AST.UnaryOp)
+  nameWithType.vb: Expression.Visitor(Of Object).VisitUnaryOpExpression(UnaryOp)
+  fullName.vb: Heir.AST.Abstract.Expression.Visitor(Of Object).VisitUnaryOpExpression(Heir.AST.UnaryOp)
+  spec.csharp:
+  - uid: Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitUnaryOpExpression(Heir.AST.UnaryOp)
+    name: VisitUnaryOpExpression
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitUnaryOpExpression_Heir_AST_UnaryOp_
+  - name: (
+  - uid: Heir.AST.UnaryOp
+    name: UnaryOp
+    href: Heir.AST.UnaryOp.html
+  - name: )
+  spec.vb:
+  - uid: Heir.AST.Abstract.Expression.Visitor{System.Object}.VisitUnaryOpExpression(Heir.AST.UnaryOp)
+    name: VisitUnaryOpExpression
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitUnaryOpExpression_Heir_AST_UnaryOp_
+  - name: (
+  - uid: Heir.AST.UnaryOp
+    name: UnaryOp
+    href: Heir.AST.UnaryOp.html
+  - name: )
+- uid: Heir.AST.UnaryOp
+  commentId: T:Heir.AST.UnaryOp
+  parent: Heir.AST
+  href: Heir.AST.UnaryOp.html
+  name: UnaryOp
+  nameWithType: UnaryOp
+  fullName: Heir.AST.UnaryOp
+- uid: Heir.AST.Abstract.Expression.Visitor`1.VisitUnaryOpExpression(Heir.AST.UnaryOp)
+  commentId: M:Heir.AST.Abstract.Expression.Visitor`1.VisitUnaryOpExpression(Heir.AST.UnaryOp)
+  href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitUnaryOpExpression_Heir_AST_UnaryOp_
+  name: VisitUnaryOpExpression(UnaryOp)
+  nameWithType: Expression.Visitor<R>.VisitUnaryOpExpression(UnaryOp)
+  fullName: Heir.AST.Abstract.Expression.Visitor<R>.VisitUnaryOpExpression(Heir.AST.UnaryOp)
+  nameWithType.vb: Expression.Visitor(Of R).VisitUnaryOpExpression(UnaryOp)
+  fullName.vb: Heir.AST.Abstract.Expression.Visitor(Of R).VisitUnaryOpExpression(Heir.AST.UnaryOp)
+  spec.csharp:
+  - uid: Heir.AST.Abstract.Expression.Visitor`1.VisitUnaryOpExpression(Heir.AST.UnaryOp)
+    name: VisitUnaryOpExpression
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitUnaryOpExpression_Heir_AST_UnaryOp_
+  - name: (
+  - uid: Heir.AST.UnaryOp
+    name: UnaryOp
+    href: Heir.AST.UnaryOp.html
+  - name: )
+  spec.vb:
+  - uid: Heir.AST.Abstract.Expression.Visitor`1.VisitUnaryOpExpression(Heir.AST.UnaryOp)
+    name: VisitUnaryOpExpression
+    href: Heir.AST.Abstract.Expression.Visitor-1.html#Heir_AST_Abstract_Expression_Visitor_1_VisitUnaryOpExpression_Heir_AST_UnaryOp_
+  - name: (
+  - uid: Heir.AST.UnaryOp
+    name: UnaryOp
+    href: Heir.AST.UnaryOp.html
+  - name: )
+- uid: Heir.AST.Abstract.Expression
+  commentId: T:Heir.AST.Abstract.Expression
+  parent: Heir.AST.Abstract
+  href: Heir.AST.Abstract.Expression.html
+  name: Expression
+  nameWithType: Expression
+  fullName: Heir.AST.Abstract.Expression
+- uid: Heir.AST.Abstract.Statement
+  commentId: T:Heir.AST.Abstract.Statement
+  parent: Heir.AST.Abstract
+  href: Heir.AST.Abstract.Statement.html
+  name: Statement
+  nameWithType: Statement
+  fullName: Heir.AST.Abstract.Statement

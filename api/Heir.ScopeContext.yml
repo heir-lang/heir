@@ -1,0 +1,123 @@
+### YamlMime:ManagedReference
+items:
+- uid: Heir.ScopeContext
+  commentId: T:Heir.ScopeContext
+  id: ScopeContext
+  parent: Heir
+  children:
+  - Heir.ScopeContext.Block
+  - Heir.ScopeContext.Class
+  - Heir.ScopeContext.Global
+  langs:
+  - csharp
+  - vb
+  name: ScopeContext
+  nameWithType: ScopeContext
+  fullName: Heir.ScopeContext
+  type: Enum
+  source:
+    remote:
+      path: Heir/Resolver.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: ScopeContext
+    path: Heir/Resolver.cs
+    startLine: 7
+  assemblies:
+  - Heir
+  namespace: Heir
+  syntax:
+    content: public enum ScopeContext
+    content.vb: Public Enum ScopeContext
+- uid: Heir.ScopeContext.Global
+  commentId: F:Heir.ScopeContext.Global
+  id: Global
+  parent: Heir.ScopeContext
+  langs:
+  - csharp
+  - vb
+  name: Global
+  nameWithType: ScopeContext.Global
+  fullName: Heir.ScopeContext.Global
+  type: Field
+  source:
+    remote:
+      path: Heir/Resolver.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Global
+    path: Heir/Resolver.cs
+    startLine: 9
+  assemblies:
+  - Heir
+  namespace: Heir
+  syntax:
+    content: Global = 0
+    return:
+      type: Heir.ScopeContext
+- uid: Heir.ScopeContext.Block
+  commentId: F:Heir.ScopeContext.Block
+  id: Block
+  parent: Heir.ScopeContext
+  langs:
+  - csharp
+  - vb
+  name: Block
+  nameWithType: ScopeContext.Block
+  fullName: Heir.ScopeContext.Block
+  type: Field
+  source:
+    remote:
+      path: Heir/Resolver.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Block
+    path: Heir/Resolver.cs
+    startLine: 10
+  assemblies:
+  - Heir
+  namespace: Heir
+  syntax:
+    content: Block = 1
+    return:
+      type: Heir.ScopeContext
+- uid: Heir.ScopeContext.Class
+  commentId: F:Heir.ScopeContext.Class
+  id: Class
+  parent: Heir.ScopeContext
+  langs:
+  - csharp
+  - vb
+  name: Class
+  nameWithType: ScopeContext.Class
+  fullName: Heir.ScopeContext.Class
+  type: Field
+  source:
+    remote:
+      path: Heir/Resolver.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Class
+    path: Heir/Resolver.cs
+    startLine: 11
+  assemblies:
+  - Heir
+  namespace: Heir
+  syntax:
+    content: Class = 2
+    return:
+      type: Heir.ScopeContext
+references:
+- uid: Heir
+  commentId: N:Heir
+  href: Heir.html
+  name: Heir
+  nameWithType: Heir
+  fullName: Heir
+- uid: Heir.ScopeContext
+  commentId: T:Heir.ScopeContext
+  parent: Heir
+  href: Heir.ScopeContext.html
+  name: ScopeContext
+  nameWithType: ScopeContext
+  fullName: Heir.ScopeContext

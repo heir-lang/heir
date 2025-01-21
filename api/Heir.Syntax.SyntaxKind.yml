@@ -1,0 +1,2010 @@
+### YamlMime:ManagedReference
+items:
+- uid: Heir.Syntax.SyntaxKind
+  commentId: T:Heir.Syntax.SyntaxKind
+  id: SyntaxKind
+  parent: Heir.Syntax
+  children:
+  - Heir.Syntax.SyntaxKind.Ampersand
+  - Heir.Syntax.SyntaxKind.AmpersandAmpersand
+  - Heir.Syntax.SyntaxKind.AmpersandAmpersandEquals
+  - Heir.Syntax.SyntaxKind.AmpersandEquals
+  - Heir.Syntax.SyntaxKind.Bang
+  - Heir.Syntax.SyntaxKind.BangEquals
+  - Heir.Syntax.SyntaxKind.BoolKeyword
+  - Heir.Syntax.SyntaxKind.BoolLiteral
+  - Heir.Syntax.SyntaxKind.Carat
+  - Heir.Syntax.SyntaxKind.CaratEquals
+  - Heir.Syntax.SyntaxKind.CharKeyword
+  - Heir.Syntax.SyntaxKind.CharLiteral
+  - Heir.Syntax.SyntaxKind.Colon
+  - Heir.Syntax.SyntaxKind.ColonColon
+  - Heir.Syntax.SyntaxKind.Comma
+  - Heir.Syntax.SyntaxKind.DashRArrow
+  - Heir.Syntax.SyntaxKind.Dot
+  - Heir.Syntax.SyntaxKind.ElseKeyword
+  - Heir.Syntax.SyntaxKind.Equals
+  - Heir.Syntax.SyntaxKind.EqualsEquals
+  - Heir.Syntax.SyntaxKind.FloatKeyword
+  - Heir.Syntax.SyntaxKind.FloatLiteral
+  - Heir.Syntax.SyntaxKind.FnKeyword
+  - Heir.Syntax.SyntaxKind.GT
+  - Heir.Syntax.SyntaxKind.GTE
+  - Heir.Syntax.SyntaxKind.Identifier
+  - Heir.Syntax.SyntaxKind.IfKeyword
+  - Heir.Syntax.SyntaxKind.IntKeyword
+  - Heir.Syntax.SyntaxKind.IntLiteral
+  - Heir.Syntax.SyntaxKind.LArrowLArrow
+  - Heir.Syntax.SyntaxKind.LArrowLArrowEquals
+  - Heir.Syntax.SyntaxKind.LBrace
+  - Heir.Syntax.SyntaxKind.LBracket
+  - Heir.Syntax.SyntaxKind.LParen
+  - Heir.Syntax.SyntaxKind.LT
+  - Heir.Syntax.SyntaxKind.LTE
+  - Heir.Syntax.SyntaxKind.LetKeyword
+  - Heir.Syntax.SyntaxKind.Minus
+  - Heir.Syntax.SyntaxKind.MinusEquals
+  - Heir.Syntax.SyntaxKind.MinusMinus
+  - Heir.Syntax.SyntaxKind.MutKeyword
+  - Heir.Syntax.SyntaxKind.NoneKeyword
+  - Heir.Syntax.SyntaxKind.ObjectLiteral
+  - Heir.Syntax.SyntaxKind.Percent
+  - Heir.Syntax.SyntaxKind.PercentEquals
+  - Heir.Syntax.SyntaxKind.Pipe
+  - Heir.Syntax.SyntaxKind.PipeEquals
+  - Heir.Syntax.SyntaxKind.PipePipe
+  - Heir.Syntax.SyntaxKind.PipePipeEquals
+  - Heir.Syntax.SyntaxKind.Plus
+  - Heir.Syntax.SyntaxKind.PlusEquals
+  - Heir.Syntax.SyntaxKind.PlusPlus
+  - Heir.Syntax.SyntaxKind.Question
+  - Heir.Syntax.SyntaxKind.QuestionQuestion
+  - Heir.Syntax.SyntaxKind.QuestionQuestionEquals
+  - Heir.Syntax.SyntaxKind.RArrowRArrow
+  - Heir.Syntax.SyntaxKind.RArrowRArrowEquals
+  - Heir.Syntax.SyntaxKind.RBrace
+  - Heir.Syntax.SyntaxKind.RBracket
+  - Heir.Syntax.SyntaxKind.RParen
+  - Heir.Syntax.SyntaxKind.ReturnKeyword
+  - Heir.Syntax.SyntaxKind.Slash
+  - Heir.Syntax.SyntaxKind.SlashEquals
+  - Heir.Syntax.SyntaxKind.SlashSlash
+  - Heir.Syntax.SyntaxKind.SlashSlashEquals
+  - Heir.Syntax.SyntaxKind.Star
+  - Heir.Syntax.SyntaxKind.StarEquals
+  - Heir.Syntax.SyntaxKind.StringKeyword
+  - Heir.Syntax.SyntaxKind.StringLiteral
+  - Heir.Syntax.SyntaxKind.Tilde
+  - Heir.Syntax.SyntaxKind.TildeEquals
+  - Heir.Syntax.SyntaxKind.Trivia
+  langs:
+  - csharp
+  - vb
+  name: SyntaxKind
+  nameWithType: SyntaxKind
+  fullName: Heir.Syntax.SyntaxKind
+  type: Enum
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: SyntaxKind
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 2
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: public enum SyntaxKind
+    content.vb: Public Enum SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.Trivia
+  commentId: F:Heir.Syntax.SyntaxKind.Trivia
+  id: Trivia
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: Trivia
+  nameWithType: SyntaxKind.Trivia
+  fullName: Heir.Syntax.SyntaxKind.Trivia
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Trivia
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 5
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  example: []
+  syntax:
+    content: Trivia = 0
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.LParen
+  commentId: F:Heir.Syntax.SyntaxKind.LParen
+  id: LParen
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: LParen
+  nameWithType: SyntaxKind.LParen
+  fullName: Heir.Syntax.SyntaxKind.LParen
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: LParen
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 7
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: LParen = 1
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.RParen
+  commentId: F:Heir.Syntax.SyntaxKind.RParen
+  id: RParen
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: RParen
+  nameWithType: SyntaxKind.RParen
+  fullName: Heir.Syntax.SyntaxKind.RParen
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: RParen
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 8
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: RParen = 2
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.LBracket
+  commentId: F:Heir.Syntax.SyntaxKind.LBracket
+  id: LBracket
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: LBracket
+  nameWithType: SyntaxKind.LBracket
+  fullName: Heir.Syntax.SyntaxKind.LBracket
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: LBracket
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 9
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: LBracket = 3
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.RBracket
+  commentId: F:Heir.Syntax.SyntaxKind.RBracket
+  id: RBracket
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: RBracket
+  nameWithType: SyntaxKind.RBracket
+  fullName: Heir.Syntax.SyntaxKind.RBracket
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: RBracket
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 10
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: RBracket = 4
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.LBrace
+  commentId: F:Heir.Syntax.SyntaxKind.LBrace
+  id: LBrace
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: LBrace
+  nameWithType: SyntaxKind.LBrace
+  fullName: Heir.Syntax.SyntaxKind.LBrace
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: LBrace
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 11
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: LBrace = 5
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.RBrace
+  commentId: F:Heir.Syntax.SyntaxKind.RBrace
+  id: RBrace
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: RBrace
+  nameWithType: SyntaxKind.RBrace
+  fullName: Heir.Syntax.SyntaxKind.RBrace
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: RBrace
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 12
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: RBrace = 6
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.LT
+  commentId: F:Heir.Syntax.SyntaxKind.LT
+  id: LT
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: LT
+  nameWithType: SyntaxKind.LT
+  fullName: Heir.Syntax.SyntaxKind.LT
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: LT
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 14
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: LT = 7
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.GT
+  commentId: F:Heir.Syntax.SyntaxKind.GT
+  id: GT
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: GT
+  nameWithType: SyntaxKind.GT
+  fullName: Heir.Syntax.SyntaxKind.GT
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: GT
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 15
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: GT = 8
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.LTE
+  commentId: F:Heir.Syntax.SyntaxKind.LTE
+  id: LTE
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: LTE
+  nameWithType: SyntaxKind.LTE
+  fullName: Heir.Syntax.SyntaxKind.LTE
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: LTE
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 16
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: LTE = 9
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.GTE
+  commentId: F:Heir.Syntax.SyntaxKind.GTE
+  id: GTE
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: GTE
+  nameWithType: SyntaxKind.GTE
+  fullName: Heir.Syntax.SyntaxKind.GTE
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: GTE
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 17
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: GTE = 10
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.EqualsEquals
+  commentId: F:Heir.Syntax.SyntaxKind.EqualsEquals
+  id: EqualsEquals
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: EqualsEquals
+  nameWithType: SyntaxKind.EqualsEquals
+  fullName: Heir.Syntax.SyntaxKind.EqualsEquals
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: EqualsEquals
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 18
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: EqualsEquals = 11
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.BangEquals
+  commentId: F:Heir.Syntax.SyntaxKind.BangEquals
+  id: BangEquals
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: BangEquals
+  nameWithType: SyntaxKind.BangEquals
+  fullName: Heir.Syntax.SyntaxKind.BangEquals
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: BangEquals
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 19
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: BangEquals = 12
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.Bang
+  commentId: F:Heir.Syntax.SyntaxKind.Bang
+  id: Bang
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: Bang
+  nameWithType: SyntaxKind.Bang
+  fullName: Heir.Syntax.SyntaxKind.Bang
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Bang
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 20
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: Bang = 13
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.AmpersandAmpersand
+  commentId: F:Heir.Syntax.SyntaxKind.AmpersandAmpersand
+  id: AmpersandAmpersand
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: AmpersandAmpersand
+  nameWithType: SyntaxKind.AmpersandAmpersand
+  fullName: Heir.Syntax.SyntaxKind.AmpersandAmpersand
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: AmpersandAmpersand
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 21
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: AmpersandAmpersand = 14
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.PipePipe
+  commentId: F:Heir.Syntax.SyntaxKind.PipePipe
+  id: PipePipe
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: PipePipe
+  nameWithType: SyntaxKind.PipePipe
+  fullName: Heir.Syntax.SyntaxKind.PipePipe
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: PipePipe
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 22
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: PipePipe = 15
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.AmpersandAmpersandEquals
+  commentId: F:Heir.Syntax.SyntaxKind.AmpersandAmpersandEquals
+  id: AmpersandAmpersandEquals
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: AmpersandAmpersandEquals
+  nameWithType: SyntaxKind.AmpersandAmpersandEquals
+  fullName: Heir.Syntax.SyntaxKind.AmpersandAmpersandEquals
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: AmpersandAmpersandEquals
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 23
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: AmpersandAmpersandEquals = 16
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.PipePipeEquals
+  commentId: F:Heir.Syntax.SyntaxKind.PipePipeEquals
+  id: PipePipeEquals
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: PipePipeEquals
+  nameWithType: SyntaxKind.PipePipeEquals
+  fullName: Heir.Syntax.SyntaxKind.PipePipeEquals
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: PipePipeEquals
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 24
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: PipePipeEquals = 17
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.QuestionQuestion
+  commentId: F:Heir.Syntax.SyntaxKind.QuestionQuestion
+  id: QuestionQuestion
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: QuestionQuestion
+  nameWithType: SyntaxKind.QuestionQuestion
+  fullName: Heir.Syntax.SyntaxKind.QuestionQuestion
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: QuestionQuestion
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 26
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: QuestionQuestion = 18
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.QuestionQuestionEquals
+  commentId: F:Heir.Syntax.SyntaxKind.QuestionQuestionEquals
+  id: QuestionQuestionEquals
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: QuestionQuestionEquals
+  nameWithType: SyntaxKind.QuestionQuestionEquals
+  fullName: Heir.Syntax.SyntaxKind.QuestionQuestionEquals
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: QuestionQuestionEquals
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 27
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: QuestionQuestionEquals = 19
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.Dot
+  commentId: F:Heir.Syntax.SyntaxKind.Dot
+  id: Dot
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: Dot
+  nameWithType: SyntaxKind.Dot
+  fullName: Heir.Syntax.SyntaxKind.Dot
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Dot
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 28
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: Dot = 20
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.Colon
+  commentId: F:Heir.Syntax.SyntaxKind.Colon
+  id: Colon
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: Colon
+  nameWithType: SyntaxKind.Colon
+  fullName: Heir.Syntax.SyntaxKind.Colon
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Colon
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 29
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: Colon = 21
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.ColonColon
+  commentId: F:Heir.Syntax.SyntaxKind.ColonColon
+  id: ColonColon
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: ColonColon
+  nameWithType: SyntaxKind.ColonColon
+  fullName: Heir.Syntax.SyntaxKind.ColonColon
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: ColonColon
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 30
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: ColonColon = 22
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.Comma
+  commentId: F:Heir.Syntax.SyntaxKind.Comma
+  id: Comma
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: Comma
+  nameWithType: SyntaxKind.Comma
+  fullName: Heir.Syntax.SyntaxKind.Comma
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Comma
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 31
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: Comma = 23
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.Question
+  commentId: F:Heir.Syntax.SyntaxKind.Question
+  id: Question
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: Question
+  nameWithType: SyntaxKind.Question
+  fullName: Heir.Syntax.SyntaxKind.Question
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Question
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 32
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: Question = 24
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.Equals
+  commentId: F:Heir.Syntax.SyntaxKind.Equals
+  id: Equals
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: Equals
+  nameWithType: SyntaxKind.Equals
+  fullName: Heir.Syntax.SyntaxKind.Equals
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Equals
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 33
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: Equals = 25
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.DashRArrow
+  commentId: F:Heir.Syntax.SyntaxKind.DashRArrow
+  id: DashRArrow
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: DashRArrow
+  nameWithType: SyntaxKind.DashRArrow
+  fullName: Heir.Syntax.SyntaxKind.DashRArrow
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: DashRArrow
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 34
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: DashRArrow = 26
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.Plus
+  commentId: F:Heir.Syntax.SyntaxKind.Plus
+  id: Plus
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: Plus
+  nameWithType: SyntaxKind.Plus
+  fullName: Heir.Syntax.SyntaxKind.Plus
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Plus
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 36
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: Plus = 27
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.PlusEquals
+  commentId: F:Heir.Syntax.SyntaxKind.PlusEquals
+  id: PlusEquals
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: PlusEquals
+  nameWithType: SyntaxKind.PlusEquals
+  fullName: Heir.Syntax.SyntaxKind.PlusEquals
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: PlusEquals
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 37
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: PlusEquals = 28
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.PlusPlus
+  commentId: F:Heir.Syntax.SyntaxKind.PlusPlus
+  id: PlusPlus
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: PlusPlus
+  nameWithType: SyntaxKind.PlusPlus
+  fullName: Heir.Syntax.SyntaxKind.PlusPlus
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: PlusPlus
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 38
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: PlusPlus = 29
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.Minus
+  commentId: F:Heir.Syntax.SyntaxKind.Minus
+  id: Minus
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: Minus
+  nameWithType: SyntaxKind.Minus
+  fullName: Heir.Syntax.SyntaxKind.Minus
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Minus
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 39
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: Minus = 30
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.MinusEquals
+  commentId: F:Heir.Syntax.SyntaxKind.MinusEquals
+  id: MinusEquals
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: MinusEquals
+  nameWithType: SyntaxKind.MinusEquals
+  fullName: Heir.Syntax.SyntaxKind.MinusEquals
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: MinusEquals
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 40
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: MinusEquals = 31
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.MinusMinus
+  commentId: F:Heir.Syntax.SyntaxKind.MinusMinus
+  id: MinusMinus
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: MinusMinus
+  nameWithType: SyntaxKind.MinusMinus
+  fullName: Heir.Syntax.SyntaxKind.MinusMinus
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: MinusMinus
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 41
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: MinusMinus = 32
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.Star
+  commentId: F:Heir.Syntax.SyntaxKind.Star
+  id: Star
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: Star
+  nameWithType: SyntaxKind.Star
+  fullName: Heir.Syntax.SyntaxKind.Star
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Star
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 42
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: Star = 33
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.StarEquals
+  commentId: F:Heir.Syntax.SyntaxKind.StarEquals
+  id: StarEquals
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: StarEquals
+  nameWithType: SyntaxKind.StarEquals
+  fullName: Heir.Syntax.SyntaxKind.StarEquals
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: StarEquals
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 43
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: StarEquals = 34
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.Slash
+  commentId: F:Heir.Syntax.SyntaxKind.Slash
+  id: Slash
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: Slash
+  nameWithType: SyntaxKind.Slash
+  fullName: Heir.Syntax.SyntaxKind.Slash
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Slash
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 44
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: Slash = 35
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.SlashEquals
+  commentId: F:Heir.Syntax.SyntaxKind.SlashEquals
+  id: SlashEquals
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: SlashEquals
+  nameWithType: SyntaxKind.SlashEquals
+  fullName: Heir.Syntax.SyntaxKind.SlashEquals
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: SlashEquals
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 45
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: SlashEquals = 36
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.SlashSlash
+  commentId: F:Heir.Syntax.SyntaxKind.SlashSlash
+  id: SlashSlash
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: SlashSlash
+  nameWithType: SyntaxKind.SlashSlash
+  fullName: Heir.Syntax.SyntaxKind.SlashSlash
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: SlashSlash
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 46
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: SlashSlash = 37
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.SlashSlashEquals
+  commentId: F:Heir.Syntax.SyntaxKind.SlashSlashEquals
+  id: SlashSlashEquals
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: SlashSlashEquals
+  nameWithType: SyntaxKind.SlashSlashEquals
+  fullName: Heir.Syntax.SyntaxKind.SlashSlashEquals
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: SlashSlashEquals
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 47
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: SlashSlashEquals = 38
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.Percent
+  commentId: F:Heir.Syntax.SyntaxKind.Percent
+  id: Percent
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: Percent
+  nameWithType: SyntaxKind.Percent
+  fullName: Heir.Syntax.SyntaxKind.Percent
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Percent
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 48
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: Percent = 39
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.PercentEquals
+  commentId: F:Heir.Syntax.SyntaxKind.PercentEquals
+  id: PercentEquals
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: PercentEquals
+  nameWithType: SyntaxKind.PercentEquals
+  fullName: Heir.Syntax.SyntaxKind.PercentEquals
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: PercentEquals
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 49
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: PercentEquals = 40
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.Carat
+  commentId: F:Heir.Syntax.SyntaxKind.Carat
+  id: Carat
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: Carat
+  nameWithType: SyntaxKind.Carat
+  fullName: Heir.Syntax.SyntaxKind.Carat
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Carat
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 50
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: Carat = 41
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.CaratEquals
+  commentId: F:Heir.Syntax.SyntaxKind.CaratEquals
+  id: CaratEquals
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: CaratEquals
+  nameWithType: SyntaxKind.CaratEquals
+  fullName: Heir.Syntax.SyntaxKind.CaratEquals
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: CaratEquals
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 51
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: CaratEquals = 42
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.Ampersand
+  commentId: F:Heir.Syntax.SyntaxKind.Ampersand
+  id: Ampersand
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: Ampersand
+  nameWithType: SyntaxKind.Ampersand
+  fullName: Heir.Syntax.SyntaxKind.Ampersand
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Ampersand
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 53
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: Ampersand = 43
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.Pipe
+  commentId: F:Heir.Syntax.SyntaxKind.Pipe
+  id: Pipe
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: Pipe
+  nameWithType: SyntaxKind.Pipe
+  fullName: Heir.Syntax.SyntaxKind.Pipe
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Pipe
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 54
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: Pipe = 44
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.Tilde
+  commentId: F:Heir.Syntax.SyntaxKind.Tilde
+  id: Tilde
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: Tilde
+  nameWithType: SyntaxKind.Tilde
+  fullName: Heir.Syntax.SyntaxKind.Tilde
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Tilde
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 55
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: Tilde = 45
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.AmpersandEquals
+  commentId: F:Heir.Syntax.SyntaxKind.AmpersandEquals
+  id: AmpersandEquals
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: AmpersandEquals
+  nameWithType: SyntaxKind.AmpersandEquals
+  fullName: Heir.Syntax.SyntaxKind.AmpersandEquals
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: AmpersandEquals
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 56
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: AmpersandEquals = 46
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.PipeEquals
+  commentId: F:Heir.Syntax.SyntaxKind.PipeEquals
+  id: PipeEquals
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: PipeEquals
+  nameWithType: SyntaxKind.PipeEquals
+  fullName: Heir.Syntax.SyntaxKind.PipeEquals
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: PipeEquals
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 57
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: PipeEquals = 47
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.TildeEquals
+  commentId: F:Heir.Syntax.SyntaxKind.TildeEquals
+  id: TildeEquals
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: TildeEquals
+  nameWithType: SyntaxKind.TildeEquals
+  fullName: Heir.Syntax.SyntaxKind.TildeEquals
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: TildeEquals
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 58
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: TildeEquals = 48
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.LArrowLArrow
+  commentId: F:Heir.Syntax.SyntaxKind.LArrowLArrow
+  id: LArrowLArrow
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: LArrowLArrow
+  nameWithType: SyntaxKind.LArrowLArrow
+  fullName: Heir.Syntax.SyntaxKind.LArrowLArrow
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: LArrowLArrow
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 59
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: LArrowLArrow = 49
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.LArrowLArrowEquals
+  commentId: F:Heir.Syntax.SyntaxKind.LArrowLArrowEquals
+  id: LArrowLArrowEquals
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: LArrowLArrowEquals
+  nameWithType: SyntaxKind.LArrowLArrowEquals
+  fullName: Heir.Syntax.SyntaxKind.LArrowLArrowEquals
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: LArrowLArrowEquals
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 60
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: LArrowLArrowEquals = 50
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.RArrowRArrow
+  commentId: F:Heir.Syntax.SyntaxKind.RArrowRArrow
+  id: RArrowRArrow
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: RArrowRArrow
+  nameWithType: SyntaxKind.RArrowRArrow
+  fullName: Heir.Syntax.SyntaxKind.RArrowRArrow
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: RArrowRArrow
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 61
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: RArrowRArrow = 51
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.RArrowRArrowEquals
+  commentId: F:Heir.Syntax.SyntaxKind.RArrowRArrowEquals
+  id: RArrowRArrowEquals
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: RArrowRArrowEquals
+  nameWithType: SyntaxKind.RArrowRArrowEquals
+  fullName: Heir.Syntax.SyntaxKind.RArrowRArrowEquals
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: RArrowRArrowEquals
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 62
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: RArrowRArrowEquals = 52
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.Identifier
+  commentId: F:Heir.Syntax.SyntaxKind.Identifier
+  id: Identifier
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: Identifier
+  nameWithType: SyntaxKind.Identifier
+  fullName: Heir.Syntax.SyntaxKind.Identifier
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Identifier
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 64
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: Identifier = 53
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.IntLiteral
+  commentId: F:Heir.Syntax.SyntaxKind.IntLiteral
+  id: IntLiteral
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: IntLiteral
+  nameWithType: SyntaxKind.IntLiteral
+  fullName: Heir.Syntax.SyntaxKind.IntLiteral
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: IntLiteral
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 66
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: IntLiteral = 54
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.FloatLiteral
+  commentId: F:Heir.Syntax.SyntaxKind.FloatLiteral
+  id: FloatLiteral
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: FloatLiteral
+  nameWithType: SyntaxKind.FloatLiteral
+  fullName: Heir.Syntax.SyntaxKind.FloatLiteral
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: FloatLiteral
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 67
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: FloatLiteral = 55
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.StringLiteral
+  commentId: F:Heir.Syntax.SyntaxKind.StringLiteral
+  id: StringLiteral
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: StringLiteral
+  nameWithType: SyntaxKind.StringLiteral
+  fullName: Heir.Syntax.SyntaxKind.StringLiteral
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: StringLiteral
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 68
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: StringLiteral = 56
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.CharLiteral
+  commentId: F:Heir.Syntax.SyntaxKind.CharLiteral
+  id: CharLiteral
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: CharLiteral
+  nameWithType: SyntaxKind.CharLiteral
+  fullName: Heir.Syntax.SyntaxKind.CharLiteral
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: CharLiteral
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 69
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: CharLiteral = 57
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.BoolLiteral
+  commentId: F:Heir.Syntax.SyntaxKind.BoolLiteral
+  id: BoolLiteral
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: BoolLiteral
+  nameWithType: SyntaxKind.BoolLiteral
+  fullName: Heir.Syntax.SyntaxKind.BoolLiteral
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: BoolLiteral
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 70
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: BoolLiteral = 58
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.ObjectLiteral
+  commentId: F:Heir.Syntax.SyntaxKind.ObjectLiteral
+  id: ObjectLiteral
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: ObjectLiteral
+  nameWithType: SyntaxKind.ObjectLiteral
+  fullName: Heir.Syntax.SyntaxKind.ObjectLiteral
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: ObjectLiteral
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 71
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: ObjectLiteral = 59
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.LetKeyword
+  commentId: F:Heir.Syntax.SyntaxKind.LetKeyword
+  id: LetKeyword
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: LetKeyword
+  nameWithType: SyntaxKind.LetKeyword
+  fullName: Heir.Syntax.SyntaxKind.LetKeyword
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: LetKeyword
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 73
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: LetKeyword = 60
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.MutKeyword
+  commentId: F:Heir.Syntax.SyntaxKind.MutKeyword
+  id: MutKeyword
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: MutKeyword
+  nameWithType: SyntaxKind.MutKeyword
+  fullName: Heir.Syntax.SyntaxKind.MutKeyword
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: MutKeyword
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 74
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: MutKeyword = 61
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.FnKeyword
+  commentId: F:Heir.Syntax.SyntaxKind.FnKeyword
+  id: FnKeyword
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: FnKeyword
+  nameWithType: SyntaxKind.FnKeyword
+  fullName: Heir.Syntax.SyntaxKind.FnKeyword
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: FnKeyword
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 75
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: FnKeyword = 62
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.ReturnKeyword
+  commentId: F:Heir.Syntax.SyntaxKind.ReturnKeyword
+  id: ReturnKeyword
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: ReturnKeyword
+  nameWithType: SyntaxKind.ReturnKeyword
+  fullName: Heir.Syntax.SyntaxKind.ReturnKeyword
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: ReturnKeyword
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 76
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: ReturnKeyword = 63
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.IfKeyword
+  commentId: F:Heir.Syntax.SyntaxKind.IfKeyword
+  id: IfKeyword
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: IfKeyword
+  nameWithType: SyntaxKind.IfKeyword
+  fullName: Heir.Syntax.SyntaxKind.IfKeyword
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: IfKeyword
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 77
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: IfKeyword = 64
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.ElseKeyword
+  commentId: F:Heir.Syntax.SyntaxKind.ElseKeyword
+  id: ElseKeyword
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: ElseKeyword
+  nameWithType: SyntaxKind.ElseKeyword
+  fullName: Heir.Syntax.SyntaxKind.ElseKeyword
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: ElseKeyword
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 78
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: ElseKeyword = 65
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.IntKeyword
+  commentId: F:Heir.Syntax.SyntaxKind.IntKeyword
+  id: IntKeyword
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: IntKeyword
+  nameWithType: SyntaxKind.IntKeyword
+  fullName: Heir.Syntax.SyntaxKind.IntKeyword
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: IntKeyword
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 80
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: IntKeyword = 66
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.FloatKeyword
+  commentId: F:Heir.Syntax.SyntaxKind.FloatKeyword
+  id: FloatKeyword
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: FloatKeyword
+  nameWithType: SyntaxKind.FloatKeyword
+  fullName: Heir.Syntax.SyntaxKind.FloatKeyword
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: FloatKeyword
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 81
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: FloatKeyword = 67
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.StringKeyword
+  commentId: F:Heir.Syntax.SyntaxKind.StringKeyword
+  id: StringKeyword
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: StringKeyword
+  nameWithType: SyntaxKind.StringKeyword
+  fullName: Heir.Syntax.SyntaxKind.StringKeyword
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: StringKeyword
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 82
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: StringKeyword = 68
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.CharKeyword
+  commentId: F:Heir.Syntax.SyntaxKind.CharKeyword
+  id: CharKeyword
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: CharKeyword
+  nameWithType: SyntaxKind.CharKeyword
+  fullName: Heir.Syntax.SyntaxKind.CharKeyword
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: CharKeyword
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 83
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: CharKeyword = 69
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.BoolKeyword
+  commentId: F:Heir.Syntax.SyntaxKind.BoolKeyword
+  id: BoolKeyword
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: BoolKeyword
+  nameWithType: SyntaxKind.BoolKeyword
+  fullName: Heir.Syntax.SyntaxKind.BoolKeyword
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: BoolKeyword
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 84
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: BoolKeyword = 70
+    return:
+      type: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax.SyntaxKind.NoneKeyword
+  commentId: F:Heir.Syntax.SyntaxKind.NoneKeyword
+  id: NoneKeyword
+  parent: Heir.Syntax.SyntaxKind
+  langs:
+  - csharp
+  - vb
+  name: NoneKeyword
+  nameWithType: SyntaxKind.NoneKeyword
+  fullName: Heir.Syntax.SyntaxKind.NoneKeyword
+  type: Field
+  source:
+    remote:
+      path: Heir/Syntax/SyntaxKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: NoneKeyword
+    path: Heir/Syntax/SyntaxKind.cs
+    startLine: 85
+  assemblies:
+  - Heir
+  namespace: Heir.Syntax
+  syntax:
+    content: NoneKeyword = 71
+    return:
+      type: Heir.Syntax.SyntaxKind
+references:
+- uid: Heir.Syntax
+  commentId: N:Heir.Syntax
+  href: Heir.html
+  name: Heir.Syntax
+  nameWithType: Heir.Syntax
+  fullName: Heir.Syntax
+  spec.csharp:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.Syntax
+    name: Syntax
+    href: Heir.Syntax.html
+  spec.vb:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.Syntax
+    name: Syntax
+    href: Heir.Syntax.html
+- uid: Heir.Syntax.TriviaKind
+  commentId: T:Heir.Syntax.TriviaKind
+  parent: Heir.Syntax
+  href: Heir.Syntax.TriviaKind.html
+  name: TriviaKind
+  nameWithType: TriviaKind
+  fullName: Heir.Syntax.TriviaKind
+- uid: Heir.Syntax.SyntaxKind
+  commentId: T:Heir.Syntax.SyntaxKind
+  parent: Heir.Syntax
+  href: Heir.Syntax.SyntaxKind.html
+  name: SyntaxKind
+  nameWithType: SyntaxKind
+  fullName: Heir.Syntax.SyntaxKind

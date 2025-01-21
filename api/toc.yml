@@ -1,0 +1,468 @@
+### YamlMime:TableOfContent
+items:
+- uid: Heir
+  name: Heir
+  type: Namespace
+  items:
+  - uid: Heir.BiDictionary`2
+    name: BiDictionary<TKey, TValue>
+    type: Class
+  - uid: Heir.Binder
+    name: Binder
+    type: Class
+  - uid: Heir.BytecodeGenerator
+    name: BytecodeGenerator
+    type: Class
+  - uid: Heir.Diagnostic
+    name: Diagnostic
+    type: Class
+  - uid: Heir.DiagnosticBag
+    name: DiagnosticBag
+    type: Class
+  - uid: Heir.DiagnosticCode
+    name: DiagnosticCode
+    type: Enum
+  - uid: Heir.DiagnosticLevel
+    name: DiagnosticLevel
+    type: Enum
+  - uid: Heir.HeirProgram
+    name: HeirProgram
+    type: Class
+  - uid: Heir.Lexer
+    name: Lexer
+    type: Class
+  - uid: Heir.Parser
+    name: Parser
+    type: Class
+  - uid: Heir.Resolver
+    name: Resolver
+    type: Class
+  - uid: Heir.ScopeContext
+    name: ScopeContext
+    type: Enum
+  - uid: Heir.SourceFile
+    name: SourceFile
+    type: Class
+  - uid: Heir.StackFrame
+    name: StackFrame
+    type: Class
+  - uid: Heir.TypeChecker
+    name: TypeChecker
+    type: Class
+  - uid: Heir.Utility
+    name: Utility
+    type: Class
+  - uid: Heir.VirtualMachine
+    name: VirtualMachine
+    type: Class
+- uid: Heir.AST
+  name: Heir.AST
+  type: Namespace
+  items:
+  - uid: Heir.AST.AssignmentOp
+    name: AssignmentOp
+    type: Class
+  - uid: Heir.AST.BinaryOp
+    name: BinaryOp
+    type: Class
+  - uid: Heir.AST.Block
+    name: Block
+    type: Class
+  - uid: Heir.AST.ElementAccess
+    name: ElementAccess
+    type: Class
+  - uid: Heir.AST.ExpressionStatement
+    name: ExpressionStatement
+    type: Class
+  - uid: Heir.AST.FunctionDeclaration
+    name: FunctionDeclaration
+    type: Class
+  - uid: Heir.AST.IdentifierName
+    name: IdentifierName
+    type: Class
+  - uid: Heir.AST.If
+    name: If
+    type: Class
+  - uid: Heir.AST.IntersectionType
+    name: IntersectionType
+    type: Class
+  - uid: Heir.AST.Invocation
+    name: Invocation
+    type: Class
+  - uid: Heir.AST.Literal
+    name: Literal
+    type: Class
+  - uid: Heir.AST.MemberAccess
+    name: MemberAccess
+    type: Class
+  - uid: Heir.AST.Name
+    name: Name
+    type: Class
+  - uid: Heir.AST.NoOp
+    name: NoOp
+    type: Class
+  - uid: Heir.AST.NoOpStatement
+    name: NoOpStatement
+    type: Class
+  - uid: Heir.AST.NoOpType
+    name: NoOpType
+    type: Class
+  - uid: Heir.AST.ObjectLiteral
+    name: ObjectLiteral
+    type: Class
+  - uid: Heir.AST.Parameter
+    name: Parameter
+    type: Class
+  - uid: Heir.AST.Parenthesized
+    name: Parenthesized
+    type: Class
+  - uid: Heir.AST.ParenthesizedType
+    name: ParenthesizedType
+    type: Class
+  - uid: Heir.AST.Return
+    name: Return
+    type: Class
+  - uid: Heir.AST.SingularType
+    name: SingularType
+    type: Class
+  - uid: Heir.AST.SyntaxTree
+    name: SyntaxTree
+    type: Class
+  - uid: Heir.AST.UnaryOp
+    name: UnaryOp
+    type: Class
+  - uid: Heir.AST.UnionType
+    name: UnionType
+    type: Class
+  - uid: Heir.AST.VariableDeclaration
+    name: VariableDeclaration
+    type: Class
+- uid: Heir.AST.Abstract
+  name: Heir.AST.Abstract
+  type: Namespace
+  items:
+  - uid: Heir.AST.Abstract.Expression
+    name: Expression
+    type: Class
+  - uid: Heir.AST.Abstract.Expression.Visitor`1
+    name: Expression.Visitor<R>
+    type: Interface
+  - uid: Heir.AST.Abstract.Statement
+    name: Statement
+    type: Class
+  - uid: Heir.AST.Abstract.Statement.Visitor`1
+    name: Statement.Visitor<R>
+    type: Interface
+  - uid: Heir.AST.Abstract.SyntaxNode
+    name: SyntaxNode
+    type: Class
+  - uid: Heir.AST.Abstract.TypeRef
+    name: TypeRef
+    type: Class
+- uid: Heir.Binding
+  name: Heir.Binding
+  type: Namespace
+  items:
+  - uid: Heir.Binding.InterfaceMemberSignature
+    name: InterfaceMemberSignature
+    type: Class
+  - uid: Heir.Binding.InterfaceMemberSignature`1
+    name: InterfaceMemberSignature<T>
+    type: Class
+  - uid: Heir.Binding.VariableSymbol`1
+    name: VariableSymbol<T>
+    type: Class
+- uid: Heir.BoundAST
+  name: Heir.BoundAST
+  type: Namespace
+  items:
+  - uid: Heir.BoundAST.BoundAssignmentOp
+    name: BoundAssignmentOp
+    type: Class
+  - uid: Heir.BoundAST.BoundBinaryOp
+    name: BoundBinaryOp
+    type: Class
+  - uid: Heir.BoundAST.BoundBinaryOperator
+    name: BoundBinaryOperator
+    type: Class
+  - uid: Heir.BoundAST.BoundBinaryOperatorType
+    name: BoundBinaryOperatorType
+    type: Enum
+  - uid: Heir.BoundAST.BoundBlock
+    name: BoundBlock
+    type: Class
+  - uid: Heir.BoundAST.BoundElementAccess
+    name: BoundElementAccess
+    type: Class
+  - uid: Heir.BoundAST.BoundExpression
+    name: BoundExpression
+    type: Class
+  - uid: Heir.BoundAST.BoundExpression.Visitor`1
+    name: BoundExpression.Visitor<R>
+    type: Interface
+  - uid: Heir.BoundAST.BoundExpressionStatement
+    name: BoundExpressionStatement
+    type: Class
+  - uid: Heir.BoundAST.BoundFunctionDeclaration
+    name: BoundFunctionDeclaration
+    type: Class
+  - uid: Heir.BoundAST.BoundIdentifierName
+    name: BoundIdentifierName
+    type: Class
+  - uid: Heir.BoundAST.BoundIf
+    name: BoundIf
+    type: Class
+  - uid: Heir.BoundAST.BoundInvocation
+    name: BoundInvocation
+    type: Class
+  - uid: Heir.BoundAST.BoundLiteral
+    name: BoundLiteral
+    type: Class
+  - uid: Heir.BoundAST.BoundMemberAccess
+    name: BoundMemberAccess
+    type: Class
+  - uid: Heir.BoundAST.BoundName
+    name: BoundName
+    type: Class
+  - uid: Heir.BoundAST.BoundNoOp
+    name: BoundNoOp
+    type: Class
+  - uid: Heir.BoundAST.BoundNoOpStatement
+    name: BoundNoOpStatement
+    type: Class
+  - uid: Heir.BoundAST.BoundObjectLiteral
+    name: BoundObjectLiteral
+    type: Class
+  - uid: Heir.BoundAST.BoundParameter
+    name: BoundParameter
+    type: Class
+  - uid: Heir.BoundAST.BoundParenthesized
+    name: BoundParenthesized
+    type: Class
+  - uid: Heir.BoundAST.BoundReturn
+    name: BoundReturn
+    type: Class
+  - uid: Heir.BoundAST.BoundStatement
+    name: BoundStatement
+    type: Class
+  - uid: Heir.BoundAST.BoundStatement.Visitor`1
+    name: BoundStatement.Visitor<R>
+    type: Interface
+  - uid: Heir.BoundAST.BoundSyntaxNode
+    name: BoundSyntaxNode
+    type: Class
+  - uid: Heir.BoundAST.BoundSyntaxTree
+    name: BoundSyntaxTree
+    type: Class
+  - uid: Heir.BoundAST.BoundUnaryOp
+    name: BoundUnaryOp
+    type: Class
+  - uid: Heir.BoundAST.BoundUnaryOperator
+    name: BoundUnaryOperator
+    type: Class
+  - uid: Heir.BoundAST.BoundUnaryOperatorType
+    name: BoundUnaryOperatorType
+    type: Enum
+  - uid: Heir.BoundAST.BoundVariableDeclaration
+    name: BoundVariableDeclaration
+    type: Class
+- uid: Heir.CLI
+  name: Heir.CLI
+  type: Namespace
+  items:
+  - uid: Heir.CLI.Program
+    name: Program
+    type: Class
+- uid: Heir.CodeGeneration
+  name: Heir.CodeGeneration
+  type: Namespace
+  items:
+  - uid: Heir.CodeGeneration.Bytecode
+    name: Bytecode
+    type: Class
+  - uid: Heir.CodeGeneration.BytecodeDeserializer
+    name: BytecodeDeserializer
+    type: Class
+  - uid: Heir.CodeGeneration.BytecodeOptimizer
+    name: BytecodeOptimizer
+    type: Class
+  - uid: Heir.CodeGeneration.BytecodeSerializer
+    name: BytecodeSerializer
+    type: Class
+  - uid: Heir.CodeGeneration.Instruction
+    name: Instruction
+    type: Class
+  - uid: Heir.CodeGeneration.OpCode
+    name: OpCode
+    type: Enum
+- uid: Heir.Runtime
+  name: Heir.Runtime
+  type: Namespace
+  items:
+  - uid: Heir.Runtime.BinaryTypeOperations
+    name: BinaryTypeOperations
+    type: Class
+  - uid: Heir.Runtime.Scope
+    name: Scope
+    type: Class
+- uid: Heir.Runtime.HookedExceptions
+  name: Heir.Runtime.HookedExceptions
+  type: Namespace
+  items:
+  - uid: Heir.Runtime.HookedExceptions.BreakHook
+    name: BreakHook
+    type: Class
+  - uid: Heir.Runtime.HookedExceptions.HookedException
+    name: HookedException
+    type: Class
+  - uid: Heir.Runtime.HookedExceptions.NextHook
+    name: NextHook
+    type: Class
+- uid: Heir.Runtime.Intrinsics
+  name: Heir.Runtime.Intrinsics
+  type: Namespace
+  items:
+  - uid: Heir.Runtime.Intrinsics.IntrinsicFunction
+    name: IntrinsicFunction
+    type: Class
+  - uid: Heir.Runtime.Intrinsics.IntrinsicFunction.BaseDelegate
+    name: IntrinsicFunction.BaseDelegate
+    type: Delegate
+  - uid: Heir.Runtime.Intrinsics.IntrinsicRegistrar
+    name: IntrinsicRegistrar
+    type: Class
+  - uid: Heir.Runtime.Intrinsics.IntrinsicValue
+    name: IntrinsicValue
+    type: Class
+  - uid: Heir.Runtime.Intrinsics.Intrinsics
+    name: Intrinsics
+    type: Class
+- uid: Heir.Runtime.Intrinsics.Global
+  name: Heir.Runtime.Intrinsics.Global
+  type: Namespace
+  items:
+  - uid: Heir.Runtime.Intrinsics.Global.NowFunction
+    name: NowFunction
+    type: Class
+  - uid: Heir.Runtime.Intrinsics.Global.PrintFunction
+    name: PrintFunction
+    type: Class
+- uid: Heir.Runtime.Values
+  name: Heir.Runtime.Values
+  type: Namespace
+  items:
+  - uid: Heir.Runtime.Values.FunctionValue
+    name: FunctionValue
+    type: Class
+  - uid: Heir.Runtime.Values.IValue
+    name: IValue
+    type: Interface
+  - uid: Heir.Runtime.Values.ObjectValue
+    name: ObjectValue
+    type: Class
+- uid: Heir.Syntax
+  name: Heir.Syntax
+  type: Namespace
+  items:
+  - uid: Heir.Syntax.Location
+    name: Location
+    type: Class
+  - uid: Heir.Syntax.SyntaxFacts
+    name: SyntaxFacts
+    type: Class
+  - uid: Heir.Syntax.SyntaxKind
+    name: SyntaxKind
+    type: Enum
+  - uid: Heir.Syntax.Token
+    name: Token
+    type: Class
+  - uid: Heir.Syntax.TokenFactory
+    name: TokenFactory
+    type: Class
+  - uid: Heir.Syntax.TokenStream
+    name: TokenStream
+    type: Class
+  - uid: Heir.Syntax.TriviaKind
+    name: TriviaKind
+    type: Enum
+  - uid: Heir.Syntax.TriviaToken
+    name: TriviaToken
+    type: Class
+- uid: Heir.Tests
+  name: Heir.Tests
+  type: Namespace
+  items:
+  - uid: Heir.Tests.BinderTest
+    name: BinderTest
+    type: Class
+  - uid: Heir.Tests.BytecodeGeneratorTest
+    name: BytecodeGeneratorTest
+    type: Class
+  - uid: Heir.Tests.BytecodeSerdeTest
+    name: BytecodeSerdeTest
+    type: Class
+  - uid: Heir.Tests.LexerTest
+    name: LexerTest
+    type: Class
+  - uid: Heir.Tests.ParserTest
+    name: ParserTest
+    type: Class
+  - uid: Heir.Tests.ResolverTest
+    name: ResolverTest
+    type: Class
+  - uid: Heir.Tests.ScopeTest
+    name: ScopeTest
+    type: Class
+  - uid: Heir.Tests.TypeCheckerTest
+    name: TypeCheckerTest
+    type: Class
+  - uid: Heir.Tests.TypeTest
+    name: TypeTest
+    type: Class
+  - uid: Heir.Tests.VirtualMachineTest
+    name: VirtualMachineTest
+    type: Class
+- uid: Heir.Types
+  name: Heir.Types
+  type: Namespace
+  items:
+  - uid: Heir.Types.AnyType
+    name: AnyType
+    type: Class
+  - uid: Heir.Types.BaseType
+    name: BaseType
+    type: Class
+  - uid: Heir.Types.FunctionType
+    name: FunctionType
+    type: Class
+  - uid: Heir.Types.InterfaceType
+    name: InterfaceType
+    type: Class
+  - uid: Heir.Types.IntersectionType
+    name: IntersectionType
+    type: Class
+  - uid: Heir.Types.IntrinsicTypes
+    name: IntrinsicTypes
+    type: Class
+  - uid: Heir.Types.LiteralType
+    name: LiteralType
+    type: Class
+  - uid: Heir.Types.ParenthesizedType
+    name: ParenthesizedType
+    type: Class
+  - uid: Heir.Types.PrimitiveType
+    name: PrimitiveType
+    type: Class
+  - uid: Heir.Types.PrimitiveTypeKind
+    name: PrimitiveTypeKind
+    type: Enum
+  - uid: Heir.Types.SingularType
+    name: SingularType
+    type: Class
+  - uid: Heir.Types.TypeKind
+    name: TypeKind
+    type: Enum
+  - uid: Heir.Types.UnionType
+    name: UnionType
+    type: Class
+memberLayout: SamePage

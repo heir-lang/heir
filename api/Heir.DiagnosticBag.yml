@@ -1,0 +1,3578 @@
+### YamlMime:ManagedReference
+items:
+- uid: Heir.DiagnosticBag
+  commentId: T:Heir.DiagnosticBag
+  id: DiagnosticBag
+  parent: Heir
+  children:
+  - Heir.DiagnosticBag.#ctor(Heir.SourceFile)
+  - Heir.DiagnosticBag.Error(Heir.DiagnosticCode,System.String,Heir.AST.Abstract.SyntaxNode)
+  - Heir.DiagnosticBag.Error(Heir.DiagnosticCode,System.String,Heir.AST.Abstract.SyntaxNode,Heir.AST.Abstract.SyntaxNode)
+  - Heir.DiagnosticBag.Error(Heir.DiagnosticCode,System.String,Heir.Syntax.Location,Heir.Syntax.Location)
+  - Heir.DiagnosticBag.Error(Heir.DiagnosticCode,System.String,Heir.Syntax.Token)
+  - Heir.DiagnosticBag.Error(Heir.DiagnosticCode,System.String,Heir.Syntax.Token,Heir.Syntax.Token)
+  - Heir.DiagnosticBag.HasErrors
+  - Heir.DiagnosticBag.HasWarnings
+  - Heir.DiagnosticBag.RuntimeError(Heir.DiagnosticCode,System.String,Heir.Syntax.Token)
+  - Heir.DiagnosticBag.ToString(System.Boolean)
+  - Heir.DiagnosticBag.Warn(Heir.DiagnosticCode,System.String,Heir.AST.Abstract.SyntaxNode)
+  - Heir.DiagnosticBag.Warn(Heir.DiagnosticCode,System.String,Heir.AST.Abstract.SyntaxNode,Heir.AST.Abstract.SyntaxNode)
+  - Heir.DiagnosticBag.Warn(Heir.DiagnosticCode,System.String,Heir.Syntax.Location,Heir.Syntax.Location)
+  - Heir.DiagnosticBag.Warn(Heir.DiagnosticCode,System.String,Heir.Syntax.Token)
+  - Heir.DiagnosticBag.Warn(Heir.DiagnosticCode,System.String,Heir.Syntax.Token,Heir.Syntax.Token)
+  - Heir.DiagnosticBag.Write(System.Boolean)
+  langs:
+  - csharp
+  - vb
+  name: DiagnosticBag
+  nameWithType: DiagnosticBag
+  fullName: Heir.DiagnosticBag
+  type: Class
+  source:
+    remote:
+      path: Heir/DiagnosticBag.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: DiagnosticBag
+    path: Heir/DiagnosticBag.cs
+    startLine: 8
+  assemblies:
+  - Heir
+  namespace: Heir
+  syntax:
+    content: 'public sealed class DiagnosticBag : HashSet<Diagnostic>, ISet<Diagnostic>, ICollection<Diagnostic>, IReadOnlySet<Diagnostic>, IReadOnlyCollection<Diagnostic>, IEnumerable<Diagnostic>, IEnumerable, IDeserializationCallback, ISerializable'
+    content.vb: Public NotInheritable Class DiagnosticBag Inherits HashSet(Of Diagnostic) Implements ISet(Of Diagnostic), ICollection(Of Diagnostic), IReadOnlySet(Of Diagnostic), IReadOnlyCollection(Of Diagnostic), IEnumerable(Of Diagnostic), IEnumerable, IDeserializationCallback, ISerializable
+  inheritance:
+  - System.Object
+  - System.Collections.Generic.HashSet{Heir.Diagnostic}
+  implements:
+  - System.Collections.Generic.ISet{Heir.Diagnostic}
+  - System.Collections.Generic.ICollection{Heir.Diagnostic}
+  - System.Collections.Generic.IReadOnlySet{Heir.Diagnostic}
+  - System.Collections.Generic.IReadOnlyCollection{Heir.Diagnostic}
+  - System.Collections.Generic.IEnumerable{Heir.Diagnostic}
+  - System.Collections.IEnumerable
+  - System.Runtime.Serialization.IDeserializationCallback
+  - System.Runtime.Serialization.ISerializable
+  inheritedMembers:
+  - System.Collections.Generic.HashSet{Heir.Diagnostic}.Add(Heir.Diagnostic)
+  - System.Collections.Generic.HashSet{Heir.Diagnostic}.Clear
+  - System.Collections.Generic.HashSet{Heir.Diagnostic}.Contains(Heir.Diagnostic)
+  - System.Collections.Generic.HashSet{Heir.Diagnostic}.CopyTo(Heir.Diagnostic[])
+  - System.Collections.Generic.HashSet{Heir.Diagnostic}.CopyTo(Heir.Diagnostic[],System.Int32)
+  - System.Collections.Generic.HashSet{Heir.Diagnostic}.CopyTo(Heir.Diagnostic[],System.Int32,System.Int32)
+  - System.Collections.Generic.HashSet{Heir.Diagnostic}.CreateSetComparer
+  - System.Collections.Generic.HashSet{Heir.Diagnostic}.EnsureCapacity(System.Int32)
+  - System.Collections.Generic.HashSet{Heir.Diagnostic}.ExceptWith(System.Collections.Generic.IEnumerable{Heir.Diagnostic})
+  - System.Collections.Generic.HashSet{Heir.Diagnostic}.GetAlternateLookup``1
+  - System.Collections.Generic.HashSet{Heir.Diagnostic}.GetEnumerator
+  - System.Collections.Generic.HashSet{Heir.Diagnostic}.IntersectWith(System.Collections.Generic.IEnumerable{Heir.Diagnostic})
+  - System.Collections.Generic.HashSet{Heir.Diagnostic}.IsProperSubsetOf(System.Collections.Generic.IEnumerable{Heir.Diagnostic})
+  - System.Collections.Generic.HashSet{Heir.Diagnostic}.IsProperSupersetOf(System.Collections.Generic.IEnumerable{Heir.Diagnostic})
+  - System.Collections.Generic.HashSet{Heir.Diagnostic}.IsSubsetOf(System.Collections.Generic.IEnumerable{Heir.Diagnostic})
+  - System.Collections.Generic.HashSet{Heir.Diagnostic}.IsSupersetOf(System.Collections.Generic.IEnumerable{Heir.Diagnostic})
+  - System.Collections.Generic.HashSet{Heir.Diagnostic}.OnDeserialization(System.Object)
+  - System.Collections.Generic.HashSet{Heir.Diagnostic}.Overlaps(System.Collections.Generic.IEnumerable{Heir.Diagnostic})
+  - System.Collections.Generic.HashSet{Heir.Diagnostic}.Remove(Heir.Diagnostic)
+  - System.Collections.Generic.HashSet{Heir.Diagnostic}.RemoveWhere(System.Predicate{Heir.Diagnostic})
+  - System.Collections.Generic.HashSet{Heir.Diagnostic}.SetEquals(System.Collections.Generic.IEnumerable{Heir.Diagnostic})
+  - System.Collections.Generic.HashSet{Heir.Diagnostic}.SymmetricExceptWith(System.Collections.Generic.IEnumerable{Heir.Diagnostic})
+  - System.Collections.Generic.HashSet{Heir.Diagnostic}.TrimExcess
+  - System.Collections.Generic.HashSet{Heir.Diagnostic}.TrimExcess(System.Int32)
+  - System.Collections.Generic.HashSet{Heir.Diagnostic}.TryGetAlternateLookup``1(System.Collections.Generic.HashSet{Heir.Diagnostic}.AlternateLookup{{TAlternate}}@)
+  - System.Collections.Generic.HashSet{Heir.Diagnostic}.TryGetValue(Heir.Diagnostic,Heir.Diagnostic@)
+  - System.Collections.Generic.HashSet{Heir.Diagnostic}.UnionWith(System.Collections.Generic.IEnumerable{Heir.Diagnostic})
+  - System.Collections.Generic.HashSet{Heir.Diagnostic}.Comparer
+  - System.Collections.Generic.HashSet{Heir.Diagnostic}.Count
+  - System.Collections.Generic.HashSet{Heir.Diagnostic}.Capacity
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Heir.DiagnosticBag.#ctor(Heir.SourceFile)
+  commentId: M:Heir.DiagnosticBag.#ctor(Heir.SourceFile)
+  id: '#ctor(Heir.SourceFile)'
+  parent: Heir.DiagnosticBag
+  langs:
+  - csharp
+  - vb
+  name: DiagnosticBag(SourceFile)
+  nameWithType: DiagnosticBag.DiagnosticBag(SourceFile)
+  fullName: Heir.DiagnosticBag.DiagnosticBag(Heir.SourceFile)
+  type: Constructor
+  source:
+    remote:
+      path: Heir/DiagnosticBag.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: .ctor
+    path: Heir/DiagnosticBag.cs
+    startLine: 8
+  assemblies:
+  - Heir
+  namespace: Heir
+  syntax:
+    content: public DiagnosticBag(SourceFile sourceFile)
+    parameters:
+    - id: sourceFile
+      type: Heir.SourceFile
+    content.vb: Public Sub New(sourceFile As SourceFile)
+  overload: Heir.DiagnosticBag.#ctor*
+  nameWithType.vb: DiagnosticBag.New(SourceFile)
+  fullName.vb: Heir.DiagnosticBag.New(Heir.SourceFile)
+  name.vb: New(SourceFile)
+- uid: Heir.DiagnosticBag.HasErrors
+  commentId: P:Heir.DiagnosticBag.HasErrors
+  id: HasErrors
+  parent: Heir.DiagnosticBag
+  langs:
+  - csharp
+  - vb
+  name: HasErrors
+  nameWithType: DiagnosticBag.HasErrors
+  fullName: Heir.DiagnosticBag.HasErrors
+  type: Property
+  source:
+    remote:
+      path: Heir/DiagnosticBag.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: HasErrors
+    path: Heir/DiagnosticBag.cs
+    startLine: 10
+  assemblies:
+  - Heir
+  namespace: Heir
+  syntax:
+    content: public bool HasErrors { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property HasErrors As Boolean
+  overload: Heir.DiagnosticBag.HasErrors*
+- uid: Heir.DiagnosticBag.HasWarnings
+  commentId: P:Heir.DiagnosticBag.HasWarnings
+  id: HasWarnings
+  parent: Heir.DiagnosticBag
+  langs:
+  - csharp
+  - vb
+  name: HasWarnings
+  nameWithType: DiagnosticBag.HasWarnings
+  fullName: Heir.DiagnosticBag.HasWarnings
+  type: Property
+  source:
+    remote:
+      path: Heir/DiagnosticBag.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: HasWarnings
+    path: Heir/DiagnosticBag.cs
+    startLine: 11
+  assemblies:
+  - Heir
+  namespace: Heir
+  syntax:
+    content: public bool HasWarnings { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property HasWarnings As Boolean
+  overload: Heir.DiagnosticBag.HasWarnings*
+- uid: Heir.DiagnosticBag.Warn(Heir.DiagnosticCode,System.String,Heir.AST.Abstract.SyntaxNode,Heir.AST.Abstract.SyntaxNode)
+  commentId: M:Heir.DiagnosticBag.Warn(Heir.DiagnosticCode,System.String,Heir.AST.Abstract.SyntaxNode,Heir.AST.Abstract.SyntaxNode)
+  id: Warn(Heir.DiagnosticCode,System.String,Heir.AST.Abstract.SyntaxNode,Heir.AST.Abstract.SyntaxNode)
+  parent: Heir.DiagnosticBag
+  langs:
+  - csharp
+  - vb
+  name: Warn(DiagnosticCode, string, SyntaxNode, SyntaxNode)
+  nameWithType: DiagnosticBag.Warn(DiagnosticCode, string, SyntaxNode, SyntaxNode)
+  fullName: Heir.DiagnosticBag.Warn(Heir.DiagnosticCode, string, Heir.AST.Abstract.SyntaxNode, Heir.AST.Abstract.SyntaxNode)
+  type: Method
+  source:
+    remote:
+      path: Heir/DiagnosticBag.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Warn
+    path: Heir/DiagnosticBag.cs
+    startLine: 13
+  assemblies:
+  - Heir
+  namespace: Heir
+  syntax:
+    content: public void Warn(DiagnosticCode code, string message, SyntaxNode startNode, SyntaxNode endNode)
+    parameters:
+    - id: code
+      type: Heir.DiagnosticCode
+    - id: message
+      type: System.String
+    - id: startNode
+      type: Heir.AST.Abstract.SyntaxNode
+    - id: endNode
+      type: Heir.AST.Abstract.SyntaxNode
+    content.vb: Public Sub Warn(code As DiagnosticCode, message As String, startNode As SyntaxNode, endNode As SyntaxNode)
+  overload: Heir.DiagnosticBag.Warn*
+  nameWithType.vb: DiagnosticBag.Warn(DiagnosticCode, String, SyntaxNode, SyntaxNode)
+  fullName.vb: Heir.DiagnosticBag.Warn(Heir.DiagnosticCode, String, Heir.AST.Abstract.SyntaxNode, Heir.AST.Abstract.SyntaxNode)
+  name.vb: Warn(DiagnosticCode, String, SyntaxNode, SyntaxNode)
+- uid: Heir.DiagnosticBag.Warn(Heir.DiagnosticCode,System.String,Heir.AST.Abstract.SyntaxNode)
+  commentId: M:Heir.DiagnosticBag.Warn(Heir.DiagnosticCode,System.String,Heir.AST.Abstract.SyntaxNode)
+  id: Warn(Heir.DiagnosticCode,System.String,Heir.AST.Abstract.SyntaxNode)
+  parent: Heir.DiagnosticBag
+  langs:
+  - csharp
+  - vb
+  name: Warn(DiagnosticCode, string, SyntaxNode)
+  nameWithType: DiagnosticBag.Warn(DiagnosticCode, string, SyntaxNode)
+  fullName: Heir.DiagnosticBag.Warn(Heir.DiagnosticCode, string, Heir.AST.Abstract.SyntaxNode)
+  type: Method
+  source:
+    remote:
+      path: Heir/DiagnosticBag.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Warn
+    path: Heir/DiagnosticBag.cs
+    startLine: 16
+  assemblies:
+  - Heir
+  namespace: Heir
+  syntax:
+    content: public void Warn(DiagnosticCode code, string message, SyntaxNode node)
+    parameters:
+    - id: code
+      type: Heir.DiagnosticCode
+    - id: message
+      type: System.String
+    - id: node
+      type: Heir.AST.Abstract.SyntaxNode
+    content.vb: Public Sub Warn(code As DiagnosticCode, message As String, node As SyntaxNode)
+  overload: Heir.DiagnosticBag.Warn*
+  nameWithType.vb: DiagnosticBag.Warn(DiagnosticCode, String, SyntaxNode)
+  fullName.vb: Heir.DiagnosticBag.Warn(Heir.DiagnosticCode, String, Heir.AST.Abstract.SyntaxNode)
+  name.vb: Warn(DiagnosticCode, String, SyntaxNode)
+- uid: Heir.DiagnosticBag.Warn(Heir.DiagnosticCode,System.String,Heir.Syntax.Token,Heir.Syntax.Token)
+  commentId: M:Heir.DiagnosticBag.Warn(Heir.DiagnosticCode,System.String,Heir.Syntax.Token,Heir.Syntax.Token)
+  id: Warn(Heir.DiagnosticCode,System.String,Heir.Syntax.Token,Heir.Syntax.Token)
+  parent: Heir.DiagnosticBag
+  langs:
+  - csharp
+  - vb
+  name: Warn(DiagnosticCode, string, Token, Token)
+  nameWithType: DiagnosticBag.Warn(DiagnosticCode, string, Token, Token)
+  fullName: Heir.DiagnosticBag.Warn(Heir.DiagnosticCode, string, Heir.Syntax.Token, Heir.Syntax.Token)
+  type: Method
+  source:
+    remote:
+      path: Heir/DiagnosticBag.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Warn
+    path: Heir/DiagnosticBag.cs
+    startLine: 19
+  assemblies:
+  - Heir
+  namespace: Heir
+  syntax:
+    content: public void Warn(DiagnosticCode code, string message, Token startToken, Token endToken)
+    parameters:
+    - id: code
+      type: Heir.DiagnosticCode
+    - id: message
+      type: System.String
+    - id: startToken
+      type: Heir.Syntax.Token
+    - id: endToken
+      type: Heir.Syntax.Token
+    content.vb: Public Sub Warn(code As DiagnosticCode, message As String, startToken As Token, endToken As Token)
+  overload: Heir.DiagnosticBag.Warn*
+  nameWithType.vb: DiagnosticBag.Warn(DiagnosticCode, String, Token, Token)
+  fullName.vb: Heir.DiagnosticBag.Warn(Heir.DiagnosticCode, String, Heir.Syntax.Token, Heir.Syntax.Token)
+  name.vb: Warn(DiagnosticCode, String, Token, Token)
+- uid: Heir.DiagnosticBag.Warn(Heir.DiagnosticCode,System.String,Heir.Syntax.Token)
+  commentId: M:Heir.DiagnosticBag.Warn(Heir.DiagnosticCode,System.String,Heir.Syntax.Token)
+  id: Warn(Heir.DiagnosticCode,System.String,Heir.Syntax.Token)
+  parent: Heir.DiagnosticBag
+  langs:
+  - csharp
+  - vb
+  name: Warn(DiagnosticCode, string, Token)
+  nameWithType: DiagnosticBag.Warn(DiagnosticCode, string, Token)
+  fullName: Heir.DiagnosticBag.Warn(Heir.DiagnosticCode, string, Heir.Syntax.Token)
+  type: Method
+  source:
+    remote:
+      path: Heir/DiagnosticBag.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Warn
+    path: Heir/DiagnosticBag.cs
+    startLine: 22
+  assemblies:
+  - Heir
+  namespace: Heir
+  syntax:
+    content: public void Warn(DiagnosticCode code, string message, Token token)
+    parameters:
+    - id: code
+      type: Heir.DiagnosticCode
+    - id: message
+      type: System.String
+    - id: token
+      type: Heir.Syntax.Token
+    content.vb: Public Sub Warn(code As DiagnosticCode, message As String, token As Token)
+  overload: Heir.DiagnosticBag.Warn*
+  nameWithType.vb: DiagnosticBag.Warn(DiagnosticCode, String, Token)
+  fullName.vb: Heir.DiagnosticBag.Warn(Heir.DiagnosticCode, String, Heir.Syntax.Token)
+  name.vb: Warn(DiagnosticCode, String, Token)
+- uid: Heir.DiagnosticBag.Warn(Heir.DiagnosticCode,System.String,Heir.Syntax.Location,Heir.Syntax.Location)
+  commentId: M:Heir.DiagnosticBag.Warn(Heir.DiagnosticCode,System.String,Heir.Syntax.Location,Heir.Syntax.Location)
+  id: Warn(Heir.DiagnosticCode,System.String,Heir.Syntax.Location,Heir.Syntax.Location)
+  parent: Heir.DiagnosticBag
+  langs:
+  - csharp
+  - vb
+  name: Warn(DiagnosticCode, string, Location, Location?)
+  nameWithType: DiagnosticBag.Warn(DiagnosticCode, string, Location, Location?)
+  fullName: Heir.DiagnosticBag.Warn(Heir.DiagnosticCode, string, Heir.Syntax.Location, Heir.Syntax.Location?)
+  type: Method
+  source:
+    remote:
+      path: Heir/DiagnosticBag.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Warn
+    path: Heir/DiagnosticBag.cs
+    startLine: 25
+  assemblies:
+  - Heir
+  namespace: Heir
+  syntax:
+    content: public void Warn(DiagnosticCode code, string message, Location startLocation, Location? endLocation = null)
+    parameters:
+    - id: code
+      type: Heir.DiagnosticCode
+    - id: message
+      type: System.String
+    - id: startLocation
+      type: Heir.Syntax.Location
+    - id: endLocation
+      type: Heir.Syntax.Location
+    content.vb: Public Sub Warn(code As DiagnosticCode, message As String, startLocation As Location, endLocation As Location = Nothing)
+  overload: Heir.DiagnosticBag.Warn*
+  nameWithType.vb: DiagnosticBag.Warn(DiagnosticCode, String, Location, Location)
+  fullName.vb: Heir.DiagnosticBag.Warn(Heir.DiagnosticCode, String, Heir.Syntax.Location, Heir.Syntax.Location)
+  name.vb: Warn(DiagnosticCode, String, Location, Location)
+- uid: Heir.DiagnosticBag.Error(Heir.DiagnosticCode,System.String,Heir.AST.Abstract.SyntaxNode,Heir.AST.Abstract.SyntaxNode)
+  commentId: M:Heir.DiagnosticBag.Error(Heir.DiagnosticCode,System.String,Heir.AST.Abstract.SyntaxNode,Heir.AST.Abstract.SyntaxNode)
+  id: Error(Heir.DiagnosticCode,System.String,Heir.AST.Abstract.SyntaxNode,Heir.AST.Abstract.SyntaxNode)
+  parent: Heir.DiagnosticBag
+  langs:
+  - csharp
+  - vb
+  name: Error(DiagnosticCode, string, SyntaxNode, SyntaxNode)
+  nameWithType: DiagnosticBag.Error(DiagnosticCode, string, SyntaxNode, SyntaxNode)
+  fullName: Heir.DiagnosticBag.Error(Heir.DiagnosticCode, string, Heir.AST.Abstract.SyntaxNode, Heir.AST.Abstract.SyntaxNode)
+  type: Method
+  source:
+    remote:
+      path: Heir/DiagnosticBag.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Error
+    path: Heir/DiagnosticBag.cs
+    startLine: 31
+  assemblies:
+  - Heir
+  namespace: Heir
+  syntax:
+    content: public void Error(DiagnosticCode code, string message, SyntaxNode startNode, SyntaxNode endNode)
+    parameters:
+    - id: code
+      type: Heir.DiagnosticCode
+    - id: message
+      type: System.String
+    - id: startNode
+      type: Heir.AST.Abstract.SyntaxNode
+    - id: endNode
+      type: Heir.AST.Abstract.SyntaxNode
+    content.vb: Public Sub [Error](code As DiagnosticCode, message As String, startNode As SyntaxNode, endNode As SyntaxNode)
+  overload: Heir.DiagnosticBag.Error*
+  nameWithType.vb: DiagnosticBag.Error(DiagnosticCode, String, SyntaxNode, SyntaxNode)
+  fullName.vb: Heir.DiagnosticBag.Error(Heir.DiagnosticCode, String, Heir.AST.Abstract.SyntaxNode, Heir.AST.Abstract.SyntaxNode)
+  name.vb: Error(DiagnosticCode, String, SyntaxNode, SyntaxNode)
+- uid: Heir.DiagnosticBag.Error(Heir.DiagnosticCode,System.String,Heir.AST.Abstract.SyntaxNode)
+  commentId: M:Heir.DiagnosticBag.Error(Heir.DiagnosticCode,System.String,Heir.AST.Abstract.SyntaxNode)
+  id: Error(Heir.DiagnosticCode,System.String,Heir.AST.Abstract.SyntaxNode)
+  parent: Heir.DiagnosticBag
+  langs:
+  - csharp
+  - vb
+  name: Error(DiagnosticCode, string, SyntaxNode)
+  nameWithType: DiagnosticBag.Error(DiagnosticCode, string, SyntaxNode)
+  fullName: Heir.DiagnosticBag.Error(Heir.DiagnosticCode, string, Heir.AST.Abstract.SyntaxNode)
+  type: Method
+  source:
+    remote:
+      path: Heir/DiagnosticBag.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Error
+    path: Heir/DiagnosticBag.cs
+    startLine: 34
+  assemblies:
+  - Heir
+  namespace: Heir
+  syntax:
+    content: public void Error(DiagnosticCode code, string message, SyntaxNode node)
+    parameters:
+    - id: code
+      type: Heir.DiagnosticCode
+    - id: message
+      type: System.String
+    - id: node
+      type: Heir.AST.Abstract.SyntaxNode
+    content.vb: Public Sub [Error](code As DiagnosticCode, message As String, node As SyntaxNode)
+  overload: Heir.DiagnosticBag.Error*
+  nameWithType.vb: DiagnosticBag.Error(DiagnosticCode, String, SyntaxNode)
+  fullName.vb: Heir.DiagnosticBag.Error(Heir.DiagnosticCode, String, Heir.AST.Abstract.SyntaxNode)
+  name.vb: Error(DiagnosticCode, String, SyntaxNode)
+- uid: Heir.DiagnosticBag.Error(Heir.DiagnosticCode,System.String,Heir.Syntax.Token,Heir.Syntax.Token)
+  commentId: M:Heir.DiagnosticBag.Error(Heir.DiagnosticCode,System.String,Heir.Syntax.Token,Heir.Syntax.Token)
+  id: Error(Heir.DiagnosticCode,System.String,Heir.Syntax.Token,Heir.Syntax.Token)
+  parent: Heir.DiagnosticBag
+  langs:
+  - csharp
+  - vb
+  name: Error(DiagnosticCode, string, Token, Token)
+  nameWithType: DiagnosticBag.Error(DiagnosticCode, string, Token, Token)
+  fullName: Heir.DiagnosticBag.Error(Heir.DiagnosticCode, string, Heir.Syntax.Token, Heir.Syntax.Token)
+  type: Method
+  source:
+    remote:
+      path: Heir/DiagnosticBag.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Error
+    path: Heir/DiagnosticBag.cs
+    startLine: 37
+  assemblies:
+  - Heir
+  namespace: Heir
+  syntax:
+    content: public void Error(DiagnosticCode code, string message, Token startToken, Token endToken)
+    parameters:
+    - id: code
+      type: Heir.DiagnosticCode
+    - id: message
+      type: System.String
+    - id: startToken
+      type: Heir.Syntax.Token
+    - id: endToken
+      type: Heir.Syntax.Token
+    content.vb: Public Sub [Error](code As DiagnosticCode, message As String, startToken As Token, endToken As Token)
+  overload: Heir.DiagnosticBag.Error*
+  nameWithType.vb: DiagnosticBag.Error(DiagnosticCode, String, Token, Token)
+  fullName.vb: Heir.DiagnosticBag.Error(Heir.DiagnosticCode, String, Heir.Syntax.Token, Heir.Syntax.Token)
+  name.vb: Error(DiagnosticCode, String, Token, Token)
+- uid: Heir.DiagnosticBag.Error(Heir.DiagnosticCode,System.String,Heir.Syntax.Token)
+  commentId: M:Heir.DiagnosticBag.Error(Heir.DiagnosticCode,System.String,Heir.Syntax.Token)
+  id: Error(Heir.DiagnosticCode,System.String,Heir.Syntax.Token)
+  parent: Heir.DiagnosticBag
+  langs:
+  - csharp
+  - vb
+  name: Error(DiagnosticCode, string, Token?)
+  nameWithType: DiagnosticBag.Error(DiagnosticCode, string, Token?)
+  fullName: Heir.DiagnosticBag.Error(Heir.DiagnosticCode, string, Heir.Syntax.Token?)
+  type: Method
+  source:
+    remote:
+      path: Heir/DiagnosticBag.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Error
+    path: Heir/DiagnosticBag.cs
+    startLine: 40
+  assemblies:
+  - Heir
+  namespace: Heir
+  syntax:
+    content: public void Error(DiagnosticCode code, string message, Token? token)
+    parameters:
+    - id: code
+      type: Heir.DiagnosticCode
+    - id: message
+      type: System.String
+    - id: token
+      type: Heir.Syntax.Token
+    content.vb: Public Sub [Error](code As DiagnosticCode, message As String, token As Token)
+  overload: Heir.DiagnosticBag.Error*
+  nameWithType.vb: DiagnosticBag.Error(DiagnosticCode, String, Token)
+  fullName.vb: Heir.DiagnosticBag.Error(Heir.DiagnosticCode, String, Heir.Syntax.Token)
+  name.vb: Error(DiagnosticCode, String, Token)
+- uid: Heir.DiagnosticBag.Error(Heir.DiagnosticCode,System.String,Heir.Syntax.Location,Heir.Syntax.Location)
+  commentId: M:Heir.DiagnosticBag.Error(Heir.DiagnosticCode,System.String,Heir.Syntax.Location,Heir.Syntax.Location)
+  id: Error(Heir.DiagnosticCode,System.String,Heir.Syntax.Location,Heir.Syntax.Location)
+  parent: Heir.DiagnosticBag
+  langs:
+  - csharp
+  - vb
+  name: Error(DiagnosticCode, string, Location?, Location?)
+  nameWithType: DiagnosticBag.Error(DiagnosticCode, string, Location?, Location?)
+  fullName: Heir.DiagnosticBag.Error(Heir.DiagnosticCode, string, Heir.Syntax.Location?, Heir.Syntax.Location?)
+  type: Method
+  source:
+    remote:
+      path: Heir/DiagnosticBag.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Error
+    path: Heir/DiagnosticBag.cs
+    startLine: 43
+  assemblies:
+  - Heir
+  namespace: Heir
+  syntax:
+    content: public void Error(DiagnosticCode code, string message, Location? startLocation, Location? endLocation)
+    parameters:
+    - id: code
+      type: Heir.DiagnosticCode
+    - id: message
+      type: System.String
+    - id: startLocation
+      type: Heir.Syntax.Location
+    - id: endLocation
+      type: Heir.Syntax.Location
+    content.vb: Public Sub [Error](code As DiagnosticCode, message As String, startLocation As Location, endLocation As Location)
+  overload: Heir.DiagnosticBag.Error*
+  nameWithType.vb: DiagnosticBag.Error(DiagnosticCode, String, Location, Location)
+  fullName.vb: Heir.DiagnosticBag.Error(Heir.DiagnosticCode, String, Heir.Syntax.Location, Heir.Syntax.Location)
+  name.vb: Error(DiagnosticCode, String, Location, Location)
+- uid: Heir.DiagnosticBag.RuntimeError(Heir.DiagnosticCode,System.String,Heir.Syntax.Token)
+  commentId: M:Heir.DiagnosticBag.RuntimeError(Heir.DiagnosticCode,System.String,Heir.Syntax.Token)
+  id: RuntimeError(Heir.DiagnosticCode,System.String,Heir.Syntax.Token)
+  parent: Heir.DiagnosticBag
+  langs:
+  - csharp
+  - vb
+  name: RuntimeError(DiagnosticCode, string, Token?)
+  nameWithType: DiagnosticBag.RuntimeError(DiagnosticCode, string, Token?)
+  fullName: Heir.DiagnosticBag.RuntimeError(Heir.DiagnosticCode, string, Heir.Syntax.Token?)
+  type: Method
+  source:
+    remote:
+      path: Heir/DiagnosticBag.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: RuntimeError
+    path: Heir/DiagnosticBag.cs
+    startLine: 49
+  assemblies:
+  - Heir
+  namespace: Heir
+  syntax:
+    content: public void RuntimeError(DiagnosticCode code, string message, Token? token)
+    parameters:
+    - id: code
+      type: Heir.DiagnosticCode
+    - id: message
+      type: System.String
+    - id: token
+      type: Heir.Syntax.Token
+    content.vb: Public Sub RuntimeError(code As DiagnosticCode, message As String, token As Token)
+  overload: Heir.DiagnosticBag.RuntimeError*
+  nameWithType.vb: DiagnosticBag.RuntimeError(DiagnosticCode, String, Token)
+  fullName.vb: Heir.DiagnosticBag.RuntimeError(Heir.DiagnosticCode, String, Heir.Syntax.Token)
+  name.vb: RuntimeError(DiagnosticCode, String, Token)
+- uid: Heir.DiagnosticBag.Write(System.Boolean)
+  commentId: M:Heir.DiagnosticBag.Write(System.Boolean)
+  id: Write(System.Boolean)
+  parent: Heir.DiagnosticBag
+  langs:
+  - csharp
+  - vb
+  name: Write(bool)
+  nameWithType: DiagnosticBag.Write(bool)
+  fullName: Heir.DiagnosticBag.Write(bool)
+  type: Method
+  source:
+    remote:
+      path: Heir/DiagnosticBag.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Write
+    path: Heir/DiagnosticBag.cs
+    startLine: 56
+  assemblies:
+  - Heir
+  namespace: Heir
+  syntax:
+    content: public void Write(bool colors = true)
+    parameters:
+    - id: colors
+      type: System.Boolean
+    content.vb: Public Sub Write(colors As Boolean = True)
+  overload: Heir.DiagnosticBag.Write*
+  nameWithType.vb: DiagnosticBag.Write(Boolean)
+  fullName.vb: Heir.DiagnosticBag.Write(Boolean)
+  name.vb: Write(Boolean)
+- uid: Heir.DiagnosticBag.ToString(System.Boolean)
+  commentId: M:Heir.DiagnosticBag.ToString(System.Boolean)
+  id: ToString(System.Boolean)
+  parent: Heir.DiagnosticBag
+  langs:
+  - csharp
+  - vb
+  name: ToString(bool)
+  nameWithType: DiagnosticBag.ToString(bool)
+  fullName: Heir.DiagnosticBag.ToString(bool)
+  type: Method
+  source:
+    remote:
+      path: Heir/DiagnosticBag.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: ToString
+    path: Heir/DiagnosticBag.cs
+    startLine: 64
+  assemblies:
+  - Heir
+  namespace: Heir
+  syntax:
+    content: public string ToString(bool colors)
+    parameters:
+    - id: colors
+      type: System.Boolean
+    return:
+      type: System.String
+    content.vb: Public Function ToString(colors As Boolean) As String
+  overload: Heir.DiagnosticBag.ToString*
+  nameWithType.vb: DiagnosticBag.ToString(Boolean)
+  fullName.vb: Heir.DiagnosticBag.ToString(Boolean)
+  name.vb: ToString(Boolean)
+references:
+- uid: Heir
+  commentId: N:Heir
+  href: Heir.html
+  name: Heir
+  nameWithType: Heir
+  fullName: Heir
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Collections.Generic.HashSet{Heir.Diagnostic}
+  commentId: T:System.Collections.Generic.HashSet{Heir.Diagnostic}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.HashSet`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  name: HashSet<Diagnostic>
+  nameWithType: HashSet<Diagnostic>
+  fullName: System.Collections.Generic.HashSet<Heir.Diagnostic>
+  nameWithType.vb: HashSet(Of Diagnostic)
+  fullName.vb: System.Collections.Generic.HashSet(Of Heir.Diagnostic)
+  name.vb: HashSet(Of Diagnostic)
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet`1
+    name: HashSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  - name: <
+  - uid: Heir.Diagnostic
+    name: Diagnostic
+    href: Heir.Diagnostic.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet`1
+    name: HashSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Heir.Diagnostic
+    name: Diagnostic
+    href: Heir.Diagnostic.html
+  - name: )
+- uid: System.Collections.Generic.ISet{Heir.Diagnostic}
+  commentId: T:System.Collections.Generic.ISet{Heir.Diagnostic}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.ISet`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iset-1
+  name: ISet<Diagnostic>
+  nameWithType: ISet<Diagnostic>
+  fullName: System.Collections.Generic.ISet<Heir.Diagnostic>
+  nameWithType.vb: ISet(Of Diagnostic)
+  fullName.vb: System.Collections.Generic.ISet(Of Heir.Diagnostic)
+  name.vb: ISet(Of Diagnostic)
+  spec.csharp:
+  - uid: System.Collections.Generic.ISet`1
+    name: ISet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iset-1
+  - name: <
+  - uid: Heir.Diagnostic
+    name: Diagnostic
+    href: Heir.Diagnostic.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.ISet`1
+    name: ISet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iset-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Heir.Diagnostic
+    name: Diagnostic
+    href: Heir.Diagnostic.html
+  - name: )
+- uid: System.Collections.Generic.ICollection{Heir.Diagnostic}
+  commentId: T:System.Collections.Generic.ICollection{Heir.Diagnostic}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.ICollection`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  name: ICollection<Diagnostic>
+  nameWithType: ICollection<Diagnostic>
+  fullName: System.Collections.Generic.ICollection<Heir.Diagnostic>
+  nameWithType.vb: ICollection(Of Diagnostic)
+  fullName.vb: System.Collections.Generic.ICollection(Of Heir.Diagnostic)
+  name.vb: ICollection(Of Diagnostic)
+  spec.csharp:
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: <
+  - uid: Heir.Diagnostic
+    name: Diagnostic
+    href: Heir.Diagnostic.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Heir.Diagnostic
+    name: Diagnostic
+    href: Heir.Diagnostic.html
+  - name: )
+- uid: System.Collections.Generic.IReadOnlySet{Heir.Diagnostic}
+  commentId: T:System.Collections.Generic.IReadOnlySet{Heir.Diagnostic}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlySet`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlyset-1
+  name: IReadOnlySet<Diagnostic>
+  nameWithType: IReadOnlySet<Diagnostic>
+  fullName: System.Collections.Generic.IReadOnlySet<Heir.Diagnostic>
+  nameWithType.vb: IReadOnlySet(Of Diagnostic)
+  fullName.vb: System.Collections.Generic.IReadOnlySet(Of Heir.Diagnostic)
+  name.vb: IReadOnlySet(Of Diagnostic)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlySet`1
+    name: IReadOnlySet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlyset-1
+  - name: <
+  - uid: Heir.Diagnostic
+    name: Diagnostic
+    href: Heir.Diagnostic.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlySet`1
+    name: IReadOnlySet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlyset-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Heir.Diagnostic
+    name: Diagnostic
+    href: Heir.Diagnostic.html
+  - name: )
+- uid: System.Collections.Generic.IReadOnlyCollection{Heir.Diagnostic}
+  commentId: T:System.Collections.Generic.IReadOnlyCollection{Heir.Diagnostic}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyCollection`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlycollection-1
+  name: IReadOnlyCollection<Diagnostic>
+  nameWithType: IReadOnlyCollection<Diagnostic>
+  fullName: System.Collections.Generic.IReadOnlyCollection<Heir.Diagnostic>
+  nameWithType.vb: IReadOnlyCollection(Of Diagnostic)
+  fullName.vb: System.Collections.Generic.IReadOnlyCollection(Of Heir.Diagnostic)
+  name.vb: IReadOnlyCollection(Of Diagnostic)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyCollection`1
+    name: IReadOnlyCollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlycollection-1
+  - name: <
+  - uid: Heir.Diagnostic
+    name: Diagnostic
+    href: Heir.Diagnostic.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyCollection`1
+    name: IReadOnlyCollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlycollection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Heir.Diagnostic
+    name: Diagnostic
+    href: Heir.Diagnostic.html
+  - name: )
+- uid: System.Collections.Generic.IEnumerable{Heir.Diagnostic}
+  commentId: T:System.Collections.Generic.IEnumerable{Heir.Diagnostic}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<Diagnostic>
+  nameWithType: IEnumerable<Diagnostic>
+  fullName: System.Collections.Generic.IEnumerable<Heir.Diagnostic>
+  nameWithType.vb: IEnumerable(Of Diagnostic)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of Heir.Diagnostic)
+  name.vb: IEnumerable(Of Diagnostic)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: Heir.Diagnostic
+    name: Diagnostic
+    href: Heir.Diagnostic.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Heir.Diagnostic
+    name: Diagnostic
+    href: Heir.Diagnostic.html
+  - name: )
+- uid: System.Collections.IEnumerable
+  commentId: T:System.Collections.IEnumerable
+  parent: System.Collections
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.ienumerable
+  name: IEnumerable
+  nameWithType: IEnumerable
+  fullName: System.Collections.IEnumerable
+- uid: System.Runtime.Serialization.IDeserializationCallback
+  commentId: T:System.Runtime.Serialization.IDeserializationCallback
+  parent: System.Runtime.Serialization
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.runtime.serialization.ideserializationcallback
+  name: IDeserializationCallback
+  nameWithType: IDeserializationCallback
+  fullName: System.Runtime.Serialization.IDeserializationCallback
+- uid: System.Runtime.Serialization.ISerializable
+  commentId: T:System.Runtime.Serialization.ISerializable
+  parent: System.Runtime.Serialization
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.runtime.serialization.iserializable
+  name: ISerializable
+  nameWithType: ISerializable
+  fullName: System.Runtime.Serialization.ISerializable
+- uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.Add(Heir.Diagnostic)
+  commentId: M:System.Collections.Generic.HashSet{Heir.Diagnostic}.Add(Heir.Diagnostic)
+  parent: System.Collections.Generic.HashSet{Heir.Diagnostic}
+  definition: System.Collections.Generic.HashSet`1.Add(`0)
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.add
+  name: Add(Diagnostic)
+  nameWithType: HashSet<Diagnostic>.Add(Diagnostic)
+  fullName: System.Collections.Generic.HashSet<Heir.Diagnostic>.Add(Heir.Diagnostic)
+  nameWithType.vb: HashSet(Of Diagnostic).Add(Diagnostic)
+  fullName.vb: System.Collections.Generic.HashSet(Of Heir.Diagnostic).Add(Heir.Diagnostic)
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.Add(Heir.Diagnostic)
+    name: Add
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.add
+  - name: (
+  - uid: Heir.Diagnostic
+    name: Diagnostic
+    href: Heir.Diagnostic.html
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.Add(Heir.Diagnostic)
+    name: Add
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.add
+  - name: (
+  - uid: Heir.Diagnostic
+    name: Diagnostic
+    href: Heir.Diagnostic.html
+  - name: )
+- uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.Clear
+  commentId: M:System.Collections.Generic.HashSet{Heir.Diagnostic}.Clear
+  parent: System.Collections.Generic.HashSet{Heir.Diagnostic}
+  definition: System.Collections.Generic.HashSet`1.Clear
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.clear
+  name: Clear()
+  nameWithType: HashSet<Diagnostic>.Clear()
+  fullName: System.Collections.Generic.HashSet<Heir.Diagnostic>.Clear()
+  nameWithType.vb: HashSet(Of Diagnostic).Clear()
+  fullName.vb: System.Collections.Generic.HashSet(Of Heir.Diagnostic).Clear()
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.Clear
+    name: Clear
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.clear
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.Clear
+    name: Clear
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.clear
+  - name: (
+  - name: )
+- uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.Contains(Heir.Diagnostic)
+  commentId: M:System.Collections.Generic.HashSet{Heir.Diagnostic}.Contains(Heir.Diagnostic)
+  parent: System.Collections.Generic.HashSet{Heir.Diagnostic}
+  definition: System.Collections.Generic.HashSet`1.Contains(`0)
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.contains
+  name: Contains(Diagnostic)
+  nameWithType: HashSet<Diagnostic>.Contains(Diagnostic)
+  fullName: System.Collections.Generic.HashSet<Heir.Diagnostic>.Contains(Heir.Diagnostic)
+  nameWithType.vb: HashSet(Of Diagnostic).Contains(Diagnostic)
+  fullName.vb: System.Collections.Generic.HashSet(Of Heir.Diagnostic).Contains(Heir.Diagnostic)
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.Contains(Heir.Diagnostic)
+    name: Contains
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.contains
+  - name: (
+  - uid: Heir.Diagnostic
+    name: Diagnostic
+    href: Heir.Diagnostic.html
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.Contains(Heir.Diagnostic)
+    name: Contains
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.contains
+  - name: (
+  - uid: Heir.Diagnostic
+    name: Diagnostic
+    href: Heir.Diagnostic.html
+  - name: )
+- uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.CopyTo(Heir.Diagnostic[])
+  commentId: M:System.Collections.Generic.HashSet{Heir.Diagnostic}.CopyTo(Heir.Diagnostic[])
+  parent: System.Collections.Generic.HashSet{Heir.Diagnostic}
+  definition: System.Collections.Generic.HashSet`1.CopyTo(`0[])
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.copyto#system-collections-generic-hashset-1-copyto(-0())
+  name: CopyTo(Diagnostic[])
+  nameWithType: HashSet<Diagnostic>.CopyTo(Diagnostic[])
+  fullName: System.Collections.Generic.HashSet<Heir.Diagnostic>.CopyTo(Heir.Diagnostic[])
+  nameWithType.vb: HashSet(Of Diagnostic).CopyTo(Diagnostic())
+  fullName.vb: System.Collections.Generic.HashSet(Of Heir.Diagnostic).CopyTo(Heir.Diagnostic())
+  name.vb: CopyTo(Diagnostic())
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.CopyTo(Heir.Diagnostic[])
+    name: CopyTo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.copyto#system-collections-generic-hashset-1-copyto(-0())
+  - name: (
+  - uid: Heir.Diagnostic
+    name: Diagnostic
+    href: Heir.Diagnostic.html
+  - name: '['
+  - name: ']'
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.CopyTo(Heir.Diagnostic[])
+    name: CopyTo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.copyto#system-collections-generic-hashset-1-copyto(-0())
+  - name: (
+  - uid: Heir.Diagnostic
+    name: Diagnostic
+    href: Heir.Diagnostic.html
+  - name: (
+  - name: )
+  - name: )
+- uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.CopyTo(Heir.Diagnostic[],System.Int32)
+  commentId: M:System.Collections.Generic.HashSet{Heir.Diagnostic}.CopyTo(Heir.Diagnostic[],System.Int32)
+  parent: System.Collections.Generic.HashSet{Heir.Diagnostic}
+  definition: System.Collections.Generic.HashSet`1.CopyTo(`0[],System.Int32)
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.copyto#system-collections-generic-hashset-1-copyto(-0()-system-int32)
+  name: CopyTo(Diagnostic[], int)
+  nameWithType: HashSet<Diagnostic>.CopyTo(Diagnostic[], int)
+  fullName: System.Collections.Generic.HashSet<Heir.Diagnostic>.CopyTo(Heir.Diagnostic[], int)
+  nameWithType.vb: HashSet(Of Diagnostic).CopyTo(Diagnostic(), Integer)
+  fullName.vb: System.Collections.Generic.HashSet(Of Heir.Diagnostic).CopyTo(Heir.Diagnostic(), Integer)
+  name.vb: CopyTo(Diagnostic(), Integer)
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.CopyTo(Heir.Diagnostic[],System.Int32)
+    name: CopyTo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.copyto#system-collections-generic-hashset-1-copyto(-0()-system-int32)
+  - name: (
+  - uid: Heir.Diagnostic
+    name: Diagnostic
+    href: Heir.Diagnostic.html
+  - name: '['
+  - name: ']'
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.CopyTo(Heir.Diagnostic[],System.Int32)
+    name: CopyTo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.copyto#system-collections-generic-hashset-1-copyto(-0()-system-int32)
+  - name: (
+  - uid: Heir.Diagnostic
+    name: Diagnostic
+    href: Heir.Diagnostic.html
+  - name: (
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.CopyTo(Heir.Diagnostic[],System.Int32,System.Int32)
+  commentId: M:System.Collections.Generic.HashSet{Heir.Diagnostic}.CopyTo(Heir.Diagnostic[],System.Int32,System.Int32)
+  parent: System.Collections.Generic.HashSet{Heir.Diagnostic}
+  definition: System.Collections.Generic.HashSet`1.CopyTo(`0[],System.Int32,System.Int32)
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.copyto#system-collections-generic-hashset-1-copyto(-0()-system-int32-system-int32)
+  name: CopyTo(Diagnostic[], int, int)
+  nameWithType: HashSet<Diagnostic>.CopyTo(Diagnostic[], int, int)
+  fullName: System.Collections.Generic.HashSet<Heir.Diagnostic>.CopyTo(Heir.Diagnostic[], int, int)
+  nameWithType.vb: HashSet(Of Diagnostic).CopyTo(Diagnostic(), Integer, Integer)
+  fullName.vb: System.Collections.Generic.HashSet(Of Heir.Diagnostic).CopyTo(Heir.Diagnostic(), Integer, Integer)
+  name.vb: CopyTo(Diagnostic(), Integer, Integer)
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.CopyTo(Heir.Diagnostic[],System.Int32,System.Int32)
+    name: CopyTo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.copyto#system-collections-generic-hashset-1-copyto(-0()-system-int32-system-int32)
+  - name: (
+  - uid: Heir.Diagnostic
+    name: Diagnostic
+    href: Heir.Diagnostic.html
+  - name: '['
+  - name: ']'
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.CopyTo(Heir.Diagnostic[],System.Int32,System.Int32)
+    name: CopyTo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.copyto#system-collections-generic-hashset-1-copyto(-0()-system-int32-system-int32)
+  - name: (
+  - uid: Heir.Diagnostic
+    name: Diagnostic
+    href: Heir.Diagnostic.html
+  - name: (
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.CreateSetComparer
+  commentId: M:System.Collections.Generic.HashSet{Heir.Diagnostic}.CreateSetComparer
+  parent: System.Collections.Generic.HashSet{Heir.Diagnostic}
+  definition: System.Collections.Generic.HashSet`1.CreateSetComparer
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.createsetcomparer
+  name: CreateSetComparer()
+  nameWithType: HashSet<Diagnostic>.CreateSetComparer()
+  fullName: System.Collections.Generic.HashSet<Heir.Diagnostic>.CreateSetComparer()
+  nameWithType.vb: HashSet(Of Diagnostic).CreateSetComparer()
+  fullName.vb: System.Collections.Generic.HashSet(Of Heir.Diagnostic).CreateSetComparer()
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.CreateSetComparer
+    name: CreateSetComparer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.createsetcomparer
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.CreateSetComparer
+    name: CreateSetComparer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.createsetcomparer
+  - name: (
+  - name: )
+- uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.EnsureCapacity(System.Int32)
+  commentId: M:System.Collections.Generic.HashSet{Heir.Diagnostic}.EnsureCapacity(System.Int32)
+  parent: System.Collections.Generic.HashSet{Heir.Diagnostic}
+  definition: System.Collections.Generic.HashSet`1.EnsureCapacity(System.Int32)
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.ensurecapacity
+  name: EnsureCapacity(int)
+  nameWithType: HashSet<Diagnostic>.EnsureCapacity(int)
+  fullName: System.Collections.Generic.HashSet<Heir.Diagnostic>.EnsureCapacity(int)
+  nameWithType.vb: HashSet(Of Diagnostic).EnsureCapacity(Integer)
+  fullName.vb: System.Collections.Generic.HashSet(Of Heir.Diagnostic).EnsureCapacity(Integer)
+  name.vb: EnsureCapacity(Integer)
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.EnsureCapacity(System.Int32)
+    name: EnsureCapacity
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.ensurecapacity
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.EnsureCapacity(System.Int32)
+    name: EnsureCapacity
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.ensurecapacity
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.ExceptWith(System.Collections.Generic.IEnumerable{Heir.Diagnostic})
+  commentId: M:System.Collections.Generic.HashSet{Heir.Diagnostic}.ExceptWith(System.Collections.Generic.IEnumerable{Heir.Diagnostic})
+  parent: System.Collections.Generic.HashSet{Heir.Diagnostic}
+  definition: System.Collections.Generic.HashSet`1.ExceptWith(System.Collections.Generic.IEnumerable{`0})
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.exceptwith
+  name: ExceptWith(IEnumerable<Diagnostic>)
+  nameWithType: HashSet<Diagnostic>.ExceptWith(IEnumerable<Diagnostic>)
+  fullName: System.Collections.Generic.HashSet<Heir.Diagnostic>.ExceptWith(System.Collections.Generic.IEnumerable<Heir.Diagnostic>)
+  nameWithType.vb: HashSet(Of Diagnostic).ExceptWith(IEnumerable(Of Diagnostic))
+  fullName.vb: System.Collections.Generic.HashSet(Of Heir.Diagnostic).ExceptWith(System.Collections.Generic.IEnumerable(Of Heir.Diagnostic))
+  name.vb: ExceptWith(IEnumerable(Of Diagnostic))
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.ExceptWith(System.Collections.Generic.IEnumerable{Heir.Diagnostic})
+    name: ExceptWith
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.exceptwith
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: Heir.Diagnostic
+    name: Diagnostic
+    href: Heir.Diagnostic.html
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.ExceptWith(System.Collections.Generic.IEnumerable{Heir.Diagnostic})
+    name: ExceptWith
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.exceptwith
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Heir.Diagnostic
+    name: Diagnostic
+    href: Heir.Diagnostic.html
+  - name: )
+  - name: )
+- uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.GetAlternateLookup``1
+  commentId: M:System.Collections.Generic.HashSet{Heir.Diagnostic}.GetAlternateLookup``1
+  parent: System.Collections.Generic.HashSet{Heir.Diagnostic}
+  definition: System.Collections.Generic.HashSet`1.GetAlternateLookup``1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.getalternatelookup
+  name: GetAlternateLookup<TAlternate>()
+  nameWithType: HashSet<Diagnostic>.GetAlternateLookup<TAlternate>()
+  fullName: System.Collections.Generic.HashSet<Heir.Diagnostic>.GetAlternateLookup<TAlternate>()
+  nameWithType.vb: HashSet(Of Diagnostic).GetAlternateLookup(Of TAlternate)()
+  fullName.vb: System.Collections.Generic.HashSet(Of Heir.Diagnostic).GetAlternateLookup(Of TAlternate)()
+  name.vb: GetAlternateLookup(Of TAlternate)()
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.GetAlternateLookup``1
+    name: GetAlternateLookup
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.getalternatelookup
+  - name: <
+  - name: TAlternate
+  - name: '>'
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.GetAlternateLookup``1
+    name: GetAlternateLookup
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.getalternatelookup
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TAlternate
+  - name: )
+  - name: (
+  - name: )
+- uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.GetEnumerator
+  commentId: M:System.Collections.Generic.HashSet{Heir.Diagnostic}.GetEnumerator
+  parent: System.Collections.Generic.HashSet{Heir.Diagnostic}
+  definition: System.Collections.Generic.HashSet`1.GetEnumerator
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.getenumerator
+  name: GetEnumerator()
+  nameWithType: HashSet<Diagnostic>.GetEnumerator()
+  fullName: System.Collections.Generic.HashSet<Heir.Diagnostic>.GetEnumerator()
+  nameWithType.vb: HashSet(Of Diagnostic).GetEnumerator()
+  fullName.vb: System.Collections.Generic.HashSet(Of Heir.Diagnostic).GetEnumerator()
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.GetEnumerator
+    name: GetEnumerator
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.getenumerator
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.GetEnumerator
+    name: GetEnumerator
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.getenumerator
+  - name: (
+  - name: )
+- uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.IntersectWith(System.Collections.Generic.IEnumerable{Heir.Diagnostic})
+  commentId: M:System.Collections.Generic.HashSet{Heir.Diagnostic}.IntersectWith(System.Collections.Generic.IEnumerable{Heir.Diagnostic})
+  parent: System.Collections.Generic.HashSet{Heir.Diagnostic}
+  definition: System.Collections.Generic.HashSet`1.IntersectWith(System.Collections.Generic.IEnumerable{`0})
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.intersectwith
+  name: IntersectWith(IEnumerable<Diagnostic>)
+  nameWithType: HashSet<Diagnostic>.IntersectWith(IEnumerable<Diagnostic>)
+  fullName: System.Collections.Generic.HashSet<Heir.Diagnostic>.IntersectWith(System.Collections.Generic.IEnumerable<Heir.Diagnostic>)
+  nameWithType.vb: HashSet(Of Diagnostic).IntersectWith(IEnumerable(Of Diagnostic))
+  fullName.vb: System.Collections.Generic.HashSet(Of Heir.Diagnostic).IntersectWith(System.Collections.Generic.IEnumerable(Of Heir.Diagnostic))
+  name.vb: IntersectWith(IEnumerable(Of Diagnostic))
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.IntersectWith(System.Collections.Generic.IEnumerable{Heir.Diagnostic})
+    name: IntersectWith
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.intersectwith
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: Heir.Diagnostic
+    name: Diagnostic
+    href: Heir.Diagnostic.html
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.IntersectWith(System.Collections.Generic.IEnumerable{Heir.Diagnostic})
+    name: IntersectWith
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.intersectwith
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Heir.Diagnostic
+    name: Diagnostic
+    href: Heir.Diagnostic.html
+  - name: )
+  - name: )
+- uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.IsProperSubsetOf(System.Collections.Generic.IEnumerable{Heir.Diagnostic})
+  commentId: M:System.Collections.Generic.HashSet{Heir.Diagnostic}.IsProperSubsetOf(System.Collections.Generic.IEnumerable{Heir.Diagnostic})
+  parent: System.Collections.Generic.HashSet{Heir.Diagnostic}
+  definition: System.Collections.Generic.HashSet`1.IsProperSubsetOf(System.Collections.Generic.IEnumerable{`0})
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.ispropersubsetof
+  name: IsProperSubsetOf(IEnumerable<Diagnostic>)
+  nameWithType: HashSet<Diagnostic>.IsProperSubsetOf(IEnumerable<Diagnostic>)
+  fullName: System.Collections.Generic.HashSet<Heir.Diagnostic>.IsProperSubsetOf(System.Collections.Generic.IEnumerable<Heir.Diagnostic>)
+  nameWithType.vb: HashSet(Of Diagnostic).IsProperSubsetOf(IEnumerable(Of Diagnostic))
+  fullName.vb: System.Collections.Generic.HashSet(Of Heir.Diagnostic).IsProperSubsetOf(System.Collections.Generic.IEnumerable(Of Heir.Diagnostic))
+  name.vb: IsProperSubsetOf(IEnumerable(Of Diagnostic))
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.IsProperSubsetOf(System.Collections.Generic.IEnumerable{Heir.Diagnostic})
+    name: IsProperSubsetOf
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.ispropersubsetof
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: Heir.Diagnostic
+    name: Diagnostic
+    href: Heir.Diagnostic.html
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.IsProperSubsetOf(System.Collections.Generic.IEnumerable{Heir.Diagnostic})
+    name: IsProperSubsetOf
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.ispropersubsetof
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Heir.Diagnostic
+    name: Diagnostic
+    href: Heir.Diagnostic.html
+  - name: )
+  - name: )
+- uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.IsProperSupersetOf(System.Collections.Generic.IEnumerable{Heir.Diagnostic})
+  commentId: M:System.Collections.Generic.HashSet{Heir.Diagnostic}.IsProperSupersetOf(System.Collections.Generic.IEnumerable{Heir.Diagnostic})
+  parent: System.Collections.Generic.HashSet{Heir.Diagnostic}
+  definition: System.Collections.Generic.HashSet`1.IsProperSupersetOf(System.Collections.Generic.IEnumerable{`0})
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.ispropersupersetof
+  name: IsProperSupersetOf(IEnumerable<Diagnostic>)
+  nameWithType: HashSet<Diagnostic>.IsProperSupersetOf(IEnumerable<Diagnostic>)
+  fullName: System.Collections.Generic.HashSet<Heir.Diagnostic>.IsProperSupersetOf(System.Collections.Generic.IEnumerable<Heir.Diagnostic>)
+  nameWithType.vb: HashSet(Of Diagnostic).IsProperSupersetOf(IEnumerable(Of Diagnostic))
+  fullName.vb: System.Collections.Generic.HashSet(Of Heir.Diagnostic).IsProperSupersetOf(System.Collections.Generic.IEnumerable(Of Heir.Diagnostic))
+  name.vb: IsProperSupersetOf(IEnumerable(Of Diagnostic))
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.IsProperSupersetOf(System.Collections.Generic.IEnumerable{Heir.Diagnostic})
+    name: IsProperSupersetOf
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.ispropersupersetof
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: Heir.Diagnostic
+    name: Diagnostic
+    href: Heir.Diagnostic.html
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.IsProperSupersetOf(System.Collections.Generic.IEnumerable{Heir.Diagnostic})
+    name: IsProperSupersetOf
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.ispropersupersetof
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Heir.Diagnostic
+    name: Diagnostic
+    href: Heir.Diagnostic.html
+  - name: )
+  - name: )
+- uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.IsSubsetOf(System.Collections.Generic.IEnumerable{Heir.Diagnostic})
+  commentId: M:System.Collections.Generic.HashSet{Heir.Diagnostic}.IsSubsetOf(System.Collections.Generic.IEnumerable{Heir.Diagnostic})
+  parent: System.Collections.Generic.HashSet{Heir.Diagnostic}
+  definition: System.Collections.Generic.HashSet`1.IsSubsetOf(System.Collections.Generic.IEnumerable{`0})
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.issubsetof
+  name: IsSubsetOf(IEnumerable<Diagnostic>)
+  nameWithType: HashSet<Diagnostic>.IsSubsetOf(IEnumerable<Diagnostic>)
+  fullName: System.Collections.Generic.HashSet<Heir.Diagnostic>.IsSubsetOf(System.Collections.Generic.IEnumerable<Heir.Diagnostic>)
+  nameWithType.vb: HashSet(Of Diagnostic).IsSubsetOf(IEnumerable(Of Diagnostic))
+  fullName.vb: System.Collections.Generic.HashSet(Of Heir.Diagnostic).IsSubsetOf(System.Collections.Generic.IEnumerable(Of Heir.Diagnostic))
+  name.vb: IsSubsetOf(IEnumerable(Of Diagnostic))
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.IsSubsetOf(System.Collections.Generic.IEnumerable{Heir.Diagnostic})
+    name: IsSubsetOf
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.issubsetof
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: Heir.Diagnostic
+    name: Diagnostic
+    href: Heir.Diagnostic.html
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.IsSubsetOf(System.Collections.Generic.IEnumerable{Heir.Diagnostic})
+    name: IsSubsetOf
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.issubsetof
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Heir.Diagnostic
+    name: Diagnostic
+    href: Heir.Diagnostic.html
+  - name: )
+  - name: )
+- uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.IsSupersetOf(System.Collections.Generic.IEnumerable{Heir.Diagnostic})
+  commentId: M:System.Collections.Generic.HashSet{Heir.Diagnostic}.IsSupersetOf(System.Collections.Generic.IEnumerable{Heir.Diagnostic})
+  parent: System.Collections.Generic.HashSet{Heir.Diagnostic}
+  definition: System.Collections.Generic.HashSet`1.IsSupersetOf(System.Collections.Generic.IEnumerable{`0})
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.issupersetof
+  name: IsSupersetOf(IEnumerable<Diagnostic>)
+  nameWithType: HashSet<Diagnostic>.IsSupersetOf(IEnumerable<Diagnostic>)
+  fullName: System.Collections.Generic.HashSet<Heir.Diagnostic>.IsSupersetOf(System.Collections.Generic.IEnumerable<Heir.Diagnostic>)
+  nameWithType.vb: HashSet(Of Diagnostic).IsSupersetOf(IEnumerable(Of Diagnostic))
+  fullName.vb: System.Collections.Generic.HashSet(Of Heir.Diagnostic).IsSupersetOf(System.Collections.Generic.IEnumerable(Of Heir.Diagnostic))
+  name.vb: IsSupersetOf(IEnumerable(Of Diagnostic))
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.IsSupersetOf(System.Collections.Generic.IEnumerable{Heir.Diagnostic})
+    name: IsSupersetOf
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.issupersetof
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: Heir.Diagnostic
+    name: Diagnostic
+    href: Heir.Diagnostic.html
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.IsSupersetOf(System.Collections.Generic.IEnumerable{Heir.Diagnostic})
+    name: IsSupersetOf
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.issupersetof
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Heir.Diagnostic
+    name: Diagnostic
+    href: Heir.Diagnostic.html
+  - name: )
+  - name: )
+- uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.OnDeserialization(System.Object)
+  commentId: M:System.Collections.Generic.HashSet{Heir.Diagnostic}.OnDeserialization(System.Object)
+  parent: System.Collections.Generic.HashSet{Heir.Diagnostic}
+  definition: System.Collections.Generic.HashSet`1.OnDeserialization(System.Object)
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.ondeserialization
+  name: OnDeserialization(object)
+  nameWithType: HashSet<Diagnostic>.OnDeserialization(object)
+  fullName: System.Collections.Generic.HashSet<Heir.Diagnostic>.OnDeserialization(object)
+  nameWithType.vb: HashSet(Of Diagnostic).OnDeserialization(Object)
+  fullName.vb: System.Collections.Generic.HashSet(Of Heir.Diagnostic).OnDeserialization(Object)
+  name.vb: OnDeserialization(Object)
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.OnDeserialization(System.Object)
+    name: OnDeserialization
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.ondeserialization
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.OnDeserialization(System.Object)
+    name: OnDeserialization
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.ondeserialization
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.Overlaps(System.Collections.Generic.IEnumerable{Heir.Diagnostic})
+  commentId: M:System.Collections.Generic.HashSet{Heir.Diagnostic}.Overlaps(System.Collections.Generic.IEnumerable{Heir.Diagnostic})
+  parent: System.Collections.Generic.HashSet{Heir.Diagnostic}
+  definition: System.Collections.Generic.HashSet`1.Overlaps(System.Collections.Generic.IEnumerable{`0})
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.overlaps
+  name: Overlaps(IEnumerable<Diagnostic>)
+  nameWithType: HashSet<Diagnostic>.Overlaps(IEnumerable<Diagnostic>)
+  fullName: System.Collections.Generic.HashSet<Heir.Diagnostic>.Overlaps(System.Collections.Generic.IEnumerable<Heir.Diagnostic>)
+  nameWithType.vb: HashSet(Of Diagnostic).Overlaps(IEnumerable(Of Diagnostic))
+  fullName.vb: System.Collections.Generic.HashSet(Of Heir.Diagnostic).Overlaps(System.Collections.Generic.IEnumerable(Of Heir.Diagnostic))
+  name.vb: Overlaps(IEnumerable(Of Diagnostic))
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.Overlaps(System.Collections.Generic.IEnumerable{Heir.Diagnostic})
+    name: Overlaps
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.overlaps
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: Heir.Diagnostic
+    name: Diagnostic
+    href: Heir.Diagnostic.html
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.Overlaps(System.Collections.Generic.IEnumerable{Heir.Diagnostic})
+    name: Overlaps
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.overlaps
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Heir.Diagnostic
+    name: Diagnostic
+    href: Heir.Diagnostic.html
+  - name: )
+  - name: )
+- uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.Remove(Heir.Diagnostic)
+  commentId: M:System.Collections.Generic.HashSet{Heir.Diagnostic}.Remove(Heir.Diagnostic)
+  parent: System.Collections.Generic.HashSet{Heir.Diagnostic}
+  definition: System.Collections.Generic.HashSet`1.Remove(`0)
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.remove
+  name: Remove(Diagnostic)
+  nameWithType: HashSet<Diagnostic>.Remove(Diagnostic)
+  fullName: System.Collections.Generic.HashSet<Heir.Diagnostic>.Remove(Heir.Diagnostic)
+  nameWithType.vb: HashSet(Of Diagnostic).Remove(Diagnostic)
+  fullName.vb: System.Collections.Generic.HashSet(Of Heir.Diagnostic).Remove(Heir.Diagnostic)
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.Remove(Heir.Diagnostic)
+    name: Remove
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.remove
+  - name: (
+  - uid: Heir.Diagnostic
+    name: Diagnostic
+    href: Heir.Diagnostic.html
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.Remove(Heir.Diagnostic)
+    name: Remove
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.remove
+  - name: (
+  - uid: Heir.Diagnostic
+    name: Diagnostic
+    href: Heir.Diagnostic.html
+  - name: )
+- uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.RemoveWhere(System.Predicate{Heir.Diagnostic})
+  commentId: M:System.Collections.Generic.HashSet{Heir.Diagnostic}.RemoveWhere(System.Predicate{Heir.Diagnostic})
+  parent: System.Collections.Generic.HashSet{Heir.Diagnostic}
+  definition: System.Collections.Generic.HashSet`1.RemoveWhere(System.Predicate{`0})
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.removewhere
+  name: RemoveWhere(Predicate<Diagnostic>)
+  nameWithType: HashSet<Diagnostic>.RemoveWhere(Predicate<Diagnostic>)
+  fullName: System.Collections.Generic.HashSet<Heir.Diagnostic>.RemoveWhere(System.Predicate<Heir.Diagnostic>)
+  nameWithType.vb: HashSet(Of Diagnostic).RemoveWhere(Predicate(Of Diagnostic))
+  fullName.vb: System.Collections.Generic.HashSet(Of Heir.Diagnostic).RemoveWhere(System.Predicate(Of Heir.Diagnostic))
+  name.vb: RemoveWhere(Predicate(Of Diagnostic))
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.RemoveWhere(System.Predicate{Heir.Diagnostic})
+    name: RemoveWhere
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.removewhere
+  - name: (
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: <
+  - uid: Heir.Diagnostic
+    name: Diagnostic
+    href: Heir.Diagnostic.html
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.RemoveWhere(System.Predicate{Heir.Diagnostic})
+    name: RemoveWhere
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.removewhere
+  - name: (
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Heir.Diagnostic
+    name: Diagnostic
+    href: Heir.Diagnostic.html
+  - name: )
+  - name: )
+- uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.SetEquals(System.Collections.Generic.IEnumerable{Heir.Diagnostic})
+  commentId: M:System.Collections.Generic.HashSet{Heir.Diagnostic}.SetEquals(System.Collections.Generic.IEnumerable{Heir.Diagnostic})
+  parent: System.Collections.Generic.HashSet{Heir.Diagnostic}
+  definition: System.Collections.Generic.HashSet`1.SetEquals(System.Collections.Generic.IEnumerable{`0})
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.setequals
+  name: SetEquals(IEnumerable<Diagnostic>)
+  nameWithType: HashSet<Diagnostic>.SetEquals(IEnumerable<Diagnostic>)
+  fullName: System.Collections.Generic.HashSet<Heir.Diagnostic>.SetEquals(System.Collections.Generic.IEnumerable<Heir.Diagnostic>)
+  nameWithType.vb: HashSet(Of Diagnostic).SetEquals(IEnumerable(Of Diagnostic))
+  fullName.vb: System.Collections.Generic.HashSet(Of Heir.Diagnostic).SetEquals(System.Collections.Generic.IEnumerable(Of Heir.Diagnostic))
+  name.vb: SetEquals(IEnumerable(Of Diagnostic))
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.SetEquals(System.Collections.Generic.IEnumerable{Heir.Diagnostic})
+    name: SetEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.setequals
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: Heir.Diagnostic
+    name: Diagnostic
+    href: Heir.Diagnostic.html
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.SetEquals(System.Collections.Generic.IEnumerable{Heir.Diagnostic})
+    name: SetEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.setequals
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Heir.Diagnostic
+    name: Diagnostic
+    href: Heir.Diagnostic.html
+  - name: )
+  - name: )
+- uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.SymmetricExceptWith(System.Collections.Generic.IEnumerable{Heir.Diagnostic})
+  commentId: M:System.Collections.Generic.HashSet{Heir.Diagnostic}.SymmetricExceptWith(System.Collections.Generic.IEnumerable{Heir.Diagnostic})
+  parent: System.Collections.Generic.HashSet{Heir.Diagnostic}
+  definition: System.Collections.Generic.HashSet`1.SymmetricExceptWith(System.Collections.Generic.IEnumerable{`0})
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.symmetricexceptwith
+  name: SymmetricExceptWith(IEnumerable<Diagnostic>)
+  nameWithType: HashSet<Diagnostic>.SymmetricExceptWith(IEnumerable<Diagnostic>)
+  fullName: System.Collections.Generic.HashSet<Heir.Diagnostic>.SymmetricExceptWith(System.Collections.Generic.IEnumerable<Heir.Diagnostic>)
+  nameWithType.vb: HashSet(Of Diagnostic).SymmetricExceptWith(IEnumerable(Of Diagnostic))
+  fullName.vb: System.Collections.Generic.HashSet(Of Heir.Diagnostic).SymmetricExceptWith(System.Collections.Generic.IEnumerable(Of Heir.Diagnostic))
+  name.vb: SymmetricExceptWith(IEnumerable(Of Diagnostic))
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.SymmetricExceptWith(System.Collections.Generic.IEnumerable{Heir.Diagnostic})
+    name: SymmetricExceptWith
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.symmetricexceptwith
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: Heir.Diagnostic
+    name: Diagnostic
+    href: Heir.Diagnostic.html
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.SymmetricExceptWith(System.Collections.Generic.IEnumerable{Heir.Diagnostic})
+    name: SymmetricExceptWith
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.symmetricexceptwith
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Heir.Diagnostic
+    name: Diagnostic
+    href: Heir.Diagnostic.html
+  - name: )
+  - name: )
+- uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.TrimExcess
+  commentId: M:System.Collections.Generic.HashSet{Heir.Diagnostic}.TrimExcess
+  parent: System.Collections.Generic.HashSet{Heir.Diagnostic}
+  definition: System.Collections.Generic.HashSet`1.TrimExcess
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.trimexcess#system-collections-generic-hashset-1-trimexcess
+  name: TrimExcess()
+  nameWithType: HashSet<Diagnostic>.TrimExcess()
+  fullName: System.Collections.Generic.HashSet<Heir.Diagnostic>.TrimExcess()
+  nameWithType.vb: HashSet(Of Diagnostic).TrimExcess()
+  fullName.vb: System.Collections.Generic.HashSet(Of Heir.Diagnostic).TrimExcess()
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.TrimExcess
+    name: TrimExcess
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.trimexcess#system-collections-generic-hashset-1-trimexcess
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.TrimExcess
+    name: TrimExcess
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.trimexcess#system-collections-generic-hashset-1-trimexcess
+  - name: (
+  - name: )
+- uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.TrimExcess(System.Int32)
+  commentId: M:System.Collections.Generic.HashSet{Heir.Diagnostic}.TrimExcess(System.Int32)
+  parent: System.Collections.Generic.HashSet{Heir.Diagnostic}
+  definition: System.Collections.Generic.HashSet`1.TrimExcess(System.Int32)
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.trimexcess#system-collections-generic-hashset-1-trimexcess(system-int32)
+  name: TrimExcess(int)
+  nameWithType: HashSet<Diagnostic>.TrimExcess(int)
+  fullName: System.Collections.Generic.HashSet<Heir.Diagnostic>.TrimExcess(int)
+  nameWithType.vb: HashSet(Of Diagnostic).TrimExcess(Integer)
+  fullName.vb: System.Collections.Generic.HashSet(Of Heir.Diagnostic).TrimExcess(Integer)
+  name.vb: TrimExcess(Integer)
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.TrimExcess(System.Int32)
+    name: TrimExcess
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.trimexcess#system-collections-generic-hashset-1-trimexcess(system-int32)
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.TrimExcess(System.Int32)
+    name: TrimExcess
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.trimexcess#system-collections-generic-hashset-1-trimexcess(system-int32)
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.TryGetAlternateLookup``1(System.Collections.Generic.HashSet{Heir.Diagnostic}.AlternateLookup{{TAlternate}}@)
+  commentId: M:System.Collections.Generic.HashSet{Heir.Diagnostic}.TryGetAlternateLookup``1(System.Collections.Generic.HashSet{Heir.Diagnostic}.AlternateLookup{``0}@)
+  parent: System.Collections.Generic.HashSet{Heir.Diagnostic}
+  definition: System.Collections.Generic.HashSet`1.TryGetAlternateLookup``1(System.Collections.Generic.HashSet{`0}.AlternateLookup{``0}@)
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.trygetalternatelookup
+  name: TryGetAlternateLookup<TAlternate>(out AlternateLookup<TAlternate>)
+  nameWithType: HashSet<Diagnostic>.TryGetAlternateLookup<TAlternate>(out HashSet<Diagnostic>.AlternateLookup<TAlternate>)
+  fullName: System.Collections.Generic.HashSet<Heir.Diagnostic>.TryGetAlternateLookup<TAlternate>(out System.Collections.Generic.HashSet<Heir.Diagnostic>.AlternateLookup<TAlternate>)
+  nameWithType.vb: HashSet(Of Diagnostic).TryGetAlternateLookup(Of TAlternate)(HashSet(Of Diagnostic).AlternateLookup(Of TAlternate))
+  fullName.vb: System.Collections.Generic.HashSet(Of Heir.Diagnostic).TryGetAlternateLookup(Of TAlternate)(System.Collections.Generic.HashSet(Of Heir.Diagnostic).AlternateLookup(Of TAlternate))
+  name.vb: TryGetAlternateLookup(Of TAlternate)(AlternateLookup(Of TAlternate))
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.TryGetAlternateLookup``1(System.Collections.Generic.HashSet{Heir.Diagnostic}.AlternateLookup{``0}@)
+    name: TryGetAlternateLookup
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.trygetalternatelookup
+  - name: <
+  - name: TAlternate
+  - name: '>'
+  - name: (
+  - name: out
+  - name: " "
+  - uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.AlternateLookup`1
+    name: AlternateLookup
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.alternatelookup-1
+  - name: <
+  - name: TAlternate
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.TryGetAlternateLookup``1(System.Collections.Generic.HashSet{Heir.Diagnostic}.AlternateLookup{``0}@)
+    name: TryGetAlternateLookup
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.trygetalternatelookup
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TAlternate
+  - name: )
+  - name: (
+  - uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.AlternateLookup`1
+    name: AlternateLookup
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.alternatelookup-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TAlternate
+  - name: )
+  - name: )
+- uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.TryGetValue(Heir.Diagnostic,Heir.Diagnostic@)
+  commentId: M:System.Collections.Generic.HashSet{Heir.Diagnostic}.TryGetValue(Heir.Diagnostic,Heir.Diagnostic@)
+  parent: System.Collections.Generic.HashSet{Heir.Diagnostic}
+  definition: System.Collections.Generic.HashSet`1.TryGetValue(`0,`0@)
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.trygetvalue
+  name: TryGetValue(Diagnostic, out Diagnostic)
+  nameWithType: HashSet<Diagnostic>.TryGetValue(Diagnostic, out Diagnostic)
+  fullName: System.Collections.Generic.HashSet<Heir.Diagnostic>.TryGetValue(Heir.Diagnostic, out Heir.Diagnostic)
+  nameWithType.vb: HashSet(Of Diagnostic).TryGetValue(Diagnostic, Diagnostic)
+  fullName.vb: System.Collections.Generic.HashSet(Of Heir.Diagnostic).TryGetValue(Heir.Diagnostic, Heir.Diagnostic)
+  name.vb: TryGetValue(Diagnostic, Diagnostic)
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.TryGetValue(Heir.Diagnostic,Heir.Diagnostic@)
+    name: TryGetValue
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.trygetvalue
+  - name: (
+  - uid: Heir.Diagnostic
+    name: Diagnostic
+    href: Heir.Diagnostic.html
+  - name: ','
+  - name: " "
+  - name: out
+  - name: " "
+  - uid: Heir.Diagnostic
+    name: Diagnostic
+    href: Heir.Diagnostic.html
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.TryGetValue(Heir.Diagnostic,Heir.Diagnostic@)
+    name: TryGetValue
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.trygetvalue
+  - name: (
+  - uid: Heir.Diagnostic
+    name: Diagnostic
+    href: Heir.Diagnostic.html
+  - name: ','
+  - name: " "
+  - uid: Heir.Diagnostic
+    name: Diagnostic
+    href: Heir.Diagnostic.html
+  - name: )
+- uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.UnionWith(System.Collections.Generic.IEnumerable{Heir.Diagnostic})
+  commentId: M:System.Collections.Generic.HashSet{Heir.Diagnostic}.UnionWith(System.Collections.Generic.IEnumerable{Heir.Diagnostic})
+  parent: System.Collections.Generic.HashSet{Heir.Diagnostic}
+  definition: System.Collections.Generic.HashSet`1.UnionWith(System.Collections.Generic.IEnumerable{`0})
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.unionwith
+  name: UnionWith(IEnumerable<Diagnostic>)
+  nameWithType: HashSet<Diagnostic>.UnionWith(IEnumerable<Diagnostic>)
+  fullName: System.Collections.Generic.HashSet<Heir.Diagnostic>.UnionWith(System.Collections.Generic.IEnumerable<Heir.Diagnostic>)
+  nameWithType.vb: HashSet(Of Diagnostic).UnionWith(IEnumerable(Of Diagnostic))
+  fullName.vb: System.Collections.Generic.HashSet(Of Heir.Diagnostic).UnionWith(System.Collections.Generic.IEnumerable(Of Heir.Diagnostic))
+  name.vb: UnionWith(IEnumerable(Of Diagnostic))
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.UnionWith(System.Collections.Generic.IEnumerable{Heir.Diagnostic})
+    name: UnionWith
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.unionwith
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: Heir.Diagnostic
+    name: Diagnostic
+    href: Heir.Diagnostic.html
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.UnionWith(System.Collections.Generic.IEnumerable{Heir.Diagnostic})
+    name: UnionWith
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.unionwith
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Heir.Diagnostic
+    name: Diagnostic
+    href: Heir.Diagnostic.html
+  - name: )
+  - name: )
+- uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.Comparer
+  commentId: P:System.Collections.Generic.HashSet{Heir.Diagnostic}.Comparer
+  parent: System.Collections.Generic.HashSet{Heir.Diagnostic}
+  definition: System.Collections.Generic.HashSet`1.Comparer
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.comparer
+  name: Comparer
+  nameWithType: HashSet<Diagnostic>.Comparer
+  fullName: System.Collections.Generic.HashSet<Heir.Diagnostic>.Comparer
+  nameWithType.vb: HashSet(Of Diagnostic).Comparer
+  fullName.vb: System.Collections.Generic.HashSet(Of Heir.Diagnostic).Comparer
+- uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.Count
+  commentId: P:System.Collections.Generic.HashSet{Heir.Diagnostic}.Count
+  parent: System.Collections.Generic.HashSet{Heir.Diagnostic}
+  definition: System.Collections.Generic.HashSet`1.Count
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.count
+  name: Count
+  nameWithType: HashSet<Diagnostic>.Count
+  fullName: System.Collections.Generic.HashSet<Heir.Diagnostic>.Count
+  nameWithType.vb: HashSet(Of Diagnostic).Count
+  fullName.vb: System.Collections.Generic.HashSet(Of Heir.Diagnostic).Count
+- uid: System.Collections.Generic.HashSet{Heir.Diagnostic}.Capacity
+  commentId: P:System.Collections.Generic.HashSet{Heir.Diagnostic}.Capacity
+  parent: System.Collections.Generic.HashSet{Heir.Diagnostic}
+  definition: System.Collections.Generic.HashSet`1.Capacity
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.capacity
+  name: Capacity
+  nameWithType: HashSet<Diagnostic>.Capacity
+  fullName: System.Collections.Generic.HashSet<Heir.Diagnostic>.Capacity
+  nameWithType.vb: HashSet(Of Diagnostic).Capacity
+  fullName.vb: System.Collections.Generic.HashSet(Of Heir.Diagnostic).Capacity
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Collections.Generic.HashSet`1
+  commentId: T:System.Collections.Generic.HashSet`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  name: HashSet<T>
+  nameWithType: HashSet<T>
+  fullName: System.Collections.Generic.HashSet<T>
+  nameWithType.vb: HashSet(Of T)
+  fullName.vb: System.Collections.Generic.HashSet(Of T)
+  name.vb: HashSet(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet`1
+    name: HashSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet`1
+    name: HashSet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: System.Collections.Generic.ISet`1
+  commentId: T:System.Collections.Generic.ISet`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iset-1
+  name: ISet<T>
+  nameWithType: ISet<T>
+  fullName: System.Collections.Generic.ISet<T>
+  nameWithType.vb: ISet(Of T)
+  fullName.vb: System.Collections.Generic.ISet(Of T)
+  name.vb: ISet(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.ISet`1
+    name: ISet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iset-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.ISet`1
+    name: ISet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.iset-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic.ICollection`1
+  commentId: T:System.Collections.Generic.ICollection`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  name: ICollection<T>
+  nameWithType: ICollection<T>
+  fullName: System.Collections.Generic.ICollection<T>
+  nameWithType.vb: ICollection(Of T)
+  fullName.vb: System.Collections.Generic.ICollection(Of T)
+  name.vb: ICollection(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic.IReadOnlySet`1
+  commentId: T:System.Collections.Generic.IReadOnlySet`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlyset-1
+  name: IReadOnlySet<T>
+  nameWithType: IReadOnlySet<T>
+  fullName: System.Collections.Generic.IReadOnlySet<T>
+  nameWithType.vb: IReadOnlySet(Of T)
+  fullName.vb: System.Collections.Generic.IReadOnlySet(Of T)
+  name.vb: IReadOnlySet(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlySet`1
+    name: IReadOnlySet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlyset-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlySet`1
+    name: IReadOnlySet
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlyset-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic.IReadOnlyCollection`1
+  commentId: T:System.Collections.Generic.IReadOnlyCollection`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlycollection-1
+  name: IReadOnlyCollection<T>
+  nameWithType: IReadOnlyCollection<T>
+  fullName: System.Collections.Generic.IReadOnlyCollection<T>
+  nameWithType.vb: IReadOnlyCollection(Of T)
+  fullName.vb: System.Collections.Generic.IReadOnlyCollection(Of T)
+  name.vb: IReadOnlyCollection(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyCollection`1
+    name: IReadOnlyCollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlycollection-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyCollection`1
+    name: IReadOnlyCollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlycollection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections
+  commentId: N:System.Collections
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections
+  nameWithType: System.Collections
+  fullName: System.Collections
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+- uid: System.Runtime.Serialization
+  commentId: N:System.Runtime.Serialization
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Runtime.Serialization
+  nameWithType: System.Runtime.Serialization
+  fullName: System.Runtime.Serialization
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Runtime
+    name: Runtime
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.runtime
+  - name: .
+  - uid: System.Runtime.Serialization
+    name: Serialization
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.runtime.serialization
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Runtime
+    name: Runtime
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.runtime
+  - name: .
+  - uid: System.Runtime.Serialization
+    name: Serialization
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.runtime.serialization
+- uid: System.Collections.Generic.HashSet`1.Add(`0)
+  commentId: M:System.Collections.Generic.HashSet`1.Add(`0)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.add
+  name: Add(T)
+  nameWithType: HashSet<T>.Add(T)
+  fullName: System.Collections.Generic.HashSet<T>.Add(T)
+  nameWithType.vb: HashSet(Of T).Add(T)
+  fullName.vb: System.Collections.Generic.HashSet(Of T).Add(T)
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet`1.Add(`0)
+    name: Add
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.add
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet`1.Add(`0)
+    name: Add
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.add
+  - name: (
+  - name: T
+  - name: )
+- uid: System.Collections.Generic.HashSet`1.Clear
+  commentId: M:System.Collections.Generic.HashSet`1.Clear
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.clear
+  name: Clear()
+  nameWithType: HashSet<T>.Clear()
+  fullName: System.Collections.Generic.HashSet<T>.Clear()
+  nameWithType.vb: HashSet(Of T).Clear()
+  fullName.vb: System.Collections.Generic.HashSet(Of T).Clear()
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet`1.Clear
+    name: Clear
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.clear
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet`1.Clear
+    name: Clear
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.clear
+  - name: (
+  - name: )
+- uid: System.Collections.Generic.HashSet`1.Contains(`0)
+  commentId: M:System.Collections.Generic.HashSet`1.Contains(`0)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.contains
+  name: Contains(T)
+  nameWithType: HashSet<T>.Contains(T)
+  fullName: System.Collections.Generic.HashSet<T>.Contains(T)
+  nameWithType.vb: HashSet(Of T).Contains(T)
+  fullName.vb: System.Collections.Generic.HashSet(Of T).Contains(T)
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet`1.Contains(`0)
+    name: Contains
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.contains
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet`1.Contains(`0)
+    name: Contains
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.contains
+  - name: (
+  - name: T
+  - name: )
+- uid: System.Collections.Generic.HashSet`1.CopyTo(`0[])
+  commentId: M:System.Collections.Generic.HashSet`1.CopyTo(`0[])
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.copyto#system-collections-generic-hashset-1-copyto(-0())
+  name: CopyTo(T[])
+  nameWithType: HashSet<T>.CopyTo(T[])
+  fullName: System.Collections.Generic.HashSet<T>.CopyTo(T[])
+  nameWithType.vb: HashSet(Of T).CopyTo(T())
+  fullName.vb: System.Collections.Generic.HashSet(Of T).CopyTo(T())
+  name.vb: CopyTo(T())
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet`1.CopyTo(`0[])
+    name: CopyTo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.copyto#system-collections-generic-hashset-1-copyto(-0())
+  - name: (
+  - name: T
+  - name: '['
+  - name: ']'
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet`1.CopyTo(`0[])
+    name: CopyTo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.copyto#system-collections-generic-hashset-1-copyto(-0())
+  - name: (
+  - name: T
+  - name: (
+  - name: )
+  - name: )
+- uid: System.Collections.Generic.HashSet`1.CopyTo(`0[],System.Int32)
+  commentId: M:System.Collections.Generic.HashSet`1.CopyTo(`0[],System.Int32)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.copyto#system-collections-generic-hashset-1-copyto(-0()-system-int32)
+  name: CopyTo(T[], int)
+  nameWithType: HashSet<T>.CopyTo(T[], int)
+  fullName: System.Collections.Generic.HashSet<T>.CopyTo(T[], int)
+  nameWithType.vb: HashSet(Of T).CopyTo(T(), Integer)
+  fullName.vb: System.Collections.Generic.HashSet(Of T).CopyTo(T(), Integer)
+  name.vb: CopyTo(T(), Integer)
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet`1.CopyTo(`0[],System.Int32)
+    name: CopyTo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.copyto#system-collections-generic-hashset-1-copyto(-0()-system-int32)
+  - name: (
+  - name: T
+  - name: '['
+  - name: ']'
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet`1.CopyTo(`0[],System.Int32)
+    name: CopyTo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.copyto#system-collections-generic-hashset-1-copyto(-0()-system-int32)
+  - name: (
+  - name: T
+  - name: (
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.Collections.Generic.HashSet`1.CopyTo(`0[],System.Int32,System.Int32)
+  commentId: M:System.Collections.Generic.HashSet`1.CopyTo(`0[],System.Int32,System.Int32)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.copyto#system-collections-generic-hashset-1-copyto(-0()-system-int32-system-int32)
+  name: CopyTo(T[], int, int)
+  nameWithType: HashSet<T>.CopyTo(T[], int, int)
+  fullName: System.Collections.Generic.HashSet<T>.CopyTo(T[], int, int)
+  nameWithType.vb: HashSet(Of T).CopyTo(T(), Integer, Integer)
+  fullName.vb: System.Collections.Generic.HashSet(Of T).CopyTo(T(), Integer, Integer)
+  name.vb: CopyTo(T(), Integer, Integer)
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet`1.CopyTo(`0[],System.Int32,System.Int32)
+    name: CopyTo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.copyto#system-collections-generic-hashset-1-copyto(-0()-system-int32-system-int32)
+  - name: (
+  - name: T
+  - name: '['
+  - name: ']'
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet`1.CopyTo(`0[],System.Int32,System.Int32)
+    name: CopyTo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.copyto#system-collections-generic-hashset-1-copyto(-0()-system-int32-system-int32)
+  - name: (
+  - name: T
+  - name: (
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.Collections.Generic.HashSet`1.CreateSetComparer
+  commentId: M:System.Collections.Generic.HashSet`1.CreateSetComparer
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.createsetcomparer
+  name: CreateSetComparer()
+  nameWithType: HashSet<T>.CreateSetComparer()
+  fullName: System.Collections.Generic.HashSet<T>.CreateSetComparer()
+  nameWithType.vb: HashSet(Of T).CreateSetComparer()
+  fullName.vb: System.Collections.Generic.HashSet(Of T).CreateSetComparer()
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet`1.CreateSetComparer
+    name: CreateSetComparer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.createsetcomparer
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet`1.CreateSetComparer
+    name: CreateSetComparer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.createsetcomparer
+  - name: (
+  - name: )
+- uid: System.Collections.Generic.HashSet`1.EnsureCapacity(System.Int32)
+  commentId: M:System.Collections.Generic.HashSet`1.EnsureCapacity(System.Int32)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.ensurecapacity
+  name: EnsureCapacity(int)
+  nameWithType: HashSet<T>.EnsureCapacity(int)
+  fullName: System.Collections.Generic.HashSet<T>.EnsureCapacity(int)
+  nameWithType.vb: HashSet(Of T).EnsureCapacity(Integer)
+  fullName.vb: System.Collections.Generic.HashSet(Of T).EnsureCapacity(Integer)
+  name.vb: EnsureCapacity(Integer)
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet`1.EnsureCapacity(System.Int32)
+    name: EnsureCapacity
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.ensurecapacity
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet`1.EnsureCapacity(System.Int32)
+    name: EnsureCapacity
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.ensurecapacity
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.Collections.Generic.HashSet`1.ExceptWith(System.Collections.Generic.IEnumerable{`0})
+  commentId: M:System.Collections.Generic.HashSet`1.ExceptWith(System.Collections.Generic.IEnumerable{`0})
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.exceptwith
+  name: ExceptWith(IEnumerable<T>)
+  nameWithType: HashSet<T>.ExceptWith(IEnumerable<T>)
+  fullName: System.Collections.Generic.HashSet<T>.ExceptWith(System.Collections.Generic.IEnumerable<T>)
+  nameWithType.vb: HashSet(Of T).ExceptWith(IEnumerable(Of T))
+  fullName.vb: System.Collections.Generic.HashSet(Of T).ExceptWith(System.Collections.Generic.IEnumerable(Of T))
+  name.vb: ExceptWith(IEnumerable(Of T))
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet`1.ExceptWith(System.Collections.Generic.IEnumerable{`0})
+    name: ExceptWith
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.exceptwith
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: T
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet`1.ExceptWith(System.Collections.Generic.IEnumerable{`0})
+    name: ExceptWith
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.exceptwith
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: )
+- uid: System.Collections.Generic.HashSet`1.GetAlternateLookup``1
+  commentId: M:System.Collections.Generic.HashSet`1.GetAlternateLookup``1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.getalternatelookup
+  name: GetAlternateLookup<TAlternate>()
+  nameWithType: HashSet<T>.GetAlternateLookup<TAlternate>()
+  fullName: System.Collections.Generic.HashSet<T>.GetAlternateLookup<TAlternate>()
+  nameWithType.vb: HashSet(Of T).GetAlternateLookup(Of TAlternate)()
+  fullName.vb: System.Collections.Generic.HashSet(Of T).GetAlternateLookup(Of TAlternate)()
+  name.vb: GetAlternateLookup(Of TAlternate)()
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet`1.GetAlternateLookup``1
+    name: GetAlternateLookup
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.getalternatelookup
+  - name: <
+  - name: TAlternate
+  - name: '>'
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet`1.GetAlternateLookup``1
+    name: GetAlternateLookup
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.getalternatelookup
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TAlternate
+  - name: )
+  - name: (
+  - name: )
+- uid: System.Collections.Generic.HashSet`1.GetEnumerator
+  commentId: M:System.Collections.Generic.HashSet`1.GetEnumerator
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.getenumerator
+  name: GetEnumerator()
+  nameWithType: HashSet<T>.GetEnumerator()
+  fullName: System.Collections.Generic.HashSet<T>.GetEnumerator()
+  nameWithType.vb: HashSet(Of T).GetEnumerator()
+  fullName.vb: System.Collections.Generic.HashSet(Of T).GetEnumerator()
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet`1.GetEnumerator
+    name: GetEnumerator
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.getenumerator
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet`1.GetEnumerator
+    name: GetEnumerator
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.getenumerator
+  - name: (
+  - name: )
+- uid: System.Collections.Generic.HashSet`1.IntersectWith(System.Collections.Generic.IEnumerable{`0})
+  commentId: M:System.Collections.Generic.HashSet`1.IntersectWith(System.Collections.Generic.IEnumerable{`0})
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.intersectwith
+  name: IntersectWith(IEnumerable<T>)
+  nameWithType: HashSet<T>.IntersectWith(IEnumerable<T>)
+  fullName: System.Collections.Generic.HashSet<T>.IntersectWith(System.Collections.Generic.IEnumerable<T>)
+  nameWithType.vb: HashSet(Of T).IntersectWith(IEnumerable(Of T))
+  fullName.vb: System.Collections.Generic.HashSet(Of T).IntersectWith(System.Collections.Generic.IEnumerable(Of T))
+  name.vb: IntersectWith(IEnumerable(Of T))
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet`1.IntersectWith(System.Collections.Generic.IEnumerable{`0})
+    name: IntersectWith
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.intersectwith
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: T
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet`1.IntersectWith(System.Collections.Generic.IEnumerable{`0})
+    name: IntersectWith
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.intersectwith
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: )
+- uid: System.Collections.Generic.HashSet`1.IsProperSubsetOf(System.Collections.Generic.IEnumerable{`0})
+  commentId: M:System.Collections.Generic.HashSet`1.IsProperSubsetOf(System.Collections.Generic.IEnumerable{`0})
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.ispropersubsetof
+  name: IsProperSubsetOf(IEnumerable<T>)
+  nameWithType: HashSet<T>.IsProperSubsetOf(IEnumerable<T>)
+  fullName: System.Collections.Generic.HashSet<T>.IsProperSubsetOf(System.Collections.Generic.IEnumerable<T>)
+  nameWithType.vb: HashSet(Of T).IsProperSubsetOf(IEnumerable(Of T))
+  fullName.vb: System.Collections.Generic.HashSet(Of T).IsProperSubsetOf(System.Collections.Generic.IEnumerable(Of T))
+  name.vb: IsProperSubsetOf(IEnumerable(Of T))
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet`1.IsProperSubsetOf(System.Collections.Generic.IEnumerable{`0})
+    name: IsProperSubsetOf
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.ispropersubsetof
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: T
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet`1.IsProperSubsetOf(System.Collections.Generic.IEnumerable{`0})
+    name: IsProperSubsetOf
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.ispropersubsetof
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: )
+- uid: System.Collections.Generic.HashSet`1.IsProperSupersetOf(System.Collections.Generic.IEnumerable{`0})
+  commentId: M:System.Collections.Generic.HashSet`1.IsProperSupersetOf(System.Collections.Generic.IEnumerable{`0})
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.ispropersupersetof
+  name: IsProperSupersetOf(IEnumerable<T>)
+  nameWithType: HashSet<T>.IsProperSupersetOf(IEnumerable<T>)
+  fullName: System.Collections.Generic.HashSet<T>.IsProperSupersetOf(System.Collections.Generic.IEnumerable<T>)
+  nameWithType.vb: HashSet(Of T).IsProperSupersetOf(IEnumerable(Of T))
+  fullName.vb: System.Collections.Generic.HashSet(Of T).IsProperSupersetOf(System.Collections.Generic.IEnumerable(Of T))
+  name.vb: IsProperSupersetOf(IEnumerable(Of T))
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet`1.IsProperSupersetOf(System.Collections.Generic.IEnumerable{`0})
+    name: IsProperSupersetOf
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.ispropersupersetof
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: T
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet`1.IsProperSupersetOf(System.Collections.Generic.IEnumerable{`0})
+    name: IsProperSupersetOf
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.ispropersupersetof
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: )
+- uid: System.Collections.Generic.HashSet`1.IsSubsetOf(System.Collections.Generic.IEnumerable{`0})
+  commentId: M:System.Collections.Generic.HashSet`1.IsSubsetOf(System.Collections.Generic.IEnumerable{`0})
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.issubsetof
+  name: IsSubsetOf(IEnumerable<T>)
+  nameWithType: HashSet<T>.IsSubsetOf(IEnumerable<T>)
+  fullName: System.Collections.Generic.HashSet<T>.IsSubsetOf(System.Collections.Generic.IEnumerable<T>)
+  nameWithType.vb: HashSet(Of T).IsSubsetOf(IEnumerable(Of T))
+  fullName.vb: System.Collections.Generic.HashSet(Of T).IsSubsetOf(System.Collections.Generic.IEnumerable(Of T))
+  name.vb: IsSubsetOf(IEnumerable(Of T))
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet`1.IsSubsetOf(System.Collections.Generic.IEnumerable{`0})
+    name: IsSubsetOf
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.issubsetof
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: T
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet`1.IsSubsetOf(System.Collections.Generic.IEnumerable{`0})
+    name: IsSubsetOf
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.issubsetof
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: )
+- uid: System.Collections.Generic.HashSet`1.IsSupersetOf(System.Collections.Generic.IEnumerable{`0})
+  commentId: M:System.Collections.Generic.HashSet`1.IsSupersetOf(System.Collections.Generic.IEnumerable{`0})
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.issupersetof
+  name: IsSupersetOf(IEnumerable<T>)
+  nameWithType: HashSet<T>.IsSupersetOf(IEnumerable<T>)
+  fullName: System.Collections.Generic.HashSet<T>.IsSupersetOf(System.Collections.Generic.IEnumerable<T>)
+  nameWithType.vb: HashSet(Of T).IsSupersetOf(IEnumerable(Of T))
+  fullName.vb: System.Collections.Generic.HashSet(Of T).IsSupersetOf(System.Collections.Generic.IEnumerable(Of T))
+  name.vb: IsSupersetOf(IEnumerable(Of T))
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet`1.IsSupersetOf(System.Collections.Generic.IEnumerable{`0})
+    name: IsSupersetOf
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.issupersetof
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: T
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet`1.IsSupersetOf(System.Collections.Generic.IEnumerable{`0})
+    name: IsSupersetOf
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.issupersetof
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: )
+- uid: System.Collections.Generic.HashSet`1.OnDeserialization(System.Object)
+  commentId: M:System.Collections.Generic.HashSet`1.OnDeserialization(System.Object)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.ondeserialization
+  name: OnDeserialization(object)
+  nameWithType: HashSet<T>.OnDeserialization(object)
+  fullName: System.Collections.Generic.HashSet<T>.OnDeserialization(object)
+  nameWithType.vb: HashSet(Of T).OnDeserialization(Object)
+  fullName.vb: System.Collections.Generic.HashSet(Of T).OnDeserialization(Object)
+  name.vb: OnDeserialization(Object)
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet`1.OnDeserialization(System.Object)
+    name: OnDeserialization
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.ondeserialization
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet`1.OnDeserialization(System.Object)
+    name: OnDeserialization
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.ondeserialization
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Collections.Generic.HashSet`1.Overlaps(System.Collections.Generic.IEnumerable{`0})
+  commentId: M:System.Collections.Generic.HashSet`1.Overlaps(System.Collections.Generic.IEnumerable{`0})
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.overlaps
+  name: Overlaps(IEnumerable<T>)
+  nameWithType: HashSet<T>.Overlaps(IEnumerable<T>)
+  fullName: System.Collections.Generic.HashSet<T>.Overlaps(System.Collections.Generic.IEnumerable<T>)
+  nameWithType.vb: HashSet(Of T).Overlaps(IEnumerable(Of T))
+  fullName.vb: System.Collections.Generic.HashSet(Of T).Overlaps(System.Collections.Generic.IEnumerable(Of T))
+  name.vb: Overlaps(IEnumerable(Of T))
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet`1.Overlaps(System.Collections.Generic.IEnumerable{`0})
+    name: Overlaps
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.overlaps
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: T
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet`1.Overlaps(System.Collections.Generic.IEnumerable{`0})
+    name: Overlaps
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.overlaps
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: )
+- uid: System.Collections.Generic.HashSet`1.Remove(`0)
+  commentId: M:System.Collections.Generic.HashSet`1.Remove(`0)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.remove
+  name: Remove(T)
+  nameWithType: HashSet<T>.Remove(T)
+  fullName: System.Collections.Generic.HashSet<T>.Remove(T)
+  nameWithType.vb: HashSet(Of T).Remove(T)
+  fullName.vb: System.Collections.Generic.HashSet(Of T).Remove(T)
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet`1.Remove(`0)
+    name: Remove
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.remove
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet`1.Remove(`0)
+    name: Remove
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.remove
+  - name: (
+  - name: T
+  - name: )
+- uid: System.Collections.Generic.HashSet`1.RemoveWhere(System.Predicate{`0})
+  commentId: M:System.Collections.Generic.HashSet`1.RemoveWhere(System.Predicate{`0})
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.removewhere
+  name: RemoveWhere(Predicate<T>)
+  nameWithType: HashSet<T>.RemoveWhere(Predicate<T>)
+  fullName: System.Collections.Generic.HashSet<T>.RemoveWhere(System.Predicate<T>)
+  nameWithType.vb: HashSet(Of T).RemoveWhere(Predicate(Of T))
+  fullName.vb: System.Collections.Generic.HashSet(Of T).RemoveWhere(System.Predicate(Of T))
+  name.vb: RemoveWhere(Predicate(Of T))
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet`1.RemoveWhere(System.Predicate{`0})
+    name: RemoveWhere
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.removewhere
+  - name: (
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: <
+  - name: T
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet`1.RemoveWhere(System.Predicate{`0})
+    name: RemoveWhere
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.removewhere
+  - name: (
+  - uid: System.Predicate`1
+    name: Predicate
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.predicate-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: )
+- uid: System.Collections.Generic.HashSet`1.SetEquals(System.Collections.Generic.IEnumerable{`0})
+  commentId: M:System.Collections.Generic.HashSet`1.SetEquals(System.Collections.Generic.IEnumerable{`0})
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.setequals
+  name: SetEquals(IEnumerable<T>)
+  nameWithType: HashSet<T>.SetEquals(IEnumerable<T>)
+  fullName: System.Collections.Generic.HashSet<T>.SetEquals(System.Collections.Generic.IEnumerable<T>)
+  nameWithType.vb: HashSet(Of T).SetEquals(IEnumerable(Of T))
+  fullName.vb: System.Collections.Generic.HashSet(Of T).SetEquals(System.Collections.Generic.IEnumerable(Of T))
+  name.vb: SetEquals(IEnumerable(Of T))
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet`1.SetEquals(System.Collections.Generic.IEnumerable{`0})
+    name: SetEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.setequals
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: T
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet`1.SetEquals(System.Collections.Generic.IEnumerable{`0})
+    name: SetEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.setequals
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: )
+- uid: System.Collections.Generic.HashSet`1.SymmetricExceptWith(System.Collections.Generic.IEnumerable{`0})
+  commentId: M:System.Collections.Generic.HashSet`1.SymmetricExceptWith(System.Collections.Generic.IEnumerable{`0})
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.symmetricexceptwith
+  name: SymmetricExceptWith(IEnumerable<T>)
+  nameWithType: HashSet<T>.SymmetricExceptWith(IEnumerable<T>)
+  fullName: System.Collections.Generic.HashSet<T>.SymmetricExceptWith(System.Collections.Generic.IEnumerable<T>)
+  nameWithType.vb: HashSet(Of T).SymmetricExceptWith(IEnumerable(Of T))
+  fullName.vb: System.Collections.Generic.HashSet(Of T).SymmetricExceptWith(System.Collections.Generic.IEnumerable(Of T))
+  name.vb: SymmetricExceptWith(IEnumerable(Of T))
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet`1.SymmetricExceptWith(System.Collections.Generic.IEnumerable{`0})
+    name: SymmetricExceptWith
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.symmetricexceptwith
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: T
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet`1.SymmetricExceptWith(System.Collections.Generic.IEnumerable{`0})
+    name: SymmetricExceptWith
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.symmetricexceptwith
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: )
+- uid: System.Collections.Generic.HashSet`1.TrimExcess
+  commentId: M:System.Collections.Generic.HashSet`1.TrimExcess
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.trimexcess#system-collections-generic-hashset-1-trimexcess
+  name: TrimExcess()
+  nameWithType: HashSet<T>.TrimExcess()
+  fullName: System.Collections.Generic.HashSet<T>.TrimExcess()
+  nameWithType.vb: HashSet(Of T).TrimExcess()
+  fullName.vb: System.Collections.Generic.HashSet(Of T).TrimExcess()
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet`1.TrimExcess
+    name: TrimExcess
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.trimexcess#system-collections-generic-hashset-1-trimexcess
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet`1.TrimExcess
+    name: TrimExcess
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.trimexcess#system-collections-generic-hashset-1-trimexcess
+  - name: (
+  - name: )
+- uid: System.Collections.Generic.HashSet`1.TrimExcess(System.Int32)
+  commentId: M:System.Collections.Generic.HashSet`1.TrimExcess(System.Int32)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.trimexcess#system-collections-generic-hashset-1-trimexcess(system-int32)
+  name: TrimExcess(int)
+  nameWithType: HashSet<T>.TrimExcess(int)
+  fullName: System.Collections.Generic.HashSet<T>.TrimExcess(int)
+  nameWithType.vb: HashSet(Of T).TrimExcess(Integer)
+  fullName.vb: System.Collections.Generic.HashSet(Of T).TrimExcess(Integer)
+  name.vb: TrimExcess(Integer)
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet`1.TrimExcess(System.Int32)
+    name: TrimExcess
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.trimexcess#system-collections-generic-hashset-1-trimexcess(system-int32)
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet`1.TrimExcess(System.Int32)
+    name: TrimExcess
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.trimexcess#system-collections-generic-hashset-1-trimexcess(system-int32)
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.Collections.Generic.HashSet`1.TryGetAlternateLookup``1(System.Collections.Generic.HashSet{`0}.AlternateLookup{``0}@)
+  commentId: M:System.Collections.Generic.HashSet`1.TryGetAlternateLookup``1(System.Collections.Generic.HashSet{`0}.AlternateLookup{``0}@)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.trygetalternatelookup
+  name: TryGetAlternateLookup<TAlternate>(out AlternateLookup<TAlternate>)
+  nameWithType: HashSet<T>.TryGetAlternateLookup<TAlternate>(out HashSet<T>.AlternateLookup<TAlternate>)
+  fullName: System.Collections.Generic.HashSet<T>.TryGetAlternateLookup<TAlternate>(out System.Collections.Generic.HashSet<T>.AlternateLookup<TAlternate>)
+  nameWithType.vb: HashSet(Of T).TryGetAlternateLookup(Of TAlternate)(HashSet(Of T).AlternateLookup(Of TAlternate))
+  fullName.vb: System.Collections.Generic.HashSet(Of T).TryGetAlternateLookup(Of TAlternate)(System.Collections.Generic.HashSet(Of T).AlternateLookup(Of TAlternate))
+  name.vb: TryGetAlternateLookup(Of TAlternate)(AlternateLookup(Of TAlternate))
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet`1.TryGetAlternateLookup``1(System.Collections.Generic.HashSet{`0}.AlternateLookup{``0}@)
+    name: TryGetAlternateLookup
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.trygetalternatelookup
+  - name: <
+  - name: TAlternate
+  - name: '>'
+  - name: (
+  - name: out
+  - name: " "
+  - uid: System.Collections.Generic.HashSet`1.AlternateLookup`1
+    name: AlternateLookup
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.alternatelookup-1
+  - name: <
+  - name: TAlternate
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet`1.TryGetAlternateLookup``1(System.Collections.Generic.HashSet{`0}.AlternateLookup{``0}@)
+    name: TryGetAlternateLookup
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.trygetalternatelookup
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TAlternate
+  - name: )
+  - name: (
+  - uid: System.Collections.Generic.HashSet`1.AlternateLookup`1
+    name: AlternateLookup
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.alternatelookup-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TAlternate
+  - name: )
+  - name: )
+- uid: System.Collections.Generic.HashSet`1.TryGetValue(`0,`0@)
+  commentId: M:System.Collections.Generic.HashSet`1.TryGetValue(`0,`0@)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.trygetvalue
+  name: TryGetValue(T, out T)
+  nameWithType: HashSet<T>.TryGetValue(T, out T)
+  fullName: System.Collections.Generic.HashSet<T>.TryGetValue(T, out T)
+  nameWithType.vb: HashSet(Of T).TryGetValue(T, T)
+  fullName.vb: System.Collections.Generic.HashSet(Of T).TryGetValue(T, T)
+  name.vb: TryGetValue(T, T)
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet`1.TryGetValue(`0,`0@)
+    name: TryGetValue
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.trygetvalue
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - name: out
+  - name: " "
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet`1.TryGetValue(`0,`0@)
+    name: TryGetValue
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.trygetvalue
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic.HashSet`1.UnionWith(System.Collections.Generic.IEnumerable{`0})
+  commentId: M:System.Collections.Generic.HashSet`1.UnionWith(System.Collections.Generic.IEnumerable{`0})
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.unionwith
+  name: UnionWith(IEnumerable<T>)
+  nameWithType: HashSet<T>.UnionWith(IEnumerable<T>)
+  fullName: System.Collections.Generic.HashSet<T>.UnionWith(System.Collections.Generic.IEnumerable<T>)
+  nameWithType.vb: HashSet(Of T).UnionWith(IEnumerable(Of T))
+  fullName.vb: System.Collections.Generic.HashSet(Of T).UnionWith(System.Collections.Generic.IEnumerable(Of T))
+  name.vb: UnionWith(IEnumerable(Of T))
+  spec.csharp:
+  - uid: System.Collections.Generic.HashSet`1.UnionWith(System.Collections.Generic.IEnumerable{`0})
+    name: UnionWith
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.unionwith
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: T
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.HashSet`1.UnionWith(System.Collections.Generic.IEnumerable{`0})
+    name: UnionWith
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.unionwith
+  - name: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: )
+- uid: System.Collections.Generic.HashSet`1.Comparer
+  commentId: P:System.Collections.Generic.HashSet`1.Comparer
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.comparer
+  name: Comparer
+  nameWithType: HashSet<T>.Comparer
+  fullName: System.Collections.Generic.HashSet<T>.Comparer
+  nameWithType.vb: HashSet(Of T).Comparer
+  fullName.vb: System.Collections.Generic.HashSet(Of T).Comparer
+- uid: System.Collections.Generic.HashSet`1.Count
+  commentId: P:System.Collections.Generic.HashSet`1.Count
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.count
+  name: Count
+  nameWithType: HashSet<T>.Count
+  fullName: System.Collections.Generic.HashSet<T>.Count
+  nameWithType.vb: HashSet(Of T).Count
+  fullName.vb: System.Collections.Generic.HashSet(Of T).Count
+- uid: System.Collections.Generic.HashSet`1.Capacity
+  commentId: P:System.Collections.Generic.HashSet`1.Capacity
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1.capacity
+  name: Capacity
+  nameWithType: HashSet<T>.Capacity
+  fullName: System.Collections.Generic.HashSet<T>.Capacity
+  nameWithType.vb: HashSet(Of T).Capacity
+  fullName.vb: System.Collections.Generic.HashSet(Of T).Capacity
+- uid: Heir.DiagnosticBag.#ctor*
+  commentId: Overload:Heir.DiagnosticBag.#ctor
+  href: Heir.DiagnosticBag.html#Heir_DiagnosticBag__ctor_Heir_SourceFile_
+  name: DiagnosticBag
+  nameWithType: DiagnosticBag.DiagnosticBag
+  fullName: Heir.DiagnosticBag.DiagnosticBag
+  nameWithType.vb: DiagnosticBag.New
+  fullName.vb: Heir.DiagnosticBag.New
+  name.vb: New
+- uid: Heir.SourceFile
+  commentId: T:Heir.SourceFile
+  parent: Heir
+  href: Heir.SourceFile.html
+  name: SourceFile
+  nameWithType: SourceFile
+  fullName: Heir.SourceFile
+- uid: Heir.DiagnosticBag.HasErrors*
+  commentId: Overload:Heir.DiagnosticBag.HasErrors
+  href: Heir.DiagnosticBag.html#Heir_DiagnosticBag_HasErrors
+  name: HasErrors
+  nameWithType: DiagnosticBag.HasErrors
+  fullName: Heir.DiagnosticBag.HasErrors
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Heir.DiagnosticBag.HasWarnings*
+  commentId: Overload:Heir.DiagnosticBag.HasWarnings
+  href: Heir.DiagnosticBag.html#Heir_DiagnosticBag_HasWarnings
+  name: HasWarnings
+  nameWithType: DiagnosticBag.HasWarnings
+  fullName: Heir.DiagnosticBag.HasWarnings
+- uid: Heir.DiagnosticBag.Warn*
+  commentId: Overload:Heir.DiagnosticBag.Warn
+  href: Heir.DiagnosticBag.html#Heir_DiagnosticBag_Warn_Heir_DiagnosticCode_System_String_Heir_AST_Abstract_SyntaxNode_Heir_AST_Abstract_SyntaxNode_
+  name: Warn
+  nameWithType: DiagnosticBag.Warn
+  fullName: Heir.DiagnosticBag.Warn
+- uid: Heir.DiagnosticCode
+  commentId: T:Heir.DiagnosticCode
+  parent: Heir
+  href: Heir.DiagnosticCode.html
+  name: DiagnosticCode
+  nameWithType: DiagnosticCode
+  fullName: Heir.DiagnosticCode
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Heir.AST.Abstract.SyntaxNode
+  commentId: T:Heir.AST.Abstract.SyntaxNode
+  parent: Heir.AST.Abstract
+  href: Heir.AST.Abstract.SyntaxNode.html
+  name: SyntaxNode
+  nameWithType: SyntaxNode
+  fullName: Heir.AST.Abstract.SyntaxNode
+- uid: Heir.AST.Abstract
+  commentId: N:Heir.AST.Abstract
+  href: Heir.html
+  name: Heir.AST.Abstract
+  nameWithType: Heir.AST.Abstract
+  fullName: Heir.AST.Abstract
+  spec.csharp:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.AST
+    name: AST
+    href: Heir.AST.html
+  - name: .
+  - uid: Heir.AST.Abstract
+    name: Abstract
+    href: Heir.AST.Abstract.html
+  spec.vb:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.AST
+    name: AST
+    href: Heir.AST.html
+  - name: .
+  - uid: Heir.AST.Abstract
+    name: Abstract
+    href: Heir.AST.Abstract.html
+- uid: Heir.Syntax.Token
+  commentId: T:Heir.Syntax.Token
+  parent: Heir.Syntax
+  href: Heir.Syntax.Token.html
+  name: Token
+  nameWithType: Token
+  fullName: Heir.Syntax.Token
+- uid: Heir.Syntax
+  commentId: N:Heir.Syntax
+  href: Heir.html
+  name: Heir.Syntax
+  nameWithType: Heir.Syntax
+  fullName: Heir.Syntax
+  spec.csharp:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.Syntax
+    name: Syntax
+    href: Heir.Syntax.html
+  spec.vb:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.Syntax
+    name: Syntax
+    href: Heir.Syntax.html
+- uid: Heir.Syntax.Location
+  commentId: T:Heir.Syntax.Location
+  parent: Heir.Syntax
+  href: Heir.Syntax.Location.html
+  name: Location
+  nameWithType: Location
+  fullName: Heir.Syntax.Location
+- uid: Heir.DiagnosticBag.Error*
+  commentId: Overload:Heir.DiagnosticBag.Error
+  href: Heir.DiagnosticBag.html#Heir_DiagnosticBag_Error_Heir_DiagnosticCode_System_String_Heir_AST_Abstract_SyntaxNode_Heir_AST_Abstract_SyntaxNode_
+  name: Error
+  nameWithType: DiagnosticBag.Error
+  fullName: Heir.DiagnosticBag.Error
+- uid: Heir.DiagnosticBag.RuntimeError*
+  commentId: Overload:Heir.DiagnosticBag.RuntimeError
+  href: Heir.DiagnosticBag.html#Heir_DiagnosticBag_RuntimeError_Heir_DiagnosticCode_System_String_Heir_Syntax_Token_
+  name: RuntimeError
+  nameWithType: DiagnosticBag.RuntimeError
+  fullName: Heir.DiagnosticBag.RuntimeError
+- uid: Heir.DiagnosticBag.Write*
+  commentId: Overload:Heir.DiagnosticBag.Write
+  href: Heir.DiagnosticBag.html#Heir_DiagnosticBag_Write_System_Boolean_
+  name: Write
+  nameWithType: DiagnosticBag.Write
+  fullName: Heir.DiagnosticBag.Write
+- uid: Heir.DiagnosticBag.ToString*
+  commentId: Overload:Heir.DiagnosticBag.ToString
+  href: Heir.DiagnosticBag.html#Heir_DiagnosticBag_ToString_System_Boolean_
+  name: ToString
+  nameWithType: DiagnosticBag.ToString
+  fullName: Heir.DiagnosticBag.ToString

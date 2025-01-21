@@ -1,0 +1,68 @@
+### YamlMime:ManagedReference
+items:
+- uid: Heir.Runtime.HookedExceptions
+  commentId: N:Heir.Runtime.HookedExceptions
+  id: Heir.Runtime.HookedExceptions
+  children:
+  - Heir.Runtime.HookedExceptions.BreakHook
+  - Heir.Runtime.HookedExceptions.HookedException
+  - Heir.Runtime.HookedExceptions.NextHook
+  langs:
+  - csharp
+  - vb
+  name: Heir.Runtime.HookedExceptions
+  nameWithType: Heir.Runtime.HookedExceptions
+  fullName: Heir.Runtime.HookedExceptions
+  type: Namespace
+  assemblies:
+  - Heir
+references:
+- uid: Heir.Runtime.HookedExceptions.BreakHook
+  commentId: T:Heir.Runtime.HookedExceptions.BreakHook
+  href: Heir.Runtime.HookedExceptions.BreakHook.html
+  name: BreakHook
+  nameWithType: BreakHook
+  fullName: Heir.Runtime.HookedExceptions.BreakHook
+- uid: Heir.Runtime.HookedExceptions.NextHook
+  commentId: T:Heir.Runtime.HookedExceptions.NextHook
+  href: Heir.Runtime.HookedExceptions.NextHook.html
+  name: NextHook
+  nameWithType: NextHook
+  fullName: Heir.Runtime.HookedExceptions.NextHook
+- uid: Heir.Runtime.HookedExceptions.HookedException
+  commentId: T:Heir.Runtime.HookedExceptions.HookedException
+  parent: Heir.Runtime.HookedExceptions
+  href: Heir.Runtime.HookedExceptions.HookedException.html
+  name: HookedException
+  nameWithType: HookedException
+  fullName: Heir.Runtime.HookedExceptions.HookedException
+- uid: Heir.Runtime.HookedExceptions
+  commentId: N:Heir.Runtime.HookedExceptions
+  href: Heir.html
+  name: Heir.Runtime.HookedExceptions
+  nameWithType: Heir.Runtime.HookedExceptions
+  fullName: Heir.Runtime.HookedExceptions
+  spec.csharp:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.Runtime
+    name: Runtime
+    href: Heir.Runtime.html
+  - name: .
+  - uid: Heir.Runtime.HookedExceptions
+    name: HookedExceptions
+    href: Heir.Runtime.HookedExceptions.html
+  spec.vb:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.Runtime
+    name: Runtime
+    href: Heir.Runtime.html
+  - name: .
+  - uid: Heir.Runtime.HookedExceptions
+    name: HookedExceptions
+    href: Heir.Runtime.HookedExceptions.html

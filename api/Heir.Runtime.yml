@@ -1,0 +1,53 @@
+### YamlMime:ManagedReference
+items:
+- uid: Heir.Runtime
+  commentId: N:Heir.Runtime
+  id: Heir.Runtime
+  children:
+  - Heir.Runtime.BinaryTypeOperations
+  - Heir.Runtime.Scope
+  langs:
+  - csharp
+  - vb
+  name: Heir.Runtime
+  nameWithType: Heir.Runtime
+  fullName: Heir.Runtime
+  type: Namespace
+  assemblies:
+  - Heir
+references:
+- uid: Heir.Runtime.BinaryTypeOperations
+  commentId: T:Heir.Runtime.BinaryTypeOperations
+  href: Heir.Runtime.BinaryTypeOperations.html
+  name: BinaryTypeOperations
+  nameWithType: BinaryTypeOperations
+  fullName: Heir.Runtime.BinaryTypeOperations
+- uid: Heir.Runtime.Scope
+  commentId: T:Heir.Runtime.Scope
+  parent: Heir.Runtime
+  href: Heir.Runtime.Scope.html
+  name: Scope
+  nameWithType: Scope
+  fullName: Heir.Runtime.Scope
+- uid: Heir.Runtime
+  commentId: N:Heir.Runtime
+  href: Heir.html
+  name: Heir.Runtime
+  nameWithType: Heir.Runtime
+  fullName: Heir.Runtime
+  spec.csharp:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.Runtime
+    name: Runtime
+    href: Heir.Runtime.html
+  spec.vb:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.Runtime
+    name: Runtime
+    href: Heir.Runtime.html

@@ -1,0 +1,370 @@
+### YamlMime:ManagedReference
+items:
+- uid: Heir.Lexer
+  commentId: T:Heir.Lexer
+  id: Lexer
+  parent: Heir
+  children:
+  - Heir.Lexer.#ctor(Heir.SourceFile)
+  - Heir.Lexer.GetTokens
+  langs:
+  - csharp
+  - vb
+  name: Lexer
+  nameWithType: Lexer
+  fullName: Heir.Lexer
+  type: Class
+  source:
+    remote:
+      path: Heir/Lexer.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Lexer
+    path: Heir/Lexer.cs
+    startLine: 4
+  assemblies:
+  - Heir
+  namespace: Heir
+  syntax:
+    content: public sealed class Lexer
+    content.vb: Public NotInheritable Class Lexer
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Heir.Lexer.#ctor(Heir.SourceFile)
+  commentId: M:Heir.Lexer.#ctor(Heir.SourceFile)
+  id: '#ctor(Heir.SourceFile)'
+  parent: Heir.Lexer
+  langs:
+  - csharp
+  - vb
+  name: Lexer(SourceFile)
+  nameWithType: Lexer.Lexer(SourceFile)
+  fullName: Heir.Lexer.Lexer(Heir.SourceFile)
+  type: Constructor
+  source:
+    remote:
+      path: Heir/Lexer.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: .ctor
+    path: Heir/Lexer.cs
+    startLine: 4
+  assemblies:
+  - Heir
+  namespace: Heir
+  syntax:
+    content: public Lexer(SourceFile sourceFile)
+    parameters:
+    - id: sourceFile
+      type: Heir.SourceFile
+    content.vb: Public Sub New(sourceFile As SourceFile)
+  overload: Heir.Lexer.#ctor*
+  nameWithType.vb: Lexer.New(SourceFile)
+  fullName.vb: Heir.Lexer.New(Heir.SourceFile)
+  name.vb: New(SourceFile)
+- uid: Heir.Lexer.GetTokens
+  commentId: M:Heir.Lexer.GetTokens
+  id: GetTokens
+  parent: Heir.Lexer
+  langs:
+  - csharp
+  - vb
+  name: GetTokens()
+  nameWithType: Lexer.GetTokens()
+  fullName: Heir.Lexer.GetTokens()
+  type: Method
+  source:
+    remote:
+      path: Heir/Lexer.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: GetTokens
+    path: Heir/Lexer.cs
+    startLine: 18
+  assemblies:
+  - Heir
+  namespace: Heir
+  syntax:
+    content: public TokenStream GetTokens()
+    return:
+      type: Heir.Syntax.TokenStream
+    content.vb: Public Function GetTokens() As TokenStream
+  overload: Heir.Lexer.GetTokens*
+references:
+- uid: Heir
+  commentId: N:Heir
+  href: Heir.html
+  name: Heir
+  nameWithType: Heir
+  fullName: Heir
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Heir.Lexer.#ctor*
+  commentId: Overload:Heir.Lexer.#ctor
+  href: Heir.Lexer.html#Heir_Lexer__ctor_Heir_SourceFile_
+  name: Lexer
+  nameWithType: Lexer.Lexer
+  fullName: Heir.Lexer.Lexer
+  nameWithType.vb: Lexer.New
+  fullName.vb: Heir.Lexer.New
+  name.vb: New
+- uid: Heir.SourceFile
+  commentId: T:Heir.SourceFile
+  parent: Heir
+  href: Heir.SourceFile.html
+  name: SourceFile
+  nameWithType: SourceFile
+  fullName: Heir.SourceFile
+- uid: Heir.Lexer.GetTokens*
+  commentId: Overload:Heir.Lexer.GetTokens
+  href: Heir.Lexer.html#Heir_Lexer_GetTokens
+  name: GetTokens
+  nameWithType: Lexer.GetTokens
+  fullName: Heir.Lexer.GetTokens
+- uid: Heir.Syntax.TokenStream
+  commentId: T:Heir.Syntax.TokenStream
+  parent: Heir.Syntax
+  href: Heir.Syntax.TokenStream.html
+  name: TokenStream
+  nameWithType: TokenStream
+  fullName: Heir.Syntax.TokenStream
+- uid: Heir.Syntax
+  commentId: N:Heir.Syntax
+  href: Heir.html
+  name: Heir.Syntax
+  nameWithType: Heir.Syntax
+  fullName: Heir.Syntax
+  spec.csharp:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.Syntax
+    name: Syntax
+    href: Heir.Syntax.html
+  spec.vb:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.Syntax
+    name: Syntax
+    href: Heir.Syntax.html

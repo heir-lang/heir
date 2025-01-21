@@ -1,0 +1,762 @@
+### YamlMime:ManagedReference
+items:
+- uid: Heir.VirtualMachine
+  commentId: T:Heir.VirtualMachine
+  id: VirtualMachine
+  parent: Heir
+  children:
+  - Heir.VirtualMachine.#ctor(Heir.CodeGeneration.Bytecode,Heir.DiagnosticBag,Heir.Runtime.Scope,System.Int32)
+  - Heir.VirtualMachine.BeginRecursion(Heir.Syntax.Token)
+  - Heir.VirtualMachine.Diagnostics
+  - Heir.VirtualMachine.EndRecursion(System.Int32)
+  - Heir.VirtualMachine.Evaluate
+  - Heir.VirtualMachine.GlobalScope
+  - Heir.VirtualMachine.Scope
+  - Heir.VirtualMachine.Stack
+  langs:
+  - csharp
+  - vb
+  name: VirtualMachine
+  nameWithType: VirtualMachine
+  fullName: Heir.VirtualMachine
+  type: Class
+  source:
+    remote:
+      path: Heir/VirtualMachine.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: VirtualMachine
+    path: Heir/VirtualMachine.cs
+    startLine: 11
+  assemblies:
+  - Heir
+  namespace: Heir
+  syntax:
+    content: public sealed class VirtualMachine
+    content.vb: Public NotInheritable Class VirtualMachine
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Heir.VirtualMachine.Diagnostics
+  commentId: P:Heir.VirtualMachine.Diagnostics
+  id: Diagnostics
+  parent: Heir.VirtualMachine
+  langs:
+  - csharp
+  - vb
+  name: Diagnostics
+  nameWithType: VirtualMachine.Diagnostics
+  fullName: Heir.VirtualMachine.Diagnostics
+  type: Property
+  source:
+    remote:
+      path: Heir/VirtualMachine.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Diagnostics
+    path: Heir/VirtualMachine.cs
+    startLine: 13
+  assemblies:
+  - Heir
+  namespace: Heir
+  syntax:
+    content: public DiagnosticBag Diagnostics { get; }
+    parameters: []
+    return:
+      type: Heir.DiagnosticBag
+    content.vb: Public ReadOnly Property Diagnostics As DiagnosticBag
+  overload: Heir.VirtualMachine.Diagnostics*
+- uid: Heir.VirtualMachine.GlobalScope
+  commentId: P:Heir.VirtualMachine.GlobalScope
+  id: GlobalScope
+  parent: Heir.VirtualMachine
+  langs:
+  - csharp
+  - vb
+  name: GlobalScope
+  nameWithType: VirtualMachine.GlobalScope
+  fullName: Heir.VirtualMachine.GlobalScope
+  type: Property
+  source:
+    remote:
+      path: Heir/VirtualMachine.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: GlobalScope
+    path: Heir/VirtualMachine.cs
+    startLine: 14
+  assemblies:
+  - Heir
+  namespace: Heir
+  syntax:
+    content: public Scope GlobalScope { get; }
+    parameters: []
+    return:
+      type: Heir.Runtime.Scope
+    content.vb: Public ReadOnly Property GlobalScope As Scope
+  overload: Heir.VirtualMachine.GlobalScope*
+- uid: Heir.VirtualMachine.Scope
+  commentId: P:Heir.VirtualMachine.Scope
+  id: Scope
+  parent: Heir.VirtualMachine
+  langs:
+  - csharp
+  - vb
+  name: Scope
+  nameWithType: VirtualMachine.Scope
+  fullName: Heir.VirtualMachine.Scope
+  type: Property
+  source:
+    remote:
+      path: Heir/VirtualMachine.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Scope
+    path: Heir/VirtualMachine.cs
+    startLine: 15
+  assemblies:
+  - Heir
+  namespace: Heir
+  syntax:
+    content: public Scope Scope { get; }
+    parameters: []
+    return:
+      type: Heir.Runtime.Scope
+    content.vb: Public Property Scope As Scope
+  overload: Heir.VirtualMachine.Scope*
+- uid: Heir.VirtualMachine.Stack
+  commentId: P:Heir.VirtualMachine.Stack
+  id: Stack
+  parent: Heir.VirtualMachine
+  langs:
+  - csharp
+  - vb
+  name: Stack
+  nameWithType: VirtualMachine.Stack
+  fullName: Heir.VirtualMachine.Stack
+  type: Property
+  source:
+    remote:
+      path: Heir/VirtualMachine.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Stack
+    path: Heir/VirtualMachine.cs
+    startLine: 16
+  assemblies:
+  - Heir
+  namespace: Heir
+  syntax:
+    content: public Stack<StackFrame> Stack { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.Stack{Heir.StackFrame}
+    content.vb: Public ReadOnly Property Stack As Stack(Of StackFrame)
+  overload: Heir.VirtualMachine.Stack*
+- uid: Heir.VirtualMachine.#ctor(Heir.CodeGeneration.Bytecode,Heir.DiagnosticBag,Heir.Runtime.Scope,System.Int32)
+  commentId: M:Heir.VirtualMachine.#ctor(Heir.CodeGeneration.Bytecode,Heir.DiagnosticBag,Heir.Runtime.Scope,System.Int32)
+  id: '#ctor(Heir.CodeGeneration.Bytecode,Heir.DiagnosticBag,Heir.Runtime.Scope,System.Int32)'
+  parent: Heir.VirtualMachine
+  langs:
+  - csharp
+  - vb
+  name: VirtualMachine(Bytecode, DiagnosticBag, Scope?, int)
+  nameWithType: VirtualMachine.VirtualMachine(Bytecode, DiagnosticBag, Scope?, int)
+  fullName: Heir.VirtualMachine.VirtualMachine(Heir.CodeGeneration.Bytecode, Heir.DiagnosticBag, Heir.Runtime.Scope?, int)
+  type: Constructor
+  source:
+    remote:
+      path: Heir/VirtualMachine.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: .ctor
+    path: Heir/VirtualMachine.cs
+    startLine: 26
+  assemblies:
+  - Heir
+  namespace: Heir
+  syntax:
+    content: public VirtualMachine(Bytecode bytecode, DiagnosticBag diagnostics, Scope? scope = null, int recursionDepth = 0)
+    parameters:
+    - id: bytecode
+      type: Heir.CodeGeneration.Bytecode
+    - id: diagnostics
+      type: Heir.DiagnosticBag
+    - id: scope
+      type: Heir.Runtime.Scope
+    - id: recursionDepth
+      type: System.Int32
+    content.vb: Public Sub New(bytecode As Bytecode, diagnostics As DiagnosticBag, scope As Scope = Nothing, recursionDepth As Integer = 0)
+  overload: Heir.VirtualMachine.#ctor*
+  nameWithType.vb: VirtualMachine.New(Bytecode, DiagnosticBag, Scope, Integer)
+  fullName.vb: Heir.VirtualMachine.New(Heir.CodeGeneration.Bytecode, Heir.DiagnosticBag, Heir.Runtime.Scope, Integer)
+  name.vb: New(Bytecode, DiagnosticBag, Scope, Integer)
+- uid: Heir.VirtualMachine.Evaluate
+  commentId: M:Heir.VirtualMachine.Evaluate
+  id: Evaluate
+  parent: Heir.VirtualMachine
+  langs:
+  - csharp
+  - vb
+  name: Evaluate()
+  nameWithType: VirtualMachine.Evaluate()
+  fullName: Heir.VirtualMachine.Evaluate()
+  type: Method
+  source:
+    remote:
+      path: Heir/VirtualMachine.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Evaluate
+    path: Heir/VirtualMachine.cs
+    startLine: 36
+  assemblies:
+  - Heir
+  namespace: Heir
+  syntax:
+    content: public object? Evaluate()
+    return:
+      type: System.Object
+    content.vb: Public Function Evaluate() As Object
+  overload: Heir.VirtualMachine.Evaluate*
+- uid: Heir.VirtualMachine.EndRecursion(System.Int32)
+  commentId: M:Heir.VirtualMachine.EndRecursion(System.Int32)
+  id: EndRecursion(System.Int32)
+  parent: Heir.VirtualMachine
+  langs:
+  - csharp
+  - vb
+  name: EndRecursion(int)
+  nameWithType: VirtualMachine.EndRecursion(int)
+  fullName: Heir.VirtualMachine.EndRecursion(int)
+  type: Method
+  source:
+    remote:
+      path: Heir/VirtualMachine.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: EndRecursion
+    path: Heir/VirtualMachine.cs
+    startLine: 51
+  assemblies:
+  - Heir
+  namespace: Heir
+  syntax:
+    content: public void EndRecursion(int level = 1)
+    parameters:
+    - id: level
+      type: System.Int32
+    content.vb: Public Sub EndRecursion(level As Integer = 1)
+  overload: Heir.VirtualMachine.EndRecursion*
+  nameWithType.vb: VirtualMachine.EndRecursion(Integer)
+  fullName.vb: Heir.VirtualMachine.EndRecursion(Integer)
+  name.vb: EndRecursion(Integer)
+- uid: Heir.VirtualMachine.BeginRecursion(Heir.Syntax.Token)
+  commentId: M:Heir.VirtualMachine.BeginRecursion(Heir.Syntax.Token)
+  id: BeginRecursion(Heir.Syntax.Token)
+  parent: Heir.VirtualMachine
+  langs:
+  - csharp
+  - vb
+  name: BeginRecursion(Token)
+  nameWithType: VirtualMachine.BeginRecursion(Token)
+  fullName: Heir.VirtualMachine.BeginRecursion(Heir.Syntax.Token)
+  type: Method
+  source:
+    remote:
+      path: Heir/VirtualMachine.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: BeginRecursion
+    path: Heir/VirtualMachine.cs
+    startLine: 52
+  assemblies:
+  - Heir
+  namespace: Heir
+  syntax:
+    content: public void BeginRecursion(Token token)
+    parameters:
+    - id: token
+      type: Heir.Syntax.Token
+    content.vb: Public Sub BeginRecursion(token As Token)
+  overload: Heir.VirtualMachine.BeginRecursion*
+references:
+- uid: Heir
+  commentId: N:Heir
+  href: Heir.html
+  name: Heir
+  nameWithType: Heir
+  fullName: Heir
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Heir.VirtualMachine.Diagnostics*
+  commentId: Overload:Heir.VirtualMachine.Diagnostics
+  href: Heir.VirtualMachine.html#Heir_VirtualMachine_Diagnostics
+  name: Diagnostics
+  nameWithType: VirtualMachine.Diagnostics
+  fullName: Heir.VirtualMachine.Diagnostics
+- uid: Heir.DiagnosticBag
+  commentId: T:Heir.DiagnosticBag
+  parent: Heir
+  href: Heir.DiagnosticBag.html
+  name: DiagnosticBag
+  nameWithType: DiagnosticBag
+  fullName: Heir.DiagnosticBag
+- uid: Heir.VirtualMachine.GlobalScope*
+  commentId: Overload:Heir.VirtualMachine.GlobalScope
+  href: Heir.VirtualMachine.html#Heir_VirtualMachine_GlobalScope
+  name: GlobalScope
+  nameWithType: VirtualMachine.GlobalScope
+  fullName: Heir.VirtualMachine.GlobalScope
+- uid: Heir.Runtime.Scope
+  commentId: T:Heir.Runtime.Scope
+  parent: Heir.Runtime
+  href: Heir.Runtime.Scope.html
+  name: Scope
+  nameWithType: Scope
+  fullName: Heir.Runtime.Scope
+- uid: Heir.Runtime
+  commentId: N:Heir.Runtime
+  href: Heir.html
+  name: Heir.Runtime
+  nameWithType: Heir.Runtime
+  fullName: Heir.Runtime
+  spec.csharp:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.Runtime
+    name: Runtime
+    href: Heir.Runtime.html
+  spec.vb:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.Runtime
+    name: Runtime
+    href: Heir.Runtime.html
+- uid: Heir.VirtualMachine.Scope*
+  commentId: Overload:Heir.VirtualMachine.Scope
+  href: Heir.VirtualMachine.html#Heir_VirtualMachine_Scope
+  name: Scope
+  nameWithType: VirtualMachine.Scope
+  fullName: Heir.VirtualMachine.Scope
+- uid: Heir.VirtualMachine.Stack*
+  commentId: Overload:Heir.VirtualMachine.Stack
+  href: Heir.VirtualMachine.html#Heir_VirtualMachine_Stack
+  name: Stack
+  nameWithType: VirtualMachine.Stack
+  fullName: Heir.VirtualMachine.Stack
+- uid: System.Collections.Generic.Stack{Heir.StackFrame}
+  commentId: T:System.Collections.Generic.Stack{Heir.StackFrame}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.Stack`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.stack-1
+  name: Stack<StackFrame>
+  nameWithType: Stack<StackFrame>
+  fullName: System.Collections.Generic.Stack<Heir.StackFrame>
+  nameWithType.vb: Stack(Of StackFrame)
+  fullName.vb: System.Collections.Generic.Stack(Of Heir.StackFrame)
+  name.vb: Stack(Of StackFrame)
+  spec.csharp:
+  - uid: System.Collections.Generic.Stack`1
+    name: Stack
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.stack-1
+  - name: <
+  - uid: Heir.StackFrame
+    name: StackFrame
+    href: Heir.StackFrame.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Stack`1
+    name: Stack
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.stack-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Heir.StackFrame
+    name: StackFrame
+    href: Heir.StackFrame.html
+  - name: )
+- uid: System.Collections.Generic.Stack`1
+  commentId: T:System.Collections.Generic.Stack`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.stack-1
+  name: Stack<T>
+  nameWithType: Stack<T>
+  fullName: System.Collections.Generic.Stack<T>
+  nameWithType.vb: Stack(Of T)
+  fullName.vb: System.Collections.Generic.Stack(Of T)
+  name.vb: Stack(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.Stack`1
+    name: Stack
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.stack-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Stack`1
+    name: Stack
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.stack-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: Heir.VirtualMachine.#ctor*
+  commentId: Overload:Heir.VirtualMachine.#ctor
+  href: Heir.VirtualMachine.html#Heir_VirtualMachine__ctor_Heir_CodeGeneration_Bytecode_Heir_DiagnosticBag_Heir_Runtime_Scope_System_Int32_
+  name: VirtualMachine
+  nameWithType: VirtualMachine.VirtualMachine
+  fullName: Heir.VirtualMachine.VirtualMachine
+  nameWithType.vb: VirtualMachine.New
+  fullName.vb: Heir.VirtualMachine.New
+  name.vb: New
+- uid: Heir.CodeGeneration.Bytecode
+  commentId: T:Heir.CodeGeneration.Bytecode
+  parent: Heir.CodeGeneration
+  href: Heir.CodeGeneration.Bytecode.html
+  name: Bytecode
+  nameWithType: Bytecode
+  fullName: Heir.CodeGeneration.Bytecode
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Heir.CodeGeneration
+  commentId: N:Heir.CodeGeneration
+  href: Heir.html
+  name: Heir.CodeGeneration
+  nameWithType: Heir.CodeGeneration
+  fullName: Heir.CodeGeneration
+  spec.csharp:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.CodeGeneration
+    name: CodeGeneration
+    href: Heir.CodeGeneration.html
+  spec.vb:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.CodeGeneration
+    name: CodeGeneration
+    href: Heir.CodeGeneration.html
+- uid: Heir.VirtualMachine.Evaluate*
+  commentId: Overload:Heir.VirtualMachine.Evaluate
+  href: Heir.VirtualMachine.html#Heir_VirtualMachine_Evaluate
+  name: Evaluate
+  nameWithType: VirtualMachine.Evaluate
+  fullName: Heir.VirtualMachine.Evaluate
+- uid: Heir.VirtualMachine.EndRecursion*
+  commentId: Overload:Heir.VirtualMachine.EndRecursion
+  href: Heir.VirtualMachine.html#Heir_VirtualMachine_EndRecursion_System_Int32_
+  name: EndRecursion
+  nameWithType: VirtualMachine.EndRecursion
+  fullName: Heir.VirtualMachine.EndRecursion
+- uid: Heir.VirtualMachine.BeginRecursion*
+  commentId: Overload:Heir.VirtualMachine.BeginRecursion
+  href: Heir.VirtualMachine.html#Heir_VirtualMachine_BeginRecursion_Heir_Syntax_Token_
+  name: BeginRecursion
+  nameWithType: VirtualMachine.BeginRecursion
+  fullName: Heir.VirtualMachine.BeginRecursion
+- uid: Heir.Syntax.Token
+  commentId: T:Heir.Syntax.Token
+  parent: Heir.Syntax
+  href: Heir.Syntax.Token.html
+  name: Token
+  nameWithType: Token
+  fullName: Heir.Syntax.Token
+- uid: Heir.Syntax
+  commentId: N:Heir.Syntax
+  href: Heir.html
+  name: Heir.Syntax
+  nameWithType: Heir.Syntax
+  fullName: Heir.Syntax
+  spec.csharp:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.Syntax
+    name: Syntax
+    href: Heir.Syntax.html
+  spec.vb:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.Syntax
+    name: Syntax
+    href: Heir.Syntax.html

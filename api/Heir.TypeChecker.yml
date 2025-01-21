@@ -1,0 +1,2573 @@
+### YamlMime:ManagedReference
+items:
+- uid: Heir.TypeChecker
+  commentId: T:Heir.TypeChecker
+  id: TypeChecker
+  parent: Heir
+  children:
+  - Heir.TypeChecker.#ctor(Heir.DiagnosticBag,Heir.BoundAST.BoundSyntaxTree)
+  - Heir.TypeChecker.Check
+  - Heir.TypeChecker.VisitBoundAssignmentOpExpression(Heir.BoundAST.BoundAssignmentOp)
+  - Heir.TypeChecker.VisitBoundBinaryOpExpression(Heir.BoundAST.BoundBinaryOp)
+  - Heir.TypeChecker.VisitBoundBlock(Heir.BoundAST.BoundBlock)
+  - Heir.TypeChecker.VisitBoundElementAccessExpression(Heir.BoundAST.BoundElementAccess)
+  - Heir.TypeChecker.VisitBoundExpressionStatement(Heir.BoundAST.BoundExpressionStatement)
+  - Heir.TypeChecker.VisitBoundFunctionDeclaration(Heir.BoundAST.BoundFunctionDeclaration)
+  - Heir.TypeChecker.VisitBoundIdentifierNameExpression(Heir.BoundAST.BoundIdentifierName)
+  - Heir.TypeChecker.VisitBoundIfStatement(Heir.BoundAST.BoundIf)
+  - Heir.TypeChecker.VisitBoundInvocationExpression(Heir.BoundAST.BoundInvocation)
+  - Heir.TypeChecker.VisitBoundLiteralExpression(Heir.BoundAST.BoundLiteral)
+  - Heir.TypeChecker.VisitBoundMemberAccessExpression(Heir.BoundAST.BoundMemberAccess)
+  - Heir.TypeChecker.VisitBoundNoOp(Heir.BoundAST.BoundNoOp)
+  - Heir.TypeChecker.VisitBoundNoOp(Heir.BoundAST.BoundNoOpStatement)
+  - Heir.TypeChecker.VisitBoundObjectLiteralExpression(Heir.BoundAST.BoundObjectLiteral)
+  - Heir.TypeChecker.VisitBoundParameter(Heir.BoundAST.BoundParameter)
+  - Heir.TypeChecker.VisitBoundParenthesizedExpression(Heir.BoundAST.BoundParenthesized)
+  - Heir.TypeChecker.VisitBoundReturnStatement(Heir.BoundAST.BoundReturn)
+  - Heir.TypeChecker.VisitBoundSyntaxTree(Heir.BoundAST.BoundSyntaxTree)
+  - Heir.TypeChecker.VisitBoundUnaryOpExpression(Heir.BoundAST.BoundUnaryOp)
+  - Heir.TypeChecker.VisitBoundVariableDeclaration(Heir.BoundAST.BoundVariableDeclaration)
+  langs:
+  - csharp
+  - vb
+  name: TypeChecker
+  nameWithType: TypeChecker
+  fullName: Heir.TypeChecker
+  type: Class
+  source:
+    remote:
+      path: Heir/TypeChecker.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: TypeChecker
+    path: Heir/TypeChecker.cs
+    startLine: 7
+  assemblies:
+  - Heir
+  namespace: Heir
+  syntax:
+    content: 'public class TypeChecker : BoundStatement.Visitor<object?>, BoundExpression.Visitor<object?>'
+    content.vb: Public Class TypeChecker Implements BoundStatement.Visitor(Of Object), BoundExpression.Visitor(Of Object)
+  inheritance:
+  - System.Object
+  implements:
+  - Heir.BoundAST.BoundStatement.Visitor{System.Object}
+  - Heir.BoundAST.BoundExpression.Visitor{System.Object}
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Heir.TypeChecker.#ctor(Heir.DiagnosticBag,Heir.BoundAST.BoundSyntaxTree)
+  commentId: M:Heir.TypeChecker.#ctor(Heir.DiagnosticBag,Heir.BoundAST.BoundSyntaxTree)
+  id: '#ctor(Heir.DiagnosticBag,Heir.BoundAST.BoundSyntaxTree)'
+  parent: Heir.TypeChecker
+  langs:
+  - csharp
+  - vb
+  name: TypeChecker(DiagnosticBag, BoundSyntaxTree)
+  nameWithType: TypeChecker.TypeChecker(DiagnosticBag, BoundSyntaxTree)
+  fullName: Heir.TypeChecker.TypeChecker(Heir.DiagnosticBag, Heir.BoundAST.BoundSyntaxTree)
+  type: Constructor
+  source:
+    remote:
+      path: Heir/TypeChecker.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: .ctor
+    path: Heir/TypeChecker.cs
+    startLine: 7
+  assemblies:
+  - Heir
+  namespace: Heir
+  syntax:
+    content: public TypeChecker(DiagnosticBag diagnostics, BoundSyntaxTree syntaxTree)
+    parameters:
+    - id: diagnostics
+      type: Heir.DiagnosticBag
+    - id: syntaxTree
+      type: Heir.BoundAST.BoundSyntaxTree
+    content.vb: Public Sub New(diagnostics As DiagnosticBag, syntaxTree As BoundSyntaxTree)
+  overload: Heir.TypeChecker.#ctor*
+  nameWithType.vb: TypeChecker.New(DiagnosticBag, BoundSyntaxTree)
+  fullName.vb: Heir.TypeChecker.New(Heir.DiagnosticBag, Heir.BoundAST.BoundSyntaxTree)
+  name.vb: New(DiagnosticBag, BoundSyntaxTree)
+- uid: Heir.TypeChecker.Check
+  commentId: M:Heir.TypeChecker.Check
+  id: Check
+  parent: Heir.TypeChecker
+  langs:
+  - csharp
+  - vb
+  name: Check()
+  nameWithType: TypeChecker.Check()
+  fullName: Heir.TypeChecker.Check()
+  type: Method
+  source:
+    remote:
+      path: Heir/TypeChecker.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Check
+    path: Heir/TypeChecker.cs
+    startLine: 9
+  assemblies:
+  - Heir
+  namespace: Heir
+  syntax:
+    content: public void Check()
+    content.vb: Public Sub Check()
+  overload: Heir.TypeChecker.Check*
+- uid: Heir.TypeChecker.VisitBoundSyntaxTree(Heir.BoundAST.BoundSyntaxTree)
+  commentId: M:Heir.TypeChecker.VisitBoundSyntaxTree(Heir.BoundAST.BoundSyntaxTree)
+  id: VisitBoundSyntaxTree(Heir.BoundAST.BoundSyntaxTree)
+  parent: Heir.TypeChecker
+  langs:
+  - csharp
+  - vb
+  name: VisitBoundSyntaxTree(BoundSyntaxTree)
+  nameWithType: TypeChecker.VisitBoundSyntaxTree(BoundSyntaxTree)
+  fullName: Heir.TypeChecker.VisitBoundSyntaxTree(Heir.BoundAST.BoundSyntaxTree)
+  type: Method
+  source:
+    remote:
+      path: Heir/TypeChecker.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: VisitBoundSyntaxTree
+    path: Heir/TypeChecker.cs
+    startLine: 11
+  assemblies:
+  - Heir
+  namespace: Heir
+  example: []
+  syntax:
+    content: public object? VisitBoundSyntaxTree(BoundSyntaxTree tree)
+    parameters:
+    - id: tree
+      type: Heir.BoundAST.BoundSyntaxTree
+    return:
+      type: System.Object
+    content.vb: Public Function VisitBoundSyntaxTree(tree As BoundSyntaxTree) As Object
+  overload: Heir.TypeChecker.VisitBoundSyntaxTree*
+  implements:
+  - Heir.BoundAST.BoundStatement.Visitor{System.Object}.VisitBoundSyntaxTree(Heir.BoundAST.BoundSyntaxTree)
+- uid: Heir.TypeChecker.VisitBoundBlock(Heir.BoundAST.BoundBlock)
+  commentId: M:Heir.TypeChecker.VisitBoundBlock(Heir.BoundAST.BoundBlock)
+  id: VisitBoundBlock(Heir.BoundAST.BoundBlock)
+  parent: Heir.TypeChecker
+  langs:
+  - csharp
+  - vb
+  name: VisitBoundBlock(BoundBlock)
+  nameWithType: TypeChecker.VisitBoundBlock(BoundBlock)
+  fullName: Heir.TypeChecker.VisitBoundBlock(Heir.BoundAST.BoundBlock)
+  type: Method
+  source:
+    remote:
+      path: Heir/TypeChecker.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: VisitBoundBlock
+    path: Heir/TypeChecker.cs
+    startLine: 12
+  assemblies:
+  - Heir
+  namespace: Heir
+  example: []
+  syntax:
+    content: public object? VisitBoundBlock(BoundBlock block)
+    parameters:
+    - id: block
+      type: Heir.BoundAST.BoundBlock
+    return:
+      type: System.Object
+    content.vb: Public Function VisitBoundBlock(block As BoundBlock) As Object
+  overload: Heir.TypeChecker.VisitBoundBlock*
+  implements:
+  - Heir.BoundAST.BoundStatement.Visitor{System.Object}.VisitBoundBlock(Heir.BoundAST.BoundBlock)
+- uid: Heir.TypeChecker.VisitBoundReturnStatement(Heir.BoundAST.BoundReturn)
+  commentId: M:Heir.TypeChecker.VisitBoundReturnStatement(Heir.BoundAST.BoundReturn)
+  id: VisitBoundReturnStatement(Heir.BoundAST.BoundReturn)
+  parent: Heir.TypeChecker
+  langs:
+  - csharp
+  - vb
+  name: VisitBoundReturnStatement(BoundReturn)
+  nameWithType: TypeChecker.VisitBoundReturnStatement(BoundReturn)
+  fullName: Heir.TypeChecker.VisitBoundReturnStatement(Heir.BoundAST.BoundReturn)
+  type: Method
+  source:
+    remote:
+      path: Heir/TypeChecker.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: VisitBoundReturnStatement
+    path: Heir/TypeChecker.cs
+    startLine: 13
+  assemblies:
+  - Heir
+  namespace: Heir
+  example: []
+  syntax:
+    content: public object? VisitBoundReturnStatement(BoundReturn @return)
+    parameters:
+    - id: return
+      type: Heir.BoundAST.BoundReturn
+    return:
+      type: System.Object
+    content.vb: Public Function VisitBoundReturnStatement([return] As BoundReturn) As Object
+  overload: Heir.TypeChecker.VisitBoundReturnStatement*
+  implements:
+  - Heir.BoundAST.BoundStatement.Visitor{System.Object}.VisitBoundReturnStatement(Heir.BoundAST.BoundReturn)
+- uid: Heir.TypeChecker.VisitBoundExpressionStatement(Heir.BoundAST.BoundExpressionStatement)
+  commentId: M:Heir.TypeChecker.VisitBoundExpressionStatement(Heir.BoundAST.BoundExpressionStatement)
+  id: VisitBoundExpressionStatement(Heir.BoundAST.BoundExpressionStatement)
+  parent: Heir.TypeChecker
+  langs:
+  - csharp
+  - vb
+  name: VisitBoundExpressionStatement(BoundExpressionStatement)
+  nameWithType: TypeChecker.VisitBoundExpressionStatement(BoundExpressionStatement)
+  fullName: Heir.TypeChecker.VisitBoundExpressionStatement(Heir.BoundAST.BoundExpressionStatement)
+  type: Method
+  source:
+    remote:
+      path: Heir/TypeChecker.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: VisitBoundExpressionStatement
+    path: Heir/TypeChecker.cs
+    startLine: 14
+  assemblies:
+  - Heir
+  namespace: Heir
+  example: []
+  syntax:
+    content: public object? VisitBoundExpressionStatement(BoundExpressionStatement expressionStatement)
+    parameters:
+    - id: expressionStatement
+      type: Heir.BoundAST.BoundExpressionStatement
+    return:
+      type: System.Object
+    content.vb: Public Function VisitBoundExpressionStatement(expressionStatement As BoundExpressionStatement) As Object
+  overload: Heir.TypeChecker.VisitBoundExpressionStatement*
+  implements:
+  - Heir.BoundAST.BoundStatement.Visitor{System.Object}.VisitBoundExpressionStatement(Heir.BoundAST.BoundExpressionStatement)
+- uid: Heir.TypeChecker.VisitBoundFunctionDeclaration(Heir.BoundAST.BoundFunctionDeclaration)
+  commentId: M:Heir.TypeChecker.VisitBoundFunctionDeclaration(Heir.BoundAST.BoundFunctionDeclaration)
+  id: VisitBoundFunctionDeclaration(Heir.BoundAST.BoundFunctionDeclaration)
+  parent: Heir.TypeChecker
+  langs:
+  - csharp
+  - vb
+  name: VisitBoundFunctionDeclaration(BoundFunctionDeclaration)
+  nameWithType: TypeChecker.VisitBoundFunctionDeclaration(BoundFunctionDeclaration)
+  fullName: Heir.TypeChecker.VisitBoundFunctionDeclaration(Heir.BoundAST.BoundFunctionDeclaration)
+  type: Method
+  source:
+    remote:
+      path: Heir/TypeChecker.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: VisitBoundFunctionDeclaration
+    path: Heir/TypeChecker.cs
+    startLine: 16
+  assemblies:
+  - Heir
+  namespace: Heir
+  example: []
+  syntax:
+    content: public object? VisitBoundFunctionDeclaration(BoundFunctionDeclaration declaration)
+    parameters:
+    - id: declaration
+      type: Heir.BoundAST.BoundFunctionDeclaration
+    return:
+      type: System.Object
+    content.vb: Public Function VisitBoundFunctionDeclaration(declaration As BoundFunctionDeclaration) As Object
+  overload: Heir.TypeChecker.VisitBoundFunctionDeclaration*
+  implements:
+  - Heir.BoundAST.BoundStatement.Visitor{System.Object}.VisitBoundFunctionDeclaration(Heir.BoundAST.BoundFunctionDeclaration)
+- uid: Heir.TypeChecker.VisitBoundVariableDeclaration(Heir.BoundAST.BoundVariableDeclaration)
+  commentId: M:Heir.TypeChecker.VisitBoundVariableDeclaration(Heir.BoundAST.BoundVariableDeclaration)
+  id: VisitBoundVariableDeclaration(Heir.BoundAST.BoundVariableDeclaration)
+  parent: Heir.TypeChecker
+  langs:
+  - csharp
+  - vb
+  name: VisitBoundVariableDeclaration(BoundVariableDeclaration)
+  nameWithType: TypeChecker.VisitBoundVariableDeclaration(BoundVariableDeclaration)
+  fullName: Heir.TypeChecker.VisitBoundVariableDeclaration(Heir.BoundAST.BoundVariableDeclaration)
+  type: Method
+  source:
+    remote:
+      path: Heir/TypeChecker.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: VisitBoundVariableDeclaration
+    path: Heir/TypeChecker.cs
+    startLine: 28
+  assemblies:
+  - Heir
+  namespace: Heir
+  example: []
+  syntax:
+    content: public object? VisitBoundVariableDeclaration(BoundVariableDeclaration variableDeclaration)
+    parameters:
+    - id: variableDeclaration
+      type: Heir.BoundAST.BoundVariableDeclaration
+    return:
+      type: System.Object
+    content.vb: Public Function VisitBoundVariableDeclaration(variableDeclaration As BoundVariableDeclaration) As Object
+  overload: Heir.TypeChecker.VisitBoundVariableDeclaration*
+  implements:
+  - Heir.BoundAST.BoundStatement.Visitor{System.Object}.VisitBoundVariableDeclaration(Heir.BoundAST.BoundVariableDeclaration)
+- uid: Heir.TypeChecker.VisitBoundIfStatement(Heir.BoundAST.BoundIf)
+  commentId: M:Heir.TypeChecker.VisitBoundIfStatement(Heir.BoundAST.BoundIf)
+  id: VisitBoundIfStatement(Heir.BoundAST.BoundIf)
+  parent: Heir.TypeChecker
+  langs:
+  - csharp
+  - vb
+  name: VisitBoundIfStatement(BoundIf)
+  nameWithType: TypeChecker.VisitBoundIfStatement(BoundIf)
+  fullName: Heir.TypeChecker.VisitBoundIfStatement(Heir.BoundAST.BoundIf)
+  type: Method
+  source:
+    remote:
+      path: Heir/TypeChecker.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: VisitBoundIfStatement
+    path: Heir/TypeChecker.cs
+    startLine: 38
+  assemblies:
+  - Heir
+  namespace: Heir
+  example: []
+  syntax:
+    content: public object? VisitBoundIfStatement(BoundIf @if)
+    parameters:
+    - id: if
+      type: Heir.BoundAST.BoundIf
+    return:
+      type: System.Object
+    content.vb: Public Function VisitBoundIfStatement([if] As BoundIf) As Object
+  overload: Heir.TypeChecker.VisitBoundIfStatement*
+  implements:
+  - Heir.BoundAST.BoundStatement.Visitor{System.Object}.VisitBoundIfStatement(Heir.BoundAST.BoundIf)
+- uid: Heir.TypeChecker.VisitBoundParameter(Heir.BoundAST.BoundParameter)
+  commentId: M:Heir.TypeChecker.VisitBoundParameter(Heir.BoundAST.BoundParameter)
+  id: VisitBoundParameter(Heir.BoundAST.BoundParameter)
+  parent: Heir.TypeChecker
+  langs:
+  - csharp
+  - vb
+  name: VisitBoundParameter(BoundParameter)
+  nameWithType: TypeChecker.VisitBoundParameter(BoundParameter)
+  fullName: Heir.TypeChecker.VisitBoundParameter(Heir.BoundAST.BoundParameter)
+  type: Method
+  source:
+    remote:
+      path: Heir/TypeChecker.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: VisitBoundParameter
+    path: Heir/TypeChecker.cs
+    startLine: 49
+  assemblies:
+  - Heir
+  namespace: Heir
+  example: []
+  syntax:
+    content: public object? VisitBoundParameter(BoundParameter parameter)
+    parameters:
+    - id: parameter
+      type: Heir.BoundAST.BoundParameter
+    return:
+      type: System.Object
+    content.vb: Public Function VisitBoundParameter(parameter As BoundParameter) As Object
+  overload: Heir.TypeChecker.VisitBoundParameter*
+  implements:
+  - Heir.BoundAST.BoundExpression.Visitor{System.Object}.VisitBoundParameter(Heir.BoundAST.BoundParameter)
+- uid: Heir.TypeChecker.VisitBoundMemberAccessExpression(Heir.BoundAST.BoundMemberAccess)
+  commentId: M:Heir.TypeChecker.VisitBoundMemberAccessExpression(Heir.BoundAST.BoundMemberAccess)
+  id: VisitBoundMemberAccessExpression(Heir.BoundAST.BoundMemberAccess)
+  parent: Heir.TypeChecker
+  langs:
+  - csharp
+  - vb
+  name: VisitBoundMemberAccessExpression(BoundMemberAccess)
+  nameWithType: TypeChecker.VisitBoundMemberAccessExpression(BoundMemberAccess)
+  fullName: Heir.TypeChecker.VisitBoundMemberAccessExpression(Heir.BoundAST.BoundMemberAccess)
+  type: Method
+  source:
+    remote:
+      path: Heir/TypeChecker.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: VisitBoundMemberAccessExpression
+    path: Heir/TypeChecker.cs
+    startLine: 59
+  assemblies:
+  - Heir
+  namespace: Heir
+  example: []
+  syntax:
+    content: public object? VisitBoundMemberAccessExpression(BoundMemberAccess memberAccess)
+    parameters:
+    - id: memberAccess
+      type: Heir.BoundAST.BoundMemberAccess
+    return:
+      type: System.Object
+    content.vb: Public Function VisitBoundMemberAccessExpression(memberAccess As BoundMemberAccess) As Object
+  overload: Heir.TypeChecker.VisitBoundMemberAccessExpression*
+  implements:
+  - Heir.BoundAST.BoundExpression.Visitor{System.Object}.VisitBoundMemberAccessExpression(Heir.BoundAST.BoundMemberAccess)
+- uid: Heir.TypeChecker.VisitBoundElementAccessExpression(Heir.BoundAST.BoundElementAccess)
+  commentId: M:Heir.TypeChecker.VisitBoundElementAccessExpression(Heir.BoundAST.BoundElementAccess)
+  id: VisitBoundElementAccessExpression(Heir.BoundAST.BoundElementAccess)
+  parent: Heir.TypeChecker
+  langs:
+  - csharp
+  - vb
+  name: VisitBoundElementAccessExpression(BoundElementAccess)
+  nameWithType: TypeChecker.VisitBoundElementAccessExpression(BoundElementAccess)
+  fullName: Heir.TypeChecker.VisitBoundElementAccessExpression(Heir.BoundAST.BoundElementAccess)
+  type: Method
+  source:
+    remote:
+      path: Heir/TypeChecker.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: VisitBoundElementAccessExpression
+    path: Heir/TypeChecker.cs
+    startLine: 80
+  assemblies:
+  - Heir
+  namespace: Heir
+  example: []
+  syntax:
+    content: public object? VisitBoundElementAccessExpression(BoundElementAccess elementAccess)
+    parameters:
+    - id: elementAccess
+      type: Heir.BoundAST.BoundElementAccess
+    return:
+      type: System.Object
+    content.vb: Public Function VisitBoundElementAccessExpression(elementAccess As BoundElementAccess) As Object
+  overload: Heir.TypeChecker.VisitBoundElementAccessExpression*
+  implements:
+  - Heir.BoundAST.BoundExpression.Visitor{System.Object}.VisitBoundElementAccessExpression(Heir.BoundAST.BoundElementAccess)
+- uid: Heir.TypeChecker.VisitBoundInvocationExpression(Heir.BoundAST.BoundInvocation)
+  commentId: M:Heir.TypeChecker.VisitBoundInvocationExpression(Heir.BoundAST.BoundInvocation)
+  id: VisitBoundInvocationExpression(Heir.BoundAST.BoundInvocation)
+  parent: Heir.TypeChecker
+  langs:
+  - csharp
+  - vb
+  name: VisitBoundInvocationExpression(BoundInvocation)
+  nameWithType: TypeChecker.VisitBoundInvocationExpression(BoundInvocation)
+  fullName: Heir.TypeChecker.VisitBoundInvocationExpression(Heir.BoundAST.BoundInvocation)
+  type: Method
+  source:
+    remote:
+      path: Heir/TypeChecker.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: VisitBoundInvocationExpression
+    path: Heir/TypeChecker.cs
+    startLine: 96
+  assemblies:
+  - Heir
+  namespace: Heir
+  example: []
+  syntax:
+    content: public object? VisitBoundInvocationExpression(BoundInvocation invocation)
+    parameters:
+    - id: invocation
+      type: Heir.BoundAST.BoundInvocation
+    return:
+      type: System.Object
+    content.vb: Public Function VisitBoundInvocationExpression(invocation As BoundInvocation) As Object
+  overload: Heir.TypeChecker.VisitBoundInvocationExpression*
+  implements:
+  - Heir.BoundAST.BoundExpression.Visitor{System.Object}.VisitBoundInvocationExpression(Heir.BoundAST.BoundInvocation)
+- uid: Heir.TypeChecker.VisitBoundAssignmentOpExpression(Heir.BoundAST.BoundAssignmentOp)
+  commentId: M:Heir.TypeChecker.VisitBoundAssignmentOpExpression(Heir.BoundAST.BoundAssignmentOp)
+  id: VisitBoundAssignmentOpExpression(Heir.BoundAST.BoundAssignmentOp)
+  parent: Heir.TypeChecker
+  langs:
+  - csharp
+  - vb
+  name: VisitBoundAssignmentOpExpression(BoundAssignmentOp)
+  nameWithType: TypeChecker.VisitBoundAssignmentOpExpression(BoundAssignmentOp)
+  fullName: Heir.TypeChecker.VisitBoundAssignmentOpExpression(Heir.BoundAST.BoundAssignmentOp)
+  type: Method
+  source:
+    remote:
+      path: Heir/TypeChecker.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: VisitBoundAssignmentOpExpression
+    path: Heir/TypeChecker.cs
+    startLine: 134
+  assemblies:
+  - Heir
+  namespace: Heir
+  example: []
+  syntax:
+    content: public object? VisitBoundAssignmentOpExpression(BoundAssignmentOp assignmentOp)
+    parameters:
+    - id: assignmentOp
+      type: Heir.BoundAST.BoundAssignmentOp
+    return:
+      type: System.Object
+    content.vb: Public Function VisitBoundAssignmentOpExpression(assignmentOp As BoundAssignmentOp) As Object
+  overload: Heir.TypeChecker.VisitBoundAssignmentOpExpression*
+  implements:
+  - Heir.BoundAST.BoundExpression.Visitor{System.Object}.VisitBoundAssignmentOpExpression(Heir.BoundAST.BoundAssignmentOp)
+- uid: Heir.TypeChecker.VisitBoundBinaryOpExpression(Heir.BoundAST.BoundBinaryOp)
+  commentId: M:Heir.TypeChecker.VisitBoundBinaryOpExpression(Heir.BoundAST.BoundBinaryOp)
+  id: VisitBoundBinaryOpExpression(Heir.BoundAST.BoundBinaryOp)
+  parent: Heir.TypeChecker
+  langs:
+  - csharp
+  - vb
+  name: VisitBoundBinaryOpExpression(BoundBinaryOp)
+  nameWithType: TypeChecker.VisitBoundBinaryOpExpression(BoundBinaryOp)
+  fullName: Heir.TypeChecker.VisitBoundBinaryOpExpression(Heir.BoundAST.BoundBinaryOp)
+  type: Method
+  source:
+    remote:
+      path: Heir/TypeChecker.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: VisitBoundBinaryOpExpression
+    path: Heir/TypeChecker.cs
+    startLine: 141
+  assemblies:
+  - Heir
+  namespace: Heir
+  example: []
+  syntax:
+    content: public object? VisitBoundBinaryOpExpression(BoundBinaryOp binaryOp)
+    parameters:
+    - id: binaryOp
+      type: Heir.BoundAST.BoundBinaryOp
+    return:
+      type: System.Object
+    content.vb: Public Function VisitBoundBinaryOpExpression(binaryOp As BoundBinaryOp) As Object
+  overload: Heir.TypeChecker.VisitBoundBinaryOpExpression*
+  implements:
+  - Heir.BoundAST.BoundExpression.Visitor{System.Object}.VisitBoundBinaryOpExpression(Heir.BoundAST.BoundBinaryOp)
+- uid: Heir.TypeChecker.VisitBoundLiteralExpression(Heir.BoundAST.BoundLiteral)
+  commentId: M:Heir.TypeChecker.VisitBoundLiteralExpression(Heir.BoundAST.BoundLiteral)
+  id: VisitBoundLiteralExpression(Heir.BoundAST.BoundLiteral)
+  parent: Heir.TypeChecker
+  langs:
+  - csharp
+  - vb
+  name: VisitBoundLiteralExpression(BoundLiteral)
+  nameWithType: TypeChecker.VisitBoundLiteralExpression(BoundLiteral)
+  fullName: Heir.TypeChecker.VisitBoundLiteralExpression(Heir.BoundAST.BoundLiteral)
+  type: Method
+  source:
+    remote:
+      path: Heir/TypeChecker.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: VisitBoundLiteralExpression
+    path: Heir/TypeChecker.cs
+    startLine: 150
+  assemblies:
+  - Heir
+  namespace: Heir
+  example: []
+  syntax:
+    content: public object? VisitBoundLiteralExpression(BoundLiteral literal)
+    parameters:
+    - id: literal
+      type: Heir.BoundAST.BoundLiteral
+    return:
+      type: System.Object
+    content.vb: Public Function VisitBoundLiteralExpression(literal As BoundLiteral) As Object
+  overload: Heir.TypeChecker.VisitBoundLiteralExpression*
+  implements:
+  - Heir.BoundAST.BoundExpression.Visitor{System.Object}.VisitBoundLiteralExpression(Heir.BoundAST.BoundLiteral)
+- uid: Heir.TypeChecker.VisitBoundObjectLiteralExpression(Heir.BoundAST.BoundObjectLiteral)
+  commentId: M:Heir.TypeChecker.VisitBoundObjectLiteralExpression(Heir.BoundAST.BoundObjectLiteral)
+  id: VisitBoundObjectLiteralExpression(Heir.BoundAST.BoundObjectLiteral)
+  parent: Heir.TypeChecker
+  langs:
+  - csharp
+  - vb
+  name: VisitBoundObjectLiteralExpression(BoundObjectLiteral)
+  nameWithType: TypeChecker.VisitBoundObjectLiteralExpression(BoundObjectLiteral)
+  fullName: Heir.TypeChecker.VisitBoundObjectLiteralExpression(Heir.BoundAST.BoundObjectLiteral)
+  type: Method
+  source:
+    remote:
+      path: Heir/TypeChecker.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: VisitBoundObjectLiteralExpression
+    path: Heir/TypeChecker.cs
+    startLine: 151
+  assemblies:
+  - Heir
+  namespace: Heir
+  example: []
+  syntax:
+    content: public object? VisitBoundObjectLiteralExpression(BoundObjectLiteral objectLiteral)
+    parameters:
+    - id: objectLiteral
+      type: Heir.BoundAST.BoundObjectLiteral
+    return:
+      type: System.Object
+    content.vb: Public Function VisitBoundObjectLiteralExpression(objectLiteral As BoundObjectLiteral) As Object
+  overload: Heir.TypeChecker.VisitBoundObjectLiteralExpression*
+  implements:
+  - Heir.BoundAST.BoundExpression.Visitor{System.Object}.VisitBoundObjectLiteralExpression(Heir.BoundAST.BoundObjectLiteral)
+- uid: Heir.TypeChecker.VisitBoundIdentifierNameExpression(Heir.BoundAST.BoundIdentifierName)
+  commentId: M:Heir.TypeChecker.VisitBoundIdentifierNameExpression(Heir.BoundAST.BoundIdentifierName)
+  id: VisitBoundIdentifierNameExpression(Heir.BoundAST.BoundIdentifierName)
+  parent: Heir.TypeChecker
+  langs:
+  - csharp
+  - vb
+  name: VisitBoundIdentifierNameExpression(BoundIdentifierName)
+  nameWithType: TypeChecker.VisitBoundIdentifierNameExpression(BoundIdentifierName)
+  fullName: Heir.TypeChecker.VisitBoundIdentifierNameExpression(Heir.BoundAST.BoundIdentifierName)
+  type: Method
+  source:
+    remote:
+      path: Heir/TypeChecker.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: VisitBoundIdentifierNameExpression
+    path: Heir/TypeChecker.cs
+    startLine: 177
+  assemblies:
+  - Heir
+  namespace: Heir
+  example: []
+  syntax:
+    content: public object? VisitBoundIdentifierNameExpression(BoundIdentifierName identifierName)
+    parameters:
+    - id: identifierName
+      type: Heir.BoundAST.BoundIdentifierName
+    return:
+      type: System.Object
+    content.vb: Public Function VisitBoundIdentifierNameExpression(identifierName As BoundIdentifierName) As Object
+  overload: Heir.TypeChecker.VisitBoundIdentifierNameExpression*
+  implements:
+  - Heir.BoundAST.BoundExpression.Visitor{System.Object}.VisitBoundIdentifierNameExpression(Heir.BoundAST.BoundIdentifierName)
+- uid: Heir.TypeChecker.VisitBoundNoOp(Heir.BoundAST.BoundNoOp)
+  commentId: M:Heir.TypeChecker.VisitBoundNoOp(Heir.BoundAST.BoundNoOp)
+  id: VisitBoundNoOp(Heir.BoundAST.BoundNoOp)
+  parent: Heir.TypeChecker
+  langs:
+  - csharp
+  - vb
+  name: VisitBoundNoOp(BoundNoOp)
+  nameWithType: TypeChecker.VisitBoundNoOp(BoundNoOp)
+  fullName: Heir.TypeChecker.VisitBoundNoOp(Heir.BoundAST.BoundNoOp)
+  type: Method
+  source:
+    remote:
+      path: Heir/TypeChecker.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: VisitBoundNoOp
+    path: Heir/TypeChecker.cs
+    startLine: 178
+  assemblies:
+  - Heir
+  namespace: Heir
+  example: []
+  syntax:
+    content: public object? VisitBoundNoOp(BoundNoOp noOp)
+    parameters:
+    - id: noOp
+      type: Heir.BoundAST.BoundNoOp
+    return:
+      type: System.Object
+    content.vb: Public Function VisitBoundNoOp(noOp As BoundNoOp) As Object
+  overload: Heir.TypeChecker.VisitBoundNoOp*
+  implements:
+  - Heir.BoundAST.BoundExpression.Visitor{System.Object}.VisitBoundNoOp(Heir.BoundAST.BoundNoOp)
+- uid: Heir.TypeChecker.VisitBoundNoOp(Heir.BoundAST.BoundNoOpStatement)
+  commentId: M:Heir.TypeChecker.VisitBoundNoOp(Heir.BoundAST.BoundNoOpStatement)
+  id: VisitBoundNoOp(Heir.BoundAST.BoundNoOpStatement)
+  parent: Heir.TypeChecker
+  langs:
+  - csharp
+  - vb
+  name: VisitBoundNoOp(BoundNoOpStatement)
+  nameWithType: TypeChecker.VisitBoundNoOp(BoundNoOpStatement)
+  fullName: Heir.TypeChecker.VisitBoundNoOp(Heir.BoundAST.BoundNoOpStatement)
+  type: Method
+  source:
+    remote:
+      path: Heir/TypeChecker.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: VisitBoundNoOp
+    path: Heir/TypeChecker.cs
+    startLine: 179
+  assemblies:
+  - Heir
+  namespace: Heir
+  example: []
+  syntax:
+    content: public object? VisitBoundNoOp(BoundNoOpStatement noOp)
+    parameters:
+    - id: noOp
+      type: Heir.BoundAST.BoundNoOpStatement
+    return:
+      type: System.Object
+    content.vb: Public Function VisitBoundNoOp(noOp As BoundNoOpStatement) As Object
+  overload: Heir.TypeChecker.VisitBoundNoOp*
+  implements:
+  - Heir.BoundAST.BoundStatement.Visitor{System.Object}.VisitBoundNoOp(Heir.BoundAST.BoundNoOpStatement)
+- uid: Heir.TypeChecker.VisitBoundParenthesizedExpression(Heir.BoundAST.BoundParenthesized)
+  commentId: M:Heir.TypeChecker.VisitBoundParenthesizedExpression(Heir.BoundAST.BoundParenthesized)
+  id: VisitBoundParenthesizedExpression(Heir.BoundAST.BoundParenthesized)
+  parent: Heir.TypeChecker
+  langs:
+  - csharp
+  - vb
+  name: VisitBoundParenthesizedExpression(BoundParenthesized)
+  nameWithType: TypeChecker.VisitBoundParenthesizedExpression(BoundParenthesized)
+  fullName: Heir.TypeChecker.VisitBoundParenthesizedExpression(Heir.BoundAST.BoundParenthesized)
+  type: Method
+  source:
+    remote:
+      path: Heir/TypeChecker.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: VisitBoundParenthesizedExpression
+    path: Heir/TypeChecker.cs
+    startLine: 181
+  assemblies:
+  - Heir
+  namespace: Heir
+  example: []
+  syntax:
+    content: public object? VisitBoundParenthesizedExpression(BoundParenthesized parenthesized)
+    parameters:
+    - id: parenthesized
+      type: Heir.BoundAST.BoundParenthesized
+    return:
+      type: System.Object
+    content.vb: Public Function VisitBoundParenthesizedExpression(parenthesized As BoundParenthesized) As Object
+  overload: Heir.TypeChecker.VisitBoundParenthesizedExpression*
+  implements:
+  - Heir.BoundAST.BoundExpression.Visitor{System.Object}.VisitBoundParenthesizedExpression(Heir.BoundAST.BoundParenthesized)
+- uid: Heir.TypeChecker.VisitBoundUnaryOpExpression(Heir.BoundAST.BoundUnaryOp)
+  commentId: M:Heir.TypeChecker.VisitBoundUnaryOpExpression(Heir.BoundAST.BoundUnaryOp)
+  id: VisitBoundUnaryOpExpression(Heir.BoundAST.BoundUnaryOp)
+  parent: Heir.TypeChecker
+  langs:
+  - csharp
+  - vb
+  name: VisitBoundUnaryOpExpression(BoundUnaryOp)
+  nameWithType: TypeChecker.VisitBoundUnaryOpExpression(BoundUnaryOp)
+  fullName: Heir.TypeChecker.VisitBoundUnaryOpExpression(Heir.BoundAST.BoundUnaryOp)
+  type: Method
+  source:
+    remote:
+      path: Heir/TypeChecker.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: VisitBoundUnaryOpExpression
+    path: Heir/TypeChecker.cs
+    startLine: 183
+  assemblies:
+  - Heir
+  namespace: Heir
+  example: []
+  syntax:
+    content: public object? VisitBoundUnaryOpExpression(BoundUnaryOp unaryOp)
+    parameters:
+    - id: unaryOp
+      type: Heir.BoundAST.BoundUnaryOp
+    return:
+      type: System.Object
+    content.vb: Public Function VisitBoundUnaryOpExpression(unaryOp As BoundUnaryOp) As Object
+  overload: Heir.TypeChecker.VisitBoundUnaryOpExpression*
+  implements:
+  - Heir.BoundAST.BoundExpression.Visitor{System.Object}.VisitBoundUnaryOpExpression(Heir.BoundAST.BoundUnaryOp)
+references:
+- uid: Heir
+  commentId: N:Heir
+  href: Heir.html
+  name: Heir
+  nameWithType: Heir
+  fullName: Heir
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Heir.BoundAST.BoundStatement.Visitor{System.Object}
+  commentId: T:Heir.BoundAST.BoundStatement.Visitor{System.Object}
+  parent: Heir.BoundAST
+  definition: Heir.BoundAST.BoundStatement.Visitor`1
+  href: Heir.BoundAST.BoundStatement.html
+  name: BoundStatement.Visitor<object>
+  nameWithType: BoundStatement.Visitor<object>
+  fullName: Heir.BoundAST.BoundStatement.Visitor<object>
+  nameWithType.vb: BoundStatement.Visitor(Of Object)
+  fullName.vb: Heir.BoundAST.BoundStatement.Visitor(Of Object)
+  name.vb: BoundStatement.Visitor(Of Object)
+  spec.csharp:
+  - uid: Heir.BoundAST.BoundStatement
+    name: BoundStatement
+    href: Heir.BoundAST.BoundStatement.html
+  - name: .
+  - uid: Heir.BoundAST.BoundStatement.Visitor`1
+    name: Visitor
+    href: Heir.BoundAST.BoundStatement.Visitor-1.html
+  - name: <
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: '>'
+  spec.vb:
+  - uid: Heir.BoundAST.BoundStatement
+    name: BoundStatement
+    href: Heir.BoundAST.BoundStatement.html
+  - name: .
+  - uid: Heir.BoundAST.BoundStatement.Visitor`1
+    name: Visitor
+    href: Heir.BoundAST.BoundStatement.Visitor-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: Heir.BoundAST.BoundExpression.Visitor{System.Object}
+  commentId: T:Heir.BoundAST.BoundExpression.Visitor{System.Object}
+  parent: Heir.BoundAST
+  definition: Heir.BoundAST.BoundExpression.Visitor`1
+  href: Heir.BoundAST.BoundExpression.html
+  name: BoundExpression.Visitor<object>
+  nameWithType: BoundExpression.Visitor<object>
+  fullName: Heir.BoundAST.BoundExpression.Visitor<object>
+  nameWithType.vb: BoundExpression.Visitor(Of Object)
+  fullName.vb: Heir.BoundAST.BoundExpression.Visitor(Of Object)
+  name.vb: BoundExpression.Visitor(Of Object)
+  spec.csharp:
+  - uid: Heir.BoundAST.BoundExpression
+    name: BoundExpression
+    href: Heir.BoundAST.BoundExpression.html
+  - name: .
+  - uid: Heir.BoundAST.BoundExpression.Visitor`1
+    name: Visitor
+    href: Heir.BoundAST.BoundExpression.Visitor-1.html
+  - name: <
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: '>'
+  spec.vb:
+  - uid: Heir.BoundAST.BoundExpression
+    name: BoundExpression
+    href: Heir.BoundAST.BoundExpression.html
+  - name: .
+  - uid: Heir.BoundAST.BoundExpression.Visitor`1
+    name: Visitor
+    href: Heir.BoundAST.BoundExpression.Visitor-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Heir.BoundAST.BoundStatement.Visitor`1
+  commentId: T:Heir.BoundAST.BoundStatement.Visitor`1
+  href: Heir.BoundAST.BoundStatement.html
+  name: BoundStatement.Visitor<R>
+  nameWithType: BoundStatement.Visitor<R>
+  fullName: Heir.BoundAST.BoundStatement.Visitor<R>
+  nameWithType.vb: BoundStatement.Visitor(Of R)
+  fullName.vb: Heir.BoundAST.BoundStatement.Visitor(Of R)
+  name.vb: BoundStatement.Visitor(Of R)
+  spec.csharp:
+  - uid: Heir.BoundAST.BoundStatement
+    name: BoundStatement
+    href: Heir.BoundAST.BoundStatement.html
+  - name: .
+  - uid: Heir.BoundAST.BoundStatement.Visitor`1
+    name: Visitor
+    href: Heir.BoundAST.BoundStatement.Visitor-1.html
+  - name: <
+  - name: R
+  - name: '>'
+  spec.vb:
+  - uid: Heir.BoundAST.BoundStatement
+    name: BoundStatement
+    href: Heir.BoundAST.BoundStatement.html
+  - name: .
+  - uid: Heir.BoundAST.BoundStatement.Visitor`1
+    name: Visitor
+    href: Heir.BoundAST.BoundStatement.Visitor-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: R
+  - name: )
+- uid: Heir.BoundAST
+  commentId: N:Heir.BoundAST
+  href: Heir.html
+  name: Heir.BoundAST
+  nameWithType: Heir.BoundAST
+  fullName: Heir.BoundAST
+  spec.csharp:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.BoundAST
+    name: BoundAST
+    href: Heir.BoundAST.html
+  spec.vb:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.BoundAST
+    name: BoundAST
+    href: Heir.BoundAST.html
+- uid: Heir.BoundAST.BoundExpression.Visitor`1
+  commentId: T:Heir.BoundAST.BoundExpression.Visitor`1
+  href: Heir.BoundAST.BoundExpression.html
+  name: BoundExpression.Visitor<R>
+  nameWithType: BoundExpression.Visitor<R>
+  fullName: Heir.BoundAST.BoundExpression.Visitor<R>
+  nameWithType.vb: BoundExpression.Visitor(Of R)
+  fullName.vb: Heir.BoundAST.BoundExpression.Visitor(Of R)
+  name.vb: BoundExpression.Visitor(Of R)
+  spec.csharp:
+  - uid: Heir.BoundAST.BoundExpression
+    name: BoundExpression
+    href: Heir.BoundAST.BoundExpression.html
+  - name: .
+  - uid: Heir.BoundAST.BoundExpression.Visitor`1
+    name: Visitor
+    href: Heir.BoundAST.BoundExpression.Visitor-1.html
+  - name: <
+  - name: R
+  - name: '>'
+  spec.vb:
+  - uid: Heir.BoundAST.BoundExpression
+    name: BoundExpression
+    href: Heir.BoundAST.BoundExpression.html
+  - name: .
+  - uid: Heir.BoundAST.BoundExpression.Visitor`1
+    name: Visitor
+    href: Heir.BoundAST.BoundExpression.Visitor-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: R
+  - name: )
+- uid: Heir.TypeChecker.#ctor*
+  commentId: Overload:Heir.TypeChecker.#ctor
+  href: Heir.TypeChecker.html#Heir_TypeChecker__ctor_Heir_DiagnosticBag_Heir_BoundAST_BoundSyntaxTree_
+  name: TypeChecker
+  nameWithType: TypeChecker.TypeChecker
+  fullName: Heir.TypeChecker.TypeChecker
+  nameWithType.vb: TypeChecker.New
+  fullName.vb: Heir.TypeChecker.New
+  name.vb: New
+- uid: Heir.DiagnosticBag
+  commentId: T:Heir.DiagnosticBag
+  parent: Heir
+  href: Heir.DiagnosticBag.html
+  name: DiagnosticBag
+  nameWithType: DiagnosticBag
+  fullName: Heir.DiagnosticBag
+- uid: Heir.BoundAST.BoundSyntaxTree
+  commentId: T:Heir.BoundAST.BoundSyntaxTree
+  parent: Heir.BoundAST
+  href: Heir.BoundAST.BoundSyntaxTree.html
+  name: BoundSyntaxTree
+  nameWithType: BoundSyntaxTree
+  fullName: Heir.BoundAST.BoundSyntaxTree
+- uid: Heir.TypeChecker.Check*
+  commentId: Overload:Heir.TypeChecker.Check
+  href: Heir.TypeChecker.html#Heir_TypeChecker_Check
+  name: Check
+  nameWithType: TypeChecker.Check
+  fullName: Heir.TypeChecker.Check
+- uid: Heir.TypeChecker.VisitBoundSyntaxTree*
+  commentId: Overload:Heir.TypeChecker.VisitBoundSyntaxTree
+  href: Heir.TypeChecker.html#Heir_TypeChecker_VisitBoundSyntaxTree_Heir_BoundAST_BoundSyntaxTree_
+  name: VisitBoundSyntaxTree
+  nameWithType: TypeChecker.VisitBoundSyntaxTree
+  fullName: Heir.TypeChecker.VisitBoundSyntaxTree
+- uid: Heir.BoundAST.BoundStatement.Visitor{System.Object}.VisitBoundSyntaxTree(Heir.BoundAST.BoundSyntaxTree)
+  commentId: M:Heir.BoundAST.BoundStatement.Visitor{System.Object}.VisitBoundSyntaxTree(Heir.BoundAST.BoundSyntaxTree)
+  parent: Heir.BoundAST.BoundStatement.Visitor{System.Object}
+  definition: Heir.BoundAST.BoundStatement.Visitor`1.VisitBoundSyntaxTree(Heir.BoundAST.BoundSyntaxTree)
+  href: Heir.BoundAST.BoundStatement.Visitor-1.html#Heir_BoundAST_BoundStatement_Visitor_1_VisitBoundSyntaxTree_Heir_BoundAST_BoundSyntaxTree_
+  name: VisitBoundSyntaxTree(BoundSyntaxTree)
+  nameWithType: BoundStatement.Visitor<object>.VisitBoundSyntaxTree(BoundSyntaxTree)
+  fullName: Heir.BoundAST.BoundStatement.Visitor<object>.VisitBoundSyntaxTree(Heir.BoundAST.BoundSyntaxTree)
+  nameWithType.vb: BoundStatement.Visitor(Of Object).VisitBoundSyntaxTree(BoundSyntaxTree)
+  fullName.vb: Heir.BoundAST.BoundStatement.Visitor(Of Object).VisitBoundSyntaxTree(Heir.BoundAST.BoundSyntaxTree)
+  spec.csharp:
+  - uid: Heir.BoundAST.BoundStatement.Visitor{System.Object}.VisitBoundSyntaxTree(Heir.BoundAST.BoundSyntaxTree)
+    name: VisitBoundSyntaxTree
+    href: Heir.BoundAST.BoundStatement.Visitor-1.html#Heir_BoundAST_BoundStatement_Visitor_1_VisitBoundSyntaxTree_Heir_BoundAST_BoundSyntaxTree_
+  - name: (
+  - uid: Heir.BoundAST.BoundSyntaxTree
+    name: BoundSyntaxTree
+    href: Heir.BoundAST.BoundSyntaxTree.html
+  - name: )
+  spec.vb:
+  - uid: Heir.BoundAST.BoundStatement.Visitor{System.Object}.VisitBoundSyntaxTree(Heir.BoundAST.BoundSyntaxTree)
+    name: VisitBoundSyntaxTree
+    href: Heir.BoundAST.BoundStatement.Visitor-1.html#Heir_BoundAST_BoundStatement_Visitor_1_VisitBoundSyntaxTree_Heir_BoundAST_BoundSyntaxTree_
+  - name: (
+  - uid: Heir.BoundAST.BoundSyntaxTree
+    name: BoundSyntaxTree
+    href: Heir.BoundAST.BoundSyntaxTree.html
+  - name: )
+- uid: Heir.BoundAST.BoundStatement.Visitor`1.VisitBoundSyntaxTree(Heir.BoundAST.BoundSyntaxTree)
+  commentId: M:Heir.BoundAST.BoundStatement.Visitor`1.VisitBoundSyntaxTree(Heir.BoundAST.BoundSyntaxTree)
+  href: Heir.BoundAST.BoundStatement.Visitor-1.html#Heir_BoundAST_BoundStatement_Visitor_1_VisitBoundSyntaxTree_Heir_BoundAST_BoundSyntaxTree_
+  name: VisitBoundSyntaxTree(BoundSyntaxTree)
+  nameWithType: BoundStatement.Visitor<R>.VisitBoundSyntaxTree(BoundSyntaxTree)
+  fullName: Heir.BoundAST.BoundStatement.Visitor<R>.VisitBoundSyntaxTree(Heir.BoundAST.BoundSyntaxTree)
+  nameWithType.vb: BoundStatement.Visitor(Of R).VisitBoundSyntaxTree(BoundSyntaxTree)
+  fullName.vb: Heir.BoundAST.BoundStatement.Visitor(Of R).VisitBoundSyntaxTree(Heir.BoundAST.BoundSyntaxTree)
+  spec.csharp:
+  - uid: Heir.BoundAST.BoundStatement.Visitor`1.VisitBoundSyntaxTree(Heir.BoundAST.BoundSyntaxTree)
+    name: VisitBoundSyntaxTree
+    href: Heir.BoundAST.BoundStatement.Visitor-1.html#Heir_BoundAST_BoundStatement_Visitor_1_VisitBoundSyntaxTree_Heir_BoundAST_BoundSyntaxTree_
+  - name: (
+  - uid: Heir.BoundAST.BoundSyntaxTree
+    name: BoundSyntaxTree
+    href: Heir.BoundAST.BoundSyntaxTree.html
+  - name: )
+  spec.vb:
+  - uid: Heir.BoundAST.BoundStatement.Visitor`1.VisitBoundSyntaxTree(Heir.BoundAST.BoundSyntaxTree)
+    name: VisitBoundSyntaxTree
+    href: Heir.BoundAST.BoundStatement.Visitor-1.html#Heir_BoundAST_BoundStatement_Visitor_1_VisitBoundSyntaxTree_Heir_BoundAST_BoundSyntaxTree_
+  - name: (
+  - uid: Heir.BoundAST.BoundSyntaxTree
+    name: BoundSyntaxTree
+    href: Heir.BoundAST.BoundSyntaxTree.html
+  - name: )
+- uid: Heir.TypeChecker.VisitBoundBlock*
+  commentId: Overload:Heir.TypeChecker.VisitBoundBlock
+  href: Heir.TypeChecker.html#Heir_TypeChecker_VisitBoundBlock_Heir_BoundAST_BoundBlock_
+  name: VisitBoundBlock
+  nameWithType: TypeChecker.VisitBoundBlock
+  fullName: Heir.TypeChecker.VisitBoundBlock
+- uid: Heir.BoundAST.BoundStatement.Visitor{System.Object}.VisitBoundBlock(Heir.BoundAST.BoundBlock)
+  commentId: M:Heir.BoundAST.BoundStatement.Visitor{System.Object}.VisitBoundBlock(Heir.BoundAST.BoundBlock)
+  parent: Heir.BoundAST.BoundStatement.Visitor{System.Object}
+  definition: Heir.BoundAST.BoundStatement.Visitor`1.VisitBoundBlock(Heir.BoundAST.BoundBlock)
+  href: Heir.BoundAST.BoundStatement.Visitor-1.html#Heir_BoundAST_BoundStatement_Visitor_1_VisitBoundBlock_Heir_BoundAST_BoundBlock_
+  name: VisitBoundBlock(BoundBlock)
+  nameWithType: BoundStatement.Visitor<object>.VisitBoundBlock(BoundBlock)
+  fullName: Heir.BoundAST.BoundStatement.Visitor<object>.VisitBoundBlock(Heir.BoundAST.BoundBlock)
+  nameWithType.vb: BoundStatement.Visitor(Of Object).VisitBoundBlock(BoundBlock)
+  fullName.vb: Heir.BoundAST.BoundStatement.Visitor(Of Object).VisitBoundBlock(Heir.BoundAST.BoundBlock)
+  spec.csharp:
+  - uid: Heir.BoundAST.BoundStatement.Visitor{System.Object}.VisitBoundBlock(Heir.BoundAST.BoundBlock)
+    name: VisitBoundBlock
+    href: Heir.BoundAST.BoundStatement.Visitor-1.html#Heir_BoundAST_BoundStatement_Visitor_1_VisitBoundBlock_Heir_BoundAST_BoundBlock_
+  - name: (
+  - uid: Heir.BoundAST.BoundBlock
+    name: BoundBlock
+    href: Heir.BoundAST.BoundBlock.html
+  - name: )
+  spec.vb:
+  - uid: Heir.BoundAST.BoundStatement.Visitor{System.Object}.VisitBoundBlock(Heir.BoundAST.BoundBlock)
+    name: VisitBoundBlock
+    href: Heir.BoundAST.BoundStatement.Visitor-1.html#Heir_BoundAST_BoundStatement_Visitor_1_VisitBoundBlock_Heir_BoundAST_BoundBlock_
+  - name: (
+  - uid: Heir.BoundAST.BoundBlock
+    name: BoundBlock
+    href: Heir.BoundAST.BoundBlock.html
+  - name: )
+- uid: Heir.BoundAST.BoundBlock
+  commentId: T:Heir.BoundAST.BoundBlock
+  parent: Heir.BoundAST
+  href: Heir.BoundAST.BoundBlock.html
+  name: BoundBlock
+  nameWithType: BoundBlock
+  fullName: Heir.BoundAST.BoundBlock
+- uid: Heir.BoundAST.BoundStatement.Visitor`1.VisitBoundBlock(Heir.BoundAST.BoundBlock)
+  commentId: M:Heir.BoundAST.BoundStatement.Visitor`1.VisitBoundBlock(Heir.BoundAST.BoundBlock)
+  href: Heir.BoundAST.BoundStatement.Visitor-1.html#Heir_BoundAST_BoundStatement_Visitor_1_VisitBoundBlock_Heir_BoundAST_BoundBlock_
+  name: VisitBoundBlock(BoundBlock)
+  nameWithType: BoundStatement.Visitor<R>.VisitBoundBlock(BoundBlock)
+  fullName: Heir.BoundAST.BoundStatement.Visitor<R>.VisitBoundBlock(Heir.BoundAST.BoundBlock)
+  nameWithType.vb: BoundStatement.Visitor(Of R).VisitBoundBlock(BoundBlock)
+  fullName.vb: Heir.BoundAST.BoundStatement.Visitor(Of R).VisitBoundBlock(Heir.BoundAST.BoundBlock)
+  spec.csharp:
+  - uid: Heir.BoundAST.BoundStatement.Visitor`1.VisitBoundBlock(Heir.BoundAST.BoundBlock)
+    name: VisitBoundBlock
+    href: Heir.BoundAST.BoundStatement.Visitor-1.html#Heir_BoundAST_BoundStatement_Visitor_1_VisitBoundBlock_Heir_BoundAST_BoundBlock_
+  - name: (
+  - uid: Heir.BoundAST.BoundBlock
+    name: BoundBlock
+    href: Heir.BoundAST.BoundBlock.html
+  - name: )
+  spec.vb:
+  - uid: Heir.BoundAST.BoundStatement.Visitor`1.VisitBoundBlock(Heir.BoundAST.BoundBlock)
+    name: VisitBoundBlock
+    href: Heir.BoundAST.BoundStatement.Visitor-1.html#Heir_BoundAST_BoundStatement_Visitor_1_VisitBoundBlock_Heir_BoundAST_BoundBlock_
+  - name: (
+  - uid: Heir.BoundAST.BoundBlock
+    name: BoundBlock
+    href: Heir.BoundAST.BoundBlock.html
+  - name: )
+- uid: Heir.TypeChecker.VisitBoundReturnStatement*
+  commentId: Overload:Heir.TypeChecker.VisitBoundReturnStatement
+  href: Heir.TypeChecker.html#Heir_TypeChecker_VisitBoundReturnStatement_Heir_BoundAST_BoundReturn_
+  name: VisitBoundReturnStatement
+  nameWithType: TypeChecker.VisitBoundReturnStatement
+  fullName: Heir.TypeChecker.VisitBoundReturnStatement
+- uid: Heir.BoundAST.BoundStatement.Visitor{System.Object}.VisitBoundReturnStatement(Heir.BoundAST.BoundReturn)
+  commentId: M:Heir.BoundAST.BoundStatement.Visitor{System.Object}.VisitBoundReturnStatement(Heir.BoundAST.BoundReturn)
+  parent: Heir.BoundAST.BoundStatement.Visitor{System.Object}
+  definition: Heir.BoundAST.BoundStatement.Visitor`1.VisitBoundReturnStatement(Heir.BoundAST.BoundReturn)
+  href: Heir.BoundAST.BoundStatement.Visitor-1.html#Heir_BoundAST_BoundStatement_Visitor_1_VisitBoundReturnStatement_Heir_BoundAST_BoundReturn_
+  name: VisitBoundReturnStatement(BoundReturn)
+  nameWithType: BoundStatement.Visitor<object>.VisitBoundReturnStatement(BoundReturn)
+  fullName: Heir.BoundAST.BoundStatement.Visitor<object>.VisitBoundReturnStatement(Heir.BoundAST.BoundReturn)
+  nameWithType.vb: BoundStatement.Visitor(Of Object).VisitBoundReturnStatement(BoundReturn)
+  fullName.vb: Heir.BoundAST.BoundStatement.Visitor(Of Object).VisitBoundReturnStatement(Heir.BoundAST.BoundReturn)
+  spec.csharp:
+  - uid: Heir.BoundAST.BoundStatement.Visitor{System.Object}.VisitBoundReturnStatement(Heir.BoundAST.BoundReturn)
+    name: VisitBoundReturnStatement
+    href: Heir.BoundAST.BoundStatement.Visitor-1.html#Heir_BoundAST_BoundStatement_Visitor_1_VisitBoundReturnStatement_Heir_BoundAST_BoundReturn_
+  - name: (
+  - uid: Heir.BoundAST.BoundReturn
+    name: BoundReturn
+    href: Heir.BoundAST.BoundReturn.html
+  - name: )
+  spec.vb:
+  - uid: Heir.BoundAST.BoundStatement.Visitor{System.Object}.VisitBoundReturnStatement(Heir.BoundAST.BoundReturn)
+    name: VisitBoundReturnStatement
+    href: Heir.BoundAST.BoundStatement.Visitor-1.html#Heir_BoundAST_BoundStatement_Visitor_1_VisitBoundReturnStatement_Heir_BoundAST_BoundReturn_
+  - name: (
+  - uid: Heir.BoundAST.BoundReturn
+    name: BoundReturn
+    href: Heir.BoundAST.BoundReturn.html
+  - name: )
+- uid: Heir.BoundAST.BoundReturn
+  commentId: T:Heir.BoundAST.BoundReturn
+  parent: Heir.BoundAST
+  href: Heir.BoundAST.BoundReturn.html
+  name: BoundReturn
+  nameWithType: BoundReturn
+  fullName: Heir.BoundAST.BoundReturn
+- uid: Heir.BoundAST.BoundStatement.Visitor`1.VisitBoundReturnStatement(Heir.BoundAST.BoundReturn)
+  commentId: M:Heir.BoundAST.BoundStatement.Visitor`1.VisitBoundReturnStatement(Heir.BoundAST.BoundReturn)
+  href: Heir.BoundAST.BoundStatement.Visitor-1.html#Heir_BoundAST_BoundStatement_Visitor_1_VisitBoundReturnStatement_Heir_BoundAST_BoundReturn_
+  name: VisitBoundReturnStatement(BoundReturn)
+  nameWithType: BoundStatement.Visitor<R>.VisitBoundReturnStatement(BoundReturn)
+  fullName: Heir.BoundAST.BoundStatement.Visitor<R>.VisitBoundReturnStatement(Heir.BoundAST.BoundReturn)
+  nameWithType.vb: BoundStatement.Visitor(Of R).VisitBoundReturnStatement(BoundReturn)
+  fullName.vb: Heir.BoundAST.BoundStatement.Visitor(Of R).VisitBoundReturnStatement(Heir.BoundAST.BoundReturn)
+  spec.csharp:
+  - uid: Heir.BoundAST.BoundStatement.Visitor`1.VisitBoundReturnStatement(Heir.BoundAST.BoundReturn)
+    name: VisitBoundReturnStatement
+    href: Heir.BoundAST.BoundStatement.Visitor-1.html#Heir_BoundAST_BoundStatement_Visitor_1_VisitBoundReturnStatement_Heir_BoundAST_BoundReturn_
+  - name: (
+  - uid: Heir.BoundAST.BoundReturn
+    name: BoundReturn
+    href: Heir.BoundAST.BoundReturn.html
+  - name: )
+  spec.vb:
+  - uid: Heir.BoundAST.BoundStatement.Visitor`1.VisitBoundReturnStatement(Heir.BoundAST.BoundReturn)
+    name: VisitBoundReturnStatement
+    href: Heir.BoundAST.BoundStatement.Visitor-1.html#Heir_BoundAST_BoundStatement_Visitor_1_VisitBoundReturnStatement_Heir_BoundAST_BoundReturn_
+  - name: (
+  - uid: Heir.BoundAST.BoundReturn
+    name: BoundReturn
+    href: Heir.BoundAST.BoundReturn.html
+  - name: )
+- uid: Heir.TypeChecker.VisitBoundExpressionStatement*
+  commentId: Overload:Heir.TypeChecker.VisitBoundExpressionStatement
+  href: Heir.TypeChecker.html#Heir_TypeChecker_VisitBoundExpressionStatement_Heir_BoundAST_BoundExpressionStatement_
+  name: VisitBoundExpressionStatement
+  nameWithType: TypeChecker.VisitBoundExpressionStatement
+  fullName: Heir.TypeChecker.VisitBoundExpressionStatement
+- uid: Heir.BoundAST.BoundStatement.Visitor{System.Object}.VisitBoundExpressionStatement(Heir.BoundAST.BoundExpressionStatement)
+  commentId: M:Heir.BoundAST.BoundStatement.Visitor{System.Object}.VisitBoundExpressionStatement(Heir.BoundAST.BoundExpressionStatement)
+  parent: Heir.BoundAST.BoundStatement.Visitor{System.Object}
+  definition: Heir.BoundAST.BoundStatement.Visitor`1.VisitBoundExpressionStatement(Heir.BoundAST.BoundExpressionStatement)
+  href: Heir.BoundAST.BoundStatement.Visitor-1.html#Heir_BoundAST_BoundStatement_Visitor_1_VisitBoundExpressionStatement_Heir_BoundAST_BoundExpressionStatement_
+  name: VisitBoundExpressionStatement(BoundExpressionStatement)
+  nameWithType: BoundStatement.Visitor<object>.VisitBoundExpressionStatement(BoundExpressionStatement)
+  fullName: Heir.BoundAST.BoundStatement.Visitor<object>.VisitBoundExpressionStatement(Heir.BoundAST.BoundExpressionStatement)
+  nameWithType.vb: BoundStatement.Visitor(Of Object).VisitBoundExpressionStatement(BoundExpressionStatement)
+  fullName.vb: Heir.BoundAST.BoundStatement.Visitor(Of Object).VisitBoundExpressionStatement(Heir.BoundAST.BoundExpressionStatement)
+  spec.csharp:
+  - uid: Heir.BoundAST.BoundStatement.Visitor{System.Object}.VisitBoundExpressionStatement(Heir.BoundAST.BoundExpressionStatement)
+    name: VisitBoundExpressionStatement
+    href: Heir.BoundAST.BoundStatement.Visitor-1.html#Heir_BoundAST_BoundStatement_Visitor_1_VisitBoundExpressionStatement_Heir_BoundAST_BoundExpressionStatement_
+  - name: (
+  - uid: Heir.BoundAST.BoundExpressionStatement
+    name: BoundExpressionStatement
+    href: Heir.BoundAST.BoundExpressionStatement.html
+  - name: )
+  spec.vb:
+  - uid: Heir.BoundAST.BoundStatement.Visitor{System.Object}.VisitBoundExpressionStatement(Heir.BoundAST.BoundExpressionStatement)
+    name: VisitBoundExpressionStatement
+    href: Heir.BoundAST.BoundStatement.Visitor-1.html#Heir_BoundAST_BoundStatement_Visitor_1_VisitBoundExpressionStatement_Heir_BoundAST_BoundExpressionStatement_
+  - name: (
+  - uid: Heir.BoundAST.BoundExpressionStatement
+    name: BoundExpressionStatement
+    href: Heir.BoundAST.BoundExpressionStatement.html
+  - name: )
+- uid: Heir.BoundAST.BoundExpressionStatement
+  commentId: T:Heir.BoundAST.BoundExpressionStatement
+  parent: Heir.BoundAST
+  href: Heir.BoundAST.BoundExpressionStatement.html
+  name: BoundExpressionStatement
+  nameWithType: BoundExpressionStatement
+  fullName: Heir.BoundAST.BoundExpressionStatement
+- uid: Heir.BoundAST.BoundStatement.Visitor`1.VisitBoundExpressionStatement(Heir.BoundAST.BoundExpressionStatement)
+  commentId: M:Heir.BoundAST.BoundStatement.Visitor`1.VisitBoundExpressionStatement(Heir.BoundAST.BoundExpressionStatement)
+  href: Heir.BoundAST.BoundStatement.Visitor-1.html#Heir_BoundAST_BoundStatement_Visitor_1_VisitBoundExpressionStatement_Heir_BoundAST_BoundExpressionStatement_
+  name: VisitBoundExpressionStatement(BoundExpressionStatement)
+  nameWithType: BoundStatement.Visitor<R>.VisitBoundExpressionStatement(BoundExpressionStatement)
+  fullName: Heir.BoundAST.BoundStatement.Visitor<R>.VisitBoundExpressionStatement(Heir.BoundAST.BoundExpressionStatement)
+  nameWithType.vb: BoundStatement.Visitor(Of R).VisitBoundExpressionStatement(BoundExpressionStatement)
+  fullName.vb: Heir.BoundAST.BoundStatement.Visitor(Of R).VisitBoundExpressionStatement(Heir.BoundAST.BoundExpressionStatement)
+  spec.csharp:
+  - uid: Heir.BoundAST.BoundStatement.Visitor`1.VisitBoundExpressionStatement(Heir.BoundAST.BoundExpressionStatement)
+    name: VisitBoundExpressionStatement
+    href: Heir.BoundAST.BoundStatement.Visitor-1.html#Heir_BoundAST_BoundStatement_Visitor_1_VisitBoundExpressionStatement_Heir_BoundAST_BoundExpressionStatement_
+  - name: (
+  - uid: Heir.BoundAST.BoundExpressionStatement
+    name: BoundExpressionStatement
+    href: Heir.BoundAST.BoundExpressionStatement.html
+  - name: )
+  spec.vb:
+  - uid: Heir.BoundAST.BoundStatement.Visitor`1.VisitBoundExpressionStatement(Heir.BoundAST.BoundExpressionStatement)
+    name: VisitBoundExpressionStatement
+    href: Heir.BoundAST.BoundStatement.Visitor-1.html#Heir_BoundAST_BoundStatement_Visitor_1_VisitBoundExpressionStatement_Heir_BoundAST_BoundExpressionStatement_
+  - name: (
+  - uid: Heir.BoundAST.BoundExpressionStatement
+    name: BoundExpressionStatement
+    href: Heir.BoundAST.BoundExpressionStatement.html
+  - name: )
+- uid: Heir.TypeChecker.VisitBoundFunctionDeclaration*
+  commentId: Overload:Heir.TypeChecker.VisitBoundFunctionDeclaration
+  href: Heir.TypeChecker.html#Heir_TypeChecker_VisitBoundFunctionDeclaration_Heir_BoundAST_BoundFunctionDeclaration_
+  name: VisitBoundFunctionDeclaration
+  nameWithType: TypeChecker.VisitBoundFunctionDeclaration
+  fullName: Heir.TypeChecker.VisitBoundFunctionDeclaration
+- uid: Heir.BoundAST.BoundStatement.Visitor{System.Object}.VisitBoundFunctionDeclaration(Heir.BoundAST.BoundFunctionDeclaration)
+  commentId: M:Heir.BoundAST.BoundStatement.Visitor{System.Object}.VisitBoundFunctionDeclaration(Heir.BoundAST.BoundFunctionDeclaration)
+  parent: Heir.BoundAST.BoundStatement.Visitor{System.Object}
+  definition: Heir.BoundAST.BoundStatement.Visitor`1.VisitBoundFunctionDeclaration(Heir.BoundAST.BoundFunctionDeclaration)
+  href: Heir.BoundAST.BoundStatement.Visitor-1.html#Heir_BoundAST_BoundStatement_Visitor_1_VisitBoundFunctionDeclaration_Heir_BoundAST_BoundFunctionDeclaration_
+  name: VisitBoundFunctionDeclaration(BoundFunctionDeclaration)
+  nameWithType: BoundStatement.Visitor<object>.VisitBoundFunctionDeclaration(BoundFunctionDeclaration)
+  fullName: Heir.BoundAST.BoundStatement.Visitor<object>.VisitBoundFunctionDeclaration(Heir.BoundAST.BoundFunctionDeclaration)
+  nameWithType.vb: BoundStatement.Visitor(Of Object).VisitBoundFunctionDeclaration(BoundFunctionDeclaration)
+  fullName.vb: Heir.BoundAST.BoundStatement.Visitor(Of Object).VisitBoundFunctionDeclaration(Heir.BoundAST.BoundFunctionDeclaration)
+  spec.csharp:
+  - uid: Heir.BoundAST.BoundStatement.Visitor{System.Object}.VisitBoundFunctionDeclaration(Heir.BoundAST.BoundFunctionDeclaration)
+    name: VisitBoundFunctionDeclaration
+    href: Heir.BoundAST.BoundStatement.Visitor-1.html#Heir_BoundAST_BoundStatement_Visitor_1_VisitBoundFunctionDeclaration_Heir_BoundAST_BoundFunctionDeclaration_
+  - name: (
+  - uid: Heir.BoundAST.BoundFunctionDeclaration
+    name: BoundFunctionDeclaration
+    href: Heir.BoundAST.BoundFunctionDeclaration.html
+  - name: )
+  spec.vb:
+  - uid: Heir.BoundAST.BoundStatement.Visitor{System.Object}.VisitBoundFunctionDeclaration(Heir.BoundAST.BoundFunctionDeclaration)
+    name: VisitBoundFunctionDeclaration
+    href: Heir.BoundAST.BoundStatement.Visitor-1.html#Heir_BoundAST_BoundStatement_Visitor_1_VisitBoundFunctionDeclaration_Heir_BoundAST_BoundFunctionDeclaration_
+  - name: (
+  - uid: Heir.BoundAST.BoundFunctionDeclaration
+    name: BoundFunctionDeclaration
+    href: Heir.BoundAST.BoundFunctionDeclaration.html
+  - name: )
+- uid: Heir.BoundAST.BoundFunctionDeclaration
+  commentId: T:Heir.BoundAST.BoundFunctionDeclaration
+  parent: Heir.BoundAST
+  href: Heir.BoundAST.BoundFunctionDeclaration.html
+  name: BoundFunctionDeclaration
+  nameWithType: BoundFunctionDeclaration
+  fullName: Heir.BoundAST.BoundFunctionDeclaration
+- uid: Heir.BoundAST.BoundStatement.Visitor`1.VisitBoundFunctionDeclaration(Heir.BoundAST.BoundFunctionDeclaration)
+  commentId: M:Heir.BoundAST.BoundStatement.Visitor`1.VisitBoundFunctionDeclaration(Heir.BoundAST.BoundFunctionDeclaration)
+  href: Heir.BoundAST.BoundStatement.Visitor-1.html#Heir_BoundAST_BoundStatement_Visitor_1_VisitBoundFunctionDeclaration_Heir_BoundAST_BoundFunctionDeclaration_
+  name: VisitBoundFunctionDeclaration(BoundFunctionDeclaration)
+  nameWithType: BoundStatement.Visitor<R>.VisitBoundFunctionDeclaration(BoundFunctionDeclaration)
+  fullName: Heir.BoundAST.BoundStatement.Visitor<R>.VisitBoundFunctionDeclaration(Heir.BoundAST.BoundFunctionDeclaration)
+  nameWithType.vb: BoundStatement.Visitor(Of R).VisitBoundFunctionDeclaration(BoundFunctionDeclaration)
+  fullName.vb: Heir.BoundAST.BoundStatement.Visitor(Of R).VisitBoundFunctionDeclaration(Heir.BoundAST.BoundFunctionDeclaration)
+  spec.csharp:
+  - uid: Heir.BoundAST.BoundStatement.Visitor`1.VisitBoundFunctionDeclaration(Heir.BoundAST.BoundFunctionDeclaration)
+    name: VisitBoundFunctionDeclaration
+    href: Heir.BoundAST.BoundStatement.Visitor-1.html#Heir_BoundAST_BoundStatement_Visitor_1_VisitBoundFunctionDeclaration_Heir_BoundAST_BoundFunctionDeclaration_
+  - name: (
+  - uid: Heir.BoundAST.BoundFunctionDeclaration
+    name: BoundFunctionDeclaration
+    href: Heir.BoundAST.BoundFunctionDeclaration.html
+  - name: )
+  spec.vb:
+  - uid: Heir.BoundAST.BoundStatement.Visitor`1.VisitBoundFunctionDeclaration(Heir.BoundAST.BoundFunctionDeclaration)
+    name: VisitBoundFunctionDeclaration
+    href: Heir.BoundAST.BoundStatement.Visitor-1.html#Heir_BoundAST_BoundStatement_Visitor_1_VisitBoundFunctionDeclaration_Heir_BoundAST_BoundFunctionDeclaration_
+  - name: (
+  - uid: Heir.BoundAST.BoundFunctionDeclaration
+    name: BoundFunctionDeclaration
+    href: Heir.BoundAST.BoundFunctionDeclaration.html
+  - name: )
+- uid: Heir.TypeChecker.VisitBoundVariableDeclaration*
+  commentId: Overload:Heir.TypeChecker.VisitBoundVariableDeclaration
+  href: Heir.TypeChecker.html#Heir_TypeChecker_VisitBoundVariableDeclaration_Heir_BoundAST_BoundVariableDeclaration_
+  name: VisitBoundVariableDeclaration
+  nameWithType: TypeChecker.VisitBoundVariableDeclaration
+  fullName: Heir.TypeChecker.VisitBoundVariableDeclaration
+- uid: Heir.BoundAST.BoundStatement.Visitor{System.Object}.VisitBoundVariableDeclaration(Heir.BoundAST.BoundVariableDeclaration)
+  commentId: M:Heir.BoundAST.BoundStatement.Visitor{System.Object}.VisitBoundVariableDeclaration(Heir.BoundAST.BoundVariableDeclaration)
+  parent: Heir.BoundAST.BoundStatement.Visitor{System.Object}
+  definition: Heir.BoundAST.BoundStatement.Visitor`1.VisitBoundVariableDeclaration(Heir.BoundAST.BoundVariableDeclaration)
+  href: Heir.BoundAST.BoundStatement.Visitor-1.html#Heir_BoundAST_BoundStatement_Visitor_1_VisitBoundVariableDeclaration_Heir_BoundAST_BoundVariableDeclaration_
+  name: VisitBoundVariableDeclaration(BoundVariableDeclaration)
+  nameWithType: BoundStatement.Visitor<object>.VisitBoundVariableDeclaration(BoundVariableDeclaration)
+  fullName: Heir.BoundAST.BoundStatement.Visitor<object>.VisitBoundVariableDeclaration(Heir.BoundAST.BoundVariableDeclaration)
+  nameWithType.vb: BoundStatement.Visitor(Of Object).VisitBoundVariableDeclaration(BoundVariableDeclaration)
+  fullName.vb: Heir.BoundAST.BoundStatement.Visitor(Of Object).VisitBoundVariableDeclaration(Heir.BoundAST.BoundVariableDeclaration)
+  spec.csharp:
+  - uid: Heir.BoundAST.BoundStatement.Visitor{System.Object}.VisitBoundVariableDeclaration(Heir.BoundAST.BoundVariableDeclaration)
+    name: VisitBoundVariableDeclaration
+    href: Heir.BoundAST.BoundStatement.Visitor-1.html#Heir_BoundAST_BoundStatement_Visitor_1_VisitBoundVariableDeclaration_Heir_BoundAST_BoundVariableDeclaration_
+  - name: (
+  - uid: Heir.BoundAST.BoundVariableDeclaration
+    name: BoundVariableDeclaration
+    href: Heir.BoundAST.BoundVariableDeclaration.html
+  - name: )
+  spec.vb:
+  - uid: Heir.BoundAST.BoundStatement.Visitor{System.Object}.VisitBoundVariableDeclaration(Heir.BoundAST.BoundVariableDeclaration)
+    name: VisitBoundVariableDeclaration
+    href: Heir.BoundAST.BoundStatement.Visitor-1.html#Heir_BoundAST_BoundStatement_Visitor_1_VisitBoundVariableDeclaration_Heir_BoundAST_BoundVariableDeclaration_
+  - name: (
+  - uid: Heir.BoundAST.BoundVariableDeclaration
+    name: BoundVariableDeclaration
+    href: Heir.BoundAST.BoundVariableDeclaration.html
+  - name: )
+- uid: Heir.BoundAST.BoundVariableDeclaration
+  commentId: T:Heir.BoundAST.BoundVariableDeclaration
+  parent: Heir.BoundAST
+  href: Heir.BoundAST.BoundVariableDeclaration.html
+  name: BoundVariableDeclaration
+  nameWithType: BoundVariableDeclaration
+  fullName: Heir.BoundAST.BoundVariableDeclaration
+- uid: Heir.BoundAST.BoundStatement.Visitor`1.VisitBoundVariableDeclaration(Heir.BoundAST.BoundVariableDeclaration)
+  commentId: M:Heir.BoundAST.BoundStatement.Visitor`1.VisitBoundVariableDeclaration(Heir.BoundAST.BoundVariableDeclaration)
+  href: Heir.BoundAST.BoundStatement.Visitor-1.html#Heir_BoundAST_BoundStatement_Visitor_1_VisitBoundVariableDeclaration_Heir_BoundAST_BoundVariableDeclaration_
+  name: VisitBoundVariableDeclaration(BoundVariableDeclaration)
+  nameWithType: BoundStatement.Visitor<R>.VisitBoundVariableDeclaration(BoundVariableDeclaration)
+  fullName: Heir.BoundAST.BoundStatement.Visitor<R>.VisitBoundVariableDeclaration(Heir.BoundAST.BoundVariableDeclaration)
+  nameWithType.vb: BoundStatement.Visitor(Of R).VisitBoundVariableDeclaration(BoundVariableDeclaration)
+  fullName.vb: Heir.BoundAST.BoundStatement.Visitor(Of R).VisitBoundVariableDeclaration(Heir.BoundAST.BoundVariableDeclaration)
+  spec.csharp:
+  - uid: Heir.BoundAST.BoundStatement.Visitor`1.VisitBoundVariableDeclaration(Heir.BoundAST.BoundVariableDeclaration)
+    name: VisitBoundVariableDeclaration
+    href: Heir.BoundAST.BoundStatement.Visitor-1.html#Heir_BoundAST_BoundStatement_Visitor_1_VisitBoundVariableDeclaration_Heir_BoundAST_BoundVariableDeclaration_
+  - name: (
+  - uid: Heir.BoundAST.BoundVariableDeclaration
+    name: BoundVariableDeclaration
+    href: Heir.BoundAST.BoundVariableDeclaration.html
+  - name: )
+  spec.vb:
+  - uid: Heir.BoundAST.BoundStatement.Visitor`1.VisitBoundVariableDeclaration(Heir.BoundAST.BoundVariableDeclaration)
+    name: VisitBoundVariableDeclaration
+    href: Heir.BoundAST.BoundStatement.Visitor-1.html#Heir_BoundAST_BoundStatement_Visitor_1_VisitBoundVariableDeclaration_Heir_BoundAST_BoundVariableDeclaration_
+  - name: (
+  - uid: Heir.BoundAST.BoundVariableDeclaration
+    name: BoundVariableDeclaration
+    href: Heir.BoundAST.BoundVariableDeclaration.html
+  - name: )
+- uid: Heir.TypeChecker.VisitBoundIfStatement*
+  commentId: Overload:Heir.TypeChecker.VisitBoundIfStatement
+  href: Heir.TypeChecker.html#Heir_TypeChecker_VisitBoundIfStatement_Heir_BoundAST_BoundIf_
+  name: VisitBoundIfStatement
+  nameWithType: TypeChecker.VisitBoundIfStatement
+  fullName: Heir.TypeChecker.VisitBoundIfStatement
+- uid: Heir.BoundAST.BoundStatement.Visitor{System.Object}.VisitBoundIfStatement(Heir.BoundAST.BoundIf)
+  commentId: M:Heir.BoundAST.BoundStatement.Visitor{System.Object}.VisitBoundIfStatement(Heir.BoundAST.BoundIf)
+  parent: Heir.BoundAST.BoundStatement.Visitor{System.Object}
+  definition: Heir.BoundAST.BoundStatement.Visitor`1.VisitBoundIfStatement(Heir.BoundAST.BoundIf)
+  href: Heir.BoundAST.BoundStatement.Visitor-1.html#Heir_BoundAST_BoundStatement_Visitor_1_VisitBoundIfStatement_Heir_BoundAST_BoundIf_
+  name: VisitBoundIfStatement(BoundIf)
+  nameWithType: BoundStatement.Visitor<object>.VisitBoundIfStatement(BoundIf)
+  fullName: Heir.BoundAST.BoundStatement.Visitor<object>.VisitBoundIfStatement(Heir.BoundAST.BoundIf)
+  nameWithType.vb: BoundStatement.Visitor(Of Object).VisitBoundIfStatement(BoundIf)
+  fullName.vb: Heir.BoundAST.BoundStatement.Visitor(Of Object).VisitBoundIfStatement(Heir.BoundAST.BoundIf)
+  spec.csharp:
+  - uid: Heir.BoundAST.BoundStatement.Visitor{System.Object}.VisitBoundIfStatement(Heir.BoundAST.BoundIf)
+    name: VisitBoundIfStatement
+    href: Heir.BoundAST.BoundStatement.Visitor-1.html#Heir_BoundAST_BoundStatement_Visitor_1_VisitBoundIfStatement_Heir_BoundAST_BoundIf_
+  - name: (
+  - uid: Heir.BoundAST.BoundIf
+    name: BoundIf
+    href: Heir.BoundAST.BoundIf.html
+  - name: )
+  spec.vb:
+  - uid: Heir.BoundAST.BoundStatement.Visitor{System.Object}.VisitBoundIfStatement(Heir.BoundAST.BoundIf)
+    name: VisitBoundIfStatement
+    href: Heir.BoundAST.BoundStatement.Visitor-1.html#Heir_BoundAST_BoundStatement_Visitor_1_VisitBoundIfStatement_Heir_BoundAST_BoundIf_
+  - name: (
+  - uid: Heir.BoundAST.BoundIf
+    name: BoundIf
+    href: Heir.BoundAST.BoundIf.html
+  - name: )
+- uid: Heir.BoundAST.BoundIf
+  commentId: T:Heir.BoundAST.BoundIf
+  parent: Heir.BoundAST
+  href: Heir.BoundAST.BoundIf.html
+  name: BoundIf
+  nameWithType: BoundIf
+  fullName: Heir.BoundAST.BoundIf
+- uid: Heir.BoundAST.BoundStatement.Visitor`1.VisitBoundIfStatement(Heir.BoundAST.BoundIf)
+  commentId: M:Heir.BoundAST.BoundStatement.Visitor`1.VisitBoundIfStatement(Heir.BoundAST.BoundIf)
+  href: Heir.BoundAST.BoundStatement.Visitor-1.html#Heir_BoundAST_BoundStatement_Visitor_1_VisitBoundIfStatement_Heir_BoundAST_BoundIf_
+  name: VisitBoundIfStatement(BoundIf)
+  nameWithType: BoundStatement.Visitor<R>.VisitBoundIfStatement(BoundIf)
+  fullName: Heir.BoundAST.BoundStatement.Visitor<R>.VisitBoundIfStatement(Heir.BoundAST.BoundIf)
+  nameWithType.vb: BoundStatement.Visitor(Of R).VisitBoundIfStatement(BoundIf)
+  fullName.vb: Heir.BoundAST.BoundStatement.Visitor(Of R).VisitBoundIfStatement(Heir.BoundAST.BoundIf)
+  spec.csharp:
+  - uid: Heir.BoundAST.BoundStatement.Visitor`1.VisitBoundIfStatement(Heir.BoundAST.BoundIf)
+    name: VisitBoundIfStatement
+    href: Heir.BoundAST.BoundStatement.Visitor-1.html#Heir_BoundAST_BoundStatement_Visitor_1_VisitBoundIfStatement_Heir_BoundAST_BoundIf_
+  - name: (
+  - uid: Heir.BoundAST.BoundIf
+    name: BoundIf
+    href: Heir.BoundAST.BoundIf.html
+  - name: )
+  spec.vb:
+  - uid: Heir.BoundAST.BoundStatement.Visitor`1.VisitBoundIfStatement(Heir.BoundAST.BoundIf)
+    name: VisitBoundIfStatement
+    href: Heir.BoundAST.BoundStatement.Visitor-1.html#Heir_BoundAST_BoundStatement_Visitor_1_VisitBoundIfStatement_Heir_BoundAST_BoundIf_
+  - name: (
+  - uid: Heir.BoundAST.BoundIf
+    name: BoundIf
+    href: Heir.BoundAST.BoundIf.html
+  - name: )
+- uid: Heir.TypeChecker.VisitBoundParameter*
+  commentId: Overload:Heir.TypeChecker.VisitBoundParameter
+  href: Heir.TypeChecker.html#Heir_TypeChecker_VisitBoundParameter_Heir_BoundAST_BoundParameter_
+  name: VisitBoundParameter
+  nameWithType: TypeChecker.VisitBoundParameter
+  fullName: Heir.TypeChecker.VisitBoundParameter
+- uid: Heir.BoundAST.BoundExpression.Visitor{System.Object}.VisitBoundParameter(Heir.BoundAST.BoundParameter)
+  commentId: M:Heir.BoundAST.BoundExpression.Visitor{System.Object}.VisitBoundParameter(Heir.BoundAST.BoundParameter)
+  parent: Heir.BoundAST.BoundExpression.Visitor{System.Object}
+  definition: Heir.BoundAST.BoundExpression.Visitor`1.VisitBoundParameter(Heir.BoundAST.BoundParameter)
+  href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundParameter_Heir_BoundAST_BoundParameter_
+  name: VisitBoundParameter(BoundParameter)
+  nameWithType: BoundExpression.Visitor<object>.VisitBoundParameter(BoundParameter)
+  fullName: Heir.BoundAST.BoundExpression.Visitor<object>.VisitBoundParameter(Heir.BoundAST.BoundParameter)
+  nameWithType.vb: BoundExpression.Visitor(Of Object).VisitBoundParameter(BoundParameter)
+  fullName.vb: Heir.BoundAST.BoundExpression.Visitor(Of Object).VisitBoundParameter(Heir.BoundAST.BoundParameter)
+  spec.csharp:
+  - uid: Heir.BoundAST.BoundExpression.Visitor{System.Object}.VisitBoundParameter(Heir.BoundAST.BoundParameter)
+    name: VisitBoundParameter
+    href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundParameter_Heir_BoundAST_BoundParameter_
+  - name: (
+  - uid: Heir.BoundAST.BoundParameter
+    name: BoundParameter
+    href: Heir.BoundAST.BoundParameter.html
+  - name: )
+  spec.vb:
+  - uid: Heir.BoundAST.BoundExpression.Visitor{System.Object}.VisitBoundParameter(Heir.BoundAST.BoundParameter)
+    name: VisitBoundParameter
+    href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundParameter_Heir_BoundAST_BoundParameter_
+  - name: (
+  - uid: Heir.BoundAST.BoundParameter
+    name: BoundParameter
+    href: Heir.BoundAST.BoundParameter.html
+  - name: )
+- uid: Heir.BoundAST.BoundParameter
+  commentId: T:Heir.BoundAST.BoundParameter
+  parent: Heir.BoundAST
+  href: Heir.BoundAST.BoundParameter.html
+  name: BoundParameter
+  nameWithType: BoundParameter
+  fullName: Heir.BoundAST.BoundParameter
+- uid: Heir.BoundAST.BoundExpression.Visitor`1.VisitBoundParameter(Heir.BoundAST.BoundParameter)
+  commentId: M:Heir.BoundAST.BoundExpression.Visitor`1.VisitBoundParameter(Heir.BoundAST.BoundParameter)
+  href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundParameter_Heir_BoundAST_BoundParameter_
+  name: VisitBoundParameter(BoundParameter)
+  nameWithType: BoundExpression.Visitor<R>.VisitBoundParameter(BoundParameter)
+  fullName: Heir.BoundAST.BoundExpression.Visitor<R>.VisitBoundParameter(Heir.BoundAST.BoundParameter)
+  nameWithType.vb: BoundExpression.Visitor(Of R).VisitBoundParameter(BoundParameter)
+  fullName.vb: Heir.BoundAST.BoundExpression.Visitor(Of R).VisitBoundParameter(Heir.BoundAST.BoundParameter)
+  spec.csharp:
+  - uid: Heir.BoundAST.BoundExpression.Visitor`1.VisitBoundParameter(Heir.BoundAST.BoundParameter)
+    name: VisitBoundParameter
+    href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundParameter_Heir_BoundAST_BoundParameter_
+  - name: (
+  - uid: Heir.BoundAST.BoundParameter
+    name: BoundParameter
+    href: Heir.BoundAST.BoundParameter.html
+  - name: )
+  spec.vb:
+  - uid: Heir.BoundAST.BoundExpression.Visitor`1.VisitBoundParameter(Heir.BoundAST.BoundParameter)
+    name: VisitBoundParameter
+    href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundParameter_Heir_BoundAST_BoundParameter_
+  - name: (
+  - uid: Heir.BoundAST.BoundParameter
+    name: BoundParameter
+    href: Heir.BoundAST.BoundParameter.html
+  - name: )
+- uid: Heir.TypeChecker.VisitBoundMemberAccessExpression*
+  commentId: Overload:Heir.TypeChecker.VisitBoundMemberAccessExpression
+  href: Heir.TypeChecker.html#Heir_TypeChecker_VisitBoundMemberAccessExpression_Heir_BoundAST_BoundMemberAccess_
+  name: VisitBoundMemberAccessExpression
+  nameWithType: TypeChecker.VisitBoundMemberAccessExpression
+  fullName: Heir.TypeChecker.VisitBoundMemberAccessExpression
+- uid: Heir.BoundAST.BoundExpression.Visitor{System.Object}.VisitBoundMemberAccessExpression(Heir.BoundAST.BoundMemberAccess)
+  commentId: M:Heir.BoundAST.BoundExpression.Visitor{System.Object}.VisitBoundMemberAccessExpression(Heir.BoundAST.BoundMemberAccess)
+  parent: Heir.BoundAST.BoundExpression.Visitor{System.Object}
+  definition: Heir.BoundAST.BoundExpression.Visitor`1.VisitBoundMemberAccessExpression(Heir.BoundAST.BoundMemberAccess)
+  href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundMemberAccessExpression_Heir_BoundAST_BoundMemberAccess_
+  name: VisitBoundMemberAccessExpression(BoundMemberAccess)
+  nameWithType: BoundExpression.Visitor<object>.VisitBoundMemberAccessExpression(BoundMemberAccess)
+  fullName: Heir.BoundAST.BoundExpression.Visitor<object>.VisitBoundMemberAccessExpression(Heir.BoundAST.BoundMemberAccess)
+  nameWithType.vb: BoundExpression.Visitor(Of Object).VisitBoundMemberAccessExpression(BoundMemberAccess)
+  fullName.vb: Heir.BoundAST.BoundExpression.Visitor(Of Object).VisitBoundMemberAccessExpression(Heir.BoundAST.BoundMemberAccess)
+  spec.csharp:
+  - uid: Heir.BoundAST.BoundExpression.Visitor{System.Object}.VisitBoundMemberAccessExpression(Heir.BoundAST.BoundMemberAccess)
+    name: VisitBoundMemberAccessExpression
+    href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundMemberAccessExpression_Heir_BoundAST_BoundMemberAccess_
+  - name: (
+  - uid: Heir.BoundAST.BoundMemberAccess
+    name: BoundMemberAccess
+    href: Heir.BoundAST.BoundMemberAccess.html
+  - name: )
+  spec.vb:
+  - uid: Heir.BoundAST.BoundExpression.Visitor{System.Object}.VisitBoundMemberAccessExpression(Heir.BoundAST.BoundMemberAccess)
+    name: VisitBoundMemberAccessExpression
+    href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundMemberAccessExpression_Heir_BoundAST_BoundMemberAccess_
+  - name: (
+  - uid: Heir.BoundAST.BoundMemberAccess
+    name: BoundMemberAccess
+    href: Heir.BoundAST.BoundMemberAccess.html
+  - name: )
+- uid: Heir.BoundAST.BoundMemberAccess
+  commentId: T:Heir.BoundAST.BoundMemberAccess
+  parent: Heir.BoundAST
+  href: Heir.BoundAST.BoundMemberAccess.html
+  name: BoundMemberAccess
+  nameWithType: BoundMemberAccess
+  fullName: Heir.BoundAST.BoundMemberAccess
+- uid: Heir.BoundAST.BoundExpression.Visitor`1.VisitBoundMemberAccessExpression(Heir.BoundAST.BoundMemberAccess)
+  commentId: M:Heir.BoundAST.BoundExpression.Visitor`1.VisitBoundMemberAccessExpression(Heir.BoundAST.BoundMemberAccess)
+  href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundMemberAccessExpression_Heir_BoundAST_BoundMemberAccess_
+  name: VisitBoundMemberAccessExpression(BoundMemberAccess)
+  nameWithType: BoundExpression.Visitor<R>.VisitBoundMemberAccessExpression(BoundMemberAccess)
+  fullName: Heir.BoundAST.BoundExpression.Visitor<R>.VisitBoundMemberAccessExpression(Heir.BoundAST.BoundMemberAccess)
+  nameWithType.vb: BoundExpression.Visitor(Of R).VisitBoundMemberAccessExpression(BoundMemberAccess)
+  fullName.vb: Heir.BoundAST.BoundExpression.Visitor(Of R).VisitBoundMemberAccessExpression(Heir.BoundAST.BoundMemberAccess)
+  spec.csharp:
+  - uid: Heir.BoundAST.BoundExpression.Visitor`1.VisitBoundMemberAccessExpression(Heir.BoundAST.BoundMemberAccess)
+    name: VisitBoundMemberAccessExpression
+    href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundMemberAccessExpression_Heir_BoundAST_BoundMemberAccess_
+  - name: (
+  - uid: Heir.BoundAST.BoundMemberAccess
+    name: BoundMemberAccess
+    href: Heir.BoundAST.BoundMemberAccess.html
+  - name: )
+  spec.vb:
+  - uid: Heir.BoundAST.BoundExpression.Visitor`1.VisitBoundMemberAccessExpression(Heir.BoundAST.BoundMemberAccess)
+    name: VisitBoundMemberAccessExpression
+    href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundMemberAccessExpression_Heir_BoundAST_BoundMemberAccess_
+  - name: (
+  - uid: Heir.BoundAST.BoundMemberAccess
+    name: BoundMemberAccess
+    href: Heir.BoundAST.BoundMemberAccess.html
+  - name: )
+- uid: Heir.TypeChecker.VisitBoundElementAccessExpression*
+  commentId: Overload:Heir.TypeChecker.VisitBoundElementAccessExpression
+  href: Heir.TypeChecker.html#Heir_TypeChecker_VisitBoundElementAccessExpression_Heir_BoundAST_BoundElementAccess_
+  name: VisitBoundElementAccessExpression
+  nameWithType: TypeChecker.VisitBoundElementAccessExpression
+  fullName: Heir.TypeChecker.VisitBoundElementAccessExpression
+- uid: Heir.BoundAST.BoundExpression.Visitor{System.Object}.VisitBoundElementAccessExpression(Heir.BoundAST.BoundElementAccess)
+  commentId: M:Heir.BoundAST.BoundExpression.Visitor{System.Object}.VisitBoundElementAccessExpression(Heir.BoundAST.BoundElementAccess)
+  parent: Heir.BoundAST.BoundExpression.Visitor{System.Object}
+  definition: Heir.BoundAST.BoundExpression.Visitor`1.VisitBoundElementAccessExpression(Heir.BoundAST.BoundElementAccess)
+  href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundElementAccessExpression_Heir_BoundAST_BoundElementAccess_
+  name: VisitBoundElementAccessExpression(BoundElementAccess)
+  nameWithType: BoundExpression.Visitor<object>.VisitBoundElementAccessExpression(BoundElementAccess)
+  fullName: Heir.BoundAST.BoundExpression.Visitor<object>.VisitBoundElementAccessExpression(Heir.BoundAST.BoundElementAccess)
+  nameWithType.vb: BoundExpression.Visitor(Of Object).VisitBoundElementAccessExpression(BoundElementAccess)
+  fullName.vb: Heir.BoundAST.BoundExpression.Visitor(Of Object).VisitBoundElementAccessExpression(Heir.BoundAST.BoundElementAccess)
+  spec.csharp:
+  - uid: Heir.BoundAST.BoundExpression.Visitor{System.Object}.VisitBoundElementAccessExpression(Heir.BoundAST.BoundElementAccess)
+    name: VisitBoundElementAccessExpression
+    href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundElementAccessExpression_Heir_BoundAST_BoundElementAccess_
+  - name: (
+  - uid: Heir.BoundAST.BoundElementAccess
+    name: BoundElementAccess
+    href: Heir.BoundAST.BoundElementAccess.html
+  - name: )
+  spec.vb:
+  - uid: Heir.BoundAST.BoundExpression.Visitor{System.Object}.VisitBoundElementAccessExpression(Heir.BoundAST.BoundElementAccess)
+    name: VisitBoundElementAccessExpression
+    href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundElementAccessExpression_Heir_BoundAST_BoundElementAccess_
+  - name: (
+  - uid: Heir.BoundAST.BoundElementAccess
+    name: BoundElementAccess
+    href: Heir.BoundAST.BoundElementAccess.html
+  - name: )
+- uid: Heir.BoundAST.BoundElementAccess
+  commentId: T:Heir.BoundAST.BoundElementAccess
+  parent: Heir.BoundAST
+  href: Heir.BoundAST.BoundElementAccess.html
+  name: BoundElementAccess
+  nameWithType: BoundElementAccess
+  fullName: Heir.BoundAST.BoundElementAccess
+- uid: Heir.BoundAST.BoundExpression.Visitor`1.VisitBoundElementAccessExpression(Heir.BoundAST.BoundElementAccess)
+  commentId: M:Heir.BoundAST.BoundExpression.Visitor`1.VisitBoundElementAccessExpression(Heir.BoundAST.BoundElementAccess)
+  href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundElementAccessExpression_Heir_BoundAST_BoundElementAccess_
+  name: VisitBoundElementAccessExpression(BoundElementAccess)
+  nameWithType: BoundExpression.Visitor<R>.VisitBoundElementAccessExpression(BoundElementAccess)
+  fullName: Heir.BoundAST.BoundExpression.Visitor<R>.VisitBoundElementAccessExpression(Heir.BoundAST.BoundElementAccess)
+  nameWithType.vb: BoundExpression.Visitor(Of R).VisitBoundElementAccessExpression(BoundElementAccess)
+  fullName.vb: Heir.BoundAST.BoundExpression.Visitor(Of R).VisitBoundElementAccessExpression(Heir.BoundAST.BoundElementAccess)
+  spec.csharp:
+  - uid: Heir.BoundAST.BoundExpression.Visitor`1.VisitBoundElementAccessExpression(Heir.BoundAST.BoundElementAccess)
+    name: VisitBoundElementAccessExpression
+    href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundElementAccessExpression_Heir_BoundAST_BoundElementAccess_
+  - name: (
+  - uid: Heir.BoundAST.BoundElementAccess
+    name: BoundElementAccess
+    href: Heir.BoundAST.BoundElementAccess.html
+  - name: )
+  spec.vb:
+  - uid: Heir.BoundAST.BoundExpression.Visitor`1.VisitBoundElementAccessExpression(Heir.BoundAST.BoundElementAccess)
+    name: VisitBoundElementAccessExpression
+    href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundElementAccessExpression_Heir_BoundAST_BoundElementAccess_
+  - name: (
+  - uid: Heir.BoundAST.BoundElementAccess
+    name: BoundElementAccess
+    href: Heir.BoundAST.BoundElementAccess.html
+  - name: )
+- uid: Heir.TypeChecker.VisitBoundInvocationExpression*
+  commentId: Overload:Heir.TypeChecker.VisitBoundInvocationExpression
+  href: Heir.TypeChecker.html#Heir_TypeChecker_VisitBoundInvocationExpression_Heir_BoundAST_BoundInvocation_
+  name: VisitBoundInvocationExpression
+  nameWithType: TypeChecker.VisitBoundInvocationExpression
+  fullName: Heir.TypeChecker.VisitBoundInvocationExpression
+- uid: Heir.BoundAST.BoundExpression.Visitor{System.Object}.VisitBoundInvocationExpression(Heir.BoundAST.BoundInvocation)
+  commentId: M:Heir.BoundAST.BoundExpression.Visitor{System.Object}.VisitBoundInvocationExpression(Heir.BoundAST.BoundInvocation)
+  parent: Heir.BoundAST.BoundExpression.Visitor{System.Object}
+  definition: Heir.BoundAST.BoundExpression.Visitor`1.VisitBoundInvocationExpression(Heir.BoundAST.BoundInvocation)
+  href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundInvocationExpression_Heir_BoundAST_BoundInvocation_
+  name: VisitBoundInvocationExpression(BoundInvocation)
+  nameWithType: BoundExpression.Visitor<object>.VisitBoundInvocationExpression(BoundInvocation)
+  fullName: Heir.BoundAST.BoundExpression.Visitor<object>.VisitBoundInvocationExpression(Heir.BoundAST.BoundInvocation)
+  nameWithType.vb: BoundExpression.Visitor(Of Object).VisitBoundInvocationExpression(BoundInvocation)
+  fullName.vb: Heir.BoundAST.BoundExpression.Visitor(Of Object).VisitBoundInvocationExpression(Heir.BoundAST.BoundInvocation)
+  spec.csharp:
+  - uid: Heir.BoundAST.BoundExpression.Visitor{System.Object}.VisitBoundInvocationExpression(Heir.BoundAST.BoundInvocation)
+    name: VisitBoundInvocationExpression
+    href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundInvocationExpression_Heir_BoundAST_BoundInvocation_
+  - name: (
+  - uid: Heir.BoundAST.BoundInvocation
+    name: BoundInvocation
+    href: Heir.BoundAST.BoundInvocation.html
+  - name: )
+  spec.vb:
+  - uid: Heir.BoundAST.BoundExpression.Visitor{System.Object}.VisitBoundInvocationExpression(Heir.BoundAST.BoundInvocation)
+    name: VisitBoundInvocationExpression
+    href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundInvocationExpression_Heir_BoundAST_BoundInvocation_
+  - name: (
+  - uid: Heir.BoundAST.BoundInvocation
+    name: BoundInvocation
+    href: Heir.BoundAST.BoundInvocation.html
+  - name: )
+- uid: Heir.BoundAST.BoundInvocation
+  commentId: T:Heir.BoundAST.BoundInvocation
+  parent: Heir.BoundAST
+  href: Heir.BoundAST.BoundInvocation.html
+  name: BoundInvocation
+  nameWithType: BoundInvocation
+  fullName: Heir.BoundAST.BoundInvocation
+- uid: Heir.BoundAST.BoundExpression.Visitor`1.VisitBoundInvocationExpression(Heir.BoundAST.BoundInvocation)
+  commentId: M:Heir.BoundAST.BoundExpression.Visitor`1.VisitBoundInvocationExpression(Heir.BoundAST.BoundInvocation)
+  href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundInvocationExpression_Heir_BoundAST_BoundInvocation_
+  name: VisitBoundInvocationExpression(BoundInvocation)
+  nameWithType: BoundExpression.Visitor<R>.VisitBoundInvocationExpression(BoundInvocation)
+  fullName: Heir.BoundAST.BoundExpression.Visitor<R>.VisitBoundInvocationExpression(Heir.BoundAST.BoundInvocation)
+  nameWithType.vb: BoundExpression.Visitor(Of R).VisitBoundInvocationExpression(BoundInvocation)
+  fullName.vb: Heir.BoundAST.BoundExpression.Visitor(Of R).VisitBoundInvocationExpression(Heir.BoundAST.BoundInvocation)
+  spec.csharp:
+  - uid: Heir.BoundAST.BoundExpression.Visitor`1.VisitBoundInvocationExpression(Heir.BoundAST.BoundInvocation)
+    name: VisitBoundInvocationExpression
+    href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundInvocationExpression_Heir_BoundAST_BoundInvocation_
+  - name: (
+  - uid: Heir.BoundAST.BoundInvocation
+    name: BoundInvocation
+    href: Heir.BoundAST.BoundInvocation.html
+  - name: )
+  spec.vb:
+  - uid: Heir.BoundAST.BoundExpression.Visitor`1.VisitBoundInvocationExpression(Heir.BoundAST.BoundInvocation)
+    name: VisitBoundInvocationExpression
+    href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundInvocationExpression_Heir_BoundAST_BoundInvocation_
+  - name: (
+  - uid: Heir.BoundAST.BoundInvocation
+    name: BoundInvocation
+    href: Heir.BoundAST.BoundInvocation.html
+  - name: )
+- uid: Heir.TypeChecker.VisitBoundAssignmentOpExpression*
+  commentId: Overload:Heir.TypeChecker.VisitBoundAssignmentOpExpression
+  href: Heir.TypeChecker.html#Heir_TypeChecker_VisitBoundAssignmentOpExpression_Heir_BoundAST_BoundAssignmentOp_
+  name: VisitBoundAssignmentOpExpression
+  nameWithType: TypeChecker.VisitBoundAssignmentOpExpression
+  fullName: Heir.TypeChecker.VisitBoundAssignmentOpExpression
+- uid: Heir.BoundAST.BoundExpression.Visitor{System.Object}.VisitBoundAssignmentOpExpression(Heir.BoundAST.BoundAssignmentOp)
+  commentId: M:Heir.BoundAST.BoundExpression.Visitor{System.Object}.VisitBoundAssignmentOpExpression(Heir.BoundAST.BoundAssignmentOp)
+  parent: Heir.BoundAST.BoundExpression.Visitor{System.Object}
+  definition: Heir.BoundAST.BoundExpression.Visitor`1.VisitBoundAssignmentOpExpression(Heir.BoundAST.BoundAssignmentOp)
+  href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundAssignmentOpExpression_Heir_BoundAST_BoundAssignmentOp_
+  name: VisitBoundAssignmentOpExpression(BoundAssignmentOp)
+  nameWithType: BoundExpression.Visitor<object>.VisitBoundAssignmentOpExpression(BoundAssignmentOp)
+  fullName: Heir.BoundAST.BoundExpression.Visitor<object>.VisitBoundAssignmentOpExpression(Heir.BoundAST.BoundAssignmentOp)
+  nameWithType.vb: BoundExpression.Visitor(Of Object).VisitBoundAssignmentOpExpression(BoundAssignmentOp)
+  fullName.vb: Heir.BoundAST.BoundExpression.Visitor(Of Object).VisitBoundAssignmentOpExpression(Heir.BoundAST.BoundAssignmentOp)
+  spec.csharp:
+  - uid: Heir.BoundAST.BoundExpression.Visitor{System.Object}.VisitBoundAssignmentOpExpression(Heir.BoundAST.BoundAssignmentOp)
+    name: VisitBoundAssignmentOpExpression
+    href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundAssignmentOpExpression_Heir_BoundAST_BoundAssignmentOp_
+  - name: (
+  - uid: Heir.BoundAST.BoundAssignmentOp
+    name: BoundAssignmentOp
+    href: Heir.BoundAST.BoundAssignmentOp.html
+  - name: )
+  spec.vb:
+  - uid: Heir.BoundAST.BoundExpression.Visitor{System.Object}.VisitBoundAssignmentOpExpression(Heir.BoundAST.BoundAssignmentOp)
+    name: VisitBoundAssignmentOpExpression
+    href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundAssignmentOpExpression_Heir_BoundAST_BoundAssignmentOp_
+  - name: (
+  - uid: Heir.BoundAST.BoundAssignmentOp
+    name: BoundAssignmentOp
+    href: Heir.BoundAST.BoundAssignmentOp.html
+  - name: )
+- uid: Heir.BoundAST.BoundAssignmentOp
+  commentId: T:Heir.BoundAST.BoundAssignmentOp
+  parent: Heir.BoundAST
+  href: Heir.BoundAST.BoundAssignmentOp.html
+  name: BoundAssignmentOp
+  nameWithType: BoundAssignmentOp
+  fullName: Heir.BoundAST.BoundAssignmentOp
+- uid: Heir.BoundAST.BoundExpression.Visitor`1.VisitBoundAssignmentOpExpression(Heir.BoundAST.BoundAssignmentOp)
+  commentId: M:Heir.BoundAST.BoundExpression.Visitor`1.VisitBoundAssignmentOpExpression(Heir.BoundAST.BoundAssignmentOp)
+  href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundAssignmentOpExpression_Heir_BoundAST_BoundAssignmentOp_
+  name: VisitBoundAssignmentOpExpression(BoundAssignmentOp)
+  nameWithType: BoundExpression.Visitor<R>.VisitBoundAssignmentOpExpression(BoundAssignmentOp)
+  fullName: Heir.BoundAST.BoundExpression.Visitor<R>.VisitBoundAssignmentOpExpression(Heir.BoundAST.BoundAssignmentOp)
+  nameWithType.vb: BoundExpression.Visitor(Of R).VisitBoundAssignmentOpExpression(BoundAssignmentOp)
+  fullName.vb: Heir.BoundAST.BoundExpression.Visitor(Of R).VisitBoundAssignmentOpExpression(Heir.BoundAST.BoundAssignmentOp)
+  spec.csharp:
+  - uid: Heir.BoundAST.BoundExpression.Visitor`1.VisitBoundAssignmentOpExpression(Heir.BoundAST.BoundAssignmentOp)
+    name: VisitBoundAssignmentOpExpression
+    href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundAssignmentOpExpression_Heir_BoundAST_BoundAssignmentOp_
+  - name: (
+  - uid: Heir.BoundAST.BoundAssignmentOp
+    name: BoundAssignmentOp
+    href: Heir.BoundAST.BoundAssignmentOp.html
+  - name: )
+  spec.vb:
+  - uid: Heir.BoundAST.BoundExpression.Visitor`1.VisitBoundAssignmentOpExpression(Heir.BoundAST.BoundAssignmentOp)
+    name: VisitBoundAssignmentOpExpression
+    href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundAssignmentOpExpression_Heir_BoundAST_BoundAssignmentOp_
+  - name: (
+  - uid: Heir.BoundAST.BoundAssignmentOp
+    name: BoundAssignmentOp
+    href: Heir.BoundAST.BoundAssignmentOp.html
+  - name: )
+- uid: Heir.TypeChecker.VisitBoundBinaryOpExpression*
+  commentId: Overload:Heir.TypeChecker.VisitBoundBinaryOpExpression
+  href: Heir.TypeChecker.html#Heir_TypeChecker_VisitBoundBinaryOpExpression_Heir_BoundAST_BoundBinaryOp_
+  name: VisitBoundBinaryOpExpression
+  nameWithType: TypeChecker.VisitBoundBinaryOpExpression
+  fullName: Heir.TypeChecker.VisitBoundBinaryOpExpression
+- uid: Heir.BoundAST.BoundExpression.Visitor{System.Object}.VisitBoundBinaryOpExpression(Heir.BoundAST.BoundBinaryOp)
+  commentId: M:Heir.BoundAST.BoundExpression.Visitor{System.Object}.VisitBoundBinaryOpExpression(Heir.BoundAST.BoundBinaryOp)
+  parent: Heir.BoundAST.BoundExpression.Visitor{System.Object}
+  definition: Heir.BoundAST.BoundExpression.Visitor`1.VisitBoundBinaryOpExpression(Heir.BoundAST.BoundBinaryOp)
+  href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundBinaryOpExpression_Heir_BoundAST_BoundBinaryOp_
+  name: VisitBoundBinaryOpExpression(BoundBinaryOp)
+  nameWithType: BoundExpression.Visitor<object>.VisitBoundBinaryOpExpression(BoundBinaryOp)
+  fullName: Heir.BoundAST.BoundExpression.Visitor<object>.VisitBoundBinaryOpExpression(Heir.BoundAST.BoundBinaryOp)
+  nameWithType.vb: BoundExpression.Visitor(Of Object).VisitBoundBinaryOpExpression(BoundBinaryOp)
+  fullName.vb: Heir.BoundAST.BoundExpression.Visitor(Of Object).VisitBoundBinaryOpExpression(Heir.BoundAST.BoundBinaryOp)
+  spec.csharp:
+  - uid: Heir.BoundAST.BoundExpression.Visitor{System.Object}.VisitBoundBinaryOpExpression(Heir.BoundAST.BoundBinaryOp)
+    name: VisitBoundBinaryOpExpression
+    href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundBinaryOpExpression_Heir_BoundAST_BoundBinaryOp_
+  - name: (
+  - uid: Heir.BoundAST.BoundBinaryOp
+    name: BoundBinaryOp
+    href: Heir.BoundAST.BoundBinaryOp.html
+  - name: )
+  spec.vb:
+  - uid: Heir.BoundAST.BoundExpression.Visitor{System.Object}.VisitBoundBinaryOpExpression(Heir.BoundAST.BoundBinaryOp)
+    name: VisitBoundBinaryOpExpression
+    href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundBinaryOpExpression_Heir_BoundAST_BoundBinaryOp_
+  - name: (
+  - uid: Heir.BoundAST.BoundBinaryOp
+    name: BoundBinaryOp
+    href: Heir.BoundAST.BoundBinaryOp.html
+  - name: )
+- uid: Heir.BoundAST.BoundBinaryOp
+  commentId: T:Heir.BoundAST.BoundBinaryOp
+  parent: Heir.BoundAST
+  href: Heir.BoundAST.BoundBinaryOp.html
+  name: BoundBinaryOp
+  nameWithType: BoundBinaryOp
+  fullName: Heir.BoundAST.BoundBinaryOp
+- uid: Heir.BoundAST.BoundExpression.Visitor`1.VisitBoundBinaryOpExpression(Heir.BoundAST.BoundBinaryOp)
+  commentId: M:Heir.BoundAST.BoundExpression.Visitor`1.VisitBoundBinaryOpExpression(Heir.BoundAST.BoundBinaryOp)
+  href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundBinaryOpExpression_Heir_BoundAST_BoundBinaryOp_
+  name: VisitBoundBinaryOpExpression(BoundBinaryOp)
+  nameWithType: BoundExpression.Visitor<R>.VisitBoundBinaryOpExpression(BoundBinaryOp)
+  fullName: Heir.BoundAST.BoundExpression.Visitor<R>.VisitBoundBinaryOpExpression(Heir.BoundAST.BoundBinaryOp)
+  nameWithType.vb: BoundExpression.Visitor(Of R).VisitBoundBinaryOpExpression(BoundBinaryOp)
+  fullName.vb: Heir.BoundAST.BoundExpression.Visitor(Of R).VisitBoundBinaryOpExpression(Heir.BoundAST.BoundBinaryOp)
+  spec.csharp:
+  - uid: Heir.BoundAST.BoundExpression.Visitor`1.VisitBoundBinaryOpExpression(Heir.BoundAST.BoundBinaryOp)
+    name: VisitBoundBinaryOpExpression
+    href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundBinaryOpExpression_Heir_BoundAST_BoundBinaryOp_
+  - name: (
+  - uid: Heir.BoundAST.BoundBinaryOp
+    name: BoundBinaryOp
+    href: Heir.BoundAST.BoundBinaryOp.html
+  - name: )
+  spec.vb:
+  - uid: Heir.BoundAST.BoundExpression.Visitor`1.VisitBoundBinaryOpExpression(Heir.BoundAST.BoundBinaryOp)
+    name: VisitBoundBinaryOpExpression
+    href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundBinaryOpExpression_Heir_BoundAST_BoundBinaryOp_
+  - name: (
+  - uid: Heir.BoundAST.BoundBinaryOp
+    name: BoundBinaryOp
+    href: Heir.BoundAST.BoundBinaryOp.html
+  - name: )
+- uid: Heir.TypeChecker.VisitBoundLiteralExpression*
+  commentId: Overload:Heir.TypeChecker.VisitBoundLiteralExpression
+  href: Heir.TypeChecker.html#Heir_TypeChecker_VisitBoundLiteralExpression_Heir_BoundAST_BoundLiteral_
+  name: VisitBoundLiteralExpression
+  nameWithType: TypeChecker.VisitBoundLiteralExpression
+  fullName: Heir.TypeChecker.VisitBoundLiteralExpression
+- uid: Heir.BoundAST.BoundExpression.Visitor{System.Object}.VisitBoundLiteralExpression(Heir.BoundAST.BoundLiteral)
+  commentId: M:Heir.BoundAST.BoundExpression.Visitor{System.Object}.VisitBoundLiteralExpression(Heir.BoundAST.BoundLiteral)
+  parent: Heir.BoundAST.BoundExpression.Visitor{System.Object}
+  definition: Heir.BoundAST.BoundExpression.Visitor`1.VisitBoundLiteralExpression(Heir.BoundAST.BoundLiteral)
+  href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundLiteralExpression_Heir_BoundAST_BoundLiteral_
+  name: VisitBoundLiteralExpression(BoundLiteral)
+  nameWithType: BoundExpression.Visitor<object>.VisitBoundLiteralExpression(BoundLiteral)
+  fullName: Heir.BoundAST.BoundExpression.Visitor<object>.VisitBoundLiteralExpression(Heir.BoundAST.BoundLiteral)
+  nameWithType.vb: BoundExpression.Visitor(Of Object).VisitBoundLiteralExpression(BoundLiteral)
+  fullName.vb: Heir.BoundAST.BoundExpression.Visitor(Of Object).VisitBoundLiteralExpression(Heir.BoundAST.BoundLiteral)
+  spec.csharp:
+  - uid: Heir.BoundAST.BoundExpression.Visitor{System.Object}.VisitBoundLiteralExpression(Heir.BoundAST.BoundLiteral)
+    name: VisitBoundLiteralExpression
+    href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundLiteralExpression_Heir_BoundAST_BoundLiteral_
+  - name: (
+  - uid: Heir.BoundAST.BoundLiteral
+    name: BoundLiteral
+    href: Heir.BoundAST.BoundLiteral.html
+  - name: )
+  spec.vb:
+  - uid: Heir.BoundAST.BoundExpression.Visitor{System.Object}.VisitBoundLiteralExpression(Heir.BoundAST.BoundLiteral)
+    name: VisitBoundLiteralExpression
+    href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundLiteralExpression_Heir_BoundAST_BoundLiteral_
+  - name: (
+  - uid: Heir.BoundAST.BoundLiteral
+    name: BoundLiteral
+    href: Heir.BoundAST.BoundLiteral.html
+  - name: )
+- uid: Heir.BoundAST.BoundLiteral
+  commentId: T:Heir.BoundAST.BoundLiteral
+  parent: Heir.BoundAST
+  href: Heir.BoundAST.BoundLiteral.html
+  name: BoundLiteral
+  nameWithType: BoundLiteral
+  fullName: Heir.BoundAST.BoundLiteral
+- uid: Heir.BoundAST.BoundExpression.Visitor`1.VisitBoundLiteralExpression(Heir.BoundAST.BoundLiteral)
+  commentId: M:Heir.BoundAST.BoundExpression.Visitor`1.VisitBoundLiteralExpression(Heir.BoundAST.BoundLiteral)
+  href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundLiteralExpression_Heir_BoundAST_BoundLiteral_
+  name: VisitBoundLiteralExpression(BoundLiteral)
+  nameWithType: BoundExpression.Visitor<R>.VisitBoundLiteralExpression(BoundLiteral)
+  fullName: Heir.BoundAST.BoundExpression.Visitor<R>.VisitBoundLiteralExpression(Heir.BoundAST.BoundLiteral)
+  nameWithType.vb: BoundExpression.Visitor(Of R).VisitBoundLiteralExpression(BoundLiteral)
+  fullName.vb: Heir.BoundAST.BoundExpression.Visitor(Of R).VisitBoundLiteralExpression(Heir.BoundAST.BoundLiteral)
+  spec.csharp:
+  - uid: Heir.BoundAST.BoundExpression.Visitor`1.VisitBoundLiteralExpression(Heir.BoundAST.BoundLiteral)
+    name: VisitBoundLiteralExpression
+    href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundLiteralExpression_Heir_BoundAST_BoundLiteral_
+  - name: (
+  - uid: Heir.BoundAST.BoundLiteral
+    name: BoundLiteral
+    href: Heir.BoundAST.BoundLiteral.html
+  - name: )
+  spec.vb:
+  - uid: Heir.BoundAST.BoundExpression.Visitor`1.VisitBoundLiteralExpression(Heir.BoundAST.BoundLiteral)
+    name: VisitBoundLiteralExpression
+    href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundLiteralExpression_Heir_BoundAST_BoundLiteral_
+  - name: (
+  - uid: Heir.BoundAST.BoundLiteral
+    name: BoundLiteral
+    href: Heir.BoundAST.BoundLiteral.html
+  - name: )
+- uid: Heir.TypeChecker.VisitBoundObjectLiteralExpression*
+  commentId: Overload:Heir.TypeChecker.VisitBoundObjectLiteralExpression
+  href: Heir.TypeChecker.html#Heir_TypeChecker_VisitBoundObjectLiteralExpression_Heir_BoundAST_BoundObjectLiteral_
+  name: VisitBoundObjectLiteralExpression
+  nameWithType: TypeChecker.VisitBoundObjectLiteralExpression
+  fullName: Heir.TypeChecker.VisitBoundObjectLiteralExpression
+- uid: Heir.BoundAST.BoundExpression.Visitor{System.Object}.VisitBoundObjectLiteralExpression(Heir.BoundAST.BoundObjectLiteral)
+  commentId: M:Heir.BoundAST.BoundExpression.Visitor{System.Object}.VisitBoundObjectLiteralExpression(Heir.BoundAST.BoundObjectLiteral)
+  parent: Heir.BoundAST.BoundExpression.Visitor{System.Object}
+  definition: Heir.BoundAST.BoundExpression.Visitor`1.VisitBoundObjectLiteralExpression(Heir.BoundAST.BoundObjectLiteral)
+  href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundObjectLiteralExpression_Heir_BoundAST_BoundObjectLiteral_
+  name: VisitBoundObjectLiteralExpression(BoundObjectLiteral)
+  nameWithType: BoundExpression.Visitor<object>.VisitBoundObjectLiteralExpression(BoundObjectLiteral)
+  fullName: Heir.BoundAST.BoundExpression.Visitor<object>.VisitBoundObjectLiteralExpression(Heir.BoundAST.BoundObjectLiteral)
+  nameWithType.vb: BoundExpression.Visitor(Of Object).VisitBoundObjectLiteralExpression(BoundObjectLiteral)
+  fullName.vb: Heir.BoundAST.BoundExpression.Visitor(Of Object).VisitBoundObjectLiteralExpression(Heir.BoundAST.BoundObjectLiteral)
+  spec.csharp:
+  - uid: Heir.BoundAST.BoundExpression.Visitor{System.Object}.VisitBoundObjectLiteralExpression(Heir.BoundAST.BoundObjectLiteral)
+    name: VisitBoundObjectLiteralExpression
+    href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundObjectLiteralExpression_Heir_BoundAST_BoundObjectLiteral_
+  - name: (
+  - uid: Heir.BoundAST.BoundObjectLiteral
+    name: BoundObjectLiteral
+    href: Heir.BoundAST.BoundObjectLiteral.html
+  - name: )
+  spec.vb:
+  - uid: Heir.BoundAST.BoundExpression.Visitor{System.Object}.VisitBoundObjectLiteralExpression(Heir.BoundAST.BoundObjectLiteral)
+    name: VisitBoundObjectLiteralExpression
+    href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundObjectLiteralExpression_Heir_BoundAST_BoundObjectLiteral_
+  - name: (
+  - uid: Heir.BoundAST.BoundObjectLiteral
+    name: BoundObjectLiteral
+    href: Heir.BoundAST.BoundObjectLiteral.html
+  - name: )
+- uid: Heir.BoundAST.BoundObjectLiteral
+  commentId: T:Heir.BoundAST.BoundObjectLiteral
+  parent: Heir.BoundAST
+  href: Heir.BoundAST.BoundObjectLiteral.html
+  name: BoundObjectLiteral
+  nameWithType: BoundObjectLiteral
+  fullName: Heir.BoundAST.BoundObjectLiteral
+- uid: Heir.BoundAST.BoundExpression.Visitor`1.VisitBoundObjectLiteralExpression(Heir.BoundAST.BoundObjectLiteral)
+  commentId: M:Heir.BoundAST.BoundExpression.Visitor`1.VisitBoundObjectLiteralExpression(Heir.BoundAST.BoundObjectLiteral)
+  href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundObjectLiteralExpression_Heir_BoundAST_BoundObjectLiteral_
+  name: VisitBoundObjectLiteralExpression(BoundObjectLiteral)
+  nameWithType: BoundExpression.Visitor<R>.VisitBoundObjectLiteralExpression(BoundObjectLiteral)
+  fullName: Heir.BoundAST.BoundExpression.Visitor<R>.VisitBoundObjectLiteralExpression(Heir.BoundAST.BoundObjectLiteral)
+  nameWithType.vb: BoundExpression.Visitor(Of R).VisitBoundObjectLiteralExpression(BoundObjectLiteral)
+  fullName.vb: Heir.BoundAST.BoundExpression.Visitor(Of R).VisitBoundObjectLiteralExpression(Heir.BoundAST.BoundObjectLiteral)
+  spec.csharp:
+  - uid: Heir.BoundAST.BoundExpression.Visitor`1.VisitBoundObjectLiteralExpression(Heir.BoundAST.BoundObjectLiteral)
+    name: VisitBoundObjectLiteralExpression
+    href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundObjectLiteralExpression_Heir_BoundAST_BoundObjectLiteral_
+  - name: (
+  - uid: Heir.BoundAST.BoundObjectLiteral
+    name: BoundObjectLiteral
+    href: Heir.BoundAST.BoundObjectLiteral.html
+  - name: )
+  spec.vb:
+  - uid: Heir.BoundAST.BoundExpression.Visitor`1.VisitBoundObjectLiteralExpression(Heir.BoundAST.BoundObjectLiteral)
+    name: VisitBoundObjectLiteralExpression
+    href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundObjectLiteralExpression_Heir_BoundAST_BoundObjectLiteral_
+  - name: (
+  - uid: Heir.BoundAST.BoundObjectLiteral
+    name: BoundObjectLiteral
+    href: Heir.BoundAST.BoundObjectLiteral.html
+  - name: )
+- uid: Heir.TypeChecker.VisitBoundIdentifierNameExpression*
+  commentId: Overload:Heir.TypeChecker.VisitBoundIdentifierNameExpression
+  href: Heir.TypeChecker.html#Heir_TypeChecker_VisitBoundIdentifierNameExpression_Heir_BoundAST_BoundIdentifierName_
+  name: VisitBoundIdentifierNameExpression
+  nameWithType: TypeChecker.VisitBoundIdentifierNameExpression
+  fullName: Heir.TypeChecker.VisitBoundIdentifierNameExpression
+- uid: Heir.BoundAST.BoundExpression.Visitor{System.Object}.VisitBoundIdentifierNameExpression(Heir.BoundAST.BoundIdentifierName)
+  commentId: M:Heir.BoundAST.BoundExpression.Visitor{System.Object}.VisitBoundIdentifierNameExpression(Heir.BoundAST.BoundIdentifierName)
+  parent: Heir.BoundAST.BoundExpression.Visitor{System.Object}
+  definition: Heir.BoundAST.BoundExpression.Visitor`1.VisitBoundIdentifierNameExpression(Heir.BoundAST.BoundIdentifierName)
+  href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundIdentifierNameExpression_Heir_BoundAST_BoundIdentifierName_
+  name: VisitBoundIdentifierNameExpression(BoundIdentifierName)
+  nameWithType: BoundExpression.Visitor<object>.VisitBoundIdentifierNameExpression(BoundIdentifierName)
+  fullName: Heir.BoundAST.BoundExpression.Visitor<object>.VisitBoundIdentifierNameExpression(Heir.BoundAST.BoundIdentifierName)
+  nameWithType.vb: BoundExpression.Visitor(Of Object).VisitBoundIdentifierNameExpression(BoundIdentifierName)
+  fullName.vb: Heir.BoundAST.BoundExpression.Visitor(Of Object).VisitBoundIdentifierNameExpression(Heir.BoundAST.BoundIdentifierName)
+  spec.csharp:
+  - uid: Heir.BoundAST.BoundExpression.Visitor{System.Object}.VisitBoundIdentifierNameExpression(Heir.BoundAST.BoundIdentifierName)
+    name: VisitBoundIdentifierNameExpression
+    href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundIdentifierNameExpression_Heir_BoundAST_BoundIdentifierName_
+  - name: (
+  - uid: Heir.BoundAST.BoundIdentifierName
+    name: BoundIdentifierName
+    href: Heir.BoundAST.BoundIdentifierName.html
+  - name: )
+  spec.vb:
+  - uid: Heir.BoundAST.BoundExpression.Visitor{System.Object}.VisitBoundIdentifierNameExpression(Heir.BoundAST.BoundIdentifierName)
+    name: VisitBoundIdentifierNameExpression
+    href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundIdentifierNameExpression_Heir_BoundAST_BoundIdentifierName_
+  - name: (
+  - uid: Heir.BoundAST.BoundIdentifierName
+    name: BoundIdentifierName
+    href: Heir.BoundAST.BoundIdentifierName.html
+  - name: )
+- uid: Heir.BoundAST.BoundIdentifierName
+  commentId: T:Heir.BoundAST.BoundIdentifierName
+  parent: Heir.BoundAST
+  href: Heir.BoundAST.BoundIdentifierName.html
+  name: BoundIdentifierName
+  nameWithType: BoundIdentifierName
+  fullName: Heir.BoundAST.BoundIdentifierName
+- uid: Heir.BoundAST.BoundExpression.Visitor`1.VisitBoundIdentifierNameExpression(Heir.BoundAST.BoundIdentifierName)
+  commentId: M:Heir.BoundAST.BoundExpression.Visitor`1.VisitBoundIdentifierNameExpression(Heir.BoundAST.BoundIdentifierName)
+  href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundIdentifierNameExpression_Heir_BoundAST_BoundIdentifierName_
+  name: VisitBoundIdentifierNameExpression(BoundIdentifierName)
+  nameWithType: BoundExpression.Visitor<R>.VisitBoundIdentifierNameExpression(BoundIdentifierName)
+  fullName: Heir.BoundAST.BoundExpression.Visitor<R>.VisitBoundIdentifierNameExpression(Heir.BoundAST.BoundIdentifierName)
+  nameWithType.vb: BoundExpression.Visitor(Of R).VisitBoundIdentifierNameExpression(BoundIdentifierName)
+  fullName.vb: Heir.BoundAST.BoundExpression.Visitor(Of R).VisitBoundIdentifierNameExpression(Heir.BoundAST.BoundIdentifierName)
+  spec.csharp:
+  - uid: Heir.BoundAST.BoundExpression.Visitor`1.VisitBoundIdentifierNameExpression(Heir.BoundAST.BoundIdentifierName)
+    name: VisitBoundIdentifierNameExpression
+    href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundIdentifierNameExpression_Heir_BoundAST_BoundIdentifierName_
+  - name: (
+  - uid: Heir.BoundAST.BoundIdentifierName
+    name: BoundIdentifierName
+    href: Heir.BoundAST.BoundIdentifierName.html
+  - name: )
+  spec.vb:
+  - uid: Heir.BoundAST.BoundExpression.Visitor`1.VisitBoundIdentifierNameExpression(Heir.BoundAST.BoundIdentifierName)
+    name: VisitBoundIdentifierNameExpression
+    href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundIdentifierNameExpression_Heir_BoundAST_BoundIdentifierName_
+  - name: (
+  - uid: Heir.BoundAST.BoundIdentifierName
+    name: BoundIdentifierName
+    href: Heir.BoundAST.BoundIdentifierName.html
+  - name: )
+- uid: Heir.TypeChecker.VisitBoundNoOp*
+  commentId: Overload:Heir.TypeChecker.VisitBoundNoOp
+  href: Heir.TypeChecker.html#Heir_TypeChecker_VisitBoundNoOp_Heir_BoundAST_BoundNoOp_
+  name: VisitBoundNoOp
+  nameWithType: TypeChecker.VisitBoundNoOp
+  fullName: Heir.TypeChecker.VisitBoundNoOp
+- uid: Heir.BoundAST.BoundExpression.Visitor{System.Object}.VisitBoundNoOp(Heir.BoundAST.BoundNoOp)
+  commentId: M:Heir.BoundAST.BoundExpression.Visitor{System.Object}.VisitBoundNoOp(Heir.BoundAST.BoundNoOp)
+  parent: Heir.BoundAST.BoundExpression.Visitor{System.Object}
+  definition: Heir.BoundAST.BoundExpression.Visitor`1.VisitBoundNoOp(Heir.BoundAST.BoundNoOp)
+  href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundNoOp_Heir_BoundAST_BoundNoOp_
+  name: VisitBoundNoOp(BoundNoOp)
+  nameWithType: BoundExpression.Visitor<object>.VisitBoundNoOp(BoundNoOp)
+  fullName: Heir.BoundAST.BoundExpression.Visitor<object>.VisitBoundNoOp(Heir.BoundAST.BoundNoOp)
+  nameWithType.vb: BoundExpression.Visitor(Of Object).VisitBoundNoOp(BoundNoOp)
+  fullName.vb: Heir.BoundAST.BoundExpression.Visitor(Of Object).VisitBoundNoOp(Heir.BoundAST.BoundNoOp)
+  spec.csharp:
+  - uid: Heir.BoundAST.BoundExpression.Visitor{System.Object}.VisitBoundNoOp(Heir.BoundAST.BoundNoOp)
+    name: VisitBoundNoOp
+    href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundNoOp_Heir_BoundAST_BoundNoOp_
+  - name: (
+  - uid: Heir.BoundAST.BoundNoOp
+    name: BoundNoOp
+    href: Heir.BoundAST.BoundNoOp.html
+  - name: )
+  spec.vb:
+  - uid: Heir.BoundAST.BoundExpression.Visitor{System.Object}.VisitBoundNoOp(Heir.BoundAST.BoundNoOp)
+    name: VisitBoundNoOp
+    href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundNoOp_Heir_BoundAST_BoundNoOp_
+  - name: (
+  - uid: Heir.BoundAST.BoundNoOp
+    name: BoundNoOp
+    href: Heir.BoundAST.BoundNoOp.html
+  - name: )
+- uid: Heir.BoundAST.BoundNoOp
+  commentId: T:Heir.BoundAST.BoundNoOp
+  parent: Heir.BoundAST
+  href: Heir.BoundAST.BoundNoOp.html
+  name: BoundNoOp
+  nameWithType: BoundNoOp
+  fullName: Heir.BoundAST.BoundNoOp
+- uid: Heir.BoundAST.BoundExpression.Visitor`1.VisitBoundNoOp(Heir.BoundAST.BoundNoOp)
+  commentId: M:Heir.BoundAST.BoundExpression.Visitor`1.VisitBoundNoOp(Heir.BoundAST.BoundNoOp)
+  href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundNoOp_Heir_BoundAST_BoundNoOp_
+  name: VisitBoundNoOp(BoundNoOp)
+  nameWithType: BoundExpression.Visitor<R>.VisitBoundNoOp(BoundNoOp)
+  fullName: Heir.BoundAST.BoundExpression.Visitor<R>.VisitBoundNoOp(Heir.BoundAST.BoundNoOp)
+  nameWithType.vb: BoundExpression.Visitor(Of R).VisitBoundNoOp(BoundNoOp)
+  fullName.vb: Heir.BoundAST.BoundExpression.Visitor(Of R).VisitBoundNoOp(Heir.BoundAST.BoundNoOp)
+  spec.csharp:
+  - uid: Heir.BoundAST.BoundExpression.Visitor`1.VisitBoundNoOp(Heir.BoundAST.BoundNoOp)
+    name: VisitBoundNoOp
+    href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundNoOp_Heir_BoundAST_BoundNoOp_
+  - name: (
+  - uid: Heir.BoundAST.BoundNoOp
+    name: BoundNoOp
+    href: Heir.BoundAST.BoundNoOp.html
+  - name: )
+  spec.vb:
+  - uid: Heir.BoundAST.BoundExpression.Visitor`1.VisitBoundNoOp(Heir.BoundAST.BoundNoOp)
+    name: VisitBoundNoOp
+    href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundNoOp_Heir_BoundAST_BoundNoOp_
+  - name: (
+  - uid: Heir.BoundAST.BoundNoOp
+    name: BoundNoOp
+    href: Heir.BoundAST.BoundNoOp.html
+  - name: )
+- uid: Heir.BoundAST.BoundStatement.Visitor{System.Object}.VisitBoundNoOp(Heir.BoundAST.BoundNoOpStatement)
+  commentId: M:Heir.BoundAST.BoundStatement.Visitor{System.Object}.VisitBoundNoOp(Heir.BoundAST.BoundNoOpStatement)
+  parent: Heir.BoundAST.BoundStatement.Visitor{System.Object}
+  definition: Heir.BoundAST.BoundStatement.Visitor`1.VisitBoundNoOp(Heir.BoundAST.BoundNoOpStatement)
+  href: Heir.BoundAST.BoundStatement.Visitor-1.html#Heir_BoundAST_BoundStatement_Visitor_1_VisitBoundNoOp_Heir_BoundAST_BoundNoOpStatement_
+  name: VisitBoundNoOp(BoundNoOpStatement)
+  nameWithType: BoundStatement.Visitor<object>.VisitBoundNoOp(BoundNoOpStatement)
+  fullName: Heir.BoundAST.BoundStatement.Visitor<object>.VisitBoundNoOp(Heir.BoundAST.BoundNoOpStatement)
+  nameWithType.vb: BoundStatement.Visitor(Of Object).VisitBoundNoOp(BoundNoOpStatement)
+  fullName.vb: Heir.BoundAST.BoundStatement.Visitor(Of Object).VisitBoundNoOp(Heir.BoundAST.BoundNoOpStatement)
+  spec.csharp:
+  - uid: Heir.BoundAST.BoundStatement.Visitor{System.Object}.VisitBoundNoOp(Heir.BoundAST.BoundNoOpStatement)
+    name: VisitBoundNoOp
+    href: Heir.BoundAST.BoundStatement.Visitor-1.html#Heir_BoundAST_BoundStatement_Visitor_1_VisitBoundNoOp_Heir_BoundAST_BoundNoOpStatement_
+  - name: (
+  - uid: Heir.BoundAST.BoundNoOpStatement
+    name: BoundNoOpStatement
+    href: Heir.BoundAST.BoundNoOpStatement.html
+  - name: )
+  spec.vb:
+  - uid: Heir.BoundAST.BoundStatement.Visitor{System.Object}.VisitBoundNoOp(Heir.BoundAST.BoundNoOpStatement)
+    name: VisitBoundNoOp
+    href: Heir.BoundAST.BoundStatement.Visitor-1.html#Heir_BoundAST_BoundStatement_Visitor_1_VisitBoundNoOp_Heir_BoundAST_BoundNoOpStatement_
+  - name: (
+  - uid: Heir.BoundAST.BoundNoOpStatement
+    name: BoundNoOpStatement
+    href: Heir.BoundAST.BoundNoOpStatement.html
+  - name: )
+- uid: Heir.BoundAST.BoundNoOpStatement
+  commentId: T:Heir.BoundAST.BoundNoOpStatement
+  parent: Heir.BoundAST
+  href: Heir.BoundAST.BoundNoOpStatement.html
+  name: BoundNoOpStatement
+  nameWithType: BoundNoOpStatement
+  fullName: Heir.BoundAST.BoundNoOpStatement
+- uid: Heir.BoundAST.BoundStatement.Visitor`1.VisitBoundNoOp(Heir.BoundAST.BoundNoOpStatement)
+  commentId: M:Heir.BoundAST.BoundStatement.Visitor`1.VisitBoundNoOp(Heir.BoundAST.BoundNoOpStatement)
+  href: Heir.BoundAST.BoundStatement.Visitor-1.html#Heir_BoundAST_BoundStatement_Visitor_1_VisitBoundNoOp_Heir_BoundAST_BoundNoOpStatement_
+  name: VisitBoundNoOp(BoundNoOpStatement)
+  nameWithType: BoundStatement.Visitor<R>.VisitBoundNoOp(BoundNoOpStatement)
+  fullName: Heir.BoundAST.BoundStatement.Visitor<R>.VisitBoundNoOp(Heir.BoundAST.BoundNoOpStatement)
+  nameWithType.vb: BoundStatement.Visitor(Of R).VisitBoundNoOp(BoundNoOpStatement)
+  fullName.vb: Heir.BoundAST.BoundStatement.Visitor(Of R).VisitBoundNoOp(Heir.BoundAST.BoundNoOpStatement)
+  spec.csharp:
+  - uid: Heir.BoundAST.BoundStatement.Visitor`1.VisitBoundNoOp(Heir.BoundAST.BoundNoOpStatement)
+    name: VisitBoundNoOp
+    href: Heir.BoundAST.BoundStatement.Visitor-1.html#Heir_BoundAST_BoundStatement_Visitor_1_VisitBoundNoOp_Heir_BoundAST_BoundNoOpStatement_
+  - name: (
+  - uid: Heir.BoundAST.BoundNoOpStatement
+    name: BoundNoOpStatement
+    href: Heir.BoundAST.BoundNoOpStatement.html
+  - name: )
+  spec.vb:
+  - uid: Heir.BoundAST.BoundStatement.Visitor`1.VisitBoundNoOp(Heir.BoundAST.BoundNoOpStatement)
+    name: VisitBoundNoOp
+    href: Heir.BoundAST.BoundStatement.Visitor-1.html#Heir_BoundAST_BoundStatement_Visitor_1_VisitBoundNoOp_Heir_BoundAST_BoundNoOpStatement_
+  - name: (
+  - uid: Heir.BoundAST.BoundNoOpStatement
+    name: BoundNoOpStatement
+    href: Heir.BoundAST.BoundNoOpStatement.html
+  - name: )
+- uid: Heir.TypeChecker.VisitBoundParenthesizedExpression*
+  commentId: Overload:Heir.TypeChecker.VisitBoundParenthesizedExpression
+  href: Heir.TypeChecker.html#Heir_TypeChecker_VisitBoundParenthesizedExpression_Heir_BoundAST_BoundParenthesized_
+  name: VisitBoundParenthesizedExpression
+  nameWithType: TypeChecker.VisitBoundParenthesizedExpression
+  fullName: Heir.TypeChecker.VisitBoundParenthesizedExpression
+- uid: Heir.BoundAST.BoundExpression.Visitor{System.Object}.VisitBoundParenthesizedExpression(Heir.BoundAST.BoundParenthesized)
+  commentId: M:Heir.BoundAST.BoundExpression.Visitor{System.Object}.VisitBoundParenthesizedExpression(Heir.BoundAST.BoundParenthesized)
+  parent: Heir.BoundAST.BoundExpression.Visitor{System.Object}
+  definition: Heir.BoundAST.BoundExpression.Visitor`1.VisitBoundParenthesizedExpression(Heir.BoundAST.BoundParenthesized)
+  href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundParenthesizedExpression_Heir_BoundAST_BoundParenthesized_
+  name: VisitBoundParenthesizedExpression(BoundParenthesized)
+  nameWithType: BoundExpression.Visitor<object>.VisitBoundParenthesizedExpression(BoundParenthesized)
+  fullName: Heir.BoundAST.BoundExpression.Visitor<object>.VisitBoundParenthesizedExpression(Heir.BoundAST.BoundParenthesized)
+  nameWithType.vb: BoundExpression.Visitor(Of Object).VisitBoundParenthesizedExpression(BoundParenthesized)
+  fullName.vb: Heir.BoundAST.BoundExpression.Visitor(Of Object).VisitBoundParenthesizedExpression(Heir.BoundAST.BoundParenthesized)
+  spec.csharp:
+  - uid: Heir.BoundAST.BoundExpression.Visitor{System.Object}.VisitBoundParenthesizedExpression(Heir.BoundAST.BoundParenthesized)
+    name: VisitBoundParenthesizedExpression
+    href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundParenthesizedExpression_Heir_BoundAST_BoundParenthesized_
+  - name: (
+  - uid: Heir.BoundAST.BoundParenthesized
+    name: BoundParenthesized
+    href: Heir.BoundAST.BoundParenthesized.html
+  - name: )
+  spec.vb:
+  - uid: Heir.BoundAST.BoundExpression.Visitor{System.Object}.VisitBoundParenthesizedExpression(Heir.BoundAST.BoundParenthesized)
+    name: VisitBoundParenthesizedExpression
+    href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundParenthesizedExpression_Heir_BoundAST_BoundParenthesized_
+  - name: (
+  - uid: Heir.BoundAST.BoundParenthesized
+    name: BoundParenthesized
+    href: Heir.BoundAST.BoundParenthesized.html
+  - name: )
+- uid: Heir.BoundAST.BoundParenthesized
+  commentId: T:Heir.BoundAST.BoundParenthesized
+  parent: Heir.BoundAST
+  href: Heir.BoundAST.BoundParenthesized.html
+  name: BoundParenthesized
+  nameWithType: BoundParenthesized
+  fullName: Heir.BoundAST.BoundParenthesized
+- uid: Heir.BoundAST.BoundExpression.Visitor`1.VisitBoundParenthesizedExpression(Heir.BoundAST.BoundParenthesized)
+  commentId: M:Heir.BoundAST.BoundExpression.Visitor`1.VisitBoundParenthesizedExpression(Heir.BoundAST.BoundParenthesized)
+  href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundParenthesizedExpression_Heir_BoundAST_BoundParenthesized_
+  name: VisitBoundParenthesizedExpression(BoundParenthesized)
+  nameWithType: BoundExpression.Visitor<R>.VisitBoundParenthesizedExpression(BoundParenthesized)
+  fullName: Heir.BoundAST.BoundExpression.Visitor<R>.VisitBoundParenthesizedExpression(Heir.BoundAST.BoundParenthesized)
+  nameWithType.vb: BoundExpression.Visitor(Of R).VisitBoundParenthesizedExpression(BoundParenthesized)
+  fullName.vb: Heir.BoundAST.BoundExpression.Visitor(Of R).VisitBoundParenthesizedExpression(Heir.BoundAST.BoundParenthesized)
+  spec.csharp:
+  - uid: Heir.BoundAST.BoundExpression.Visitor`1.VisitBoundParenthesizedExpression(Heir.BoundAST.BoundParenthesized)
+    name: VisitBoundParenthesizedExpression
+    href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundParenthesizedExpression_Heir_BoundAST_BoundParenthesized_
+  - name: (
+  - uid: Heir.BoundAST.BoundParenthesized
+    name: BoundParenthesized
+    href: Heir.BoundAST.BoundParenthesized.html
+  - name: )
+  spec.vb:
+  - uid: Heir.BoundAST.BoundExpression.Visitor`1.VisitBoundParenthesizedExpression(Heir.BoundAST.BoundParenthesized)
+    name: VisitBoundParenthesizedExpression
+    href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundParenthesizedExpression_Heir_BoundAST_BoundParenthesized_
+  - name: (
+  - uid: Heir.BoundAST.BoundParenthesized
+    name: BoundParenthesized
+    href: Heir.BoundAST.BoundParenthesized.html
+  - name: )
+- uid: Heir.TypeChecker.VisitBoundUnaryOpExpression*
+  commentId: Overload:Heir.TypeChecker.VisitBoundUnaryOpExpression
+  href: Heir.TypeChecker.html#Heir_TypeChecker_VisitBoundUnaryOpExpression_Heir_BoundAST_BoundUnaryOp_
+  name: VisitBoundUnaryOpExpression
+  nameWithType: TypeChecker.VisitBoundUnaryOpExpression
+  fullName: Heir.TypeChecker.VisitBoundUnaryOpExpression
+- uid: Heir.BoundAST.BoundExpression.Visitor{System.Object}.VisitBoundUnaryOpExpression(Heir.BoundAST.BoundUnaryOp)
+  commentId: M:Heir.BoundAST.BoundExpression.Visitor{System.Object}.VisitBoundUnaryOpExpression(Heir.BoundAST.BoundUnaryOp)
+  parent: Heir.BoundAST.BoundExpression.Visitor{System.Object}
+  definition: Heir.BoundAST.BoundExpression.Visitor`1.VisitBoundUnaryOpExpression(Heir.BoundAST.BoundUnaryOp)
+  href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundUnaryOpExpression_Heir_BoundAST_BoundUnaryOp_
+  name: VisitBoundUnaryOpExpression(BoundUnaryOp)
+  nameWithType: BoundExpression.Visitor<object>.VisitBoundUnaryOpExpression(BoundUnaryOp)
+  fullName: Heir.BoundAST.BoundExpression.Visitor<object>.VisitBoundUnaryOpExpression(Heir.BoundAST.BoundUnaryOp)
+  nameWithType.vb: BoundExpression.Visitor(Of Object).VisitBoundUnaryOpExpression(BoundUnaryOp)
+  fullName.vb: Heir.BoundAST.BoundExpression.Visitor(Of Object).VisitBoundUnaryOpExpression(Heir.BoundAST.BoundUnaryOp)
+  spec.csharp:
+  - uid: Heir.BoundAST.BoundExpression.Visitor{System.Object}.VisitBoundUnaryOpExpression(Heir.BoundAST.BoundUnaryOp)
+    name: VisitBoundUnaryOpExpression
+    href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundUnaryOpExpression_Heir_BoundAST_BoundUnaryOp_
+  - name: (
+  - uid: Heir.BoundAST.BoundUnaryOp
+    name: BoundUnaryOp
+    href: Heir.BoundAST.BoundUnaryOp.html
+  - name: )
+  spec.vb:
+  - uid: Heir.BoundAST.BoundExpression.Visitor{System.Object}.VisitBoundUnaryOpExpression(Heir.BoundAST.BoundUnaryOp)
+    name: VisitBoundUnaryOpExpression
+    href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundUnaryOpExpression_Heir_BoundAST_BoundUnaryOp_
+  - name: (
+  - uid: Heir.BoundAST.BoundUnaryOp
+    name: BoundUnaryOp
+    href: Heir.BoundAST.BoundUnaryOp.html
+  - name: )
+- uid: Heir.BoundAST.BoundUnaryOp
+  commentId: T:Heir.BoundAST.BoundUnaryOp
+  parent: Heir.BoundAST
+  href: Heir.BoundAST.BoundUnaryOp.html
+  name: BoundUnaryOp
+  nameWithType: BoundUnaryOp
+  fullName: Heir.BoundAST.BoundUnaryOp
+- uid: Heir.BoundAST.BoundExpression.Visitor`1.VisitBoundUnaryOpExpression(Heir.BoundAST.BoundUnaryOp)
+  commentId: M:Heir.BoundAST.BoundExpression.Visitor`1.VisitBoundUnaryOpExpression(Heir.BoundAST.BoundUnaryOp)
+  href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundUnaryOpExpression_Heir_BoundAST_BoundUnaryOp_
+  name: VisitBoundUnaryOpExpression(BoundUnaryOp)
+  nameWithType: BoundExpression.Visitor<R>.VisitBoundUnaryOpExpression(BoundUnaryOp)
+  fullName: Heir.BoundAST.BoundExpression.Visitor<R>.VisitBoundUnaryOpExpression(Heir.BoundAST.BoundUnaryOp)
+  nameWithType.vb: BoundExpression.Visitor(Of R).VisitBoundUnaryOpExpression(BoundUnaryOp)
+  fullName.vb: Heir.BoundAST.BoundExpression.Visitor(Of R).VisitBoundUnaryOpExpression(Heir.BoundAST.BoundUnaryOp)
+  spec.csharp:
+  - uid: Heir.BoundAST.BoundExpression.Visitor`1.VisitBoundUnaryOpExpression(Heir.BoundAST.BoundUnaryOp)
+    name: VisitBoundUnaryOpExpression
+    href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundUnaryOpExpression_Heir_BoundAST_BoundUnaryOp_
+  - name: (
+  - uid: Heir.BoundAST.BoundUnaryOp
+    name: BoundUnaryOp
+    href: Heir.BoundAST.BoundUnaryOp.html
+  - name: )
+  spec.vb:
+  - uid: Heir.BoundAST.BoundExpression.Visitor`1.VisitBoundUnaryOpExpression(Heir.BoundAST.BoundUnaryOp)
+    name: VisitBoundUnaryOpExpression
+    href: Heir.BoundAST.BoundExpression.Visitor-1.html#Heir_BoundAST_BoundExpression_Visitor_1_VisitBoundUnaryOpExpression_Heir_BoundAST_BoundUnaryOp_
+  - name: (
+  - uid: Heir.BoundAST.BoundUnaryOp
+    name: BoundUnaryOp
+    href: Heir.BoundAST.BoundUnaryOp.html
+  - name: )

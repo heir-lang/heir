@@ -1,0 +1,146 @@
+### YamlMime:ManagedReference
+items:
+- uid: Heir.AST.Abstract
+  commentId: N:Heir.AST.Abstract
+  id: Heir.AST.Abstract
+  children:
+  - Heir.AST.Abstract.Expression
+  - Heir.AST.Abstract.Expression.Visitor`1
+  - Heir.AST.Abstract.Statement
+  - Heir.AST.Abstract.Statement.Visitor`1
+  - Heir.AST.Abstract.SyntaxNode
+  - Heir.AST.Abstract.TypeRef
+  langs:
+  - csharp
+  - vb
+  name: Heir.AST.Abstract
+  nameWithType: Heir.AST.Abstract
+  fullName: Heir.AST.Abstract
+  type: Namespace
+  assemblies:
+  - Heir
+references:
+- uid: Heir.AST.Abstract.Expression
+  commentId: T:Heir.AST.Abstract.Expression
+  parent: Heir.AST.Abstract
+  href: Heir.AST.Abstract.Expression.html
+  name: Expression
+  nameWithType: Expression
+  fullName: Heir.AST.Abstract.Expression
+- uid: Heir.AST.Abstract.Expression.Visitor`1
+  commentId: T:Heir.AST.Abstract.Expression.Visitor`1
+  href: Heir.AST.Abstract.Expression.html
+  name: Expression.Visitor<R>
+  nameWithType: Expression.Visitor<R>
+  fullName: Heir.AST.Abstract.Expression.Visitor<R>
+  nameWithType.vb: Expression.Visitor(Of R)
+  fullName.vb: Heir.AST.Abstract.Expression.Visitor(Of R)
+  name.vb: Expression.Visitor(Of R)
+  spec.csharp:
+  - uid: Heir.AST.Abstract.Expression
+    name: Expression
+    href: Heir.AST.Abstract.Expression.html
+  - name: .
+  - uid: Heir.AST.Abstract.Expression.Visitor`1
+    name: Visitor
+    href: Heir.AST.Abstract.Expression.Visitor-1.html
+  - name: <
+  - name: R
+  - name: '>'
+  spec.vb:
+  - uid: Heir.AST.Abstract.Expression
+    name: Expression
+    href: Heir.AST.Abstract.Expression.html
+  - name: .
+  - uid: Heir.AST.Abstract.Expression.Visitor`1
+    name: Visitor
+    href: Heir.AST.Abstract.Expression.Visitor-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: R
+  - name: )
+- uid: Heir.AST.Abstract.Statement
+  commentId: T:Heir.AST.Abstract.Statement
+  parent: Heir.AST.Abstract
+  href: Heir.AST.Abstract.Statement.html
+  name: Statement
+  nameWithType: Statement
+  fullName: Heir.AST.Abstract.Statement
+- uid: Heir.AST.Abstract.Statement.Visitor`1
+  commentId: T:Heir.AST.Abstract.Statement.Visitor`1
+  href: Heir.AST.Abstract.Statement.html
+  name: Statement.Visitor<R>
+  nameWithType: Statement.Visitor<R>
+  fullName: Heir.AST.Abstract.Statement.Visitor<R>
+  nameWithType.vb: Statement.Visitor(Of R)
+  fullName.vb: Heir.AST.Abstract.Statement.Visitor(Of R)
+  name.vb: Statement.Visitor(Of R)
+  spec.csharp:
+  - uid: Heir.AST.Abstract.Statement
+    name: Statement
+    href: Heir.AST.Abstract.Statement.html
+  - name: .
+  - uid: Heir.AST.Abstract.Statement.Visitor`1
+    name: Visitor
+    href: Heir.AST.Abstract.Statement.Visitor-1.html
+  - name: <
+  - name: R
+  - name: '>'
+  spec.vb:
+  - uid: Heir.AST.Abstract.Statement
+    name: Statement
+    href: Heir.AST.Abstract.Statement.html
+  - name: .
+  - uid: Heir.AST.Abstract.Statement.Visitor`1
+    name: Visitor
+    href: Heir.AST.Abstract.Statement.Visitor-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: R
+  - name: )
+- uid: Heir.AST.Abstract.SyntaxNode
+  commentId: T:Heir.AST.Abstract.SyntaxNode
+  parent: Heir.AST.Abstract
+  href: Heir.AST.Abstract.SyntaxNode.html
+  name: SyntaxNode
+  nameWithType: SyntaxNode
+  fullName: Heir.AST.Abstract.SyntaxNode
+- uid: Heir.AST.Abstract.TypeRef
+  commentId: T:Heir.AST.Abstract.TypeRef
+  parent: Heir.AST.Abstract
+  href: Heir.AST.Abstract.TypeRef.html
+  name: TypeRef
+  nameWithType: TypeRef
+  fullName: Heir.AST.Abstract.TypeRef
+- uid: Heir.AST.Abstract
+  commentId: N:Heir.AST.Abstract
+  href: Heir.html
+  name: Heir.AST.Abstract
+  nameWithType: Heir.AST.Abstract
+  fullName: Heir.AST.Abstract
+  spec.csharp:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.AST
+    name: AST
+    href: Heir.AST.html
+  - name: .
+  - uid: Heir.AST.Abstract
+    name: Abstract
+    href: Heir.AST.Abstract.html
+  spec.vb:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.AST
+    name: AST
+    href: Heir.AST.html
+  - name: .
+  - uid: Heir.AST.Abstract
+    name: Abstract
+    href: Heir.AST.Abstract.html

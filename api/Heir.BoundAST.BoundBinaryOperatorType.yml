@@ -1,0 +1,652 @@
+### YamlMime:ManagedReference
+items:
+- uid: Heir.BoundAST.BoundBinaryOperatorType
+  commentId: T:Heir.BoundAST.BoundBinaryOperatorType
+  id: BoundBinaryOperatorType
+  parent: Heir.BoundAST
+  children:
+  - Heir.BoundAST.BoundBinaryOperatorType.Addition
+  - Heir.BoundAST.BoundBinaryOperatorType.Assignment
+  - Heir.BoundAST.BoundBinaryOperatorType.BitShiftLeft
+  - Heir.BoundAST.BoundBinaryOperatorType.BitShiftRight
+  - Heir.BoundAST.BoundBinaryOperatorType.BitwiseAnd
+  - Heir.BoundAST.BoundBinaryOperatorType.BitwiseOr
+  - Heir.BoundAST.BoundBinaryOperatorType.BitwiseXor
+  - Heir.BoundAST.BoundBinaryOperatorType.Concatenation
+  - Heir.BoundAST.BoundBinaryOperatorType.Division
+  - Heir.BoundAST.BoundBinaryOperatorType.Equals
+  - Heir.BoundAST.BoundBinaryOperatorType.Exponentation
+  - Heir.BoundAST.BoundBinaryOperatorType.GreaterThan
+  - Heir.BoundAST.BoundBinaryOperatorType.GreaterThanOrEquals
+  - Heir.BoundAST.BoundBinaryOperatorType.IntegerDivision
+  - Heir.BoundAST.BoundBinaryOperatorType.LessThan
+  - Heir.BoundAST.BoundBinaryOperatorType.LessThanOrEquals
+  - Heir.BoundAST.BoundBinaryOperatorType.LogicalAnd
+  - Heir.BoundAST.BoundBinaryOperatorType.LogicalOr
+  - Heir.BoundAST.BoundBinaryOperatorType.Modulus
+  - Heir.BoundAST.BoundBinaryOperatorType.Multiplication
+  - Heir.BoundAST.BoundBinaryOperatorType.NotEquals
+  - Heir.BoundAST.BoundBinaryOperatorType.Subtraction
+  langs:
+  - csharp
+  - vb
+  name: BoundBinaryOperatorType
+  nameWithType: BoundBinaryOperatorType
+  fullName: Heir.BoundAST.BoundBinaryOperatorType
+  type: Enum
+  source:
+    remote:
+      path: Heir/BoundAST/BoundBinaryOperator.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: BoundBinaryOperatorType
+    path: Heir/BoundAST/BoundBinaryOperator.cs
+    startLine: 6
+  assemblies:
+  - Heir
+  namespace: Heir.BoundAST
+  syntax:
+    content: public enum BoundBinaryOperatorType
+    content.vb: Public Enum BoundBinaryOperatorType
+- uid: Heir.BoundAST.BoundBinaryOperatorType.Addition
+  commentId: F:Heir.BoundAST.BoundBinaryOperatorType.Addition
+  id: Addition
+  parent: Heir.BoundAST.BoundBinaryOperatorType
+  langs:
+  - csharp
+  - vb
+  name: Addition
+  nameWithType: BoundBinaryOperatorType.Addition
+  fullName: Heir.BoundAST.BoundBinaryOperatorType.Addition
+  type: Field
+  source:
+    remote:
+      path: Heir/BoundAST/BoundBinaryOperator.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Addition
+    path: Heir/BoundAST/BoundBinaryOperator.cs
+    startLine: 8
+  assemblies:
+  - Heir
+  namespace: Heir.BoundAST
+  syntax:
+    content: Addition = 0
+    return:
+      type: Heir.BoundAST.BoundBinaryOperatorType
+- uid: Heir.BoundAST.BoundBinaryOperatorType.Subtraction
+  commentId: F:Heir.BoundAST.BoundBinaryOperatorType.Subtraction
+  id: Subtraction
+  parent: Heir.BoundAST.BoundBinaryOperatorType
+  langs:
+  - csharp
+  - vb
+  name: Subtraction
+  nameWithType: BoundBinaryOperatorType.Subtraction
+  fullName: Heir.BoundAST.BoundBinaryOperatorType.Subtraction
+  type: Field
+  source:
+    remote:
+      path: Heir/BoundAST/BoundBinaryOperator.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Subtraction
+    path: Heir/BoundAST/BoundBinaryOperator.cs
+    startLine: 9
+  assemblies:
+  - Heir
+  namespace: Heir.BoundAST
+  syntax:
+    content: Subtraction = 1
+    return:
+      type: Heir.BoundAST.BoundBinaryOperatorType
+- uid: Heir.BoundAST.BoundBinaryOperatorType.Multiplication
+  commentId: F:Heir.BoundAST.BoundBinaryOperatorType.Multiplication
+  id: Multiplication
+  parent: Heir.BoundAST.BoundBinaryOperatorType
+  langs:
+  - csharp
+  - vb
+  name: Multiplication
+  nameWithType: BoundBinaryOperatorType.Multiplication
+  fullName: Heir.BoundAST.BoundBinaryOperatorType.Multiplication
+  type: Field
+  source:
+    remote:
+      path: Heir/BoundAST/BoundBinaryOperator.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Multiplication
+    path: Heir/BoundAST/BoundBinaryOperator.cs
+    startLine: 10
+  assemblies:
+  - Heir
+  namespace: Heir.BoundAST
+  syntax:
+    content: Multiplication = 2
+    return:
+      type: Heir.BoundAST.BoundBinaryOperatorType
+- uid: Heir.BoundAST.BoundBinaryOperatorType.Division
+  commentId: F:Heir.BoundAST.BoundBinaryOperatorType.Division
+  id: Division
+  parent: Heir.BoundAST.BoundBinaryOperatorType
+  langs:
+  - csharp
+  - vb
+  name: Division
+  nameWithType: BoundBinaryOperatorType.Division
+  fullName: Heir.BoundAST.BoundBinaryOperatorType.Division
+  type: Field
+  source:
+    remote:
+      path: Heir/BoundAST/BoundBinaryOperator.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Division
+    path: Heir/BoundAST/BoundBinaryOperator.cs
+    startLine: 11
+  assemblies:
+  - Heir
+  namespace: Heir.BoundAST
+  syntax:
+    content: Division = 3
+    return:
+      type: Heir.BoundAST.BoundBinaryOperatorType
+- uid: Heir.BoundAST.BoundBinaryOperatorType.IntegerDivision
+  commentId: F:Heir.BoundAST.BoundBinaryOperatorType.IntegerDivision
+  id: IntegerDivision
+  parent: Heir.BoundAST.BoundBinaryOperatorType
+  langs:
+  - csharp
+  - vb
+  name: IntegerDivision
+  nameWithType: BoundBinaryOperatorType.IntegerDivision
+  fullName: Heir.BoundAST.BoundBinaryOperatorType.IntegerDivision
+  type: Field
+  source:
+    remote:
+      path: Heir/BoundAST/BoundBinaryOperator.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: IntegerDivision
+    path: Heir/BoundAST/BoundBinaryOperator.cs
+    startLine: 12
+  assemblies:
+  - Heir
+  namespace: Heir.BoundAST
+  syntax:
+    content: IntegerDivision = 4
+    return:
+      type: Heir.BoundAST.BoundBinaryOperatorType
+- uid: Heir.BoundAST.BoundBinaryOperatorType.Exponentation
+  commentId: F:Heir.BoundAST.BoundBinaryOperatorType.Exponentation
+  id: Exponentation
+  parent: Heir.BoundAST.BoundBinaryOperatorType
+  langs:
+  - csharp
+  - vb
+  name: Exponentation
+  nameWithType: BoundBinaryOperatorType.Exponentation
+  fullName: Heir.BoundAST.BoundBinaryOperatorType.Exponentation
+  type: Field
+  source:
+    remote:
+      path: Heir/BoundAST/BoundBinaryOperator.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Exponentation
+    path: Heir/BoundAST/BoundBinaryOperator.cs
+    startLine: 13
+  assemblies:
+  - Heir
+  namespace: Heir.BoundAST
+  syntax:
+    content: Exponentation = 5
+    return:
+      type: Heir.BoundAST.BoundBinaryOperatorType
+- uid: Heir.BoundAST.BoundBinaryOperatorType.Modulus
+  commentId: F:Heir.BoundAST.BoundBinaryOperatorType.Modulus
+  id: Modulus
+  parent: Heir.BoundAST.BoundBinaryOperatorType
+  langs:
+  - csharp
+  - vb
+  name: Modulus
+  nameWithType: BoundBinaryOperatorType.Modulus
+  fullName: Heir.BoundAST.BoundBinaryOperatorType.Modulus
+  type: Field
+  source:
+    remote:
+      path: Heir/BoundAST/BoundBinaryOperator.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Modulus
+    path: Heir/BoundAST/BoundBinaryOperator.cs
+    startLine: 14
+  assemblies:
+  - Heir
+  namespace: Heir.BoundAST
+  syntax:
+    content: Modulus = 6
+    return:
+      type: Heir.BoundAST.BoundBinaryOperatorType
+- uid: Heir.BoundAST.BoundBinaryOperatorType.BitwiseAnd
+  commentId: F:Heir.BoundAST.BoundBinaryOperatorType.BitwiseAnd
+  id: BitwiseAnd
+  parent: Heir.BoundAST.BoundBinaryOperatorType
+  langs:
+  - csharp
+  - vb
+  name: BitwiseAnd
+  nameWithType: BoundBinaryOperatorType.BitwiseAnd
+  fullName: Heir.BoundAST.BoundBinaryOperatorType.BitwiseAnd
+  type: Field
+  source:
+    remote:
+      path: Heir/BoundAST/BoundBinaryOperator.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: BitwiseAnd
+    path: Heir/BoundAST/BoundBinaryOperator.cs
+    startLine: 15
+  assemblies:
+  - Heir
+  namespace: Heir.BoundAST
+  syntax:
+    content: BitwiseAnd = 7
+    return:
+      type: Heir.BoundAST.BoundBinaryOperatorType
+- uid: Heir.BoundAST.BoundBinaryOperatorType.BitwiseOr
+  commentId: F:Heir.BoundAST.BoundBinaryOperatorType.BitwiseOr
+  id: BitwiseOr
+  parent: Heir.BoundAST.BoundBinaryOperatorType
+  langs:
+  - csharp
+  - vb
+  name: BitwiseOr
+  nameWithType: BoundBinaryOperatorType.BitwiseOr
+  fullName: Heir.BoundAST.BoundBinaryOperatorType.BitwiseOr
+  type: Field
+  source:
+    remote:
+      path: Heir/BoundAST/BoundBinaryOperator.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: BitwiseOr
+    path: Heir/BoundAST/BoundBinaryOperator.cs
+    startLine: 16
+  assemblies:
+  - Heir
+  namespace: Heir.BoundAST
+  syntax:
+    content: BitwiseOr = 8
+    return:
+      type: Heir.BoundAST.BoundBinaryOperatorType
+- uid: Heir.BoundAST.BoundBinaryOperatorType.BitwiseXor
+  commentId: F:Heir.BoundAST.BoundBinaryOperatorType.BitwiseXor
+  id: BitwiseXor
+  parent: Heir.BoundAST.BoundBinaryOperatorType
+  langs:
+  - csharp
+  - vb
+  name: BitwiseXor
+  nameWithType: BoundBinaryOperatorType.BitwiseXor
+  fullName: Heir.BoundAST.BoundBinaryOperatorType.BitwiseXor
+  type: Field
+  source:
+    remote:
+      path: Heir/BoundAST/BoundBinaryOperator.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: BitwiseXor
+    path: Heir/BoundAST/BoundBinaryOperator.cs
+    startLine: 17
+  assemblies:
+  - Heir
+  namespace: Heir.BoundAST
+  syntax:
+    content: BitwiseXor = 9
+    return:
+      type: Heir.BoundAST.BoundBinaryOperatorType
+- uid: Heir.BoundAST.BoundBinaryOperatorType.BitShiftLeft
+  commentId: F:Heir.BoundAST.BoundBinaryOperatorType.BitShiftLeft
+  id: BitShiftLeft
+  parent: Heir.BoundAST.BoundBinaryOperatorType
+  langs:
+  - csharp
+  - vb
+  name: BitShiftLeft
+  nameWithType: BoundBinaryOperatorType.BitShiftLeft
+  fullName: Heir.BoundAST.BoundBinaryOperatorType.BitShiftLeft
+  type: Field
+  source:
+    remote:
+      path: Heir/BoundAST/BoundBinaryOperator.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: BitShiftLeft
+    path: Heir/BoundAST/BoundBinaryOperator.cs
+    startLine: 18
+  assemblies:
+  - Heir
+  namespace: Heir.BoundAST
+  syntax:
+    content: BitShiftLeft = 10
+    return:
+      type: Heir.BoundAST.BoundBinaryOperatorType
+- uid: Heir.BoundAST.BoundBinaryOperatorType.BitShiftRight
+  commentId: F:Heir.BoundAST.BoundBinaryOperatorType.BitShiftRight
+  id: BitShiftRight
+  parent: Heir.BoundAST.BoundBinaryOperatorType
+  langs:
+  - csharp
+  - vb
+  name: BitShiftRight
+  nameWithType: BoundBinaryOperatorType.BitShiftRight
+  fullName: Heir.BoundAST.BoundBinaryOperatorType.BitShiftRight
+  type: Field
+  source:
+    remote:
+      path: Heir/BoundAST/BoundBinaryOperator.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: BitShiftRight
+    path: Heir/BoundAST/BoundBinaryOperator.cs
+    startLine: 19
+  assemblies:
+  - Heir
+  namespace: Heir.BoundAST
+  syntax:
+    content: BitShiftRight = 11
+    return:
+      type: Heir.BoundAST.BoundBinaryOperatorType
+- uid: Heir.BoundAST.BoundBinaryOperatorType.LogicalOr
+  commentId: F:Heir.BoundAST.BoundBinaryOperatorType.LogicalOr
+  id: LogicalOr
+  parent: Heir.BoundAST.BoundBinaryOperatorType
+  langs:
+  - csharp
+  - vb
+  name: LogicalOr
+  nameWithType: BoundBinaryOperatorType.LogicalOr
+  fullName: Heir.BoundAST.BoundBinaryOperatorType.LogicalOr
+  type: Field
+  source:
+    remote:
+      path: Heir/BoundAST/BoundBinaryOperator.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: LogicalOr
+    path: Heir/BoundAST/BoundBinaryOperator.cs
+    startLine: 20
+  assemblies:
+  - Heir
+  namespace: Heir.BoundAST
+  syntax:
+    content: LogicalOr = 12
+    return:
+      type: Heir.BoundAST.BoundBinaryOperatorType
+- uid: Heir.BoundAST.BoundBinaryOperatorType.LogicalAnd
+  commentId: F:Heir.BoundAST.BoundBinaryOperatorType.LogicalAnd
+  id: LogicalAnd
+  parent: Heir.BoundAST.BoundBinaryOperatorType
+  langs:
+  - csharp
+  - vb
+  name: LogicalAnd
+  nameWithType: BoundBinaryOperatorType.LogicalAnd
+  fullName: Heir.BoundAST.BoundBinaryOperatorType.LogicalAnd
+  type: Field
+  source:
+    remote:
+      path: Heir/BoundAST/BoundBinaryOperator.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: LogicalAnd
+    path: Heir/BoundAST/BoundBinaryOperator.cs
+    startLine: 21
+  assemblies:
+  - Heir
+  namespace: Heir.BoundAST
+  syntax:
+    content: LogicalAnd = 13
+    return:
+      type: Heir.BoundAST.BoundBinaryOperatorType
+- uid: Heir.BoundAST.BoundBinaryOperatorType.Equals
+  commentId: F:Heir.BoundAST.BoundBinaryOperatorType.Equals
+  id: Equals
+  parent: Heir.BoundAST.BoundBinaryOperatorType
+  langs:
+  - csharp
+  - vb
+  name: Equals
+  nameWithType: BoundBinaryOperatorType.Equals
+  fullName: Heir.BoundAST.BoundBinaryOperatorType.Equals
+  type: Field
+  source:
+    remote:
+      path: Heir/BoundAST/BoundBinaryOperator.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Equals
+    path: Heir/BoundAST/BoundBinaryOperator.cs
+    startLine: 22
+  assemblies:
+  - Heir
+  namespace: Heir.BoundAST
+  syntax:
+    content: Equals = 14
+    return:
+      type: Heir.BoundAST.BoundBinaryOperatorType
+- uid: Heir.BoundAST.BoundBinaryOperatorType.NotEquals
+  commentId: F:Heir.BoundAST.BoundBinaryOperatorType.NotEquals
+  id: NotEquals
+  parent: Heir.BoundAST.BoundBinaryOperatorType
+  langs:
+  - csharp
+  - vb
+  name: NotEquals
+  nameWithType: BoundBinaryOperatorType.NotEquals
+  fullName: Heir.BoundAST.BoundBinaryOperatorType.NotEquals
+  type: Field
+  source:
+    remote:
+      path: Heir/BoundAST/BoundBinaryOperator.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: NotEquals
+    path: Heir/BoundAST/BoundBinaryOperator.cs
+    startLine: 23
+  assemblies:
+  - Heir
+  namespace: Heir.BoundAST
+  syntax:
+    content: NotEquals = 15
+    return:
+      type: Heir.BoundAST.BoundBinaryOperatorType
+- uid: Heir.BoundAST.BoundBinaryOperatorType.LessThan
+  commentId: F:Heir.BoundAST.BoundBinaryOperatorType.LessThan
+  id: LessThan
+  parent: Heir.BoundAST.BoundBinaryOperatorType
+  langs:
+  - csharp
+  - vb
+  name: LessThan
+  nameWithType: BoundBinaryOperatorType.LessThan
+  fullName: Heir.BoundAST.BoundBinaryOperatorType.LessThan
+  type: Field
+  source:
+    remote:
+      path: Heir/BoundAST/BoundBinaryOperator.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: LessThan
+    path: Heir/BoundAST/BoundBinaryOperator.cs
+    startLine: 24
+  assemblies:
+  - Heir
+  namespace: Heir.BoundAST
+  syntax:
+    content: LessThan = 16
+    return:
+      type: Heir.BoundAST.BoundBinaryOperatorType
+- uid: Heir.BoundAST.BoundBinaryOperatorType.LessThanOrEquals
+  commentId: F:Heir.BoundAST.BoundBinaryOperatorType.LessThanOrEquals
+  id: LessThanOrEquals
+  parent: Heir.BoundAST.BoundBinaryOperatorType
+  langs:
+  - csharp
+  - vb
+  name: LessThanOrEquals
+  nameWithType: BoundBinaryOperatorType.LessThanOrEquals
+  fullName: Heir.BoundAST.BoundBinaryOperatorType.LessThanOrEquals
+  type: Field
+  source:
+    remote:
+      path: Heir/BoundAST/BoundBinaryOperator.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: LessThanOrEquals
+    path: Heir/BoundAST/BoundBinaryOperator.cs
+    startLine: 25
+  assemblies:
+  - Heir
+  namespace: Heir.BoundAST
+  syntax:
+    content: LessThanOrEquals = 17
+    return:
+      type: Heir.BoundAST.BoundBinaryOperatorType
+- uid: Heir.BoundAST.BoundBinaryOperatorType.GreaterThan
+  commentId: F:Heir.BoundAST.BoundBinaryOperatorType.GreaterThan
+  id: GreaterThan
+  parent: Heir.BoundAST.BoundBinaryOperatorType
+  langs:
+  - csharp
+  - vb
+  name: GreaterThan
+  nameWithType: BoundBinaryOperatorType.GreaterThan
+  fullName: Heir.BoundAST.BoundBinaryOperatorType.GreaterThan
+  type: Field
+  source:
+    remote:
+      path: Heir/BoundAST/BoundBinaryOperator.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: GreaterThan
+    path: Heir/BoundAST/BoundBinaryOperator.cs
+    startLine: 26
+  assemblies:
+  - Heir
+  namespace: Heir.BoundAST
+  syntax:
+    content: GreaterThan = 18
+    return:
+      type: Heir.BoundAST.BoundBinaryOperatorType
+- uid: Heir.BoundAST.BoundBinaryOperatorType.GreaterThanOrEquals
+  commentId: F:Heir.BoundAST.BoundBinaryOperatorType.GreaterThanOrEquals
+  id: GreaterThanOrEquals
+  parent: Heir.BoundAST.BoundBinaryOperatorType
+  langs:
+  - csharp
+  - vb
+  name: GreaterThanOrEquals
+  nameWithType: BoundBinaryOperatorType.GreaterThanOrEquals
+  fullName: Heir.BoundAST.BoundBinaryOperatorType.GreaterThanOrEquals
+  type: Field
+  source:
+    remote:
+      path: Heir/BoundAST/BoundBinaryOperator.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: GreaterThanOrEquals
+    path: Heir/BoundAST/BoundBinaryOperator.cs
+    startLine: 27
+  assemblies:
+  - Heir
+  namespace: Heir.BoundAST
+  syntax:
+    content: GreaterThanOrEquals = 19
+    return:
+      type: Heir.BoundAST.BoundBinaryOperatorType
+- uid: Heir.BoundAST.BoundBinaryOperatorType.Concatenation
+  commentId: F:Heir.BoundAST.BoundBinaryOperatorType.Concatenation
+  id: Concatenation
+  parent: Heir.BoundAST.BoundBinaryOperatorType
+  langs:
+  - csharp
+  - vb
+  name: Concatenation
+  nameWithType: BoundBinaryOperatorType.Concatenation
+  fullName: Heir.BoundAST.BoundBinaryOperatorType.Concatenation
+  type: Field
+  source:
+    remote:
+      path: Heir/BoundAST/BoundBinaryOperator.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Concatenation
+    path: Heir/BoundAST/BoundBinaryOperator.cs
+    startLine: 28
+  assemblies:
+  - Heir
+  namespace: Heir.BoundAST
+  syntax:
+    content: Concatenation = 20
+    return:
+      type: Heir.BoundAST.BoundBinaryOperatorType
+- uid: Heir.BoundAST.BoundBinaryOperatorType.Assignment
+  commentId: F:Heir.BoundAST.BoundBinaryOperatorType.Assignment
+  id: Assignment
+  parent: Heir.BoundAST.BoundBinaryOperatorType
+  langs:
+  - csharp
+  - vb
+  name: Assignment
+  nameWithType: BoundBinaryOperatorType.Assignment
+  fullName: Heir.BoundAST.BoundBinaryOperatorType.Assignment
+  type: Field
+  source:
+    remote:
+      path: Heir/BoundAST/BoundBinaryOperator.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Assignment
+    path: Heir/BoundAST/BoundBinaryOperator.cs
+    startLine: 29
+  assemblies:
+  - Heir
+  namespace: Heir.BoundAST
+  syntax:
+    content: Assignment = 21
+    return:
+      type: Heir.BoundAST.BoundBinaryOperatorType
+references:
+- uid: Heir.BoundAST
+  commentId: N:Heir.BoundAST
+  href: Heir.html
+  name: Heir.BoundAST
+  nameWithType: Heir.BoundAST
+  fullName: Heir.BoundAST
+  spec.csharp:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.BoundAST
+    name: BoundAST
+    href: Heir.BoundAST.html
+  spec.vb:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.BoundAST
+    name: BoundAST
+    href: Heir.BoundAST.html
+- uid: Heir.BoundAST.BoundBinaryOperatorType
+  commentId: T:Heir.BoundAST.BoundBinaryOperatorType
+  parent: Heir.BoundAST
+  href: Heir.BoundAST.BoundBinaryOperatorType.html
+  name: BoundBinaryOperatorType
+  nameWithType: BoundBinaryOperatorType
+  fullName: Heir.BoundAST.BoundBinaryOperatorType

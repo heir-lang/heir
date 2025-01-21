@@ -1,0 +1,773 @@
+### YamlMime:ManagedReference
+items:
+- uid: Heir.Tests.LexerTest
+  commentId: T:Heir.Tests.LexerTest
+  id: LexerTest
+  parent: Heir.Tests
+  children:
+  - Heir.Tests.LexerTest.ThrowsWith(System.String,Heir.DiagnosticCode)
+  - Heir.Tests.LexerTest.Tokenizes_Identifiers(System.String)
+  - Heir.Tests.LexerTest.Tokenizes_Keywords(System.String,Heir.Syntax.SyntaxKind)
+  - Heir.Tests.LexerTest.Tokenizes_Literals(System.String,Heir.Syntax.SyntaxKind,System.Object)
+  - Heir.Tests.LexerTest.Tokenizes_MiscSymbols(System.String,Heir.Syntax.SyntaxKind)
+  - Heir.Tests.LexerTest.Tokenizes_Operators
+  langs:
+  - csharp
+  - vb
+  name: LexerTest
+  nameWithType: LexerTest
+  fullName: Heir.Tests.LexerTest
+  type: Class
+  source:
+    remote:
+      path: Heir.Tests/LexerTest.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: LexerTest
+    path: Heir.Tests/LexerTest.cs
+    startLine: 4
+  assemblies:
+  - Heir.Tests
+  namespace: Heir.Tests
+  syntax:
+    content: public class LexerTest
+    content.vb: Public Class LexerTest
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Heir.Tests.LexerTest.ThrowsWith(System.String,Heir.DiagnosticCode)
+  commentId: M:Heir.Tests.LexerTest.ThrowsWith(System.String,Heir.DiagnosticCode)
+  id: ThrowsWith(System.String,Heir.DiagnosticCode)
+  parent: Heir.Tests.LexerTest
+  langs:
+  - csharp
+  - vb
+  name: ThrowsWith(string, DiagnosticCode)
+  nameWithType: LexerTest.ThrowsWith(string, DiagnosticCode)
+  fullName: Heir.Tests.LexerTest.ThrowsWith(string, Heir.DiagnosticCode)
+  type: Method
+  source:
+    remote:
+      path: Heir.Tests/LexerTest.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: ThrowsWith
+    path: Heir.Tests/LexerTest.cs
+    startLine: 6
+  assemblies:
+  - Heir.Tests
+  namespace: Heir.Tests
+  syntax:
+    content: >-
+      [Theory]
+
+      [InlineData(new object[] { "1.2.3", DiagnosticCode.H003 })]
+
+      [InlineData(new object[] { "'c", DiagnosticCode.H002B })]
+
+      [InlineData(new object[] { "\"ab", DiagnosticCode.H002 })]
+
+      [InlineData(new object[] { "\\\\", DiagnosticCode.H001 })]
+
+      public void ThrowsWith(string input, DiagnosticCode expectedErrorCode)
+    parameters:
+    - id: input
+      type: System.String
+    - id: expectedErrorCode
+      type: Heir.DiagnosticCode
+    content.vb: >-
+      <Theory>
+
+      <InlineData(New Object() { "1.2.3", DiagnosticCode.H003 })>
+
+      <InlineData(New Object() { "'c", DiagnosticCode.H002B })>
+
+      <InlineData(New Object() { """ab", DiagnosticCode.H002 })>
+
+      <InlineData(New Object() { "\\", DiagnosticCode.H001 })>
+
+      Public Sub ThrowsWith(input As String, expectedErrorCode As DiagnosticCode)
+  overload: Heir.Tests.LexerTest.ThrowsWith*
+  attributes:
+  - type: Xunit.TheoryAttribute
+    ctor: Xunit.TheoryAttribute.#ctor
+    arguments: []
+  nameWithType.vb: LexerTest.ThrowsWith(String, DiagnosticCode)
+  fullName.vb: Heir.Tests.LexerTest.ThrowsWith(String, Heir.DiagnosticCode)
+  name.vb: ThrowsWith(String, DiagnosticCode)
+- uid: Heir.Tests.LexerTest.Tokenizes_Literals(System.String,Heir.Syntax.SyntaxKind,System.Object)
+  commentId: M:Heir.Tests.LexerTest.Tokenizes_Literals(System.String,Heir.Syntax.SyntaxKind,System.Object)
+  id: Tokenizes_Literals(System.String,Heir.Syntax.SyntaxKind,System.Object)
+  parent: Heir.Tests.LexerTest
+  langs:
+  - csharp
+  - vb
+  name: Tokenizes_Literals(string, SyntaxKind, object)
+  nameWithType: LexerTest.Tokenizes_Literals(string, SyntaxKind, object)
+  fullName: Heir.Tests.LexerTest.Tokenizes_Literals(string, Heir.Syntax.SyntaxKind, object)
+  type: Method
+  source:
+    remote:
+      path: Heir.Tests/LexerTest.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Tokenizes_Literals
+    path: Heir.Tests/LexerTest.cs
+    startLine: 18
+  assemblies:
+  - Heir.Tests
+  namespace: Heir.Tests
+  syntax:
+    content: >-
+      [Theory]
+
+      [InlineData(new object[] { "\"abc\"", SyntaxKind.StringLiteral, "abc" })]
+
+      [InlineData(new object[] { "'a'", SyntaxKind.CharLiteral, 'a' })]
+
+      [InlineData(new object[] { "123", SyntaxKind.IntLiteral, 123 })]
+
+      [InlineData(new object[] { "69", SyntaxKind.IntLiteral, 69 })]
+
+      [InlineData(new object[] { "0b1101", SyntaxKind.IntLiteral, 13 })]
+
+      [InlineData(new object[] { "0o420", SyntaxKind.IntLiteral, 272 })]
+
+      [InlineData(new object[] { "0x03E", SyntaxKind.IntLiteral, 62 })]
+
+      [InlineData(new object[] { "123.456", SyntaxKind.FloatLiteral, 123.456 })]
+
+      [InlineData(new object[] { "69.420", SyntaxKind.FloatLiteral, 69.42 })]
+
+      [InlineData(new object[] { "true", SyntaxKind.BoolLiteral, true })]
+
+      [InlineData(new object[] { "false", SyntaxKind.BoolLiteral, false })]
+
+      [InlineData(new object[] { "none", SyntaxKind.NoneKeyword, null })]
+
+      public void Tokenizes_Literals(string input, SyntaxKind expectedKind, object expectedValue)
+    parameters:
+    - id: input
+      type: System.String
+    - id: expectedKind
+      type: Heir.Syntax.SyntaxKind
+    - id: expectedValue
+      type: System.Object
+    content.vb: >-
+      <Theory>
+
+      <InlineData(New Object() { """abc""", SyntaxKind.StringLiteral, "abc" })>
+
+      <InlineData(New Object() { "'a'", SyntaxKind.CharLiteral, "a"c })>
+
+      <InlineData(New Object() { "123", SyntaxKind.IntLiteral, 123 })>
+
+      <InlineData(New Object() { "69", SyntaxKind.IntLiteral, 69 })>
+
+      <InlineData(New Object() { "0b1101", SyntaxKind.IntLiteral, 13 })>
+
+      <InlineData(New Object() { "0o420", SyntaxKind.IntLiteral, 272 })>
+
+      <InlineData(New Object() { "0x03E", SyntaxKind.IntLiteral, 62 })>
+
+      <InlineData(New Object() { "123.456", SyntaxKind.FloatLiteral, 123.456 })>
+
+      <InlineData(New Object() { "69.420", SyntaxKind.FloatLiteral, 69.42 })>
+
+      <InlineData(New Object() { "true", SyntaxKind.BoolLiteral, True })>
+
+      <InlineData(New Object() { "false", SyntaxKind.BoolLiteral, False })>
+
+      <InlineData(New Object() { "none", SyntaxKind.NoneKeyword, Nothing })>
+
+      Public Sub Tokenizes_Literals(input As String, expectedKind As SyntaxKind, expectedValue As Object)
+  overload: Heir.Tests.LexerTest.Tokenizes_Literals*
+  attributes:
+  - type: Xunit.TheoryAttribute
+    ctor: Xunit.TheoryAttribute.#ctor
+    arguments: []
+  nameWithType.vb: LexerTest.Tokenizes_Literals(String, SyntaxKind, Object)
+  fullName.vb: Heir.Tests.LexerTest.Tokenizes_Literals(String, Heir.Syntax.SyntaxKind, Object)
+  name.vb: Tokenizes_Literals(String, SyntaxKind, Object)
+- uid: Heir.Tests.LexerTest.Tokenizes_Operators
+  commentId: M:Heir.Tests.LexerTest.Tokenizes_Operators
+  id: Tokenizes_Operators
+  parent: Heir.Tests.LexerTest
+  langs:
+  - csharp
+  - vb
+  name: Tokenizes_Operators()
+  nameWithType: LexerTest.Tokenizes_Operators()
+  fullName: Heir.Tests.LexerTest.Tokenizes_Operators()
+  type: Method
+  source:
+    remote:
+      path: Heir.Tests/LexerTest.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Tokenizes_Operators
+    path: Heir.Tests/LexerTest.cs
+    startLine: 41
+  assemblies:
+  - Heir.Tests
+  namespace: Heir.Tests
+  syntax:
+    content: >-
+      [Fact]
+
+      public void Tokenizes_Operators()
+    content.vb: >-
+      <Fact>
+
+      Public Sub Tokenizes_Operators()
+  overload: Heir.Tests.LexerTest.Tokenizes_Operators*
+  attributes:
+  - type: Xunit.FactAttribute
+    ctor: Xunit.FactAttribute.#ctor
+    arguments: []
+- uid: Heir.Tests.LexerTest.Tokenizes_MiscSymbols(System.String,Heir.Syntax.SyntaxKind)
+  commentId: M:Heir.Tests.LexerTest.Tokenizes_MiscSymbols(System.String,Heir.Syntax.SyntaxKind)
+  id: Tokenizes_MiscSymbols(System.String,Heir.Syntax.SyntaxKind)
+  parent: Heir.Tests.LexerTest
+  langs:
+  - csharp
+  - vb
+  name: Tokenizes_MiscSymbols(string, SyntaxKind)
+  nameWithType: LexerTest.Tokenizes_MiscSymbols(string, SyntaxKind)
+  fullName: Heir.Tests.LexerTest.Tokenizes_MiscSymbols(string, Heir.Syntax.SyntaxKind)
+  type: Method
+  source:
+    remote:
+      path: Heir.Tests/LexerTest.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Tokenizes_MiscSymbols
+    path: Heir.Tests/LexerTest.cs
+    startLine: 55
+  assemblies:
+  - Heir.Tests
+  namespace: Heir.Tests
+  syntax:
+    content: >-
+      [Theory]
+
+      [InlineData(new object[] { ".", SyntaxKind.Dot })]
+
+      [InlineData(new object[] { ":", SyntaxKind.Colon })]
+
+      [InlineData(new object[] { "::", SyntaxKind.ColonColon })]
+
+      [InlineData(new object[] { ",", SyntaxKind.Comma })]
+
+      public void Tokenizes_MiscSymbols(string input, SyntaxKind expectedKind)
+    parameters:
+    - id: input
+      type: System.String
+    - id: expectedKind
+      type: Heir.Syntax.SyntaxKind
+    content.vb: >-
+      <Theory>
+
+      <InlineData(New Object() { ".", SyntaxKind.Dot })>
+
+      <InlineData(New Object() { ":", SyntaxKind.Colon })>
+
+      <InlineData(New Object() { "::", SyntaxKind.ColonColon })>
+
+      <InlineData(New Object() { ",", SyntaxKind.Comma })>
+
+      Public Sub Tokenizes_MiscSymbols(input As String, expectedKind As SyntaxKind)
+  overload: Heir.Tests.LexerTest.Tokenizes_MiscSymbols*
+  attributes:
+  - type: Xunit.TheoryAttribute
+    ctor: Xunit.TheoryAttribute.#ctor
+    arguments: []
+  nameWithType.vb: LexerTest.Tokenizes_MiscSymbols(String, SyntaxKind)
+  fullName.vb: Heir.Tests.LexerTest.Tokenizes_MiscSymbols(String, Heir.Syntax.SyntaxKind)
+  name.vb: Tokenizes_MiscSymbols(String, SyntaxKind)
+- uid: Heir.Tests.LexerTest.Tokenizes_Keywords(System.String,Heir.Syntax.SyntaxKind)
+  commentId: M:Heir.Tests.LexerTest.Tokenizes_Keywords(System.String,Heir.Syntax.SyntaxKind)
+  id: Tokenizes_Keywords(System.String,Heir.Syntax.SyntaxKind)
+  parent: Heir.Tests.LexerTest
+  langs:
+  - csharp
+  - vb
+  name: Tokenizes_Keywords(string, SyntaxKind)
+  nameWithType: LexerTest.Tokenizes_Keywords(string, SyntaxKind)
+  fullName: Heir.Tests.LexerTest.Tokenizes_Keywords(string, Heir.Syntax.SyntaxKind)
+  type: Method
+  source:
+    remote:
+      path: Heir.Tests/LexerTest.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Tokenizes_Keywords
+    path: Heir.Tests/LexerTest.cs
+    startLine: 70
+  assemblies:
+  - Heir.Tests
+  namespace: Heir.Tests
+  syntax:
+    content: >-
+      [Theory]
+
+      [InlineData(new object[] { "let", SyntaxKind.LetKeyword })]
+
+      [InlineData(new object[] { "mut", SyntaxKind.MutKeyword })]
+
+      [InlineData(new object[] { "int", SyntaxKind.IntKeyword })]
+
+      [InlineData(new object[] { "float", SyntaxKind.FloatKeyword })]
+
+      [InlineData(new object[] { "string", SyntaxKind.StringKeyword })]
+
+      [InlineData(new object[] { "char", SyntaxKind.CharKeyword })]
+
+      [InlineData(new object[] { "bool", SyntaxKind.BoolKeyword })]
+
+      [InlineData(new object[] { "none", SyntaxKind.NoneKeyword })]
+
+      public void Tokenizes_Keywords(string input, SyntaxKind expectedKind)
+    parameters:
+    - id: input
+      type: System.String
+    - id: expectedKind
+      type: Heir.Syntax.SyntaxKind
+    content.vb: >-
+      <Theory>
+
+      <InlineData(New Object() { "let", SyntaxKind.LetKeyword })>
+
+      <InlineData(New Object() { "mut", SyntaxKind.MutKeyword })>
+
+      <InlineData(New Object() { "int", SyntaxKind.IntKeyword })>
+
+      <InlineData(New Object() { "float", SyntaxKind.FloatKeyword })>
+
+      <InlineData(New Object() { "string", SyntaxKind.StringKeyword })>
+
+      <InlineData(New Object() { "char", SyntaxKind.CharKeyword })>
+
+      <InlineData(New Object() { "bool", SyntaxKind.BoolKeyword })>
+
+      <InlineData(New Object() { "none", SyntaxKind.NoneKeyword })>
+
+      Public Sub Tokenizes_Keywords(input As String, expectedKind As SyntaxKind)
+  overload: Heir.Tests.LexerTest.Tokenizes_Keywords*
+  attributes:
+  - type: Xunit.TheoryAttribute
+    ctor: Xunit.TheoryAttribute.#ctor
+    arguments: []
+  nameWithType.vb: LexerTest.Tokenizes_Keywords(String, SyntaxKind)
+  fullName.vb: Heir.Tests.LexerTest.Tokenizes_Keywords(String, Heir.Syntax.SyntaxKind)
+  name.vb: Tokenizes_Keywords(String, SyntaxKind)
+- uid: Heir.Tests.LexerTest.Tokenizes_Identifiers(System.String)
+  commentId: M:Heir.Tests.LexerTest.Tokenizes_Identifiers(System.String)
+  id: Tokenizes_Identifiers(System.String)
+  parent: Heir.Tests.LexerTest
+  langs:
+  - csharp
+  - vb
+  name: Tokenizes_Identifiers(string)
+  nameWithType: LexerTest.Tokenizes_Identifiers(string)
+  fullName: Heir.Tests.LexerTest.Tokenizes_Identifiers(string)
+  type: Method
+  source:
+    remote:
+      path: Heir.Tests/LexerTest.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Tokenizes_Identifiers
+    path: Heir.Tests/LexerTest.cs
+    startLine: 89
+  assemblies:
+  - Heir.Tests
+  namespace: Heir.Tests
+  syntax:
+    content: >-
+      [Theory]
+
+      [InlineData(new object[] { "abc" })]
+
+      [InlineData(new object[] { "abc123" })]
+
+      [InlineData(new object[] { "abc_123" })]
+
+      public void Tokenizes_Identifiers(string input)
+    parameters:
+    - id: input
+      type: System.String
+    content.vb: >-
+      <Theory>
+
+      <InlineData(New Object() { "abc" })>
+
+      <InlineData(New Object() { "abc123" })>
+
+      <InlineData(New Object() { "abc_123" })>
+
+      Public Sub Tokenizes_Identifiers(input As String)
+  overload: Heir.Tests.LexerTest.Tokenizes_Identifiers*
+  attributes:
+  - type: Xunit.TheoryAttribute
+    ctor: Xunit.TheoryAttribute.#ctor
+    arguments: []
+  nameWithType.vb: LexerTest.Tokenizes_Identifiers(String)
+  fullName.vb: Heir.Tests.LexerTest.Tokenizes_Identifiers(String)
+  name.vb: Tokenizes_Identifiers(String)
+references:
+- uid: Heir.Tests
+  commentId: N:Heir.Tests
+  href: Heir.html
+  name: Heir.Tests
+  nameWithType: Heir.Tests
+  fullName: Heir.Tests
+  spec.csharp:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.Tests
+    name: Tests
+    href: Heir.Tests.html
+  spec.vb:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.Tests
+    name: Tests
+    href: Heir.Tests.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Heir.Tests.LexerTest.ThrowsWith*
+  commentId: Overload:Heir.Tests.LexerTest.ThrowsWith
+  href: Heir.Tests.LexerTest.html#Heir_Tests_LexerTest_ThrowsWith_System_String_Heir_DiagnosticCode_
+  name: ThrowsWith
+  nameWithType: LexerTest.ThrowsWith
+  fullName: Heir.Tests.LexerTest.ThrowsWith
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Heir.DiagnosticCode
+  commentId: T:Heir.DiagnosticCode
+  parent: Heir
+  href: Heir.DiagnosticCode.html
+  name: DiagnosticCode
+  nameWithType: DiagnosticCode
+  fullName: Heir.DiagnosticCode
+- uid: Heir
+  commentId: N:Heir
+  href: Heir.html
+  name: Heir
+  nameWithType: Heir
+  fullName: Heir
+- uid: Heir.Tests.LexerTest.Tokenizes_Literals*
+  commentId: Overload:Heir.Tests.LexerTest.Tokenizes_Literals
+  href: Heir.Tests.LexerTest.html#Heir_Tests_LexerTest_Tokenizes_Literals_System_String_Heir_Syntax_SyntaxKind_System_Object_
+  name: Tokenizes_Literals
+  nameWithType: LexerTest.Tokenizes_Literals
+  fullName: Heir.Tests.LexerTest.Tokenizes_Literals
+- uid: Heir.Syntax.SyntaxKind
+  commentId: T:Heir.Syntax.SyntaxKind
+  parent: Heir.Syntax
+  href: Heir.Syntax.SyntaxKind.html
+  name: SyntaxKind
+  nameWithType: SyntaxKind
+  fullName: Heir.Syntax.SyntaxKind
+- uid: Heir.Syntax
+  commentId: N:Heir.Syntax
+  href: Heir.html
+  name: Heir.Syntax
+  nameWithType: Heir.Syntax
+  fullName: Heir.Syntax
+  spec.csharp:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.Syntax
+    name: Syntax
+    href: Heir.Syntax.html
+  spec.vb:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.Syntax
+    name: Syntax
+    href: Heir.Syntax.html
+- uid: Heir.Tests.LexerTest.Tokenizes_Operators*
+  commentId: Overload:Heir.Tests.LexerTest.Tokenizes_Operators
+  href: Heir.Tests.LexerTest.html#Heir_Tests_LexerTest_Tokenizes_Operators
+  name: Tokenizes_Operators
+  nameWithType: LexerTest.Tokenizes_Operators
+  fullName: Heir.Tests.LexerTest.Tokenizes_Operators
+- uid: Heir.Tests.LexerTest.Tokenizes_MiscSymbols*
+  commentId: Overload:Heir.Tests.LexerTest.Tokenizes_MiscSymbols
+  href: Heir.Tests.LexerTest.html#Heir_Tests_LexerTest_Tokenizes_MiscSymbols_System_String_Heir_Syntax_SyntaxKind_
+  name: Tokenizes_MiscSymbols
+  nameWithType: LexerTest.Tokenizes_MiscSymbols
+  fullName: Heir.Tests.LexerTest.Tokenizes_MiscSymbols
+- uid: Heir.Tests.LexerTest.Tokenizes_Keywords*
+  commentId: Overload:Heir.Tests.LexerTest.Tokenizes_Keywords
+  href: Heir.Tests.LexerTest.html#Heir_Tests_LexerTest_Tokenizes_Keywords_System_String_Heir_Syntax_SyntaxKind_
+  name: Tokenizes_Keywords
+  nameWithType: LexerTest.Tokenizes_Keywords
+  fullName: Heir.Tests.LexerTest.Tokenizes_Keywords
+- uid: Heir.Tests.LexerTest.Tokenizes_Identifiers*
+  commentId: Overload:Heir.Tests.LexerTest.Tokenizes_Identifiers
+  href: Heir.Tests.LexerTest.html#Heir_Tests_LexerTest_Tokenizes_Identifiers_System_String_
+  name: Tokenizes_Identifiers
+  nameWithType: LexerTest.Tokenizes_Identifiers
+  fullName: Heir.Tests.LexerTest.Tokenizes_Identifiers

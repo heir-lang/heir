@@ -1,0 +1,328 @@
+### YamlMime:ManagedReference
+items:
+- uid: Heir.Types.TypeKind
+  commentId: T:Heir.Types.TypeKind
+  id: TypeKind
+  parent: Heir.Types
+  children:
+  - Heir.Types.TypeKind.Any
+  - Heir.Types.TypeKind.Array
+  - Heir.Types.TypeKind.Class
+  - Heir.Types.TypeKind.Function
+  - Heir.Types.TypeKind.Interface
+  - Heir.Types.TypeKind.Intersection
+  - Heir.Types.TypeKind.Literal
+  - Heir.Types.TypeKind.Primitive
+  - Heir.Types.TypeKind.Singular
+  - Heir.Types.TypeKind.Union
+  langs:
+  - csharp
+  - vb
+  name: TypeKind
+  nameWithType: TypeKind
+  fullName: Heir.Types.TypeKind
+  type: Enum
+  source:
+    remote:
+      path: Heir/Types/TypeKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: TypeKind
+    path: Heir/Types/TypeKind.cs
+    startLine: 2
+  assemblies:
+  - Heir
+  namespace: Heir.Types
+  syntax:
+    content: public enum TypeKind
+    content.vb: Public Enum TypeKind
+- uid: Heir.Types.TypeKind.Any
+  commentId: F:Heir.Types.TypeKind.Any
+  id: Any
+  parent: Heir.Types.TypeKind
+  langs:
+  - csharp
+  - vb
+  name: Any
+  nameWithType: TypeKind.Any
+  fullName: Heir.Types.TypeKind.Any
+  type: Field
+  source:
+    remote:
+      path: Heir/Types/TypeKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Any
+    path: Heir/Types/TypeKind.cs
+    startLine: 4
+  assemblies:
+  - Heir
+  namespace: Heir.Types
+  syntax:
+    content: Any = 0
+    return:
+      type: Heir.Types.TypeKind
+- uid: Heir.Types.TypeKind.Singular
+  commentId: F:Heir.Types.TypeKind.Singular
+  id: Singular
+  parent: Heir.Types.TypeKind
+  langs:
+  - csharp
+  - vb
+  name: Singular
+  nameWithType: TypeKind.Singular
+  fullName: Heir.Types.TypeKind.Singular
+  type: Field
+  source:
+    remote:
+      path: Heir/Types/TypeKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Singular
+    path: Heir/Types/TypeKind.cs
+    startLine: 5
+  assemblies:
+  - Heir
+  namespace: Heir.Types
+  syntax:
+    content: Singular = 1
+    return:
+      type: Heir.Types.TypeKind
+- uid: Heir.Types.TypeKind.Primitive
+  commentId: F:Heir.Types.TypeKind.Primitive
+  id: Primitive
+  parent: Heir.Types.TypeKind
+  langs:
+  - csharp
+  - vb
+  name: Primitive
+  nameWithType: TypeKind.Primitive
+  fullName: Heir.Types.TypeKind.Primitive
+  type: Field
+  source:
+    remote:
+      path: Heir/Types/TypeKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Primitive
+    path: Heir/Types/TypeKind.cs
+    startLine: 6
+  assemblies:
+  - Heir
+  namespace: Heir.Types
+  syntax:
+    content: Primitive = 2
+    return:
+      type: Heir.Types.TypeKind
+- uid: Heir.Types.TypeKind.Literal
+  commentId: F:Heir.Types.TypeKind.Literal
+  id: Literal
+  parent: Heir.Types.TypeKind
+  langs:
+  - csharp
+  - vb
+  name: Literal
+  nameWithType: TypeKind.Literal
+  fullName: Heir.Types.TypeKind.Literal
+  type: Field
+  source:
+    remote:
+      path: Heir/Types/TypeKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Literal
+    path: Heir/Types/TypeKind.cs
+    startLine: 7
+  assemblies:
+  - Heir
+  namespace: Heir.Types
+  syntax:
+    content: Literal = 3
+    return:
+      type: Heir.Types.TypeKind
+- uid: Heir.Types.TypeKind.Union
+  commentId: F:Heir.Types.TypeKind.Union
+  id: Union
+  parent: Heir.Types.TypeKind
+  langs:
+  - csharp
+  - vb
+  name: Union
+  nameWithType: TypeKind.Union
+  fullName: Heir.Types.TypeKind.Union
+  type: Field
+  source:
+    remote:
+      path: Heir/Types/TypeKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Union
+    path: Heir/Types/TypeKind.cs
+    startLine: 8
+  assemblies:
+  - Heir
+  namespace: Heir.Types
+  syntax:
+    content: Union = 4
+    return:
+      type: Heir.Types.TypeKind
+- uid: Heir.Types.TypeKind.Intersection
+  commentId: F:Heir.Types.TypeKind.Intersection
+  id: Intersection
+  parent: Heir.Types.TypeKind
+  langs:
+  - csharp
+  - vb
+  name: Intersection
+  nameWithType: TypeKind.Intersection
+  fullName: Heir.Types.TypeKind.Intersection
+  type: Field
+  source:
+    remote:
+      path: Heir/Types/TypeKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Intersection
+    path: Heir/Types/TypeKind.cs
+    startLine: 9
+  assemblies:
+  - Heir
+  namespace: Heir.Types
+  syntax:
+    content: Intersection = 5
+    return:
+      type: Heir.Types.TypeKind
+- uid: Heir.Types.TypeKind.Array
+  commentId: F:Heir.Types.TypeKind.Array
+  id: Array
+  parent: Heir.Types.TypeKind
+  langs:
+  - csharp
+  - vb
+  name: Array
+  nameWithType: TypeKind.Array
+  fullName: Heir.Types.TypeKind.Array
+  type: Field
+  source:
+    remote:
+      path: Heir/Types/TypeKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Array
+    path: Heir/Types/TypeKind.cs
+    startLine: 10
+  assemblies:
+  - Heir
+  namespace: Heir.Types
+  syntax:
+    content: Array = 6
+    return:
+      type: Heir.Types.TypeKind
+- uid: Heir.Types.TypeKind.Function
+  commentId: F:Heir.Types.TypeKind.Function
+  id: Function
+  parent: Heir.Types.TypeKind
+  langs:
+  - csharp
+  - vb
+  name: Function
+  nameWithType: TypeKind.Function
+  fullName: Heir.Types.TypeKind.Function
+  type: Field
+  source:
+    remote:
+      path: Heir/Types/TypeKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Function
+    path: Heir/Types/TypeKind.cs
+    startLine: 11
+  assemblies:
+  - Heir
+  namespace: Heir.Types
+  syntax:
+    content: Function = 7
+    return:
+      type: Heir.Types.TypeKind
+- uid: Heir.Types.TypeKind.Interface
+  commentId: F:Heir.Types.TypeKind.Interface
+  id: Interface
+  parent: Heir.Types.TypeKind
+  langs:
+  - csharp
+  - vb
+  name: Interface
+  nameWithType: TypeKind.Interface
+  fullName: Heir.Types.TypeKind.Interface
+  type: Field
+  source:
+    remote:
+      path: Heir/Types/TypeKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Interface
+    path: Heir/Types/TypeKind.cs
+    startLine: 12
+  assemblies:
+  - Heir
+  namespace: Heir.Types
+  syntax:
+    content: Interface = 8
+    return:
+      type: Heir.Types.TypeKind
+- uid: Heir.Types.TypeKind.Class
+  commentId: F:Heir.Types.TypeKind.Class
+  id: Class
+  parent: Heir.Types.TypeKind
+  langs:
+  - csharp
+  - vb
+  name: Class
+  nameWithType: TypeKind.Class
+  fullName: Heir.Types.TypeKind.Class
+  type: Field
+  source:
+    remote:
+      path: Heir/Types/TypeKind.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Class
+    path: Heir/Types/TypeKind.cs
+    startLine: 13
+  assemblies:
+  - Heir
+  namespace: Heir.Types
+  syntax:
+    content: Class = 9
+    return:
+      type: Heir.Types.TypeKind
+references:
+- uid: Heir.Types
+  commentId: N:Heir.Types
+  href: Heir.html
+  name: Heir.Types
+  nameWithType: Heir.Types
+  fullName: Heir.Types
+  spec.csharp:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.Types
+    name: Types
+    href: Heir.Types.html
+  spec.vb:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.Types
+    name: Types
+    href: Heir.Types.html
+- uid: Heir.Types.TypeKind
+  commentId: T:Heir.Types.TypeKind
+  parent: Heir.Types
+  href: Heir.Types.TypeKind.html
+  name: TypeKind
+  nameWithType: TypeKind
+  fullName: Heir.Types.TypeKind

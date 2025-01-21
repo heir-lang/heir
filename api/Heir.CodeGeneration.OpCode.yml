@@ -1,0 +1,1433 @@
+### YamlMime:ManagedReference
+items:
+- uid: Heir.CodeGeneration.OpCode
+  commentId: T:Heir.CodeGeneration.OpCode
+  id: OpCode
+  parent: Heir.CodeGeneration
+  children:
+  - Heir.CodeGeneration.OpCode.ADD
+  - Heir.CodeGeneration.OpCode.AND
+  - Heir.CodeGeneration.OpCode.BAND
+  - Heir.CodeGeneration.OpCode.BEGINSCOPE
+  - Heir.CodeGeneration.OpCode.BNOT
+  - Heir.CodeGeneration.OpCode.BOR
+  - Heir.CodeGeneration.OpCode.BSHL
+  - Heir.CodeGeneration.OpCode.BSHR
+  - Heir.CodeGeneration.OpCode.BXOR
+  - Heir.CodeGeneration.OpCode.CALL
+  - Heir.CodeGeneration.OpCode.CONCAT
+  - Heir.CodeGeneration.OpCode.DIV
+  - Heir.CodeGeneration.OpCode.DUP
+  - Heir.CodeGeneration.OpCode.ENDSCOPE
+  - Heir.CodeGeneration.OpCode.EQ
+  - Heir.CodeGeneration.OpCode.EXIT
+  - Heir.CodeGeneration.OpCode.GT
+  - Heir.CodeGeneration.OpCode.GTE
+  - Heir.CodeGeneration.OpCode.IDIV
+  - Heir.CodeGeneration.OpCode.INDEX
+  - Heir.CodeGeneration.OpCode.JMP
+  - Heir.CodeGeneration.OpCode.JNZ
+  - Heir.CodeGeneration.OpCode.JZ
+  - Heir.CodeGeneration.OpCode.LOAD
+  - Heir.CodeGeneration.OpCode.LT
+  - Heir.CodeGeneration.OpCode.LTE
+  - Heir.CodeGeneration.OpCode.MOD
+  - Heir.CodeGeneration.OpCode.MUL
+  - Heir.CodeGeneration.OpCode.NEQ
+  - Heir.CodeGeneration.OpCode.NOOP
+  - Heir.CodeGeneration.OpCode.NOT
+  - Heir.CodeGeneration.OpCode.OR
+  - Heir.CodeGeneration.OpCode.POP
+  - Heir.CodeGeneration.OpCode.POW
+  - Heir.CodeGeneration.OpCode.PROC
+  - Heir.CodeGeneration.OpCode.PUSH
+  - Heir.CodeGeneration.OpCode.PUSHNONE
+  - Heir.CodeGeneration.OpCode.PUSHOBJECT
+  - Heir.CodeGeneration.OpCode.RETURN
+  - Heir.CodeGeneration.OpCode.STORE
+  - Heir.CodeGeneration.OpCode.SUB
+  - Heir.CodeGeneration.OpCode.SWAP
+  - Heir.CodeGeneration.OpCode.UNM
+  langs:
+  - csharp
+  - vb
+  name: OpCode
+  nameWithType: OpCode
+  fullName: Heir.CodeGeneration.OpCode
+  type: Enum
+  source:
+    remote:
+      path: Heir/CodeGeneration/OpCode.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: OpCode
+    path: Heir/CodeGeneration/OpCode.cs
+    startLine: 2
+  assemblies:
+  - Heir
+  namespace: Heir.CodeGeneration
+  syntax:
+    content: 'public enum OpCode : byte'
+    content.vb: Public Enum OpCode As Byte
+- uid: Heir.CodeGeneration.OpCode.BEGINSCOPE
+  commentId: F:Heir.CodeGeneration.OpCode.BEGINSCOPE
+  id: BEGINSCOPE
+  parent: Heir.CodeGeneration.OpCode
+  langs:
+  - csharp
+  - vb
+  name: BEGINSCOPE
+  nameWithType: OpCode.BEGINSCOPE
+  fullName: Heir.CodeGeneration.OpCode.BEGINSCOPE
+  type: Field
+  source:
+    remote:
+      path: Heir/CodeGeneration/OpCode.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: BEGINSCOPE
+    path: Heir/CodeGeneration/OpCode.cs
+    startLine: 5
+  assemblies:
+  - Heir
+  namespace: Heir.CodeGeneration
+  summary: Creates a new scope
+  example: []
+  syntax:
+    content: BEGINSCOPE = 0
+    return:
+      type: Heir.CodeGeneration.OpCode
+- uid: Heir.CodeGeneration.OpCode.ENDSCOPE
+  commentId: F:Heir.CodeGeneration.OpCode.ENDSCOPE
+  id: ENDSCOPE
+  parent: Heir.CodeGeneration.OpCode
+  langs:
+  - csharp
+  - vb
+  name: ENDSCOPE
+  nameWithType: OpCode.ENDSCOPE
+  fullName: Heir.CodeGeneration.OpCode.ENDSCOPE
+  type: Field
+  source:
+    remote:
+      path: Heir/CodeGeneration/OpCode.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: ENDSCOPE
+    path: Heir/CodeGeneration/OpCode.cs
+    startLine: 7
+  assemblies:
+  - Heir
+  namespace: Heir.CodeGeneration
+  summary: Ends the current scope and returns to the enclosing scope
+  example: []
+  syntax:
+    content: ENDSCOPE = 1
+    return:
+      type: Heir.CodeGeneration.OpCode
+- uid: Heir.CodeGeneration.OpCode.PUSH
+  commentId: F:Heir.CodeGeneration.OpCode.PUSH
+  id: PUSH
+  parent: Heir.CodeGeneration.OpCode
+  langs:
+  - csharp
+  - vb
+  name: PUSH
+  nameWithType: OpCode.PUSH
+  fullName: Heir.CodeGeneration.OpCode.PUSH
+  type: Field
+  source:
+    remote:
+      path: Heir/CodeGeneration/OpCode.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: PUSH
+    path: Heir/CodeGeneration/OpCode.cs
+    startLine: 11
+  assemblies:
+  - Heir
+  namespace: Heir.CodeGeneration
+  summary: Pushes the given value onto the stack
+  example: []
+  syntax:
+    content: PUSH = 2
+    return:
+      type: Heir.CodeGeneration.OpCode
+- uid: Heir.CodeGeneration.OpCode.PUSHOBJECT
+  commentId: F:Heir.CodeGeneration.OpCode.PUSHOBJECT
+  id: PUSHOBJECT
+  parent: Heir.CodeGeneration.OpCode
+  langs:
+  - csharp
+  - vb
+  name: PUSHOBJECT
+  nameWithType: OpCode.PUSHOBJECT
+  fullName: Heir.CodeGeneration.OpCode.PUSHOBJECT
+  type: Field
+  source:
+    remote:
+      path: Heir/CodeGeneration/OpCode.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: PUSHOBJECT
+    path: Heir/CodeGeneration/OpCode.cs
+    startLine: 14
+  assemblies:
+  - Heir
+  namespace: Heir.CodeGeneration
+  summary: Pushes an <xref href="Heir.Runtime.Values.ObjectValue" data-throw-if-not-resolved="false"></xref> onto the stack
+  example: []
+  syntax:
+    content: PUSHOBJECT = 3
+    return:
+      type: Heir.CodeGeneration.OpCode
+- uid: Heir.CodeGeneration.OpCode.PUSHNONE
+  commentId: F:Heir.CodeGeneration.OpCode.PUSHNONE
+  id: PUSHNONE
+  parent: Heir.CodeGeneration.OpCode
+  langs:
+  - csharp
+  - vb
+  name: PUSHNONE
+  nameWithType: OpCode.PUSHNONE
+  fullName: Heir.CodeGeneration.OpCode.PUSHNONE
+  type: Field
+  source:
+    remote:
+      path: Heir/CodeGeneration/OpCode.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: PUSHNONE
+    path: Heir/CodeGeneration/OpCode.cs
+    startLine: 16
+  assemblies:
+  - Heir
+  namespace: Heir.CodeGeneration
+  summary: Pushes none (null) onto the stack
+  example: []
+  syntax:
+    content: PUSHNONE = 4
+    return:
+      type: Heir.CodeGeneration.OpCode
+- uid: Heir.CodeGeneration.OpCode.POP
+  commentId: F:Heir.CodeGeneration.OpCode.POP
+  id: POP
+  parent: Heir.CodeGeneration.OpCode
+  langs:
+  - csharp
+  - vb
+  name: POP
+  nameWithType: OpCode.POP
+  fullName: Heir.CodeGeneration.OpCode.POP
+  type: Field
+  source:
+    remote:
+      path: Heir/CodeGeneration/OpCode.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: POP
+    path: Heir/CodeGeneration/OpCode.cs
+    startLine: 18
+  assemblies:
+  - Heir
+  namespace: Heir.CodeGeneration
+  summary: Pops the last value off of the stack
+  example: []
+  syntax:
+    content: POP = 5
+    return:
+      type: Heir.CodeGeneration.OpCode
+- uid: Heir.CodeGeneration.OpCode.JMP
+  commentId: F:Heir.CodeGeneration.OpCode.JMP
+  id: JMP
+  parent: Heir.CodeGeneration.OpCode
+  langs:
+  - csharp
+  - vb
+  name: JMP
+  nameWithType: OpCode.JMP
+  fullName: Heir.CodeGeneration.OpCode.JMP
+  type: Field
+  source:
+    remote:
+      path: Heir/CodeGeneration/OpCode.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: JMP
+    path: Heir/CodeGeneration/OpCode.cs
+    startLine: 21
+  assemblies:
+  - Heir
+  namespace: Heir.CodeGeneration
+  summary: Jump ahead by the given offset
+  example: []
+  syntax:
+    content: JMP = 6
+    return:
+      type: Heir.CodeGeneration.OpCode
+- uid: Heir.CodeGeneration.OpCode.JZ
+  commentId: F:Heir.CodeGeneration.OpCode.JZ
+  id: JZ
+  parent: Heir.CodeGeneration.OpCode
+  langs:
+  - csharp
+  - vb
+  name: JZ
+  nameWithType: OpCode.JZ
+  fullName: Heir.CodeGeneration.OpCode.JZ
+  type: Field
+  source:
+    remote:
+      path: Heir/CodeGeneration/OpCode.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: JZ
+    path: Heir/CodeGeneration/OpCode.cs
+    startLine: 24
+  assemblies:
+  - Heir
+  namespace: Heir.CodeGeneration
+  summary: Jump ahead by the given offset if the last value on the stack is false or 0
+  example: []
+  syntax:
+    content: JZ = 7
+    return:
+      type: Heir.CodeGeneration.OpCode
+- uid: Heir.CodeGeneration.OpCode.JNZ
+  commentId: F:Heir.CodeGeneration.OpCode.JNZ
+  id: JNZ
+  parent: Heir.CodeGeneration.OpCode
+  langs:
+  - csharp
+  - vb
+  name: JNZ
+  nameWithType: OpCode.JNZ
+  fullName: Heir.CodeGeneration.OpCode.JNZ
+  type: Field
+  source:
+    remote:
+      path: Heir/CodeGeneration/OpCode.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: JNZ
+    path: Heir/CodeGeneration/OpCode.cs
+    startLine: 27
+  assemblies:
+  - Heir
+  namespace: Heir.CodeGeneration
+  summary: Jump ahead by the given offset if the last value on the stack is true or 1
+  example: []
+  syntax:
+    content: JNZ = 8
+    return:
+      type: Heir.CodeGeneration.OpCode
+- uid: Heir.CodeGeneration.OpCode.SWAP
+  commentId: F:Heir.CodeGeneration.OpCode.SWAP
+  id: SWAP
+  parent: Heir.CodeGeneration.OpCode
+  langs:
+  - csharp
+  - vb
+  name: SWAP
+  nameWithType: OpCode.SWAP
+  fullName: Heir.CodeGeneration.OpCode.SWAP
+  type: Field
+  source:
+    remote:
+      path: Heir/CodeGeneration/OpCode.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: SWAP
+    path: Heir/CodeGeneration/OpCode.cs
+    startLine: 29
+  assemblies:
+  - Heir
+  namespace: Heir.CodeGeneration
+  summary: Swaps the positions of the last 2 elements on the stack
+  example: []
+  syntax:
+    content: SWAP = 9
+    return:
+      type: Heir.CodeGeneration.OpCode
+- uid: Heir.CodeGeneration.OpCode.DUP
+  commentId: F:Heir.CodeGeneration.OpCode.DUP
+  id: DUP
+  parent: Heir.CodeGeneration.OpCode
+  langs:
+  - csharp
+  - vb
+  name: DUP
+  nameWithType: OpCode.DUP
+  fullName: Heir.CodeGeneration.OpCode.DUP
+  type: Field
+  source:
+    remote:
+      path: Heir/CodeGeneration/OpCode.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: DUP
+    path: Heir/CodeGeneration/OpCode.cs
+    startLine: 31
+  assemblies:
+  - Heir
+  namespace: Heir.CodeGeneration
+  summary: Pushes the last element in the stack onto the stack again
+  example: []
+  syntax:
+    content: DUP = 10
+    return:
+      type: Heir.CodeGeneration.OpCode
+- uid: Heir.CodeGeneration.OpCode.STORE
+  commentId: F:Heir.CodeGeneration.OpCode.STORE
+  id: STORE
+  parent: Heir.CodeGeneration.OpCode
+  langs:
+  - csharp
+  - vb
+  name: STORE
+  nameWithType: OpCode.STORE
+  fullName: Heir.CodeGeneration.OpCode.STORE
+  type: Field
+  source:
+    remote:
+      path: Heir/CodeGeneration/OpCode.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: STORE
+    path: Heir/CodeGeneration/OpCode.cs
+    startLine: 45
+  assemblies:
+  - Heir
+  namespace: Heir.CodeGeneration
+  summary: >-
+    Stores a variable in the current scope using the last two frames of the stack.
+
+    Of those last two frames, the first is the value and the second is the name.
+  example:
+  - >-
+    <p>This example is produced when executing <code>let abc = 5;</code>:</p>
+
+    <p>PUSH abc</p>
+
+    PUSH 5
+
+    <p>STORE</p>
+  syntax:
+    content: STORE = 11
+    return:
+      type: Heir.CodeGeneration.OpCode
+- uid: Heir.CodeGeneration.OpCode.LOAD
+  commentId: F:Heir.CodeGeneration.OpCode.LOAD
+  id: LOAD
+  parent: Heir.CodeGeneration.OpCode
+  langs:
+  - csharp
+  - vb
+  name: LOAD
+  nameWithType: OpCode.LOAD
+  fullName: Heir.CodeGeneration.OpCode.LOAD
+  type: Field
+  source:
+    remote:
+      path: Heir/CodeGeneration/OpCode.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: LOAD
+    path: Heir/CodeGeneration/OpCode.cs
+    startLine: 50
+  assemblies:
+  - Heir
+  namespace: Heir.CodeGeneration
+  summary: >-
+    Loads a variable from the current scope using the last frame in the stack.
+
+    The frame it uses is the name of the variable to load.
+  example: []
+  syntax:
+    content: LOAD = 12
+    return:
+      type: Heir.CodeGeneration.OpCode
+- uid: Heir.CodeGeneration.OpCode.RETURN
+  commentId: F:Heir.CodeGeneration.OpCode.RETURN
+  id: RETURN
+  parent: Heir.CodeGeneration.OpCode
+  langs:
+  - csharp
+  - vb
+  name: RETURN
+  nameWithType: OpCode.RETURN
+  fullName: Heir.CodeGeneration.OpCode.RETURN
+  type: Field
+  source:
+    remote:
+      path: Heir/CodeGeneration/OpCode.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: RETURN
+    path: Heir/CodeGeneration/OpCode.cs
+    startLine: 55
+  assemblies:
+  - Heir
+  namespace: Heir.CodeGeneration
+  summary: >-
+    If the call stack is not empty, returns to the last <xref href="Heir.CallStackFrame" data-throw-if-not-resolved="false"></xref>.
+
+    Otherwise, it advances.
+  example: []
+  syntax:
+    content: RETURN = 13
+    return:
+      type: Heir.CodeGeneration.OpCode
+- uid: Heir.CodeGeneration.OpCode.PROC
+  commentId: F:Heir.CodeGeneration.OpCode.PROC
+  id: PROC
+  parent: Heir.CodeGeneration.OpCode
+  langs:
+  - csharp
+  - vb
+  name: PROC
+  nameWithType: OpCode.PROC
+  fullName: Heir.CodeGeneration.OpCode.PROC
+  type: Field
+  source:
+    remote:
+      path: Heir/CodeGeneration/OpCode.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: PROC
+    path: Heir/CodeGeneration/OpCode.cs
+    startLine: 58
+  assemblies:
+  - Heir
+  namespace: Heir.CodeGeneration
+  summary: Pushes a <xref href="Heir.Runtime.Values.FunctionValue" data-throw-if-not-resolved="false"></xref> onto the stack
+  example: []
+  syntax:
+    content: PROC = 14
+    return:
+      type: Heir.CodeGeneration.OpCode
+- uid: Heir.CodeGeneration.OpCode.CALL
+  commentId: F:Heir.CodeGeneration.OpCode.CALL
+  id: CALL
+  parent: Heir.CodeGeneration.OpCode
+  langs:
+  - csharp
+  - vb
+  name: CALL
+  nameWithType: OpCode.CALL
+  fullName: Heir.CodeGeneration.OpCode.CALL
+  type: Field
+  source:
+    remote:
+      path: Heir/CodeGeneration/OpCode.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: CALL
+    path: Heir/CodeGeneration/OpCode.cs
+    startLine: 85
+  assemblies:
+  - Heir
+  namespace: Heir.CodeGeneration
+  summary: Calls the last frame in the stack (assuming it's a <xref href="Heir.Runtime.Values.FunctionValue" data-throw-if-not-resolved="false"></xref>)
+  example:
+  - >-
+    <p>This example is produced when executing <code>fn double(x: int) -&gt; x * 2; double(8);</code>:</p>
+
+    <p></p>
+
+    PUSH double
+
+    <p></p>
+
+    PROC (bytecode)
+
+    BEGINSCOPE
+
+    <p>PUSH x</p>
+
+    LOAD
+
+    <p>PUSH 2</p>
+
+    MUL
+
+    <p>RETURN</p>
+
+    ENDSCOPE
+
+    <p></p>
+
+    STORE False
+
+    <p>PUSH double</p>
+
+    LOAD
+
+    <p>CALL (1, ["x"])</p>
+
+    PUSH 8
+
+    <p>EXIT</p>
+  syntax:
+    content: CALL = 15
+    return:
+      type: Heir.CodeGeneration.OpCode
+- uid: Heir.CodeGeneration.OpCode.INDEX
+  commentId: F:Heir.CodeGeneration.OpCode.INDEX
+  id: INDEX
+  parent: Heir.CodeGeneration.OpCode
+  langs:
+  - csharp
+  - vb
+  name: INDEX
+  nameWithType: OpCode.INDEX
+  fullName: Heir.CodeGeneration.OpCode.INDEX
+  type: Field
+  source:
+    remote:
+      path: Heir/CodeGeneration/OpCode.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: INDEX
+    path: Heir/CodeGeneration/OpCode.cs
+    startLine: 88
+  assemblies:
+  - Heir
+  namespace: Heir.CodeGeneration
+  summary: Indexes the second to last frame in the stack using the last frame in the stack (assuming it's an <xref href="Heir.Runtime.Values.ObjectValue" data-throw-if-not-resolved="false"></xref>)
+  example: []
+  syntax:
+    content: INDEX = 16
+    return:
+      type: Heir.CodeGeneration.OpCode
+- uid: Heir.CodeGeneration.OpCode.CONCAT
+  commentId: F:Heir.CodeGeneration.OpCode.CONCAT
+  id: CONCAT
+  parent: Heir.CodeGeneration.OpCode
+  langs:
+  - csharp
+  - vb
+  name: CONCAT
+  nameWithType: OpCode.CONCAT
+  fullName: Heir.CodeGeneration.OpCode.CONCAT
+  type: Field
+  source:
+    remote:
+      path: Heir/CodeGeneration/OpCode.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: CONCAT
+    path: Heir/CodeGeneration/OpCode.cs
+    startLine: 90
+  assemblies:
+  - Heir
+  namespace: Heir.CodeGeneration
+  summary: Concatenates the last two frames in the stack together (assuming they're <xref href="System.String" data-throw-if-not-resolved="false"></xref>s)
+  example: []
+  syntax:
+    content: CONCAT = 17
+    return:
+      type: Heir.CodeGeneration.OpCode
+- uid: Heir.CodeGeneration.OpCode.ADD
+  commentId: F:Heir.CodeGeneration.OpCode.ADD
+  id: ADD
+  parent: Heir.CodeGeneration.OpCode
+  langs:
+  - csharp
+  - vb
+  name: ADD
+  nameWithType: OpCode.ADD
+  fullName: Heir.CodeGeneration.OpCode.ADD
+  type: Field
+  source:
+    remote:
+      path: Heir/CodeGeneration/OpCode.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: ADD
+    path: Heir/CodeGeneration/OpCode.cs
+    startLine: 92
+  assemblies:
+  - Heir
+  namespace: Heir.CodeGeneration
+  summary: Adds the last two frames in the stack together (assuming they're numbers)
+  example: []
+  syntax:
+    content: ADD = 18
+    return:
+      type: Heir.CodeGeneration.OpCode
+- uid: Heir.CodeGeneration.OpCode.SUB
+  commentId: F:Heir.CodeGeneration.OpCode.SUB
+  id: SUB
+  parent: Heir.CodeGeneration.OpCode
+  langs:
+  - csharp
+  - vb
+  name: SUB
+  nameWithType: OpCode.SUB
+  fullName: Heir.CodeGeneration.OpCode.SUB
+  type: Field
+  source:
+    remote:
+      path: Heir/CodeGeneration/OpCode.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: SUB
+    path: Heir/CodeGeneration/OpCode.cs
+    startLine: 94
+  assemblies:
+  - Heir
+  namespace: Heir.CodeGeneration
+  summary: Subtracts the last two frames in the stack (assuming they're numbers)
+  example: []
+  syntax:
+    content: SUB = 19
+    return:
+      type: Heir.CodeGeneration.OpCode
+- uid: Heir.CodeGeneration.OpCode.MUL
+  commentId: F:Heir.CodeGeneration.OpCode.MUL
+  id: MUL
+  parent: Heir.CodeGeneration.OpCode
+  langs:
+  - csharp
+  - vb
+  name: MUL
+  nameWithType: OpCode.MUL
+  fullName: Heir.CodeGeneration.OpCode.MUL
+  type: Field
+  source:
+    remote:
+      path: Heir/CodeGeneration/OpCode.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: MUL
+    path: Heir/CodeGeneration/OpCode.cs
+    startLine: 96
+  assemblies:
+  - Heir
+  namespace: Heir.CodeGeneration
+  summary: Multiplies the last two frames in the stack (assuming they're numbers)
+  example: []
+  syntax:
+    content: MUL = 20
+    return:
+      type: Heir.CodeGeneration.OpCode
+- uid: Heir.CodeGeneration.OpCode.DIV
+  commentId: F:Heir.CodeGeneration.OpCode.DIV
+  id: DIV
+  parent: Heir.CodeGeneration.OpCode
+  langs:
+  - csharp
+  - vb
+  name: DIV
+  nameWithType: OpCode.DIV
+  fullName: Heir.CodeGeneration.OpCode.DIV
+  type: Field
+  source:
+    remote:
+      path: Heir/CodeGeneration/OpCode.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: DIV
+    path: Heir/CodeGeneration/OpCode.cs
+    startLine: 98
+  assemblies:
+  - Heir
+  namespace: Heir.CodeGeneration
+  summary: Divides the last two frames in the stack (assuming they're numbers)
+  example: []
+  syntax:
+    content: DIV = 21
+    return:
+      type: Heir.CodeGeneration.OpCode
+- uid: Heir.CodeGeneration.OpCode.IDIV
+  commentId: F:Heir.CodeGeneration.OpCode.IDIV
+  id: IDIV
+  parent: Heir.CodeGeneration.OpCode
+  langs:
+  - csharp
+  - vb
+  name: IDIV
+  nameWithType: OpCode.IDIV
+  fullName: Heir.CodeGeneration.OpCode.IDIV
+  type: Field
+  source:
+    remote:
+      path: Heir/CodeGeneration/OpCode.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: IDIV
+    path: Heir/CodeGeneration/OpCode.cs
+    startLine: 100
+  assemblies:
+  - Heir
+  namespace: Heir.CodeGeneration
+  summary: Divides then floors (integer division) the last two frames in the stack (assuming they're numbers)
+  example: []
+  syntax:
+    content: IDIV = 22
+    return:
+      type: Heir.CodeGeneration.OpCode
+- uid: Heir.CodeGeneration.OpCode.POW
+  commentId: F:Heir.CodeGeneration.OpCode.POW
+  id: POW
+  parent: Heir.CodeGeneration.OpCode
+  langs:
+  - csharp
+  - vb
+  name: POW
+  nameWithType: OpCode.POW
+  fullName: Heir.CodeGeneration.OpCode.POW
+  type: Field
+  source:
+    remote:
+      path: Heir/CodeGeneration/OpCode.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: POW
+    path: Heir/CodeGeneration/OpCode.cs
+    startLine: 102
+  assemblies:
+  - Heir
+  namespace: Heir.CodeGeneration
+  summary: Raises the last frame in the stack to the second to last frame in the stack's power (assuming they're numbers)
+  example: []
+  syntax:
+    content: POW = 23
+    return:
+      type: Heir.CodeGeneration.OpCode
+- uid: Heir.CodeGeneration.OpCode.MOD
+  commentId: F:Heir.CodeGeneration.OpCode.MOD
+  id: MOD
+  parent: Heir.CodeGeneration.OpCode
+  langs:
+  - csharp
+  - vb
+  name: MOD
+  nameWithType: OpCode.MOD
+  fullName: Heir.CodeGeneration.OpCode.MOD
+  type: Field
+  source:
+    remote:
+      path: Heir/CodeGeneration/OpCode.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: MOD
+    path: Heir/CodeGeneration/OpCode.cs
+    startLine: 104
+  assemblies:
+  - Heir
+  namespace: Heir.CodeGeneration
+  summary: Calculates the modulus of the last two frames in the stack (assuming they're numbers)
+  example: []
+  syntax:
+    content: MOD = 24
+    return:
+      type: Heir.CodeGeneration.OpCode
+- uid: Heir.CodeGeneration.OpCode.UNM
+  commentId: F:Heir.CodeGeneration.OpCode.UNM
+  id: UNM
+  parent: Heir.CodeGeneration.OpCode
+  langs:
+  - csharp
+  - vb
+  name: UNM
+  nameWithType: OpCode.UNM
+  fullName: Heir.CodeGeneration.OpCode.UNM
+  type: Field
+  source:
+    remote:
+      path: Heir/CodeGeneration/OpCode.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: UNM
+    path: Heir/CodeGeneration/OpCode.cs
+    startLine: 106
+  assemblies:
+  - Heir
+  namespace: Heir.CodeGeneration
+  summary: Negates the last frame in the stack (assuming it's a number)
+  example: []
+  syntax:
+    content: UNM = 25
+    return:
+      type: Heir.CodeGeneration.OpCode
+- uid: Heir.CodeGeneration.OpCode.BNOT
+  commentId: F:Heir.CodeGeneration.OpCode.BNOT
+  id: BNOT
+  parent: Heir.CodeGeneration.OpCode
+  langs:
+  - csharp
+  - vb
+  name: BNOT
+  nameWithType: OpCode.BNOT
+  fullName: Heir.CodeGeneration.OpCode.BNOT
+  type: Field
+  source:
+    remote:
+      path: Heir/CodeGeneration/OpCode.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: BNOT
+    path: Heir/CodeGeneration/OpCode.cs
+    startLine: 109
+  assemblies:
+  - Heir
+  namespace: Heir.CodeGeneration
+  summary: Calculates binary not on the last frame in the stack (assuming it's an <xref href="System.Int64" data-throw-if-not-resolved="false"></xref>)
+  example: []
+  syntax:
+    content: BNOT = 26
+    return:
+      type: Heir.CodeGeneration.OpCode
+- uid: Heir.CodeGeneration.OpCode.BAND
+  commentId: F:Heir.CodeGeneration.OpCode.BAND
+  id: BAND
+  parent: Heir.CodeGeneration.OpCode
+  langs:
+  - csharp
+  - vb
+  name: BAND
+  nameWithType: OpCode.BAND
+  fullName: Heir.CodeGeneration.OpCode.BAND
+  type: Field
+  source:
+    remote:
+      path: Heir/CodeGeneration/OpCode.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: BAND
+    path: Heir/CodeGeneration/OpCode.cs
+    startLine: 111
+  assemblies:
+  - Heir
+  namespace: Heir.CodeGeneration
+  summary: Calculates binary and on the last two frames in the stack (assuming they're <xref href="System.Int64" data-throw-if-not-resolved="false"></xref>s)
+  example: []
+  syntax:
+    content: BAND = 27
+    return:
+      type: Heir.CodeGeneration.OpCode
+- uid: Heir.CodeGeneration.OpCode.BOR
+  commentId: F:Heir.CodeGeneration.OpCode.BOR
+  id: BOR
+  parent: Heir.CodeGeneration.OpCode
+  langs:
+  - csharp
+  - vb
+  name: BOR
+  nameWithType: OpCode.BOR
+  fullName: Heir.CodeGeneration.OpCode.BOR
+  type: Field
+  source:
+    remote:
+      path: Heir/CodeGeneration/OpCode.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: BOR
+    path: Heir/CodeGeneration/OpCode.cs
+    startLine: 113
+  assemblies:
+  - Heir
+  namespace: Heir.CodeGeneration
+  summary: Calculates binary or on the last two frames in the stack (assuming they're <xref href="System.Int64" data-throw-if-not-resolved="false"></xref>s)
+  example: []
+  syntax:
+    content: BOR = 28
+    return:
+      type: Heir.CodeGeneration.OpCode
+- uid: Heir.CodeGeneration.OpCode.BXOR
+  commentId: F:Heir.CodeGeneration.OpCode.BXOR
+  id: BXOR
+  parent: Heir.CodeGeneration.OpCode
+  langs:
+  - csharp
+  - vb
+  name: BXOR
+  nameWithType: OpCode.BXOR
+  fullName: Heir.CodeGeneration.OpCode.BXOR
+  type: Field
+  source:
+    remote:
+      path: Heir/CodeGeneration/OpCode.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: BXOR
+    path: Heir/CodeGeneration/OpCode.cs
+    startLine: 115
+  assemblies:
+  - Heir
+  namespace: Heir.CodeGeneration
+  summary: Calculates binary exclusive or on the last two frames in the stack (assuming they're <xref href="System.Int64" data-throw-if-not-resolved="false"></xref>s)
+  example: []
+  syntax:
+    content: BXOR = 29
+    return:
+      type: Heir.CodeGeneration.OpCode
+- uid: Heir.CodeGeneration.OpCode.BSHL
+  commentId: F:Heir.CodeGeneration.OpCode.BSHL
+  id: BSHL
+  parent: Heir.CodeGeneration.OpCode
+  langs:
+  - csharp
+  - vb
+  name: BSHL
+  nameWithType: OpCode.BSHL
+  fullName: Heir.CodeGeneration.OpCode.BSHL
+  type: Field
+  source:
+    remote:
+      path: Heir/CodeGeneration/OpCode.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: BSHL
+    path: Heir/CodeGeneration/OpCode.cs
+    startLine: 117
+  assemblies:
+  - Heir
+  namespace: Heir.CodeGeneration
+  summary: Calculates bit shift left on the last two frames in the stack (assuming they're <xref href="System.Int32" data-throw-if-not-resolved="false"></xref>s)
+  example: []
+  syntax:
+    content: BSHL = 30
+    return:
+      type: Heir.CodeGeneration.OpCode
+- uid: Heir.CodeGeneration.OpCode.BSHR
+  commentId: F:Heir.CodeGeneration.OpCode.BSHR
+  id: BSHR
+  parent: Heir.CodeGeneration.OpCode
+  langs:
+  - csharp
+  - vb
+  name: BSHR
+  nameWithType: OpCode.BSHR
+  fullName: Heir.CodeGeneration.OpCode.BSHR
+  type: Field
+  source:
+    remote:
+      path: Heir/CodeGeneration/OpCode.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: BSHR
+    path: Heir/CodeGeneration/OpCode.cs
+    startLine: 119
+  assemblies:
+  - Heir
+  namespace: Heir.CodeGeneration
+  summary: Calculates bit shift right on the last two frames in the stack (assuming they're <xref href="System.Int32" data-throw-if-not-resolved="false"></xref>s)
+  example: []
+  syntax:
+    content: BSHR = 31
+    return:
+      type: Heir.CodeGeneration.OpCode
+- uid: Heir.CodeGeneration.OpCode.AND
+  commentId: F:Heir.CodeGeneration.OpCode.AND
+  id: AND
+  parent: Heir.CodeGeneration.OpCode
+  langs:
+  - csharp
+  - vb
+  name: AND
+  nameWithType: OpCode.AND
+  fullName: Heir.CodeGeneration.OpCode.AND
+  type: Field
+  source:
+    remote:
+      path: Heir/CodeGeneration/OpCode.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: AND
+    path: Heir/CodeGeneration/OpCode.cs
+    startLine: 122
+  assemblies:
+  - Heir
+  namespace: Heir.CodeGeneration
+  summary: Calculates logical and on the last two frames in the stack (assuming they're <xref href="System.Boolean" data-throw-if-not-resolved="false"></xref>s)
+  example: []
+  syntax:
+    content: AND = 32
+    return:
+      type: Heir.CodeGeneration.OpCode
+- uid: Heir.CodeGeneration.OpCode.OR
+  commentId: F:Heir.CodeGeneration.OpCode.OR
+  id: OR
+  parent: Heir.CodeGeneration.OpCode
+  langs:
+  - csharp
+  - vb
+  name: OR
+  nameWithType: OpCode.OR
+  fullName: Heir.CodeGeneration.OpCode.OR
+  type: Field
+  source:
+    remote:
+      path: Heir/CodeGeneration/OpCode.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: OR
+    path: Heir/CodeGeneration/OpCode.cs
+    startLine: 124
+  assemblies:
+  - Heir
+  namespace: Heir.CodeGeneration
+  summary: Calculates logical or on the last two frames in the stack (assuming they're <xref href="System.Boolean" data-throw-if-not-resolved="false"></xref>s)
+  example: []
+  syntax:
+    content: OR = 33
+    return:
+      type: Heir.CodeGeneration.OpCode
+- uid: Heir.CodeGeneration.OpCode.NOT
+  commentId: F:Heir.CodeGeneration.OpCode.NOT
+  id: NOT
+  parent: Heir.CodeGeneration.OpCode
+  langs:
+  - csharp
+  - vb
+  name: NOT
+  nameWithType: OpCode.NOT
+  fullName: Heir.CodeGeneration.OpCode.NOT
+  type: Field
+  source:
+    remote:
+      path: Heir/CodeGeneration/OpCode.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: NOT
+    path: Heir/CodeGeneration/OpCode.cs
+    startLine: 126
+  assemblies:
+  - Heir
+  namespace: Heir.CodeGeneration
+  summary: Calculates logical not on the last frame in the stack (assuming it's a <xref href="System.Boolean" data-throw-if-not-resolved="false"></xref>)
+  example: []
+  syntax:
+    content: NOT = 34
+    return:
+      type: Heir.CodeGeneration.OpCode
+- uid: Heir.CodeGeneration.OpCode.LT
+  commentId: F:Heir.CodeGeneration.OpCode.LT
+  id: LT
+  parent: Heir.CodeGeneration.OpCode
+  langs:
+  - csharp
+  - vb
+  name: LT
+  nameWithType: OpCode.LT
+  fullName: Heir.CodeGeneration.OpCode.LT
+  type: Field
+  source:
+    remote:
+      path: Heir/CodeGeneration/OpCode.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: LT
+    path: Heir/CodeGeneration/OpCode.cs
+    startLine: 128
+  assemblies:
+  - Heir
+  namespace: Heir.CodeGeneration
+  summary: Calculates less than (LT) on the last two frames in the stack (assuming they're numbers)
+  example: []
+  syntax:
+    content: LT = 35
+    return:
+      type: Heir.CodeGeneration.OpCode
+- uid: Heir.CodeGeneration.OpCode.LTE
+  commentId: F:Heir.CodeGeneration.OpCode.LTE
+  id: LTE
+  parent: Heir.CodeGeneration.OpCode
+  langs:
+  - csharp
+  - vb
+  name: LTE
+  nameWithType: OpCode.LTE
+  fullName: Heir.CodeGeneration.OpCode.LTE
+  type: Field
+  source:
+    remote:
+      path: Heir/CodeGeneration/OpCode.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: LTE
+    path: Heir/CodeGeneration/OpCode.cs
+    startLine: 130
+  assemblies:
+  - Heir
+  namespace: Heir.CodeGeneration
+  summary: Calculates less than or equal to (LTE) on the last two frames in the stack (assuming they're numbers)
+  example: []
+  syntax:
+    content: LTE = 36
+    return:
+      type: Heir.CodeGeneration.OpCode
+- uid: Heir.CodeGeneration.OpCode.GT
+  commentId: F:Heir.CodeGeneration.OpCode.GT
+  id: GT
+  parent: Heir.CodeGeneration.OpCode
+  langs:
+  - csharp
+  - vb
+  name: GT
+  nameWithType: OpCode.GT
+  fullName: Heir.CodeGeneration.OpCode.GT
+  type: Field
+  source:
+    remote:
+      path: Heir/CodeGeneration/OpCode.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: GT
+    path: Heir/CodeGeneration/OpCode.cs
+    startLine: 132
+  assemblies:
+  - Heir
+  namespace: Heir.CodeGeneration
+  summary: Calculates greater than (GT) on the last two frames in the stack (assuming they're numbers)
+  example: []
+  syntax:
+    content: GT = 37
+    return:
+      type: Heir.CodeGeneration.OpCode
+- uid: Heir.CodeGeneration.OpCode.GTE
+  commentId: F:Heir.CodeGeneration.OpCode.GTE
+  id: GTE
+  parent: Heir.CodeGeneration.OpCode
+  langs:
+  - csharp
+  - vb
+  name: GTE
+  nameWithType: OpCode.GTE
+  fullName: Heir.CodeGeneration.OpCode.GTE
+  type: Field
+  source:
+    remote:
+      path: Heir/CodeGeneration/OpCode.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: GTE
+    path: Heir/CodeGeneration/OpCode.cs
+    startLine: 134
+  assemblies:
+  - Heir
+  namespace: Heir.CodeGeneration
+  summary: Calculates greater than or equal to (GTE) on the last two frames in the stack (assuming they're numbers)
+  example: []
+  syntax:
+    content: GTE = 38
+    return:
+      type: Heir.CodeGeneration.OpCode
+- uid: Heir.CodeGeneration.OpCode.EQ
+  commentId: F:Heir.CodeGeneration.OpCode.EQ
+  id: EQ
+  parent: Heir.CodeGeneration.OpCode
+  langs:
+  - csharp
+  - vb
+  name: EQ
+  nameWithType: OpCode.EQ
+  fullName: Heir.CodeGeneration.OpCode.EQ
+  type: Field
+  source:
+    remote:
+      path: Heir/CodeGeneration/OpCode.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: EQ
+    path: Heir/CodeGeneration/OpCode.cs
+    startLine: 136
+  assemblies:
+  - Heir
+  namespace: Heir.CodeGeneration
+  summary: Calculates equality of the last two frames in the stack
+  example: []
+  syntax:
+    content: EQ = 39
+    return:
+      type: Heir.CodeGeneration.OpCode
+- uid: Heir.CodeGeneration.OpCode.NEQ
+  commentId: F:Heir.CodeGeneration.OpCode.NEQ
+  id: NEQ
+  parent: Heir.CodeGeneration.OpCode
+  langs:
+  - csharp
+  - vb
+  name: NEQ
+  nameWithType: OpCode.NEQ
+  fullName: Heir.CodeGeneration.OpCode.NEQ
+  type: Field
+  source:
+    remote:
+      path: Heir/CodeGeneration/OpCode.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: NEQ
+    path: Heir/CodeGeneration/OpCode.cs
+    startLine: 138
+  assemblies:
+  - Heir
+  namespace: Heir.CodeGeneration
+  summary: Calculates inequality of the last two frames in the stack
+  example: []
+  syntax:
+    content: NEQ = 40
+    return:
+      type: Heir.CodeGeneration.OpCode
+- uid: Heir.CodeGeneration.OpCode.NOOP
+  commentId: F:Heir.CodeGeneration.OpCode.NOOP
+  id: NOOP
+  parent: Heir.CodeGeneration.OpCode
+  langs:
+  - csharp
+  - vb
+  name: NOOP
+  nameWithType: OpCode.NOOP
+  fullName: Heir.CodeGeneration.OpCode.NOOP
+  type: Field
+  source:
+    remote:
+      path: Heir/CodeGeneration/OpCode.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: NOOP
+    path: Heir/CodeGeneration/OpCode.cs
+    startLine: 141
+  assemblies:
+  - Heir
+  namespace: Heir.CodeGeneration
+  summary: No operation, blank instruction
+  example: []
+  syntax:
+    content: NOOP = 41
+    return:
+      type: Heir.CodeGeneration.OpCode
+- uid: Heir.CodeGeneration.OpCode.EXIT
+  commentId: F:Heir.CodeGeneration.OpCode.EXIT
+  id: EXIT
+  parent: Heir.CodeGeneration.OpCode
+  langs:
+  - csharp
+  - vb
+  name: EXIT
+  nameWithType: OpCode.EXIT
+  fullName: Heir.CodeGeneration.OpCode.EXIT
+  type: Field
+  source:
+    remote:
+      path: Heir/CodeGeneration/OpCode.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: EXIT
+    path: Heir/CodeGeneration/OpCode.cs
+    startLine: 143
+  assemblies:
+  - Heir
+  namespace: Heir.CodeGeneration
+  summary: Signal to the <xref href="Heir.VirtualMachine" data-throw-if-not-resolved="false"></xref> that the program has completed.
+  example: []
+  syntax:
+    content: EXIT = 42
+    return:
+      type: Heir.CodeGeneration.OpCode
+references:
+- uid: Heir.CodeGeneration
+  commentId: N:Heir.CodeGeneration
+  href: Heir.html
+  name: Heir.CodeGeneration
+  nameWithType: Heir.CodeGeneration
+  fullName: Heir.CodeGeneration
+  spec.csharp:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.CodeGeneration
+    name: CodeGeneration
+    href: Heir.CodeGeneration.html
+  spec.vb:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.CodeGeneration
+    name: CodeGeneration
+    href: Heir.CodeGeneration.html
+- uid: Heir.CodeGeneration.OpCode
+  commentId: T:Heir.CodeGeneration.OpCode
+  parent: Heir.CodeGeneration
+  href: Heir.CodeGeneration.OpCode.html
+  name: OpCode
+  nameWithType: OpCode
+  fullName: Heir.CodeGeneration.OpCode
+- uid: Heir.Runtime.Values.ObjectValue
+  commentId: T:Heir.Runtime.Values.ObjectValue
+  href: Heir.Runtime.Values.ObjectValue.html
+  name: ObjectValue
+  nameWithType: ObjectValue
+  fullName: Heir.Runtime.Values.ObjectValue
+- uid: Heir.CallStackFrame
+  commentId: T:Heir.CallStackFrame
+  name: CallStackFrame
+  nameWithType: CallStackFrame
+  fullName: Heir.CallStackFrame
+- uid: Heir.Runtime.Values.FunctionValue
+  commentId: T:Heir.Runtime.Values.FunctionValue
+  href: Heir.Runtime.Values.FunctionValue.html
+  name: FunctionValue
+  nameWithType: FunctionValue
+  fullName: Heir.Runtime.Values.FunctionValue
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Int64
+  commentId: T:System.Int64
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int64
+  name: long
+  nameWithType: long
+  fullName: long
+  nameWithType.vb: Long
+  fullName.vb: Long
+  name.vb: Long
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Heir.VirtualMachine
+  commentId: T:Heir.VirtualMachine
+  href: Heir.VirtualMachine.html
+  name: VirtualMachine
+  nameWithType: VirtualMachine
+  fullName: Heir.VirtualMachine

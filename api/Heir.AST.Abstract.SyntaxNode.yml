@@ -1,0 +1,592 @@
+### YamlMime:ManagedReference
+items:
+- uid: Heir.AST.Abstract.SyntaxNode
+  commentId: T:Heir.AST.Abstract.SyntaxNode
+  id: SyntaxNode
+  parent: Heir.AST.Abstract
+  children:
+  - Heir.AST.Abstract.SyntaxNode.Display(System.Int32)
+  - Heir.AST.Abstract.SyntaxNode.GetFirstToken
+  - Heir.AST.Abstract.SyntaxNode.GetLastToken
+  - Heir.AST.Abstract.SyntaxNode.GetTokens
+  langs:
+  - csharp
+  - vb
+  name: SyntaxNode
+  nameWithType: SyntaxNode
+  fullName: Heir.AST.Abstract.SyntaxNode
+  type: Class
+  source:
+    remote:
+      path: Heir/AST/Abstract/SyntaxNode.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: SyntaxNode
+    path: Heir/AST/Abstract/SyntaxNode.cs
+    startLine: 4
+  assemblies:
+  - Heir
+  namespace: Heir.AST.Abstract
+  syntax:
+    content: public abstract class SyntaxNode
+    content.vb: Public MustInherit Class SyntaxNode
+  inheritance:
+  - System.Object
+  derivedClasses:
+  - Heir.AST.Abstract.Expression
+  - Heir.AST.Abstract.Statement
+  - Heir.BoundAST.BoundSyntaxNode
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Heir.AST.Abstract.SyntaxNode.Display(System.Int32)
+  commentId: M:Heir.AST.Abstract.SyntaxNode.Display(System.Int32)
+  id: Display(System.Int32)
+  parent: Heir.AST.Abstract.SyntaxNode
+  langs:
+  - csharp
+  - vb
+  name: Display(int)
+  nameWithType: SyntaxNode.Display(int)
+  fullName: Heir.AST.Abstract.SyntaxNode.Display(int)
+  type: Method
+  source:
+    remote:
+      path: Heir/AST/Abstract/SyntaxNode.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Display
+    path: Heir/AST/Abstract/SyntaxNode.cs
+    startLine: 6
+  assemblies:
+  - Heir
+  namespace: Heir.AST.Abstract
+  syntax:
+    content: public abstract void Display(int indent = 0)
+    parameters:
+    - id: indent
+      type: System.Int32
+    content.vb: Public MustOverride Sub Display(indent As Integer = 0)
+  overload: Heir.AST.Abstract.SyntaxNode.Display*
+  nameWithType.vb: SyntaxNode.Display(Integer)
+  fullName.vb: Heir.AST.Abstract.SyntaxNode.Display(Integer)
+  name.vb: Display(Integer)
+- uid: Heir.AST.Abstract.SyntaxNode.GetTokens
+  commentId: M:Heir.AST.Abstract.SyntaxNode.GetTokens
+  id: GetTokens
+  parent: Heir.AST.Abstract.SyntaxNode
+  langs:
+  - csharp
+  - vb
+  name: GetTokens()
+  nameWithType: SyntaxNode.GetTokens()
+  fullName: Heir.AST.Abstract.SyntaxNode.GetTokens()
+  type: Method
+  source:
+    remote:
+      path: Heir/AST/Abstract/SyntaxNode.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: GetTokens
+    path: Heir/AST/Abstract/SyntaxNode.cs
+    startLine: 7
+  assemblies:
+  - Heir
+  namespace: Heir.AST.Abstract
+  syntax:
+    content: public abstract List<Token> GetTokens()
+    return:
+      type: System.Collections.Generic.List{Heir.Syntax.Token}
+    content.vb: Public MustOverride Function GetTokens() As List(Of Token)
+  overload: Heir.AST.Abstract.SyntaxNode.GetTokens*
+- uid: Heir.AST.Abstract.SyntaxNode.GetFirstToken
+  commentId: M:Heir.AST.Abstract.SyntaxNode.GetFirstToken
+  id: GetFirstToken
+  parent: Heir.AST.Abstract.SyntaxNode
+  langs:
+  - csharp
+  - vb
+  name: GetFirstToken()
+  nameWithType: SyntaxNode.GetFirstToken()
+  fullName: Heir.AST.Abstract.SyntaxNode.GetFirstToken()
+  type: Method
+  source:
+    remote:
+      path: Heir/AST/Abstract/SyntaxNode.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: GetFirstToken
+    path: Heir/AST/Abstract/SyntaxNode.cs
+    startLine: 9
+  assemblies:
+  - Heir
+  namespace: Heir.AST.Abstract
+  syntax:
+    content: public Token GetFirstToken()
+    return:
+      type: Heir.Syntax.Token
+    content.vb: Public Function GetFirstToken() As Token
+  overload: Heir.AST.Abstract.SyntaxNode.GetFirstToken*
+- uid: Heir.AST.Abstract.SyntaxNode.GetLastToken
+  commentId: M:Heir.AST.Abstract.SyntaxNode.GetLastToken
+  id: GetLastToken
+  parent: Heir.AST.Abstract.SyntaxNode
+  langs:
+  - csharp
+  - vb
+  name: GetLastToken()
+  nameWithType: SyntaxNode.GetLastToken()
+  fullName: Heir.AST.Abstract.SyntaxNode.GetLastToken()
+  type: Method
+  source:
+    remote:
+      path: Heir/AST/Abstract/SyntaxNode.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: GetLastToken
+    path: Heir/AST/Abstract/SyntaxNode.cs
+    startLine: 10
+  assemblies:
+  - Heir
+  namespace: Heir.AST.Abstract
+  syntax:
+    content: public Token GetLastToken()
+    return:
+      type: Heir.Syntax.Token
+    content.vb: Public Function GetLastToken() As Token
+  overload: Heir.AST.Abstract.SyntaxNode.GetLastToken*
+references:
+- uid: Heir.AST.Abstract
+  commentId: N:Heir.AST.Abstract
+  href: Heir.html
+  name: Heir.AST.Abstract
+  nameWithType: Heir.AST.Abstract
+  fullName: Heir.AST.Abstract
+  spec.csharp:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.AST
+    name: AST
+    href: Heir.AST.html
+  - name: .
+  - uid: Heir.AST.Abstract
+    name: Abstract
+    href: Heir.AST.Abstract.html
+  spec.vb:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.AST
+    name: AST
+    href: Heir.AST.html
+  - name: .
+  - uid: Heir.AST.Abstract
+    name: Abstract
+    href: Heir.AST.Abstract.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Heir.AST.Abstract.SyntaxNode.Display*
+  commentId: Overload:Heir.AST.Abstract.SyntaxNode.Display
+  href: Heir.AST.Abstract.SyntaxNode.html#Heir_AST_Abstract_SyntaxNode_Display_System_Int32_
+  name: Display
+  nameWithType: SyntaxNode.Display
+  fullName: Heir.AST.Abstract.SyntaxNode.Display
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Heir.AST.Abstract.SyntaxNode.GetTokens*
+  commentId: Overload:Heir.AST.Abstract.SyntaxNode.GetTokens
+  href: Heir.AST.Abstract.SyntaxNode.html#Heir_AST_Abstract_SyntaxNode_GetTokens
+  name: GetTokens
+  nameWithType: SyntaxNode.GetTokens
+  fullName: Heir.AST.Abstract.SyntaxNode.GetTokens
+- uid: System.Collections.Generic.List{Heir.Syntax.Token}
+  commentId: T:System.Collections.Generic.List{Heir.Syntax.Token}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<Token>
+  nameWithType: List<Token>
+  fullName: System.Collections.Generic.List<Heir.Syntax.Token>
+  nameWithType.vb: List(Of Token)
+  fullName.vb: System.Collections.Generic.List(Of Heir.Syntax.Token)
+  name.vb: List(Of Token)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: Heir.Syntax.Token
+    name: Token
+    href: Heir.Syntax.Token.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Heir.Syntax.Token
+    name: Token
+    href: Heir.Syntax.Token.html
+  - name: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: Heir.AST.Abstract.SyntaxNode.GetFirstToken*
+  commentId: Overload:Heir.AST.Abstract.SyntaxNode.GetFirstToken
+  href: Heir.AST.Abstract.SyntaxNode.html#Heir_AST_Abstract_SyntaxNode_GetFirstToken
+  name: GetFirstToken
+  nameWithType: SyntaxNode.GetFirstToken
+  fullName: Heir.AST.Abstract.SyntaxNode.GetFirstToken
+- uid: Heir.Syntax.Token
+  commentId: T:Heir.Syntax.Token
+  parent: Heir.Syntax
+  href: Heir.Syntax.Token.html
+  name: Token
+  nameWithType: Token
+  fullName: Heir.Syntax.Token
+- uid: Heir.Syntax
+  commentId: N:Heir.Syntax
+  href: Heir.html
+  name: Heir.Syntax
+  nameWithType: Heir.Syntax
+  fullName: Heir.Syntax
+  spec.csharp:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.Syntax
+    name: Syntax
+    href: Heir.Syntax.html
+  spec.vb:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.Syntax
+    name: Syntax
+    href: Heir.Syntax.html
+- uid: Heir.AST.Abstract.SyntaxNode.GetLastToken*
+  commentId: Overload:Heir.AST.Abstract.SyntaxNode.GetLastToken
+  href: Heir.AST.Abstract.SyntaxNode.html#Heir_AST_Abstract_SyntaxNode_GetLastToken
+  name: GetLastToken
+  nameWithType: SyntaxNode.GetLastToken
+  fullName: Heir.AST.Abstract.SyntaxNode.GetLastToken

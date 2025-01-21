@@ -1,0 +1,193 @@
+### YamlMime:ManagedReference
+items:
+- uid: Heir.BoundAST.BoundUnaryOperatorType
+  commentId: T:Heir.BoundAST.BoundUnaryOperatorType
+  id: BoundUnaryOperatorType
+  parent: Heir.BoundAST
+  children:
+  - Heir.BoundAST.BoundUnaryOperatorType.BitwiseNot
+  - Heir.BoundAST.BoundUnaryOperatorType.Decrement
+  - Heir.BoundAST.BoundUnaryOperatorType.Increment
+  - Heir.BoundAST.BoundUnaryOperatorType.LogicalNot
+  - Heir.BoundAST.BoundUnaryOperatorType.Negate
+  langs:
+  - csharp
+  - vb
+  name: BoundUnaryOperatorType
+  nameWithType: BoundUnaryOperatorType
+  fullName: Heir.BoundAST.BoundUnaryOperatorType
+  type: Enum
+  source:
+    remote:
+      path: Heir/BoundAST/BoundUnaryOperator.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: BoundUnaryOperatorType
+    path: Heir/BoundAST/BoundUnaryOperator.cs
+    startLine: 6
+  assemblies:
+  - Heir
+  namespace: Heir.BoundAST
+  syntax:
+    content: public enum BoundUnaryOperatorType
+    content.vb: Public Enum BoundUnaryOperatorType
+- uid: Heir.BoundAST.BoundUnaryOperatorType.Negate
+  commentId: F:Heir.BoundAST.BoundUnaryOperatorType.Negate
+  id: Negate
+  parent: Heir.BoundAST.BoundUnaryOperatorType
+  langs:
+  - csharp
+  - vb
+  name: Negate
+  nameWithType: BoundUnaryOperatorType.Negate
+  fullName: Heir.BoundAST.BoundUnaryOperatorType.Negate
+  type: Field
+  source:
+    remote:
+      path: Heir/BoundAST/BoundUnaryOperator.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Negate
+    path: Heir/BoundAST/BoundUnaryOperator.cs
+    startLine: 8
+  assemblies:
+  - Heir
+  namespace: Heir.BoundAST
+  syntax:
+    content: Negate = 0
+    return:
+      type: Heir.BoundAST.BoundUnaryOperatorType
+- uid: Heir.BoundAST.BoundUnaryOperatorType.Increment
+  commentId: F:Heir.BoundAST.BoundUnaryOperatorType.Increment
+  id: Increment
+  parent: Heir.BoundAST.BoundUnaryOperatorType
+  langs:
+  - csharp
+  - vb
+  name: Increment
+  nameWithType: BoundUnaryOperatorType.Increment
+  fullName: Heir.BoundAST.BoundUnaryOperatorType.Increment
+  type: Field
+  source:
+    remote:
+      path: Heir/BoundAST/BoundUnaryOperator.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Increment
+    path: Heir/BoundAST/BoundUnaryOperator.cs
+    startLine: 9
+  assemblies:
+  - Heir
+  namespace: Heir.BoundAST
+  syntax:
+    content: Increment = 1
+    return:
+      type: Heir.BoundAST.BoundUnaryOperatorType
+- uid: Heir.BoundAST.BoundUnaryOperatorType.Decrement
+  commentId: F:Heir.BoundAST.BoundUnaryOperatorType.Decrement
+  id: Decrement
+  parent: Heir.BoundAST.BoundUnaryOperatorType
+  langs:
+  - csharp
+  - vb
+  name: Decrement
+  nameWithType: BoundUnaryOperatorType.Decrement
+  fullName: Heir.BoundAST.BoundUnaryOperatorType.Decrement
+  type: Field
+  source:
+    remote:
+      path: Heir/BoundAST/BoundUnaryOperator.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Decrement
+    path: Heir/BoundAST/BoundUnaryOperator.cs
+    startLine: 10
+  assemblies:
+  - Heir
+  namespace: Heir.BoundAST
+  syntax:
+    content: Decrement = 2
+    return:
+      type: Heir.BoundAST.BoundUnaryOperatorType
+- uid: Heir.BoundAST.BoundUnaryOperatorType.LogicalNot
+  commentId: F:Heir.BoundAST.BoundUnaryOperatorType.LogicalNot
+  id: LogicalNot
+  parent: Heir.BoundAST.BoundUnaryOperatorType
+  langs:
+  - csharp
+  - vb
+  name: LogicalNot
+  nameWithType: BoundUnaryOperatorType.LogicalNot
+  fullName: Heir.BoundAST.BoundUnaryOperatorType.LogicalNot
+  type: Field
+  source:
+    remote:
+      path: Heir/BoundAST/BoundUnaryOperator.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: LogicalNot
+    path: Heir/BoundAST/BoundUnaryOperator.cs
+    startLine: 11
+  assemblies:
+  - Heir
+  namespace: Heir.BoundAST
+  syntax:
+    content: LogicalNot = 3
+    return:
+      type: Heir.BoundAST.BoundUnaryOperatorType
+- uid: Heir.BoundAST.BoundUnaryOperatorType.BitwiseNot
+  commentId: F:Heir.BoundAST.BoundUnaryOperatorType.BitwiseNot
+  id: BitwiseNot
+  parent: Heir.BoundAST.BoundUnaryOperatorType
+  langs:
+  - csharp
+  - vb
+  name: BitwiseNot
+  nameWithType: BoundUnaryOperatorType.BitwiseNot
+  fullName: Heir.BoundAST.BoundUnaryOperatorType.BitwiseNot
+  type: Field
+  source:
+    remote:
+      path: Heir/BoundAST/BoundUnaryOperator.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: BitwiseNot
+    path: Heir/BoundAST/BoundUnaryOperator.cs
+    startLine: 12
+  assemblies:
+  - Heir
+  namespace: Heir.BoundAST
+  syntax:
+    content: BitwiseNot = 4
+    return:
+      type: Heir.BoundAST.BoundUnaryOperatorType
+references:
+- uid: Heir.BoundAST
+  commentId: N:Heir.BoundAST
+  href: Heir.html
+  name: Heir.BoundAST
+  nameWithType: Heir.BoundAST
+  fullName: Heir.BoundAST
+  spec.csharp:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.BoundAST
+    name: BoundAST
+    href: Heir.BoundAST.html
+  spec.vb:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.BoundAST
+    name: BoundAST
+    href: Heir.BoundAST.html
+- uid: Heir.BoundAST.BoundUnaryOperatorType
+  commentId: T:Heir.BoundAST.BoundUnaryOperatorType
+  parent: Heir.BoundAST
+  href: Heir.BoundAST.BoundUnaryOperatorType.html
+  name: BoundUnaryOperatorType
+  nameWithType: BoundUnaryOperatorType
+  fullName: Heir.BoundAST.BoundUnaryOperatorType

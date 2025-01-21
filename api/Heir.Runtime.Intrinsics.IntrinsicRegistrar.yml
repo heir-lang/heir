@@ -1,0 +1,559 @@
+### YamlMime:ManagedReference
+items:
+- uid: Heir.Runtime.Intrinsics.IntrinsicRegistrar
+  commentId: T:Heir.Runtime.Intrinsics.IntrinsicRegistrar
+  id: IntrinsicRegistrar
+  parent: Heir.Runtime.Intrinsics
+  children:
+  - Heir.Runtime.Intrinsics.IntrinsicRegistrar.#ctor(Heir.Runtime.Intrinsics.IntrinsicValue)
+  - Heir.Runtime.Intrinsics.IntrinsicRegistrar.IsGlobal
+  - Heir.Runtime.Intrinsics.IntrinsicRegistrar.RegisterInResolver(Heir.Resolver)
+  - Heir.Runtime.Intrinsics.IntrinsicRegistrar.RegisterSymbol(Heir.Binder)
+  - Heir.Runtime.Intrinsics.IntrinsicRegistrar.RegisterValue(Heir.Runtime.Scope)
+  langs:
+  - csharp
+  - vb
+  name: IntrinsicRegistrar
+  nameWithType: IntrinsicRegistrar
+  fullName: Heir.Runtime.Intrinsics.IntrinsicRegistrar
+  type: Class
+  source:
+    remote:
+      path: Heir/Runtime/Intrinsics/IntrinsicRegistrar.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: IntrinsicRegistrar
+    path: Heir/Runtime/Intrinsics/IntrinsicRegistrar.cs
+    startLine: 4
+  assemblies:
+  - Heir
+  namespace: Heir.Runtime.Intrinsics
+  syntax:
+    content: public class IntrinsicRegistrar
+    content.vb: Public Class IntrinsicRegistrar
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Heir.Runtime.Intrinsics.IntrinsicRegistrar.#ctor(Heir.Runtime.Intrinsics.IntrinsicValue)
+  commentId: M:Heir.Runtime.Intrinsics.IntrinsicRegistrar.#ctor(Heir.Runtime.Intrinsics.IntrinsicValue)
+  id: '#ctor(Heir.Runtime.Intrinsics.IntrinsicValue)'
+  parent: Heir.Runtime.Intrinsics.IntrinsicRegistrar
+  langs:
+  - csharp
+  - vb
+  name: IntrinsicRegistrar(IntrinsicValue)
+  nameWithType: IntrinsicRegistrar.IntrinsicRegistrar(IntrinsicValue)
+  fullName: Heir.Runtime.Intrinsics.IntrinsicRegistrar.IntrinsicRegistrar(Heir.Runtime.Intrinsics.IntrinsicValue)
+  type: Constructor
+  source:
+    remote:
+      path: Heir/Runtime/Intrinsics/IntrinsicRegistrar.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: .ctor
+    path: Heir/Runtime/Intrinsics/IntrinsicRegistrar.cs
+    startLine: 4
+  assemblies:
+  - Heir
+  namespace: Heir.Runtime.Intrinsics
+  syntax:
+    content: public IntrinsicRegistrar(IntrinsicValue intrinsicValue)
+    parameters:
+    - id: intrinsicValue
+      type: Heir.Runtime.Intrinsics.IntrinsicValue
+    content.vb: Public Sub New(intrinsicValue As IntrinsicValue)
+  overload: Heir.Runtime.Intrinsics.IntrinsicRegistrar.#ctor*
+  nameWithType.vb: IntrinsicRegistrar.New(IntrinsicValue)
+  fullName.vb: Heir.Runtime.Intrinsics.IntrinsicRegistrar.New(Heir.Runtime.Intrinsics.IntrinsicValue)
+  name.vb: New(IntrinsicValue)
+- uid: Heir.Runtime.Intrinsics.IntrinsicRegistrar.IsGlobal
+  commentId: P:Heir.Runtime.Intrinsics.IntrinsicRegistrar.IsGlobal
+  id: IsGlobal
+  parent: Heir.Runtime.Intrinsics.IntrinsicRegistrar
+  langs:
+  - csharp
+  - vb
+  name: IsGlobal
+  nameWithType: IntrinsicRegistrar.IsGlobal
+  fullName: Heir.Runtime.Intrinsics.IntrinsicRegistrar.IsGlobal
+  type: Property
+  source:
+    remote:
+      path: Heir/Runtime/Intrinsics/IntrinsicRegistrar.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: IsGlobal
+    path: Heir/Runtime/Intrinsics/IntrinsicRegistrar.cs
+    startLine: 8
+  assemblies:
+  - Heir
+  namespace: Heir.Runtime.Intrinsics
+  syntax:
+    content: public bool IsGlobal { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property IsGlobal As Boolean
+  overload: Heir.Runtime.Intrinsics.IntrinsicRegistrar.IsGlobal*
+- uid: Heir.Runtime.Intrinsics.IntrinsicRegistrar.RegisterInResolver(Heir.Resolver)
+  commentId: M:Heir.Runtime.Intrinsics.IntrinsicRegistrar.RegisterInResolver(Heir.Resolver)
+  id: RegisterInResolver(Heir.Resolver)
+  parent: Heir.Runtime.Intrinsics.IntrinsicRegistrar
+  langs:
+  - csharp
+  - vb
+  name: RegisterInResolver(Resolver)
+  nameWithType: IntrinsicRegistrar.RegisterInResolver(Resolver)
+  fullName: Heir.Runtime.Intrinsics.IntrinsicRegistrar.RegisterInResolver(Heir.Resolver)
+  type: Method
+  source:
+    remote:
+      path: Heir/Runtime/Intrinsics/IntrinsicRegistrar.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: RegisterInResolver
+    path: Heir/Runtime/Intrinsics/IntrinsicRegistrar.cs
+    startLine: 12
+  assemblies:
+  - Heir
+  namespace: Heir.Runtime.Intrinsics
+  syntax:
+    content: public void RegisterInResolver(Resolver resolver)
+    parameters:
+    - id: resolver
+      type: Heir.Resolver
+    content.vb: Public Sub RegisterInResolver(resolver As Resolver)
+  overload: Heir.Runtime.Intrinsics.IntrinsicRegistrar.RegisterInResolver*
+- uid: Heir.Runtime.Intrinsics.IntrinsicRegistrar.RegisterSymbol(Heir.Binder)
+  commentId: M:Heir.Runtime.Intrinsics.IntrinsicRegistrar.RegisterSymbol(Heir.Binder)
+  id: RegisterSymbol(Heir.Binder)
+  parent: Heir.Runtime.Intrinsics.IntrinsicRegistrar
+  langs:
+  - csharp
+  - vb
+  name: RegisterSymbol(Binder)
+  nameWithType: IntrinsicRegistrar.RegisterSymbol(Binder)
+  fullName: Heir.Runtime.Intrinsics.IntrinsicRegistrar.RegisterSymbol(Heir.Binder)
+  type: Method
+  source:
+    remote:
+      path: Heir/Runtime/Intrinsics/IntrinsicRegistrar.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: RegisterSymbol
+    path: Heir/Runtime/Intrinsics/IntrinsicRegistrar.cs
+    startLine: 18
+  assemblies:
+  - Heir
+  namespace: Heir.Runtime.Intrinsics
+  syntax:
+    content: public void RegisterSymbol(Binder binder)
+    parameters:
+    - id: binder
+      type: Heir.Binder
+    content.vb: Public Sub RegisterSymbol(binder As Binder)
+  overload: Heir.Runtime.Intrinsics.IntrinsicRegistrar.RegisterSymbol*
+- uid: Heir.Runtime.Intrinsics.IntrinsicRegistrar.RegisterValue(Heir.Runtime.Scope)
+  commentId: M:Heir.Runtime.Intrinsics.IntrinsicRegistrar.RegisterValue(Heir.Runtime.Scope)
+  id: RegisterValue(Heir.Runtime.Scope)
+  parent: Heir.Runtime.Intrinsics.IntrinsicRegistrar
+  langs:
+  - csharp
+  - vb
+  name: RegisterValue(Scope)
+  nameWithType: IntrinsicRegistrar.RegisterValue(Scope)
+  fullName: Heir.Runtime.Intrinsics.IntrinsicRegistrar.RegisterValue(Heir.Runtime.Scope)
+  type: Method
+  source:
+    remote:
+      path: Heir/Runtime/Intrinsics/IntrinsicRegistrar.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: RegisterValue
+    path: Heir/Runtime/Intrinsics/IntrinsicRegistrar.cs
+    startLine: 21
+  assemblies:
+  - Heir
+  namespace: Heir.Runtime.Intrinsics
+  syntax:
+    content: public void RegisterValue(Scope scope)
+    parameters:
+    - id: scope
+      type: Heir.Runtime.Scope
+    content.vb: Public Sub RegisterValue(scope As Scope)
+  overload: Heir.Runtime.Intrinsics.IntrinsicRegistrar.RegisterValue*
+references:
+- uid: Heir.Runtime.Intrinsics
+  commentId: N:Heir.Runtime.Intrinsics
+  href: Heir.html
+  name: Heir.Runtime.Intrinsics
+  nameWithType: Heir.Runtime.Intrinsics
+  fullName: Heir.Runtime.Intrinsics
+  spec.csharp:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.Runtime
+    name: Runtime
+    href: Heir.Runtime.html
+  - name: .
+  - uid: Heir.Runtime.Intrinsics
+    name: Intrinsics
+    href: Heir.Runtime.Intrinsics.html
+  spec.vb:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.Runtime
+    name: Runtime
+    href: Heir.Runtime.html
+  - name: .
+  - uid: Heir.Runtime.Intrinsics
+    name: Intrinsics
+    href: Heir.Runtime.Intrinsics.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Heir.Runtime.Intrinsics.IntrinsicRegistrar.#ctor*
+  commentId: Overload:Heir.Runtime.Intrinsics.IntrinsicRegistrar.#ctor
+  href: Heir.Runtime.Intrinsics.IntrinsicRegistrar.html#Heir_Runtime_Intrinsics_IntrinsicRegistrar__ctor_Heir_Runtime_Intrinsics_IntrinsicValue_
+  name: IntrinsicRegistrar
+  nameWithType: IntrinsicRegistrar.IntrinsicRegistrar
+  fullName: Heir.Runtime.Intrinsics.IntrinsicRegistrar.IntrinsicRegistrar
+  nameWithType.vb: IntrinsicRegistrar.New
+  fullName.vb: Heir.Runtime.Intrinsics.IntrinsicRegistrar.New
+  name.vb: New
+- uid: Heir.Runtime.Intrinsics.IntrinsicValue
+  commentId: T:Heir.Runtime.Intrinsics.IntrinsicValue
+  parent: Heir.Runtime.Intrinsics
+  href: Heir.Runtime.Intrinsics.IntrinsicValue.html
+  name: IntrinsicValue
+  nameWithType: IntrinsicValue
+  fullName: Heir.Runtime.Intrinsics.IntrinsicValue
+- uid: Heir.Runtime.Intrinsics.IntrinsicRegistrar.IsGlobal*
+  commentId: Overload:Heir.Runtime.Intrinsics.IntrinsicRegistrar.IsGlobal
+  href: Heir.Runtime.Intrinsics.IntrinsicRegistrar.html#Heir_Runtime_Intrinsics_IntrinsicRegistrar_IsGlobal
+  name: IsGlobal
+  nameWithType: IntrinsicRegistrar.IsGlobal
+  fullName: Heir.Runtime.Intrinsics.IntrinsicRegistrar.IsGlobal
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Heir.Runtime.Intrinsics.IntrinsicRegistrar.RegisterInResolver*
+  commentId: Overload:Heir.Runtime.Intrinsics.IntrinsicRegistrar.RegisterInResolver
+  href: Heir.Runtime.Intrinsics.IntrinsicRegistrar.html#Heir_Runtime_Intrinsics_IntrinsicRegistrar_RegisterInResolver_Heir_Resolver_
+  name: RegisterInResolver
+  nameWithType: IntrinsicRegistrar.RegisterInResolver
+  fullName: Heir.Runtime.Intrinsics.IntrinsicRegistrar.RegisterInResolver
+- uid: Heir.Resolver
+  commentId: T:Heir.Resolver
+  parent: Heir
+  href: Heir.Resolver.html
+  name: Resolver
+  nameWithType: Resolver
+  fullName: Heir.Resolver
+- uid: Heir
+  commentId: N:Heir
+  href: Heir.html
+  name: Heir
+  nameWithType: Heir
+  fullName: Heir
+- uid: Heir.Runtime.Intrinsics.IntrinsicRegistrar.RegisterSymbol*
+  commentId: Overload:Heir.Runtime.Intrinsics.IntrinsicRegistrar.RegisterSymbol
+  href: Heir.Runtime.Intrinsics.IntrinsicRegistrar.html#Heir_Runtime_Intrinsics_IntrinsicRegistrar_RegisterSymbol_Heir_Binder_
+  name: RegisterSymbol
+  nameWithType: IntrinsicRegistrar.RegisterSymbol
+  fullName: Heir.Runtime.Intrinsics.IntrinsicRegistrar.RegisterSymbol
+- uid: Heir.Binder
+  commentId: T:Heir.Binder
+  parent: Heir
+  href: Heir.Binder.html
+  name: Binder
+  nameWithType: Binder
+  fullName: Heir.Binder
+- uid: Heir.Runtime.Intrinsics.IntrinsicRegistrar.RegisterValue*
+  commentId: Overload:Heir.Runtime.Intrinsics.IntrinsicRegistrar.RegisterValue
+  href: Heir.Runtime.Intrinsics.IntrinsicRegistrar.html#Heir_Runtime_Intrinsics_IntrinsicRegistrar_RegisterValue_Heir_Runtime_Scope_
+  name: RegisterValue
+  nameWithType: IntrinsicRegistrar.RegisterValue
+  fullName: Heir.Runtime.Intrinsics.IntrinsicRegistrar.RegisterValue
+- uid: Heir.Runtime.Scope
+  commentId: T:Heir.Runtime.Scope
+  parent: Heir.Runtime
+  href: Heir.Runtime.Scope.html
+  name: Scope
+  nameWithType: Scope
+  fullName: Heir.Runtime.Scope
+- uid: Heir.Runtime
+  commentId: N:Heir.Runtime
+  href: Heir.html
+  name: Heir.Runtime
+  nameWithType: Heir.Runtime
+  fullName: Heir.Runtime
+  spec.csharp:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.Runtime
+    name: Runtime
+    href: Heir.Runtime.html
+  spec.vb:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.Runtime
+    name: Runtime
+    href: Heir.Runtime.html

@@ -1,0 +1,706 @@
+### YamlMime:ManagedReference
+items:
+- uid: Heir.Runtime.Intrinsics.IntrinsicFunction
+  commentId: T:Heir.Runtime.Intrinsics.IntrinsicFunction
+  id: IntrinsicFunction
+  parent: Heir.Runtime.Intrinsics
+  children:
+  - Heir.Runtime.Intrinsics.IntrinsicFunction.#ctor(System.String,System.Collections.Generic.Dictionary{System.String,Heir.Types.BaseType},Heir.Types.BaseType,System.Boolean)
+  - Heir.Runtime.Intrinsics.IntrinsicFunction.Invoke
+  - Heir.Runtime.Intrinsics.IntrinsicFunction.Value
+  langs:
+  - csharp
+  - vb
+  name: IntrinsicFunction
+  nameWithType: IntrinsicFunction
+  fullName: Heir.Runtime.Intrinsics.IntrinsicFunction
+  type: Class
+  source:
+    remote:
+      path: Heir/Runtime/Intrinsics/IntrinsicFunction.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: IntrinsicFunction
+    path: Heir/Runtime/Intrinsics/IntrinsicFunction.cs
+    startLine: 4
+  assemblies:
+  - Heir
+  namespace: Heir.Runtime.Intrinsics
+  syntax:
+    content: 'public abstract class IntrinsicFunction : IntrinsicValue, IValue'
+    content.vb: Public MustInherit Class IntrinsicFunction Inherits IntrinsicValue Implements IValue
+  inheritance:
+  - System.Object
+  - Heir.Runtime.Intrinsics.IntrinsicValue
+  derivedClasses:
+  - Heir.Runtime.Intrinsics.Global.NowFunction
+  - Heir.Runtime.Intrinsics.Global.PrintFunction
+  implements:
+  - Heir.Runtime.Values.IValue
+  inheritedMembers:
+  - Heir.Runtime.Intrinsics.IntrinsicValue.Name
+  - Heir.Runtime.Intrinsics.IntrinsicValue.Type
+  - Heir.Runtime.Intrinsics.IntrinsicValue.IsGlobal
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Heir.Runtime.Intrinsics.IntrinsicFunction.#ctor(System.String,System.Collections.Generic.Dictionary{System.String,Heir.Types.BaseType},Heir.Types.BaseType,System.Boolean)
+  commentId: M:Heir.Runtime.Intrinsics.IntrinsicFunction.#ctor(System.String,System.Collections.Generic.Dictionary{System.String,Heir.Types.BaseType},Heir.Types.BaseType,System.Boolean)
+  id: '#ctor(System.String,System.Collections.Generic.Dictionary{System.String,Heir.Types.BaseType},Heir.Types.BaseType,System.Boolean)'
+  parent: Heir.Runtime.Intrinsics.IntrinsicFunction
+  langs:
+  - csharp
+  - vb
+  name: IntrinsicFunction(string, Dictionary<string, BaseType>, BaseType, bool)
+  nameWithType: IntrinsicFunction.IntrinsicFunction(string, Dictionary<string, BaseType>, BaseType, bool)
+  fullName: Heir.Runtime.Intrinsics.IntrinsicFunction.IntrinsicFunction(string, System.Collections.Generic.Dictionary<string, Heir.Types.BaseType>, Heir.Types.BaseType, bool)
+  type: Constructor
+  source:
+    remote:
+      path: Heir/Runtime/Intrinsics/IntrinsicFunction.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: .ctor
+    path: Heir/Runtime/Intrinsics/IntrinsicFunction.cs
+    startLine: 4
+  assemblies:
+  - Heir
+  namespace: Heir.Runtime.Intrinsics
+  syntax:
+    content: protected IntrinsicFunction(string name, Dictionary<string, BaseType> parameterTypes, BaseType returnType, bool isGlobal)
+    parameters:
+    - id: name
+      type: System.String
+    - id: parameterTypes
+      type: System.Collections.Generic.Dictionary{System.String,Heir.Types.BaseType}
+    - id: returnType
+      type: Heir.Types.BaseType
+    - id: isGlobal
+      type: System.Boolean
+    content.vb: Protected Sub New(name As String, parameterTypes As Dictionary(Of String, BaseType), returnType As BaseType, isGlobal As Boolean)
+  overload: Heir.Runtime.Intrinsics.IntrinsicFunction.#ctor*
+  nameWithType.vb: IntrinsicFunction.New(String, Dictionary(Of String, BaseType), BaseType, Boolean)
+  fullName.vb: Heir.Runtime.Intrinsics.IntrinsicFunction.New(String, System.Collections.Generic.Dictionary(Of String, Heir.Types.BaseType), Heir.Types.BaseType, Boolean)
+  name.vb: New(String, Dictionary(Of String, BaseType), BaseType, Boolean)
+- uid: Heir.Runtime.Intrinsics.IntrinsicFunction.Value
+  commentId: P:Heir.Runtime.Intrinsics.IntrinsicFunction.Value
+  id: Value
+  parent: Heir.Runtime.Intrinsics.IntrinsicFunction
+  langs:
+  - csharp
+  - vb
+  name: Value
+  nameWithType: IntrinsicFunction.Value
+  fullName: Heir.Runtime.Intrinsics.IntrinsicFunction.Value
+  type: Property
+  source:
+    remote:
+      path: Heir/Runtime/Intrinsics/IntrinsicFunction.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Value
+    path: Heir/Runtime/Intrinsics/IntrinsicFunction.cs
+    startLine: 7
+  assemblies:
+  - Heir
+  namespace: Heir.Runtime.Intrinsics
+  example: []
+  syntax:
+    content: public override IntrinsicFunction Value { get; }
+    parameters: []
+    return:
+      type: Heir.Runtime.Intrinsics.IntrinsicFunction
+    content.vb: Public Overrides ReadOnly Property Value As IntrinsicFunction
+  overridden: Heir.Runtime.Intrinsics.IntrinsicValue.Value
+  overload: Heir.Runtime.Intrinsics.IntrinsicFunction.Value*
+- uid: Heir.Runtime.Intrinsics.IntrinsicFunction.Invoke
+  commentId: P:Heir.Runtime.Intrinsics.IntrinsicFunction.Invoke
+  id: Invoke
+  parent: Heir.Runtime.Intrinsics.IntrinsicFunction
+  langs:
+  - csharp
+  - vb
+  name: Invoke
+  nameWithType: IntrinsicFunction.Invoke
+  fullName: Heir.Runtime.Intrinsics.IntrinsicFunction.Invoke
+  type: Property
+  source:
+    remote:
+      path: Heir/Runtime/Intrinsics/IntrinsicFunction.cs
+      branch: master
+      repo: git@github.com:heir-lang/heir.git
+    id: Invoke
+    path: Heir/Runtime/Intrinsics/IntrinsicFunction.cs
+    startLine: 10
+  assemblies:
+  - Heir
+  namespace: Heir.Runtime.Intrinsics
+  syntax:
+    content: public abstract IntrinsicFunction.BaseDelegate Invoke { get; }
+    parameters: []
+    return:
+      type: Heir.Runtime.Intrinsics.IntrinsicFunction.BaseDelegate
+    content.vb: Public MustOverride ReadOnly Property Invoke As IntrinsicFunction.BaseDelegate
+  overload: Heir.Runtime.Intrinsics.IntrinsicFunction.Invoke*
+references:
+- uid: Heir.Runtime.Intrinsics
+  commentId: N:Heir.Runtime.Intrinsics
+  href: Heir.html
+  name: Heir.Runtime.Intrinsics
+  nameWithType: Heir.Runtime.Intrinsics
+  fullName: Heir.Runtime.Intrinsics
+  spec.csharp:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.Runtime
+    name: Runtime
+    href: Heir.Runtime.html
+  - name: .
+  - uid: Heir.Runtime.Intrinsics
+    name: Intrinsics
+    href: Heir.Runtime.Intrinsics.html
+  spec.vb:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.Runtime
+    name: Runtime
+    href: Heir.Runtime.html
+  - name: .
+  - uid: Heir.Runtime.Intrinsics
+    name: Intrinsics
+    href: Heir.Runtime.Intrinsics.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Heir.Runtime.Intrinsics.IntrinsicValue
+  commentId: T:Heir.Runtime.Intrinsics.IntrinsicValue
+  parent: Heir.Runtime.Intrinsics
+  href: Heir.Runtime.Intrinsics.IntrinsicValue.html
+  name: IntrinsicValue
+  nameWithType: IntrinsicValue
+  fullName: Heir.Runtime.Intrinsics.IntrinsicValue
+- uid: Heir.Runtime.Values.IValue
+  commentId: T:Heir.Runtime.Values.IValue
+  parent: Heir.Runtime.Values
+  href: Heir.Runtime.Values.IValue.html
+  name: IValue
+  nameWithType: IValue
+  fullName: Heir.Runtime.Values.IValue
+- uid: Heir.Runtime.Intrinsics.IntrinsicValue.Name
+  commentId: P:Heir.Runtime.Intrinsics.IntrinsicValue.Name
+  parent: Heir.Runtime.Intrinsics.IntrinsicValue
+  href: Heir.Runtime.Intrinsics.IntrinsicValue.html#Heir_Runtime_Intrinsics_IntrinsicValue_Name
+  name: Name
+  nameWithType: IntrinsicValue.Name
+  fullName: Heir.Runtime.Intrinsics.IntrinsicValue.Name
+- uid: Heir.Runtime.Intrinsics.IntrinsicValue.Type
+  commentId: P:Heir.Runtime.Intrinsics.IntrinsicValue.Type
+  parent: Heir.Runtime.Intrinsics.IntrinsicValue
+  href: Heir.Runtime.Intrinsics.IntrinsicValue.html#Heir_Runtime_Intrinsics_IntrinsicValue_Type
+  name: Type
+  nameWithType: IntrinsicValue.Type
+  fullName: Heir.Runtime.Intrinsics.IntrinsicValue.Type
+- uid: Heir.Runtime.Intrinsics.IntrinsicValue.IsGlobal
+  commentId: P:Heir.Runtime.Intrinsics.IntrinsicValue.IsGlobal
+  parent: Heir.Runtime.Intrinsics.IntrinsicValue
+  href: Heir.Runtime.Intrinsics.IntrinsicValue.html#Heir_Runtime_Intrinsics_IntrinsicValue_IsGlobal
+  name: IsGlobal
+  nameWithType: IntrinsicValue.IsGlobal
+  fullName: Heir.Runtime.Intrinsics.IntrinsicValue.IsGlobal
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Heir.Runtime.Values
+  commentId: N:Heir.Runtime.Values
+  href: Heir.html
+  name: Heir.Runtime.Values
+  nameWithType: Heir.Runtime.Values
+  fullName: Heir.Runtime.Values
+  spec.csharp:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.Runtime
+    name: Runtime
+    href: Heir.Runtime.html
+  - name: .
+  - uid: Heir.Runtime.Values
+    name: Values
+    href: Heir.Runtime.Values.html
+  spec.vb:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.Runtime
+    name: Runtime
+    href: Heir.Runtime.html
+  - name: .
+  - uid: Heir.Runtime.Values
+    name: Values
+    href: Heir.Runtime.Values.html
+- uid: Heir.Runtime.Intrinsics.IntrinsicFunction.#ctor*
+  commentId: Overload:Heir.Runtime.Intrinsics.IntrinsicFunction.#ctor
+  href: Heir.Runtime.Intrinsics.IntrinsicFunction.html#Heir_Runtime_Intrinsics_IntrinsicFunction__ctor_System_String_System_Collections_Generic_Dictionary_System_String_Heir_Types_BaseType__Heir_Types_BaseType_System_Boolean_
+  name: IntrinsicFunction
+  nameWithType: IntrinsicFunction.IntrinsicFunction
+  fullName: Heir.Runtime.Intrinsics.IntrinsicFunction.IntrinsicFunction
+  nameWithType.vb: IntrinsicFunction.New
+  fullName.vb: Heir.Runtime.Intrinsics.IntrinsicFunction.New
+  name.vb: New
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Collections.Generic.Dictionary{System.String,Heir.Types.BaseType}
+  commentId: T:System.Collections.Generic.Dictionary{System.String,Heir.Types.BaseType}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.Dictionary`2
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  name: Dictionary<string, BaseType>
+  nameWithType: Dictionary<string, BaseType>
+  fullName: System.Collections.Generic.Dictionary<string, Heir.Types.BaseType>
+  nameWithType.vb: Dictionary(Of String, BaseType)
+  fullName.vb: System.Collections.Generic.Dictionary(Of String, Heir.Types.BaseType)
+  name.vb: Dictionary(Of String, BaseType)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: Heir.Types.BaseType
+    name: BaseType
+    href: Heir.Types.BaseType.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: Heir.Types.BaseType
+    name: BaseType
+    href: Heir.Types.BaseType.html
+  - name: )
+- uid: Heir.Types.BaseType
+  commentId: T:Heir.Types.BaseType
+  parent: Heir.Types
+  href: Heir.Types.BaseType.html
+  name: BaseType
+  nameWithType: BaseType
+  fullName: Heir.Types.BaseType
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System.Collections.Generic.Dictionary`2
+  commentId: T:System.Collections.Generic.Dictionary`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  name: Dictionary<TKey, TValue>
+  nameWithType: Dictionary<TKey, TValue>
+  fullName: System.Collections.Generic.Dictionary<TKey, TValue>
+  nameWithType.vb: Dictionary(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.Dictionary(Of TKey, TValue)
+  name.vb: Dictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: <
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: Heir.Types
+  commentId: N:Heir.Types
+  href: Heir.html
+  name: Heir.Types
+  nameWithType: Heir.Types
+  fullName: Heir.Types
+  spec.csharp:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.Types
+    name: Types
+    href: Heir.Types.html
+  spec.vb:
+  - uid: Heir
+    name: Heir
+    href: Heir.html
+  - name: .
+  - uid: Heir.Types
+    name: Types
+    href: Heir.Types.html
+- uid: Heir.Runtime.Intrinsics.IntrinsicValue.Value
+  commentId: P:Heir.Runtime.Intrinsics.IntrinsicValue.Value
+  parent: Heir.Runtime.Intrinsics.IntrinsicValue
+  href: Heir.Runtime.Intrinsics.IntrinsicValue.html#Heir_Runtime_Intrinsics_IntrinsicValue_Value
+  name: Value
+  nameWithType: IntrinsicValue.Value
+  fullName: Heir.Runtime.Intrinsics.IntrinsicValue.Value
+- uid: Heir.Runtime.Intrinsics.IntrinsicFunction.Value*
+  commentId: Overload:Heir.Runtime.Intrinsics.IntrinsicFunction.Value
+  href: Heir.Runtime.Intrinsics.IntrinsicFunction.html#Heir_Runtime_Intrinsics_IntrinsicFunction_Value
+  name: Value
+  nameWithType: IntrinsicFunction.Value
+  fullName: Heir.Runtime.Intrinsics.IntrinsicFunction.Value
+- uid: Heir.Runtime.Intrinsics.IntrinsicFunction
+  commentId: T:Heir.Runtime.Intrinsics.IntrinsicFunction
+  parent: Heir.Runtime.Intrinsics
+  href: Heir.Runtime.Intrinsics.IntrinsicFunction.html
+  name: IntrinsicFunction
+  nameWithType: IntrinsicFunction
+  fullName: Heir.Runtime.Intrinsics.IntrinsicFunction
+- uid: Heir.Runtime.Intrinsics.IntrinsicFunction.Invoke*
+  commentId: Overload:Heir.Runtime.Intrinsics.IntrinsicFunction.Invoke
+  href: Heir.Runtime.Intrinsics.IntrinsicFunction.html#Heir_Runtime_Intrinsics_IntrinsicFunction_Invoke
+  name: Invoke
+  nameWithType: IntrinsicFunction.Invoke
+  fullName: Heir.Runtime.Intrinsics.IntrinsicFunction.Invoke
+- uid: Heir.Runtime.Intrinsics.IntrinsicFunction.BaseDelegate
+  commentId: T:Heir.Runtime.Intrinsics.IntrinsicFunction.BaseDelegate
+  parent: Heir.Runtime.Intrinsics
+  href: Heir.Runtime.Intrinsics.IntrinsicFunction.html
+  name: IntrinsicFunction.BaseDelegate
+  nameWithType: IntrinsicFunction.BaseDelegate
+  fullName: Heir.Runtime.Intrinsics.IntrinsicFunction.BaseDelegate
+  spec.csharp:
+  - uid: Heir.Runtime.Intrinsics.IntrinsicFunction
+    name: IntrinsicFunction
+    href: Heir.Runtime.Intrinsics.IntrinsicFunction.html
+  - name: .
+  - uid: Heir.Runtime.Intrinsics.IntrinsicFunction.BaseDelegate
+    name: BaseDelegate
+    href: Heir.Runtime.Intrinsics.IntrinsicFunction.BaseDelegate.html
+  spec.vb:
+  - uid: Heir.Runtime.Intrinsics.IntrinsicFunction
+    name: IntrinsicFunction
+    href: Heir.Runtime.Intrinsics.IntrinsicFunction.html
+  - name: .
+  - uid: Heir.Runtime.Intrinsics.IntrinsicFunction.BaseDelegate
+    name: BaseDelegate
+    href: Heir.Runtime.Intrinsics.IntrinsicFunction.BaseDelegate.html
