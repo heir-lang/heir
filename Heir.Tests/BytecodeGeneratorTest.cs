@@ -211,6 +211,7 @@ public class BytecodeGeneratorTest
     [InlineData("!!!!true", true)]
     [InlineData("~3", -4L)]
     [InlineData("-6", -6.0)]
+    [InlineData("-(-(-6))", -6.0)]
     public void Generates_UnaryOperations(string input, object? resultValue)
     {
         var bytecode = GenerateBytecode(input);
@@ -220,29 +221,20 @@ public class BytecodeGeneratorTest
     }
 
     [Theory]
-    [InlineData("let mut a = 1; ++a", OpCode.ADD)]
-    [InlineData("let mut a = 1; --a", OpCode.SUB)]
+    [InlineData("let mut a = 1; ++a", OpCode.INC)]
+    [InlineData("let mut a = 1; --a", OpCode.DEC)]
     public void Generates_UnaryCompoundAssignment(string input, OpCode opCode)
     {
         var bytecode = GenerateBytecode(input).Skip(3);
         var pushIdentifier = bytecode[0];
-        var pushIdentifierAgain = bytecode[1];
-        var load = bytecode[2];
-        var pushOne = bytecode[3];
-        var operation = bytecode[4];
-        var store = bytecode[5];
+        var load = bytecode[1];
+        var operation = bytecode[2];
         Assert.Equal(OpCode.PUSH, pushIdentifier.OpCode);
         Assert.Equal("a", pushIdentifier.Operand);
-        Assert.Equal(OpCode.PUSH, pushIdentifierAgain.OpCode);
-        Assert.Equal("a", pushIdentifierAgain.Operand);
         Assert.Equal(OpCode.LOAD, load.OpCode);
         Assert.Null(load.Operand);
-        Assert.Equal(OpCode.PUSH, pushOne.OpCode);
-        Assert.Equal(1, pushOne.Operand);
         Assert.Equal(opCode, operation.OpCode);
-        Assert.Null(operation.Operand);
-        Assert.Equal(OpCode.STORE, store.OpCode);
-        Assert.True(store.Operand as bool?);
+        Assert.IsType<string>(operation.Operand);
     }
 
     [Theory]
