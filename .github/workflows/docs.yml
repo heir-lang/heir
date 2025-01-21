@@ -31,6 +31,14 @@ jobs:
           # Remove symlinks if present
           find _site -type l -exec rm -f {} \;
 
+          FOLDER_PATH="/path/to/your/folder"
+
+          # Recursively apply chmod 755 to all directories
+          find "$FOLDER_PATH" -type d -exec chmod 755 {} \;
+
+          # Recursively apply chmod 644 to all files
+          find "$FOLDER_PATH" -type f -exec chmod 644 {} \;
+
       - name: Deploy to docs branch
         run: |
           git config --global user.name "github-actions[bot]"
@@ -41,7 +49,7 @@ jobs:
           git push https://github-actions:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} HEAD:docs --force
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-artifact@v4
         with:
           name: github-pages
           path: _site/
