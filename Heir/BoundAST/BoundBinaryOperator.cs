@@ -32,13 +32,6 @@ namespace Heir.BoundAST
 
     public sealed class BoundBinaryOperator
     {
-        public static readonly Dictionary<BoundBinaryOperatorType, OpCode> InvertedOperations = new()
-        {
-            { BoundBinaryOperatorType.GreaterThan,         OpCode.LTE },
-            { BoundBinaryOperatorType.GreaterThanOrEquals, OpCode.LT },
-            { BoundBinaryOperatorType.NotEquals,           OpCode.EQ }
-        };
-
         public static readonly Dictionary<BoundBinaryOperatorType, OpCode> OpCodeMap = new()
         {
             { BoundBinaryOperatorType.Addition,            OpCode.ADD },
@@ -56,11 +49,11 @@ namespace Heir.BoundAST
             { BoundBinaryOperatorType.LogicalAnd,          OpCode.AND },
             { BoundBinaryOperatorType.LogicalOr,           OpCode.OR },
             { BoundBinaryOperatorType.Equals,              OpCode.EQ },
-            { BoundBinaryOperatorType.NotEquals,           OpCode.EQ },
+            { BoundBinaryOperatorType.NotEquals,           OpCode.NEQ },
             { BoundBinaryOperatorType.LessThan,            OpCode.LT },
             { BoundBinaryOperatorType.LessThanOrEquals,    OpCode.LTE },
-            { BoundBinaryOperatorType.GreaterThan,         OpCode.LT },
-            { BoundBinaryOperatorType.GreaterThanOrEquals, OpCode.LTE },
+            { BoundBinaryOperatorType.GreaterThan,         OpCode.GT },
+            { BoundBinaryOperatorType.GreaterThanOrEquals, OpCode.GTE },
             { BoundBinaryOperatorType.Concatenation,       OpCode.CONCAT }
         };
 

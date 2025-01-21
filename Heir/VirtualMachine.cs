@@ -321,6 +321,8 @@ public sealed class VirtualMachine
             case OpCode.POW:
             case OpCode.LT:
             case OpCode.LTE:
+            case OpCode.GT:
+            case OpCode.GTE:
             {
                 var right = Convert.ToDouble(Stack.Pop().Value);
                 var left = Convert.ToDouble(Stack.Pop().Value);
@@ -394,17 +396,21 @@ public sealed class VirtualMachine
                 Advance();
                 break;
             }
+            
             case OpCode.EQ:
+            case OpCode.NEQ:
             {
                 var right = Stack.Pop();
                 var left = Stack.Pop();
                 var equalityComparer = EqualityComparer<object>.Default;
-
-                Stack.Push(new StackFrame(right.Node, equalityComparer.Equals(left.Value, right.Value)));
+                var result = equalityComparer.Equals(left.Value, right.Value);
+                if (instruction.OpCode == OpCode.NEQ)
+                    result = !result;
+                
+                Stack.Push(new StackFrame(right.Node, result));
                 Advance();
                 break;
             }
-
             case OpCode.NOT:
             {
                 var operand = Stack.Pop();
@@ -414,6 +420,7 @@ public sealed class VirtualMachine
                 Advance();
                 break;
             }
+            
             case OpCode.BNOT:
             {
                 var operand = Stack.Pop();

@@ -143,9 +143,10 @@ public class BytecodeGeneratorTest
     [InlineData("7 // 3", 7L, 3L, OpCode.IDIV)]
     [InlineData("1 < 2", 1L, 2L, OpCode.LT)]
     [InlineData("1 <= 2", 1L, 2L, OpCode.LTE)]
-    [InlineData("2 > 1", 2L, 1L, OpCode.LTE)]
+    [InlineData("2 > 1", 2L, 1L, OpCode.GT)]
+    [InlineData("2 >= 1", 2L, 1L, OpCode.GTE)]
     [InlineData("'a' == 'b'", 'a', 'b', OpCode.EQ)]
-    [InlineData("'a' != 'b'", 'a', 'b', OpCode.EQ)]
+    [InlineData("'a' != 'b'", 'a', 'b', OpCode.NEQ)]
     [InlineData("'a' + 'b'", 'a', 'b', OpCode.CONCAT)]
     [InlineData("true && false", true, false, OpCode.AND)]
     [InlineData("14 << 1", 14L, 1L, OpCode.BSHL)]
@@ -161,27 +162,6 @@ public class BytecodeGeneratorTest
         Assert.Equal(rightValue, pushRight.Operand);
         Assert.Equal(opCode, operation.OpCode);
         Assert.Null(operation.Operand);
-    }
-
-    [Theory]
-    [InlineData("2 > 1", 2L, 1L, OpCode.LTE)]
-    [InlineData("2 >= 1", 2L, 1L, OpCode.LT)]
-    [InlineData("'a' != 'b'", 'a', 'b', OpCode.EQ)]
-    public void Generates_InvertedBinaryOperations(string input, object? leftValue, object? rightValue, OpCode opCode)
-    {
-        var bytecode = GenerateBytecode(input);
-        var pushLeft = bytecode[0];
-        var pushRight = bytecode[1];
-        var operation = bytecode[2];
-        var inversion = bytecode[3];
-        Assert.Equal(OpCode.PUSH, pushLeft.OpCode);
-        Assert.Equal(leftValue, pushLeft.Operand);
-        Assert.Equal(OpCode.PUSH, pushRight.OpCode);
-        Assert.Equal(rightValue, pushRight.Operand);
-        Assert.Equal(opCode, operation.OpCode);
-        Assert.Null(operation.Operand);
-        Assert.Equal(OpCode.NOT, inversion.OpCode);
-        Assert.Null(inversion.Operand);
     }
 
     [Fact]

@@ -157,19 +157,13 @@ public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder)
         var rightInstructions = GenerateBytecode(binaryOp.Right);
         var combined = leftInstructions.Concat(rightInstructions);
         var boundOperatorType = boundBinaryOp.Operator.Type;
-
+        
         if (boundOperatorType == BoundBinaryOperatorType.Assignment)
             return PushName((Name)binaryOp.Left)
                 .Concat(rightInstructions)
                 .Append(new Instruction(binaryOp, OpCode.STORE, true))
                 .ToList();
-
-        if (BoundBinaryOperator.InvertedOperations.TryGetValue(boundOperatorType, out var invertedOpCode))
-            return combined
-                .Append(new Instruction(binaryOp, invertedOpCode))
-                .Append(new Instruction(binaryOp, OpCode.NOT))
-                .ToList();
-
+        
         if (BoundBinaryOperator.OpCodeMap.TryGetValue(boundOperatorType, out var opCode))
         {
             return (!SyntaxFacts.BinaryCompoundAssignmentOperators.Contains(binaryOp.Operator.Kind)

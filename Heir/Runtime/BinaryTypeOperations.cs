@@ -14,7 +14,9 @@ public static class BinaryTypeOperations
         { OpCode.MOD, (a, b) => a % b },
         { OpCode.POW, (a, b) => Math.Pow(a, b) },
         { OpCode.LT, (a, b) => a < b },
-        { OpCode.LTE, (a, b) => a <= b }
+        { OpCode.LTE, (a, b) => a <= b },
+        { OpCode.GT, (a, b) => a > b },
+        { OpCode.GTE, (a, b) => a >= b }
     };
 
     public static readonly Dictionary<OpCode, Func<long, long, object?>> Long = new()

@@ -129,8 +129,14 @@ public enum OpCode : byte
     LT,
     /// <summary>Calculates less than or equal to (LTE) on the last two frames in the stack (assuming they're numbers)</summary>
     LTE,
+    /// <summary>Calculates greater than (GT) on the last two frames in the stack (assuming they're numbers)</summary>
+    GT,
+    /// <summary>Calculates greater than or equal to (GTE) on the last two frames in the stack (assuming they're numbers)</summary>
+    GTE,
     /// <summary>Calculates equality of the last two frames in the stack</summary>
     EQ,
+    /// <summary>Calculates inequality of the last two frames in the stack</summary>
+    NEQ,
 
     /// <summary>No operation, blank instruction</summary>
     NOOP,
