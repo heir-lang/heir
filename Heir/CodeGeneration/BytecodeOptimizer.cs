@@ -13,18 +13,30 @@ public class BytecodeOptimizer(List<Instruction> bytecode, DiagnosticBag diagnos
         {
             var instruction = PeekBytecode()!;
             var optimizedInstruction = Optimize(instruction);
-
-            if (optimizedInstruction == null)
+            
+            if (optimizedInstruction != null)
             {
-                optimizedBytecode.Add(instruction);
-                Advance();
+                optimizedBytecode.Add(optimizedInstruction);
                 continue;
             }
             
-            optimizedBytecode.Add(optimizedInstruction);
+            optimizedBytecode.Add(instruction);
+            Advance();
         }
 
         return optimizedBytecode;
+    }
+
+    private Instruction RecursiveOptimize(Instruction instruction)
+    {
+        while (true)
+        {
+            var optimizedInstruction = Optimize(instruction);
+            if (optimizedInstruction == null)
+                return instruction;
+            
+            instruction = optimizedInstruction;
+        }
     }
 
     private Instruction? Optimize(Instruction instruction)
@@ -44,14 +56,28 @@ public class BytecodeOptimizer(List<Instruction> bytecode, DiagnosticBag diagnos
                             OpCode: OpCode.UNM or OpCode.BNOT
                         } operation)
                     {
-                        var result = operation.OpCode == OpCode.UNM
+                        var doubleResult = operation.OpCode == OpCode.UNM
                             ? -Convert.ToDouble(instruction.Operand)
                             : ~Convert.ToInt64(instruction.Operand);
-
+                        
                         Advance();
+                        var newInstruction = RecursiveOptimize(operation.OpCode == OpCode.UNM
+                            ? instruction.WithOperand(doubleResult)
+                            : instruction.WithOperand(Convert.ToInt64(doubleResult)));
+                        
                         Advance();
-                        return instruction.WithOperand(result);
+                        return newInstruction;
                     }
+                }
+                if (PeekBytecode(1) is { OpCode: OpCode.NOT })
+                {
+                    var operand = Convert.ToBoolean(instruction.Operand);
+                    var result = !operand;
+
+                    Advance();
+                    var newInstruction = RecursiveOptimize(instruction.WithOperand(result));
+                    Advance();
+                    return newInstruction;
                 }
                 
                 // binary
@@ -69,9 +95,12 @@ public class BytecodeOptimizer(List<Instruction> bytecode, DiagnosticBag diagnos
                     {
                         var left = Convert.ToString(instruction.Operand);
                         var right = Convert.ToString(rightInstruction.Operand);
+                        
+                        Advance(2);
+                        var newInstruction = RecursiveOptimize(instruction.WithOperand(left + right));
+                        Advance();
 
-                        Advance(3);
-                        return instruction.WithOperand(left + right);
+                        return newInstruction;
                     }
                 }
                 {
@@ -88,8 +117,11 @@ public class BytecodeOptimizer(List<Instruction> bytecode, DiagnosticBag diagnos
                         var right = Convert.ToDouble(rightInstruction.Operand);
                         var result = calculate(left, right);
 
-                        Advance(3);
-                        return instruction.WithOperand(result);
+                        Advance(2);
+                        var newInstruction = RecursiveOptimize(instruction.WithOperand(result));
+                        Advance();
+
+                        return newInstruction;
                     }
                 }
                 {
@@ -106,8 +138,11 @@ public class BytecodeOptimizer(List<Instruction> bytecode, DiagnosticBag diagnos
                         var right = Convert.ToInt64(rightInstruction.Operand);
                         var result = calculate(left, right);
 
-                        Advance(3);
-                        return instruction.WithOperand(result);
+                        Advance(2);
+                        var newInstruction = RecursiveOptimize(instruction.WithOperand(result));
+                        Advance();
+
+                        return newInstruction;
                     }
                 }
                 {
@@ -124,8 +159,11 @@ public class BytecodeOptimizer(List<Instruction> bytecode, DiagnosticBag diagnos
                         var right = Convert.ToInt32(rightInstruction.Operand);
                         var result = Convert.ToInt64(calculate(left, right));
 
-                        Advance(3);
-                        return instruction.WithOperand(result);
+                        Advance(2);
+                        var newInstruction = RecursiveOptimize(instruction.WithOperand(result));
+                        Advance();
+
+                        return newInstruction;
                     }
                 }
                 {
@@ -142,8 +180,11 @@ public class BytecodeOptimizer(List<Instruction> bytecode, DiagnosticBag diagnos
                         var right = Convert.ToBoolean(rightRaw);
                         var result = calculate(left, right);
 
-                        Advance(3);
-                        return instruction.WithOperand(result);
+                        Advance(2);
+                        var newInstruction = RecursiveOptimize(instruction.WithOperand(result));
+                        Advance();
+
+                        return newInstruction;
                     }
                 }
                 {
@@ -163,8 +204,11 @@ public class BytecodeOptimizer(List<Instruction> bytecode, DiagnosticBag diagnos
                         if (operation.OpCode == OpCode.NEQ)
                             result = !result;
 
-                        Advance(3);
-                        return instruction.WithOperand(result);
+                        Advance(2);
+                        var newInstruction = RecursiveOptimize(instruction.WithOperand(result));
+                        Advance();
+
+                        return newInstruction;
                     }
                 }
                 
