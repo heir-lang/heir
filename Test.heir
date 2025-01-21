@@ -1,2 +1,0 @@
-fn double(x: int) -> x * 2;
-double(8);

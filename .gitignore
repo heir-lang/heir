@@ -3,5 +3,8 @@
 
 bin/
 obj/
+*.bin
+Test.heir
+test.heir
 
 *.Dot*.*
