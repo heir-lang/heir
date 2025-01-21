@@ -26,6 +26,11 @@ jobs:
       - name: Generate Documentation
         run: docfx build
 
+      - name: Clean up _site folder
+        run: |
+          # Remove symlinks if present
+          find _site -type l -exec rm -f {} \;
+
       - name: Deploy to docs branch
         run: |
           git config --global user.name "github-actions[bot]"
