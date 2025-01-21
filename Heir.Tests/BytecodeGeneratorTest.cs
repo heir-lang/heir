@@ -139,29 +139,27 @@ public class BytecodeGeneratorTest
     }
 
     [Theory]
-    [InlineData("1 + 2", 1L, 2L, OpCode.ADD)]
-    [InlineData("7 // 3", 7L, 3L, OpCode.IDIV)]
-    [InlineData("1 < 2", 1L, 2L, OpCode.LT)]
-    [InlineData("1 <= 2", 1L, 2L, OpCode.LTE)]
-    [InlineData("2 > 1", 2L, 1L, OpCode.GT)]
-    [InlineData("2 >= 1", 2L, 1L, OpCode.GTE)]
-    [InlineData("'a' == 'b'", 'a', 'b', OpCode.EQ)]
-    [InlineData("'a' != 'b'", 'a', 'b', OpCode.NEQ)]
-    [InlineData("'a' + 'b'", 'a', 'b', OpCode.CONCAT)]
-    [InlineData("true && false", true, false, OpCode.AND)]
-    [InlineData("14 << 1", 14L, 1L, OpCode.BSHL)]
-    public void Generates_BinaryOperations(string input, object? leftValue, object? rightValue, OpCode opCode)
+    [InlineData("1 + 2", 3.0)]
+    [InlineData("3 + 4 + 5", 12.0)]
+    [InlineData("7 // 3", 2L)]
+    [InlineData("1 > 2", false)]
+    [InlineData("1 >= 2", false)]
+    [InlineData("1 < 2", true)]
+    [InlineData("1 <= 2", true)]
+    [InlineData("2 <= 2", true)]
+    [InlineData("2 > 1", true)]
+    [InlineData("2 >= 1", true)]
+    [InlineData("'a' == 'b'", false)]
+    [InlineData("'a' != 'b'", true)]
+    [InlineData("'a' + 'b'", "ab")]
+    [InlineData("true && false", false)]
+    [InlineData("14 << 1", 28L)]
+    public void Generates_BinaryOperations(string input, object? resultValue)
     {
         var bytecode = GenerateBytecode(input);
-        var pushLeft = bytecode[0];
-        var pushRight = bytecode[1];
-        var operation = bytecode[2];
-        Assert.Equal(OpCode.PUSH, pushLeft.OpCode);
-        Assert.Equal(leftValue, pushLeft.Operand);
-        Assert.Equal(OpCode.PUSH, pushRight.OpCode);
-        Assert.Equal(rightValue, pushRight.Operand);
-        Assert.Equal(opCode, operation.OpCode);
-        Assert.Null(operation.Operand);
+        var pushResult = bytecode[0];
+        Assert.Equal(OpCode.PUSH, pushResult.OpCode);
+        Assert.Equal(resultValue, pushResult.Operand);
     }
 
     [Fact]
@@ -206,18 +204,19 @@ public class BytecodeGeneratorTest
     }
 
     [Theory]
-    [InlineData("!false", false, OpCode.NOT)]
-    [InlineData("~3", 3L, OpCode.BNOT)]
-    [InlineData("-6", 6L, OpCode.UNM)]
-    public void Generates_UnaryOperations(string input, object? operandValue, OpCode opCode)
+    [InlineData("!false", true)]
+    [InlineData("!true", false)]
+    [InlineData("!!true", true)]
+    [InlineData("!!!true", false)]
+    [InlineData("!!!!true", true)]
+    [InlineData("~3", -4L)]
+    [InlineData("-6", -6.0)]
+    public void Generates_UnaryOperations(string input, object? resultValue)
     {
         var bytecode = GenerateBytecode(input);
-        var push = bytecode[0];
-        var operation = bytecode[1];
-        Assert.Equal(OpCode.PUSH, push.OpCode);
-        Assert.Equal(operandValue, push.Operand);
-        Assert.Equal(opCode, operation.OpCode);
-        Assert.Null(operation.Operand);
+        var pushResult = bytecode[0];
+        Assert.Equal(OpCode.PUSH, pushResult.OpCode);
+        Assert.Equal(resultValue, pushResult.Operand);
     }
 
     [Theory]
