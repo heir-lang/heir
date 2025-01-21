@@ -4,9 +4,9 @@
     {
       "src": [
         {
-          "src": "../Heir",
+          "src": "./Heir",
           "files": [
-            "**/*.csproj"
+            "*.csproj"
           ]
         }
       ],
