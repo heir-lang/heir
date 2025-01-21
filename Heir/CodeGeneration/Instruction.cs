@@ -2,12 +2,16 @@
 
 namespace Heir.CodeGeneration;
 
-public class Instruction(SyntaxNode? node, OpCode opCode, object? operand = null)
+public class Instruction(SyntaxNode? root, OpCode opCode, object? operand = null)
 {
-    public SyntaxNode? Root { get; } = node!;
+    public SyntaxNode? Root { get; } = root;
     public OpCode OpCode { get; } = opCode;
     public object? Operand { get; } = operand;
-    
+
+    public Instruction WithRoot(SyntaxNode? root) => new(root, OpCode, Operand);
+    public Instruction WithOpCode(OpCode opCode) => new(Root, opCode, Operand);
+    public Instruction WithOperand(object? operand) => new(Root, OpCode, operand);
+
     public bool Equals(Instruction other) =>
         OpCode == other.OpCode &&
         Operand?.Equals(other.Operand) == true;
