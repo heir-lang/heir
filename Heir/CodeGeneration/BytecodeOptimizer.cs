@@ -56,6 +56,25 @@ public class BytecodeOptimizer(List<Instruction> bytecode, DiagnosticBag diagnos
                 
                 // binary
                 {
+                    if (instruction.Operand is string or char &&
+                        PeekBytecode(1) is
+                        {
+                            OpCode: OpCode.PUSH,
+                            Operand: string or char
+                        } rightInstruction &&
+                        PeekBytecode(2) is
+                        {
+                            OpCode: OpCode.CONCAT
+                        })
+                    {
+                        var left = Convert.ToString(instruction.Operand);
+                        var right = Convert.ToString(rightInstruction.Operand);
+
+                        Advance(3);
+                        return instruction.WithOperand(left + right);
+                    }
+                }
+                {
                     if (instruction.Operand is long or ulong or int or uint or short or ushort or byte or sbyte or double or float or decimal &&
                         PeekBytecode(1) is
                         {
@@ -69,9 +88,7 @@ public class BytecodeOptimizer(List<Instruction> bytecode, DiagnosticBag diagnos
                         var right = Convert.ToDouble(rightInstruction.Operand);
                         var result = calculate(left, right);
 
-                        Advance();
-                        Advance();
-                        Advance();
+                        Advance(3);
                         return instruction.WithOperand(result);
                     }
                 }
@@ -89,9 +106,7 @@ public class BytecodeOptimizer(List<Instruction> bytecode, DiagnosticBag diagnos
                         var right = Convert.ToInt64(rightInstruction.Operand);
                         var result = calculate(left, right);
 
-                        Advance();
-                        Advance();
-                        Advance();
+                        Advance(3);
                         return instruction.WithOperand(result);
                     }
                 }
@@ -107,11 +122,9 @@ public class BytecodeOptimizer(List<Instruction> bytecode, DiagnosticBag diagnos
                     {
                         var left = Convert.ToInt32(instruction.Operand);
                         var right = Convert.ToInt32(rightInstruction.Operand);
-                        var result = calculate(left, right);
+                        var result = Convert.ToInt64(calculate(left, right));
 
-                        Advance();
-                        Advance();
-                        Advance();
+                        Advance(3);
                         return instruction.WithOperand(result);
                     }
                 }
@@ -129,9 +142,7 @@ public class BytecodeOptimizer(List<Instruction> bytecode, DiagnosticBag diagnos
                         var right = Convert.ToBoolean(rightRaw);
                         var result = calculate(left, right);
 
-                        Advance();
-                        Advance();
-                        Advance();
+                        Advance(3);
                         return instruction.WithOperand(result);
                     }
                 }
@@ -152,9 +163,7 @@ public class BytecodeOptimizer(List<Instruction> bytecode, DiagnosticBag diagnos
                         if (operation.OpCode == OpCode.NEQ)
                             result = !result;
 
-                        Advance();
-                        Advance();
-                        Advance();
+                        Advance(3);
                         return instruction.WithOperand(result);
                     }
                 }
