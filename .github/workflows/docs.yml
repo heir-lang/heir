@@ -28,10 +28,10 @@ jobs:
 
       - name: Clean up _site folder
         run: |
-          # Remove symlinks if present
-          find _site -type l -exec rm -f {} \;
+          FOLDER_PATH="_site"
 
-          FOLDER_PATH="/path/to/your/folder"
+          # Remove symlinks if present
+          find "$FOLDER_PATH" -type l -exec rm -f {} \;
 
           # Recursively apply chmod 755 to all directories
           find "$FOLDER_PATH" -type d -exec chmod 755 {} \;
