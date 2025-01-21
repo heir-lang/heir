@@ -6,7 +6,9 @@ public abstract class IntrinsicFunction(string name, Dictionary<string, BaseType
     : IntrinsicValue(name, new FunctionType([], parameterTypes, returnType), isGlobal)
 {
     public override IntrinsicFunction Value => this;
-
+    
+    
+    public int Arity { get; } = parameterTypes.Count;
     public delegate object? BaseDelegate(List<object?> args);
     public abstract BaseDelegate Invoke { get; }
 }

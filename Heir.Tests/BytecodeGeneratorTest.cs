@@ -226,15 +226,9 @@ public class BytecodeGeneratorTest
     public void Generates_UnaryCompoundAssignment(string input, OpCode opCode)
     {
         var bytecode = GenerateBytecode(input).Skip(3);
-        var pushIdentifier = bytecode[0];
-        var load = bytecode[1];
-        var operation = bytecode[2];
-        Assert.Equal(OpCode.PUSH, pushIdentifier.OpCode);
-        Assert.Equal("a", pushIdentifier.Operand);
-        Assert.Equal(OpCode.LOAD, load.OpCode);
-        Assert.Null(load.Operand);
+        var operation = bytecode[0];
         Assert.Equal(opCode, operation.OpCode);
-        Assert.IsType<string>(operation.Operand);
+        Assert.Equal("a", operation.Operand);
     }
 
     [Theory]

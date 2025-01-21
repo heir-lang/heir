@@ -4,11 +4,11 @@ namespace Heir.CodeGeneration;
 
 public class BytecodeOptimizer(List<Instruction> bytecode, DiagnosticBag diagnostics)
 {
+    private readonly List<Instruction?> _optimizedBytecode = [];
     private int _pointer;
     
     public List<Instruction> Optimize()
     {
-        var optimizedBytecode = new List<Instruction>();
         while (_pointer < bytecode.Count)
         {
             var instruction = PeekBytecode()!;
@@ -16,15 +16,17 @@ public class BytecodeOptimizer(List<Instruction> bytecode, DiagnosticBag diagnos
             
             if (optimizedInstruction != null)
             {
-                optimizedBytecode.Add(optimizedInstruction);
+                _optimizedBytecode.Add(optimizedInstruction);
                 continue;
             }
             
-            optimizedBytecode.Add(instruction);
+            _optimizedBytecode.Add(instruction);
             Advance();
         }
 
-        return optimizedBytecode;
+        return _optimizedBytecode
+            .FindAll(instruction => instruction is not null)
+            .ConvertAll(instruction => instruction!);
     }
 
     private Instruction RecursiveOptimize(Instruction instruction)
@@ -43,10 +45,32 @@ public class BytecodeOptimizer(List<Instruction> bytecode, DiagnosticBag diagnos
     {
         switch (instruction.OpCode)
         {
+            case OpCode.INC:
+            case OpCode.DEC:
+            {
+                var expectedLoadInstruction = PeekBytecode(-1);
+                var expectedPushIdentifierInstruction = PeekBytecode(-2);
+                
+                if (expectedLoadInstruction is not { OpCode: OpCode.LOAD } ||
+                    expectedPushIdentifierInstruction is not
+                    {
+                        OpCode: OpCode.PUSH,
+                        Operand: string identifier
+                    })
+                {
+                    Advance();
+                    break;
+                }
+                
+                RemoveLast(2); // goodbye PUSH and LOAD
+                Advance();
+
+                return instruction.WithOperand(identifier);
+            }
             case OpCode.PUSH:
             {
                 // pre-compute the result of operations using only literal values
-                // FUCK THIS CODE
+                // FUCK THIS CODE i hate this
                 
                 // unary
                 {
@@ -77,6 +101,7 @@ public class BytecodeOptimizer(List<Instruction> bytecode, DiagnosticBag diagnos
                     Advance();
                     var newInstruction = RecursiveOptimize(instruction.WithOperand(result));
                     Advance();
+                    
                     return newInstruction;
                 }
                 
@@ -214,6 +239,7 @@ public class BytecodeOptimizer(List<Instruction> bytecode, DiagnosticBag diagnos
                 
                 break;
             }
+            
             case OpCode.PROC:
             {
                 Advance();
@@ -238,4 +264,10 @@ public class BytecodeOptimizer(List<Instruction> bytecode, DiagnosticBag diagnos
         bytecode.ElementAtOrDefault(_pointer + offset);
 
     private void Advance(int amount = 1) => _pointer += amount;
+
+    private void RemoveLast(int amount = 0)
+    {
+        for (var i = 0; i < amount; i++)
+            _optimizedBytecode.RemoveAt(_pointer - amount);
+    }
 }

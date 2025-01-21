@@ -113,7 +113,6 @@ public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder)
         if (boundInvocation.Callee.Type is not FunctionType functionType)
             return NoOp(invocation);
         
-        // Console.WriteLine(new Bytecode(argumentsBytecode, diagnostics));
         List<Instruction> argumentsBytecodeWithDefaults = [];
         var parameterTypes = functionType.ParameterTypes;
         var bytecodeIndex = 0;
@@ -130,9 +129,14 @@ public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder)
             argumentsBytecodeWithDefaults.Add(new(invocation, OpCode.PUSH, defaultValue));
         }
         
+        // this is a *dumb ass fix*
+        var argumentsInstructionsToBePhasedOut =
+            argumentsBytecodeWithDefaults.Count(i => i.OpCode == OpCode.INC) * 2; // phase out 2 per INC op-code
+
+        var operand = (argumentsBytecodeWithDefaults.Count - argumentsInstructionsToBePhasedOut, functionType.ParameterTypes.Keys.ToList());
         return [
             ..GenerateBytecode(invocation.Callee),
-            new(invocation, OpCode.CALL, (argumentsBytecodeWithDefaults.Count, functionType.ParameterTypes.Keys.ToList())),
+            new(invocation, OpCode.CALL, operand),
             ..argumentsBytecodeWithDefaults
         ];
     }

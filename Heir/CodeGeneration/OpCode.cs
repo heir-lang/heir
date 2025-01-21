@@ -105,7 +105,11 @@ public enum OpCode : byte
     MOD,
     /// <summary>Negates the last frame in the stack (assuming it's a number)</summary>
     UNM,
+    /// <summary>Increments a variable (assuming it's a number) by 1</summary>
+    /// <param name="operand">The name of the variable being incremented (string)</param>
     INC,
+    /// <summary>Decrements a variable (assuming it's a number) by 1</summary>
+    /// <param name="operand">The name of the variable being incremented (string)</param>
     DEC,
 
     /// <summary>Calculates binary not on the last frame in the stack (assuming it's an <see cref="long"/>)</summary>

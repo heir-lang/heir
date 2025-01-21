@@ -150,7 +150,7 @@ public sealed class VirtualMachine
                 else if (calleeFrame.Value is IntrinsicFunction intrinsicFunction)
                 {
                     var argumentValues = argumentVM.Stack
-                        .TakeLast(argumentsBytecode.Count)
+                        .TakeLast(intrinsicFunction.Arity)
                         .Select(frame => frame.Value)
                         .ToList();
                     
@@ -372,6 +372,34 @@ public sealed class VirtualMachine
                 Advance();
                 break;
             }
+            
+            case OpCode.DEC:
+            case OpCode.INC:
+            {
+                if (instruction.Operand is not string name)
+                {
+                    Diagnostics.RuntimeError(DiagnosticCode.HDEV,
+                        $"Failed to execute {instruction.OpCode} op-code: Operand is not a string",
+                        instruction.Root?.GetFirstToken());
+
+                    break;
+                }
+                if (!Scope.IsDefined(name))
+                {
+                    Diagnostics.RuntimeError(DiagnosticCode.HDEV,
+                        $"Failed to execute {instruction.OpCode} op-code: Operand provided '{name}' (identifier name to increment/decrement) was not found in the scope",
+                        instruction.Root?.GetFirstToken());
+
+                    break;
+                }
+                
+                var previousValue = Convert.ToDouble(Scope.Lookup(name)!);
+                var value = previousValue + (instruction.OpCode == OpCode.INC ? 1 : -1);
+                Scope.Assign(name, value);
+                Stack.Push(new StackFrame(instruction.Root, value));
+                Advance();
+                break;
+            } 
 
             case OpCode.AND:
             case OpCode.OR:
