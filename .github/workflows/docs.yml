@@ -24,7 +24,9 @@ jobs:
         run: dotnet tool install -g docfx
 
       - name: Generate Documentation
-        run: docfx build
+        run: |
+          docfx metadata
+          docfx build
 
       - name: Clean up _site folder
         run: |
@@ -45,7 +47,7 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git checkout --orphan docs
           git --work-tree _site add --all
-          git --work-tree _site commit -m "Update documentation"
+          git --work-tree _site commit -m "docs: automatic update"
           git push https://github-actions:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} HEAD:docs --force
 
       - name: Upload artifact
