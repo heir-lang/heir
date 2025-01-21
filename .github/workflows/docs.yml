@@ -35,6 +35,11 @@ jobs:
           git --work-tree _site commit -m "Update documentation"
           git push https://github-actions:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} HEAD:docs --force
 
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: github-pages
+          path: _site/
   deploy:
     needs: build
 
@@ -48,17 +53,6 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
-      - name: Check out the repository
-        uses: actions/checkout@v4
-        with:
-          ref: docs
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: github-pages
-          path: _site/
-
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
