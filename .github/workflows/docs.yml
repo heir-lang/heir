@@ -30,7 +30,7 @@ jobs:
           git checkout --orphan docs
           git --work-tree _site add --all
           git --work-tree _site commit -m "Update documentation"
-          git push origin HEAD:docs --force
+          git push https://github-actions:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} HEAD:docs --force
   deploy:
     needs: build
 
