@@ -79,14 +79,7 @@ public sealed class VirtualMachine
 
             case OpCode.PROC:
             {
-                if (instruction.Operand is not List<Instruction> bodyBytecode)
-                {
-                    Diagnostics.RuntimeError(DiagnosticCode.HDEV,
-                        "Failed to execute PROC op-code: Provided operand is not the function body's bytecode",
-                        instruction.Root?.GetFirstToken());
-                    break; // C# DUMB
-                }
-                
+                var bodyBytecode = (List<Instruction>)instruction.Operand!;
                 var function = new FunctionValue(bodyBytecode, new Scope(Scope));
                 Stack.Push(new(instruction.Root, function));
                 Advance();

@@ -17,7 +17,14 @@ public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder)
 {
     private readonly SyntaxTree _syntaxTree = binder.SyntaxTree;
 
-    public Bytecode GenerateBytecode() => new(GenerateBytecode(_syntaxTree));
+    public Bytecode GenerateBytecode()
+    {
+        var bytecode = GenerateBytecode(_syntaxTree);
+        var optimizer = new BytecodeOptimizer(bytecode, diagnostics);
+        var optimizedBytecode = optimizer.Optimize();
+
+        return new(optimizedBytecode);
+    }
 
     public List<Instruction> VisitSyntaxTree(SyntaxTree tree)
     {
