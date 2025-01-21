@@ -1,3 +1,4 @@
+using Heir.AST.Abstract;
 using Heir.Syntax;
 
 namespace Heir.AST;

@@ -1,8 +1,6 @@
-﻿using Heir.AST.Abstract;
+﻿namespace Heir.AST.Abstract;
 
-namespace Heir.AST;
-
-public abstract class Name : Expression
+public abstract class Name : AssignmentTarget
 {
     public abstract override string ToString();
 }

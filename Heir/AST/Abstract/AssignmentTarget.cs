@@ -1,6 +1,3 @@
 namespace Heir.AST.Abstract;
 
-public class AssignmentTarget
-{
-    
-}
+public abstract class AssignmentTarget : Expression;

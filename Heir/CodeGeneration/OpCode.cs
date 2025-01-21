@@ -105,6 +105,8 @@ public enum OpCode : byte
     MOD,
     /// <summary>Negates the last frame in the stack (assuming it's a number)</summary>
     UNM,
+    INC,
+    DEC,
 
     /// <summary>Calculates binary not on the last frame in the stack (assuming it's an <see cref="long"/>)</summary>
     BNOT,

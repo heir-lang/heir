@@ -501,7 +501,7 @@ public sealed class Parser(TokenStream tokenStream)
             var op = Tokens.Previous!;
             var operand = ParseUnary(); // recursively parse the operand
             var isAssignmentOp = op.IsKind(SyntaxKind.PlusPlus) || op.IsKind(SyntaxKind.MinusMinus);
-            if (isAssignmentOp && operand is Literal)
+            if (isAssignmentOp && operand is not Name)
                 _diagnostics.Error(DiagnosticCode.H006, $"Attempt to {(op.IsKind(SyntaxKind.PlusPlus) ? "in" : "de")}crement a constant, expected identifier", operand.GetFirstToken());
 
             return new UnaryOp(operand, op);

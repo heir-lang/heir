@@ -6,3 +6,4 @@ fn fib(n: int): int {
 }
 
 let result = fib(20); ## 6765
+print(result);
