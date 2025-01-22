@@ -43,7 +43,10 @@ public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder) 
     public List<Instruction> VisitVariableDeclaration(VariableDeclaration variableDeclaration) =>
     [
         new(variableDeclaration.Name, OpCode.PUSH, variableDeclaration.Name.Token.Text),
-        ..variableDeclaration.Initializer != null ? GenerateBytecode(variableDeclaration.Initializer) : [],
+        ..variableDeclaration.Initializer != null
+            ? GenerateBytecode(variableDeclaration.Initializer)
+            : [new(variableDeclaration, OpCode.PUSHNONE)],
+        
         new(variableDeclaration, OpCode.STORE, false)
     ];
 
@@ -70,16 +73,21 @@ public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder) 
     {
         var conditionBytecode = GenerateBytecode(@if.Condition);
         var bodyBytecode = GenerateBytecode(@if.Body);
+        var bodyOptimizer = new BytecodeOptimizer(bodyBytecode, diagnostics);
+        var optimizedBody = bodyOptimizer.Optimize();
         var elseBranchBytecode = @if.ElseBranch != null
             ? GenerateBytecode(@if.ElseBranch)
             : [];
-
+        
+        
+        var elseBranchOptimizer = new BytecodeOptimizer(elseBranchBytecode, diagnostics);
+        var optimizedElseBranch = elseBranchOptimizer.Optimize();
         return
         [
             ..conditionBytecode,
-            new(@if, OpCode.JNZ, elseBranchBytecode.Count + 2),
+            new(@if, OpCode.JNZ, optimizedElseBranch.Count + 2),
             ..elseBranchBytecode,
-            new(@if, OpCode.JMP, bodyBytecode.Count + 1),
+            new(@if, OpCode.JMP, optimizedBody.Count + 1),
             ..bodyBytecode
         ];
     }
@@ -127,12 +135,10 @@ public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder) 
                 
             argumentsBytecodeWithDefaults.Add(new(invocation, OpCode.PUSH, defaultValue));
         }
-        
-        // this is a *dumb ass fix*
-        var argumentsInstructionsToBePhasedOut =
-            argumentsBytecodeWithDefaults.Count(i => i.OpCode == OpCode.INC) * 2; // phase out 2 per INC op-code
 
-        var operand = (argumentsBytecodeWithDefaults.Count - argumentsInstructionsToBePhasedOut, functionType.ParameterTypes.Keys.ToList());
+        var argumentsOptimizer = new BytecodeOptimizer(argumentsBytecodeWithDefaults, diagnostics);
+        var optimizedArgumentsBytecode = argumentsOptimizer.Optimize();
+        var operand = (optimizedArgumentsBytecode.Count, functionType.ParameterTypes.Keys.ToList());
         return [
             ..GenerateBytecode(invocation.Callee),
             new(invocation, OpCode.CALL, operand),
@@ -214,7 +220,7 @@ public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder) 
 
     public List<Instruction> VisitParenthesizedExpression(Parenthesized parenthesized) => GenerateBytecode(parenthesized.Expression);
     public List<Instruction> VisitLiteralExpression(Literal literal) =>
-        [new Instruction(literal, literal.Token.Value != null ? OpCode.PUSH : OpCode.PUSHNONE, literal.Token.Value)];
+        [new(literal, literal.Token.Value != null ? OpCode.PUSH : OpCode.PUSHNONE, literal.Token.Value)];
     public List<Instruction> VisitObjectLiteralExpression(ObjectLiteral objectLiteral)
     {
         // store objects as dictionaries, for now (this may be permanent tbh)

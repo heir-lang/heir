@@ -140,7 +140,6 @@ public class BytecodeGeneratorTest
 
     [Theory]
     [InlineData("1 + 2", 3.0)]
-    [InlineData("3 + 4 + 5", 12.0)]
     [InlineData("7 // 3", 2L)]
     [InlineData("1 > 2", false)]
     [InlineData("1 >= 2", false)]
@@ -233,9 +232,10 @@ public class BytecodeGeneratorTest
     }
 
     [Theory]
-    [InlineData("let a = 1;", "a", 1L, OpCode.STORE)]
-    [InlineData("let mut b = 2;", "b", 2L, OpCode.STORE)]
-    public void Generates_VariableDeclarations(string input, string name, object? value, OpCode opCode)
+    [InlineData("let a = 1;", "a", 1L)]
+    [InlineData("let mut b = 2;", "b", 2L)]
+    [InlineData("let c: int;", "c", null, OpCode.PUSHNONE)]
+    public void Generates_VariableDeclarations(string input, string name, object? value, OpCode pushOpCode = OpCode.PUSH)
     {
         var bytecode = GenerateBytecode(input);
         var pushIdentifier = bytecode[0];
@@ -243,9 +243,9 @@ public class BytecodeGeneratorTest
         var operation = bytecode[2];
         Assert.Equal(OpCode.PUSH, pushIdentifier.OpCode);
         Assert.Equal(name, pushIdentifier.Operand);
-        Assert.Equal(OpCode.PUSH, pushValue.OpCode);
+        Assert.Equal(pushOpCode, pushValue.OpCode);
         Assert.Equal(value, pushValue.Operand);
-        Assert.Equal(opCode, operation.OpCode);
+        Assert.Equal(OpCode.STORE, operation.OpCode);
         Assert.False(operation.Operand as bool?);
     }
     

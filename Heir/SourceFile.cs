@@ -49,7 +49,10 @@ namespace Heir
             }
             catch (Exception)
             {
-                Diagnostics.Write();
+                if (Diagnostics.Count > 0)
+                    Diagnostics.Write();
+                else
+                    throw;
             }
             
             return (null, vm);

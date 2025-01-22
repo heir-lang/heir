@@ -144,9 +144,9 @@ public class BytecodeOptimizer(List<Instruction> bytecode, DiagnosticBag diagnos
                         var right = Convert.ToDouble(rightInstruction.Operand);
                         var result = calculate(left, right);
 
-                        Advance(2);
-                        var newInstruction = RecursiveOptimize(instruction.WithOperand(result));
                         Advance();
+                        var newInstruction = RecursiveOptimize(instruction.WithOperand(result));
+                        Advance(2);
 
                         return newInstruction;
                     }
