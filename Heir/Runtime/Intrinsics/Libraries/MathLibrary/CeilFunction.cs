@@ -12,5 +12,5 @@ public class CeilFunction()
         PrimitiveType.Int
     )
 {
-    public override BaseDelegate Invoke { get; } = args => Math.Ceiling(Convert.ToDouble(args.First()));
+    public override BaseDelegate Invoke { get; } = args => Convert.ToInt64(Math.Ceiling(Convert.ToDouble(args.First())));
 }

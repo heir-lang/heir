@@ -103,7 +103,7 @@ public enum OpCode : byte
     POW,
     /// <summary>Calculates the modulus of the last two frames in the stack (assuming they're numbers)</summary>
     MOD,
-    /// <summary>Negates the last frame in the stack (assuming it's a number)</summary>
+    /// <summary>Unary minus; negates the last frame in the stack (assuming it's a number)</summary>
     UNM,
     /// <summary>Increments a variable (assuming it's a number) by 1</summary>
     /// <param name="operand">The name of the variable being incremented (string)</param>

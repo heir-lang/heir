@@ -12,5 +12,5 @@ public class FloorFunction()
         PrimitiveType.Int
     )
 {
-    public override BaseDelegate Invoke { get; } = args => Math.Floor(Convert.ToDouble(args.First()));
+    public override BaseDelegate Invoke { get; } = args => Convert.ToInt64(Math.Floor(Convert.ToDouble(args.First())));
 }

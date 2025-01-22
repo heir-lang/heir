@@ -19,11 +19,35 @@ public class VirtualMachineTest
     [InlineData("math.e", Math.E)]
     [InlineData("math.tau", Math.Tau)]
     [InlineData("math.inf", double.PositiveInfinity)]
-    public void Evaluates_MathConstants(string input, double expectedValue)
+    [InlineData("math.abs(69.0)", 69.0)]
+    [InlineData("math.abs(-69.0)", 69.0)]
+    [InlineData("math.abs(69)", 69L)]
+    [InlineData("math.abs(-69)", 69L)]
+    [InlineData("math.floor(69.9)", 69L)]
+    [InlineData("math.floor(69.1)", 69L)]
+    [InlineData("math.ceil(69.9)", 70L)]
+    [InlineData("math.ceil(69.1)", 70L)]
+    [InlineData("math.round(69.1)", 69L)]
+    [InlineData("math.round(69.9)", 70L)]
+    [InlineData("math.round(69.5)", 70L)]
+    [InlineData("math.round(69.564, 2)", 69.56)]
+    [InlineData("math.round(69.564, 1)", 69.6)]
+    public void Evaluates_MathLibrary<T>(string input, T expectedValue)
     {
         var (value, vm) = Evaluate(input);
         Assert.False(vm.Diagnostics.HasErrors);
-        Assert.Equal(expectedValue, value);
+        switch (expectedValue)
+        {
+            case double expectedDouble when value is double actualDouble:
+                AssertExtensions.FuzzyEqual(expectedDouble, actualDouble);
+                break;
+            case long expectedLong when value is long actualLong:
+                AssertExtensions.FuzzyEqual(expectedLong, actualLong);
+                break;
+            
+            default:
+                throw new Exception($"Expected value & actual value type mismatch\nExpected type: {expectedValue?.GetType().ToString() ?? "null"}\nActual type: {value?.GetType().ToString() ?? "null"}");
+        }
     }
 
     [Fact]
@@ -207,7 +231,8 @@ public class VirtualMachineTest
     [InlineData("4 | 9", 13L)]
     [InlineData("5 ~ 3", 6L)]
     [InlineData("~7", -8L)]
-    [InlineData("-5", -5.0)]
+    [InlineData("-5.0", -5.0)]
+    [InlineData("-5", -5L)]
     [InlineData("3 * 2 + 1", 7.0)]
     [InlineData("3 * (2 + 1)", 9.0)]
     public void Evaluates_Arithmetic(string input, object? expectedValue)
@@ -222,6 +247,8 @@ public class VirtualMachineTest
     [InlineData("false && true || false", false)]
     [InlineData("!false", true)]
     [InlineData("!!false", false)]
+    [InlineData("!!!false", true)]
+    [InlineData("!!!!false", false)]
     public void Evaluates_Logical(string input, object? expectedValue)
     {
         var (value, _) = Evaluate(input);

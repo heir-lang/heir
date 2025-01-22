@@ -123,9 +123,9 @@ public sealed class VirtualMachine
                         $"Failed to execute CALL op-code: Loaded callee is not a function, got {Markup.Escape(calleeFrame.Value?.GetType().ToString() ?? "null")}.\nCallee frame node: {calleeFrame.Node}",
                         instruction.Root?.GetFirstToken());
                 
+                Advance(argumentInstructionsCount);
                 if (calleeFrame.Value is FunctionValue function)
                 {
-                    Advance(argumentInstructionsCount);
                     List<Instruction> bodyBytecode =
                     [
                         new(calleeFrame.Node, OpCode.BEGINSCOPE),
@@ -367,9 +367,11 @@ public sealed class VirtualMachine
             case OpCode.UNM:
             {
                 var operand = Stack.Pop();
-                var result = -Convert.ToDouble(operand.Value);
-
-                Stack.Push(new StackFrame(operand.Node, result));
+                if (operand.Value is long l)
+                    Stack.Push(new StackFrame(operand.Node, -l));
+                else
+                    Stack.Push(new StackFrame(operand.Node, -Convert.ToDouble(operand.Value)));
+                
                 Advance();
                 break;
             }
@@ -532,7 +534,7 @@ public sealed class VirtualMachine
     private void StackDump()
     {
         Console.WriteLine("Stack contents:");
-        foreach (var frame in Stack)
+        foreach (var frame in Stack.Reverse())
         {
             Console.WriteLine(frame.Value ?? "null");
         }

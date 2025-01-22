@@ -14,10 +14,11 @@ public sealed class FunctionType(Dictionary<string, object?> defaults, Dictionar
         get
         {
             var parameters = ParameterTypes.Values.ToList();
-            var nonNullableParameters = ParameterTypes.ToList()
-                .FindAll(pair => !pair.Value.IsNullable && !Defaults.ContainsKey(pair.Key));
+            var nullableParameters = ParameterTypes.ToList()
+                .FindAll(pair => pair.Value.IsNullable || Defaults.GetValueOrDefault(pair.Key) != null);
             
-            return nonNullableParameters.Count..parameters.Count;
+            var nonNullableParametersCount = parameters.Count - nullableParameters.Count;
+            return nonNullableParametersCount..parameters.Count;
         }
     }
 

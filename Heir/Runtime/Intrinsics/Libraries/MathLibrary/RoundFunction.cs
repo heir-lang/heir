@@ -17,8 +17,8 @@ public class RoundFunction()
     {
         var n = Convert.ToDouble(args.First());
         if (args.Last() is long digits)
-            return Math.Round(n, (int)digits);
+            return Convert.ToDouble(Math.Round(n, (int)digits));
 
-        return Math.Round(n);
+        return Convert.ToInt64(Math.Round(n));
     };
 }

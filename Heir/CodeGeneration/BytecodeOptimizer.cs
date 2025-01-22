@@ -80,14 +80,16 @@ public class BytecodeOptimizer(List<Instruction> bytecode, DiagnosticBag diagnos
                             OpCode: OpCode.UNM or OpCode.BNOT
                         } operation)
                     {
-                        var doubleResult = operation.OpCode == OpCode.UNM
-                            ? -Convert.ToDouble(instruction.Operand)
-                            : ~Convert.ToInt64(instruction.Operand);
+                        var optimizedInstruction = instruction.WithOperand(~Convert.ToInt64(instruction.Operand));
+                        if (operation.OpCode == OpCode.UNM)
+                        {
+                            optimizedInstruction = instruction.Operand is long l
+                                ? instruction.WithOperand(-l)
+                                : instruction.WithOperand(-Convert.ToDouble(instruction.Operand));
+                        }
                         
                         Advance();
-                        var newInstruction = RecursiveOptimize(operation.OpCode == OpCode.UNM
-                            ? instruction.WithOperand(doubleResult)
-                            : instruction.WithOperand(Convert.ToInt64(doubleResult)));
+                        var newInstruction = RecursiveOptimize(optimizedInstruction);
                         
                         Advance();
                         return newInstruction;

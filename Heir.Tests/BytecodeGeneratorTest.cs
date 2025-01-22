@@ -210,8 +210,9 @@ public class BytecodeGeneratorTest
     [InlineData("!!!true", false)]
     [InlineData("!!!!true", true)]
     [InlineData("~3", -4L)]
-    [InlineData("-6", -6.0)]
-    [InlineData("-(-(-6))", -6.0)]
+    [InlineData("-6.0", -6.0)]
+    [InlineData("-6", -6L)]
+    [InlineData("-(-(-6))", -6L)]
     public void Generates_UnaryOperations(string input, object? resultValue)
     {
         var bytecode = GenerateBytecode(input);
