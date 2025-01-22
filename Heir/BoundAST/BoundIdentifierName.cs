@@ -1,4 +1,5 @@
 ﻿using Heir.Binding;
+using Heir.BoundAST.Abstract;
 using Heir.Syntax;
 using Heir.Types;
 
@@ -11,7 +12,4 @@ public class BoundIdentifierName(VariableSymbol<BaseType> symbol) : BoundName
 
     public override R Accept<R>(Visitor<R> visitor) => visitor.VisitBoundIdentifierNameExpression(this);
     public override List<Token> GetTokens() => [Symbol.Name];
-
-    public override void Display(int indent = 0) =>
-        Console.Write($"{string.Concat(Enumerable.Repeat("  ", indent))}BoundIdentifierName({Symbol.ToString()})");
 }

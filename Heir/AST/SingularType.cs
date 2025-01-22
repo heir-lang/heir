@@ -9,7 +9,4 @@ public class SingularType(Token token) : TypeRef
 
     public override R Accept<R>(Visitor<R> visitor) => visitor.VisitSingularTypeRef(this);
     public override List<Token> GetTokens() => [Token];
-
-    public override void Display(int indent = 0) =>
-        Console.Write($"{string.Concat(Enumerable.Repeat("  ", indent))}SingularType({Token.Text})");
 }

@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using Spectre.Console;
 using CommandLine;
-
+using Dumpify;
 using Heir.CodeGeneration;
 
 namespace Heir.CLI;
@@ -171,16 +171,21 @@ public static class Program
         if (options.ShowAST || options.ShowBoundAST)
         {
             var syntaxTree = file.Parse();
-            if (options.ShowAST)
+            var membersConfig = new MembersConfig
             {
-                syntaxTree.Display();
-                Console.WriteLine();
-            }
+                MemberFilter = valueProvider =>
+                    valueProvider.MemberType.ToString() != "Heir.Syntax.Location"
+            };
+
+            if (options.ShowAST)
+                foreach (var statement in syntaxTree.Statements)
+                    statement.Dump(members: membersConfig);
 
             if (options.ShowBoundAST)
             {
-                file.Bind().GetBoundNode(syntaxTree).Display();
-                Console.WriteLine();
+                var boundSyntaxTree = file.Bind().GetBoundSyntaxTree();
+                foreach (var statement in boundSyntaxTree.Statements)
+                    statement.Dump(members: membersConfig);
             }
         }
 

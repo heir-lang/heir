@@ -2,6 +2,7 @@
 using Heir.AST.Abstract;
 using Heir.Binding;
 using Heir.BoundAST;
+using Heir.BoundAST.Abstract;
 using Heir.Runtime.Intrinsics;
 using Heir.Syntax;
 using Heir.Types;

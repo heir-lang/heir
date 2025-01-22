@@ -1,11 +1,12 @@
 ﻿using Heir.Binding;
 using Heir.BoundAST;
+using Heir.BoundAST.Abstract;
 using Heir.Syntax;
 using Heir.Types;
 
 namespace Heir;
 
-public class TypeChecker(DiagnosticBag diagnostics, BoundSyntaxTree syntaxTree) : BoundStatement.Visitor<object?>, BoundExpression.Visitor<object?>
+public class TypeChecker(DiagnosticBag diagnostics, BoundSyntaxTree syntaxTree) : BoundNodeVisitor<object?>
 {
     public void Check() => Check(syntaxTree);
 

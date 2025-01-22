@@ -1,3 +1,4 @@
+using Heir.BoundAST.Abstract;
 using Heir.Syntax;
 using Heir.Types;
 
@@ -21,21 +22,4 @@ public sealed class BoundIf(Token keyword, BoundExpression condition, BoundState
         ..Body.GetTokens(),
         ..ElseBranch == null ? [] : ElseBranch.GetTokens()
     ];
-
-    public override void Display(int indent = 0)
-    {
-        Console.WriteLine($"{string.Concat(Enumerable.Repeat("  ", indent))}BoundIf(");
-        Console.WriteLine($"{string.Concat(Enumerable.Repeat("  ", indent + 1))}Condition ->");
-        Condition.Display(indent + 2);
-        Console.WriteLine(',');
-        Console.WriteLine();
-        Console.WriteLine($"{string.Concat(Enumerable.Repeat("  ", indent + 1))}Body ->");
-        Body.Display(indent + 2);
-        Console.WriteLine(',');
-        Console.WriteLine();
-        Console.Write($"{string.Concat(Enumerable.Repeat("  ", indent + 1))}ElseBranch ->{(ElseBranch == null ? " (none)" : "\n")}");
-        ElseBranch?.Display(indent + 2);
-        Console.WriteLine();
-        Console.Write($"{string.Concat(Enumerable.Repeat("  ", indent))})");
-    }
 }

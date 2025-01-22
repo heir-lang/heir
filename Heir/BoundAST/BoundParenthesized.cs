@@ -1,9 +1,10 @@
-﻿using Heir.Syntax;
+﻿using Heir.BoundAST.Abstract;
+using Heir.Syntax;
 using Heir.Types;
 
 namespace Heir.BoundAST;
 
-public class BoundParenthesized(BoundExpression expression) : BoundExpression
+public sealed class BoundParenthesized(BoundExpression expression) : BoundExpression
 {
     public override BaseType Type => Expression.Type;
 
@@ -11,12 +12,4 @@ public class BoundParenthesized(BoundExpression expression) : BoundExpression
 
     public override R Accept<R>(Visitor<R> visitor) => visitor.VisitBoundParenthesizedExpression(this);
     public override List<Token> GetTokens() => Expression.GetTokens();
-
-    public override void Display(int indent = 0)
-    {
-        Console.WriteLine($"{string.Concat(Enumerable.Repeat("  ", indent))}BoundParenthesized(");
-        Expression.Display(indent + 1);
-        Console.WriteLine();
-        Console.Write($"{string.Concat(Enumerable.Repeat("  ", indent))})");
-    }
 }

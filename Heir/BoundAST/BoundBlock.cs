@@ -1,4 +1,5 @@
-﻿using Heir.Syntax;
+﻿using Heir.BoundAST.Abstract;
+using Heir.Syntax;
 using Heir.Types;
 
 namespace Heir.BoundAST;
@@ -38,17 +39,7 @@ public class BoundBlock : BoundStatement
     }
 
     public override R Accept<R>(Visitor<R> visitor) => visitor.VisitBoundBlock(this);
-
-    public override void Display(int indent = 0)
-    {
-        Console.WriteLine($"{string.Concat(Enumerable.Repeat("  ", indent))}BoundBlock(");
-        foreach (var statement in Statements)
-            statement.Display(indent + 1);
-
-        Console.WriteLine();
-        Console.Write($"{string.Concat(Enumerable.Repeat("  ", indent))})");
-    }
-
+    
     public override List<Token> GetTokens() =>
         Statements
             .Select(statement => statement.GetTokens())

@@ -84,9 +84,6 @@ public sealed class Resolver(DiagnosticBag diagnostics, SyntaxTree syntaxTree) :
     {
         if (!_withinFunction)
             Diagnostics.Error(DiagnosticCode.H015, "Invalid return statement: Can only use 'return' within a function body", @return.Keyword);
-
-        if (@return.Expression is Invocation invocation)
-            invocation.IsTailCall = true;
         
         Resolve(@return.Expression);
         return null;

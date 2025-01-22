@@ -25,32 +25,4 @@ public sealed class FunctionDeclaration(
         ..Body.GetTokens(),
         ..ReturnType?.GetTokens() ?? []
     ];
-
-    public override void Display(int indent = 0)
-    {
-        Console.WriteLine($"{string.Concat(Enumerable.Repeat("  ", indent))}FunctionDeclaration(");
-        Console.WriteLine($"{string.Concat(Enumerable.Repeat("  ", indent + 1))}Name ->");
-        Name.Display(indent + 2);
-        Console.WriteLine(',');
-        Console.WriteLine();
-        Console.WriteLine($"{string.Concat(Enumerable.Repeat("  ", indent + 1))}Parameters -> [");
-        var i = 0;
-        foreach (var parameter in Parameters)
-        {
-            parameter.Display(indent + 2);
-            if (i++ < Parameters.Count - 1)
-                Console.WriteLine(',');
-        }
-        Console.WriteLine();
-        Console.WriteLine($"{string.Concat(Enumerable.Repeat("  ", indent + 1))}]");
-        Console.WriteLine();
-        Console.WriteLine($"{string.Concat(Enumerable.Repeat("  ", indent + 1))}Body ->");
-        Body.Display(indent + 2);
-        Console.WriteLine(',');
-        Console.WriteLine();
-        Console.Write($"{string.Concat(Enumerable.Repeat("  ", indent + 1))}ReturnType -> {(ReturnType == null ? "(inferred)" : "\n")}");
-        ReturnType?.Display(indent + 2);
-        Console.WriteLine();
-        Console.Write($"{string.Concat(Enumerable.Repeat("  ", indent))})");
-    }
 }

@@ -344,12 +344,15 @@ public sealed class Parser(TokenStream tokenStream)
             Tokens.Match(SyntaxKind.LArrowLArrowEquals) ||
             Tokens.Match(SyntaxKind.RArrowRArrowEquals))
         {
-            if (left is not Name) // or MemberAccess
+            if (left is not AssignmentTarget assignmentTarget)
+            {
                 _diagnostics.Error(DiagnosticCode.H006B, "Invalid assignment target, expected identifier or member access", left.GetFirstToken());
+                return new NoOp();
+            }
 
             var op = Tokens.Previous!;
             var right = ParseAssignment();
-            return new AssignmentOp(left, op, right);
+            return new AssignmentOp(assignmentTarget, op, right);
         }
 
         return left;

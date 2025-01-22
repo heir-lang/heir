@@ -1,16 +1,8 @@
-﻿namespace Heir.BoundAST
-{
-    public class BoundSyntaxTree(List<BoundStatement> statements, DiagnosticBag diagnostics) : BoundBlock(statements)
-    {
-        public DiagnosticBag Diagnostics { get; } = diagnostics;
+﻿using Heir.BoundAST.Abstract;
 
-        public override void Display(int indent = 0)
-        {
-            foreach (var statement in Statements)
-            {
-                statement.Display(indent);
-                Console.WriteLine();
-            }
-        }
-    }
+namespace Heir.BoundAST;
+
+public sealed class BoundSyntaxTree(List<BoundStatement> statements, DiagnosticBag diagnostics) : BoundBlock(statements)
+{
+    public DiagnosticBag Diagnostics { get; } = diagnostics;
 }

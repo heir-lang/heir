@@ -1,4 +1,5 @@
 ﻿using Heir.Binding;
+using Heir.BoundAST.Abstract;
 using Heir.Syntax;
 using Heir.Types;
 
@@ -13,14 +14,4 @@ public sealed class BoundParameter(VariableSymbol<BaseType> symbol, BoundLiteral
 
     public override R Accept<R>(Visitor<R> visitor) => visitor.VisitBoundParameter(this);
     public override List<Token> GetTokens() => [Symbol.Name, ..Initializer?.GetTokens() ?? []];
-
-    public override void Display(int indent = 0)
-    {
-        Console.WriteLine($"{string.Concat(Enumerable.Repeat("  ", indent))}BoundParameter(");
-        Console.WriteLine($"{string.Concat(Enumerable.Repeat("  ", indent + 1))}Symbol -> {Symbol.ToString()},");
-        Console.Write($"{string.Concat(Enumerable.Repeat("  ", indent + 1))}Initializer -> {(Initializer == null ? "none" : "\n")}");
-        Initializer?.Display(indent + 2);
-        Console.WriteLine();
-        Console.Write($"{string.Concat(Enumerable.Repeat("  ", indent))})");
-    }
 }

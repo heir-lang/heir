@@ -56,6 +56,7 @@ https://discord.gg/AEbNTEVNAd
         - [x] union
         - [x] intersection
         - [x] parenthesized
+        - [ ] generics
         - [ ] literal
         - [ ] array
         - [ ] function
