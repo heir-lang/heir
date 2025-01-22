@@ -1,14 +1,14 @@
-using Spectre.Console;
 using Heir.Syntax;
 using Heir.AST;
 using Heir.CodeGeneration;
+using Heir.Runtime;
 
 namespace Heir
 {
     public sealed class SourceFile
     {
         public DiagnosticBag Diagnostics { get; }
-        public string Source { get; set; }
+        public string Source { get; }
         public string Path { get; }
         public bool IsMainFile { get; }
 

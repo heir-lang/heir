@@ -54,13 +54,15 @@ public sealed class DiagnosticBag(SourceFile sourceFile) : HashSet<Diagnostic>
         throw new Exception();
     }
 
-    public void Write(bool colors = true)
+    public void Write(bool colors = true, bool all = false)
     {
         if (colors)
-            AnsiConsole.MarkupLine(ToString(true));
+            AnsiConsole.MarkupLine(ToString(true, all));
         else
-            Console.WriteLine(ToString(false));
+            Console.WriteLine(ToString(false, all));
     }
     
-    public string ToString(bool colors) => string.Join('\n', this.Select(diagnostic => diagnostic.ToString(colors)));
+    public string ToString(bool colors, bool all = false) => all
+        ? string.Join('\n', this.Select(diagnostic => diagnostic.ToString(colors)))
+        : this.First().ToString(colors);
 }

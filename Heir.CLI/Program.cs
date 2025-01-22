@@ -1,9 +1,12 @@
 ﻿using System.Diagnostics;
-using CommandLine;
-using Heir.CodeGeneration;
 using Spectre.Console;
+using CommandLine;
+
+using Heir.CodeGeneration;
 
 namespace Heir.CLI;
+
+internal class ErrorMarker;
 
 public static class Program
 {
@@ -53,29 +56,7 @@ public static class Program
                 if (options.FilePath != null)
                 {
                     if (options.LoadBytecode)
-                    {
-                        using var fileStream = File.OpenRead(options.FilePath);
-                        var deserializedBytecode = BytecodeDeserializer.Deserialize(fileStream);
-
-                        var sourceFile = new SourceFile(deserializedBytecode.ToString(), options.FilePath, true);
-                        var diagnostics = new DiagnosticBag(sourceFile);
-                        var vm = new VirtualMachine(deserializedBytecode, diagnostics);
-                        var stopwatch = Stopwatch.StartNew();
-                        try
-                        {
-                            vm.Evaluate();
-                        }
-                        catch (Exception)
-                        {
-                            diagnostics.Write();
-                        }
-                        finally
-                        {
-                            stopwatch.Stop();
-                            if (options.ShowBenchmark)
-                                Console.WriteLine($"Took {stopwatch.ElapsedMilliseconds} ms");
-                        }
-                    }
+                        LoadAndExecuteBytecode(options);
                     else
                     {
                         SourceFile file;
@@ -89,7 +70,8 @@ public static class Program
                             Environment.Exit(1);
                             return;
                         }
-                        ExecuteFile(file, options);
+                        
+                        ExecuteFile(file, options, false); // false is temporary
                     }
                 }
                 else
@@ -106,18 +88,30 @@ public static class Program
         {
             Console.Write("> ");
             var input = Console.ReadLine();
-            source += input + "\n";
-            
+            if (string.IsNullOrWhiteSpace(input)) continue;
+
+            source += input + ";\n";
             var file = new SourceFile(source, "repl", true);
             var result = ExecuteFile(file, options);
+            if (result is ErrorMarker)
+            {
+                source = "";
+                continue;
+            }
             AnsiConsole.MarkupLine(Utility.Repr(result, true));
         }
     }
 
-    private static object? ExecuteFile(SourceFile file, Options options)
+    private static object? ExecuteFile(SourceFile file, Options options, bool exitAfterFirstError = true)
     {
         ShowInfo(options, file);
         var bytecode = file.GenerateBytecode(); // generate bytecode before timing
+        if (file.Diagnostics.HasErrors)
+        {
+            file.Diagnostics.Write(true, !exitAfterFirstError);
+            return new ErrorMarker();
+        }
+        
         if (options.BytecodeOutputPath != null) {
             using var fileStream = File.Create(options.BytecodeOutputPath);
             BytecodeSerializer.Serialize(bytecode, fileStream);
@@ -131,8 +125,39 @@ public static class Program
     
         if (options.ShowBenchmark)
             Console.WriteLine($"Took {stopwatch.ElapsedMilliseconds} ms");
+
+        if (file.Diagnostics.HasErrors)
+        {
+            file.Diagnostics.Write(true, !exitAfterFirstError);
+            return new ErrorMarker();
+        }
         
         return result;
+    }
+    
+    private static void LoadAndExecuteBytecode(Options options)
+    {
+        using var fileStream = File.OpenRead(options.FilePath!);
+        var deserializedBytecode = BytecodeDeserializer.Deserialize(fileStream);
+
+        var sourceFile = new SourceFile(deserializedBytecode.ToString(), options.FilePath, true);
+        var diagnostics = new DiagnosticBag(sourceFile);
+        var vm = new VirtualMachine(deserializedBytecode, diagnostics);
+        var stopwatch = Stopwatch.StartNew();
+        try
+        {
+            vm.Evaluate();
+        }
+        catch (Exception)
+        {
+            diagnostics.Write();
+        }
+        finally
+        {
+            stopwatch.Stop();
+            if (options.ShowBenchmark)
+                Console.WriteLine($"Took {stopwatch.ElapsedMilliseconds} ms");
+        }
     }
 
     private static void ShowInfo(Options options, SourceFile file)
