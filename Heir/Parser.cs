@@ -249,7 +249,7 @@ public sealed class Parser(TokenStream tokenStream)
         var left = ParseIntersectionType();
         if (Tokens.Match(SyntaxKind.Pipe))
         {
-            var right = ParseIntersectionType();
+            var right = ParseUnionType();
             return new UnionType([left, right]);
         }
 
@@ -261,7 +261,7 @@ public sealed class Parser(TokenStream tokenStream)
         var left = ParseParenthesizedType();
         if (Tokens.Match(SyntaxKind.Ampersand))
         {
-            var right = ParseParenthesizedType();
+            var right = ParseIntersectionType();
             return new IntersectionType([left, right]);
         }
 
