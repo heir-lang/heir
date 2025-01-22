@@ -14,6 +14,18 @@ public class VirtualMachineTest
         Assert.Contains(vm.Diagnostics, diagnostic => diagnostic.Code == expectedDiagnosticCode);
     }
 
+    [Theory]
+    [InlineData("math.pi", Math.PI)]
+    [InlineData("math.e", Math.E)]
+    [InlineData("math.tau", Math.Tau)]
+    [InlineData("math.inf", double.PositiveInfinity)]
+    public void Evaluates_MathConstants(string input, double expectedValue)
+    {
+        var (value, vm) = Evaluate(input);
+        Assert.False(vm.Diagnostics.HasErrors);
+        Assert.Equal(expectedValue, value);
+    }
+
     [Fact]
     public void Evaluates_NowIntrinsicFunction()
     {
