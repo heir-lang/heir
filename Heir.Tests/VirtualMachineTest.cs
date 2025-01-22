@@ -32,6 +32,23 @@ public class VirtualMachineTest
     [InlineData("math.round(69.5)", 70L)]
     [InlineData("math.round(69.564, 2)", 69.56)]
     [InlineData("math.round(69.564, 1)", 69.6)]
+    [InlineData("math.inRadians(180)", Math.PI)]
+    [InlineData("math.inDegrees(math.pi)", 180.0)]
+    [InlineData("math.sin(math.pi)", 0.0)]
+    [InlineData("math.cos(math.pi)", -1.0)]
+    [InlineData("math.tan(math.pi)", 0.0)]
+    [InlineData("math.tan(math.inRadians(5))", 0.087488663525)]
+    [InlineData("math.asin(1)", Math.PI / 2)]
+    [InlineData("math.acos(-1)", Math.PI)]
+    [InlineData("math.atan(0)", 0.0)]
+    [InlineData("math.atan(-1)", -0.7853981633974483)]
+    [InlineData("math.atan2(math.pi, 2)", 1.0038848218538872)]
+    [InlineData("math.sinh(math.pi)", 11.548739357257746)]
+    [InlineData("math.cosh(math.pi / 2)", 2.5091784786580567)]
+    [InlineData("math.tanh(math.pi)", 0.99627207622075)]
+    [InlineData("math.asinh(math.pi)", 1.8622957433108482)]
+    [InlineData("math.acosh(math.pi / 2)", 1.0232274785475506)]
+    [InlineData("math.atanh(0.5)", 0.5493061443340549)]
     public void Evaluates_MathLibrary<T>(string input, T expectedValue)
     {
         var (value, vm) = Evaluate(input);
