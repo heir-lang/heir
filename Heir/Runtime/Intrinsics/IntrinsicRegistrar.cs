@@ -2,13 +2,11 @@ using Heir.Syntax;
 
 namespace Heir.Runtime.Intrinsics;
 
-public class IntrinsicRegistrar(IntrinsicValue intrinsicValue)
+public class IntrinsicRegistrar(IIntrinsicValue intrinsicValue)
 {
-    private static readonly Location _intrinsicLocation = new("intrinsic", 0, 0, 0);
-    
     public bool IsGlobal { get; } = intrinsicValue.IsGlobal;
     
-    private readonly Token _nameToken = TokenFactory.Identifier(intrinsicValue.Name, _intrinsicLocation, _intrinsicLocation);
+    private readonly Token _nameToken = TokenFactory.Identifier(intrinsicValue.Name, Location.Intrinsic, Location.Intrinsic);
     
     public void RegisterInResolver(Resolver resolver)
     {

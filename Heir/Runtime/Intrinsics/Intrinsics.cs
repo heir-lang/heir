@@ -1,17 +1,19 @@
 using Heir.Runtime.Intrinsics.Global;
+using Heir.Runtime.Intrinsics.Libraries;
 
 namespace Heir.Runtime.Intrinsics;
 
 public static class Intrinsics
 {
-    private static readonly List<IntrinsicValue> _intrinsics =
+    private static readonly List<IIntrinsicValue> _globals =
     [
         new PrintFunction(),
-        new NowFunction()
+        new NowFunction(),
+        new MathLibrary()
     ];
-    
+
     private static readonly List<IntrinsicRegistrar> _registrars =
-        _intrinsics.ConvertAll(intrinsic => new IntrinsicRegistrar(intrinsic));
+        _globals.ConvertAll(intrinsic => new IntrinsicRegistrar(intrinsic));
 
     private static readonly List<IntrinsicRegistrar> _globalRegistrars =
         _registrars.FindAll(registrar => registrar.IsGlobal);

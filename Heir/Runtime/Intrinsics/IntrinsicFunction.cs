@@ -3,7 +3,7 @@ using Heir.Types;
 namespace Heir.Runtime.Intrinsics;
 
 public abstract class IntrinsicFunction(string name, Dictionary<string, BaseType> parameterTypes, BaseType returnType, bool isGlobal)
-    : IntrinsicValue(name, new FunctionType([], parameterTypes, returnType), isGlobal)
+    : IntrinsicValue<FunctionType>(name, new([], parameterTypes, returnType), isGlobal)
 {
     public override IntrinsicFunction Value => this;
     

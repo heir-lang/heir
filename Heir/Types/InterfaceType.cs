@@ -14,8 +14,18 @@ public sealed class InterfaceType(
     public Dictionary<LiteralType, InterfaceMemberSignature> Members { get; } = members;
     public Dictionary<PrimitiveType, BaseType> IndexSignatures { get; } = indexSignatures;
     public BaseType IndexType { get; } = members.Count + indexSignatures.Count == 1
-        ? members.Keys.FirstOrDefault() ?? (BaseType)indexSignatures.Keys.First()
+        ? members.Keys.FirstOrDefault() ?? indexSignatures.Keys.First()
         : new UnionType([..members.Keys, ..indexSignatures.Keys]);
+
+    /// <summary>Creates an interface with immutable fields & no custom index signatures; just members </summary>
+    public static InterfaceType Readonly(string name, Dictionary<string, BaseType> members) =>
+        new(
+            members.Select(pair =>
+                new KeyValuePair<LiteralType, InterfaceMemberSignature>(new(pair.Key), new(pair.Value))
+            ).ToDictionary(),
+            [],
+            name
+        );
         
     public string ToString(bool colors, int indent = 0)
     {
