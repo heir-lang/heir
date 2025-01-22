@@ -49,6 +49,8 @@ public class VirtualMachineTest
     [InlineData("math.asinh(math.pi)", 1.8622957433108482)]
     [InlineData("math.acosh(math.pi / 2)", 1.0232274785475506)]
     [InlineData("math.atanh(0.5)", 0.5493061443340549)]
+    [InlineData("math.sqrt(25)", 5.0)]
+    [InlineData("math.cbrt(125)", 5.0)]
     public void Evaluates_MathLibrary<T>(string input, T expectedValue)
     {
         var (value, vm) = Evaluate(input);
