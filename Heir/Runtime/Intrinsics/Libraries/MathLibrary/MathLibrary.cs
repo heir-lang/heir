@@ -12,7 +12,14 @@ public class MathLibrary() : IntrinsicLibrary("math", InterfaceType.Readonly("ma
         new AbsFunction(),
         new FloorFunction(),
         new CeilFunction(),
-        new RoundFunction()
+        new RoundFunction(),
+        new SinFunction(),
+        new CosFunction(),
+        new TanFunction(),
+        new SinhFunction(),
+        new CoshFunction(),
+        new TanhFunction(),
+        new AsinFunction()
     ];
 
     static MathLibrary()
