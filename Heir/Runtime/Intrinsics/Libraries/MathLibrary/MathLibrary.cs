@@ -22,6 +22,7 @@ public class MathLibrary() : IntrinsicLibrary("math", InterfaceType.Readonly("ma
         new AsinFunction(),
         new AcosFunction(),
         new AtanFunction(),
+        new Atan2Function(),
         new AsinhFunction(),
         new AcoshFunction(),
         new AtanhFunction(),
