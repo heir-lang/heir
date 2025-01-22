@@ -27,7 +27,9 @@ public class MathLibrary() : IntrinsicLibrary("math", InterfaceType.Readonly("ma
         new AcoshFunction(),
         new AtanhFunction(),
         new InRadiansFunction(),
-        new InDegreesFunction()
+        new InDegreesFunction(),
+        new SqrtFunction(),
+        new CbrtFunction()
     ];
 
     static MathLibrary()
