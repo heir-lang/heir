@@ -1,5 +1,5 @@
 using Heir.Runtime.Intrinsics.Global;
-using Heir.Runtime.Intrinsics.Libraries;
+using Heir.Runtime.Intrinsics.Libraries.MathLibrary;
 
 namespace Heir.Runtime.Intrinsics;
 
