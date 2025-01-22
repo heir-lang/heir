@@ -60,12 +60,6 @@ public abstract class BaseType
         if (other is FunctionType)
             return other.IsAssignableTo(this);
         
-        if (this is ParenthesizedType parenthesized)
-            return parenthesized.Type.IsAssignableTo(other);
-        
-        if (other is ParenthesizedType otherParenthesized)
-            return otherParenthesized.Type.IsAssignableTo(this);
-        
         if (this is UnionType union)
             return union.Types.Any(type => type.IsAssignableTo(other));
 
@@ -82,6 +76,9 @@ public abstract class BaseType
         {
             if (other is LiteralType otherLiteralType)
                 return literalType.Equals(otherLiteralType);
+            
+            if (other is ParenthesizedType otherParenthesized)
+                return IsAssignableTo(otherParenthesized.Type);
 
             var primitiveType = PrimitiveType.FromValue(literalType.Value);
             if (primitiveType != null && other is PrimitiveType otherPrimitiveType)
@@ -90,6 +87,12 @@ public abstract class BaseType
         
         if (other is LiteralType)
             return false;
+        
+        if (this is ParenthesizedType parenthesized)
+            return parenthesized.Type.IsAssignableTo(other);
+        
+        if (other is ParenthesizedType)
+            return other.IsAssignableTo(this);
         
         if (this is SingularType singular && other is SingularType otherSingular)
             return singular.Name == otherSingular.Name;
