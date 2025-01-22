@@ -151,6 +151,7 @@ public sealed class VirtualMachine
                 {
                     var argumentValues = argumentVM.Stack
                         .TakeLast(intrinsicFunction.Arity)
+                        .Reverse()
                         .Select(frame => frame.Value)
                         .ToList();
                     

@@ -14,7 +14,9 @@ public sealed class FunctionType(Dictionary<string, object?> defaults, Dictionar
         get
         {
             var parameters = ParameterTypes.Values.ToList();
-            var nonNullableParameters = ParameterTypes.ToList().FindAll(pair => !pair.Value.IsNullable || !Defaults.ContainsKey(pair.Key));
+            var nonNullableParameters = ParameterTypes.ToList()
+                .FindAll(pair => !pair.Value.IsNullable && !Defaults.ContainsKey(pair.Key));
+            
             return nonNullableParameters.Count..parameters.Count;
         }
     }

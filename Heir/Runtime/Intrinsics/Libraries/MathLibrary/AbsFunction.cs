@@ -12,7 +12,6 @@ public class AbsFunction()
         IntrinsicTypes.Number
     )
 {
-    
     public override BaseDelegate Invoke { get; } = args =>
     {
         var argument = args.First();
