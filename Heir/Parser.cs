@@ -304,7 +304,7 @@ public sealed class Parser(TokenStream tokenStream)
         if (Tokens.Match(SyntaxKind.Question, out var questionToken))
             left = new UnionType([
                 left,
-                new SingularType(TokenFactory.Keyword(SyntaxKind.NoneKeyword, questionToken))]
+                new SingularType(TokenFactory.NoneLiteral(questionToken))]
             );
         
         if (Tokens.Match(SyntaxKind.Ampersand))
