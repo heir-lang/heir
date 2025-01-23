@@ -47,6 +47,46 @@ public class ParserTest
     }
 
     [Fact]
+    public void Parses_EmptyInterfaces()
+    {
+        var tree = Parse("interface A;");
+        var statement = tree.Statements.First();
+        Assert.IsType<InterfaceDeclaration>(statement);
+        
+        var interfaceDeclaration = (InterfaceDeclaration)statement;
+        Assert.Equal(SyntaxKind.InterfaceKeyword, interfaceDeclaration.Keyword.Kind);
+        Assert.Equal("A", interfaceDeclaration.Identifier.Text);
+        Assert.Empty(interfaceDeclaration.Fields);
+    }
+    
+    [Fact]
+    public void Parses_Interfaces()
+    {
+        var tree = Parse("interface Abc { a: int; mut b: float; }");
+        var statement = tree.Statements.First();
+        Assert.IsType<InterfaceDeclaration>(statement);
+        
+        var interfaceDeclaration = (InterfaceDeclaration)statement;
+        Assert.Equal(SyntaxKind.InterfaceKeyword, interfaceDeclaration.Keyword.Kind);
+        Assert.Equal("Abc", interfaceDeclaration.Identifier.Text);
+        Assert.Equal(2, interfaceDeclaration.Fields.Count);
+        
+        var fieldA = interfaceDeclaration.Fields.First();
+        var fieldB = interfaceDeclaration.Fields.Last();
+        Assert.Equal("a", fieldA.Identifier.Text);
+        Assert.False(fieldA.IsMutable);
+        Assert.IsType<SingularType>(fieldA.Type);
+        Assert.Equal("b", fieldB.Identifier.Text);
+        Assert.True(fieldB.IsMutable);
+        Assert.IsType<SingularType>(fieldB.Type);
+        
+        var aType = (SingularType)fieldA.Type;
+        var bType = (SingularType)fieldB.Type;
+        Assert.Equal("int", aType.Token.Text);
+        Assert.Equal("float", bType.Token.Text);
+    }
+
+    [Fact]
     public void Parses_IfStatements()
     {
         const string input = """
