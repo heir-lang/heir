@@ -280,38 +280,41 @@ public class ParserTest
     }
     
     [Fact]
-    public void Parses_IntersectionTypes()
+    public void Parses_FunctionTypes()
     {
-        var tree = Parse("let y: int | char = 1");
+        var tree = Parse("let y: (a: int, b: char) -> bool;");
         var statement = tree.Statements.First();
         Assert.IsType<VariableDeclaration>(statement);
 
         var declaration = (VariableDeclaration)statement;
+        Assert.Equal("y", declaration.Name.Token.Text);
         Assert.False(declaration.IsMutable);
-        Assert.NotNull(declaration.Initializer);
+        Assert.Null(declaration.Initializer);
         Assert.NotNull(declaration.Type);
-        Assert.IsType<Literal>(declaration.Initializer);
-        Assert.IsType<UnionType>(declaration.Type);
+        Assert.IsType<FunctionType>(declaration.Type);
 
-        var unionType = (UnionType)declaration.Type;
-        Assert.IsType<SingularType>(unionType.Types.First());
-        Assert.IsType<SingularType>(unionType.Types.Last());
+        var functionType = (FunctionType)declaration.Type;
+        Assert.Equal(2, functionType.ParameterTypes.Count);
+        Assert.IsType<SingularType>(functionType.ReturnType);
 
-        var intType = (SingularType)unionType.Types.First();
-        var charType = (SingularType)unionType.Types.Last();
+        var returnType = (SingularType)functionType.ReturnType;
+        Assert.Equal("bool", returnType.Token.Text);
+        
+        var intType = (SingularType)functionType.ParameterTypes.Values.First();
+        var charType = (SingularType)functionType.ParameterTypes.Values.Last();
         Assert.Equal("int", intType.Token.Text);
         Assert.Equal("char", charType.Token.Text);
-        Assert.Equal("y", declaration.Name.Token.Text);
     }
 
     [Fact]
-    public void Parses_UnionTypes()
+    public void Parses_UnionAndIntersectionTypes()
     {
         var tree = Parse("let y: int | char & string = 1");
         var statement = tree.Statements.First();
         Assert.IsType<VariableDeclaration>(statement);
 
         var declaration = (VariableDeclaration)statement;
+        Assert.Equal("y", declaration.Name.Token.Text);
         Assert.False(declaration.IsMutable);
         Assert.NotNull(declaration.Initializer);
         Assert.NotNull(declaration.Type);
@@ -332,7 +335,6 @@ public class ParserTest
         Assert.Equal("int", intType.Token.Text);
         Assert.Equal("char", charType.Token.Text);
         Assert.Equal("string", stringType.Token.Text);
-        Assert.Equal("y", declaration.Name.Token.Text);
     }
     
     [Fact]
@@ -343,6 +345,7 @@ public class ParserTest
         Assert.IsType<VariableDeclaration>(statement);
 
         var declaration = (VariableDeclaration)statement;
+        Assert.Equal("x", declaration.Name.Token.Text);
         Assert.False(declaration.IsMutable);
         Assert.NotNull(declaration.Initializer);
         Assert.NotNull(declaration.Type);
@@ -354,7 +357,6 @@ public class ParserTest
         
         var singularType = (SingularType)type.Type;
         Assert.Equal("int", singularType.Token.Text);
-        Assert.Equal("x", declaration.Name.Token.Text);
     }
 
     [Fact]
@@ -365,6 +367,7 @@ public class ParserTest
         Assert.IsType<VariableDeclaration>(statement);
 
         var declaration = (VariableDeclaration)statement;
+        Assert.Equal("x", declaration.Name.Token.Text);
         Assert.False(declaration.IsMutable);
         Assert.NotNull(declaration.Initializer);
         Assert.NotNull(declaration.Type);
@@ -373,7 +376,6 @@ public class ParserTest
 
         var type = (SingularType)declaration.Type;
         Assert.Equal("int", type.Token.Text);
-        Assert.Equal("x", declaration.Name.Token.Text);
     }
 
     [Fact]
@@ -384,10 +386,10 @@ public class ParserTest
         Assert.IsType<VariableDeclaration>(statement);
 
         var declaration = (VariableDeclaration)statement;
+        Assert.Equal("x", declaration.Name.Token.Text);
         Assert.True(declaration.IsMutable);
         Assert.NotNull(declaration.Initializer);
         Assert.IsType<Literal>(declaration.Initializer);
-        Assert.Equal("x", declaration.Name.Token.Text);
     }
 
     [Theory]
