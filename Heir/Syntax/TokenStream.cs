@@ -58,17 +58,18 @@ namespace Heir.Syntax
         public Token? Consume(SyntaxKind kind)
         {
             var token = Advance();
-            if (!token.IsKind(kind))
+            if (token == null || !token.IsKind(kind))
             {
-                var got = SyntaxFacts.OperatorMap.Contains(token.Kind)
-                    ? SyntaxFacts.OperatorMap.GetKey(token.Kind)
-                    : SyntaxFacts.KeywordMap.Contains(token.Kind)
-                        ? SyntaxFacts.KeywordMap.GetKey(token.Kind)
-                        : token.Kind.ToString();
+                var invalidToken = token ?? Peek(-2) ?? Peek(-3)!;
+                var got = SyntaxFacts.OperatorMap.Contains(invalidToken.Kind)
+                    ? SyntaxFacts.OperatorMap.GetKey(invalidToken.Kind)
+                    : SyntaxFacts.KeywordMap.Contains(invalidToken.Kind)
+                        ? SyntaxFacts.KeywordMap.GetKey(invalidToken.Kind)
+                        : invalidToken.Kind.ToString();
                 
                 Diagnostics.Error(DiagnosticCode.H004,
                     $"Expected {kind}, got '{got}'",
-                    token ?? Peek(-2) ?? Peek(-3)!);
+                    invalidToken);
             }
 
             return token;

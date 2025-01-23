@@ -1,13 +1,12 @@
 using Heir.Syntax;
 using Heir.AST;
 using Heir.CodeGeneration;
-using Heir.Runtime;
 
 namespace Heir
 {
     public sealed class SourceFile
     {
-        public DiagnosticBag Diagnostics { get; }
+        public DiagnosticBag Diagnostics { get; set; }
         public string Source { get; }
         public string Path { get; }
         public bool IsMainFile { get; }
@@ -31,13 +30,13 @@ namespace Heir
             return new SourceFile(source, path, isMainFile);
         }
 
-        public (object?, VirtualMachine) Evaluate()
+        public (object?, VirtualMachine) Evaluate(bool clearDiagnosticsAfterWriting = true)
         {
             var bytecode = GenerateBytecode();
             var vm = new VirtualMachine(bytecode, Diagnostics);
             if (Diagnostics.Count > 0)
             {
-                Diagnostics.Write();
+                Diagnostics.Write(clear: clearDiagnosticsAfterWriting);
                 return (null, vm);
             }
 
@@ -50,7 +49,7 @@ namespace Heir
             catch (Exception)
             {
                 if (Diagnostics.Count > 0)
-                    Diagnostics.Write();
+                    Diagnostics.Write(clear: clearDiagnosticsAfterWriting);
                 else
                     throw;
             }

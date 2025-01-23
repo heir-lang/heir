@@ -180,17 +180,16 @@ public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder) 
         var combined = leftInstructions.Concat(rightInstructions);
         var boundOperatorType = boundBinaryOp.Operator.Type;
 
-        var assignmentTarget = (AssignmentTarget)binaryOp.Left;
         if (boundOperatorType == BoundBinaryOperatorType.Assignment)
         {
-            return assignmentTarget is Name name
+            return binaryOp.Left is Name name
                 ? [
                     ..PushName(name),
                     ..rightInstructions,
                     new Instruction(binaryOp, OpCode.STORE, true)
                 ]
                 : [
-                    ..PushAssignmentTarget(assignmentTarget),
+                    ..PushAssignmentTarget((AssignmentTarget)binaryOp.Left),
                     ..rightInstructions,
                     new Instruction(binaryOp, OpCode.STOREINDEX, true)
                 ];
@@ -200,7 +199,7 @@ public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder) 
         {
             return (!SyntaxFacts.BinaryCompoundAssignmentOperators.Contains(binaryOp.Operator.Kind)
                     ? combined.Append(new Instruction(binaryOp, opCode))
-                    : assignmentTarget is Name name
+                    : (AssignmentTarget)binaryOp.Left is Name name
                         ? [
                             ..PushName(name),
                             ..leftInstructions,
@@ -209,7 +208,7 @@ public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder) 
                             new Instruction(binaryOp, OpCode.STORE, true)
                         ]
                         : [
-                            ..PushAssignmentTarget(assignmentTarget),
+                            ..PushAssignmentTarget((AssignmentTarget)binaryOp.Left),
                             ..leftInstructions,
                             ..rightInstructions,
                             new Instruction(binaryOp, opCode),

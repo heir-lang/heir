@@ -6,7 +6,8 @@ using Spectre.Console;
 
 namespace Heir;
 
-public sealed class DiagnosticBag(SourceFile sourceFile) : HashSet<Diagnostic>
+public sealed class DiagnosticBag(SourceFile sourceFile, IEnumerable<Diagnostic>? initialCollection = null)
+    : HashSet<Diagnostic>(initialCollection ?? [])
 {
     public bool HasErrors => this.Any(diagnostic => diagnostic.Level == DiagnosticLevel.Error);
     public bool HasWarnings => this.Any(diagnostic => diagnostic.Level == DiagnosticLevel.Warn);
@@ -54,14 +55,15 @@ public sealed class DiagnosticBag(SourceFile sourceFile) : HashSet<Diagnostic>
         throw new Exception();
     }
 
-    public void Write(bool colors = true, bool all = false)
+    public void Write(bool colors = true, bool all = false, bool clear = true)
     {
         if (colors)
             AnsiConsole.MarkupLine(ToString(true, all));
         else
             Console.WriteLine(ToString(false, all));
 
-        Clear();
+        if (clear)
+            Clear();
     }
     
     public string ToString(bool colors, bool all = false) => all

@@ -6,7 +6,10 @@ using Heir.BoundAST.Abstract;
 using Heir.Runtime.Intrinsics;
 using Heir.Syntax;
 using Heir.Types;
+using FunctionType = Heir.Types.FunctionType;
 using IntersectionType = Heir.AST.IntersectionType;
+using ParenthesizedType = Heir.Types.ParenthesizedType;
+using UnionType = Heir.Types.UnionType;
 
 namespace Heir;
 
@@ -327,33 +330,35 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree)
     
     public BoundExpression VisitParenthesizedTypeRef(AST.ParenthesizedType parenthesizedType)
     {
-        Bind(parenthesizedType.Type);
-        return new BoundNoOp();
+        var type = new ParenthesizedType(Bind(parenthesizedType.Type).Type);
+        return new BoundNoOp(type);
     }
     
     public BoundExpression VisitUnionTypeRef(AST.UnionType unionType)
     {
-        foreach (var type in unionType.Types)
-            Bind(type);
+        var types = unionType.Types.Select(typeRef => Bind(typeRef).Type).ToList();
+        var type = new UnionType(types);
         
-        return new BoundNoOp();
+        return new BoundNoOp(type);
     }
     
     public BoundExpression VisitIntersectionTypeRef(IntersectionType intersectionType)
     {
-        foreach (var type in intersectionType.Types)
-            Bind(type);
+        var types = intersectionType.Types.Select(typeRef => Bind(typeRef).Type).ToList();
+        var type = new Types.IntersectionType(types);
         
-        return new BoundNoOp();
+        return new BoundNoOp(type);
     }
     
     public BoundExpression VisitFunctionTypeRef(AST.FunctionType functionType)
     {
-        foreach (var type in functionType.ParameterTypes.Values)
-            Bind(type);
+        var parameterTypes = functionType.ParameterTypes
+            .Select(pair => new KeyValuePair<string, BaseType>(pair.Key, Bind(pair.Value).Type))
+            .ToDictionary();
         
-        Bind(functionType.ReturnType);
-        return new BoundNoOp();
+        var returnType = Bind(functionType.ReturnType).Type;
+        var type = new FunctionType([], parameterTypes, returnType);
+        return new BoundNoOp(type);
     }
 
     public BoundExpression VisitParenthesizedExpression(Parenthesized parenthesized)

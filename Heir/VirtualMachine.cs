@@ -17,7 +17,7 @@ public sealed class VirtualMachine
     public Stack<StackFrame> Stack { get; } = [];
     private int _recursionDepth;
     
-    private const int _maxRecursionDepth = 20000;
+    private const int _maxRecursionDepth = 20_000;
     private readonly Stack<CallStackFrame> _callStack = [];
 
     private Bytecode _bytecode;

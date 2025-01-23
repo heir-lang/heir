@@ -1,5 +1,6 @@
 using Heir.Runtime.Intrinsics.Global;
 using Heir.Runtime.Intrinsics.Libraries.MathLibrary;
+using Heir.Syntax;
 
 namespace Heir.Runtime.Intrinsics;
 
@@ -20,6 +21,12 @@ public static class Intrinsics
 
     public static void RegisterGlobalSymbols(Binder binder)
     {
+        foreach (var (kind, type) in SyntaxFacts.PrimitiveTypeMap)
+        {
+            var token = TokenFactory.Keyword(kind);
+            binder.DefineTypeSymbol(token, type, true);
+        }
+        
         foreach (var registrar in _globalRegistrars)
             registrar.RegisterSymbol(binder);
     }
