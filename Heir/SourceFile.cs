@@ -93,6 +93,12 @@ namespace Heir
         public SyntaxTree Resolve()
         {
             var syntaxTree = _syntaxTree ?? Parse();
+            if (Diagnostics.Count > 0)
+            {
+                Diagnostics.Write();
+                return syntaxTree;
+            }
+            
             var resolver = new Resolver(Diagnostics, syntaxTree);
             resolver.Resolve();
 

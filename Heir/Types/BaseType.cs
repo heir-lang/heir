@@ -24,9 +24,11 @@ public abstract class BaseType
         return typeRef switch
         {
             AST.SingularType singularType =>
-                singularType.Token.IsKind(SyntaxKind.Identifier)
+                singularType.Token?.IsKind(SyntaxKind.Identifier) ?? false
                     ? new SingularType(singularType.Token.Text)
-                    : SyntaxFacts.PrimitiveTypeMap[singularType.Token.Kind],
+                    : singularType.Token != null
+                        ? SyntaxFacts.PrimitiveTypeMap.GetValueOrDefault(singularType.Token.Kind) ?? PrimitiveType.None
+                        : PrimitiveType.None,
             
             AST.ParenthesizedType parenthesizedType =>
                 new ParenthesizedType(FromTypeRef(parenthesizedType.Type)),
@@ -36,6 +38,13 @@ public abstract class BaseType
             
             AST.IntersectionType intersectionType =>
                 new IntersectionType(intersectionType.Types.ConvertAll(FromTypeRef)),
+            
+            AST.FunctionType functionType =>
+                new FunctionType([], 
+                    functionType.ParameterTypes
+                        .Select(pair => new KeyValuePair<string, BaseType>(pair.Key, FromTypeRef(pair.Value)))
+                        .ToDictionary(),
+                    FromTypeRef(functionType.ReturnType)),
             
             _ => PrimitiveType.None
         };

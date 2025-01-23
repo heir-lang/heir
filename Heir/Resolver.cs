@@ -12,7 +12,7 @@ public enum ScopeContext
     Class
 }
 
-public sealed class Resolver(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : Expression.Visitor<object?>, Statement.Visitor<object?>
+public sealed class Resolver(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : NodeVisitor<object?>
 {
     public DiagnosticBag Diagnostics { get; } = diagnostics;
 
@@ -215,6 +215,15 @@ public sealed class Resolver(DiagnosticBag diagnostics, SyntaxTree syntaxTree) :
         foreach (var type in intersectionType.Types)
             Resolve(type);
 
+        return null;
+    }
+
+    public object? VisitFunctionTypeRef(FunctionType functionType)
+    {
+        foreach (var parameterType in functionType.ParameterTypes.Values)
+            Resolve(parameterType);
+        
+        Resolve(functionType.ReturnType);
         return null;
     }
 

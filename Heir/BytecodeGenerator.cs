@@ -5,6 +5,7 @@ using Heir.BoundAST;
 using Heir.CodeGeneration;
 using Heir.Runtime.Values;
 using Heir.Types;
+using FunctionType = Heir.AST.FunctionType;
 using IntersectionType = Heir.AST.IntersectionType;
 using ParenthesizedType = Heir.AST.ParenthesizedType;
 using SingularType = Heir.AST.SingularType;
@@ -117,7 +118,7 @@ public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder) 
     {
         var boundInvocation = (BoundInvocation)binder.GetBoundNode(invocation);
         var argumentsBytecode = invocation.Arguments.ConvertAll(GenerateBytecode);
-        if (boundInvocation.Callee.Type is not FunctionType functionType)
+        if (boundInvocation.Callee.Type is not Types.FunctionType functionType)
             return NoOp(invocation);
         
         List<Instruction> argumentsBytecodeWithDefaults = [];
@@ -162,6 +163,7 @@ public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder) 
     public List<Instruction> VisitParenthesizedTypeRef(ParenthesizedType parenthesizedType) => NoOp(parenthesizedType);
     public List<Instruction> VisitUnionTypeRef(UnionType unionType) => NoOp(unionType);
     public List<Instruction> VisitIntersectionTypeRef(IntersectionType intersectionType) => NoOp(intersectionType);
+    public List<Instruction> VisitFunctionTypeRef(FunctionType functionType) => NoOp(functionType);
 
     public List<Instruction> VisitAssignmentOpExpression(AssignmentOp assignmentOp) => VisitBinaryOpExpression(assignmentOp);
     public List<Instruction> VisitBinaryOpExpression(BinaryOp binaryOp)

@@ -6,12 +6,15 @@ using Heir.BoundAST.Abstract;
 using Heir.Runtime.Intrinsics;
 using Heir.Syntax;
 using Heir.Types;
+using FunctionType = Heir.AST.FunctionType;
 
 namespace Heir;
 
 using PropertyPair = KeyValuePair<LiteralType, InterfaceMemberSignature>;
 
-public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : Statement.Visitor<BoundStatement>, Expression.Visitor<BoundExpression>
+public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree)
+    : Statement.Visitor<BoundStatement>,
+      Expression.Visitor<BoundExpression>
 {
     public SyntaxTree SyntaxTree { get; } = syntaxTree;
 
@@ -104,7 +107,7 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : S
             new KeyValuePair<string, object?>(parameter.Symbol.Name.Text, parameter.Initializer?.Token.Value)
         ));
         
-        var placeholderType = new FunctionType(
+        var placeholderType = new Types.FunctionType(
             defaults,
             parameterTypes,
             functionDeclaration.ReturnType != null
@@ -114,7 +117,7 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : S
         
         var placeholderSymbol = DefineSymbol<BaseType>(functionDeclaration.Name.Token, placeholderType, false);
         var boundBody = (BoundBlock)Bind(functionDeclaration.Body);
-        var finalType = new FunctionType(
+        var finalType = new Types.FunctionType(
             defaults,
             parameterTypes,
             functionDeclaration.ReturnType != null
@@ -276,6 +279,7 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : S
     public BoundExpression VisitParenthesizedTypeRef(AST.ParenthesizedType singularType) => new BoundNoOp();
     public BoundExpression VisitUnionTypeRef(AST.UnionType unionType) => new BoundNoOp();
     public BoundExpression VisitIntersectionTypeRef(AST.IntersectionType intersectionType) => new BoundNoOp();
+    public BoundExpression VisitFunctionTypeRef(FunctionType functionType) => new BoundNoOp();
 
     public BoundExpression VisitParenthesizedExpression(Parenthesized parenthesized)
     {

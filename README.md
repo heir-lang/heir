@@ -59,7 +59,7 @@ https://discord.gg/AEbNTEVNAd
         - [ ] generics
         - [ ] literal
         - [ ] array
-        - [ ] function
+        - [x] function
         - [ ] interface
         - [ ] class
       - [ ] control flow

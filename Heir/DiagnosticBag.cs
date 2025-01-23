@@ -60,6 +60,8 @@ public sealed class DiagnosticBag(SourceFile sourceFile) : HashSet<Diagnostic>
             AnsiConsole.MarkupLine(ToString(true, all));
         else
             Console.WriteLine(ToString(false, all));
+
+        Clear();
     }
     
     public string ToString(bool colors, bool all = false) => all

@@ -258,7 +258,7 @@ public sealed class Parser(TokenStream tokenStream)
         
     private TypeRef ParseIntersectionType()
     {
-        var left = ParseParenthesizedType();
+        var left = ParseParenthesizedOrFunctionType();
         if (Tokens.Match(SyntaxKind.Ampersand))
         {
             var right = ParseIntersectionType();
@@ -268,10 +268,32 @@ public sealed class Parser(TokenStream tokenStream)
         return left;
     }
         
-    private TypeRef ParseParenthesizedType()
+    private TypeRef ParseParenthesizedOrFunctionType()
     {
         if (Tokens.Match(SyntaxKind.LParen))
         {
+            if (IsFunctionType())
+            {
+                var parameterTypes = new Dictionary<string, TypeRef>();
+                while (!Tokens.Check(SyntaxKind.RParen) && !Tokens.IsAtEnd)
+                {
+                    var identifier = Tokens.Consume(SyntaxKind.Identifier);
+                    if (identifier == null)
+                        return new NoOpType();
+
+                    Tokens.Consume(SyntaxKind.Colon);
+                    var type = ParseType();
+                    parameterTypes.Add(identifier.Text, type);
+                    Tokens.Match(SyntaxKind.Comma);
+                }
+
+                Tokens.Consume(SyntaxKind.RParen);
+                Tokens.Consume(SyntaxKind.DashRArrow);
+                var returnType = ParseType();
+
+                return new FunctionType(parameterTypes, returnType);
+            }
+
             var innerType = ParseType();
             Tokens.Consume(SyntaxKind.RParen);
 
@@ -288,6 +310,16 @@ public sealed class Parser(TokenStream tokenStream)
     {
         var token = Tokens.ConsumeType();
         return new SingularType(token ?? Tokens.Previous!);
+    }
+
+    private bool IsFunctionType()
+    {
+        var offset = 0;
+        while (!Tokens.Check(SyntaxKind.RParen, offset++) && Tokens.Peek(offset) != null)
+        {
+        }
+        
+        return Tokens.Check(SyntaxKind.DashRArrow, offset);
     }
     
     private Invocation ParseInvocation(Expression callee)

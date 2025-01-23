@@ -62,9 +62,19 @@ namespace Heir.Syntax
         {
             var token = Advance();
             if (token == null || !token.IsKind(kind))
+            {
+                var got = token == null
+                    ? "EOF"
+                    : SyntaxFacts.OperatorMap.Contains(token.Kind)
+                        ? SyntaxFacts.OperatorMap.GetKey(token.Kind)
+                        : SyntaxFacts.KeywordMap.Contains(token.Kind)
+                            ? SyntaxFacts.KeywordMap.GetKey(token.Kind)
+                            : token.Kind.ToString();
+                
                 Diagnostics.Error(DiagnosticCode.H004,
-                    $"Expected {kind}, got '{token?.Kind.ToString() ?? "EOF"}'",
+                    $"Expected {kind}, got '{got}'",
                     token ?? Peek(-2) ?? Peek(-3)!);
+            }
 
             return token;
         }
