@@ -130,21 +130,28 @@ public sealed class Parser(TokenStream tokenStream)
         if (identifier == null)
             return new NoOpStatement();
 
-        Tokens.Consume(SyntaxKind.LBrace);
-
         var fields = new List<InterfaceField>();
-        while (!Tokens.Check(SyntaxKind.RBrace) && Tokens.Peek(0) != null)
+        var containsBody = Tokens.Match(SyntaxKind.LBrace, out var braceToken);
+        if (containsBody)
         {
-            var isMutable = Tokens.Match(SyntaxKind.MutKeyword);
-            var fieldIdentifier = Tokens.Consume(SyntaxKind.Identifier);
-            if (fieldIdentifier == null) continue;
+            while (!Tokens.Check(SyntaxKind.RBrace) && Tokens.Peek(0) != null)
+            {
+                var isMutable = Tokens.Match(SyntaxKind.MutKeyword);
+                var fieldIdentifier = Tokens.Consume(SyntaxKind.Identifier);
+                if (fieldIdentifier == null) continue;
             
-            Tokens.Consume(SyntaxKind.Colon);
-            var fieldType = ParseType();
-            fields.Add(new InterfaceField(fieldIdentifier, fieldType, isMutable));
+                Tokens.Consume(SyntaxKind.Colon);
+                var fieldType = ParseType();
+                fields.Add(new InterfaceField(fieldIdentifier, fieldType, isMutable));
+            }
+            Tokens.Consume(SyntaxKind.RBrace);
         }
-        Tokens.Consume(SyntaxKind.RBrace);
         
+        if (fields.Count == 0 && containsBody)
+            _diagnostics.Warn(DiagnosticCode.H020,
+                $"Empty interface with body, convert to 'interface {identifier.Text};'",
+                braceToken);
+
         return new InterfaceDeclaration(keyword, identifier, fields);
     }
 

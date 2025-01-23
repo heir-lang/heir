@@ -101,7 +101,17 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree)
 
     public BoundStatement VisitInterfaceDeclaration(InterfaceDeclaration interfaceDeclaration)
     {
-        DefineTypeSymbol(interfaceDeclaration.Identifier, interfaceDeclaration.Type);
+        var type = new InterfaceType(
+            interfaceDeclaration.Fields
+                .ConvertAll(field => new PropertyPair(
+                    new(field.Identifier.Text),
+                    new(BaseType.FromTypeRef(field.Type), field.IsMutable)))
+                .ToDictionary(),
+            [],
+            interfaceDeclaration.Identifier.Text
+        );
+        
+        DefineTypeSymbol(interfaceDeclaration.Identifier, type);
         foreach (var field in interfaceDeclaration.Fields)
             Bind(field);
         
