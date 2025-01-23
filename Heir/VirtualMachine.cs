@@ -272,24 +272,53 @@ public sealed class VirtualMachine
             }
             case OpCode.STORE:
             {
-                var initializer = Stack.Pop();
+                var initializerFrame = Stack.Pop();
                 var nameFrame = Stack.Pop();
                 if (nameFrame.Value is not string name)
                 {
                     Diagnostics.RuntimeError(DiagnosticCode.HDEV,
                         $"Failed to execute STORE op-code: No variable name was located in the stack, got {nameFrame.Value ?? "none"}",
-                        initializer.Node?.GetFirstToken());
+                        initializerFrame.Node?.GetFirstToken());
                     
                     break;
                 }
 
                 if (Scope.IsDeclared(name))
-                    Scope.Assign(name, initializer.Value);
+                    Scope.Assign(name, initializerFrame.Value);
                 else
-                    Scope.Define(name, initializer.Value);
+                    Scope.Define(name, initializerFrame.Value);
 
                 if (instruction.Operand is true)
-                    Stack.Push(initializer);
+                    Stack.Push(initializerFrame);
+
+                Advance();
+                break;
+            }
+            case OpCode.STOREINDEX:
+            {
+                var initializerFrame = Stack.Pop();
+                var indexFrame = Stack.Pop();
+                var objectFrame = Stack.Pop();
+                if (objectFrame.Value is not ObjectValue objectValue)
+                {
+                    Diagnostics.RuntimeError(DiagnosticCode.HDEV,
+                        $"Failed to execute STOREINDEX op-code: No object to index was located in the stack, got {objectFrame.Value ?? "none"}",
+                        initializerFrame.Node?.GetFirstToken());
+                    
+                    break;
+                }
+                if (indexFrame.Value is null)
+                {
+                    Diagnostics.RuntimeError(DiagnosticCode.HDEV,
+                        $"Failed to execute STOREINDEX op-code: Expected frame for object index has null operand",
+                        indexFrame.Node?.GetFirstToken());
+                    
+                    break;
+                }
+
+                objectValue[indexFrame.Value!] = initializerFrame.Value;
+                if (instruction.Operand is true)
+                    Stack.Push(initializerFrame);
 
                 Advance();
                 break;

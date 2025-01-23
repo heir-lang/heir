@@ -1,6 +1,7 @@
 using Heir.Syntax;
 using Heir.AST;
 using Heir.AST.Abstract;
+using Heir.Binding;
 
 namespace Heir;
 
@@ -41,6 +42,9 @@ public sealed class Parser(TokenStream tokenStream)
         
         if (Tokens.Match(SyntaxKind.ReturnKeyword))
             return ParseReturnStatement();
+        
+        if (Tokens.Match(SyntaxKind.InterfaceKeyword))
+            return ParseInterfaceDeclaration();
         
         if (Tokens.Match(SyntaxKind.IfKeyword))
             return ParseIfStatement();
@@ -117,6 +121,31 @@ public sealed class Parser(TokenStream tokenStream)
             elseBranch = ParseStatement();
         
         return new If(keyword, condition, body, elseBranch);
+    }
+
+    private Statement ParseInterfaceDeclaration()
+    {
+        var keyword = Tokens.Previous!;
+        var identifier = Tokens.Consume(SyntaxKind.Identifier);
+        if (identifier == null)
+            return new NoOpStatement();
+
+        Tokens.Consume(SyntaxKind.LBrace);
+
+        var fields = new List<InterfaceField>();
+        while (!Tokens.Check(SyntaxKind.RBrace) && Tokens.Peek(0) != null)
+        {
+            var isMutable = Tokens.Match(SyntaxKind.MutKeyword);
+            var fieldIdentifier = Tokens.Consume(SyntaxKind.Identifier);
+            if (fieldIdentifier == null) continue;
+            
+            Tokens.Consume(SyntaxKind.Colon);
+            var fieldType = ParseType();
+            fields.Add(new InterfaceField(fieldIdentifier, fieldType, isMutable));
+        }
+        Tokens.Consume(SyntaxKind.RBrace);
+        
+        return new InterfaceDeclaration(keyword, identifier, fields);
     }
 
     private Return ParseReturnStatement()
@@ -547,7 +576,6 @@ public sealed class Parser(TokenStream tokenStream)
     
     private Expression ParsePostfix()
     {
-        var isReturning = Tokens.Previous?.IsKind(SyntaxKind.ReturnKeyword) ?? false;
         var expression = ParsePrimary();
 
         while (true)
@@ -568,9 +596,6 @@ public sealed class Parser(TokenStream tokenStream)
     private Expression ParsePrimary()
     {
         var token = Tokens.Advance();
-        if (token == null)
-            return new NoOp();
-
         switch (token.Kind)
         {
             case SyntaxKind.BoolLiteral:

@@ -49,6 +49,20 @@ public sealed class Resolver(DiagnosticBag diagnostics, SyntaxTree syntaxTree) :
         return null;
     }
 
+    public object? VisitInterfaceField(InterfaceField interfaceField)
+    {
+        Resolve(interfaceField.Type);
+        return null;
+    }
+
+    public object? VisitInterfaceDeclaration(InterfaceDeclaration interfaceDeclaration)
+    {
+        foreach (var field in interfaceDeclaration.Fields)
+            Resolve(field);
+
+        return null;
+    }
+
     public object? VisitVariableDeclaration(VariableDeclaration variableDeclaration)
     {
         Declare(variableDeclaration.Name.Token);

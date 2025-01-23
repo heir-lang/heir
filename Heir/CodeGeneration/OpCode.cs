@@ -45,6 +45,21 @@ public enum OpCode : byte
     /// </example>
     STORE,
     /// <summary>
+    /// Stores a value in the index of an object using the last three frames of the stack.
+    /// Of those last three frames, the first is the value, the second is the index, and the third is the object.
+    /// </summary>
+    /// <param name="operand">Whether to push the value of the stored value onto the stack (false by default)</param>
+    /// <example>
+    /// <para>This example is produced when executing <c>foo.bar = 5;</c>:</para>
+    /// 
+    /// <para>PUSH foo</para>
+    /// LOAD
+    /// <para>PUSH bar</para>
+    /// PUSH 5
+    /// <para>STOREINDEX</para>
+    /// </example>
+    STOREINDEX,
+    /// <summary>
     /// Loads a variable from the current scope using the last frame in the stack.
     /// The frame it uses is the name of the variable to load.
     /// </summary>

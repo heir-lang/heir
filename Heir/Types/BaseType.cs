@@ -55,6 +55,30 @@ public abstract class BaseType
         if (this is AnyType || other is AnyType)
             return true;
 
+        if (this is InterfaceType interfaceType && other is InterfaceType otherInterfaceType)
+            return interfaceType.Members.Count == otherInterfaceType.Members.Count &&
+                   interfaceType.IndexSignatures.Count == otherInterfaceType.IndexSignatures.Count &&
+                   interfaceType.Members.All(member =>
+                   {
+                       var otherMember = otherInterfaceType.Members.GetValueOrDefault(member.Key);
+                       if (otherMember == null)
+                           return false;
+                       
+                       return member.Value.ValueType.IsAssignableTo(otherMember.ValueType) &&
+                              member.Value.IsMutable == otherMember.IsMutable;
+                   }) &&
+                   interfaceType.IndexSignatures.All(indexSignature =>
+                   {
+                       var otherIndexSignature = otherInterfaceType.IndexSignatures.GetValueOrDefault(indexSignature.Key);
+                       if (otherIndexSignature == null)
+                           return false;
+                       
+                       return indexSignature.Value.IsAssignableTo(otherIndexSignature);
+                   });
+
+        if (other is InterfaceType)
+            return false;
+
         if (this is FunctionType functionType)
         {
             var parameterIndex = 0;

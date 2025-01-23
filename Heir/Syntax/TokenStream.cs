@@ -6,16 +6,14 @@ namespace Heir.Syntax
     public class TokenStream(DiagnosticBag diagnostics, List<Token> tokens) : IEnumerable<Token>
     {
         public readonly DiagnosticBag Diagnostics = diagnostics;
-        public bool IsAtEnd => _index >= _tokens.Count;
+        public bool IsAtEnd => Position >= tokens.Count;
         public Token Current => Peek(0)!;
         public Token? Previous => Peek(-1);
-
-        private readonly List<Token> _tokens = tokens;
-        private int _index;
+        public int Position { get; private set; }
 
         public TokenStream WithoutTrivia()
         {
-            return new TokenStream(Diagnostics, _tokens.FindAll(token => !token.IsKind(SyntaxKind.Trivia)));
+            return new TokenStream(Diagnostics, tokens.FindAll(token => !token.IsKind(SyntaxKind.Trivia)));
         }
         
         public bool Match(SyntaxKind kind) => Match(kind, out _);
@@ -47,9 +45,8 @@ namespace Heir.Syntax
         public Token? ConsumeType()
         {
             var token = Advance();
-            if (token != null)
-                if (SyntaxFacts.TypeSyntaxes.Any(typeKind => token.IsKind(typeKind)))
-                    return token;
+            if (SyntaxFacts.TypeSyntaxes.Any(typeKind => token.IsKind(typeKind)))
+                return token;
 
             Diagnostics.Error(DiagnosticCode.H004B,
                 $"Expected type, got '{token?.Kind.ToString() ?? "EOF"}'",
@@ -61,15 +58,13 @@ namespace Heir.Syntax
         public Token? Consume(SyntaxKind kind)
         {
             var token = Advance();
-            if (token == null || !token.IsKind(kind))
+            if (!token.IsKind(kind))
             {
-                var got = token == null
-                    ? "EOF"
-                    : SyntaxFacts.OperatorMap.Contains(token.Kind)
-                        ? SyntaxFacts.OperatorMap.GetKey(token.Kind)
-                        : SyntaxFacts.KeywordMap.Contains(token.Kind)
-                            ? SyntaxFacts.KeywordMap.GetKey(token.Kind)
-                            : token.Kind.ToString();
+                var got = SyntaxFacts.OperatorMap.Contains(token.Kind)
+                    ? SyntaxFacts.OperatorMap.GetKey(token.Kind)
+                    : SyntaxFacts.KeywordMap.Contains(token.Kind)
+                        ? SyntaxFacts.KeywordMap.GetKey(token.Kind)
+                        : token.Kind.ToString();
                 
                 Diagnostics.Error(DiagnosticCode.H004,
                     $"Expected {kind}, got '{got}'",
@@ -79,14 +74,14 @@ namespace Heir.Syntax
             return token;
         }
 
-        public Token? Advance()
+        public Token Advance()
         {
             var token = Current;
-            _index++;
+            Position++;
             return token;
         }
 
-        public Token? Peek(int offset) => _tokens.ElementAtOrDefault(_index + offset);
+        public Token? Peek(int offset) => tokens.ElementAtOrDefault(Position + offset);
 
         public override string ToString()
         {
@@ -97,7 +92,7 @@ namespace Heir.Syntax
             return result.ToString().TrimEnd();
         }
 
-        public IEnumerator<Token> GetEnumerator() => ((IEnumerable<Token>)_tokens).GetEnumerator();
-        IEnumerator IEnumerable.GetEnumerator() => _tokens.GetEnumerator();
+        public IEnumerator<Token> GetEnumerator() => ((IEnumerable<Token>)tokens).GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator() => tokens.GetEnumerator();
     }
 }

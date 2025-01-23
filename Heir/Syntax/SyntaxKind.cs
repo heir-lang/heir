@@ -77,6 +77,7 @@
         ReturnKeyword,
         IfKeyword,
         ElseKeyword,
+        InterfaceKeyword,
         
         IntKeyword, // type keywords
         FloatKeyword,

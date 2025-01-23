@@ -6,7 +6,7 @@ using Heir.BoundAST.Abstract;
 using Heir.Runtime.Intrinsics;
 using Heir.Syntax;
 using Heir.Types;
-using FunctionType = Heir.AST.FunctionType;
+using IntersectionType = Heir.AST.IntersectionType;
 
 namespace Heir;
 
@@ -20,7 +20,8 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree)
 
     private readonly Dictionary<SyntaxNode, BoundSyntaxNode> _boundNodes = [];
     private readonly Stack<Stack<VariableSymbol<BaseType>>> _variableScopes = [];
-    
+    private readonly Stack<Stack<TypeSymbol>> _typeScopes = [];
+
     public BoundSyntaxTree Bind()
     {
         BeginScope();
@@ -35,6 +36,30 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree)
     public BoundStatement GetBoundNode(Statement statement) => (BoundStatement)_boundNodes[statement];
     public BoundExpression GetBoundNode(Expression expression) => (BoundExpression)_boundNodes[expression];
     public BoundSyntaxNode GetBoundNode(SyntaxNode node) => _boundNodes[node];
+    
+    public TypeSymbol DefineTypeSymbol(Token name, BaseType type, bool isIntrinsic = false)
+    {
+        var symbol = new TypeSymbol(name, type, isIntrinsic);
+        if (_typeScopes.TryPeek(out var scope))
+            scope.Push(symbol);
+
+        return symbol;
+    }
+    
+    public TypeSymbol? FindTypeSymbol(Token name, bool errorIfNotFound = true)
+    {
+        var symbol = _typeScopes
+            .SelectMany(v => v)
+            .FirstOrDefault(symbol => symbol.Name.Text == name.Text);
+        
+        if (symbol != null)
+            return symbol;
+
+        if (errorIfNotFound)
+            diagnostics.Error(DiagnosticCode.H005, $"Failed to find type symbol for type '{name.Text}'", name);
+        
+        return null;
+    }
     
     public VariableSymbol<BaseType> DefineSymbol(Token name, BaseType type, bool isMutable) =>
         DefineSymbol<BaseType>(name, type, isMutable);
@@ -69,12 +94,26 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree)
 
     public BoundStatement VisitBlock(Block block) => new BoundBlock(BindStatements(block.Statements));
 
+    public BoundStatement VisitInterfaceField(InterfaceField interfaceField) => new BoundNoOpStatement();
+
+    public BoundStatement VisitInterfaceDeclaration(InterfaceDeclaration interfaceDeclaration)
+    {
+        DefineTypeSymbol(interfaceDeclaration.Identifier, interfaceDeclaration.Type);
+        foreach (var field in interfaceDeclaration.Fields)
+            Bind(field);
+        
+        return new BoundNoOpStatement();
+    }
+    
     public BoundStatement VisitVariableDeclaration(VariableDeclaration variableDeclaration)
     {
         var initializer = variableDeclaration.Initializer != null ? Bind(variableDeclaration.Initializer) : null;
         BaseType type;
         if (variableDeclaration.Type != null)
-            type = BaseType.FromTypeRef(variableDeclaration.Type);
+        {
+            var typeRef = Bind(variableDeclaration.Type);
+            type = typeRef.Type;
+        }
         else
             type = initializer?.Type ?? IntrinsicTypes.Any;
 
@@ -91,6 +130,13 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree)
             .ConvertAll(Bind)
             .OfType<BoundParameter>()
             .ToList();
+
+        BaseType? returnType = null;
+        if (functionDeclaration.ReturnType != null)
+        {
+            var typeRef = Bind(functionDeclaration.ReturnType);
+            returnType = typeRef.Type;
+        }
         
         var parameterTypePairs = boundParameters.ConvertAll(parameter =>
             new KeyValuePair<string, BaseType>(parameter.Symbol.Name.Text, parameter.Initializer != null
@@ -100,7 +146,7 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree)
         // TODO: fix this!
         // if heir is left to infer a function return type, then we do not know the
         // return type of a recursive call within the function.
-        // in this example the type of x is any:
+        // in this example, the type of `x` is any:
         // fn abc { let x = abc(); return 123; }
         var parameterTypes = new Dictionary<string, BaseType>(parameterTypePairs);
         var defaults = new Dictionary<string, object?>(boundParameters.ConvertAll(parameter =>
@@ -110,9 +156,7 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree)
         var placeholderType = new Types.FunctionType(
             defaults,
             parameterTypes,
-            functionDeclaration.ReturnType != null
-                ? BaseType.FromTypeRef(functionDeclaration.ReturnType)
-                : IntrinsicTypes.Any
+            returnType ?? IntrinsicTypes.Any
         );
         
         var placeholderSymbol = DefineSymbol<BaseType>(functionDeclaration.Name.Token, placeholderType, false);
@@ -120,9 +164,7 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree)
         var finalType = new Types.FunctionType(
             defaults,
             parameterTypes,
-            functionDeclaration.ReturnType != null
-                ? BaseType.FromTypeRef(functionDeclaration.ReturnType)
-                : boundBody.Type
+            returnType ?? boundBody.Type
         );
 
         UndefineSymbol(placeholderSymbol);
@@ -156,8 +198,9 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree)
         var initializer = parameter.Initializer != null
             ? (BoundLiteral)Bind(parameter.Initializer)
             : null;
+        
         var type = parameter.Type != null
-            ? BaseType.FromTypeRef(parameter.Type)
+            ? Bind(parameter.Type).Type
             : initializer != null ? initializer.Type : IntrinsicTypes.Any;
         
         if (parameter.Type == null && type is LiteralType literalType)
@@ -192,9 +235,8 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree)
     {
         if (VisitBinaryOpExpression(assignmentOp) is not BoundBinaryOp binary)
             return new BoundNoOp();
-
-        var symbol = FindSymbol(binary.Left.GetFirstToken());
-        if (symbol is { IsMutable: false })
+        
+        if (binary.Left is BoundIdentifierName { Symbol: { IsMutable: false } symbol })
             diagnostics.Error(DiagnosticCode.H006C, $"Attempt to assign to immutable variable '{symbol.Name.Text}'", binary.Left, binary.Right);
 
         return new BoundAssignmentOp(binary.Left, binary.Operator, binary.Right);
@@ -275,11 +317,44 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree)
     public BoundStatement VisitNoOp(NoOpStatement noOp) => new BoundNoOpStatement();
     public BoundExpression VisitNoOp(NoOpType noOp) => new BoundNoOp();
     public BoundExpression VisitNoOp(NoOp noOp) => new BoundNoOp();
-    public BoundExpression VisitSingularTypeRef(AST.SingularType singularType) => new BoundNoOp();
-    public BoundExpression VisitParenthesizedTypeRef(AST.ParenthesizedType singularType) => new BoundNoOp();
-    public BoundExpression VisitUnionTypeRef(AST.UnionType unionType) => new BoundNoOp();
-    public BoundExpression VisitIntersectionTypeRef(AST.IntersectionType intersectionType) => new BoundNoOp();
-    public BoundExpression VisitFunctionTypeRef(FunctionType functionType) => new BoundNoOp();
+
+    public BoundExpression VisitSingularTypeRef(AST.SingularType singularType)
+    {
+        var typeSymbol = FindTypeSymbol(singularType.Token);
+        var type = typeSymbol?.Type ?? BaseType.FromTypeRef(singularType);
+        return new BoundNoOp(type);
+    }
+    
+    public BoundExpression VisitParenthesizedTypeRef(AST.ParenthesizedType parenthesizedType)
+    {
+        Bind(parenthesizedType.Type);
+        return new BoundNoOp();
+    }
+    
+    public BoundExpression VisitUnionTypeRef(AST.UnionType unionType)
+    {
+        foreach (var type in unionType.Types)
+            Bind(type);
+        
+        return new BoundNoOp();
+    }
+    
+    public BoundExpression VisitIntersectionTypeRef(IntersectionType intersectionType)
+    {
+        foreach (var type in intersectionType.Types)
+            Bind(type);
+        
+        return new BoundNoOp();
+    }
+    
+    public BoundExpression VisitFunctionTypeRef(AST.FunctionType functionType)
+    {
+        foreach (var type in functionType.ParameterTypes.Values)
+            Bind(type);
+        
+        Bind(functionType.ReturnType);
+        return new BoundNoOp();
+    }
 
     public BoundExpression VisitParenthesizedExpression(Parenthesized parenthesized)
     {
@@ -295,9 +370,18 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree)
         newScope.Remove(variableSymbol);
         _variableScopes.Push(new Stack<VariableSymbol<BaseType>>(newScope));
     }
-    
-    private void BeginScope() => _variableScopes.Push([]);
-    private void EndScope() => _variableScopes.Pop();
+
+    private void BeginScope()
+    {
+        _variableScopes.Push([]);
+        _typeScopes.Push([]);
+    }
+
+    private void EndScope()
+    {
+        _variableScopes.Pop();
+        _typeScopes.Pop();
+    }
 
     private List<BoundStatement> BindStatements(List<Statement> statements) => statements.ConvertAll(Bind);
 

@@ -4,9 +4,9 @@ using Heir.Types;
 
 namespace Heir.BoundAST;
 
-public sealed class BoundNoOp : BoundExpression
+public sealed class BoundNoOp(BaseType? type = null) : BoundExpression
 {
-    public override PrimitiveType Type => PrimitiveType.None;
+    public override BaseType Type => type ?? PrimitiveType.None;
 
     public override R Accept<R>(Visitor<R> visitor) => visitor.VisitBoundNoOp(this);
     public override List<Token> GetTokens() => [];

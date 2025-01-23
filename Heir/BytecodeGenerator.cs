@@ -41,6 +41,10 @@ public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder) 
             .Append(new Instruction(block, OpCode.ENDSCOPE))
             .ToList();
 
+    public List<Instruction> VisitInterfaceField(InterfaceField interfaceField) => NoOp(interfaceField);
+    public List<Instruction> VisitInterfaceDeclaration(InterfaceDeclaration interfaceDeclaration) =>
+        NoOp(interfaceDeclaration);
+
     public List<Instruction> VisitVariableDeclaration(VariableDeclaration variableDeclaration) =>
     [
         new(variableDeclaration.Name, OpCode.PUSH, variableDeclaration.Name.Token.Text),
@@ -175,22 +179,42 @@ public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder) 
         var rightInstructions = GenerateBytecode(binaryOp.Right);
         var combined = leftInstructions.Concat(rightInstructions);
         var boundOperatorType = boundBinaryOp.Operator.Type;
-        
+
+        var assignmentTarget = (AssignmentTarget)binaryOp.Left;
         if (boundOperatorType == BoundBinaryOperatorType.Assignment)
-            return PushName((Name)binaryOp.Left)
-                .Concat(rightInstructions)
-                .Append(new Instruction(binaryOp, OpCode.STORE, true))
-                .ToList();
+        {
+            return assignmentTarget is Name name
+                ? [
+                    ..PushName(name),
+                    ..rightInstructions,
+                    new Instruction(binaryOp, OpCode.STORE, true)
+                ]
+                : [
+                    ..PushAssignmentTarget(assignmentTarget),
+                    ..rightInstructions,
+                    new Instruction(binaryOp, OpCode.STOREINDEX, true)
+                ];
+        }
         
         if (BoundBinaryOperator.OpCodeMap.TryGetValue(boundOperatorType, out var opCode))
         {
             return (!SyntaxFacts.BinaryCompoundAssignmentOperators.Contains(binaryOp.Operator.Kind)
                     ? combined.Append(new Instruction(binaryOp, opCode))
-                    : PushName((Name)binaryOp.Left)
-                        .Concat(leftInstructions)
-                        .Concat(rightInstructions)
-                        .Append(new Instruction(binaryOp, opCode))
-                        .Append(new Instruction(binaryOp, OpCode.STORE, true))
+                    : assignmentTarget is Name name
+                        ? [
+                            ..PushName(name),
+                            ..leftInstructions,
+                            ..rightInstructions,
+                            new Instruction(binaryOp, opCode),
+                            new Instruction(binaryOp, OpCode.STORE, true)
+                        ]
+                        : [
+                            ..PushAssignmentTarget(assignmentTarget),
+                            ..leftInstructions,
+                            ..rightInstructions,
+                            new Instruction(binaryOp, opCode),
+                            new Instruction(binaryOp, OpCode.STOREINDEX, true)
+                        ]
                 ).ToList();
         }
 
@@ -244,6 +268,36 @@ public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder) 
         return [new Instruction(objectLiteral, OpCode.PUSHOBJECT, objectValue)];
     }
 
+    private List<Instruction> PushAssignmentTarget(AssignmentTarget assignmentTarget)
+    {
+        if (assignmentTarget is Name name)
+            return PushName(name);
+
+        if (assignmentTarget is MemberAccess memberAccess)
+        {
+            return
+            [
+                ..GenerateBytecode(memberAccess.Expression),
+                ..PushName(memberAccess.Name)
+            ];
+        }
+        
+        if (assignmentTarget is ElementAccess elementAccess)
+        {
+            return
+            [
+                ..GenerateBytecode(elementAccess.Expression),
+                ..GenerateBytecode(elementAccess.IndexExpression)
+            ];
+        }
+        
+        diagnostics.Error(DiagnosticCode.HDEV,
+            $"Unhandled assignment target type in PushAssignmentTarget: {assignmentTarget.GetType()}",
+            assignmentTarget);
+
+        return NoOp(assignmentTarget);
+    }
+    
     private static List<Instruction> PushName(Name name) => [new(name, OpCode.PUSH, name.ToString())];
     private static List<Instruction> NoOp(SyntaxNode node) => [new(node, OpCode.NOOP)];
 
