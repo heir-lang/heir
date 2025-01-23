@@ -18,6 +18,29 @@ public class TypeTest
             Assert.True(a.IsAssignableTo(b));
         }
     }
+    
+    [Fact]
+    public void InterfaceTypes_AreAssignableTo()
+    {
+        {
+            var a = new InterfaceType([], [], "abc");
+            var b = new InterfaceType([], [], "def");
+            Assert.True(a.IsAssignableTo(b));
+        }
+        {
+            var a = InterfaceType.Readonly("abc", new()
+            {
+                { "foo", PrimitiveType.String },
+                { "bar", PrimitiveType.Bool }
+            });
+            var b = InterfaceType.Readonly("def", new()
+            {
+                { "foo", PrimitiveType.String },
+                { "bar", PrimitiveType.Bool }
+            });
+            Assert.True(a.IsAssignableTo(b));
+        }
+    }
 
     [Fact]
     public void SingularTypes_AreAssignableTo()
