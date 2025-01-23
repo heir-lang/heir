@@ -76,9 +76,17 @@ public class TypeTest
     [Fact]
     public void ParenthesizedTypes_AreAssignableTo()
     {
-        var a = new ParenthesizedType(PrimitiveType.Int);
-        var b = new ParenthesizedType(PrimitiveType.Int);
-        Assert.True(a.IsAssignableTo(b));
+        {
+            var a = new ParenthesizedType(PrimitiveType.Int);
+            var b = new ParenthesizedType(PrimitiveType.Int);
+            Assert.True(a.IsAssignableTo(b));
+        }
+        {
+            var a = new ParenthesizedType(PrimitiveType.Int);
+            var b = PrimitiveType.Int;
+            Assert.True(a.IsAssignableTo(b));
+            Assert.True(b.IsAssignableTo(a));
+        }
     }
 
     [Fact]
