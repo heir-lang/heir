@@ -15,18 +15,56 @@ public class BinderTest
     [InlineData("a;", DiagnosticCode.H005)]
     public void ThrowsWith(string input, DiagnosticCode expectedErrorCode)
     {
-        var boundTree = Bind(input);
+        var boundTree = Bind(input).GetBoundSyntaxTree();
         Assert.True(boundTree.Diagnostics.HasErrors);
         Assert.Contains(boundTree.Diagnostics, diagnostic => diagnostic.Code == expectedErrorCode);
     }
     
     [Theory]
-    [InlineData("interface A {} let a: A;")]
+    [InlineData("interface A; let a: A;")]
+    [InlineData("interface Foo { bar: string; } let foo: Foo = { bar: \"baz\" };")]
     [InlineData("let a: int; a;")]
     public void DoesNotThrowWith(string input)
     {
-        var boundTree = Bind(input);
+        var boundTree = Bind(input).GetBoundSyntaxTree();
         Assert.Empty(boundTree.Diagnostics);
+    }
+
+    [Fact]
+    public void Binds_InterfaceDeclarations()
+    {
+        const string input = """
+                             interface Abc {
+                                a: int;
+                                mut b: string;
+                             }
+                             """;
+        
+        var binder = Bind(input);
+        var interfaceDeclaration = (AST.InterfaceDeclaration)binder.SyntaxTree.Statements.First();
+        var symbol = binder.FindTypeSymbol(interfaceDeclaration.Identifier);
+        Assert.NotNull(symbol);
+        Assert.False(symbol.IsIntrinsic);
+        Assert.IsType<InterfaceType>(symbol.Type);
+        
+        var interfaceType = (InterfaceType)symbol.Type;
+        Assert.Equal("Abc", interfaceType.Name);
+        Assert.Empty(interfaceType.IndexSignatures);
+        Assert.Equal(2, interfaceType.Members.Count);
+
+        var aField = interfaceType.Members.First();
+        var bField = interfaceType.Members.Last();
+        Assert.Equal("a", aField.Key.Value);
+        Assert.False(aField.Value.IsMutable);
+        Assert.IsType<SingularType>(aField.Value.Type);
+        Assert.Equal("b", bField.Key.Value);
+        Assert.True(bField.Value.IsMutable);
+        Assert.IsType<SingularType>(bField.Value.Type);
+        
+        var aType = (SingularType)aField.Value.Type;
+        var bType = (SingularType)bField.Value.Type;
+        Assert.Equal("int", aType.Name);
+        Assert.Equal("string", bType.Name);
     }
     
     [Fact]
@@ -38,7 +76,7 @@ public class BinderTest
                              foo.bar;
                              """;
         
-        var tree = Bind(input);
+        var tree = Bind(input).GetBoundSyntaxTree();
         var statement = tree.Statements.Last();
         Assert.IsType<BoundExpressionStatement>(statement);
         
@@ -66,7 +104,7 @@ public class BinderTest
                              foo["bar"];
                              """;
         
-        var tree = Bind(input);
+        var tree = Bind(input).GetBoundSyntaxTree();
         var statement = tree.Statements.Last();
         Assert.IsType<BoundExpressionStatement>(statement);
         
@@ -100,7 +138,7 @@ public class BinderTest
                                 69;
                              """;
         
-        var tree = Bind(input);
+        var tree = Bind(input).GetBoundSyntaxTree();
         var statement = tree.Statements.First();
         Assert.IsType<BoundIf>(statement);
         
@@ -142,7 +180,7 @@ public class BinderTest
     [InlineData("fn add(x: int, y: int = 1) { return x + y; }")]
     public void Binds_FunctionDeclarations_WithParameters(string input)
     {
-        var tree = Bind(input);
+        var tree = Bind(input).GetBoundSyntaxTree();
         var statement = tree.Statements.First();
         Assert.IsType<BoundFunctionDeclaration>(statement);
         
@@ -202,7 +240,7 @@ public class BinderTest
     [InlineData("fn abc -> 123;")]
     public void Binds_FunctionDeclarations(string input)
     {
-        var boundTree = Bind(input);
+        var boundTree = Bind(input).GetBoundSyntaxTree();
         var statement = boundTree.Statements.First();
         Assert.IsType<BoundFunctionDeclaration>(statement);
         
@@ -230,7 +268,7 @@ public class BinderTest
     [InlineData("fn abc(x = 0, y = 0) {} abc(69, 420);", 2)]
     public void Binds_Invocation(string input, int expectedArgumentCount)
     {
-        var tree = Bind(input);
+        var tree = Bind(input).GetBoundSyntaxTree();
         var statement = tree.Statements.Last();
         Assert.IsType<BoundExpressionStatement>(statement);
         
@@ -259,7 +297,7 @@ public class BinderTest
     [Fact]
     public void Binds_ReturnStatements()
     {
-        var boundTree = Bind("return 123;");
+        var boundTree = Bind("return 123;").GetBoundSyntaxTree();
         var statement = boundTree.Statements.First();
         Assert.IsType<BoundReturn>(statement);
         
@@ -274,7 +312,7 @@ public class BinderTest
     [Fact]
     public void Binds_Identifiers()
     {
-        var boundTree = Bind("let x: string; x;");
+        var boundTree = Bind("let x: string; x;").GetBoundSyntaxTree();
         var statement = boundTree.Statements.Last();
         Assert.IsType<BoundExpressionStatement>(statement);
 
@@ -292,7 +330,7 @@ public class BinderTest
     [Fact]
     public void Binds_VariableDeclarations()
     {
-        var boundTree = Bind("let x: string;");
+        var boundTree = Bind("let x: string;").GetBoundSyntaxTree();
         var statement = boundTree.Statements.First();
         Assert.IsType<BoundVariableDeclaration>(statement);
 
@@ -309,7 +347,7 @@ public class BinderTest
     [Fact]
     public void Infers_VariableDeclarationTypes()
     {
-        var boundTree = Bind("let mut x = 1;");
+        var boundTree = Bind("let mut x = 1;").GetBoundSyntaxTree();
         var statement = boundTree.Statements.First();
         Assert.IsType<BoundVariableDeclaration>(statement);
 
@@ -331,7 +369,7 @@ public class BinderTest
     [InlineData("{ [1]: true }", 1L)]
     public void Parses_ObjectLiterals(string input, object? keyValue)
     {
-        var boundTree = Bind(input);
+        var boundTree = Bind(input).GetBoundSyntaxTree();
         var statement = boundTree.Statements.First();
         Assert.IsType<BoundExpressionStatement>(statement);
 
@@ -368,7 +406,7 @@ public class BinderTest
     [InlineData("none")]
     public void Binds_Literals(string input)
     {
-        var boundTree = Bind(input);
+        var boundTree = Bind(input).GetBoundSyntaxTree();
         var statement = boundTree.Statements.First();
         Assert.IsType<BoundExpressionStatement>(statement);
 
@@ -387,7 +425,7 @@ public class BinderTest
     [InlineData("'a' + 'b'", PrimitiveTypeKind.Char)]
     public void Binds_PrimitiveBinaryOperations(string input, PrimitiveTypeKind returnTypeKind)
     {
-        var boundTree = Bind(input);
+        var boundTree = Bind(input).GetBoundSyntaxTree();
         var statement = boundTree.Statements.First();
         Assert.IsType<BoundExpressionStatement>(statement);
 
@@ -408,7 +446,7 @@ public class BinderTest
     [InlineData("\"a\" + 'b'", PrimitiveTypeKind.String, PrimitiveTypeKind.Char)]
     public void Binds_UnionBinaryOperations(string input, PrimitiveTypeKind typeAKind, PrimitiveTypeKind typeBKind)
     {
-        var boundTree = Bind(input);
+        var boundTree = Bind(input).GetBoundSyntaxTree();
         var statement = boundTree.Statements.First();
         Assert.IsType<BoundExpressionStatement>(statement);
 
@@ -435,7 +473,7 @@ public class BinderTest
     [InlineData("~6", PrimitiveTypeKind.Int)]
     public void Binds_PrimitiveUnaryOperations(string input, PrimitiveTypeKind returnTypeKind)
     {
-        var boundTree = Bind(input);
+        var boundTree = Bind(input).GetBoundSyntaxTree();
         var statement = boundTree.Statements.First();
         Assert.IsType<BoundExpressionStatement>(statement);
 
@@ -455,7 +493,7 @@ public class BinderTest
     [InlineData("++6", PrimitiveTypeKind.Int, PrimitiveTypeKind.Float)] // invalid but only for testing purposes so idc
     public void Binds_UnionUnaryOperations(string input, PrimitiveTypeKind typeAKind, PrimitiveTypeKind typeBKind)
     {
-        var boundTree = Bind(input);
+        var boundTree = Bind(input).GetBoundSyntaxTree();
         var statement = boundTree.Statements.First();
         Assert.IsType<BoundExpressionStatement>(statement);
 

@@ -8,9 +8,10 @@
         public static Token Keyword(SyntaxKind kind, Location startLocation, Location endLocation) => 
             new(kind, SyntaxFacts.KeywordMap.GetKey(kind), null, startLocation, endLocation);
 
+        public static Token Identifier(string text) => Identifier(text, Location.Empty, Location.Empty);
         public static Token Identifier(string text, Location startLocation, Location endLocation) =>
             new(SyntaxKind.Identifier, text, null, startLocation, endLocation);
-
+        
         public static Token StringFromIdentifier(Token identifier) =>
             StringLiteral($"\"{identifier.Text}\"", identifier.StartLocation, identifier.EndLocation);
 

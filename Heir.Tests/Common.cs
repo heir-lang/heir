@@ -27,10 +27,10 @@ internal static class Common
         return sourceFile.Diagnostics;
     }
 
-    public static BoundSyntaxTree Bind(string input)
+    public static Binder Bind(string input)
     {
         var sourceFile = CreateSourceFile(input);
-        return sourceFile.Bind().GetBoundSyntaxTree();
+        return sourceFile.Bind();
     }
 
     public static DiagnosticBag TypeCheck(string input)

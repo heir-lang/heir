@@ -159,7 +159,7 @@ public class TypeChecker(DiagnosticBag diagnostics, BoundSyntaxTree syntaxTree) 
             {
                 var signature = GetInterfaceMemberSignature(objectLiteral.Type, literalType, objectLiteral.Token);
                 if (signature == null) continue;
-                Assert(property.Value, signature.ValueType);
+                Assert(property.Value, signature.Type);
             }
             else
             {

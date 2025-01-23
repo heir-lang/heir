@@ -64,7 +64,7 @@ public abstract class BaseType
                        if (otherMember == null)
                            return false;
                        
-                       return member.Value.ValueType.IsAssignableTo(otherMember.ValueType) &&
+                       return member.Value.Type.IsAssignableTo(otherMember.Type) &&
                               member.Value.IsMutable == otherMember.IsMutable;
                    }) &&
                    interfaceType.IndexSignatures.All(indexSignature =>

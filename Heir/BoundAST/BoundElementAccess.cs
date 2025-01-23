@@ -31,7 +31,7 @@ public class BoundElementAccess : BoundExpression
     private BaseType GetTypeAtIndex(InterfaceType interfaceType) =>
         IndexExpression.Type switch
         {
-            LiteralType literalType when interfaceType.Members.TryGetValue(literalType, out var member) => member.ValueType,
+            LiteralType literalType when interfaceType.Members.TryGetValue(literalType, out var member) => member.Type,
                 
             LiteralType literalType when
                 interfaceType.IndexSignatures.TryGetValue(literalType.AsPrimitive(), out var primitiveMember) => primitiveMember,

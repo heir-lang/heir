@@ -60,9 +60,10 @@ https://discord.gg/AEbNTEVNAd
         - [ ] literal
         - [ ] array
         - [x] function
-        - [ ] interface
+        - [x] interface
+            - [ ] index signatures
         - [ ] class
-      - [ ] control flow
+    - [ ] control flow
         - [x] if 
         - [ ] while 
         - [ ] for 
@@ -98,4 +99,4 @@ https://discord.gg/AEbNTEVNAd
     - [ ] classes
     - [ ] types
 - [ ] hvm (heir virtual machine)
-    - [X] tail call optimization
+    - [x] tail call optimization

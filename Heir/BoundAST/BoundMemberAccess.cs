@@ -32,7 +32,7 @@ public sealed class BoundMemberAccess : BoundAssignmentTarget
     {
         var literalType = new LiteralType(Name.Symbol.Name.Text);
         if (interfaceType.Members.TryGetValue(literalType, out var member))
-            return member.ValueType;
+            return member.Type;
             
         if (interfaceType.IndexSignatures.TryGetValue(literalType.AsPrimitive(), out var primitiveMember))
             return primitiveMember;

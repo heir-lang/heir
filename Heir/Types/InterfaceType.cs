@@ -52,7 +52,7 @@ public sealed class InterfaceType(
             result.Append(member.Value.IsMutable ? "mut " : "");
             result.Append(member.Key.Value);
             result.Append(": ");
-            result.Append(member.Value.ValueType is InterfaceType interfaceType ? interfaceType.ToString(colors, indent + 1) : member.Value.ValueType.ToString(colors));
+            result.Append(member.Value.Type is InterfaceType interfaceType ? interfaceType.ToString(colors, indent + 1) : member.Value.Type.ToString(colors));
             result.Append(';');
         }
 
