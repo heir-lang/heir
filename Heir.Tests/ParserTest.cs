@@ -280,6 +280,31 @@ public class ParserTest
     }
     
     [Fact]
+    public void Parses_NullableTypes()
+    {
+        var tree = Parse("let y: int? = 1");
+        var statement = tree.Statements.First();
+        Assert.IsType<VariableDeclaration>(statement);
+
+        var declaration = (VariableDeclaration)statement;
+        Assert.Equal("y", declaration.Name.Token.Text);
+        Assert.False(declaration.IsMutable);
+        Assert.NotNull(declaration.Initializer);
+        Assert.NotNull(declaration.Type);
+        Assert.IsType<Literal>(declaration.Initializer);
+        Assert.IsType<UnionType>(declaration.Type);
+
+        var unionType = (UnionType)declaration.Type;
+        Assert.IsType<SingularType>(unionType.Types.First());
+        Assert.IsType<SingularType>(unionType.Types.Last());
+
+        var intType = (SingularType)unionType.Types.First();
+        var noneType = (SingularType)unionType.Types.Last();
+        Assert.Equal("int", intType.Token.Text);
+        Assert.Equal("none", noneType.Token.Text);
+    }
+    
+    [Fact]
     public void Parses_FunctionTypes()
     {
         var tree = Parse("let y: (a: int, b: char) -> bool;");
