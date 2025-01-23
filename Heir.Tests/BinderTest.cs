@@ -56,15 +56,15 @@ public class BinderTest
         var bField = interfaceType.Members.Last();
         Assert.Equal("a", aField.Key.Value);
         Assert.False(aField.Value.IsMutable);
-        Assert.IsType<SingularType>(aField.Value.Type);
+        Assert.IsType<PrimitiveType>(aField.Value.Type);
         Assert.Equal("b", bField.Key.Value);
         Assert.True(bField.Value.IsMutable);
-        Assert.IsType<SingularType>(bField.Value.Type);
+        Assert.IsType<PrimitiveType>(bField.Value.Type);
         
-        var aType = (SingularType)aField.Value.Type;
-        var bType = (SingularType)bField.Value.Type;
-        Assert.Equal("int", aType.Name);
-        Assert.Equal("string", bType.Name);
+        var aType = (PrimitiveType)aField.Value.Type;
+        var bType = (PrimitiveType)bField.Value.Type;
+        Assert.Equal(PrimitiveTypeKind.Int, aType.PrimitiveKind);
+        Assert.Equal(PrimitiveTypeKind.String, bType.PrimitiveKind);
     }
     
     [Fact]

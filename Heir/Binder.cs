@@ -27,10 +27,10 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree)
 
     public BoundSyntaxTree Bind()
     {
+        EndScope();
         BeginScope();
         Intrinsics.RegisterGlobalSymbols(this);
         var tree = (BoundSyntaxTree)Bind(SyntaxTree);
-        EndScope();
 
         return tree;
     }
@@ -394,8 +394,8 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree)
 
     private void EndScope()
     {
-        _variableScopes.Pop();
-        _typeScopes.Pop();
+        _variableScopes.TryPop(out _);
+        _typeScopes.TryPop(out _);
     }
 
     private List<BoundStatement> BindStatements(List<Statement> statements) => statements.ConvertAll(Bind);
