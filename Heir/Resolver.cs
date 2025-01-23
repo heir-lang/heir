@@ -57,6 +57,8 @@ public sealed class Resolver(DiagnosticBag diagnostics, SyntaxTree syntaxTree) :
 
     public object? VisitInterfaceDeclaration(InterfaceDeclaration interfaceDeclaration)
     {
+        Declare(interfaceDeclaration.Identifier);
+        Define(interfaceDeclaration.Identifier);
         foreach (var field in interfaceDeclaration.Fields)
             Resolve(field);
 
@@ -169,6 +171,7 @@ public sealed class Resolver(DiagnosticBag diagnostics, SyntaxTree syntaxTree) :
             Diagnostics.Error(DiagnosticCode.H010, $"Cannot read variable '{name}' in it's own initializer", identifierName.Token);
             return null;
         }
+        
         if (!IsDefined(identifierName.Token))
         {
             Diagnostics.Error(DiagnosticCode.H011, $"Cannot find name '{name}'", identifierName.Token);
@@ -190,58 +193,14 @@ public sealed class Resolver(DiagnosticBag diagnostics, SyntaxTree syntaxTree) :
     }
 
     public object? VisitNoOp(NoOp noOp) => null;
+    public object? VisitNoOp(NoOpStatement noOp) => null;
     public object? VisitNoOp(NoOpType noOp) => null;
 
-    public object? VisitSingularTypeRef(SingularType singularType)
-    {
-        var scope = _scopes.LastOrDefault();
-        var name = singularType.Token.Text;
-        if (scope != null && scope.TryGetValue(name, out var value) && value == false)
-        {
-            Diagnostics.Error(DiagnosticCode.H010, $"Cannot read type '{name}' in it's own declaration", singularType.Token);
-            return null;
-        }
-        if (!IsDefined(singularType.Token) && !SyntaxFacts.TypeSyntaxes.Contains(singularType.Token.Kind))
-        {
-            Diagnostics.Error(DiagnosticCode.H011, $"Cannot find name '{name}'", singularType.Token);
-            return null;
-        }
-        
-        return null;
-    }
-
-    public object? VisitParenthesizedTypeRef(ParenthesizedType parenthesizedType)
-    {
-        Resolve(parenthesizedType.Type);
-        return null;
-    }
-
-    public object? VisitUnionTypeRef(UnionType unionType)
-    {
-        foreach (var type in unionType.Types)
-            Resolve(type);
-
-        return null;
-    }
-        
-    public object? VisitIntersectionTypeRef(IntersectionType intersectionType)
-    {
-        foreach (var type in intersectionType.Types)
-            Resolve(type);
-
-        return null;
-    }
-
-    public object? VisitFunctionTypeRef(FunctionType functionType)
-    {
-        foreach (var parameterType in functionType.ParameterTypes.Values)
-            Resolve(parameterType);
-        
-        Resolve(functionType.ReturnType);
-        return null;
-    }
-
-    public object? VisitNoOp(NoOpStatement noOp) => null;
+    public object? VisitSingularTypeRef(SingularType singularType) => null;
+    public object? VisitParenthesizedTypeRef(ParenthesizedType parenthesizedType) => null;
+    public object? VisitUnionTypeRef(UnionType unionType) => null;
+    public object? VisitIntersectionTypeRef(IntersectionType intersectionType) => null;
+    public object? VisitFunctionTypeRef(FunctionType functionType) => null;
 
     public object? VisitParenthesizedExpression(Parenthesized parenthesized)
     {

@@ -54,7 +54,8 @@ public class VirtualMachineTest
     public void Evaluates_MathLibrary<T>(string input, T expectedValue)
     {
         var (value, vm) = Evaluate(input);
-        Assert.False(vm.Diagnostics.HasErrors);
+        Assert.Empty(vm.Diagnostics);
+        
         switch (expectedValue)
         {
             case double expectedDouble when value is double actualDouble:

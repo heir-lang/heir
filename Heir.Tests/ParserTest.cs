@@ -43,7 +43,7 @@ public class ParserTest
     public void DoesNotThrowWith(string input)
     {
         var tree = Parse(input);
-        Assert.False(tree.Diagnostics.HasErrors);
+        Assert.Empty(tree.Diagnostics);
     }
 
     [Fact]

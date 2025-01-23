@@ -11,11 +11,22 @@ public class BinderTest
     [InlineData("\"a\" + 1", DiagnosticCode.H007)]
     [InlineData("true * false", DiagnosticCode.H007)]
     [InlineData("let x = 1; x = 2;", DiagnosticCode.H006C)]
+    [InlineData("let a: A;", DiagnosticCode.H005)]
+    [InlineData("a;", DiagnosticCode.H005)]
     public void ThrowsWith(string input, DiagnosticCode expectedErrorCode)
     {
         var boundTree = Bind(input);
         Assert.True(boundTree.Diagnostics.HasErrors);
         Assert.Contains(boundTree.Diagnostics, diagnostic => diagnostic.Code == expectedErrorCode);
+    }
+    
+    [Theory]
+    [InlineData("interface A {} let a: A;")]
+    [InlineData("let a: int; a;")]
+    public void DoesNotThrowWith(string input)
+    {
+        var boundTree = Bind(input);
+        Assert.Empty(boundTree.Diagnostics);
     }
     
     [Fact]

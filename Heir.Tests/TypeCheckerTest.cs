@@ -35,6 +35,6 @@ public class TypeCheckerTest
     public void DoesNotThrowWith(string input)
     {
         var diagnostics = TypeCheck(input);
-        Assert.False(diagnostics.HasErrors);
+        Assert.Empty(diagnostics);
     }
 }
