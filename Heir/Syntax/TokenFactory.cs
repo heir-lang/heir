@@ -5,6 +5,9 @@
         public static Token Keyword(SyntaxKind kind) => 
             new(kind, SyntaxFacts.KeywordMap.GetKey(kind), null, Location.Empty, Location.Empty);
         
+        public static Token Keyword(SyntaxKind kind, Token token) => 
+            new(kind, SyntaxFacts.KeywordMap.GetKey(kind), null, token.StartLocation, token.EndLocation);
+        
         public static Token Keyword(SyntaxKind kind, Location startLocation, Location endLocation) => 
             new(kind, SyntaxFacts.KeywordMap.GetKey(kind), null, startLocation, endLocation);
 

@@ -2,6 +2,12 @@ using Heir.Syntax;
 using Heir.AST;
 using Heir.AST.Abstract;
 using Heir.Binding;
+using Heir.Types;
+using FunctionType = Heir.AST.FunctionType;
+using IntersectionType = Heir.AST.IntersectionType;
+using ParenthesizedType = Heir.AST.ParenthesizedType;
+using SingularType = Heir.AST.SingularType;
+using UnionType = Heir.AST.UnionType;
 
 namespace Heir;
 
@@ -295,8 +301,17 @@ public sealed class Parser(TokenStream tokenStream)
     private TypeRef ParseIntersectionType()
     {
         var left = ParseParenthesizedOrFunctionType();
+        if (Tokens.Match(SyntaxKind.Question, out var questionToken))
+            left = new UnionType([
+                left,
+                new SingularType(TokenFactory.Keyword(SyntaxKind.NoneKeyword, questionToken))]
+            );
+        
         if (Tokens.Match(SyntaxKind.Ampersand))
         {
+            if (left is UnionType)
+                left = new ParenthesizedType(left);
+            
             var right = ParseIntersectionType();
             return new IntersectionType([left, right]);
         }
