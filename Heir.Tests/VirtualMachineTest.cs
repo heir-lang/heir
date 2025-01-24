@@ -14,6 +14,22 @@ public class VirtualMachineTest
         Assert.Contains(vm.Diagnostics, diagnostic => diagnostic.Code == expectedDiagnosticCode);
     }
 
+    [Fact]
+    public void Evaluates_MutableInterfaces()
+    {
+        const string input = """
+                     interface Foo {
+                        mut bar: string;
+                     }
+                     
+                     let foo: Foo = { bar: "baz" };
+                     foo.bar = "YES";
+                     """;
+        
+        var (value, _) = Evaluate(input);
+        Assert.Equal("YES", value);
+    }
+
     [Theory]
     [InlineData("math.pi", Math.PI)]
     [InlineData("math.e", Math.E)]
