@@ -11,5 +11,5 @@ public sealed class BoundObjectLiteral(Token token, Dictionary<BaseType, BoundEx
     public Dictionary<BaseType, BoundExpression> Properties { get; } = properties;
 
     public override List<Token> GetTokens() => [Token, ..Properties.Values.SelectMany(expr => expr.GetTokens())];
-    public override R Accept<R>(Visitor<R> visitor) => visitor.VisitBoundObjectLiteralExpression(this);
+    public override R Accept<R>(IVisitor<R> visitor) => visitor.VisitBoundObjectLiteralExpression(this);
 }

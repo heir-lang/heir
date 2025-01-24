@@ -16,7 +16,7 @@ public sealed class FunctionDeclaration(
     public Block Body { get; } = body;
     public TypeRef? ReturnType { get; } = returnType;
     
-    public override R Accept<R>(Visitor<R> visitor) => visitor.VisitFunctionDeclaration(this);
+    public override R Accept<R>(IVisitor<R> visitor) => visitor.VisitFunctionDeclaration(this);
     public override List<Token> GetTokens() =>
     [
         Keyword,

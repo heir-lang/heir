@@ -25,7 +25,7 @@ public class BoundElementAccess : BoundExpression
         Type = Expression.Type;
     }
 
-    public override R Accept<R>(Visitor<R> visitor) => visitor.VisitBoundElementAccessExpression(this);
+    public override R Accept<R>(IVisitor<R> visitor) => visitor.VisitBoundElementAccessExpression(this);
     public override List<Token> GetTokens() => [..Expression.GetTokens(), ..IndexExpression.GetTokens()];
     
     private BaseType GetTypeAtIndex(InterfaceType interfaceType) =>

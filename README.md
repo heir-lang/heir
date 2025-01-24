@@ -25,6 +25,7 @@ https://discord.gg/AEbNTEVNAd
       - [x] hexadecimal
     - [x] float
     - [x] string
+    - [ ] multi-line string
     - [x] character
     - [x] boolean
     - [x] none
@@ -44,10 +45,9 @@ https://discord.gg/AEbNTEVNAd
     - [x] null coalescing (`??`, `??=`)
     - [x] equality (`==`, `!=`, `!`, `<`, `>`, `<=`, `>=`)
     - [x] logical (`&&`, `||`) 
-    - [x] bitwise (`&`, `|`, `~`) 
-        - [x] shifts (`<<`, `>>`)
+    - [x] bitwise (`&`, `|`, `~`, `<<`, `>>`) 
     - [x] arithmetic (`+`, `-`, `*`, `/`, `//`, `%`, `^`)
-      - [x] increment/decrement (`++`, `--`)
+      - [x] prefix increment/decrement (`++`, `--`)
       - [x] compound assignment (`+=`, `-=`, `*=`, `/=`, `//=`, `%=`, `^=`)
 - [ ] parsing
     - [ ] warn when using an expression as a statement that is not a return value and isn't something like AssignmentOp or Invocation

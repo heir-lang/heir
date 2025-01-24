@@ -6,7 +6,7 @@ using Heir.Types;
 
 namespace Heir;
 
-public class TypeChecker(DiagnosticBag diagnostics, BoundSyntaxTree syntaxTree) : BoundNodeVisitor<object?>
+public class TypeChecker(DiagnosticBag diagnostics, BoundSyntaxTree syntaxTree) : IBoundNodeVisitor<object?>
 {
     public void Check() => Check(syntaxTree);
 

@@ -10,6 +10,6 @@ public class BoundUnaryOp(BoundUnaryOperator op, BoundExpression operand) : Boun
     public BoundUnaryOperator Operator { get; } = op;
     public BoundExpression Operand { get; } = operand;
 
-    public override R Accept<R>(Visitor<R> visitor) => visitor.VisitBoundUnaryOpExpression(this);
+    public override R Accept<R>(IVisitor<R> visitor) => visitor.VisitBoundUnaryOpExpression(this);
     public override List<Token> GetTokens() => Operand.GetTokens();
 }

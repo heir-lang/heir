@@ -10,6 +10,6 @@ public sealed class BoundParenthesized(BoundExpression expression) : BoundExpres
 
     public BoundExpression Expression { get; } = expression;
 
-    public override R Accept<R>(Visitor<R> visitor) => visitor.VisitBoundParenthesizedExpression(this);
+    public override R Accept<R>(IVisitor<R> visitor) => visitor.VisitBoundParenthesizedExpression(this);
     public override List<Token> GetTokens() => Expression.GetTokens();
 }

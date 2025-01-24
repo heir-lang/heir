@@ -15,7 +15,7 @@ public class IntrinsicRegistrar(IIntrinsicValue intrinsicValue)
     }
 
     public void RegisterSymbol(Binder binder) =>
-        binder.DefineSymbol(_nameToken, intrinsicValue.Type, false);
+        binder.DefineVariableSymbol(_nameToken, intrinsicValue.Type, false);
     
     public void RegisterValue(Scope scope) =>
         scope.Define(intrinsicValue.Name, intrinsicValue.Value);

@@ -13,6 +13,6 @@ public sealed class BoundVariableDeclaration(VariableSymbol<BaseType> symbol, Bo
     public BoundExpression? Initializer { get; } = initializer;
     public bool IsMutable { get; } = isMutable;
 
-    public override R Accept<R>(Visitor<R> visitor) => visitor.VisitBoundVariableDeclaration(this);
+    public override R Accept<R>(IVisitor<R> visitor) => visitor.VisitBoundVariableDeclaration(this);
     public override List<Token> GetTokens() => [Symbol.Name, ..Initializer?.GetTokens() ?? []];
 }

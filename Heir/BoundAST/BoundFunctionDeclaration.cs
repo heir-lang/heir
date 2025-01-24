@@ -18,7 +18,7 @@ public sealed class BoundFunctionDeclaration(
     public List<BoundParameter> Parameters { get; } = parameters;
     public BoundBlock Body { get; } = body;
 
-    public override R Accept<R>(Visitor<R> visitor) => visitor.VisitBoundFunctionDeclaration(this);
+    public override R Accept<R>(IVisitor<R> visitor) => visitor.VisitBoundFunctionDeclaration(this);
     public override List<Token> GetTokens() =>
     [
         Keyword,

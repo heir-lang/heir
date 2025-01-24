@@ -7,6 +7,6 @@ public class ParenthesizedType(TypeRef type) : TypeRef
 {
     public TypeRef Type { get; } = type;
 
-    public override R Accept<R>(Visitor<R> visitor) => visitor.VisitParenthesizedTypeRef(this);
+    public override R Accept<R>(IVisitor<R> visitor) => visitor.VisitParenthesizedTypeRef(this);
     public override List<Token> GetTokens() => Type.GetTokens();
 }

@@ -6,9 +6,9 @@ public abstract class BoundExpression : BoundSyntaxNode
 {
     public abstract BaseType Type { get; }
 
-    public abstract R Accept<R>(Visitor<R> visitor);
+    public abstract R Accept<R>(IVisitor<R> visitor);
 
-    public interface Visitor<out R>
+    public interface IVisitor<out R>
     {
         public R VisitBoundIdentifierNameExpression(BoundIdentifierName identifierName);
         public R VisitBoundAssignmentOpExpression(BoundAssignmentOp assignmentOp);

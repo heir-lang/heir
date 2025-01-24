@@ -12,7 +12,7 @@ public enum ScopeContext
     Class
 }
 
-public sealed class Resolver(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : NodeVisitor<object?>
+public sealed class Resolver(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : INodeVisitor<object?>
 {
     public DiagnosticBag Diagnostics { get; } = diagnostics;
 

@@ -8,7 +8,7 @@ public class Invocation(Expression callee, List<Expression> arguments) : Express
     public Expression Callee { get; } = callee;
     public List<Expression> Arguments { get; } = arguments;
 
-    public override R Accept<R>(Visitor<R> visitor) => visitor.VisitInvocationExpression(this);
+    public override R Accept<R>(IVisitor<R> visitor) => visitor.VisitInvocationExpression(this);
     public override List<Token> GetTokens() => 
     [
         ..Callee.GetTokens(),

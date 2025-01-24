@@ -13,7 +13,7 @@ using UnionType = Heir.AST.UnionType;
 
 namespace Heir;
 
-public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder) : NodeVisitor<List<Instruction>>
+public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder) : INodeVisitor<List<Instruction>>
 {
     private readonly SyntaxTree _syntaxTree = binder.SyntaxTree;
 

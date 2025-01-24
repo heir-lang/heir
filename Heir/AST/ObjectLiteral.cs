@@ -7,5 +7,5 @@ public class ObjectLiteral(Token token, Dictionary<Expression, Expression> prope
 {
     public Dictionary<Expression, Expression> Properties { get; } = properties;
 
-    public override R Accept<R>(Visitor<R> visitor) => visitor.VisitObjectLiteralExpression(this);
+    public override R Accept<R>(IVisitor<R> visitor) => visitor.VisitObjectLiteralExpression(this);
 }

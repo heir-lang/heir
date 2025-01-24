@@ -2,9 +2,9 @@ namespace Heir.AST.Abstract;
 
 public abstract class Statement : SyntaxNode
 {
-    public abstract R Accept<R>(Visitor<R> visitor);
+    public abstract R Accept<R>(IVisitor<R> visitor);
 
-    public interface Visitor<out R>
+    public interface IVisitor<out R>
     {
         public R VisitSyntaxTree(SyntaxTree tree);
         public R VisitVariableDeclaration(VariableDeclaration variableDeclaration);

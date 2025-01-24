@@ -11,7 +11,7 @@ namespace Heir.BoundAST
         public BoundBinaryOperator Operator { get; } = op;
         public BoundExpression Right { get; } = right;
 
-        public override R Accept<R>(Visitor<R> visitor) => visitor.VisitBoundBinaryOpExpression(this);
+        public override R Accept<R>(IVisitor<R> visitor) => visitor.VisitBoundBinaryOpExpression(this);
         public override List<Token> GetTokens() => Left.GetTokens().Concat(Right.GetTokens()).ToList();
     }
 }

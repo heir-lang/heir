@@ -11,7 +11,7 @@ public class InterfaceDeclaration(Token keyword, Token identifier, List<Interfac
     public Token Identifier { get; } = identifier;
     public List<InterfaceField> Fields { get; } = fields;
     
-    public override R Accept<R>(Visitor<R> visitor) => visitor.VisitInterfaceDeclaration(this);
+    public override R Accept<R>(IVisitor<R> visitor) => visitor.VisitInterfaceDeclaration(this);
 
     public override List<Token> GetTokens() =>
     [

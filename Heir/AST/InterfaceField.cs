@@ -9,7 +9,7 @@ public class InterfaceField(Token identifier, TypeRef type, bool isMutable) : St
     public TypeRef Type { get; } = type;
     public bool IsMutable { get; } = isMutable;
 
-    public override R Accept<R>(Visitor<R> visitor) => visitor.VisitInterfaceField(this);
+    public override R Accept<R>(IVisitor<R> visitor) => visitor.VisitInterfaceField(this);
     public override List<Token> GetTokens() =>
     [
         Identifier,

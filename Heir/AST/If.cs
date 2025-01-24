@@ -10,7 +10,7 @@ public sealed class If(Token keyword, Expression condition, Statement body, Stat
     public Statement Body { get; } = body;
     public Statement? ElseBranch { get; } = elseBranch;
     
-    public override R Accept<R>(Visitor<R> visitor) => visitor.VisitIfStatement(this);
+    public override R Accept<R>(IVisitor<R> visitor) => visitor.VisitIfStatement(this);
     public override List<Token> GetTokens() =>
     [
         Keyword,

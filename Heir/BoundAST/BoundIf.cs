@@ -14,7 +14,7 @@ public sealed class BoundIf(Token keyword, BoundExpression condition, BoundState
     public BoundStatement Body { get; } = body;
     public BoundStatement? ElseBranch { get; } = elseBranch;
 
-    public override R Accept<R>(Visitor<R> visitor) => visitor.VisitBoundIfStatement(this);
+    public override R Accept<R>(IVisitor<R> visitor) => visitor.VisitBoundIfStatement(this);
     public override List<Token> GetTokens() =>
     [
         Keyword,

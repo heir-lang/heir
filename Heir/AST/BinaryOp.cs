@@ -9,6 +9,6 @@ public class BinaryOp(Expression left, Token op, Expression right) : Expression
     public Token Operator { get; } = op;
     public Expression Right { get; } = right;
         
-    public override R Accept<R>(Visitor<R> visitor) => visitor.VisitBinaryOpExpression(this);
+    public override R Accept<R>(IVisitor<R> visitor) => visitor.VisitBinaryOpExpression(this);
     public override List<Token> GetTokens() => Left.GetTokens().Append(Operator).Concat(Right.GetTokens()).ToList();
 }

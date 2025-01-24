@@ -12,6 +12,6 @@ public sealed class BoundParameter(VariableSymbol<BaseType> symbol, BoundLiteral
     public VariableSymbol<BaseType> Symbol { get; } = symbol;
     public BoundLiteral? Initializer { get; } = initializer;
 
-    public override R Accept<R>(Visitor<R> visitor) => visitor.VisitBoundParameter(this);
+    public override R Accept<R>(IVisitor<R> visitor) => visitor.VisitBoundParameter(this);
     public override List<Token> GetTokens() => [Symbol.Name, ..Initializer?.GetTokens() ?? []];
 }

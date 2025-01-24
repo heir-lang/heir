@@ -9,7 +9,7 @@ public class FunctionType(Dictionary<string, TypeRef> parameterTypes, TypeRef re
     public Dictionary<string, TypeRef> ParameterTypes { get; } = parameterTypes;
     public TypeRef ReturnType { get; } = returnType;
 
-    public override R Accept<R>(Visitor<R> visitor) => visitor.VisitFunctionTypeRef(this);
+    public override R Accept<R>(IVisitor<R> visitor) => visitor.VisitFunctionTypeRef(this);
 
     public override List<Token> GetTokens() =>
     [

@@ -8,6 +8,6 @@ public class Return(Token keyword, Expression expression) : Statement
     public Token Keyword { get; } = keyword;
     public Expression Expression { get; } = expression;
 
-    public override R Accept<R>(Visitor<R> visitor) => visitor.VisitReturnStatement(this);
+    public override R Accept<R>(IVisitor<R> visitor) => visitor.VisitReturnStatement(this);
     public override List<Token> GetTokens() => [Keyword, ..Expression.GetTokens()];
 }

@@ -7,7 +7,7 @@ public class IdentifierName(Token token) : Name
 {
     public Token Token { get; } = token;
 
-    public override R Accept<R>(Visitor<R> visitor) => visitor.VisitIdentifierNameExpression(this);
+    public override R Accept<R>(IVisitor<R> visitor) => visitor.VisitIdentifierNameExpression(this);
     public override List<Token> GetTokens() => [Token];
     
     public override string ToString() => Token.Text;

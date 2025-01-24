@@ -9,6 +9,6 @@ public sealed class Parameter(IdentifierName name, TypeRef? type, Literal? initi
     public TypeRef? Type { get; } = type;
     public Literal? Initializer { get; } = initializer;
 
-    public override R Accept<R>(Visitor<R> visitor) => visitor.VisitParameter(this);
+    public override R Accept<R>(IVisitor<R> visitor) => visitor.VisitParameter(this);
     public override List<Token> GetTokens() => Name.GetTokens().Concat(Initializer?.GetTokens() ?? []).ToList();
 }

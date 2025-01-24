@@ -14,6 +14,6 @@ public class BoundInvocation(BoundExpression callee, List<BoundExpression> argum
     public List<BoundExpression> Arguments { get; } = arguments;
     public bool IsIntrinsic { get; } = callee is BoundIdentifierName { Symbol.IsIntrinsic: true };
 
-    public override R Accept<R>(Visitor<R> visitor) => visitor.VisitBoundInvocationExpression(this);
+    public override R Accept<R>(IVisitor<R> visitor) => visitor.VisitBoundInvocationExpression(this);
     public override List<Token> GetTokens() => [..Callee.GetTokens(), ..Arguments.SelectMany(argument => argument.GetTokens())];
 }

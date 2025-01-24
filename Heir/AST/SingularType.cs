@@ -7,6 +7,6 @@ public class SingularType(Token token) : TypeRef
 {
     public Token Token { get; } = token;
 
-    public override R Accept<R>(Visitor<R> visitor) => visitor.VisitSingularTypeRef(this);
+    public override R Accept<R>(IVisitor<R> visitor) => visitor.VisitSingularTypeRef(this);
     public override List<Token> GetTokens() => [Token];
 }

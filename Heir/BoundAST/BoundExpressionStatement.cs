@@ -10,6 +10,6 @@ public class BoundExpressionStatement(BoundExpression expression) : BoundStateme
 
     public BoundExpression Expression { get; } = expression;
 
-    public override R Accept<R>(Visitor<R> visitor) => visitor.VisitBoundExpressionStatement(this);
+    public override R Accept<R>(IVisitor<R> visitor) => visitor.VisitBoundExpressionStatement(this);
     public override List<Token> GetTokens() => [];
 }

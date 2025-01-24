@@ -16,8 +16,8 @@ namespace Heir;
 using PropertyPair = KeyValuePair<LiteralType, InterfaceMemberSignature>;
 
 public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree)
-    : Statement.Visitor<BoundStatement>,
-      Expression.Visitor<BoundExpression>
+    : Statement.IVisitor<BoundStatement>,
+      Expression.IVisitor<BoundExpression>
 {
     public SyntaxTree SyntaxTree { get; } = syntaxTree;
 
@@ -64,10 +64,10 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree)
         return null;
     }
     
-    public VariableSymbol<BaseType> DefineSymbol(Token name, BaseType type, bool isMutable) =>
-        DefineSymbol<BaseType>(name, type, isMutable);
+    public VariableSymbol<BaseType> DefineVariableSymbol(Token name, BaseType type, bool isMutable) =>
+        DefineVariableSymbol<BaseType>(name, type, isMutable);
 
-    public VariableSymbol<TType> DefineSymbol<TType>(Token name, TType type, bool isMutable) where TType : BaseType
+    public VariableSymbol<TType> DefineVariableSymbol<TType>(Token name, TType type, bool isMutable) where TType : BaseType
     {
         // this is so braindead
         var symbol = new VariableSymbol<TType>(name, type, isMutable);
@@ -77,7 +77,7 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree)
         return symbol;
     }
 
-    public VariableSymbol<BaseType>? FindSymbol(Token name, bool errorIfNotFound = true)
+    public VariableSymbol<BaseType>? FindVariableSymbol(Token name, bool errorIfNotFound = true)
     {
         var symbol = _variableScopes
             .SelectMany(v => v)
@@ -133,7 +133,7 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree)
         if (variableDeclaration.Type == null && variableDeclaration.IsMutable && type is LiteralType literalType)
             type = literalType.AsPrimitive();
 
-        var symbol = DefineSymbol(variableDeclaration.Name.Token, type, variableDeclaration.IsMutable);
+        var symbol = DefineVariableSymbol(variableDeclaration.Name.Token, type, variableDeclaration.IsMutable);
         return new BoundVariableDeclaration(symbol, initializer, variableDeclaration.IsMutable);
     }
 
@@ -172,7 +172,7 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree)
             returnType ?? IntrinsicTypes.Any
         );
         
-        var placeholderSymbol = DefineSymbol<BaseType>(functionDeclaration.Name.Token, placeholderType, false);
+        var placeholderSymbol = DefineVariableSymbol<BaseType>(functionDeclaration.Name.Token, placeholderType, false);
         var boundBody = (BoundBlock)Bind(functionDeclaration.Body);
         var finalType = new Types.FunctionType(
             defaults,
@@ -181,7 +181,7 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree)
         );
 
         UndefineSymbol(placeholderSymbol);
-        var symbol = DefineSymbol(functionDeclaration.Name.Token, finalType, false);
+        var symbol = DefineVariableSymbol(functionDeclaration.Name.Token, finalType, false);
         return new BoundFunctionDeclaration(functionDeclaration.Keyword, symbol, boundParameters, boundBody);
     }
 
@@ -219,7 +219,7 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree)
         if (parameter.Type == null && type is LiteralType literalType)
             type = literalType.AsPrimitive();
 
-        var symbol = DefineSymbol(parameter.Name.Token, type, true);
+        var symbol = DefineVariableSymbol(parameter.Name.Token, type, true);
         return new BoundParameter(symbol, initializer);
     }
 
@@ -284,7 +284,7 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree)
 
     public BoundExpression VisitIdentifierNameExpression(IdentifierName identifierName)
     {
-        var symbol = FindSymbol(identifierName.Token) ??
+        var symbol = FindVariableSymbol(identifierName.Token) ??
             new VariableSymbol<BaseType>(identifierName.Token, IntrinsicTypes.Any, false);
         
         return new BoundIdentifierName(symbol);

@@ -8,6 +8,6 @@ public class MemberAccess(Expression expression, IdentifierName name) : Assignme
     public Expression Expression { get; } = expression;
     public IdentifierName Name { get; } = name;
     
-    public override R Accept<R>(Visitor<R> visitor) => visitor.VisitMemberAccessExpression(this);
+    public override R Accept<R>(IVisitor<R> visitor) => visitor.VisitMemberAccessExpression(this);
     public override List<Token> GetTokens() => [..Expression.GetTokens(), ..Name.GetTokens()];
 }

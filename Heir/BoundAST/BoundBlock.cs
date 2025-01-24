@@ -38,7 +38,7 @@ public class BoundBlock : BoundStatement
             });
     }
 
-    public override R Accept<R>(Visitor<R> visitor) => visitor.VisitBoundBlock(this);
+    public override R Accept<R>(IVisitor<R> visitor) => visitor.VisitBoundBlock(this);
     
     public override List<Token> GetTokens() =>
         Statements

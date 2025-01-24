@@ -25,7 +25,7 @@ public sealed class BoundMemberAccess : BoundAssignmentTarget
         Type = Expression.Type;
     }
 
-    public override R Accept<R>(Visitor<R> visitor) => visitor.VisitBoundMemberAccessExpression(this);
+    public override R Accept<R>(IVisitor<R> visitor) => visitor.VisitBoundMemberAccessExpression(this);
     public override List<Token> GetTokens() => [..Expression.GetTokens(), ..Name.GetTokens()];
 
     private BaseType? GetMemberType(InterfaceType interfaceType)
