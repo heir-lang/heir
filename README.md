@@ -12,7 +12,7 @@ https://discord.gg/AEbNTEVNAd
 
 ## Roadmap
 - [x] lexing
-  - [ ] trivia
+  - [x] trivia
     - [x] whitespace
     - [x] newlines
     - [x] semicolons

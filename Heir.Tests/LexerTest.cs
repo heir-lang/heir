@@ -100,6 +100,19 @@ public class LexerTest
         Assert.Equal(input, token.Text);
         Assert.Null(token.Value);
     }
+    
+    [Theory]
+    [InlineData("## single line comment")]
+    [InlineData("###\nmulti\nline\ncomment###")]
+    [InlineData(";;;;;;;;")]
+    [InlineData("   \r\n\r\n \n\n    \t\t\t   ")] // whitespaces
 
-    private TokenStream Tokenize(string input) => Common.Tokenize(input).WithoutTrivia();
+    public void Tokenizes_Trivia(string input)
+    {
+        var tokenStream = Tokenize(input);
+        Assert.Empty(tokenStream);
+        Assert.Empty(tokenStream.Diagnostics);
+    }
+
+    private static TokenStream Tokenize(string input) => Common.Tokenize(input).WithoutTrivia();
 }

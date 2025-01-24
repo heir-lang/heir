@@ -379,7 +379,7 @@ public sealed class Lexer(SourceFile sourceFile)
                 Peek(-1) != '#' ||
                 _current != '#'))
         {
-            if (_current == '\r' && Peek() == '\n')
+            if (_current == '\n')
             {
                 _line++;
                 _column = 0;
