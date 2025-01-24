@@ -21,15 +21,15 @@ public class VirtualMachineTest
     [InlineData("math.inf", double.PositiveInfinity)]
     [InlineData("math.abs(69.0)", 69.0)]
     [InlineData("math.abs(-69.0)", 69.0)]
-    [InlineData("math.abs(69)", 69L)]
-    [InlineData("math.abs(-69)", 69L)]
-    [InlineData("math.floor(69.9)", 69L)]
-    [InlineData("math.floor(69.1)", 69L)]
-    [InlineData("math.ceil(69.9)", 70L)]
-    [InlineData("math.ceil(69.1)", 70L)]
-    [InlineData("math.round(69.1)", 69L)]
-    [InlineData("math.round(69.9)", 70L)]
-    [InlineData("math.round(69.5)", 70L)]
+    [InlineData("math.abs(69)", 69)]
+    [InlineData("math.abs(-69)", 69)]
+    [InlineData("math.floor(69.9)", 69)]
+    [InlineData("math.floor(69.1)", 69)]
+    [InlineData("math.ceil(69.9)", 70)]
+    [InlineData("math.ceil(69.1)", 70)]
+    [InlineData("math.round(69.1)", 69)]
+    [InlineData("math.round(69.9)", 70)]
+    [InlineData("math.round(69.5)", 70)]
     [InlineData("math.round(69.564, 2)", 69.56)]
     [InlineData("math.round(69.564, 1)", 69.6)]
     [InlineData("math.inRadians(180)", Math.PI)]
@@ -61,8 +61,8 @@ public class VirtualMachineTest
             case double expectedDouble when value is double actualDouble:
                 AssertExtensions.FuzzyEqual(expectedDouble, actualDouble);
                 break;
-            case long expectedLong when value is long actualLong:
-                AssertExtensions.FuzzyEqual(expectedLong, actualLong);
+            case int expectedInt when value is int actualInt:
+                AssertExtensions.FuzzyEqual(expectedInt, actualInt);
                 break;
             
             default:
@@ -108,9 +108,9 @@ public class VirtualMachineTest
     }
 
     [Theory]
-    [InlineData("let mut x = 1; x = 2;", 2L)]
+    [InlineData("let mut x = 1; x = 2;", 2)]
     [InlineData("let mut y = 5; y += 5;", 10.0)]
-    [InlineData("let mut z = 9; z //= 2;", 4L)]
+    [InlineData("let mut z = 9; z //= 2;", 4)]
     public void Evaluates_Assignment(string input, object? expectedValue)
     {
         var (value, _) = Evaluate(input);
@@ -121,8 +121,8 @@ public class VirtualMachineTest
     [InlineData("let foo = { bar: \"baz\" }; foo.bar;", "baz")]
     [InlineData("let foo = { bar: \"baz\", boof: \"rah\" }; foo.boof;", "rah")]
     [InlineData("({ abc: \"def\" }).abc;", "def")]
-    [InlineData("let a = { b: { c: 123 } }; a.b.c;", 123L)]
-    [InlineData("fn brah -> { a: 123 }; let foo = { bar: brah }; foo.bar().a;", 123L)]
+    [InlineData("let a = { b: { c: 123 } }; a.b.c;", 123)]
+    [InlineData("fn brah -> { a: 123 }; let foo = { bar: brah }; foo.bar().a;", 123)]
     public void Evaluates_MemberAccess(string input, object? expectedValue)
     {
         var (value, _) = Evaluate(input);
@@ -133,8 +133,8 @@ public class VirtualMachineTest
     [InlineData("let foo = { bar: \"baz\" }; foo[\"bar\"];", "baz")]
     [InlineData("let foo = { bar: \"baz\", boof: \"rah\" }; foo[\"boof\"];", "rah")]
     [InlineData("({ abc: \"def\" })[\"abc\"];", "def")]
-    [InlineData("let a = { b: { c: 123 } }; a[\"b\"][\"c\"];", 123L)]
-    [InlineData("fn brah -> { a: 123 }; let foo = { bar: brah }; foo[\"bar\"]()[\"a\"];", 123L)]
+    [InlineData("let a = { b: { c: 123 } }; a[\"b\"][\"c\"];", 123)]
+    [InlineData("fn brah -> { a: 123 }; let foo = { bar: brah }; foo[\"bar\"]()[\"a\"];", 123)]
     public void Evaluates_ElementAccess(string input, object? expectedValue)
     {
         var (value, _) = Evaluate(input);
@@ -186,8 +186,8 @@ public class VirtualMachineTest
     }
 
     [Theory]
-    [InlineData("let x = 1;", "x", 1L)]
-    [InlineData("let mut y: int = 2;", "y", 2L)]
+    [InlineData("let x = 1;", "x", 1)]
+    [InlineData("let mut y: int = 2;", "y", 2)]
     public void Evaluates_VariableDeclarations(string input, string name, object? expectedValue)
     {
         var (resultValue, vm) = Evaluate(input);
@@ -199,8 +199,8 @@ public class VirtualMachineTest
 
     [Theory]
     [InlineData("{ a: true }", "a", true)]
-    [InlineData("{ [\"a\"]: 69 }", "a", 69L)]
-    [InlineData("{ [1]: 420 }", 1L, 420L)]
+    [InlineData("{ [\"a\"]: 69 }", "a", 69)]
+    [InlineData("{ [1]: 420 }", 1, 420)]
     public void Evaluates_ObjectLiterals(string input, object expectedKey, object? expectedValue)
     {
         var (resultValue, _) = Evaluate(input);
@@ -225,9 +225,9 @@ public class VirtualMachineTest
 
     [Theory]
     [InlineData("69.420", 69.420)]
-    [InlineData("0x3E", 62L)]
-    [InlineData("0o342", 226L)]
-    [InlineData("0b11", 3L)]
+    [InlineData("0x3E", 62)]
+    [InlineData("0o342", 226)]
+    [InlineData("0b11", 3)]
     [InlineData("\"hello\"", "hello")]
     [InlineData("'a'", 'a')]
     [InlineData("true", true)]
@@ -244,15 +244,15 @@ public class VirtualMachineTest
     [InlineData("9 - 3", 6.0)]
     [InlineData("3 * 3", 9.0)]
     [InlineData("10 / 2", 5.0)]
-    [InlineData("9 // 2", 4L)]
+    [InlineData("9 // 2", 4)]
     [InlineData("9 % 2", 1.0)]
-    [InlineData("14 << 1", 28L)]
+    [InlineData("14 << 1", 28)]
     [InlineData("11 & 7", 3L)]
     [InlineData("4 | 9", 13L)]
     [InlineData("5 ~ 3", 6L)]
     [InlineData("~7", -8L)]
     [InlineData("-5.0", -5.0)]
-    [InlineData("-5", -5L)]
+    [InlineData("-5", -5)]
     [InlineData("3 * 2 + 1", 7.0)]
     [InlineData("3 * (2 + 1)", 9.0)]
     public void Evaluates_Arithmetic(string input, object? expectedValue)

@@ -152,7 +152,7 @@ public class ParserTest
             Assert.Null(yParameter.Type);
         
         Assert.NotNull(yParameter.Initializer);
-        Assert.Equal(1L, yParameter.Initializer.Token.Value);
+        Assert.Equal(1, yParameter.Initializer.Token.Value);
         
         var xType = (SingularType)xParameter.Type;
         Assert.Equal("int", xType.Token.Text);
@@ -199,7 +199,7 @@ public class ParserTest
         Assert.IsType<Literal>(returnStatement.Expression);
         
         var literal = (Literal)returnStatement.Expression;
-        Assert.Equal(123L, literal.Token.Value);
+        Assert.Equal(123, literal.Token.Value);
     }
     
     [Fact]
@@ -276,7 +276,7 @@ public class ParserTest
         Assert.IsType<Literal>(returnStatement.Expression);
         
         var literal = (Literal)returnStatement.Expression;
-        Assert.Equal(123L, literal.Token.Value);
+        Assert.Equal(123, literal.Token.Value);
     }
     
     [Fact]
@@ -503,8 +503,8 @@ public class ParserTest
             Assert.Equal(SyntaxKind.Minus, subtraction.Operator.Kind);
             Assert.Equal(SyntaxKind.Star, multiplication.Operator.Kind);
             Assert.Equal(SyntaxKind.Carat, exponentation.Operator.Kind);
-            Assert.Equal((long)2, twoLiteral.Token.Value);
-            Assert.Equal((long)4, fourLiteral.Token.Value);
+            Assert.Equal(2, twoLiteral.Token.Value);
+            Assert.Equal(4, fourLiteral.Token.Value);
         }
         {
             var tree = Parse("true || false && true");

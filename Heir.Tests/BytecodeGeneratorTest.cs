@@ -53,7 +53,7 @@ public class BytecodeGeneratorTest
         Assert.Equal("x", bytecode[0].Operand);
         Assert.Equal(OpCode.LOAD, bytecode[1].OpCode);
         Assert.Equal(OpCode.PUSH, bytecode[2].OpCode);
-        Assert.Equal(1L, bytecode[2].Operand);
+        Assert.Equal(1, bytecode[2].Operand);
         Assert.Equal(OpCode.EQ, bytecode[3].OpCode);
         Assert.Equal(OpCode.JNZ, bytecode[4].OpCode);
         Assert.Equal(16, bytecode[4].Operand);
@@ -61,7 +61,7 @@ public class BytecodeGeneratorTest
         Assert.Equal("x", bytecode[5].Operand);
         Assert.Equal(OpCode.LOAD, bytecode[6].OpCode);
         Assert.Equal(OpCode.PUSH, bytecode[7].OpCode);
-        Assert.Equal(2L, bytecode[7].Operand);
+        Assert.Equal(2, bytecode[7].Operand);
         Assert.Equal(OpCode.EQ, bytecode[8].OpCode);
         Assert.Equal(OpCode.JNZ, bytecode[9].OpCode);
         Assert.Equal(6, bytecode[9].Operand);
@@ -69,7 +69,7 @@ public class BytecodeGeneratorTest
         Assert.Equal("x", bytecode[10].Operand);
         Assert.Equal(OpCode.LOAD, bytecode[11].OpCode);
         Assert.Equal(OpCode.PUSH, bytecode[12].OpCode);
-        Assert.Equal(5L, bytecode[12].Operand);
+        Assert.Equal(5, bytecode[12].Operand);
         Assert.Equal(OpCode.MUL, bytecode[13].OpCode);
         Assert.Equal(OpCode.JMP, bytecode[14].OpCode);
         Assert.Equal(5, bytecode[14].Operand);
@@ -77,7 +77,7 @@ public class BytecodeGeneratorTest
         Assert.Equal("x", bytecode[15].Operand);
         Assert.Equal(OpCode.LOAD, bytecode[16].OpCode);
         Assert.Equal(OpCode.PUSH, bytecode[17].OpCode);
-        Assert.Equal(2L, bytecode[17].Operand);
+        Assert.Equal(2, bytecode[17].Operand);
         Assert.Equal(OpCode.ADD, bytecode[18].OpCode);
         Assert.Equal(OpCode.JMP, bytecode[19].OpCode);
         Assert.Equal(5, bytecode[19].Operand);
@@ -85,7 +85,7 @@ public class BytecodeGeneratorTest
         Assert.Equal("x", bytecode[20].Operand);
         Assert.Equal(OpCode.LOAD, bytecode[21].OpCode);
         Assert.Equal(OpCode.PUSH, bytecode[22].OpCode);
-        Assert.Equal(1L, bytecode[22].Operand);
+        Assert.Equal(1, bytecode[22].Operand);
         Assert.Equal(OpCode.ADD, bytecode[23].OpCode);
     }
     
@@ -122,7 +122,7 @@ public class BytecodeGeneratorTest
             var bytecode = GenerateBytecode("69");
             var instruction = bytecode.Instructions.First();
             Assert.Equal(OpCode.PUSH, instruction.OpCode);
-            Assert.Equal(69L, instruction.Operand);
+            Assert.Equal(69, instruction.Operand);
         }
         {
             var bytecode = GenerateBytecode("69.420");
@@ -140,7 +140,7 @@ public class BytecodeGeneratorTest
 
     [Theory]
     [InlineData("1 + 2", 3.0)]
-    [InlineData("7 // 3", 2L)]
+    [InlineData("7 // 3", 2)]
     [InlineData("1 > 2", false)]
     [InlineData("1 >= 2", false)]
     [InlineData("1 < 2", true)]
@@ -152,7 +152,7 @@ public class BytecodeGeneratorTest
     [InlineData("'a' != 'b'", true)]
     [InlineData("'a' + 'b'", "ab")]
     [InlineData("true && false", false)]
-    [InlineData("14 << 1", 28L)]
+    [InlineData("14 << 1", 28)]
     public void Generates_BinaryOperations(string input, object? resultValue)
     {
         var bytecode = GenerateBytecode(input);
@@ -171,14 +171,14 @@ public class BytecodeGeneratorTest
         Assert.Equal(OpCode.PUSH, pushIdentifier.OpCode);
         Assert.Equal("a", pushIdentifier.Operand);
         Assert.Equal(OpCode.PUSH, pushRight.OpCode);
-        Assert.Equal(2L, pushRight.Operand);
+        Assert.Equal(2, pushRight.Operand);
         Assert.Equal(OpCode.STORE, store.OpCode);
         Assert.True(store.Operand as bool?);
     }
 
     [Theory]
-    [InlineData("let mut a = 1; a += 1", 1L, OpCode.ADD)]
-    [InlineData("let mut a = 1; a //= 2", 2L, OpCode.IDIV)]
+    [InlineData("let mut a = 1; a += 1", 1, OpCode.ADD)]
+    [InlineData("let mut a = 1; a //= 2", 2, OpCode.IDIV)]
     public void Generates_BinaryCompoundAssignment(string input, object? right, OpCode opCode)
     {
         var bytecode = GenerateBytecode(input).Skip(3);
@@ -210,8 +210,8 @@ public class BytecodeGeneratorTest
     [InlineData("!!!!true", true)]
     [InlineData("~3", -4L)]
     [InlineData("-6.0", -6.0)]
-    [InlineData("-6", -6L)]
-    [InlineData("-(-(-6))", -6L)]
+    [InlineData("-6", -6)]
+    [InlineData("-(-(-6))", -6)]
     public void Generates_UnaryOperations(string input, object? resultValue)
     {
         var bytecode = GenerateBytecode(input);
@@ -232,8 +232,8 @@ public class BytecodeGeneratorTest
     }
 
     [Theory]
-    [InlineData("let a = 1;", "a", 1L)]
-    [InlineData("let mut b = 2;", "b", 2L)]
+    [InlineData("let a = 1;", "a", 1)]
+    [InlineData("let mut b = 2;", "b", 2)]
     [InlineData("let c: int;", "c", null, OpCode.PUSHNONE)]
     public void Generates_VariableDeclarations(string input, string name, object? value, OpCode pushOpCode = OpCode.PUSH)
     {
@@ -287,6 +287,6 @@ public class BytecodeGeneratorTest
         Assert.Single(parameterNames);
         
         Assert.Equal(OpCode.PUSH, pushXArgument.OpCode);
-        Assert.Equal(69L, pushXArgument.Operand);
+        Assert.Equal(69, pushXArgument.Operand);
     }
 }

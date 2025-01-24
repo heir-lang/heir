@@ -259,7 +259,7 @@ public class BinderTest
         Assert.IsType<BoundLiteral>(returnStatement.Expression);
         
         var literal = (BoundLiteral)returnStatement.Expression;
-        Assert.Equal(123L, literal.Token.Value);
+        Assert.Equal(123, literal.Token.Value);
     }
     
     [Theory]
@@ -306,7 +306,7 @@ public class BinderTest
         Assert.IsType<BoundLiteral>(returnStatement.Expression);
         
         var literalType = (LiteralType)returnStatement.Type;
-        Assert.Equal(123L, literalType.Value);
+        Assert.Equal(123, literalType.Value);
     }
 
     [Fact]
@@ -366,7 +366,7 @@ public class BinderTest
     [Theory]
     [InlineData("{ a: true }", "a")]
     [InlineData("{ [\"a\"]: true }", "a")]
-    [InlineData("{ [1]: true }", 1L)]
+    [InlineData("{ [1]: true }", 1)]
     public void Parses_ObjectLiterals(string input, object? keyValue)
     {
         var boundTree = Bind(input).GetBoundSyntaxTree();
