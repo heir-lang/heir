@@ -21,12 +21,12 @@ public class Instruction(SyntaxNode? root, OpCode opCode, object? operand = null
         if (Operand is List<Instruction> rawBytecode)
         {
             var bytecode = new Bytecode(rawBytecode);
-            return $"{OpCode} (bytecode){(Root == null ? "" : " - " + Root.GetFirstToken().StartLocation)}\n"
+            return $"{OpCode} (bytecode){(Root == null ? "" : " - " + Root.GetFirstToken().Span.Start)}\n"
                 + string.Join('\n', bytecode.ToString().Split('\n').Select(line => "  " + line));
         }
         
         return Operand != null
-            ? $"{OpCode} {Operand}{(Root == null ? "" : " - " + Root.GetFirstToken().StartLocation)}"
+            ? $"{OpCode} {Operand}{(Root == null ? "" : " - " + Root.GetFirstToken().Span.Start)}"
             : OpCode.ToString();
     }
 }

@@ -19,10 +19,10 @@ public sealed class DiagnosticBag(SourceFile sourceFile, IEnumerable<Diagnostic>
         Warn(code, message, node.GetFirstToken(), node.GetLastToken());
 
     public void Warn(DiagnosticCode code, string message, Token startToken, Token endToken) =>
-        Warn(code, message, startToken.StartLocation, endToken.EndLocation);
+        Warn(code, message, startToken.Span.Start, endToken.Span.End);
 
     public void Warn(DiagnosticCode code, string message, Token token) =>
-        Warn(code, message, token.StartLocation, token.EndLocation);
+        Warn(code, message, token.Span.Start, token.Span.End);
 
     public void Warn(DiagnosticCode code, string message, Location startLocation, Location? endLocation = null)
     {
@@ -37,10 +37,10 @@ public sealed class DiagnosticBag(SourceFile sourceFile, IEnumerable<Diagnostic>
         Error(code, message, node.GetFirstToken(), node.GetLastToken());
 
     public void Error(DiagnosticCode code, string message, Token startToken, Token endToken) =>
-        Error(code, message, startToken.StartLocation, endToken.EndLocation);
+        Error(code, message, startToken.Span.Start, endToken.Span.End);
 
     public void Error(DiagnosticCode code, string message, Token? token) =>
-        Error(code, message, token?.StartLocation, token?.EndLocation);
+        Error(code, message, token?.Span.Start, token?.Span.End);
     
     public void Error(DiagnosticCode code, string message, Location? startLocation, Location? endLocation)
     {
@@ -51,7 +51,7 @@ public sealed class DiagnosticBag(SourceFile sourceFile, IEnumerable<Diagnostic>
     [DoesNotReturn]
     public void RuntimeError(DiagnosticCode code, string message, Token? token)
     {
-        Error(code, message, token?.StartLocation, token?.EndLocation);
+        Error(code, message, token?.Span.Start, token?.Span.End);
         throw new Exception();
     }
 

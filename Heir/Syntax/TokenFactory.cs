@@ -6,7 +6,7 @@
             new(kind, SyntaxFacts.KeywordMap.GetKey(kind), null, Location.Empty, Location.Empty);
         
         public static Token Keyword(SyntaxKind kind, Token token) => 
-            new(kind, SyntaxFacts.KeywordMap.GetKey(kind), null, token.StartLocation, token.EndLocation);
+            new(kind, SyntaxFacts.KeywordMap.GetKey(kind), null, token.Span.Start, token.Span.End);
         
         public static Token Keyword(SyntaxKind kind, Location startLocation, Location endLocation) => 
             new(kind, SyntaxFacts.KeywordMap.GetKey(kind), null, startLocation, endLocation);
@@ -16,7 +16,7 @@
             new(SyntaxKind.Identifier, text, null, startLocation, endLocation);
         
         public static Token StringFromIdentifier(Token identifier) =>
-            StringLiteral($"\"{identifier.Text}\"", identifier.StartLocation, identifier.EndLocation);
+            StringLiteral($"\"{identifier.Text}\"", identifier.Span.Start, identifier.Span.End);
 
         public static Token Operator(SyntaxKind kind, string text, Location startLocation, Location endLocation) =>
             new(kind, text, null, startLocation, endLocation);
@@ -37,7 +37,7 @@
             new(SyntaxKind.FloatLiteral, text, Convert.ToDouble(text), startLocation, endLocation);
 
         public static Token NoneLiteral() => NoneLiteral(Location.Empty, Location.Empty);
-        public static Token NoneLiteral(Token token) => NoneLiteral(token.StartLocation, token.EndLocation);
+        public static Token NoneLiteral(Token token) => NoneLiteral(token.Span.Start, token.Span.End);
         public static Token NoneLiteral(Location startLocation, Location endLocation) =>
             new(SyntaxKind.NoneKeyword, "none", null, startLocation, endLocation);
 
