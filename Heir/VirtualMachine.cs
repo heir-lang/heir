@@ -388,7 +388,7 @@ public sealed class VirtualMachine
                         $"Unhandled binary int operation for op-code {instruction.OpCode}",
                         instruction.Root?.GetFirstToken());
 
-                var result = Convert.ToInt64(calculate(left, right));
+                var result = calculate(left, right);
                 Stack.Push(new StackFrame(instruction.Root, result));
                 Advance();
                 break;
@@ -396,8 +396,8 @@ public sealed class VirtualMachine
             case OpCode.UNM:
             {
                 var operand = Stack.Pop();
-                if (operand.Value is long l)
-                    Stack.Push(new StackFrame(operand.Node, -l));
+                if (operand.Value is int i)
+                    Stack.Push(new StackFrame(operand.Node, -i));
                 else
                     Stack.Push(new StackFrame(operand.Node, -Convert.ToDouble(operand.Value)));
                 

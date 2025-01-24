@@ -15,8 +15,8 @@ public class AbsFunction()
     public override BaseDelegate Invoke { get; } = args =>
     {
         var argument = args.First();
-        if (argument is long l)
-            return Convert.ToInt64(Math.Abs(l));
+        if (argument is int i)
+            return Convert.ToInt32(Math.Abs(i));
         
         return Math.Abs(Convert.ToDouble(argument));
     };

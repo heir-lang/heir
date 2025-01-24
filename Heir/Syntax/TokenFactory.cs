@@ -31,7 +31,7 @@
             new(SyntaxKind.CharLiteral, text, Convert.ToChar(text.Substring(1, text.Length - 2)), startLocation, endLocation);
 
         public static Token IntLiteral(string text, Location startLocation, Location endLocation, int radix = 10) =>
-            new(SyntaxKind.IntLiteral, text, Convert.ToInt64(radix == 10 ? text : text[2..], radix), startLocation, endLocation);
+            new(SyntaxKind.IntLiteral, text, Convert.ToInt32(radix == 10 ? text : text[2..], radix), startLocation, endLocation);
 
         public static Token FloatLiteral(string text, Location startLocation, Location endLocation) =>
             new(SyntaxKind.FloatLiteral, text, Convert.ToDouble(text), startLocation, endLocation);

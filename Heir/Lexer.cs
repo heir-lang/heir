@@ -282,18 +282,15 @@ public sealed class Lexer(SourceFile sourceFile)
 
     private Token ReadNumber(Location location)
     {
-        if (_previous == '0')
+        if (_previous == '0' &&
+            _current is { } code &&
+            SyntaxFacts.RadixCodes.TryGetValue(code, value: out var radix))
         {
-            char code = (char)_current!;
-            if (SyntaxFacts.RadixCodes.ContainsKey(code))
-            {
-                int radix = SyntaxFacts.RadixCodes[code];
-                return ReadNonDecimalNumber(location, radix);
-            }
+            return ReadNonDecimalNumber(location, radix);
         }
 
         var decimalUsed = false;
-        while (char.IsDigit((char)_current!) || _current == '.') // fuck you C#
+        while (_current is { } character && (char.IsDigit(character) || character == '.'))
         {
             if (_current == '.')
             {
@@ -317,7 +314,7 @@ public sealed class Lexer(SourceFile sourceFile)
     private Token ReadNonDecimalNumber(Location location, int radix)
     {
         Advance();
-        while (char.IsLetterOrDigit((char)_current!)) // fuck you C#
+        while (_current is { } character && char.IsLetterOrDigit(character))
             Advance();
 
         return TokenFactory.IntLiteral(_currentLexeme, location, _currentLocation, radix);
@@ -325,15 +322,15 @@ public sealed class Lexer(SourceFile sourceFile)
 
     private Token ReadIdentifier(Location location)
     {
-        while (char.IsLetterOrDigit((char)_current!) || _current == '_') // fuck you C#
+        while (_current is { } character && (char.IsLetterOrDigit(character) || character == '_'))
             Advance();
 
         return TokenFactory.Identifier(_currentLexeme, location, _currentLocation);
     }
 
-    private Token SkipWhitespace(Location location)
+    private TriviaToken SkipWhitespace(Location location)
     {
-        while (char.IsWhiteSpace((char)_current!) && _current != '\n') // fuck you C#
+        while (_current is { } character && char.IsWhiteSpace(character) && character != '\n')
             Advance();
 
         return TokenFactory.Trivia(TriviaKind.Whitespace, _currentLexeme, location, _currentLocation);

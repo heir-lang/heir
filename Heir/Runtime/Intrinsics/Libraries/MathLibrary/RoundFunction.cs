@@ -16,9 +16,9 @@ public class RoundFunction()
     public override BaseDelegate Invoke { get; } = args =>
     {
         var n = Convert.ToDouble(args.First());
-        if (args.Last() is long digits)
-            return Convert.ToDouble(Math.Round(n, (int)digits));
+        if (args.Last() is int digits)
+            return Convert.ToDouble(Math.Round(n, digits));
 
-        return Convert.ToInt64(Math.Round(n));
+        return Convert.ToInt32(Math.Round(n));
     };
 }

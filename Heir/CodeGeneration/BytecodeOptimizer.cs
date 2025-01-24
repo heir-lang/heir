@@ -83,8 +83,8 @@ public class BytecodeOptimizer(List<Instruction> bytecode, DiagnosticBag diagnos
                         var optimizedInstruction = instruction.WithOperand(~Convert.ToInt64(instruction.Operand));
                         if (operation.OpCode == OpCode.UNM)
                         {
-                            optimizedInstruction = instruction.Operand is long l
-                                ? instruction.WithOperand(-l)
+                            optimizedInstruction = instruction.Operand is int i
+                                ? instruction.WithOperand(-i)
                                 : instruction.WithOperand(-Convert.ToDouble(instruction.Operand));
                         }
                         
@@ -184,7 +184,7 @@ public class BytecodeOptimizer(List<Instruction> bytecode, DiagnosticBag diagnos
                     {
                         var left = Convert.ToInt32(instruction.Operand);
                         var right = Convert.ToInt32(rightInstruction.Operand);
-                        var result = Convert.ToInt64(calculate(left, right));
+                        var result = Convert.ToInt32(calculate(left, right));
 
                         Advance(2);
                         var newInstruction = RecursiveOptimize(instruction.WithOperand(result));

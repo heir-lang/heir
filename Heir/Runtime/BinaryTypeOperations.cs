@@ -10,7 +10,7 @@ public static class BinaryTypeOperations
         { OpCode.SUB, (a, b) => a - b },
         { OpCode.MUL, (a, b) => a * b },
         { OpCode.DIV, (a, b) => a / b },
-        { OpCode.IDIV, (a, b) => Convert.ToInt64(Math.Floor(a / b)) },
+        { OpCode.IDIV, (a, b) => Convert.ToInt32(Math.Floor(a / b)) },
         { OpCode.MOD, (a, b) => a % b },
         { OpCode.POW, (a, b) => Math.Pow(a, b) },
         { OpCode.LT, (a, b) => a < b },
@@ -26,7 +26,7 @@ public static class BinaryTypeOperations
         { OpCode.BXOR, (a, b) => a ^ b }
     };
     
-    public static readonly Dictionary<OpCode, Func<int, int, object?>> Int = new()
+    public static readonly Dictionary<OpCode, Func<int, int, int>> Int = new()
     {
         { OpCode.BSHL, (a, b) => a << b },
         { OpCode.BSHR, (a, b) => a >> b }
