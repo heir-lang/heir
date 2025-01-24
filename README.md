@@ -17,7 +17,7 @@ https://discord.gg/AEbNTEVNAd
     - [x] newlines
     - [x] semicolons
     - [x] comment
-    - [ ] multi-line comment
+    - [x] multi-line comment
   - [x] literals
     - [x] integer
       - [x] binary

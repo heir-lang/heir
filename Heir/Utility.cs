@@ -1,9 +1,21 @@
+using System.Text.RegularExpressions;
 using Heir.Runtime.Values;
 
 namespace Heir;
 
 public static class Utility
 {
+    public static string EscapeTabsAndNewlines(string text) =>
+        Regex.Replace(text, @"\s", match =>
+            match.Value switch
+            {
+                "\r" => "\\r",
+                "\n" => "\\n",
+                "\t" => "\\t",
+                _ => match.Value // fallback, even though \s covers most whitespace
+            }
+        );
+    
     public static bool ContainsSequence<T>(IReadOnlyList<T> list, IReadOnlyList<T> sequence)
     {
         if (sequence.Count > list.Count)

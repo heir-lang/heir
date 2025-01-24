@@ -164,7 +164,7 @@ public static class Program
     {
         if (options.ShowTokens)
         {
-            Console.WriteLine(file.Tokenize().WithoutTrivia().ToString());
+            Console.WriteLine(file.Tokenize().ToString());
             Console.WriteLine();
         }
 

@@ -1,4 +1,5 @@
-﻿using Heir.Syntax;
+﻿using System.Text.RegularExpressions;
+using Heir.Syntax;
 
 namespace Heir;
 
@@ -38,9 +39,8 @@ public sealed class Lexer(SourceFile sourceFile)
 
     private Token? Lex()
     {
-        if (_isFinished) return null;
+        if (_isFinished || _current is not { } current) return null;
         var startLocation = _currentLocation;
-        var current = (char)_current!;
 
         Advance();
         switch (current)
@@ -223,7 +223,12 @@ public sealed class Lexer(SourceFile sourceFile)
                 return ReadCharacter(startLocation);
 
             case '#':
-                return Match('#') ? SkipComment(startLocation) : null;
+                return Match('#')
+                    // ? SkipComment(startLocation)
+                    ? Match('#')
+                        ? SkipMultiLineComment(startLocation)
+                        : SkipComment(startLocation)
+                    : null;
             case ';':
                 return SkipSemicolons(startLocation);
 
@@ -262,7 +267,7 @@ public sealed class Lexer(SourceFile sourceFile)
     {
         Advance();
         if (_current != '\'')
-            _diagnostics.Error(DiagnosticCode.H002B, $"Unterminated character", location, _currentLocation);
+            _diagnostics.Error(DiagnosticCode.H002B, "Unterminated character", location, _currentLocation);
 
         Advance();
         return TokenFactory.CharLiteral(_currentLexeme, location, _currentLocation);
@@ -274,7 +279,7 @@ public sealed class Lexer(SourceFile sourceFile)
             Advance();
 
         if (_current != '"')
-            _diagnostics.Error(DiagnosticCode.H002, $"Unterminated string", location, _currentLocation);
+            _diagnostics.Error(DiagnosticCode.H002, "Unterminated string", location, _currentLocation);
 
         Advance();
         return TokenFactory.StringLiteral(_currentLexeme, location, _currentLocation);
@@ -336,20 +341,22 @@ public sealed class Lexer(SourceFile sourceFile)
         return TokenFactory.Trivia(TriviaKind.Whitespace, _currentLexeme, location, _currentLocation);
     }
 
-    private Token SkipNewLines(Location location)
+    private TriviaToken SkipNewLines(Location location)
     {
         _line++;
-        while (_current == '\n')
+        while (_current is '\r' or '\n')
         {
+            var isNewLine = _current == '\n';
             _position++; // Advance() but w/o adding to _column for performance reasons
-            _line++;
+            if (isNewLine)
+                _line++;
         }
 
         _column = 0;
         return TokenFactory.Trivia(TriviaKind.Newlines, _currentLexeme, location, _currentLocation);
     }
 
-    private Token SkipSemicolons(Location location)
+    private TriviaToken SkipSemicolons(Location location)
     {
         while (_current == ';')
             Advance();
@@ -357,12 +364,33 @@ public sealed class Lexer(SourceFile sourceFile)
         return TokenFactory.Trivia(TriviaKind.Semicolons, _currentLexeme, location, _currentLocation);
     }
 
-    private Token SkipComment(Location location)
+    private TriviaToken SkipComment(Location location)
     {
-        while (!_isFinished && _current != '\n')
+        while (!_isFinished && _current != '\r' && _current != '\n')
             Advance();
-
+        
         return TokenFactory.Trivia(TriviaKind.Comment, _currentLexeme, location, _currentLocation);
+    }
+    
+    private TriviaToken SkipMultiLineComment(Location location)
+    {
+        while (!_isFinished &&
+               (Peek(-2) != '#' ||
+                Peek(-1) != '#' ||
+                _current != '#'))
+        {
+            if (_current == '\r' && Peek() == '\n')
+            {
+                _line++;
+                _column = 0;
+                Advance();
+            }
+            
+            Advance();    
+        }
+
+        Advance();
+        return TokenFactory.Trivia(TriviaKind.MultiLineComment, _currentLexeme, location, _currentLocation);
     }
 
     private bool MatchLexeme(string lexeme)
