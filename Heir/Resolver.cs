@@ -2,6 +2,7 @@
 using Heir.AST.Abstract;
 using Heir.Runtime.Intrinsics;
 using Heir.Syntax;
+using Void = Heir.AST.Abstract.Void;
 
 namespace Heir;
 
@@ -12,7 +13,7 @@ public enum ScopeContext
     Class
 }
 
-public sealed class Resolver(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : INodeVisitor<object?>
+public sealed class Resolver(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : INodeVisitor
 {
     public DiagnosticBag Diagnostics { get; } = diagnostics;
 
@@ -39,33 +40,33 @@ public sealed class Resolver(DiagnosticBag diagnostics, SyntaxTree syntaxTree) :
         Diagnostics.Error(DiagnosticCode.H009, $"Variable '{identifier.Text}' is already declared in this scope", identifier);
     }
 
-    public object? VisitSyntaxTree(SyntaxTree tree)
+    public Void VisitSyntaxTree(SyntaxTree tree)
     {
         BeginScope();
         Intrinsics.RegisterResolverGlobals(this);
         ResolveStatements(tree.Statements);
         EndScope();
         
-        return null;
+        return default;
     }
 
-    public object? VisitInterfaceField(InterfaceField interfaceField)
+    public Void VisitInterfaceField(InterfaceField interfaceField)
     {
         Resolve(interfaceField.Type);
-        return null;
+        return default;
     }
 
-    public object? VisitInterfaceDeclaration(InterfaceDeclaration interfaceDeclaration)
+    public Void VisitInterfaceDeclaration(InterfaceDeclaration interfaceDeclaration)
     {
         Declare(interfaceDeclaration.Identifier);
         Define(interfaceDeclaration.Identifier);
         foreach (var field in interfaceDeclaration.Fields)
             Resolve(field);
 
-        return null;
+        return default;
     }
 
-    public object? VisitVariableDeclaration(VariableDeclaration variableDeclaration)
+    public Void VisitVariableDeclaration(VariableDeclaration variableDeclaration)
     {
         Declare(variableDeclaration.Name.Token);
         if (variableDeclaration.Type != null)
@@ -74,17 +75,17 @@ public sealed class Resolver(DiagnosticBag diagnostics, SyntaxTree syntaxTree) :
             Resolve(variableDeclaration.Initializer);
 
         Define(variableDeclaration.Name.Token);
-        return null;
+        return default;
     }
 
-    public object? VisitFunctionDeclaration(FunctionDeclaration functionDeclaration)
+    public Void VisitFunctionDeclaration(FunctionDeclaration functionDeclaration)
     {
         Declare(functionDeclaration.Name.Token);
         Define(functionDeclaration.Name.Token);
         return ResolveFunction(functionDeclaration);
     }
 
-    public object? VisitBlock(Block block)
+    public Void VisitBlock(Block block)
     {
         var enclosingContext = _scopeContext;
         _scopeContext = ScopeContext.Block;
@@ -93,128 +94,128 @@ public sealed class Resolver(DiagnosticBag diagnostics, SyntaxTree syntaxTree) :
         EndScope();
         _scopeContext = enclosingContext;
 
-        return null;
+        return default;
     }
 
-    public object? VisitReturnStatement(Return @return)
+    public Void VisitReturnStatement(Return @return)
     {
         if (!_withinFunction)
             Diagnostics.Error(DiagnosticCode.H015, "Invalid return statement: Can only use 'return' within a function body", @return.Keyword);
         
         Resolve(@return.Expression);
-        return null;
+        return default;
     }
 
-    public object? VisitIfStatement(If @if)
+    public Void VisitIfStatement(If @if)
     {
         Resolve(@if.Condition);
         Resolve(@if.Body);
         if (@if.ElseBranch == null)
-            return null;
+            return default;
         
         Resolve(@if.ElseBranch);
-        return null;
+        return default;
     }
 
-    public object? VisitExpressionStatement(ExpressionStatement expressionStatement)
+    public Void VisitExpressionStatement(ExpressionStatement expressionStatement)
     {
         Resolve(expressionStatement.Expression);
-        return null;
+        return default;
     }
     
-    public object? VisitMemberAccessExpression(MemberAccess memberAccess)
+    public Void VisitMemberAccessExpression(MemberAccess memberAccess)
     {
         Resolve(memberAccess.Expression);
-        return null;
+        return default;
     }
 
-    public object? VisitElementAccessExpression(ElementAccess elementAccess)
+    public Void VisitElementAccessExpression(ElementAccess elementAccess)
     {
         Resolve(elementAccess.Expression);
         Resolve(elementAccess.IndexExpression);
-        return null;
+        return default;
     }
 
-    public object? VisitInvocationExpression(Invocation invocation)
+    public Void VisitInvocationExpression(Invocation invocation)
     {
         Resolve(invocation.Callee);
         foreach (var argument in invocation.Arguments)
             Resolve(argument);
 
-        return null;
+        return default;
     }
 
-    public object? VisitParameter(Parameter parameter)
+    public Void VisitParameter(Parameter parameter)
     {
         Declare(parameter.Name.Token);
         Define(parameter.Name.Token);
         if (parameter.Type != null)
             Resolve(parameter.Type);
         
-        return null;
+        return default;
     }
 
-    public object? VisitAssignmentOpExpression(AssignmentOp assignmentOp) => VisitBinaryOpExpression(assignmentOp);
-    public object? VisitBinaryOpExpression(BinaryOp binaryOp)
+    public Void VisitAssignmentOpExpression(AssignmentOp assignmentOp) => VisitBinaryOpExpression(assignmentOp);
+    public Void VisitBinaryOpExpression(BinaryOp binaryOp)
     {
         Resolve(binaryOp.Left);
         Resolve(binaryOp.Right);
-        return null;
+        return default;
     }
 
-    public object? VisitIdentifierNameExpression(IdentifierName identifierName)
+    public Void VisitIdentifierNameExpression(IdentifierName identifierName)
     {
         var scope = _scopes.LastOrDefault();
         var name = identifierName.Token.Text;
         if (scope != null && scope.TryGetValue(name, out var value) && value == false)
         {
             Diagnostics.Error(DiagnosticCode.H010, $"Cannot read variable '{name}' in it's own initializer", identifierName.Token);
-            return null;
+            return default;
         }
         
         if (!IsDefined(identifierName.Token))
         {
             Diagnostics.Error(DiagnosticCode.H011, $"Cannot find name '{name}'", identifierName.Token);
-            return null;
+            return default;
         }
 
-        return null;
+        return default;
     }
 
-    public object? VisitLiteralExpression(Literal literal) => null;
-    public object? VisitObjectLiteralExpression(ObjectLiteral objectLiteral)
+    public Void VisitLiteralExpression(Literal literal) => default;
+    public Void VisitObjectLiteralExpression(ObjectLiteral objectLiteral)
     {
         foreach (var pair in objectLiteral.Properties)
         {
             Resolve(pair.Key);
             Resolve(pair.Value);
         }
-        return null;
+        return default;
     }
 
-    public object? VisitNoOp(NoOp noOp) => null;
-    public object? VisitNoOp(NoOpStatement noOp) => null;
-    public object? VisitNoOp(NoOpType noOp) => null;
+    public Void VisitNoOp(NoOp noOp) => default;
+    public Void VisitNoOp(NoOpStatement noOp) => default;
+    public Void VisitNoOp(NoOpType noOp) => default;
 
-    public object? VisitSingularTypeRef(SingularType singularType) => null;
-    public object? VisitParenthesizedTypeRef(ParenthesizedType parenthesizedType) => null;
-    public object? VisitUnionTypeRef(UnionType unionType) => null;
-    public object? VisitIntersectionTypeRef(IntersectionType intersectionType) => null;
-    public object? VisitFunctionTypeRef(FunctionType functionType) => null;
+    public Void VisitSingularTypeRef(SingularType singularType) => default;
+    public Void VisitParenthesizedTypeRef(ParenthesizedType parenthesizedType) => default;
+    public Void VisitUnionTypeRef(UnionType unionType) => default;
+    public Void VisitIntersectionTypeRef(IntersectionType intersectionType) => default;
+    public Void VisitFunctionTypeRef(FunctionType functionType) => default;
 
-    public object? VisitParenthesizedExpression(Parenthesized parenthesized)
+    public Void VisitParenthesizedExpression(Parenthesized parenthesized)
     {
         Resolve(parenthesized.Expression);
-        return null;
+        return default;
     }
 
-    public object? VisitUnaryOpExpression(UnaryOp unaryOp)
+    public Void VisitUnaryOpExpression(UnaryOp unaryOp)
     {
         Resolve(unaryOp.Operand);
-        return null;
+        return default;
     }
 
-    private object? ResolveFunction(FunctionDeclaration functionDeclaration)
+    private Void ResolveFunction(FunctionDeclaration functionDeclaration)
     {
         var enclosingWithin = _withinFunction;
         _withinFunction = true;
@@ -229,7 +230,7 @@ public sealed class Resolver(DiagnosticBag diagnostics, SyntaxTree syntaxTree) :
         EndScope();
 
         _withinFunction = enclosingWithin;
-        return null;
+        return default;
     }
 
     private bool IsDefined(Token identifier)

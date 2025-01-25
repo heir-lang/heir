@@ -1,6 +1,6 @@
 namespace Heir.Syntax;
 
-public class Span(Location start, Location? end)
+public sealed class Span(Location start, Location? end)
 {
     public Location Start { get; } = start;
     public Location End { get; } = end ?? start;

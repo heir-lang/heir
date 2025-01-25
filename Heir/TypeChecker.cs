@@ -3,62 +3,63 @@ using Heir.BoundAST;
 using Heir.BoundAST.Abstract;
 using Heir.Syntax;
 using Heir.Types;
+using Void = Heir.BoundAST.Abstract.Void;
 
 namespace Heir;
 
-public class TypeChecker(DiagnosticBag diagnostics, BoundSyntaxTree syntaxTree) : IBoundNodeVisitor<object?>
+public class TypeChecker(DiagnosticBag diagnostics, BoundSyntaxTree syntaxTree) : IBoundNodeVisitor
 {
     public void Check() => Check(syntaxTree);
 
-    public object? VisitBoundSyntaxTree(BoundSyntaxTree tree) => VisitBoundBlock(tree);
-    public object? VisitBoundBlock(BoundBlock block) => Check(block.Statements);
-    public object? VisitBoundReturnStatement(BoundReturn @return) => Check(@return.Expression);
-    public object? VisitBoundExpressionStatement(BoundExpressionStatement expressionStatement) => Check(expressionStatement.Expression);
+    public Void VisitBoundSyntaxTree(BoundSyntaxTree tree) => VisitBoundBlock(tree);
+    public Void VisitBoundBlock(BoundBlock block) => Check(block.Statements);
+    public Void VisitBoundReturnStatement(BoundReturn @return) => Check(@return.Expression);
+    public Void VisitBoundExpressionStatement(BoundExpressionStatement expressionStatement) => Check(expressionStatement.Expression);
 
-    public object? VisitBoundFunctionDeclaration(BoundFunctionDeclaration declaration)
+    public Void VisitBoundFunctionDeclaration(BoundFunctionDeclaration declaration)
     {
         Check(declaration.Parameters.OfType<BoundExpression>().ToList());
         Check(declaration.Body);
         if (declaration.Body.Type.IsAssignableTo(declaration.Type.ReturnType))
-            return null;
+            return default;
         
         var message = $"Function '{declaration.Symbol.Name.Text}' is expected to return type '{declaration.Type.ReturnType.ToString()}', but returns '{declaration.Body.Type.ToString()}'";
         diagnostics.Error(DiagnosticCode.H007, message, declaration.Symbol.Name);
-        return null;
+        return default;
     }
 
-    public object? VisitBoundVariableDeclaration(BoundVariableDeclaration variableDeclaration)
+    public Void VisitBoundVariableDeclaration(BoundVariableDeclaration variableDeclaration)
     {
         if (variableDeclaration.Initializer == null)
-            return null;
+            return default;
         
         Check(variableDeclaration.Initializer);
         Assert(variableDeclaration.Initializer, variableDeclaration.Symbol.Type);
-        return null;
+        return default;
     }
 
-    public object? VisitBoundIfStatement(BoundIf @if)
+    public Void VisitBoundIfStatement(BoundIf @if)
     {
         Check(@if.Condition);
         Check(@if.Body);
         if (@if.ElseBranch == null)
-            return null;
+            return default;
         
         Check(@if.ElseBranch);
-        return null;
+        return default;
     }
 
-    public object? VisitBoundParameter(BoundParameter parameter)
+    public Void VisitBoundParameter(BoundParameter parameter)
     {
         if (parameter.Initializer == null)
-            return null;
+            return default;
         
         Check(parameter.Initializer);
         Assert(parameter.Initializer, parameter.Symbol.Type);
-        return null;
+        return default;
     }
     
-    public object? VisitBoundMemberAccessExpression(BoundMemberAccess memberAccess)
+    public Void VisitBoundMemberAccessExpression(BoundMemberAccess memberAccess)
     {
         Check(memberAccess.Expression);
         Check(memberAccess.Name);
@@ -67,19 +68,19 @@ public class TypeChecker(DiagnosticBag diagnostics, BoundSyntaxTree syntaxTree) 
         if (memberAccess.Expression.Type is not InterfaceType interfaceType)
         {
             diagnostics.Error(DiagnosticCode.H018, $"Attempt to index '{memberAccess.Expression.Type.ToString()}'", memberAccess.Expression);
-            return null;
+            return default;
         }
         
         if (memberAccess.Type == memberAccess.Expression.Type)
         {
             diagnostics.Error(DiagnosticCode.H013, $"No member '{memberAccess.Name.Symbol.Name.Text}' exists on type '{interfaceType.Name}'", memberAccess.Name);
-            return null;
+            return default;
         }
         
-        return null;
+        return default;
     }
 
-    public object? VisitBoundElementAccessExpression(BoundElementAccess elementAccess)
+    public Void VisitBoundElementAccessExpression(BoundElementAccess elementAccess)
     {
         Check(elementAccess.Expression);
         Check(elementAccess.IndexExpression);
@@ -88,20 +89,20 @@ public class TypeChecker(DiagnosticBag diagnostics, BoundSyntaxTree syntaxTree) 
         if (elementAccess.Expression.Type is not InterfaceType interfaceType)
         {
             diagnostics.Error(DiagnosticCode.H018, $"Attempt to index '{elementAccess.Expression.Type.ToString()}'", elementAccess.Expression);
-            return null;
+            return default;
         }
         
         Assert(elementAccess.IndexExpression, interfaceType.IndexType);
-        return null;
+        return default;
     }
 
-    public object? VisitBoundInvocationExpression(BoundInvocation invocation)
+    public Void VisitBoundInvocationExpression(BoundInvocation invocation)
     {
         Check(invocation.Callee);
         if (invocation.Callee.Type is not FunctionType functionType)
         {
             diagnostics.Error(DiagnosticCode.H018, $"Attempt to call value of type '{invocation.Callee.Type.ToString()}'", invocation.Callee);
-            return null;
+            return default;
         }
 
         var argumentCount = invocation.Arguments.Count;
@@ -114,7 +115,7 @@ public class TypeChecker(DiagnosticBag diagnostics, BoundSyntaxTree syntaxTree) 
                 : minimumArguments + "-" + maximumArguments;
             
             diagnostics.Error(DiagnosticCode.H019, $"Expected {argumentCountDisplay} argument{(maximumArguments != 1 ? "s" : "")}, got {argumentCount}", invocation.Callee);
-            return null;
+            return default;
         }
             
         var expectedTypes = functionType.ParameterTypes.ToList();
@@ -130,27 +131,27 @@ public class TypeChecker(DiagnosticBag diagnostics, BoundSyntaxTree syntaxTree) 
             Assert(argument, expectedType, $"Argument type '{argument.Type.ToString()}' is not assignable to type '{expectedType.ToString()}' of parameter '{parameterName}'");
         }
 
-        return null;
+        return default;
     }
 
-    public object? VisitBoundAssignmentOpExpression(BoundAssignmentOp assignmentOp)
+    public Void VisitBoundAssignmentOpExpression(BoundAssignmentOp assignmentOp)
     {
         Check(assignmentOp.Right);
         Assert(assignmentOp.Right, assignmentOp.Left.Type);
-        return null;
+        return default;
     }
 
-    public object? VisitBoundBinaryOpExpression(BoundBinaryOp binaryOp)
+    public Void VisitBoundBinaryOpExpression(BoundBinaryOp binaryOp)
     {
         Check(binaryOp.Left);
         Check(binaryOp.Right);
         Assert(binaryOp.Left, binaryOp.Operator.LeftType);
         Assert(binaryOp.Right, binaryOp.Operator.RightType);
-        return null;
+        return default;
     }
     
-    public object? VisitBoundLiteralExpression(BoundLiteral literal) => null;
-    public object? VisitBoundObjectLiteralExpression(BoundObjectLiteral objectLiteral)
+    public Void VisitBoundLiteralExpression(BoundLiteral literal) => default;
+    public Void VisitBoundObjectLiteralExpression(BoundObjectLiteral objectLiteral)
     {
         foreach (var property in objectLiteral.Properties)
         {
@@ -173,67 +174,65 @@ public class TypeChecker(DiagnosticBag diagnostics, BoundSyntaxTree syntaxTree) 
                 diagnostics.Error(DiagnosticCode.H013, $"Index signature for '{property.Key.ToString()}' does not exist on '{objectLiteral.Type.Name}'", objectLiteral.Token);
             }
         }
-        return null;
+        return default;
     }
 
-    public object? VisitBoundIdentifierNameExpression(BoundIdentifierName identifierName) => null;
-    public object? VisitBoundNoOp(BoundNoOp noOp) => null;
-    public object? VisitBoundNoOp(BoundNoOpStatement noOp) => null;
+    public Void VisitBoundIdentifierNameExpression(BoundIdentifierName identifierName) => default;
+    public Void VisitBoundNoOp(BoundNoOp noOp) => default;
+    public Void VisitBoundNoOp(BoundNoOpStatement noOp) => default;
 
-    public object? VisitBoundParenthesizedExpression(BoundParenthesized parenthesized) => Check(parenthesized.Expression);
+    public Void VisitBoundParenthesizedExpression(BoundParenthesized parenthesized) => Check(parenthesized.Expression);
 
-    public object? VisitBoundUnaryOpExpression(BoundUnaryOp unaryOp)
+    public Void VisitBoundUnaryOpExpression(BoundUnaryOp unaryOp)
     {
         Check(unaryOp.Operand);
         Assert(unaryOp.Operand, unaryOp.Operator.OperandType);
-        return null;
+        return default;
     }
     
     private InterfaceMemberSignature? GetInterfaceMemberSignature(InterfaceType interfaceType, LiteralType propertyName, Token token)
     {
-        if (!interfaceType.Members.TryGetValue(propertyName, out var valueType))
-        {
-            diagnostics.Error(DiagnosticCode.H013, $"Property '{propertyName.Value}' does not exist on '${interfaceType.Name}'", token);
-            return null;
-        }
-
-        return valueType;
+        if (interfaceType.Members.TryGetValue(propertyName, out var valueType))
+            return valueType;
+        
+        diagnostics.Error(DiagnosticCode.H013, $"Property '{propertyName.Value}' does not exist on '${interfaceType.Name}'", token);
+        return null;
     }
 
-    private object? Check(List<BoundStatement> nodes)
+    private Void Check(List<BoundStatement> nodes)
     {
         foreach (var node in nodes)
             Check(node);
         
-        return null;
+        return default;
     }
     
-    private object? Check(List<BoundExpression> nodes)
+    private Void Check(List<BoundExpression> nodes)
     {
         foreach (var node in nodes)
             Check(node);
         
-        return null;
+        return default;
     }
     
-    private object? Check(List<BoundSyntaxNode> nodes)
+    private Void Check(List<BoundSyntaxNode> nodes)
     {
         foreach (var node in nodes)
             Check(node);
         
-        return null;
+        return default;
     }
     
-    private object? Check(BoundExpression expression) => expression.Accept(this);
-    private object? Check(BoundStatement statement) => statement.Accept(this);
-    private object? Check(BoundSyntaxNode node)
+    private Void Check(BoundExpression expression) => expression.Accept(this);
+    private Void Check(BoundStatement statement) => statement.Accept(this);
+    private Void Check(BoundSyntaxNode node)
     {
         if (node is BoundExpression expression)
             Check(expression);
         else if (node is BoundStatement statement)
             Check(statement);
 
-        return null;
+        return default;
     }
 
     private void Assert(BoundExpression node, BaseType type, string? message = null)
