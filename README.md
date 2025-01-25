@@ -84,6 +84,8 @@ https://discord.gg/AEbNTEVNAd
     - [x] binary operations
     - [x] parenthesized expressions
     - [x] literals
+    - [ ] enums
+    - [ ] inline enums
 - [x] scopes
 - [x] resolving
 - [x] binding
