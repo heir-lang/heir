@@ -12,4 +12,9 @@ public sealed class VariableDeclaration(IdentifierName name, Expression? initial
 
     public override R Accept<R>(IVisitor<R> visitor) => visitor.VisitVariableDeclaration(this);
     public override List<Token> GetTokens() => Name.GetTokens().Concat(Initializer?.GetTokens() ?? []).ToList();
+
+    public VariableDeclaration WithName(IdentifierName name) => new(name, Initializer, Type, IsMutable);
+    public VariableDeclaration WithInitializer(Expression? initializer) => new(Name, initializer, Type, IsMutable);
+    public VariableDeclaration WithType(TypeRef? typeRef) => new(Name, Initializer, typeRef, IsMutable);
+    public VariableDeclaration WithMutability(bool isMutable) => new(Name, Initializer, Type, isMutable);
 }

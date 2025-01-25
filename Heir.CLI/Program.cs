@@ -174,7 +174,7 @@ public static class Program
             var membersConfig = new MembersConfig
             {
                 MemberFilter = valueProvider =>
-                    valueProvider.MemberType.ToString() != "Heir.Syntax.Location"
+                    valueProvider.MemberType.ToString() != "Heir.Syntax.Span"
             };
 
             if (options.ShowAST)

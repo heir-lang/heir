@@ -88,7 +88,7 @@ https://discord.gg/AEbNTEVNAd
 - [x] resolving
 - [x] binding
   - [ ] `typeof`
-  - [ ] `nameof`
+  - [x] `nameof`
 - [x] typechecking
 - [ ] macro evaluator
 - [x] bytecode generator

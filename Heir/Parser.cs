@@ -17,6 +17,14 @@ public sealed class Parser(TokenStream tokenStream)
 
     private readonly DiagnosticBag _diagnostics = tokenStream.Diagnostics;
 
+    public SyntaxTree ParseWithCompileTimeMacros()
+    {
+        var tree = Parse();
+        var macroEvaluator = new CompileTimeMacroEvaluator(tree);
+        
+        return macroEvaluator.Evaluate();
+    }
+
     public SyntaxTree Parse()
     {
         var statements = new List<Statement>();
@@ -630,6 +638,19 @@ public sealed class Parser(TokenStream tokenStream)
 
             case SyntaxKind.Identifier:
                 return new IdentifierName(token);
+
+            case SyntaxKind.NameofKeyword:
+            {
+                var keyword = token;
+                Tokens.Consume(SyntaxKind.LParen);
+                var identifier = Tokens.Consume(SyntaxKind.Identifier);
+                if (identifier == null)
+                    return new NoOp();
+                    
+                Tokens.Consume(SyntaxKind.RParen);
+                
+                return new NameOf(keyword, new IdentifierName(identifier));
+            }
 
             case SyntaxKind.LParen:
             {

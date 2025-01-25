@@ -10,4 +10,6 @@ public class UnaryOp(Expression operand, Token op) : Expression
 
     public override R Accept<R>(IVisitor<R> visitor) => visitor.VisitUnaryOpExpression(this);
     public override List<Token> GetTokens() => Operand.GetTokens().Append(Operator).ToList();
+
+    public UnaryOp WithOperand(Expression operand) => new(operand, Operator);
 }

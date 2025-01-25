@@ -190,12 +190,18 @@ public sealed class Resolver(DiagnosticBag diagnostics, SyntaxTree syntaxTree) :
             Resolve(pair.Key);
             Resolve(pair.Value);
         }
+        
         return default;
     }
 
     public Void VisitNoOp(NoOp noOp) => default;
     public Void VisitNoOp(NoOpStatement noOp) => default;
     public Void VisitNoOp(NoOpType noOp) => default;
+    public Void VisitNameOfExpression(NameOf nameOf)
+    {
+        Resolve(nameOf.Name);
+        return default;
+    }
 
     public Void VisitSingularTypeRef(SingularType singularType) => default;
     public Void VisitParenthesizedTypeRef(ParenthesizedType parenthesizedType) => default;

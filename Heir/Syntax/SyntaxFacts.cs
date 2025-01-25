@@ -13,6 +13,7 @@ namespace Heir.Syntax
             { "if", SyntaxKind.IfKeyword },
             { "else", SyntaxKind.ElseKeyword },
             { "interface", SyntaxKind.InterfaceKeyword },
+            { "nameof", SyntaxKind.NameofKeyword },
 
             { "int", SyntaxKind.IntKeyword },
             { "float", SyntaxKind.FloatKeyword },

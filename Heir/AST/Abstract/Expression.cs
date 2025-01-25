@@ -24,5 +24,6 @@ public abstract class Expression : SyntaxNode
         public R VisitInvocationExpression(Invocation invocation);
         public R VisitElementAccessExpression(ElementAccess elementAccess);
         public R VisitMemberAccessExpression(MemberAccess memberAccess);
+        public R VisitNameOfExpression(NameOf nameOf);
     }
 }
