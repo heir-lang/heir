@@ -45,6 +45,23 @@ public class ParserTest
         var tree = Parse(input);
         Assert.Empty(tree.Diagnostics);
     }
+    
+    [Theory]
+    [InlineData("interface Abc; nameof(Abc);", "Abc")]
+    [InlineData("let x = 1; nameof(x);", "x")]
+    public void Parses_NameOf(string input, string expectedName)
+    {
+        var tree = Parse(input);
+        var statement = tree.Statements.Last();
+        Assert.IsType<ExpressionStatement>(statement);
+        
+        var expressionStatement = (ExpressionStatement)statement;
+        Assert.IsType<Literal>(expressionStatement.Expression);
+        
+        var literal = (Literal)expressionStatement.Expression;
+        Assert.Equal(SyntaxKind.StringLiteral, literal.Token.Kind);
+        Assert.Equal(expectedName, literal.Token.Value);
+    }
 
     [Fact]
     public void Parses_EmptyInterfaces()

@@ -13,6 +13,15 @@ public class VirtualMachineTest
         Assert.True(vm.Diagnostics.HasErrors);
         Assert.Contains(vm.Diagnostics, diagnostic => diagnostic.Code == expectedDiagnosticCode);
     }
+    
+    [Theory]
+    [InlineData("interface Abc; nameof(Abc);", "Abc")]
+    [InlineData("let x = 1; nameof(x);", "x")]
+    public void Evaluates_NameOf(string input, string expectedValue)
+    {
+        var (value, _) = Evaluate(input);
+        Assert.Equal(expectedValue, value);
+    }
 
     [Fact]
     public void Evaluates_MutableInterfaces()
