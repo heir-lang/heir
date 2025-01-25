@@ -92,7 +92,7 @@ https://discord.gg/AEbNTEVNAd
   - [ ] `typeof`
   - [x] `nameof`
 - [x] typechecking
-- [ ] macro evaluator
+- [x] macro evaluator
 - [x] bytecode generator
   - [x] bytecode binary serialization/deserialization
 - [ ] intrinsics (built-ins)
