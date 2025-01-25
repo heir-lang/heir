@@ -230,13 +230,6 @@ public abstract class NodeTransformer(SyntaxTree tree) : INodeVisitor<SyntaxNode
         
         return new InterfaceDeclaration(interfaceDeclaration.Keyword, interfaceDeclaration.Identifier, fields);
     }
-
-    public virtual SyntaxNode? VisitNameOfExpression(NameOf nameOf)
-    {
-        return Transform(nameOf.Name) is not IdentifierName name
-            ? null
-            : new NameOf(nameOf.Keyword, name);
-    }
     
     protected Expression? Transform(Expression expression) => expression.Accept(this) as Expression;
     protected Statement? Transform(Statement statement) => statement.Accept(this) as Statement;

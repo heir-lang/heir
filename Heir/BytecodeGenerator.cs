@@ -163,7 +163,6 @@ public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder) 
     public List<Instruction> VisitNoOp(NoOp noOp) => NoOp(noOp);
     public List<Instruction> VisitNoOp(NoOpStatement noOp) => NoOp(noOp);
     public List<Instruction> VisitNoOp(NoOpType noOp) => NoOp(noOp);
-    public List<Instruction> VisitNameOfExpression(NameOf nameOf) => NoOp(nameOf);
 
     public List<Instruction> VisitSingularTypeRef(SingularType singularType) => NoOp(singularType);
     public List<Instruction> VisitParenthesizedTypeRef(ParenthesizedType parenthesizedType) => NoOp(parenthesizedType);

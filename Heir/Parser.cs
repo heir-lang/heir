@@ -641,7 +641,6 @@ public sealed class Parser(TokenStream tokenStream)
 
             case SyntaxKind.NameofKeyword:
             {
-                var keyword = token;
                 Tokens.Consume(SyntaxKind.LParen);
                 var identifier = Tokens.Consume(SyntaxKind.Identifier);
                 if (identifier == null)
@@ -649,7 +648,7 @@ public sealed class Parser(TokenStream tokenStream)
                     
                 Tokens.Consume(SyntaxKind.RParen);
                 
-                return new NameOf(keyword, new IdentifierName(identifier));
+                return new Literal(TokenFactory.StringFromIdentifier(identifier));
             }
 
             case SyntaxKind.LParen:

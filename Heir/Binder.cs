@@ -330,7 +330,6 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree)
     public BoundStatement VisitNoOp(NoOpStatement noOp) => new BoundNoOpStatement();
     public BoundExpression VisitNoOp(NoOpType noOp) => new BoundNoOp();
     public BoundExpression VisitNoOp(NoOp noOp) => new BoundNoOp();
-    public BoundExpression VisitNameOfExpression(NameOf nameOf) => new BoundNoOp();
 
     public BoundExpression VisitSingularTypeRef(AST.SingularType singularType)
     {
