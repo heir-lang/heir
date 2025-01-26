@@ -85,7 +85,7 @@ public static class Program
     {
         Console.WriteLine("Welcome to the Heir REPL!");
         var source = "";
-        var okLoops = 0;
+        var stackSize = 0;
         
         while (true)
         {
@@ -96,19 +96,20 @@ public static class Program
             source += input + ";\n";
             var file = new SourceFile(source, "repl", true);
             var (fileExecutionResult, vm) = ExecuteFile(file, options);
+            Console.WriteLine($"Execution result: {fileExecutionResult}");
             if (fileExecutionResult is ErrorMarker)
             {
                 source = "";
+                stackSize = 0;
                 continue;
             }
 
-            if (vm != null)
-            {
-                vm.Stack = new Stack<StackFrame>(vm.Stack.SkipLast(okLoops));
-                vm.Stack.TryPeek(out var result);
-                okLoops++;
-                AnsiConsole.MarkupLine(Utility.Repr(result?.Value, true));
-            }
+            if (vm == null) continue;
+            vm.Stack = new Stack<StackFrame>(vm.Stack.SkipLast(stackSize));
+            if (vm.Stack.TryPeek(out var result))
+                stackSize++;
+                    
+            AnsiConsole.MarkupLine(Utility.Repr(result?.Value, true));
         }
     }
 
