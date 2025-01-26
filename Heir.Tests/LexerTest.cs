@@ -115,5 +115,31 @@ public class LexerTest
         Assert.Empty(tokenStream.Diagnostics);
     }
 
+    [Theory]
+    [InlineData("abc123")]
+    [InlineData("+")]
+    [InlineData("\n\nabc", 3)]
+    [InlineData("## abc", 1, null, null, false)]
+    [InlineData("###\na\nb\nc\n###", 1, 5, 4, false)]
+    public void Tokens_HaveCorrectSpans(string input, int startLine = 1, int? endLine = null, int? endColumn = null, bool withoutTrivia = true)
+    {
+        endLine ??= startLine;
+        
+        var tokenStream = Common.Tokenize(input);
+        if (withoutTrivia)
+            tokenStream = tokenStream.WithoutTrivia();
+        
+        Assert.NotEmpty(tokenStream);
+        
+        var token = tokenStream.First();
+        const int startColumn = 0;
+        endColumn ??= token.Text.Length;
+        
+        Assert.Equal(startColumn, token.Span.Start.Column);
+        Assert.Equal(endColumn, token.Span.End.Column);
+        Assert.Equal(startLine, token.Span.Start.Line);
+        Assert.Equal(endLine, token.Span.End.Line);
+    }
+
     private static TokenStream Tokenize(string input) => Common.Tokenize(input).WithoutTrivia();
 }
