@@ -4,6 +4,7 @@ using CommandLine;
 using Dumpify;
 using Heir.CodeGeneration;
 using Heir.Diagnostics;
+using StackFrame = Heir.Runtime.StackFrame;
 
 namespace Heir.CLI;
 
@@ -84,6 +85,7 @@ public static class Program
     {
         Console.WriteLine("Welcome to the Heir REPL!");
         var source = "";
+        var okLoops = 0;
         
         while (true)
         {
@@ -93,35 +95,42 @@ public static class Program
 
             source += input + ";\n";
             var file = new SourceFile(source, "repl", true);
-            var result = ExecuteFile(file, options);
-            if (result is ErrorMarker)
+            var (fileExecutionResult, vm) = ExecuteFile(file, options);
+            if (fileExecutionResult is ErrorMarker)
             {
                 source = "";
                 continue;
             }
-            AnsiConsole.MarkupLine(Utility.Repr(result, true));
+
+            if (vm != null)
+            {
+                vm.Stack = new Stack<StackFrame>(vm.Stack.SkipLast(okLoops));
+                vm.Stack.TryPeek(out var result);
+                okLoops++;
+                AnsiConsole.MarkupLine(Utility.Repr(result?.Value, true));
+            }
         }
     }
 
-    private static object? ExecuteFile(SourceFile file, Options options, bool exitAfterFirstError = true)
+    private static (object?, VirtualMachine?) ExecuteFile(SourceFile file, Options options, bool exitAfterFirstError = true)
     {
         ShowInfo(options, file);
         var bytecode = file.GenerateBytecode(); // generate bytecode before timing
         if (file.Diagnostics.HasErrors)
         {
             file.Diagnostics.Write(true, !exitAfterFirstError);
-            return new ErrorMarker();
+            return (new ErrorMarker(), null);
         }
         
         if (options.BytecodeOutputPath != null) {
             using var fileStream = File.Create(options.BytecodeOutputPath);
             BytecodeSerializer.Serialize(bytecode, fileStream);
             
-            return null;
+            return (null, null);
         }
         
         var stopwatch = Stopwatch.StartNew();
-        var (result, _) = file.Evaluate();
+        var (result, vm) = file.Evaluate();
         stopwatch.Stop();
     
         if (options.ShowBenchmark)
@@ -130,10 +139,10 @@ public static class Program
         if (file.Diagnostics.HasErrors)
         {
             file.Diagnostics.Write(true, !exitAfterFirstError);
-            return new ErrorMarker();
+            return (new ErrorMarker(), vm);
         }
         
-        return result;
+        return (result, vm);
     }
     
     private static void LoadAndExecuteBytecode(Options options)

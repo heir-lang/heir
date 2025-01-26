@@ -15,7 +15,7 @@ public sealed class VirtualMachine
     public DiagnosticBag Diagnostics { get; }
     public Scope GlobalScope { get; }
     public Scope Scope { get; private set; }
-    public Stack<StackFrame> Stack { get; } = [];
+    public Stack<StackFrame> Stack { get; set; } = [];
     private int _recursionDepth;
     
     private const int _maxRecursionDepth = 20_000;
