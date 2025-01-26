@@ -188,28 +188,28 @@ public sealed class Parser(TokenStream tokenStream)
 
         var fields = new List<InterfaceField>();
         var containsBody = Tokens.Match(SyntaxKind.LBrace, out var braceToken);
-        if (containsBody)
-        {
-            while (!Tokens.Check(SyntaxKind.RBrace) && Tokens.Peek(0) != null)
-            {
-                var isMutable = Tokens.Match(SyntaxKind.MutKeyword);
-                var fieldIdentifier = Tokens.Consume(SyntaxKind.Identifier);
-                if (fieldIdentifier == null) continue;
-            
-                Tokens.Consume(SyntaxKind.Colon);
-                var fieldType = ParseType();
-                var field = new InterfaceField(fieldIdentifier, fieldType, isMutable);
-                
-                ConsumeSemicolons();
-                fields.Add(field);
-            }
-            Tokens.Consume(SyntaxKind.RBrace);
-        }
+        if (!containsBody)
+            return new InterfaceDeclaration(keyword, identifier, fields);
         
-        if (fields.Count == 0 && containsBody)
+        while (!Tokens.Check(SyntaxKind.RBrace) && Tokens.Peek(0) != null)
+        {
+            var isMutable = Tokens.Match(SyntaxKind.MutKeyword);
+            var fieldIdentifier = Tokens.Consume(SyntaxKind.Identifier);
+            if (fieldIdentifier == null) continue;
+            
+            Tokens.Consume(SyntaxKind.Colon);
+            var fieldType = ParseType();
+            var field = new InterfaceField(fieldIdentifier, fieldType, isMutable);
+                
+            ConsumeSemicolons();
+            fields.Add(field);
+        }
+        Tokens.Consume(SyntaxKind.RBrace);
+            
+        if (fields.Count == 0)
             _diagnostics.Warn(DiagnosticCode.H020,
                 $"Empty interface with body, convert to 'interface {identifier.Text};'",
-                braceToken);
+                braceToken!);
 
         return new InterfaceDeclaration(keyword, identifier, fields);
     }
