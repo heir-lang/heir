@@ -1,0 +1,9 @@
+fn createGreeter(greeting: string): (name: string) -> none {
+    fn greet(name: string): none ->
+        print(greeting + ", " + name + "!");
+    
+    return greet;
+}
+
+let greetEnglish = createGreeter("Hello");
+greetEnglish("Runic");

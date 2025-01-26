@@ -75,6 +75,7 @@ https://discord.gg/AEbNTEVNAd
     - [X] dot access (`a.b`)
     - [x] method calls
     - [x] method declaration
+    - [ ] lambdas
     - [ ] array literals
     - [x] object literals
     - [x] compound assignment
