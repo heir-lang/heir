@@ -1,3 +1,4 @@
+using Heir.Diagnostics;
 using static Heir.Tests.Common;
 
 namespace Heir.Tests;

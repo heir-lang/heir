@@ -1,4 +1,5 @@
 ﻿using System.Text.RegularExpressions;
+using Heir.Diagnostics;
 using Heir.Syntax;
 
 namespace Heir;

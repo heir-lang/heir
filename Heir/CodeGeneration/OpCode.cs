@@ -1,4 +1,6 @@
-﻿namespace Heir.CodeGeneration;
+﻿using Heir.Runtime;
+
+namespace Heir.CodeGeneration;
 
 public enum OpCode : byte
 {

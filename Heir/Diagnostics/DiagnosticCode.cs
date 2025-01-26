@@ -1,4 +1,4 @@
-namespace Heir;
+namespace Heir.Diagnostics;
 
 public enum DiagnosticCode : byte
 {
@@ -6,7 +6,6 @@ public enum DiagnosticCode : byte
     H001,
     H001B,
     H001C,
-    H001D,
     H002,
     H002B,
     H003,

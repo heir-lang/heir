@@ -1,3 +1,4 @@
+using Heir.Diagnostics;
 using Heir.Runtime;
 
 namespace Heir.CodeGeneration;

@@ -1,7 +1,6 @@
 using Heir.CodeGeneration;
-using Heir.Runtime;
 
-namespace Heir;
+namespace Heir.Runtime;
 
 internal sealed class CallStackFrame(Bytecode bytecode, Scope closure, int enclosingPointer)
 {

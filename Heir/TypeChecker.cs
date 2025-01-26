@@ -1,6 +1,7 @@
 ﻿using Heir.Binding;
 using Heir.BoundAST;
 using Heir.BoundAST.Abstract;
+using Heir.Diagnostics;
 using Heir.Syntax;
 using Heir.Types;
 using Void = Heir.BoundAST.Abstract.Void;

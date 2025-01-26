@@ -1,12 +1,13 @@
 ﻿using Heir.AST;
 using Heir.AST.Abstract;
+using Heir.Diagnostics;
 using Heir.Runtime.Intrinsics;
 using Heir.Syntax;
 using Void = Heir.AST.Abstract.Void;
 
 namespace Heir;
 
-public enum ScopeContext
+internal enum ScopeContext
 {
     Global,
     Block,
@@ -15,8 +16,6 @@ public enum ScopeContext
 
 public sealed class Resolver(DiagnosticBag diagnostics, SyntaxTree syntaxTree) : INodeVisitor
 {
-    public DiagnosticBag Diagnostics { get; } = diagnostics;
-
     private readonly Stack<Dictionary<string, bool>> _scopes = [];
     private ScopeContext _scopeContext = ScopeContext.Global;
     private bool _withinFunction;
@@ -37,7 +36,7 @@ public sealed class Resolver(DiagnosticBag diagnostics, SyntaxTree syntaxTree) :
         if (!_scopes.TryPeek(out var scope)) return;
         if (scope.TryAdd(identifier.Text, false)) return;
             
-        Diagnostics.Error(DiagnosticCode.H009, $"Variable '{identifier.Text}' is already declared in this scope", identifier);
+        diagnostics.Error(DiagnosticCode.H009, $"Variable '{identifier.Text}' is already declared in this scope", identifier);
     }
 
     public Void VisitSyntaxTree(SyntaxTree tree)
@@ -100,7 +99,7 @@ public sealed class Resolver(DiagnosticBag diagnostics, SyntaxTree syntaxTree) :
     public Void VisitReturnStatement(Return @return)
     {
         if (!_withinFunction)
-            Diagnostics.Error(DiagnosticCode.H015, "Invalid return statement: Can only use 'return' within a function body", @return.Keyword);
+            diagnostics.Error(DiagnosticCode.H015, "Invalid return statement: Can only use 'return' within a function body", @return.Keyword);
         
         Resolve(@return.Expression);
         return default;
@@ -175,12 +174,12 @@ public sealed class Resolver(DiagnosticBag diagnostics, SyntaxTree syntaxTree) :
         var name = identifierName.Token.Text;
         if (scope != null && scope.TryGetValue(name, out var value) && value == false)
         {
-            Diagnostics.Error(DiagnosticCode.H010, $"Cannot read variable '{name}' in it's own initializer", identifierName.Token);
+            diagnostics.Error(DiagnosticCode.H010, $"Cannot read variable '{name}' in it's own initializer", identifierName.Token);
             return default;
         }
         
         if (!IsDefined(identifierName.Token))
-            Diagnostics.Error(DiagnosticCode.H011, $"Cannot find name '{name}'", identifierName.Token);
+            diagnostics.Error(DiagnosticCode.H011, $"Cannot find name '{name}'", identifierName.Token);
 
         return default;
     }

@@ -1,4 +1,5 @@
 ﻿using Heir.AST.Abstract;
+using Heir.Diagnostics;
 
 namespace Heir.AST;
 

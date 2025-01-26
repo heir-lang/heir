@@ -1,6 +1,6 @@
-namespace Heir.Runtime.HookedExceptions;
+namespace Heir.Runtime;
 
-public class BreakHook : HookedException;
-public class NextHook : HookedException;
+public class BreakHookException : HookedException;
+public class NextHookException : HookedException;
 
 public abstract class HookedException() : Exception("BUG: Unhooked hooked exception");

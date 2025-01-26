@@ -1,19 +1,11 @@
 ﻿using Heir.Syntax;
-using System.Linq;
 using Spectre.Console;
 
-namespace Heir;
-
-public enum DiagnosticLevel : byte
-{
-    Warn,
-    Error
-}
+namespace Heir.Diagnostics;
 
 // this code is so shit
 public sealed class Diagnostic(SourceFile sourceFile, DiagnosticCode code, string message, Location startLocation, Location endLocation, DiagnosticLevel level)
 {
-    public SourceFile SourceFile { get; } = sourceFile;
     public DiagnosticCode Code { get; } = code;
     public string Message { get; } = message;
     public Location StartLocation { get; } = startLocation;
@@ -30,7 +22,7 @@ public sealed class Diagnostic(SourceFile sourceFile, DiagnosticCode code, strin
         var erroneousCodeColumnLength = EndLocation.Column - StartLocation.Column;
         var erroneousCodeDistance = EndLocation.Column - erroneousCodeColumnLength - 1;
         var erroneousCodeLineLength = EndLocation.Line - (StartLocation.Line - 1);
-        var lines = SourceFile.Source
+        var lines = sourceFile.Source
             .Split('\n')
             .Skip(StartLocation.Line - 1)
             .Take(erroneousCodeLineLength)

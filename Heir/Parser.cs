@@ -1,6 +1,7 @@
 using Heir.Syntax;
 using Heir.AST;
 using Heir.AST.Abstract;
+using Heir.Diagnostics;
 using FunctionType = Heir.AST.FunctionType;
 using IntersectionType = Heir.AST.IntersectionType;
 using ParenthesizedType = Heir.AST.ParenthesizedType;

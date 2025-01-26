@@ -3,6 +3,7 @@ using Spectre.Console;
 using CommandLine;
 using Dumpify;
 using Heir.CodeGeneration;
+using Heir.Diagnostics;
 
 namespace Heir.CLI;
 

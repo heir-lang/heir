@@ -1,6 +1,7 @@
 ﻿using Heir.AST;
 using Heir.BoundAST;
 using Heir.CodeGeneration;
+using Heir.Diagnostics;
 using Heir.Syntax;
 
 namespace Heir.Tests;

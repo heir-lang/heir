@@ -1,4 +1,5 @@
 ﻿using Heir.BoundAST.Abstract;
+using Heir.Diagnostics;
 
 namespace Heir.BoundAST;
 

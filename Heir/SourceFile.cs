@@ -1,6 +1,7 @@
 using Heir.Syntax;
 using Heir.AST;
 using Heir.CodeGeneration;
+using Heir.Diagnostics;
 
 namespace Heir;
 

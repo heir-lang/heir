@@ -1,5 +1,6 @@
 ﻿using Heir.Syntax;
 using Heir.CodeGeneration;
+using Heir.Diagnostics;
 using Heir.Runtime;
 using Heir.Runtime.Intrinsics;
 using Heir.Runtime.Values;

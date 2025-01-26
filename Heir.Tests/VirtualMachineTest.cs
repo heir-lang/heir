@@ -1,4 +1,5 @@
-﻿using Heir.Runtime.Values;
+﻿using Heir.Diagnostics;
+using Heir.Runtime.Values;
 using static Heir.Tests.Common;
 
 namespace Heir.Tests;

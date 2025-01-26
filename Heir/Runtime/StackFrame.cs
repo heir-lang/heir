@@ -1,6 +1,6 @@
 using Heir.AST.Abstract;
 
-namespace Heir;
+namespace Heir.Runtime;
 
 public sealed class StackFrame(SyntaxNode? node, object? value)
 {

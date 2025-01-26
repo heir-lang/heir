@@ -1,10 +1,9 @@
-﻿using Heir.Syntax;
-using System.Collections;
-using System.Diagnostics.CodeAnalysis;
-using Heir.AST.Abstract;
+﻿using System.Diagnostics.CodeAnalysis;
 using Spectre.Console;
+using Heir.AST.Abstract;
+using Heir.Syntax;
 
-namespace Heir;
+namespace Heir.Diagnostics;
 
 public sealed class DiagnosticBag(SourceFile sourceFile, IEnumerable<Diagnostic>? initialCollection = null)
     : HashSet<Diagnostic>(initialCollection ?? [])

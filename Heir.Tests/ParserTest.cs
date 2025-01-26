@@ -1,4 +1,5 @@
 using Heir.AST;
+using Heir.Diagnostics;
 using Heir.Syntax;
 using static Heir.Tests.Common;
 
