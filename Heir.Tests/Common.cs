@@ -16,13 +16,13 @@ internal static class Common
     public static SyntaxTree Parse(string input)
     {
         var sourceFile = CreateSourceFile(input);
-        return sourceFile.Parse();
+        return sourceFile.Parse(false);
     }
 
     public static DiagnosticBag Resolve(string input)
     {
         var sourceFile = CreateSourceFile(input);
-        sourceFile.Resolve();
+        sourceFile.Resolve(false);
 
         return sourceFile.Diagnostics;
     }

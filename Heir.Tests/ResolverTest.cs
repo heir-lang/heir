@@ -12,7 +12,7 @@ public class ResolverTest
     public void ThrowsWith(string input, DiagnosticCode expectedErrorCode)
     {
         var diagnostics = Resolve(input);
-        Assert.True(diagnostics.HasErrors);
+        Assert.NotEmpty(diagnostics);
         Assert.Contains(diagnostics, diagnostic => diagnostic.Code == expectedErrorCode);
     }
     

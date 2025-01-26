@@ -89,9 +89,9 @@ public sealed class SourceFile
         return _binder;
     }
 
-    public SyntaxTree Resolve()
+    public SyntaxTree Resolve(bool resolveBeforeMacros = true)
     {
-        var syntaxTree = _syntaxTree ?? Parse();
+        var syntaxTree = _syntaxTree ?? Parse(resolveBeforeMacros);
         if (Diagnostics.Count > 0)
         {
             Diagnostics.Write();
