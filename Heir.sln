@@ -11,9 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
 		.github\workflows\ci.yml = .github\workflows\ci.yml
-		examples\fibonacci.heir = examples\fibonacci.heir
 		test.heir = test.heir
-		examples\greeter.heir = examples\greeter.heir
+		index.md = index.md
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heir.CLI", "Heir.CLI\Heir.CLI.csproj", "{7611A15E-9141-4879-AC94-027F7B9D327F}"

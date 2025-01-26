@@ -1,0 +1,30 @@
+## Roadmap
+- Lexing
+  - Literals
+    - [ ] multi-line string
+- Parsing
+  - [ ] Warn when using an expression as a statement which is not a return value and isn't something like an `AssignmentOp` or `Invocation`
+  - Types
+      - [ ] Generics
+      - [ ] Literal
+      - [ ] Array
+      - [ ] Interface index signatures
+      - [ ] Class
+  - Control flow
+      - [x] `if`
+      - [ ] `while`
+      - [ ] `for`
+      - [ ] `switch`
+  - [ ] Lambdas
+  - [ ] Array literals
+  - [ ] Enums
+  - [ ] Inline (const) enums
+- [x] Macro evaluator
+  - [ ] `typeof`
+  - [x] `nameof`
+- Runtime/HVM
+  - [ ] intrinsics (built-ins)
+    - [ ] injectable libraries
+    - [x] functions
+    - [ ] classes
+    - [ ] types
