@@ -88,6 +88,12 @@ public abstract class NodeTransformer(SyntaxTree tree) : INodeVisitor<SyntaxNode
     public virtual SyntaxNode? VisitNoOp(NoOp noOp) => null;
     public virtual SyntaxNode? VisitNoOp(NoOpType noOp) => null;
     public virtual SyntaxNode? VisitNoOp(NoOpStatement noOp) => null;
+
+    public virtual SyntaxNode? VisitNameOfExpression(NameOf nameOf) =>
+        Transform(nameOf.Name) is not IdentifierName name
+            ? null
+            : new NameOf(name);
+
     public virtual SyntaxNode? VisitSingularTypeRef(SingularType singularType) => null;
     public virtual SyntaxNode? VisitParenthesizedTypeRef(ParenthesizedType parenthesizedType) => null;
     public virtual SyntaxNode? VisitUnionTypeRef(UnionType unionType) => null;
@@ -214,12 +220,10 @@ public abstract class NodeTransformer(SyntaxTree tree) : INodeVisitor<SyntaxNode
             elseBranch ?? @if.ElseBranch);
     }
 
-    public virtual SyntaxNode? VisitInterfaceField(InterfaceField interfaceField)
-    {
-        return Transform(interfaceField.Type) is not TypeRef typeRef
+    public virtual SyntaxNode? VisitInterfaceField(InterfaceField interfaceField) =>
+        Transform(interfaceField.Type) is not TypeRef typeRef
             ? null
             : new InterfaceField(interfaceField.Identifier, typeRef, interfaceField.IsMutable);
-    }
 
     public virtual SyntaxNode? VisitInterfaceDeclaration(InterfaceDeclaration interfaceDeclaration)
     {

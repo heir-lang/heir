@@ -1,8 +1,6 @@
 using Heir.Syntax;
 using Heir.AST;
 using Heir.AST.Abstract;
-using Heir.Binding;
-using Heir.Types;
 using FunctionType = Heir.AST.FunctionType;
 using IntersectionType = Heir.AST.IntersectionType;
 using ParenthesizedType = Heir.AST.ParenthesizedType;
@@ -20,8 +18,10 @@ public sealed class Parser(TokenStream tokenStream)
     public SyntaxTree ParseWithCompileTimeMacros()
     {
         var tree = Parse();
-        var macroEvaluator = new CompileTimeMacroEvaluator(tree);
+        var resolver = new Resolver(_diagnostics, tree); // pre-macro resolve
+        resolver.Resolve();
         
+        var macroEvaluator = new CompileTimeMacroEvaluator(tree);
         return macroEvaluator.Evaluate();
     }
 
@@ -647,8 +647,8 @@ public sealed class Parser(TokenStream tokenStream)
                     return new NoOp();
                     
                 Tokens.Consume(SyntaxKind.RParen);
-                
-                return new Literal(TokenFactory.StringFromIdentifier(identifier));
+
+                return new NameOf(new IdentifierName(identifier));
             }
 
             case SyntaxKind.LParen:

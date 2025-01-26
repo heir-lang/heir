@@ -129,6 +129,12 @@ public sealed class Resolver(DiagnosticBag diagnostics, SyntaxTree syntaxTree) :
         return default;
     }
 
+    public Void VisitNameOfExpression(NameOf nameOf)
+    {
+        Resolve(nameOf.Name);
+        return default;
+    }
+
     public Void VisitElementAccessExpression(ElementAccess elementAccess)
     {
         Resolve(elementAccess.Expression);
@@ -174,10 +180,7 @@ public sealed class Resolver(DiagnosticBag diagnostics, SyntaxTree syntaxTree) :
         }
         
         if (!IsDefined(identifierName.Token))
-        {
             Diagnostics.Error(DiagnosticCode.H011, $"Cannot find name '{name}'", identifierName.Token);
-            return default;
-        }
 
         return default;
     }
