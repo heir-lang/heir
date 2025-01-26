@@ -40,15 +40,15 @@ public sealed class TokenStream(DiagnosticBag diagnostics, List<Token> tokens) :
     public bool Match(SyntaxKind kind, [MaybeNullWhen(false)] out Token matchedToken)
     {
         var isMatch = Check(kind);
+        matchedToken = null;
         if (isMatch)
             matchedToken = Advance();
 
-        matchedToken = null;
         return isMatch;
     }
 
-    /// <returns>Whether the following sequence of tokens, starting at <see cref="startOffset"/>, matches the given <see cref="SortedSet{T}"/> of tokens in order</returns>
-    public bool CheckSequential(SortedSet<SyntaxKind> kinds, int startOffset = 0)
+    /// <returns>Whether the following sequence of tokens, starting at <see cref="startOffset"/>, matches the given <see cref="HashSet{T}"/> of tokens in order</returns>
+    public bool CheckSequential(HashSet<SyntaxKind> kinds, int startOffset = 0)
     {
         var offset = startOffset;
         return kinds.All(kind => Check(kind, offset++));
