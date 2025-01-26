@@ -353,7 +353,7 @@ public sealed class Lexer(SourceFile sourceFile)
         }
 
         _column = 0;
-        return TokenFactory.Trivia(TriviaKind.Newlines, _currentLexeme, location, _currentLocation);
+        return TokenFactory.Trivia(TriviaKind.Newline, _currentLexeme, location, _currentLocation);
     }
 
     private TriviaToken SkipSemicolons(Location location)

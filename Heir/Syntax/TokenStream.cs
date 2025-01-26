@@ -13,6 +13,9 @@ public sealed class TokenStream(DiagnosticBag diagnostics, List<Token> tokens) :
 
     public TokenStream WithoutTrivia() =>
         new(Diagnostics, tokens.FindAll(token => !token.IsKind(SyntaxKind.Trivia)));
+    
+    public TokenStream WithoutTriviaExceptSemicolons() =>
+        new(Diagnostics, tokens.FindAll(token => !token.IsKind(SyntaxKind.Trivia) || token is TriviaToken { TriviaKind: TriviaKind.Semicolons }));
 
     public bool Match(SyntaxKind kind) => Match(kind, out _);
 

@@ -11,15 +11,21 @@ namespace Heir;
 
 public sealed class Parser(TokenStream tokenStream)
 {
-    public TokenStream Tokens { get; } = tokenStream.WithoutTrivia(); // temporary
+    public TokenStream Tokens { get; } = tokenStream.WithoutTriviaExceptSemicolons();
 
     private readonly DiagnosticBag _diagnostics = tokenStream.Diagnostics;
 
-    public SyntaxTree ParseWithCompileTimeMacros()
+    public SyntaxTree ParseWithCompileTimeMacros(bool resolveBeforeMacros = true)
     {
         var tree = Parse();
-        var resolver = new Resolver(_diagnostics, tree); // pre-macro resolve
-        resolver.Resolve();
+        if (resolveBeforeMacros)
+        {
+            var resolver = new Resolver(_diagnostics, tree);
+            resolver.Resolve();
+
+            if (_diagnostics.HasErrors)
+                return tree;
+        }
         
         var macroEvaluator = new CompileTimeMacroEvaluator(tree);
         return macroEvaluator.Evaluate();
@@ -48,29 +54,51 @@ public sealed class Parser(TokenStream tokenStream)
 
     private Statement ParseStatement()
     {
+        Statement statement;
         if (Tokens.Match(SyntaxKind.LetKeyword))
-            return ParseVariableDeclaration();
+        {
+            statement = ParseVariableDeclaration();
+            goto ConsumeSemicolons;
+        }
         
         if (Tokens.Match(SyntaxKind.FnKeyword))
-            return ParseFunctionDeclaration();
+        {
+            statement = ParseFunctionDeclaration();
+            goto ConsumeSemicolons;
+        }
         
         if (Tokens.Match(SyntaxKind.ReturnKeyword))
-            return ParseReturnStatement();
+        {
+            statement = ParseReturnStatement();
+            goto ConsumeSemicolons;
+        }
         
         if (Tokens.Match(SyntaxKind.InterfaceKeyword))
-            return ParseInterfaceDeclaration();
+        {
+            statement = ParseInterfaceDeclaration();
+            goto ConsumeSemicolons;
+        }
         
         if (Tokens.Match(SyntaxKind.IfKeyword))
-            return ParseIfStatement();
+        {
+            statement = ParseIfStatement();
+            goto ConsumeSemicolons;
+        }
         
         if (Tokens.Match(SyntaxKind.LBrace))
         {
             var token = Tokens.Previous!.TransformKind(SyntaxKind.ObjectLiteral);
             if (Tokens.Match(SyntaxKind.RBrace))
-                return new ExpressionStatement(new ObjectLiteral(token, []));
+            {
+                statement = new ExpressionStatement(new ObjectLiteral(token, []));
+                goto ConsumeSemicolons;
+            }
 
             if (Tokens.CheckSequential([SyntaxKind.Identifier, SyntaxKind.Colon]))
-                return new ExpressionStatement(ParseObject(token));
+            {
+                statement = new ExpressionStatement(ParseObject(token));
+                goto ConsumeSemicolons;
+            }
 
             if (Tokens.Check(SyntaxKind.LBracket))
             {
@@ -79,14 +107,28 @@ public sealed class Parser(TokenStream tokenStream)
                     offset++;
 
                 if (Tokens.Check(SyntaxKind.Colon, offset + 1))
-                    return new ExpressionStatement(ParseObject(token));
+                {
+                    statement = new ExpressionStatement(ParseObject(token));
+                    goto ConsumeSemicolons;
+                }
             }
 
-            return ParseBlock();
+            statement = ParseBlock();
+            goto ConsumeSemicolons;
         }
 
         var expression = ParseExpression();
-        return new ExpressionStatement(expression);
+        statement = new ExpressionStatement(expression);
+        
+        ConsumeSemicolons: ConsumeSemicolons();
+        
+        return statement;
+    }
+
+    private void ConsumeSemicolons()
+    {
+        while (Tokens.Current is TriviaToken { TriviaKind: TriviaKind.Semicolons })
+            Tokens.Advance();
     }
 
     private Block ParseBlock()
@@ -156,7 +198,10 @@ public sealed class Parser(TokenStream tokenStream)
             
                 Tokens.Consume(SyntaxKind.Colon);
                 var fieldType = ParseType();
-                fields.Add(new InterfaceField(fieldIdentifier, fieldType, isMutable));
+                var field = new InterfaceField(fieldIdentifier, fieldType, isMutable);
+                
+                ConsumeSemicolons();
+                fields.Add(field);
             }
             Tokens.Consume(SyntaxKind.RBrace);
         }

@@ -4,7 +4,7 @@
     {
         EOF,
         Whitespace,
-        Newlines,
+        Newline,
         Semicolons,
         Comment,
         MultiLineComment

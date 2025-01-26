@@ -104,13 +104,13 @@ public sealed class SourceFile
         return syntaxTree;
     }
 
-    public SyntaxTree Parse()
+    public SyntaxTree Parse(bool resolveBeforeMacros = true)
     {
         if (_syntaxTree != null)
             return _syntaxTree;
 
         var parser = new Parser(Tokenize());
-        _syntaxTree = parser.ParseWithCompileTimeMacros();
+        _syntaxTree = parser.ParseWithCompileTimeMacros(resolveBeforeMacros);
         return _syntaxTree;
     }
 
