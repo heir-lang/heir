@@ -126,7 +126,32 @@ public class BinderTest
         var type = (LiteralType)elementAccess.Type;
         Assert.Equal("baz", type.Value);
     }
-    
+
+    [Fact]
+    public void Binds_WhileStatements()
+    {
+        const string input = """
+                             while i < 10
+                                ++i;
+                             """;
+        
+        var tree = Bind(input).GetBoundSyntaxTree();
+        var statement = tree.Statements.First();
+        Assert.IsType<BoundWhile>(statement);
+        
+        var whileStatement = (BoundWhile)statement;
+        Assert.IsType<BoundBinaryOp>(whileStatement.Condition);
+        Assert.IsType<BoundExpressionStatement>(whileStatement.Body);
+        Assert.Null(whileStatement.Type);
+        
+        var conditionBinaryOp = (BoundBinaryOp)whileStatement.Condition;
+        Assert.IsType<BoundIdentifierName>(conditionBinaryOp.Left);
+        Assert.IsType<BoundLiteral>(conditionBinaryOp.Right);
+        
+        var body = (BoundExpressionStatement)whileStatement.Body;
+        Assert.IsType<BoundUnaryOp>(body.Expression);
+    }
+
     [Fact]
     public void Binds_IfStatements()
     {

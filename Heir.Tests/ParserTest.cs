@@ -105,6 +105,30 @@ public class ParserTest
     }
 
     [Fact]
+    public void Parses_WhileStatements()
+    {
+        const string input = """
+                             while i < 10
+                                ++i;
+                             """;
+        
+        var tree = Parse(input);
+        var statement = tree.Statements.First();
+        Assert.IsType<While>(statement);
+        
+        var whileStatement = (While)statement;
+        Assert.IsType<BinaryOp>(whileStatement.Condition);
+        Assert.IsType<ExpressionStatement>(whileStatement.Body);
+        
+        var conditionBinaryOp = (BinaryOp)whileStatement.Condition;
+        Assert.IsType<IdentifierName>(conditionBinaryOp.Left);
+        Assert.IsType<Literal>(conditionBinaryOp.Right);
+
+        var body = (ExpressionStatement)whileStatement.Body;
+        Assert.IsType<UnaryOp>(body.Expression);
+    }
+
+    [Fact]
     public void Parses_IfStatements()
     {
         const string input = """
@@ -564,8 +588,7 @@ public class ParserTest
             Assert.Equal(SyntaxKind.Star, multiplication.Operator.Kind);
         }
     }
-
-
+    
     [Theory]
     [InlineData("{ a: true }", SyntaxKind.StringLiteral, 1)]
     [InlineData("{ [\"a\"]: true }", SyntaxKind.StringLiteral, 1)]

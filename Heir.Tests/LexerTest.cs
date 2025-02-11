@@ -70,6 +70,10 @@ public class LexerTest
     }
 
     [Theory]
+    [InlineData("interface", SyntaxKind.InterfaceKeyword)]
+    [InlineData("while", SyntaxKind.WhileKeyword)]
+    [InlineData("else", SyntaxKind.ElseKeyword)]
+    [InlineData("if", SyntaxKind.IfKeyword)]
     [InlineData("let", SyntaxKind.LetKeyword)]
     [InlineData("mut", SyntaxKind.MutKeyword)]
     [InlineData("int", SyntaxKind.IntKeyword)]
