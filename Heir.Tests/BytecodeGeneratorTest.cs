@@ -118,7 +118,7 @@ public class BytecodeGeneratorTest
     public void Generates_Return()
     {
         var bytecode = GenerateBytecode("return 123;");
-        var instruction = bytecode.Instructions.Last();
+        var instruction = bytecode[^1];
         Assert.Equal(OpCode.RETURN, instruction.OpCode);
         Assert.Null(instruction.Operand);
     }
@@ -127,7 +127,7 @@ public class BytecodeGeneratorTest
     public void GeneratesPushObject_ForObjectLiterals()
     {
         var bytecode = GenerateBytecode("{ a: true }");
-        var pushObject = bytecode.Instructions.First();
+        var pushObject = bytecode[0];
         Assert.Equal(OpCode.PUSHOBJECT, pushObject.OpCode);
         Assert.IsType<ObjectBytecode>(pushObject.Operand);
 
@@ -139,6 +139,15 @@ public class BytecodeGeneratorTest
         Assert.Equal("a", pushA.Operand);
         Assert.Equal(true, pushTrue.Operand);
     }
+    
+    [Fact]
+    public void Generates_NothingForNullForgiving()
+    {
+        var bytecode = GenerateBytecode("1!");
+        var instruction = bytecode[0];
+        Assert.Equal(OpCode.PUSH, instruction.OpCode);
+        Assert.Equal(1, instruction.Operand);
+    }
 
     [Theory]
     [InlineData("let inline x = 1; x;", OpCode.PUSH, 1)]
@@ -148,7 +157,7 @@ public class BytecodeGeneratorTest
     public void GeneratesPush_ForLiterals(string input, OpCode expectedOpCode, object? expectedOperand = null)
     {
         var bytecode = GenerateBytecode(input);
-        var instruction = bytecode.Instructions.First();
+        var instruction = bytecode[0];
         Assert.Equal(expectedOpCode, instruction.OpCode);
         Assert.Equal(expectedOperand, instruction.Operand);
     }
