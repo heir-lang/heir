@@ -200,6 +200,13 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree)
         
         return new BoundIf(@if.Keyword, condition, body, elseBranch);
     }
+    
+    public BoundStatement VisitWhileStatement(While @while)
+    {
+        var condition = Bind(@while.Condition);
+        var body = Bind(@while.Body);
+        return new BoundWhile(@while.Keyword, condition, body);
+    }
 
     public BoundStatement VisitExpressionStatement(ExpressionStatement expressionStatement)
     {

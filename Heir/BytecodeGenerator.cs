@@ -78,11 +78,10 @@ public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder) 
         var conditionBytecode = GenerateBytecode(@if.Condition);
         var bodyBytecode = GenerateBytecode(@if.Body);
         var bodyOptimizer = new BytecodeOptimizer(bodyBytecode, diagnostics);
-        var optimizedBody = bodyOptimizer.Optimize();
+        var optimizedBody = bodyOptimizer.Optimize(); // to calculate offset
         var elseBranchBytecode = @if.ElseBranch != null
             ? GenerateBytecode(@if.ElseBranch)
             : [];
-        
         
         var elseBranchOptimizer = new BytecodeOptimizer(elseBranchBytecode, diagnostics);
         var optimizedElseBranch = elseBranchOptimizer.Optimize();
@@ -93,6 +92,23 @@ public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder) 
             ..elseBranchBytecode,
             new(@if, OpCode.JMP, optimizedBody.Count + 1),
             ..bodyBytecode
+        ];
+    }
+    
+    public List<Instruction> VisitWhileStatement(While @while)
+    {
+        var conditionBytecode = GenerateBytecode(@while.Condition);
+        var bodyBytecode = GenerateBytecode(@while.Body);
+        var conditionOptimizer = new BytecodeOptimizer(conditionBytecode, diagnostics);
+        var optimizedCondition = conditionOptimizer.Optimize(); // to calculate offset
+        var bodyOptimizer = new BytecodeOptimizer(bodyBytecode, diagnostics);
+        var optimizedBody = bodyOptimizer.Optimize();
+        return
+        [
+            ..conditionBytecode,
+            new(@while, OpCode.JZ, optimizedBody.Count + 2),
+            ..bodyBytecode,
+            new(@while, OpCode.JMP, -optimizedBody.Count - optimizedCondition.Count - 1),
         ];
     }
 

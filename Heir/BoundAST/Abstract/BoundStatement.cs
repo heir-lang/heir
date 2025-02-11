@@ -18,5 +18,6 @@ public abstract class BoundStatement : BoundSyntaxNode
         public R VisitBoundReturnStatement(BoundReturn @return);
         public R VisitBoundFunctionDeclaration(BoundFunctionDeclaration declaration);
         public R VisitBoundIfStatement(BoundIf @if);
+        public R VisitBoundWhileStatement(BoundWhile @while);
     }
 }

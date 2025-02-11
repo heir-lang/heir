@@ -219,6 +219,19 @@ public abstract class NodeTransformer(SyntaxTree tree) : INodeVisitor<SyntaxNode
             body ?? @if.Body,
             elseBranch ?? @if.ElseBranch);
     }
+    
+    public virtual SyntaxNode? VisitWhileStatement(While @while)
+    {
+        var condition = Transform(@while.Condition);
+        var body = Transform(@while.Body);
+        if (condition == null && body == null)
+            return null;
+
+        return new While(
+            @while.Keyword,
+            condition ?? @while.Condition,
+            body ?? @while.Body);
+    }
 
     public virtual SyntaxNode? VisitInterfaceField(InterfaceField interfaceField) =>
         Transform(interfaceField.Type) is not TypeRef typeRef

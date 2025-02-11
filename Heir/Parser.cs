@@ -86,6 +86,12 @@ public sealed class Parser(TokenStream tokenStream)
             goto ConsumeSemicolons;
         }
         
+        if (Tokens.Match(SyntaxKind.WhileKeyword))
+        {
+            statement = ParseWhileStatement();
+            goto ConsumeSemicolons;
+        }
+        
         if (Tokens.Match(SyntaxKind.LBrace))
         {
             var token = Tokens.Previous!.TransformKind(SyntaxKind.ObjectLiteral);
@@ -178,6 +184,15 @@ public sealed class Parser(TokenStream tokenStream)
             elseBranch = ParseStatement();
         
         return new If(keyword, condition, body, elseBranch);
+    }
+    
+    private While ParseWhileStatement()
+    {
+        var keyword = Tokens.Previous!;
+        var condition = ParseExpression();
+        var body = ParseStatement();
+        
+        return new While(keyword, condition, body);
     }
 
     private Statement ParseInterfaceDeclaration()

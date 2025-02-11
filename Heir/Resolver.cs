@@ -115,6 +115,13 @@ public sealed class Resolver(DiagnosticBag diagnostics, SyntaxTree syntaxTree) :
         Resolve(@if.ElseBranch);
         return default;
     }
+    
+    public Void VisitWhileStatement(While @while)
+    {
+        Resolve(@while.Condition);
+        Resolve(@while.Body);
+        return default;
+    }
 
     public Void VisitExpressionStatement(ExpressionStatement expressionStatement)
     {

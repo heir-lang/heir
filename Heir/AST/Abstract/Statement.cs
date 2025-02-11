@@ -14,6 +14,7 @@ public abstract class Statement : SyntaxNode
         public R VisitReturnStatement(Return @return);
         public R VisitFunctionDeclaration(FunctionDeclaration functionDeclaration);
         public R VisitIfStatement(If @if);
+        public R VisitWhileStatement(While @while);
         public R VisitInterfaceField(InterfaceField interfaceField);
         public R VisitInterfaceDeclaration(InterfaceDeclaration interfaceDeclaration);
     }

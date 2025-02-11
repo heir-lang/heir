@@ -49,6 +49,13 @@ public class TypeChecker(DiagnosticBag diagnostics, BoundSyntaxTree syntaxTree) 
         Check(@if.ElseBranch);
         return default;
     }
+    
+    public Void VisitBoundWhileStatement(BoundWhile @while)
+    {
+        Check(@while.Condition);
+        Check(@while.Body);
+        return default;
+    }
 
     public Void VisitBoundParameter(BoundParameter parameter)
     {

@@ -77,6 +77,7 @@
         ReturnKeyword,
         IfKeyword,
         ElseKeyword,
+        WhileKeyword,
         InterfaceKeyword,
         NameofKeyword,
         
