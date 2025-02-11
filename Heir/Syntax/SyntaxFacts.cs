@@ -15,6 +15,7 @@ namespace Heir.Syntax
             { "while", SyntaxKind.WhileKeyword },
             { "interface", SyntaxKind.InterfaceKeyword },
             { "nameof", SyntaxKind.NameofKeyword },
+            { "inline", SyntaxKind.InlineKeyword },
 
             { "int", SyntaxKind.IntKeyword },
             { "float", SyntaxKind.FloatKeyword },

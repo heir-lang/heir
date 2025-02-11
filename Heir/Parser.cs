@@ -288,15 +288,19 @@ public sealed class Parser(TokenStream tokenStream)
 
     private Statement ParseVariableDeclaration()
     {
+        var isInline = Tokens.Match(SyntaxKind.InlineKeyword);
         var isMutable = Tokens.Match(SyntaxKind.MutKeyword);
-        if (!Tokens.Match(SyntaxKind.Identifier))
+        if ((isInline && isMutable) || (isMutable && Tokens.Check(SyntaxKind.InlineKeyword))) {
+            _diagnostics.Error(DiagnosticCode.H021, "Variable declaration cannot be marked as both inline and mutable", Tokens.Previous!);
+            return new NoOpStatement();
+        }
+        
+        if (!Tokens.Match(SyntaxKind.Identifier, out var identifier))
         {
             _diagnostics.Error(DiagnosticCode.H004C, $"Expected identifier after 'let', got {Tokens.Current}", Tokens.Previous!);
             return new NoOpStatement();
         }
 
-        var identifier = Tokens.Previous!;
-        
         TypeRef? type = null;
         if (Tokens.Match(SyntaxKind.Colon))
             type = ParseType();
@@ -305,13 +309,16 @@ public sealed class Parser(TokenStream tokenStream)
         if (Tokens.Match(SyntaxKind.Equals))
             initializer = ParseExpression();
 
+        if (isInline && initializer == null)
+            _diagnostics.Error(DiagnosticCode.H022, $"Inlined variable '{identifier.Text}' must be initialized", identifier);
+
         if (initializer == null && type == null)
         {
             _diagnostics.Error(DiagnosticCode.H012, $"Cannot infer type of variable '{identifier.Text}', please add an explicit type or initializer", identifier);
             return new NoOpStatement();
         }
 
-        return new VariableDeclaration(new IdentifierName(identifier), initializer, type, isMutable);
+        return new VariableDeclaration(new IdentifierName(identifier), initializer, type, isMutable, isInline);
     }
 
     private Expression ParseParameter()

@@ -80,6 +80,7 @@
         WhileKeyword,
         InterfaceKeyword,
         NameofKeyword,
+        InlineKeyword,
         
         IntKeyword, // type keywords
         FloatKeyword,

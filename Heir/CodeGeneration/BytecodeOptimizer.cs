@@ -15,13 +15,15 @@ public class BytecodeOptimizer(List<Instruction> bytecode, DiagnosticBag diagnos
             var instruction = PeekBytecode()!;
             var optimizedInstruction = Optimize(instruction);
             
-            if (optimizedInstruction != null)
+            if (optimizedInstruction != null && optimizedInstruction.OpCode != OpCode.NOOP)
             {
                 _optimizedBytecode.Add(optimizedInstruction);
                 continue;
             }
             
-            _optimizedBytecode.Add(instruction);
+            if (instruction.OpCode != OpCode.NOOP)
+                _optimizedBytecode.Add(instruction);
+            
             Advance();
         }
 
@@ -267,8 +269,8 @@ public class BytecodeOptimizer(List<Instruction> bytecode, DiagnosticBag diagnos
         bytecode.ElementAtOrDefault(_pointer + offset);
 
     private void Advance(int amount = 1) => _pointer += amount;
-
-    private void RemoveLast(int amount = 0)
+    
+    private void RemoveLast(int amount = 1)
     {
         for (var i = 0; i < amount; i++)
             _optimizedBytecode.RemoveAt(_pointer - amount);

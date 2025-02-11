@@ -157,7 +157,8 @@ public abstract class NodeTransformer(SyntaxTree tree) : INodeVisitor<SyntaxNode
             name ?? variableDeclaration.Name,
             initializer ?? variableDeclaration.Initializer,
             typeRef ?? variableDeclaration.Type,
-            variableDeclaration.IsMutable);
+            variableDeclaration.IsMutable,
+            variableDeclaration.IsInline);
     }
 
     public virtual SyntaxNode? VisitBlock(Block block)

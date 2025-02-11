@@ -12,13 +12,17 @@
       - [ ] Class
   - Control flow
       - [x] `if`
-      - [ ] `while`
+      - [x] `while`
       - [ ] `for`
       - [ ] `switch`
   - [ ] Lambdas
   - [ ] Array literals
   - [ ] Enums
-  - [ ] Inline (const) enums
+  - [ ] Automatically inline immutable variables with constant values (literals, except `none`)
+  - [ ] `inline`
+    - [x] variables 
+    - [ ] enums
+    - [ ] functions
 - [x] Macro evaluator
   - [ ] `typeof`
   - [x] `nameof`
