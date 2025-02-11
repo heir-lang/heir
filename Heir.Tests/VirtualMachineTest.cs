@@ -102,6 +102,23 @@ public class VirtualMachineTest
         var (value, _) = Evaluate("now()");
         Assert.IsType<double>(value);
     }
+    
+    [Fact]
+    public void Evaluates_WhileStatements()
+    {
+        const string input = """
+                     let mut i = 0;
+                     let mut x = 0;
+                     
+                     while ++i <= 10
+                         x += i;
+                         
+                     x;
+                     """;
+        
+        var (value, _) = Evaluate(input);
+        Assert.Equal(55.0, value);
+    }
 
     [Theory]
     [InlineData("1", 2.0)]
