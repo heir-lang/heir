@@ -41,6 +41,21 @@ public class VirtualMachineTest
     }
 
     [Theory]
+    [InlineData("math.randomInt(1, 10)", typeof(int))]
+    [InlineData("math.randomFloat(1, 10)", typeof(double))]
+    public void Evaluates_PseudorandomFunctions(string input, Type expectedType)
+    {
+        // test 25 times (more than double the maximum random value) to ensure numbers are within the range
+        for (var i = 0; i < 25; i++)
+        {
+            var (value, vm) = Evaluate(input);
+            Assert.Empty(vm.Diagnostics);
+            Assert.IsType(expectedType, value);
+            Assert.InRange(Convert.ToDouble(value), 1, 10);
+        }
+    }
+
+    [Theory]
     [InlineData("math.pi", Math.PI)]
     [InlineData("math.e", Math.E)]
     [InlineData("math.tau", Math.Tau)]
