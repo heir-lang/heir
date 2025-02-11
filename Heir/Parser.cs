@@ -445,6 +445,9 @@ public sealed class Parser(TokenStream tokenStream)
     private bool IsFunctionType()
     {
         var offset = 0;
+        if (Tokens.Check(SyntaxKind.LParen, offset))
+            return false;
+        
         while (!Tokens.Check(SyntaxKind.RParen, offset++) && Tokens.Peek(offset) != null)
         {
         }

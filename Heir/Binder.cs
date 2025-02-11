@@ -318,7 +318,7 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree)
         {
             if (pair.Key is LiteralType literalType)
             {
-                typeProperties.Add(new(literalType, new(pair.Value.Type, isMutable: true)));
+                typeProperties.Add(new(literalType, new(pair.Value.Type)));
                 continue;
             }
 

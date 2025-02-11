@@ -135,6 +135,11 @@ public class TypeTest
             var b = PrimitiveType.Char;
             Assert.True(a.IsAssignableTo(b));
         }
+        {
+            var a = PrimitiveType.Char;
+            var b = BaseType.Nullable(new ParenthesizedType(PrimitiveType.Char));
+            Assert.True(a.IsAssignableTo(b));
+        }
     }
     
     [Fact]

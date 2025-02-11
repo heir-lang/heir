@@ -54,44 +54,6 @@ public abstract class BaseType
     {
         if (this is AnyType || other is AnyType)
             return true;
-
-        if (this is InterfaceType interfaceType && other is InterfaceType otherInterfaceType)
-            return interfaceType.Members.Count == otherInterfaceType.Members.Count &&
-                   interfaceType.IndexSignatures.Count == otherInterfaceType.IndexSignatures.Count &&
-                   interfaceType.Members.All(member =>
-                   {
-                       var otherMember = otherInterfaceType.Members.GetValueOrDefault(member.Key);
-                       if (otherMember == null)
-                           return false;
-                       
-                       return member.Value.Type.IsAssignableTo(otherMember.Type) &&
-                              member.Value.IsMutable == otherMember.IsMutable;
-                   }) &&
-                   interfaceType.IndexSignatures.All(indexSignature =>
-                   {
-                       var otherIndexSignature = otherInterfaceType.IndexSignatures.GetValueOrDefault(indexSignature.Key);
-                       if (otherIndexSignature == null)
-                           return false;
-                       
-                       return indexSignature.Value.IsAssignableTo(otherIndexSignature);
-                   });
-
-        if (other is InterfaceType)
-            return false;
-
-        if (this is FunctionType functionType)
-        {
-            var parameterIndex = 0;
-            return other is FunctionType otherFunction &&
-                   functionType.ReturnType.IsAssignableTo(otherFunction.ReturnType) &&
-                   functionType.ParameterTypes.Values.All(parameterType =>
-                       otherFunction.ParameterTypes.Values
-                           .ElementAtOrDefault(parameterIndex++)?
-                           .IsAssignableTo(parameterType) ?? false);
-        }
-
-        if (other is FunctionType)
-            return other.IsAssignableTo(this);
         
         if (this is UnionType union)
             return union.Types.Any(type => type.IsAssignableTo(other));
@@ -104,6 +66,51 @@ public abstract class BaseType
         
         if (this is IntersectionType intersection)
             return intersection.Types.Any(type => type.IsAssignableTo(other));
+        
+        if (this is ParenthesizedType parenthesized)
+            return parenthesized.Type.IsAssignableTo(other);
+        
+        if (other is ParenthesizedType)
+            return other.IsAssignableTo(this);
+        
+        if (this is InterfaceType interfaceType && other is InterfaceType otherInterfaceType)
+            return interfaceType.Members.Count == otherInterfaceType.Members.Count &&
+                   interfaceType.IndexSignatures.Count == otherInterfaceType.IndexSignatures.Count &&
+                   interfaceType.Members.All(member =>
+                   {
+                       var otherMember = otherInterfaceType.Members.GetValueOrDefault(member.Key);
+                       if (otherMember == null)
+                           return false;
+
+                       return member.Value.Type.IsAssignableTo(otherMember.Type); //&&
+                       // member.Value.IsMutable == otherMember.IsMutable;
+                   }) &&
+                   interfaceType.IndexSignatures.All(indexSignature =>
+                   {
+                       var otherIndexSignature = otherInterfaceType.IndexSignatures.GetValueOrDefault(indexSignature.Key);
+                       if (otherIndexSignature == null)
+                           return false;
+                       
+                       return indexSignature.Value.IsAssignableTo(otherIndexSignature);
+                   });
+
+        if (other is InterfaceType)
+            return false;
+        
+        if (this is FunctionType functionType)
+        {
+            var parameterIndex = 0;
+            return other is FunctionType otherFunction &&
+                   functionType.ReturnType.IsAssignableTo(otherFunction.ReturnType) &&
+                   functionType.ParameterTypes.Count == otherFunction.ParameterTypes.Count &&
+                   functionType.ParameterTypes.Values.All(parameterType =>
+                       otherFunction.ParameterTypes.Values
+                           .ElementAtOrDefault(parameterIndex++)?
+                           .IsAssignableTo(parameterType) ?? false);
+        }
+
+        if (other is FunctionType)
+            return other.IsAssignableTo(this);
         
         if (this is LiteralType literalType)
         {
@@ -120,12 +127,6 @@ public abstract class BaseType
         
         if (other is LiteralType)
             return false;
-        
-        if (this is ParenthesizedType parenthesized)
-            return parenthesized.Type.IsAssignableTo(other);
-        
-        if (other is ParenthesizedType)
-            return other.IsAssignableTo(this);
         
         if (this is SingularType singular && other is SingularType otherSingular)
             return singular.Name == otherSingular.Name;
