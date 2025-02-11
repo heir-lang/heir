@@ -37,6 +37,31 @@ public class BytecodeGeneratorTest
     }
 
     [Fact]
+    public void Generates_WhileStatement()
+    {
+        const string input = """
+                             while i < 10
+                                ++i;
+                             """;
+
+        var bytecode = GenerateBytecode(input);
+        Assert.Equal(OpCode.PUSH, bytecode[0].OpCode);
+        Assert.Equal("i", bytecode[0].Operand);
+        Assert.Equal(OpCode.LOAD, bytecode[1].OpCode);
+        Assert.Null(bytecode[1].Operand);
+        Assert.Equal(OpCode.PUSH, bytecode[2].OpCode);
+        Assert.Equal(10, bytecode[2].Operand);
+        Assert.Equal(OpCode.LT, bytecode[3].OpCode);
+        Assert.Null(bytecode[3].Operand);
+        Assert.Equal(OpCode.JZ, bytecode[4].OpCode);
+        Assert.Equal(3, bytecode[4].Operand);
+        Assert.Equal(OpCode.INC, bytecode[5].OpCode);
+        Assert.Equal("i", bytecode[5].Operand);
+        Assert.Equal(OpCode.JMP, bytecode[6].OpCode);
+        Assert.Equal(-6, bytecode[6].Operand);
+    }
+
+    [Fact]
     public void Generates_IfStatement()
     {
         const string input = """
