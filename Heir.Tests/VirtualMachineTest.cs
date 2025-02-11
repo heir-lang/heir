@@ -94,6 +94,7 @@ public class VirtualMachineTest
     [InlineData("math.cbrt(125)", 5.0)]
     [InlineData("math.q_rsqrt(25)", 0.2, 0.001)]
     [InlineData("math.q_rsqrt(25, true)", 0.2, 0.000001)]
+    [InlineData("math.lerp(0, 10, 0.5)", 5.0)]
     public void Evaluates_MathLibrary<T>(string input, T expectedValue, double tolerance = 1e-10)
     {
         var (value, vm) = Evaluate(input);
