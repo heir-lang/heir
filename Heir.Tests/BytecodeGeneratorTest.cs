@@ -140,27 +140,17 @@ public class BytecodeGeneratorTest
         Assert.Equal(true, pushTrue.Operand);
     }
 
-    [Fact]
-    public void GeneratesPush_ForLiterals()
+    [Theory]
+    [InlineData("let inline x = 1; x;", OpCode.PUSH, 1)]
+    [InlineData("69", OpCode.PUSH, 69)]
+    [InlineData("69.420", OpCode.PUSH, 69.420)]
+    [InlineData("none", OpCode.PUSHNONE)]
+    public void GeneratesPush_ForLiterals(string input, OpCode expectedOpCode, object? expectedOperand = null)
     {
-        {
-            var bytecode = GenerateBytecode("69");
-            var instruction = bytecode.Instructions.First();
-            Assert.Equal(OpCode.PUSH, instruction.OpCode);
-            Assert.Equal(69, instruction.Operand);
-        }
-        {
-            var bytecode = GenerateBytecode("69.420");
-            var instruction = bytecode.Instructions.First();
-            Assert.Equal(OpCode.PUSH, instruction.OpCode);
-            Assert.Equal(69.420, instruction.Operand);
-        }
-        {
-            var bytecode = GenerateBytecode("none");
-            var instruction = bytecode.Instructions.First();
-            Assert.Equal(OpCode.PUSHNONE, instruction.OpCode);
-            Assert.Null(instruction.Operand);
-        }
+        var bytecode = GenerateBytecode(input);
+        var instruction = bytecode.Instructions.First();
+        Assert.Equal(expectedOpCode, instruction.OpCode);
+        Assert.Equal(expectedOperand, instruction.Operand);
     }
 
     [Theory]
