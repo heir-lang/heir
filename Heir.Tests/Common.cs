@@ -51,7 +51,8 @@ internal static class Common
     public static (object?, VirtualMachine) Evaluate(string input)
     {
         var sourceFile = CreateSourceFile(input);
-        return sourceFile.Evaluate(false);
+        var (result, vm, _) = sourceFile.Evaluate(false);
+        return (result, vm);
     }
 
     private static SourceFile CreateSourceFile(string input) => new(input, "<testing>", true);

@@ -29,7 +29,9 @@ public class MathLibrary() : IntrinsicLibrary("math", InterfaceType.Readonly("ma
         new InRadiansFunction(),
         new InDegreesFunction(),
         new SqrtFunction(),
-        new CbrtFunction()
+        new CbrtFunction(),
+        new RandomFloatFunction(),
+        new RandomIntFunction()
     ];
 
     static MathLibrary()

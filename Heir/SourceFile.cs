@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using Heir.Syntax;
 using Heir.AST;
 using Heir.CodeGeneration;
@@ -31,21 +32,24 @@ public sealed class SourceFile
         return new SourceFile(source, path, isMainFile);
     }
 
-    public (object?, VirtualMachine) Evaluate(bool clearDiagnosticsAfterWriting = true)
+    public (object?, VirtualMachine, double) Evaluate(bool clearDiagnosticsAfterWriting = true)
     {
         var bytecode = GenerateBytecode();
         var vm = new VirtualMachine(bytecode, Diagnostics);
         if (Diagnostics.Count > 0)
         {
             Diagnostics.Write(clear: clearDiagnosticsAfterWriting);
-            return (null, vm);
+            return (null, vm, 0);
         }
 
         try
         {
+            var stopwatch = Stopwatch.StartNew();
             var value = vm.Evaluate();
+            stopwatch.Stop();
+            
             if (Diagnostics.Count <= 0)
-                return (IsMainFile ? value : null, vm);
+                return (IsMainFile ? value : null, vm, stopwatch.Elapsed.TotalMilliseconds);
         }
         catch (Exception)
         {
@@ -55,7 +59,7 @@ public sealed class SourceFile
                 throw;
         }
             
-        return (null, vm);
+        return (null, vm, 0);
     }
 
     public Bytecode GenerateBytecode()

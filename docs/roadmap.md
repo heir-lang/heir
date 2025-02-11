@@ -15,6 +15,8 @@
       - [x] `while`
       - [ ] `for`
       - [ ] `switch`
+      - [ ] `break`
+      - [ ] `continue`
   - [ ] Lambdas
   - [ ] Array literals
   - [ ] Enums

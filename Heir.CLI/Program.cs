@@ -130,12 +130,10 @@ public static class Program
             return (null, null);
         }
         
-        var stopwatch = Stopwatch.StartNew();
-        var (result, vm) = file.Evaluate();
-        stopwatch.Stop();
-    
+        
+        var (result, vm, elapsed) = file.Evaluate();
         if (options.ShowBenchmark)
-            Console.WriteLine($"Took {stopwatch.ElapsedMilliseconds} ms");
+            Console.WriteLine($"Took {elapsed} ms");
 
         if (file.Diagnostics.HasErrors)
         {
@@ -154,20 +152,17 @@ public static class Program
         var sourceFile = new SourceFile(deserializedBytecode.ToString(), options.FilePath, true);
         var diagnostics = new DiagnosticBag(sourceFile);
         var vm = new VirtualMachine(deserializedBytecode, diagnostics);
-        var stopwatch = Stopwatch.StartNew();
         try
         {
+            var stopwatch = Stopwatch.StartNew();
             vm.Evaluate();
+            stopwatch.Stop();
+            if (options.ShowBenchmark)
+                Console.WriteLine($"Took {stopwatch.Elapsed.TotalMilliseconds} ms");
         }
         catch (Exception)
         {
             diagnostics.Write();
-        }
-        finally
-        {
-            stopwatch.Stop();
-            if (options.ShowBenchmark)
-                Console.WriteLine($"Took {stopwatch.ElapsedMilliseconds} ms");
         }
     }
 
