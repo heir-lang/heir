@@ -107,7 +107,7 @@ public class TypeChecker(DiagnosticBag diagnostics, BoundSyntaxTree syntaxTree) 
     public Void VisitBoundInvocationExpression(BoundInvocation invocation)
     {
         Check(invocation.Callee);
-        if (invocation.Callee.Type is not FunctionType functionType)
+        if (BaseType.UnwrapParentheses(invocation.Callee.Type) is not FunctionType functionType)
         {
             diagnostics.Error(DiagnosticCode.H018, $"Attempt to call value of type '{invocation.Callee.Type.ToString()}'", invocation.Callee);
             return default;
@@ -195,6 +195,13 @@ public class TypeChecker(DiagnosticBag diagnostics, BoundSyntaxTree syntaxTree) 
     {
         Check(unaryOp.Operand);
         Assert(unaryOp.Operand, unaryOp.Operator.OperandType);
+        return default;
+    }
+    
+    public Void VisitBoundPostfixOpExpression(BoundPostfixOp postfixOp)
+    {
+        Check(postfixOp.Operand);
+        Assert(postfixOp.Operand, postfixOp.Operator.OperandType);
         return default;
     }
     

@@ -9,6 +9,7 @@ public abstract class Expression : SyntaxNode
         public R VisitIdentifierNameExpression(IdentifierName identifierName);
         public R VisitAssignmentOpExpression(AssignmentOp assignmentOp);
         public R VisitUnaryOpExpression(UnaryOp unaryOp);
+        public R VisitPostfixOpExpression(PostfixOp postfixOp);
         public R VisitBinaryOpExpression(BinaryOp binaryOp);
         public R VisitParenthesizedExpression(Parenthesized parenthesized);
         public R VisitLiteralExpression(Literal literal);

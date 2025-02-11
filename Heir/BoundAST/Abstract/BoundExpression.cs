@@ -13,6 +13,7 @@ public abstract class BoundExpression : BoundSyntaxNode
         public R VisitBoundIdentifierNameExpression(BoundIdentifierName identifierName);
         public R VisitBoundAssignmentOpExpression(BoundAssignmentOp assignmentOp);
         public R VisitBoundUnaryOpExpression(BoundUnaryOp unaryOp);
+        public R VisitBoundPostfixOpExpression(BoundPostfixOp postfixOp);
         public R VisitBoundBinaryOpExpression(BoundBinaryOp binaryOp);
         public R VisitBoundParenthesizedExpression(BoundParenthesized parenthesized);
         public R VisitBoundLiteralExpression(BoundLiteral literal);

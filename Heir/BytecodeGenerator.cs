@@ -1,9 +1,11 @@
 ﻿using Heir.Syntax;
 using Heir.AST;
 using Heir.AST.Abstract;
+using Heir.Binding;
 using Heir.BoundAST;
 using Heir.CodeGeneration;
 using Heir.Diagnostics;
+using Heir.Types;
 using FunctionType = Heir.AST.FunctionType;
 using IntersectionType = Heir.AST.IntersectionType;
 using ParenthesizedType = Heir.AST.ParenthesizedType;
@@ -137,7 +139,7 @@ public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder) 
     {
         var boundInvocation = (BoundInvocation)binder.GetBoundNode(invocation);
         var argumentsBytecode = invocation.Arguments.ConvertAll(GenerateBytecode);
-        if (boundInvocation.Callee.Type is not Types.FunctionType functionType)
+        if (BaseType.UnwrapParentheses(boundInvocation.Callee.Type) is not Types.FunctionType functionType)
             return NoOp(invocation);
         
         List<Instruction> argumentsBytecodeWithDefaults = [];
@@ -237,11 +239,22 @@ public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder) 
         diagnostics.Error(DiagnosticCode.H008, $"Unsupported binary operator kind: {binaryOp.Operator.Kind}", binaryOp.Operator);
         return NoOp(binaryOp);
     }
+    
+    public List<Instruction> VisitPostfixOpExpression(PostfixOp postfixOp)
+    {
+        var value = GenerateBytecode(postfixOp.Operand);
+        var bytecode = postfixOp.Operator.Kind switch
+        {
+            _ => value
+        };
+
+        return bytecode.ToList();
+    }
 
     public List<Instruction> VisitUnaryOpExpression(UnaryOp unaryOp)
     {
         var value = GenerateBytecode(unaryOp.Operand);
-        IEnumerable<Instruction> bytecode = unaryOp.Operator.Kind switch
+        var bytecode = unaryOp.Operator.Kind switch
         {
             SyntaxKind.Bang => value.Append(new Instruction(unaryOp, OpCode.NOT)),
             SyntaxKind.Tilde => value.Append(new Instruction(unaryOp, OpCode.BNOT)),
@@ -249,7 +262,7 @@ public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder) 
             SyntaxKind.PlusPlus => value.Append(new Instruction(unaryOp, OpCode.INC)),
             SyntaxKind.MinusMinus => value.Append(new Instruction(unaryOp, OpCode.DEC)),
 
-            _ => null!
+            _ => null! // TODO: error
         };
 
         return bytecode.ToList();

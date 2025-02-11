@@ -1,4 +1,5 @@
-﻿using Heir.BoundAST.Abstract;
+﻿using Heir.Binding;
+using Heir.BoundAST.Abstract;
 using Heir.Syntax;
 using Heir.Types;
 

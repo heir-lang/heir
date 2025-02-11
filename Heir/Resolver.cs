@@ -224,6 +224,12 @@ public sealed class Resolver(DiagnosticBag diagnostics, SyntaxTree syntaxTree) :
         Resolve(unaryOp.Operand);
         return default;
     }
+    
+    public Void VisitPostfixOpExpression(PostfixOp postfixOp)
+    {
+        Resolve(postfixOp.Operand);
+        return default;
+    }
 
     private Void ResolveFunction(FunctionDeclaration functionDeclaration)
     {

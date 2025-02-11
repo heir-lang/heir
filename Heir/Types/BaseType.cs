@@ -11,12 +11,30 @@ public abstract class BaseType
     public abstract TypeKind Kind { get; }
 
     public abstract string ToString(bool colors = false);
+    
+    public static BaseType UnwrapParentheses(BaseType type)
+    {
+        return type is ParenthesizedType parenthesizedType
+            ? UnwrapParentheses(parenthesizedType.Type)
+            : type;
+    }
 
     public static BaseType Nullable(BaseType type)
     {
         return type.IsNullable || type is AnyType
             ? type
             : new UnionType([type, PrimitiveType.None]);
+    }
+    
+    public static BaseType NonNullable(BaseType type)
+    {
+        if (!type.IsNullable || type is not UnionType union)
+            return type;
+        
+        var nonNullableTypes = union.Types.FindAll(unionedType => !unionedType.IsNullable);
+        return nonNullableTypes.Count == 1
+            ? nonNullableTypes.First()
+            : new UnionType(nonNullableTypes);
     }
     
     public static BaseType FromTypeRef(TypeRef typeRef)

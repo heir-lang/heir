@@ -5,18 +5,19 @@
 - Parsing
   - [ ] Warn when using an expression as a statement which is not a return value and isn't something like an `AssignmentOp` or `Invocation`
   - Types
-      - [ ] Generics
-      - [ ] Literal
-      - [ ] Array
-      - [ ] Interface index signatures
-      - [ ] Class
+    - [ ] Generics
+    - [ ] Literal
+    - [ ] Array
+    - [ ] Interface index signatures
+    - [ ] Interface method signatures
+    - [ ] Class
   - Control flow
-      - [x] `if`
-      - [x] `while`
-      - [ ] `for`
-      - [ ] `switch`
-      - [ ] `break`
-      - [ ] `continue`
+    - [x] `if`
+    - [x] `while`
+    - [ ] `for`
+    - [ ] `switch`
+    - [ ] `break`
+    - [ ] `continue`
   - [ ] Lambdas
   - [ ] Array literals
   - [ ] Enums
@@ -25,7 +26,10 @@
     - [x] variables 
     - [ ] enums
     - [ ] functions
-- [x] Macro evaluator
+- Reflection/type features
+  - [ ] `value is Type` 
+  - [ ] Type narrowing
+  - [ ] Type aliases
   - [ ] `typeof`
   - [x] `nameof`
 - Runtime/HVM

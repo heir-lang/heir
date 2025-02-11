@@ -40,7 +40,15 @@ public abstract class NodeTransformer(SyntaxTree tree) : INodeVisitor<SyntaxNode
         var operand = Transform(unaryOp.Operand);
         return operand == null 
             ? null
-            : unaryOp.WithOperand(operand);
+            : new UnaryOp(operand, unaryOp.Operator);
+    }
+    
+    public virtual SyntaxNode? VisitPostfixOpExpression(PostfixOp postfixOp)
+    {
+        var operand = Transform(postfixOp.Operand);
+        return operand == null 
+            ? null
+            : new PostfixOp(operand, postfixOp.Operator);
     }
     
     public virtual SyntaxNode? VisitBinaryOpExpression(BinaryOp binaryOp)

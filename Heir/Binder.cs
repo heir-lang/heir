@@ -289,6 +289,19 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree)
 
         return new BoundUnaryOp(boundOperator, operand);
     }
+    
+    public BoundExpression VisitPostfixOpExpression(PostfixOp postfixOp)
+    {
+        var operand = Bind(postfixOp.Operand);
+        var boundOperator = BoundPostfixOperator.Bind(postfixOp.Operator, operand.Type);
+        if (boundOperator == null)
+        {
+            diagnostics.Error(DiagnosticCode.H007, $"Cannot apply operator '{postfixOp.Operator.Text}' to operand of type '{operand.Type.ToString()}'", postfixOp.Operator);
+            return new BoundNoOp();
+        }
+
+        return new BoundPostfixOp(boundOperator, operand);
+    }
 
     public BoundExpression VisitIdentifierNameExpression(IdentifierName identifierName)
     {

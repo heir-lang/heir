@@ -686,6 +686,8 @@ public sealed class Parser(TokenStream tokenStream)
         {
             if (Tokens.Match(SyntaxKind.Dot))
                 expression = ParseMemberAccess(expression);
+            else if (Tokens.Match(SyntaxKind.Bang))
+                expression = new PostfixOp(expression, Tokens.Previous!);
             else if (Tokens.Match(SyntaxKind.LBracket))
                 expression = ParseElementAccess(expression);
             else if (Tokens.Match(SyntaxKind.LParen))
