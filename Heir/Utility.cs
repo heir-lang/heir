@@ -5,6 +5,20 @@ namespace Heir;
 
 public static class Utility
 {
+    public static unsafe float Q_rsqrt(float number)
+    {
+        const float threeHalves = 1.5f;
+
+        var x2 = number * 0.5f;
+        var y = number;
+        var i = *(long*)&y;                 // evil floating point bit level hacking
+        i = 0x5f3759df - ( i >> 1 );   // what the fuck?
+        y = *(float*)&i;
+        y *= threeHalves - ( x2 * y * y );
+
+        return y;
+    }
+    
     public static string EscapeTabsAndNewlines(string text) =>
         Regex.Replace(text, @"\s", match =>
             match.Value switch

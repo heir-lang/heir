@@ -4,6 +4,7 @@ using CommandLine;
 using Dumpify;
 using Heir.CodeGeneration;
 using Heir.Diagnostics;
+
 using StackFrame = Heir.Runtime.StackFrame;
 
 namespace Heir.CLI;

@@ -30,6 +30,7 @@ public class MathLibrary() : IntrinsicLibrary("math", InterfaceType.Readonly("ma
         new InDegreesFunction(),
         new SqrtFunction(),
         new CbrtFunction(),
+        new Q_RsqrtFunction(),
         new RandomFloatFunction(),
         new RandomIntFunction()
     ];
