@@ -394,7 +394,7 @@ public class BinderTest
     [InlineData("{ a: true }", "a")]
     [InlineData("{ [\"a\"]: true }", "a")]
     [InlineData("{ [1]: true }", 1)]
-    public void Parses_ObjectLiterals(string input, object? keyValue)
+    public void Binds_ObjectLiterals(string input, object? keyValue)
     {
         var boundTree = Bind(input).GetBoundSyntaxTree();
         var statement = boundTree.Statements.First();
@@ -493,6 +493,24 @@ public class BinderTest
         Assert.Equal(typeAKind, ((PrimitiveType)typeA).PrimitiveKind);
         Assert.Equal(typeBKind, ((PrimitiveType)typeB).PrimitiveKind);
         Assert.Equal(TypeKind.Union, returnType.Kind);
+    }
+    
+    [Fact]
+    public void Binds_NullForgiving()
+    {
+        var boundTree = Bind("let x: int? = 1; x!;").GetBoundSyntaxTree();
+        var statement = boundTree.Statements.Last();
+        Assert.IsType<BoundExpressionStatement>(statement);
+
+        var node = ((BoundExpressionStatement)statement).Expression;
+        Assert.IsType<BoundPostfixOp>(node);
+
+        var postfixOp = (BoundPostfixOp)node;
+        Assert.IsType<UnionType>(postfixOp.Operand.Type);
+        Assert.IsAssignableFrom<PrimitiveType>(postfixOp.Type);
+
+        var returnType = (PrimitiveType)postfixOp.Type;
+        Assert.Equal(PrimitiveTypeKind.Int, returnType.PrimitiveKind);
     }
 
     [Theory]

@@ -477,6 +477,21 @@ public class ParserTest
         Assert.NotNull(declaration.Initializer);
         Assert.IsType<Literal>(declaration.Initializer);
     }
+    
+    [Theory]
+    [InlineData("abc!", SyntaxKind.Bang)]
+    public void Parses_PostfixOperators(string input, SyntaxKind operatorKind)
+    {
+        var tree = Parse(input);
+        var statement = tree.Statements.First();
+        Assert.IsType<ExpressionStatement>(statement);
+
+        var node = ((ExpressionStatement)statement).Expression;
+        Assert.IsType<PostfixOp>(node);
+
+        var postfixOperation = (UnaryOp)node;
+        Assert.Equal(operatorKind, postfixOperation.Operator.Kind);
+    }
 
     [Theory]
     [InlineData("!true", SyntaxKind.Bang)]
