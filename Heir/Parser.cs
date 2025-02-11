@@ -309,8 +309,11 @@ public sealed class Parser(TokenStream tokenStream)
         if (Tokens.Match(SyntaxKind.Equals))
             initializer = ParseExpression();
 
-        if (isInline && initializer == null)
-            _diagnostics.Error(DiagnosticCode.H022, $"Inlined variable '{identifier.Text}' must be initialized", identifier);
+        if (isInline && (initializer == null ||
+                         (initializer is Literal literal && literal.Token.IsKind(SyntaxKind.NoneKeyword))))
+        {
+            _diagnostics.Error(DiagnosticCode.H022, $"Inlined variable '{identifier.Text}' must be initialized and non-null", identifier);
+        }
 
         if (initializer == null && type == null)
         {

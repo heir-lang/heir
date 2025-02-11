@@ -8,6 +8,10 @@ namespace Heir.Tests;
 public class ParserTest
 {
     [Theory]
+    [InlineData("let inline x = none", DiagnosticCode.H022)]
+    [InlineData("let inline x", DiagnosticCode.H022)]
+    [InlineData("let inline mut x = 1", DiagnosticCode.H021)]
+    [InlineData("let mut inline x = 1", DiagnosticCode.H021)]
     [InlineData("fn abc(x = x) {}", DiagnosticCode.H016)]
     [InlineData("fn abc(x) {}", DiagnosticCode.H012)]
     [InlineData("let x", DiagnosticCode.H012)]
@@ -45,6 +49,21 @@ public class ParserTest
     {
         var tree = Parse(input);
         Assert.Empty(tree.Diagnostics);
+    }
+    
+    [Fact]
+    public void Parses_InlineVariables()
+    {
+        var tree = Parse("let inline x = 1; x;");
+        var statement = tree.Statements.Last();
+        Assert.IsType<ExpressionStatement>(statement);
+        
+        var expressionStatement = (ExpressionStatement)statement;
+        Assert.IsType<Literal>(expressionStatement.Expression);
+        
+        var literal = (Literal)expressionStatement.Expression;
+        Assert.Equal(SyntaxKind.IntLiteral, literal.Token.Kind);
+        Assert.Equal(1, literal.Token.Value);
     }
     
     [Theory]
