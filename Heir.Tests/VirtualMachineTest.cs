@@ -92,7 +92,9 @@ public class VirtualMachineTest
     [InlineData("math.atanh(0.5)", 0.5493061443340549)]
     [InlineData("math.sqrt(25)", 5.0)]
     [InlineData("math.cbrt(125)", 5.0)]
-    public void Evaluates_MathLibrary<T>(string input, T expectedValue)
+    [InlineData("math.q_rsqrt(25)", 0.2, 0.001)]
+    [InlineData("math.q_rsqrt(25, true)", 0.2, 0.000001)]
+    public void Evaluates_MathLibrary<T>(string input, T expectedValue, double tolerance = 1e-10)
     {
         var (value, vm) = Evaluate(input);
         Assert.Empty(vm.Diagnostics);
@@ -100,10 +102,10 @@ public class VirtualMachineTest
         switch (expectedValue)
         {
             case double expectedDouble when value is double actualDouble:
-                AssertExtensions.FuzzyEqual(expectedDouble, actualDouble);
+                AssertExtensions.FuzzyEqual(expectedDouble, actualDouble, tolerance);
                 break;
             case int expectedInt when value is int actualInt:
-                AssertExtensions.FuzzyEqual(expectedInt, actualInt);
+                AssertExtensions.FuzzyEqual(expectedInt, actualInt, tolerance);
                 break;
             
             default:

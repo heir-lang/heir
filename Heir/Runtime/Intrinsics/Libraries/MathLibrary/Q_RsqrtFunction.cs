@@ -10,7 +10,7 @@ public class Q_RsqrtFunction()
         new()
         {
             { "n", IntrinsicTypes.Number },
-            { "iterations", BaseType.Nullable(PrimitiveType.Int) }
+            { "secondIteration", BaseType.Nullable(PrimitiveType.Bool) }
         },
         PrimitiveType.Float
     )
@@ -18,7 +18,8 @@ public class Q_RsqrtFunction()
     public override unsafe BaseDelegate Invoke { get; } = args =>
     {
         var number = Convert.ToSingle(args.First());
-        var iterations = Convert.ToInt32(args.LastOrDefault() ?? 1);
+        var doSecondIteration = args.LastOrDefault() as bool? ?? false;
+        var iterations = doSecondIteration ? 2 : 1;
         const float threeHalves = 1.5f;
         
         var x2 = number * 0.5f;
@@ -30,6 +31,6 @@ public class Q_RsqrtFunction()
         for (var j = 0; j < iterations; j++)
             y *= threeHalves - ( x2 * y * y );
         
-        return y;
+        return Convert.ToDouble(y);
     };
 }
