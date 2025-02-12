@@ -74,6 +74,18 @@ public sealed class Parser(TokenStream tokenStream)
             goto ConsumeSemicolons;
         }
         
+        if (Tokens.Match(SyntaxKind.BreakKeyword, out var breakToken))
+        {
+            statement = new Break(breakToken);
+            goto ConsumeSemicolons;
+        }
+        
+        if (Tokens.Match(SyntaxKind.ContinueKeyword, out var continueToken))
+        {
+            statement = new Continue(continueToken);
+            goto ConsumeSemicolons;
+        }
+        
         if (Tokens.Match(SyntaxKind.InterfaceKeyword))
         {
             statement = ParseInterfaceDeclaration();

@@ -47,13 +47,12 @@ public class BoundBlock : BoundStatement
         
     private static bool ContainsReturn(BoundStatement stmt)
     {
-        if (stmt is BoundFunctionDeclaration)
-            return false;
-
-        if (stmt is BoundBlock block)
-            return block.Statements.Any(ContainsReturn);
-
-        return stmt is BoundReturn;
+        return stmt switch
+        {
+            BoundFunctionDeclaration => false,
+            BoundBlock block => block.Statements.Any(ContainsReturn),
+            _ => stmt is BoundReturn
+        };
     }
 
     private static List<BoundReturn> GetReturn(BoundStatement stmt)

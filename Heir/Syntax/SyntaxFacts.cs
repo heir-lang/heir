@@ -13,6 +13,8 @@ namespace Heir.Syntax
             { "if", SyntaxKind.IfKeyword },
             { "else", SyntaxKind.ElseKeyword },
             { "while", SyntaxKind.WhileKeyword },
+            { "break", SyntaxKind.BreakKeyword },
+            { "continue", SyntaxKind.ContinueKeyword },
             { "interface", SyntaxKind.InterfaceKeyword },
             { "nameof", SyntaxKind.NameofKeyword },
             { "inline", SyntaxKind.InlineKeyword },

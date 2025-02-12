@@ -1,0 +1,19 @@
+interface Event {
+    mut callback: (() -> none)?;
+}
+
+fn connect(event: Event, callback: () -> none): none ->
+    event.callback = callback;
+    
+fn fire(event: Event): none {
+    if event.callback == none return;
+    event.callback!();
+}
+
+fn createEvent: Event -> ({ callback: none });
+
+let onTouchEvent = createEvent();
+fn onTouch -> print("touched!");
+
+connect(onTouchEvent, onTouch);
+fire(onTouchEvent);

@@ -191,6 +191,9 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree)
         var expression = Bind(@return.Expression);
         return new BoundReturn(@return.Keyword, expression);
     }
+    
+    public BoundStatement VisitBreakStatement(Break @break) => new BoundBreak(@break.Keyword);
+    public BoundStatement VisitContinueStatement(Continue @continue) => new BoundContinue(@continue.Keyword);
 
     public BoundStatement VisitIfStatement(If @if)
     {

@@ -17,6 +17,7 @@ namespace Heir;
 public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder) : INodeVisitor<List<Instruction>>
 {
     private readonly SyntaxTree _syntaxTree = binder.SyntaxTree;
+    private int _currentLoopJumpIndex;
 
     public Bytecode GenerateBytecode()
     {
@@ -105,13 +106,30 @@ public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder) 
         var optimizedCondition = conditionOptimizer.Optimize(); // to calculate offset
         var bodyOptimizer = new BytecodeOptimizer(bodyBytecode, diagnostics);
         var optimizedBody = bodyOptimizer.Optimize();
-        return
-        [
+        var filledInBody = FixLoopBody(bodyBytecode, optimizedBody.Count);
+        List<Instruction> b = [
             ..conditionBytecode,
             new(@while, OpCode.JZ, optimizedBody.Count + 2),
-            ..bodyBytecode,
+            ..filledInBody,
             new(@while, OpCode.JMP, -optimizedBody.Count - optimizedCondition.Count - 1),
         ];
+        Console.WriteLine(new Bytecode(b));
+        return b;
+    }
+
+    private static List<Instruction> FixLoopBody(List<Instruction> bodyBytecode, int bodyLength)
+    {
+        return bodyBytecode.ConvertAll(instruction =>
+        {
+            if (instruction.OpCode is not OpCode.BREAK and not OpCode.CONTINUE)
+                return instruction;
+
+            var i = bodyBytecode.IndexOf(instruction);
+            var offset = bodyLength - (i - 3) - (instruction.OpCode == OpCode.CONTINUE ? 1 : 0);
+            return instruction
+                .WithOpCode(OpCode.JMP)
+                .WithOperand(offset);
+        });
     }
 
     public List<Instruction> VisitParameter(Parameter parameter) =>
@@ -172,6 +190,16 @@ public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder) 
     [
         ..GenerateBytecode(@return.Expression),
         new(@return, OpCode.RETURN)
+    ];
+    
+    public List<Instruction> VisitBreakStatement(Break @break) =>
+    [
+        new(@break, OpCode.BREAK, 69420)
+    ];
+    
+    public List<Instruction> VisitContinueStatement(Continue @continue) =>
+    [
+        new(@continue, OpCode.CONTINUE, 69420)
     ];
 
     public List<Instruction> VisitExpressionStatement(ExpressionStatement expressionStatement) =>

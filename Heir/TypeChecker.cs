@@ -16,6 +16,8 @@ public class TypeChecker(DiagnosticBag diagnostics, BoundSyntaxTree syntaxTree) 
     public Void VisitBoundBlock(BoundBlock block) => Check(block.Statements);
     public Void VisitBoundReturnStatement(BoundReturn @return) => Check(@return.Expression);
     public Void VisitBoundExpressionStatement(BoundExpressionStatement expressionStatement) => Check(expressionStatement.Expression);
+    public Void VisitBoundBreakStatement(BoundBreak @break) => default;
+    public Void VisitBoundContinueStatement(BoundContinue @continue) => default;
 
     public Void VisitBoundFunctionDeclaration(BoundFunctionDeclaration declaration)
     {

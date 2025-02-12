@@ -19,5 +19,7 @@ public abstract class BoundStatement : BoundSyntaxNode
         public R VisitBoundFunctionDeclaration(BoundFunctionDeclaration declaration);
         public R VisitBoundIfStatement(BoundIf @if);
         public R VisitBoundWhileStatement(BoundWhile @while);
+        public R VisitBoundBreakStatement(BoundBreak @break);
+        public R VisitBoundContinueStatement(BoundContinue @continue);
     }
 }

@@ -19,6 +19,7 @@ public sealed class Resolver(DiagnosticBag diagnostics, SyntaxTree syntaxTree) :
     private readonly Stack<Dictionary<string, bool>> _scopes = [];
     private ScopeContext _scopeContext = ScopeContext.Global;
     private bool _withinFunction;
+    private bool _withinLoop;
 
     public void Resolve() => Resolve(syntaxTree);
     
@@ -104,6 +105,22 @@ public sealed class Resolver(DiagnosticBag diagnostics, SyntaxTree syntaxTree) :
         Resolve(@return.Expression);
         return default;
     }
+    
+    public Void VisitBreakStatement(Break @break)
+    {
+        if (!_withinLoop)
+            diagnostics.Error(DiagnosticCode.H023, "Invalid break statement: Can only use 'break' within a loop", @break.Keyword);
+        
+        return default;
+    }
+    
+    public Void VisitContinueStatement(Continue @continue)
+    {
+        if (!_withinLoop)
+            diagnostics.Error(DiagnosticCode.H023, "Invalid continue statement: Can only use 'continue' within a loop", @continue.Keyword);
+        
+        return default;
+    }
 
     public Void VisitIfStatement(If @if)
     {
@@ -119,7 +136,12 @@ public sealed class Resolver(DiagnosticBag diagnostics, SyntaxTree syntaxTree) :
     public Void VisitWhileStatement(While @while)
     {
         Resolve(@while.Condition);
+        
+        var enclosingWithinLoop = _withinLoop;
+        _withinLoop = true;
         Resolve(@while.Body);
+        _withinLoop = enclosingWithinLoop;
+        
         return default;
     }
 

@@ -17,5 +17,7 @@ public abstract class Statement : SyntaxNode
         public R VisitWhileStatement(While @while);
         public R VisitInterfaceField(InterfaceField interfaceField);
         public R VisitInterfaceDeclaration(InterfaceDeclaration interfaceDeclaration);
+        public R VisitBreakStatement(Break @break);
+        public R VisitContinueStatement(Continue @continue);
     }
 }

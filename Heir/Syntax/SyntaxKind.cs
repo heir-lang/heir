@@ -78,6 +78,8 @@
         IfKeyword,
         ElseKeyword,
         WhileKeyword,
+        BreakKeyword,
+        ContinueKeyword,
         InterfaceKeyword,
         NameofKeyword,
         InlineKeyword,

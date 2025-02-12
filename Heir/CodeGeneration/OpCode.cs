@@ -22,6 +22,12 @@ public enum OpCode : byte
     /// <summary>Jump ahead by the given offset</summary>
     /// <param name="operand">The amount of instructions to jump ahead</param>
     JMP,
+    /// <summary>Jump ahead by the given offset</summary>
+    /// <param name="operand">The amount of instructions to jump ahead</param>
+    BREAK,
+    /// <summary>Jump ahead by the given offset plus one</summary>
+    /// <param name="operand">The amount of instructions to jump ahead</param>
+    CONTINUE,
     /// <summary>Jump ahead by the given offset if the last value on the stack is false or 0</summary>
     /// <param name="operand">The amount of instructions to jump ahead</param>
     JZ,

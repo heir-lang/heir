@@ -12,5 +12,5 @@ public sealed class BoundReturn(Token keyword, BoundExpression expression) : Bou
     public BoundExpression Expression { get; } = expression;
 
     public override R Accept<R>(IVisitor<R> visitor) => visitor.VisitBoundReturnStatement(this);
-    public override List<Token> GetTokens() => [];
+    public override List<Token> GetTokens() => [Keyword, ..Expression.GetTokens()];
 }

@@ -193,7 +193,10 @@ public abstract class NodeTransformer(SyntaxTree tree) : INodeVisitor<SyntaxNode
             ? null
             : new Return(@return.Keyword, expression);
     }
-    
+
+    public virtual SyntaxNode? VisitBreakStatement(Break @break) => @break;
+    public virtual SyntaxNode? VisitContinueStatement(Continue @continue) => @continue;
+
     public virtual SyntaxNode? VisitFunctionDeclaration(FunctionDeclaration functionDeclaration)
     {
         var name = Transform(functionDeclaration.Name) as IdentifierName;
