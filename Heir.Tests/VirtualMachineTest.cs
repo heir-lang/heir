@@ -122,6 +122,44 @@ public class VirtualMachineTest
     }
     
     [Fact]
+    public void Evaluates_ContinueStatements()
+    {
+        const string input = """
+                             let mut i = 0;
+                             let mut sum = 0;
+                             
+                             while ++i <= 20 {
+                                 if i % 2 == 0 continue;
+                                 sum += i;
+                             }
+                             
+                             sum;
+                             """;
+        
+        var (value, _) = Evaluate(input);
+        Assert.Equal(100.0, value);
+    }
+    
+    [Fact]
+    public void Evaluates_BreakStatements()
+    {
+        const string input = """
+                             let mut i = 0;
+                             let mut sum = 0;
+
+                             while ++i <= 20 {
+                                 if i > 10 break;
+                                 sum += i;
+                             }
+
+                             sum;
+                             """;
+        
+        var (value, _) = Evaluate(input);
+        Assert.Equal(55.0, value);
+    }
+    
+    [Fact]
     public void Evaluates_WhileStatements()
     {
         const string input = """

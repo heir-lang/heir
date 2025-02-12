@@ -107,17 +107,16 @@ public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder) 
         var bodyOptimizer = new BytecodeOptimizer(bodyBytecode, diagnostics);
         var optimizedBody = bodyOptimizer.Optimize();
         var filledInBody = FixLoopBody(bodyBytecode, optimizedBody.Count);
-        List<Instruction> b = [
+
+        return [
             ..conditionBytecode,
             new(@while, OpCode.JZ, optimizedBody.Count + 2),
             ..filledInBody,
             new(@while, OpCode.JMP, -optimizedBody.Count - optimizedCondition.Count - 1),
         ];
-        Console.WriteLine(new Bytecode(b));
-        return b;
     }
 
-    private static List<Instruction> FixLoopBody(List<Instruction> bodyBytecode, int bodyLength)
+    private static List<Instruction> FixLoopBody(List<Instruction> bodyBytecode, int totalLength)
     {
         return bodyBytecode.ConvertAll(instruction =>
         {
@@ -125,7 +124,7 @@ public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder) 
                 return instruction;
 
             var i = bodyBytecode.IndexOf(instruction);
-            var offset = bodyLength - (i - 3) - (instruction.OpCode == OpCode.CONTINUE ? 1 : 0);
+            var offset = totalLength + 1 - i - (instruction.OpCode == OpCode.CONTINUE ? 1 : 0);
             return instruction
                 .WithOpCode(OpCode.JMP)
                 .WithOperand(offset);
