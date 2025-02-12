@@ -260,7 +260,7 @@ public sealed class VirtualMachine
                 if (nameFrame.Value is not string name)
                 {
                     Diagnostics.RuntimeError(DiagnosticCode.HDEV,
-                        $"Failed to execute LOAD op-code: No variable name was located in the stack, got {nameFrame.Value ?? "none"}",
+                        $"Failed to execute LOAD op-code: No variable name was located in the stack, got {nameFrame.Value ?? "null"}",
                         nameFrame.Node?.GetFirstToken());
                     
                     break;
@@ -278,7 +278,7 @@ public sealed class VirtualMachine
                 if (nameFrame.Value is not string name)
                 {
                     Diagnostics.RuntimeError(DiagnosticCode.HDEV,
-                        $"Failed to execute STORE op-code: No variable name was located in the stack, got {nameFrame.Value ?? "none"}",
+                        $"Failed to execute STORE op-code: No variable name was located in the stack, got {nameFrame.Value ?? "null"}",
                         initializerFrame.Node?.GetFirstToken());
                     
                     break;
@@ -303,7 +303,7 @@ public sealed class VirtualMachine
                 if (objectFrame.Value is not ObjectValue objectValue)
                 {
                     Diagnostics.RuntimeError(DiagnosticCode.HDEV,
-                        $"Failed to execute STOREINDEX op-code: No object to index was located in the stack, got {objectFrame.Value ?? "none"}",
+                        $"Failed to execute STOREINDEX op-code: No object to index was located in the stack, got {objectFrame.Value ?? "null"}",
                         initializerFrame.Node?.GetFirstToken());
                     
                     break;
@@ -457,7 +457,12 @@ public sealed class VirtualMachine
                 var right = Stack.Pop();
                 var left = Stack.Pop();
                 var equalityComparer = EqualityComparer<object>.Default;
-                var result = equalityComparer.Equals(left.Value, right.Value);
+                
+                var result = left.Value is long or ulong or int or uint or short or ushort or byte or sbyte or double or float or decimal ||
+                                  right.Value is long or ulong or int or uint or short or ushort or byte or sbyte or double or float or decimal
+                                      ? Convert.ToDouble(left.Value) == Convert.ToDouble(right.Value)
+                                      : equalityComparer.Equals(left.Value, right.Value);
+                
                 if (instruction.OpCode == OpCode.NEQ)
                     result = !result;
                 
