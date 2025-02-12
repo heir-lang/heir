@@ -9,6 +9,7 @@ internal enum OperandType : byte
     Double,
     Bool,
     Bytecode,
+    ObjectBytecode,
     Null,
     StringList,
     IntStringListTuple

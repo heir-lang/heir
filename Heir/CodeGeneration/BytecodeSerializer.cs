@@ -48,6 +48,16 @@ public static class BytecodeSerializer
                 writer.Write((byte)OperandType.Bool);
                 writer.Write(Convert.ToByte(operand));
                 break;
+            case Dictionary<List<Instruction>, List<Instruction>> objectBytecode:
+                writer.Write((byte)OperandType.ObjectBytecode);
+                writer.Write(objectBytecode.Count);
+                foreach (var (key, value) in objectBytecode)
+                {
+                    SerializeBytecodeOperand(key, writer);
+                    SerializeBytecodeOperand(value, writer);
+                }
+                
+                break;
             case List<Instruction> bytecode:
                 writer.Write((byte)OperandType.Bytecode);
                 SerializeBytecodeOperand(bytecode, writer);
