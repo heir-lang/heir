@@ -489,7 +489,7 @@ public class ParserTest
         var node = ((ExpressionStatement)statement).Expression;
         Assert.IsType<PostfixOp>(node);
 
-        var postfixOperation = (UnaryOp)node;
+        var postfixOperation = (PostfixOp)node;
         Assert.Equal(operatorKind, postfixOperation.Operator.Kind);
     }
 
