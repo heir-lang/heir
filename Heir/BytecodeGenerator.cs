@@ -17,7 +17,6 @@ namespace Heir;
 public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder) : INodeVisitor<List<Instruction>>
 {
     private readonly SyntaxTree _syntaxTree = binder.SyntaxTree;
-    private int _enumMemberCount;
     
     public Bytecode GenerateBytecode()
     {
@@ -93,7 +92,6 @@ public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder) 
                 })
         );
 
-        _enumMemberCount = 0;
         return [
             ..PushName(enumDeclaration.Name),
             new Instruction(enumDeclaration, OpCode.PUSHOBJECT, objectValue),
@@ -101,12 +99,7 @@ public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder) 
         ];
     }
 
-    public List<Instruction> VisitEnumMember(EnumMember enumMember)
-    {
-        _enumMemberCount++;
-        var value = enumMember.Value ?? new Literal(TokenFactory.IntLiteral(_enumMemberCount - 1, enumMember.Name.Token));
-        return GenerateBytecode(value);
-    }
+    public List<Instruction> VisitEnumMember(EnumMember enumMember) => GenerateBytecode(enumMember.Value);
 
     public List<Instruction> VisitIfStatement(If @if)
     {

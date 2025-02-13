@@ -18,15 +18,37 @@ public class Instruction(SyntaxNode? root, OpCode opCode, object? operand = null
 
     public override string ToString()
     {
-        if (Operand is List<Instruction> rawBytecode)
+        switch (Operand)
         {
-            var bytecode = new Bytecode(rawBytecode);
-            return $"{OpCode} (bytecode){(Root == null ? "" : " - " + Root.GetFirstToken().Span.Start)}\n"
-                + string.Join('\n', bytecode.ToString().Split('\n').Select(line => "  " + line));
+            case List<Instruction> rawBytecode:
+            {
+                var bytecode = new Bytecode(rawBytecode);
+                return $"{OpCode} (bytecode){(Root == null ? "" : " - " + Root.GetFirstToken().Span.Start)}\n"
+                       + string.Join('\n', bytecode.ToString().Split('\n').Select(line => "  " + line));
+            }
+            case Dictionary<List<Instruction>, List<Instruction>> objectBytecode:
+            {
+                var final = $"{OpCode} (object bytecode){(Root == null ? "" : " - " + Root.GetFirstToken().Span.Start)}\n";
+                var index = 0;
+                foreach (var (keyBytecode, valueBytecode) in objectBytecode)
+                {
+                    final += "  Key:\n";
+                    final += string.Join('\n', new Bytecode(keyBytecode).ToString().Split('\n').Select(line => "    " + line));
+                    final += "\n";
+                    final += "  Value:\n";
+                    final += string.Join('\n', new Bytecode(valueBytecode).ToString().Split('\n').Select(line => "    " + line));
+                    final += "\n";
+                    if (index++ < objectBytecode.Count - 1)
+                        final += "\n";
+                }
+            
+                return final;
+            }
+            
+            default:
+                return Operand != null
+                    ? $"{OpCode} {Operand}{(Root == null ? "" : " - " + Root.GetFirstToken().Span.Start)}"
+                    : OpCode.ToString();
         }
-        
-        return Operand != null
-            ? $"{OpCode} {Operand}{(Root == null ? "" : " - " + Root.GetFirstToken().Span.Start)}"
-            : OpCode.ToString();
     }
 }

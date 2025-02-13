@@ -15,6 +15,7 @@ public sealed class Parser(TokenStream tokenStream)
     public TokenStream Tokens { get; } = tokenStream.WithoutTriviaExceptSemicolons();
 
     private readonly DiagnosticBag _diagnostics = tokenStream.Diagnostics;
+    private int _enumMemberCount;
 
     public SyntaxTree ParseWithCompileTimeMacros(bool resolveBeforeMacros = true)
     {
@@ -269,6 +270,7 @@ public sealed class Parser(TokenStream tokenStream)
     
     private Statement ParseEnumDeclaration(Token keyword, bool isInline)
     {
+        _enumMemberCount = 0;
         var identifier = Tokens.Consume(SyntaxKind.Identifier);
         if (identifier == null)
             return new NoOpStatement();
@@ -304,18 +306,23 @@ public sealed class Parser(TokenStream tokenStream)
         var identifier = Tokens.Consume(SyntaxKind.Identifier);
         if (identifier == null)
             return null;
-
-        Literal? value = null;
+        
+        var valueLiteral = new Literal(TokenFactory.IntLiteral(_enumMemberCount, identifier));
         if (Tokens.Match(SyntaxKind.Equals) && Tokens.CheckSet([SyntaxKind.IntLiteral, SyntaxKind.StringLiteral, SyntaxKind.NameofKeyword]))
         {
             var valueToken = Tokens.Advance();
             if (valueToken == null)
                 return null;
             
-            value = new Literal(valueToken);
+            valueLiteral = new Literal(valueToken);
         }
         
-        return new EnumMember(new IdentifierName(identifier), value);
+        if (valueLiteral is { Token.Value: int value })
+            _enumMemberCount = value + 1;
+        else if (valueLiteral is not { Token.Value: not int })
+            _enumMemberCount++;
+        
+        return new EnumMember(new IdentifierName(identifier), valueLiteral);
     }
 
     private Return ParseReturnStatement()

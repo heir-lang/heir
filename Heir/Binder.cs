@@ -25,7 +25,6 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree)
     private readonly Dictionary<SyntaxNode, BoundSyntaxNode> _boundNodes = [];
     private readonly Stack<Stack<VariableSymbol<BaseType>>> _variableScopes = [];
     private readonly Stack<Stack<TypeSymbol>> _typeScopes = [];
-    private int _enumMemberCount;
 
     public BoundSyntaxTree Bind()
     {
@@ -210,17 +209,12 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree)
         var boundEnumDeclaration = new BoundEnumDeclaration(enumDeclaration.Keyword, symbol, members, enumDeclaration.IsInline);
         DefineTypeSymbol(boundEnumDeclaration.TypeSymbol);
 
-        _enumMemberCount = 0;
         return boundEnumDeclaration;
     }
     
     public BoundStatement VisitEnumMember(EnumMember enumMember)
     {
-        _enumMemberCount++;
-        var value = enumMember.Value != null
-            ? (BoundLiteral)Bind(enumMember.Value)
-            : new BoundLiteral(TokenFactory.IntLiteral(_enumMemberCount - 1, enumMember.Name.Token));
-        
+        var value = (BoundLiteral)Bind(enumMember.Value);
         return new BoundEnumMember(enumMember.Name.Token, value);
     }
 

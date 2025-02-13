@@ -20,10 +20,10 @@
     - [x] `continue`
   - [ ] Lambdas
   - [ ] Array literals
-  - [ ] Enums
+  - [x] Enums
   - [ ] `inline`
     - [x] Variables 
-    - [ ] Enums
+    - [x] Enums
     - [ ] Functions
 - Reflection/type features
   - [ ] `value is Type` 

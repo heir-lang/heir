@@ -197,7 +197,7 @@ public abstract class NodeTransformer(SyntaxTree tree) : INodeVisitor<SyntaxNode
     public virtual SyntaxNode? VisitBreakStatement(Break @break) => @break;
     public virtual SyntaxNode? VisitContinueStatement(Continue @continue) => @continue;
     
-    public SyntaxNode? VisitEnumDeclaration(EnumDeclaration enumDeclaration)
+    public virtual SyntaxNode? VisitEnumDeclaration(EnumDeclaration enumDeclaration)
     {
         var name = Transform(enumDeclaration.Name) as IdentifierName;
         var members = enumDeclaration.Members
@@ -212,7 +212,7 @@ public abstract class NodeTransformer(SyntaxTree tree) : INodeVisitor<SyntaxNode
             enumDeclaration.IsInline);
     }
 
-    public SyntaxNode? VisitEnumMember(EnumMember enumMember)
+    public virtual SyntaxNode? VisitEnumMember(EnumMember enumMember)
     {
         var name = Transform(enumMember.Name) as IdentifierName;
         var value = enumMember.Value != null ? Transform(enumMember.Value) as Literal : null;
