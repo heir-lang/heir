@@ -17,8 +17,8 @@ namespace Heir;
 public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder) : INodeVisitor<List<Instruction>>
 {
     private readonly SyntaxTree _syntaxTree = binder.SyntaxTree;
-    private int _currentLoopJumpIndex;
-
+    private int _enumMemberCount;
+    
     public Bytecode GenerateBytecode()
     {
         var bytecode = GenerateBytecode(_syntaxTree);
@@ -74,6 +74,38 @@ public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder) 
             new(functionDeclaration, OpCode.PROC, bodyBytecode),
             new(functionDeclaration, OpCode.STORE, false)
         ];
+    }
+
+    public List<Instruction> VisitEnumDeclaration(EnumDeclaration enumDeclaration)
+    {
+        if (enumDeclaration.IsInline)
+            return NoOp(enumDeclaration);
+        
+        var objectValue = new Dictionary<List<Instruction>, List<Instruction>>(
+            enumDeclaration.Members
+                .ToList()
+                .ConvertAll<KeyValuePair<List<Instruction>, List<Instruction>>>(member =>
+                {
+                    var keyExpression = new Literal(TokenFactory.StringFromIdentifier(member.Name.Token));
+                    var key = GenerateBytecode(keyExpression);
+                    var value = GenerateBytecode(member);
+                    return new(key, value);
+                })
+        );
+
+        _enumMemberCount = 0;
+        return [
+            ..PushName(enumDeclaration.Name),
+            new Instruction(enumDeclaration, OpCode.PUSHOBJECT, objectValue),
+            new Instruction(enumDeclaration, OpCode.STORE, false)
+        ];
+    }
+
+    public List<Instruction> VisitEnumMember(EnumMember enumMember)
+    {
+        _enumMemberCount++;
+        var value = enumMember.Value ?? new Literal(TokenFactory.IntLiteral(_enumMemberCount - 1, enumMember.Name.Token));
+        return GenerateBytecode(value);
     }
 
     public List<Instruction> VisitIfStatement(If @if)
@@ -326,32 +358,30 @@ public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder) 
 
     private List<Instruction> PushAssignmentTarget(AssignmentTarget assignmentTarget)
     {
-        if (assignmentTarget is Name name)
-            return PushName(name);
-
-        if (assignmentTarget is MemberAccess memberAccess)
+        switch (assignmentTarget)
         {
-            return
-            [
-                ..GenerateBytecode(memberAccess.Expression),
-                ..PushName(memberAccess.Name)
-            ];
-        }
-        
-        if (assignmentTarget is ElementAccess elementAccess)
-        {
-            return
-            [
-                ..GenerateBytecode(elementAccess.Expression),
-                ..GenerateBytecode(elementAccess.IndexExpression)
-            ];
-        }
-        
-        diagnostics.Error(DiagnosticCode.HDEV,
-            $"Unhandled assignment target type in PushAssignmentTarget: {assignmentTarget.GetType()}",
-            assignmentTarget);
+            case Name name:
+                return PushName(name);
+            case MemberAccess memberAccess:
+                return
+                [
+                    ..GenerateBytecode(memberAccess.Expression),
+                    ..PushName(memberAccess.Name)
+                ];
+            case ElementAccess elementAccess:
+                return
+                [
+                    ..GenerateBytecode(elementAccess.Expression),
+                    ..GenerateBytecode(elementAccess.IndexExpression)
+                ];
+            
+            default:
+                diagnostics.Error(DiagnosticCode.HDEV,
+                    $"Unhandled assignment target type in PushAssignmentTarget: {assignmentTarget.GetType()}",
+                    assignmentTarget);
 
-        return NoOp(assignmentTarget);
+                return NoOp(assignmentTarget);
+        }
     }
     
     private static List<Instruction> PushName(Name name) => [new(name, OpCode.PUSH, name.ToString())];

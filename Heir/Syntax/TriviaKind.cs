@@ -1,12 +1,11 @@
-﻿namespace Heir.Syntax
+﻿namespace Heir.Syntax;
+
+public enum TriviaKind
 {
-    public enum TriviaKind
-    {
-        EOF,
-        Whitespace,
-        Newline,
-        Semicolons,
-        Comment,
-        MultiLineComment
-    }
+    EOF,
+    Whitespace,
+    Newline,
+    Semicolons,
+    Comment,
+    MultiLineComment
 }

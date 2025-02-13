@@ -3,7 +3,7 @@ using Heir.Syntax;
 
 namespace Heir.AST;
 
-public class SingularType(Token token) : TypeRef
+public sealed class SingularType(Token token) : TypeRef
 {
     public Token Token { get; } = token;
 

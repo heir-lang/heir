@@ -3,7 +3,7 @@ using Heir.Syntax;
 
 namespace Heir.AST;
 
-public class ParenthesizedType(TypeRef type) : TypeRef
+public sealed class ParenthesizedType(TypeRef type) : TypeRef
 {
     public TypeRef Type { get; } = type;
 

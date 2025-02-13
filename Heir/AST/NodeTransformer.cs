@@ -17,7 +17,7 @@ public abstract class NodeTransformer(SyntaxTree tree) : INodeVisitor<SyntaxNode
         return new SyntaxTree(newStatements, tree.Diagnostics);
     }
     
-    public virtual SyntaxNode? VisitIdentifierNameExpression(IdentifierName identifierName) => null;
+    public virtual SyntaxNode? VisitIdentifierNameExpression(IdentifierName identifierName) => identifierName;
 
     public virtual SyntaxNode? VisitAssignmentOpExpression(AssignmentOp assignmentOp)
     {
@@ -196,6 +196,31 @@ public abstract class NodeTransformer(SyntaxTree tree) : INodeVisitor<SyntaxNode
 
     public virtual SyntaxNode? VisitBreakStatement(Break @break) => @break;
     public virtual SyntaxNode? VisitContinueStatement(Continue @continue) => @continue;
+    
+    public SyntaxNode? VisitEnumDeclaration(EnumDeclaration enumDeclaration)
+    {
+        var name = Transform(enumDeclaration.Name) as IdentifierName;
+        var members = enumDeclaration.Members
+            .Select(member => Transform(member) as EnumMember)
+            .OfType<EnumMember>()
+            .ToHashSet();
+        
+        return new EnumDeclaration(
+            enumDeclaration.Keyword,
+            name ?? enumDeclaration.Name,
+            members,
+            enumDeclaration.IsInline);
+    }
+
+    public SyntaxNode? VisitEnumMember(EnumMember enumMember)
+    {
+        var name = Transform(enumMember.Name) as IdentifierName;
+        var value = enumMember.Value != null ? Transform(enumMember.Value) as Literal : null;
+        if (name == null)
+            return null;
+
+        return new EnumMember(name ?? enumMember.Name, value ?? enumMember.Value);
+    }
 
     public virtual SyntaxNode? VisitFunctionDeclaration(FunctionDeclaration functionDeclaration)
     {

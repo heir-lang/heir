@@ -1,6 +1,6 @@
 ﻿namespace Heir.Syntax;
 
-public class Location(string fileName, int line, int column, int position)
+public sealed class Location(string fileName, int line, int column, int position)
 {
     public static readonly Location Empty = new("anonymous", 0, 0, 0);
     public static readonly Location Intrinsic = new("intrinsic", 0, 0, 0);

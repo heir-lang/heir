@@ -25,6 +25,7 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree)
     private readonly Dictionary<SyntaxNode, BoundSyntaxNode> _boundNodes = [];
     private readonly Stack<Stack<VariableSymbol<BaseType>>> _variableScopes = [];
     private readonly Stack<Stack<TypeSymbol>> _typeScopes = [];
+    private int _enumMemberCount;
 
     public BoundSyntaxTree Bind()
     {
@@ -41,11 +42,16 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree)
     public BoundExpression GetBoundNode(Expression expression) => (BoundExpression)_boundNodes[expression];
     public BoundSyntaxNode GetBoundNode(SyntaxNode node) => _boundNodes[node];
     
+    public void DefineTypeSymbol(TypeSymbol typeSymbol)
+    {
+        if (_typeScopes.TryPeek(out var scope))
+            scope.Push(typeSymbol);
+    }
+    
     public TypeSymbol DefineTypeSymbol(Token name, BaseType type, bool isIntrinsic = false)
     {
         var symbol = new TypeSymbol(name, type, isIntrinsic);
-        if (_typeScopes.TryPeek(out var scope))
-            scope.Push(symbol);
+        DefineTypeSymbol(symbol);
 
         return symbol;
     }
@@ -167,7 +173,7 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree)
             new KeyValuePair<string, object?>(parameter.Symbol.Name.Text, parameter.Initializer?.Token.Value)
         ));
         
-        var placeholderType = new Types.FunctionType(
+        var placeholderType = new FunctionType(
             defaults,
             parameterTypes,
             returnType ?? IntrinsicTypes.Any
@@ -175,7 +181,7 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree)
         
         var placeholderSymbol = DefineVariableSymbol<BaseType>(functionDeclaration.Name.Token, placeholderType, false);
         var boundBody = (BoundBlock)Bind(functionDeclaration.Body);
-        var finalType = new Types.FunctionType(
+        var finalType = new FunctionType(
             defaults,
             parameterTypes,
             returnType ?? boundBody.Type
@@ -184,6 +190,38 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree)
         UndefineSymbol(placeholderSymbol);
         var symbol = DefineVariableSymbol(functionDeclaration.Name.Token, finalType, false);
         return new BoundFunctionDeclaration(functionDeclaration.Keyword, symbol, boundParameters, boundBody);
+    }
+
+    public BoundStatement VisitEnumDeclaration(EnumDeclaration enumDeclaration)
+    {
+        var members = enumDeclaration.Members
+            .Select(member => (BoundEnumMember)Bind(member))
+            .ToHashSet();
+
+        var type = InterfaceType.Readonly(
+            enumDeclaration.Name.Token.Text,
+            members
+                .Select<BoundEnumMember, KeyValuePair<string, BaseType>>(member =>
+                    new(member.Name.Text, member.Type)
+                )
+                .ToDictionary());
+        
+        var symbol = DefineVariableSymbol(enumDeclaration.Name.Token, type, false);
+        var boundEnumDeclaration = new BoundEnumDeclaration(enumDeclaration.Keyword, symbol, members, enumDeclaration.IsInline);
+        DefineTypeSymbol(boundEnumDeclaration.TypeSymbol);
+
+        _enumMemberCount = 0;
+        return boundEnumDeclaration;
+    }
+    
+    public BoundStatement VisitEnumMember(EnumMember enumMember)
+    {
+        _enumMemberCount++;
+        var value = enumMember.Value != null
+            ? (BoundLiteral)Bind(enumMember.Value)
+            : new BoundLiteral(TokenFactory.IntLiteral(_enumMemberCount - 1, enumMember.Name.Token));
+        
+        return new BoundEnumMember(enumMember.Name.Token, value);
     }
 
     public BoundStatement VisitReturnStatement(Return @return)

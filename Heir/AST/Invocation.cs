@@ -3,7 +3,7 @@ using Heir.Syntax;
 
 namespace Heir.AST;
 
-public class Invocation(Expression callee, List<Expression> arguments) : Expression
+public sealed class Invocation(Expression callee, List<Expression> arguments) : Expression
 {
     public Expression Callee { get; } = callee;
     public List<Expression> Arguments { get; } = arguments;

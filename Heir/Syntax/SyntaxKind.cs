@@ -81,6 +81,7 @@
         BreakKeyword,
         ContinueKeyword,
         InterfaceKeyword,
+        EnumKeyword,
         NameofKeyword,
         InlineKeyword,
         

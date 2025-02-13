@@ -3,7 +3,7 @@ using Heir.Syntax;
 
 namespace Heir.AST;
 
-public class UnaryOp(Expression operand, Token op) : Expression
+public sealed class UnaryOp(Expression operand, Token op) : Expression
 {
     public Expression Operand { get; } = operand;
     public Token Operator { get; } = op;

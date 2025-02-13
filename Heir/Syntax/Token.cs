@@ -1,6 +1,5 @@
 ﻿namespace Heir.Syntax;
 
-
 public class Token
 {
     public SyntaxKind Kind { get; }

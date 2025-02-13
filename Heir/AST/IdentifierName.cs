@@ -3,7 +3,7 @@ using Heir.Syntax;
 
 namespace Heir.AST;
 
-public class IdentifierName(Token token) : Name
+public sealed class IdentifierName(Token token) : Name
 {
     public Token Token { get; } = token;
 

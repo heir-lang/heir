@@ -3,7 +3,7 @@ using Heir.Syntax;
 
 namespace Heir.AST;
 
-public class Break(Token keyword) : Statement
+public sealed class Break(Token keyword) : Statement
 {
     public Token Keyword { get; } = keyword;
 

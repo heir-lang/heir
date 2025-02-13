@@ -3,7 +3,7 @@ using Heir.Syntax;
 
 namespace Heir.AST;
 
-public class NameOf(IdentifierName name) : Expression
+public sealed class NameOf(IdentifierName name) : Expression
 {
     public IdentifierName Name { get; } = name;
 

@@ -21,5 +21,7 @@ public abstract class BoundStatement : BoundSyntaxNode
         public R VisitBoundWhileStatement(BoundWhile @while);
         public R VisitBoundBreakStatement(BoundBreak @break);
         public R VisitBoundContinueStatement(BoundContinue @continue);
+        public R VisitBoundEnumDeclaration(BoundEnumDeclaration enumDeclaration);
+        public R VisitBoundEnumMember(BoundEnumMember enumMember);
     }
 }

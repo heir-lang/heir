@@ -3,7 +3,7 @@ using Heir.Syntax;
 
 namespace Heir.AST;
 
-public class Parenthesized(Expression expression) : Expression
+public sealed class Parenthesized(Expression expression) : Expression
 {
     public Expression Expression { get; } = expression;
 

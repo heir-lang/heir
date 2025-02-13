@@ -3,7 +3,7 @@ using Heir.Syntax;
 
 namespace Heir.AST;
 
-public class IntersectionType(List<TypeRef> types) : TypeRef
+public sealed class IntersectionType(List<TypeRef> types) : TypeRef
 {
     public List<TypeRef> Types { get; } = types;
 

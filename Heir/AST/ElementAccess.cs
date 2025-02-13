@@ -3,7 +3,7 @@ using Heir.Syntax;
 
 namespace Heir.AST;
 
-public class ElementAccess(Expression expression, Expression indexExpression) : AssignmentTarget
+public sealed class ElementAccess(Expression expression, Expression indexExpression) : AssignmentTarget
 {
     public Expression Expression { get; } = expression;
     public Expression IndexExpression { get; } = indexExpression;

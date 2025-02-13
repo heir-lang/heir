@@ -3,7 +3,7 @@ using Heir.AST.Abstract;
 
 namespace Heir.AST;
 
-public class InterfaceField(Token identifier, TypeRef type, bool isMutable) : Statement
+public sealed class InterfaceField(Token identifier, TypeRef type, bool isMutable) : Statement
 {
     public Token Identifier { get; } = identifier;
     public TypeRef Type { get; } = type;

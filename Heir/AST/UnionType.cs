@@ -3,7 +3,7 @@ using Heir.Syntax;
 
 namespace Heir.AST;
 
-public class UnionType(List<TypeRef> types) : TypeRef
+public sealed class UnionType(List<TypeRef> types) : TypeRef
 {
     public List<TypeRef> Types { get; } = types;
 

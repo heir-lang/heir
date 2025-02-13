@@ -70,6 +70,9 @@ public class LexerTest
     }
 
     [Theory]
+    [InlineData("enum", SyntaxKind.EnumKeyword)]
+    [InlineData("break", SyntaxKind.BreakKeyword)]
+    [InlineData("continue", SyntaxKind.ContinueKeyword)]
     [InlineData("interface", SyntaxKind.InterfaceKeyword)]
     [InlineData("while", SyntaxKind.WhileKeyword)]
     [InlineData("else", SyntaxKind.ElseKeyword)]

@@ -21,11 +21,10 @@
   - [ ] Lambdas
   - [ ] Array literals
   - [ ] Enums
-  - [ ] Automatically inline immutable variables with constant values (literals, except `none`)
   - [ ] `inline`
-    - [x] variables 
-    - [ ] enums
-    - [ ] functions
+    - [x] Variables 
+    - [ ] Enums
+    - [ ] Functions
 - Reflection/type features
   - [ ] `value is Type` 
   - [ ] Type narrowing

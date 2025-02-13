@@ -41,6 +41,20 @@ public class TypeChecker(DiagnosticBag diagnostics, BoundSyntaxTree syntaxTree) 
         return default;
     }
 
+    public Void VisitBoundEnumDeclaration(BoundEnumDeclaration enumDeclaration)
+    {
+        foreach (var member in enumDeclaration.Members)
+            Check(member);
+        
+        return default;
+    }
+
+    public Void VisitBoundEnumMember(BoundEnumMember enumMember)
+    {
+        Check(enumMember.Value);
+        return default;
+    }
+
     public Void VisitBoundIfStatement(BoundIf @if)
     {
         Check(@if.Condition);

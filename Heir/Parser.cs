@@ -74,21 +74,34 @@ public sealed class Parser(TokenStream tokenStream)
             goto ConsumeSemicolons;
         }
         
-        if (Tokens.Match(SyntaxKind.BreakKeyword, out var breakToken))
+        if (Tokens.Match(SyntaxKind.BreakKeyword, out var breakKeyword))
         {
-            statement = new Break(breakToken);
+            statement = new Break(breakKeyword);
             goto ConsumeSemicolons;
         }
         
-        if (Tokens.Match(SyntaxKind.ContinueKeyword, out var continueToken))
+        if (Tokens.Match(SyntaxKind.ContinueKeyword, out var continueKeyword))
         {
-            statement = new Continue(continueToken);
+            statement = new Continue(continueKeyword);
             goto ConsumeSemicolons;
         }
         
-        if (Tokens.Match(SyntaxKind.InterfaceKeyword))
+        if (Tokens.Match(SyntaxKind.InterfaceKeyword, out var interfaceKeyword))
         {
-            statement = ParseInterfaceDeclaration();
+            statement = ParseInterfaceDeclaration(interfaceKeyword);
+            goto ConsumeSemicolons;
+        }
+
+        var isInlineEnum = false;
+        if (Tokens.Check(SyntaxKind.InlineKeyword) && Tokens.Check(SyntaxKind.EnumKeyword, 1))
+        {
+            isInlineEnum = true;
+            Tokens.Advance();
+        }
+        
+        if (Tokens.Match(SyntaxKind.EnumKeyword, out var enumKeyword))
+        {
+            statement = ParseEnumDeclaration(enumKeyword, isInlineEnum);
             goto ConsumeSemicolons;
         }
         
@@ -159,7 +172,7 @@ public sealed class Parser(TokenStream tokenStream)
     private ObjectLiteral ParseObject(Token token)
     {
         var keyValuePairs = new List<KeyValuePair<Expression, Expression>> { ParseObjectKeyValuePair() };
-        while (Tokens.Match(SyntaxKind.Comma) && !Tokens.Check(SyntaxKind.RBrace))
+        while (Tokens.Match(SyntaxKind.Comma) && !IsAtEndOfBlock())
             keyValuePairs.Add(ParseObjectKeyValuePair());
             
         Tokens.Consume(SyntaxKind.RBrace);
@@ -207,39 +220,102 @@ public sealed class Parser(TokenStream tokenStream)
         return new While(keyword, condition, body);
     }
 
-    private Statement ParseInterfaceDeclaration()
+    private Statement ParseInterfaceDeclaration(Token keyword)
     {
-        var keyword = Tokens.Previous!;
         var identifier = Tokens.Consume(SyntaxKind.Identifier);
         if (identifier == null)
             return new NoOpStatement();
 
-        var fields = new List<InterfaceField>();
         var containsBody = Tokens.Match(SyntaxKind.LBrace, out var braceToken);
         if (!containsBody)
-            return new InterfaceDeclaration(keyword, identifier, fields);
+            return new InterfaceDeclaration(keyword, identifier, []);
         
-        while (!Tokens.Check(SyntaxKind.RBrace) && Tokens.Peek(0) != null)
+        var fields = new HashSet<InterfaceField>();
+        while (!IsAtEndOfBlock())
         {
-            var isMutable = Tokens.Match(SyntaxKind.MutKeyword);
-            var fieldIdentifier = Tokens.Consume(SyntaxKind.Identifier);
-            if (fieldIdentifier == null) continue;
+            var field = ParseInterfaceField();
+            if (field == null)
+                return new NoOpStatement();
             
-            Tokens.Consume(SyntaxKind.Colon);
-            var fieldType = ParseType();
-            var field = new InterfaceField(fieldIdentifier, fieldType, isMutable);
-                
-            ConsumeSemicolons();
-            fields.Add(field);
+            if (fields.Add(field)) continue;
+            
+            _diagnostics.Error(DiagnosticCode.H024, $"Interface '{identifier.Text}' contains duplicate field '{field.Identifier.Text}'", field);
+            break;
         }
-        Tokens.Consume(SyntaxKind.RBrace);
+        if (Tokens.Consume(SyntaxKind.RBrace) == null)
+            return new NoOpStatement();
             
         if (fields.Count == 0)
             _diagnostics.Warn(DiagnosticCode.H020,
                 $"Empty interface with body, convert to 'interface {identifier.Text};'",
                 braceToken!);
 
-        return new InterfaceDeclaration(keyword, identifier, fields);
+        return new InterfaceDeclaration(keyword, identifier, fields.ToList());
+    }
+
+    private InterfaceField? ParseInterfaceField()
+    {
+        var isMutable = Tokens.Match(SyntaxKind.MutKeyword);
+        var identifier = Tokens.Consume(SyntaxKind.Identifier);
+        if (identifier == null)
+            return null;
+            
+        Tokens.Consume(SyntaxKind.Colon);
+        var type = ParseType();
+        ConsumeSemicolons();
+        
+        return new InterfaceField(identifier, type, isMutable);
+    }
+    
+    private Statement ParseEnumDeclaration(Token keyword, bool isInline)
+    {
+        var identifier = Tokens.Consume(SyntaxKind.Identifier);
+        if (identifier == null)
+            return new NoOpStatement();
+
+        if (Tokens.Consume(SyntaxKind.LBrace) == null)
+            return new NoOpStatement();
+
+        var members = new HashSet<EnumMember>();
+        var firstMember = ParseEnumMember();
+        if (firstMember == null)
+            return new NoOpStatement();
+        
+        members.Add(firstMember);
+        while (Tokens.Match(SyntaxKind.Comma) && !IsAtEndOfBlock())
+        {
+            var member = ParseEnumMember();
+            if (member == null)
+                return new NoOpStatement();
+            
+            if (members.Add(member)) continue;
+
+            _diagnostics.Error(DiagnosticCode.H024, $"Enum '{identifier.Text}' contains duplicate member '{member.Name.Token.Text}'", member.Name);
+            break;
+        }
+        if (Tokens.Consume(SyntaxKind.RBrace) == null)
+            return new NoOpStatement();
+
+        return new EnumDeclaration(keyword, new IdentifierName(identifier), members, isInline);
+    }
+    
+    private EnumMember? ParseEnumMember()
+    {
+        var identifier = Tokens.Consume(SyntaxKind.Identifier);
+        if (identifier == null)
+            return null;
+
+        Literal? value = null;
+        if (Tokens.Match(SyntaxKind.Equals) && Tokens.CheckSet([SyntaxKind.IntLiteral, SyntaxKind.StringLiteral, SyntaxKind.NameofKeyword]))
+        {
+            var valueToken = Tokens.Advance();
+            if (valueToken == null)
+                return null;
+            
+            value = new Literal(valueToken);
+        }
+        
+        return new EnumMember(new IdentifierName(identifier), value);
     }
 
     private Return ParseReturnStatement()
@@ -765,6 +841,9 @@ public sealed class Parser(TokenStream tokenStream)
         _diagnostics.Error(DiagnosticCode.H001B, $"Unexpected token '{token.Kind}'", token);
         return new NoOp();
     }
+
+    private bool IsAtEndOfBlock(int offset = 0) =>
+        Tokens.Check(SyntaxKind.RBrace, offset) || Tokens.Peek(offset) == null;
         
     private void UnnecessaryParentheses(SyntaxNode node) =>
         _diagnostics.Warn(DiagnosticCode.H014, "Unnecessary parentheses", node);

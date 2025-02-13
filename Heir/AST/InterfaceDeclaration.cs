@@ -1,11 +1,9 @@
 using Heir.Syntax;
 using Heir.AST.Abstract;
-using Heir.Binding;
-using Heir.Types;
 
 namespace Heir.AST;
 
-public class InterfaceDeclaration(Token keyword, Token identifier, List<InterfaceField> fields) : Statement
+public sealed class InterfaceDeclaration(Token keyword, Token identifier, List<InterfaceField> fields) : Statement
 {
     public Token Keyword { get; } = keyword;
     public Token Identifier { get; } = identifier;

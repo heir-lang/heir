@@ -109,7 +109,7 @@ public sealed class TokenStream(DiagnosticBag diagnostics, List<Token> tokens) :
 
     /// <summary>Increments the position in the <see cref="TokenStream"/>.</summary>
     /// <returns>The token before incrementing the position</returns>
-    public Token Advance()
+    public Token? Advance()
     {
         var token = Current;
         Position++;

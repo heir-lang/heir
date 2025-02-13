@@ -3,7 +3,7 @@ using Heir.Syntax;
 
 namespace Heir.AST;
 
-public class ExpressionStatement(Expression expression) : Statement
+public sealed class ExpressionStatement(Expression expression) : Statement
 {
     public Expression Expression { get; } = expression;
 

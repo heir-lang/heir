@@ -4,7 +4,7 @@ using Heir.Syntax;
 namespace Heir.AST;
 
 // TODO: type params (ew)
-public class FunctionType(Dictionary<string, TypeRef> parameterTypes, TypeRef returnType) : TypeRef
+public sealed class FunctionType(Dictionary<string, TypeRef> parameterTypes, TypeRef returnType) : TypeRef
 {
     public Dictionary<string, TypeRef> ParameterTypes { get; } = parameterTypes;
     public TypeRef ReturnType { get; } = returnType;

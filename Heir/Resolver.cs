@@ -85,6 +85,19 @@ public sealed class Resolver(DiagnosticBag diagnostics, SyntaxTree syntaxTree) :
         return ResolveFunction(functionDeclaration);
     }
 
+    public Void VisitEnumDeclaration(EnumDeclaration enumDeclaration)
+    {
+        Declare(enumDeclaration.Name.Token);
+        Define(enumDeclaration.Name.Token);
+        
+        foreach (var member in enumDeclaration.Members)
+            Resolve(member);
+
+        return default;
+    }
+
+    public Void VisitEnumMember(EnumMember enumMember) => default;
+
     public Void VisitBlock(Block block)
     {
         var enclosingContext = _scopeContext;

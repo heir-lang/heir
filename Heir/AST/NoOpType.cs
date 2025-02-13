@@ -3,7 +3,7 @@ using Heir.Syntax;
 
 namespace Heir.AST;
 
-public class NoOpType : TypeRef
+public sealed class NoOpType : TypeRef
 {
     public override R Accept<R>(IVisitor<R> visitor) => visitor.VisitNoOp(this);
     public override List<Token> GetTokens() => [];

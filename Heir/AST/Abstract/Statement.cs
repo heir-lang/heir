@@ -19,5 +19,7 @@ public abstract class Statement : SyntaxNode
         public R VisitInterfaceDeclaration(InterfaceDeclaration interfaceDeclaration);
         public R VisitBreakStatement(Break @break);
         public R VisitContinueStatement(Continue @continue);
+        public R VisitEnumDeclaration(EnumDeclaration enumDeclaration);
+        public R VisitEnumMember(EnumMember enumMember);
     }
 }
