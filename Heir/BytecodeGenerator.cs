@@ -320,14 +320,17 @@ public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder) 
         return bytecode.ToList();
     }
 
-    public List<Instruction> VisitIdentifierNameExpression(IdentifierName identifierName) => [
-        new(identifierName, OpCode.PUSH, identifierName.Token.Text),
-        new(identifierName, OpCode.LOAD)
+    public List<Instruction> VisitIdentifierNameExpression(IdentifierName identifierName) =>
+    [
+        new(identifierName, OpCode.LOAD, identifierName.Token.Text)
     ];
 
     public List<Instruction> VisitParenthesizedExpression(Parenthesized parenthesized) => GenerateBytecode(parenthesized.Expression);
     public List<Instruction> VisitLiteralExpression(Literal literal) =>
-        [new(literal, literal.Token.Value != null ? OpCode.PUSH : OpCode.PUSHNONE, literal.Token.Value)];
+    [
+        new(literal, literal.Token.Value != null ? OpCode.PUSH : OpCode.PUSHNONE, literal.Token.Value)
+    ];
+    
     public List<Instruction> VisitObjectLiteralExpression(ObjectLiteral objectLiteral)
     {
         // store objects as dictionaries, for now (this may be permanent tbh)

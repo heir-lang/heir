@@ -52,12 +52,10 @@ public class BytecodeOptimizer(List<Instruction> bytecode, DiagnosticBag diagnos
             case OpCode.DEC:
             {
                 var expectedLoadInstruction = PeekBytecode(-1);
-                var expectedPushIdentifierInstruction = PeekBytecode(-2);
                 
-                if (expectedLoadInstruction is not { OpCode: OpCode.LOAD } ||
-                    expectedPushIdentifierInstruction is not
+                if (expectedLoadInstruction is not
                     {
-                        OpCode: OpCode.PUSH,
+                        OpCode: OpCode.LOAD,
                         Operand: string identifier
                     })
                 {
@@ -65,7 +63,7 @@ public class BytecodeOptimizer(List<Instruction> bytecode, DiagnosticBag diagnos
                     break;
                 }
                 
-                RemoveLast(2); // goodbye PUSH and LOAD
+                RemoveLast(); // goodbye LOAD
                 Advance();
 
                 return instruction.WithOperand(identifier);

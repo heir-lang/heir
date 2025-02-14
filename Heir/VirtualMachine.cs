@@ -256,18 +256,17 @@ public sealed class VirtualMachine
 
             case OpCode.LOAD:
             {
-                var nameFrame = Stack.Pop();
-                if (nameFrame.Value is not string name)
+                if (instruction.Operand is not string name)
                 {
                     Diagnostics.RuntimeError(DiagnosticCode.HDEV,
-                        $"Failed to execute LOAD op-code: No variable name was located in the stack, got {nameFrame.Value ?? "null"}",
-                        nameFrame.Node?.GetFirstToken());
+                        $"Failed to execute LOAD op-code: Non-string variable name was passed as an operand, got {instruction.Operand ?? "null"}",
+                        instruction.Root?.GetFirstToken());
                     
                     break;
                 }
 
                 var value = Scope.Lookup(name);
-                Stack.Push(new StackFrame(nameFrame.Node, value));
+                Stack.Push(new StackFrame(instruction.Root, value));
                 Advance();
                 break;
             }

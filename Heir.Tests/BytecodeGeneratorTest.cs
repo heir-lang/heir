@@ -22,18 +22,12 @@ public class BytecodeGeneratorTest
     public void Generates_Index(string indexExpression)
     {
         var bytecode = GenerateBytecode("let abc = { buh: true }; " + indexExpression + ";").Skip(3);
-        var pushAbc = bytecode[0];
-        var loadAbc = bytecode[1];
-        var pushBuhLiteral  = bytecode[2];
-        var index = bytecode[3];
-        Assert.Equal(OpCode.PUSH, pushAbc.OpCode);
-        Assert.Equal("abc", pushAbc.Operand);
-        Assert.Equal(OpCode.LOAD, loadAbc.OpCode);
-        Assert.Null(loadAbc.Operand);
-        Assert.Equal(OpCode.PUSH, pushBuhLiteral.OpCode);
-        Assert.Equal("buh", pushBuhLiteral.Operand);
-        Assert.Equal(OpCode.INDEX, index.OpCode);
-        Assert.Null(index.Operand);
+        Assert.Equal(OpCode.LOAD, bytecode[0].OpCode);
+        Assert.Equal("abc", bytecode[0].Operand);
+        Assert.Equal(OpCode.PUSH, bytecode[1].OpCode);
+        Assert.Equal("buh", bytecode[1].Operand);
+        Assert.Equal(OpCode.INDEX, bytecode[2].OpCode);
+        Assert.Null(bytecode[2].Operand);
     }
 
     [Fact]
@@ -45,20 +39,18 @@ public class BytecodeGeneratorTest
                              """;
 
         var bytecode = GenerateBytecode(input);
-        Assert.Equal(OpCode.PUSH, bytecode[0].OpCode);
+        Assert.Equal(OpCode.LOAD, bytecode[0].OpCode);
         Assert.Equal("i", bytecode[0].Operand);
-        Assert.Equal(OpCode.LOAD, bytecode[1].OpCode);
-        Assert.Null(bytecode[1].Operand);
-        Assert.Equal(OpCode.PUSH, bytecode[2].OpCode);
-        Assert.Equal(10, bytecode[2].Operand);
-        Assert.Equal(OpCode.LT, bytecode[3].OpCode);
-        Assert.Null(bytecode[3].Operand);
-        Assert.Equal(OpCode.JZ, bytecode[4].OpCode);
-        Assert.Equal(3, bytecode[4].Operand);
-        Assert.Equal(OpCode.INC, bytecode[5].OpCode);
-        Assert.Equal("i", bytecode[5].Operand);
-        Assert.Equal(OpCode.JMP, bytecode[6].OpCode);
-        Assert.Equal(-6, bytecode[6].Operand);
+        Assert.Equal(OpCode.PUSH, bytecode[1].OpCode);
+        Assert.Equal(10, bytecode[1].Operand);
+        Assert.Equal(OpCode.LT, bytecode[2].OpCode);
+        Assert.Null(bytecode[2].Operand);
+        Assert.Equal(OpCode.JZ, bytecode[3].OpCode);
+        Assert.Equal(3, bytecode[3].Operand);
+        Assert.Equal(OpCode.INC, bytecode[4].OpCode);
+        Assert.Equal("i", bytecode[4].Operand);
+        Assert.Equal(OpCode.JMP, bytecode[5].OpCode);
+        Assert.Equal(-5, bytecode[5].Operand);
     }
 
     [Fact]
@@ -74,44 +66,39 @@ public class BytecodeGeneratorTest
                              """;
         
         var bytecode = GenerateBytecode(input);
-        Assert.Equal(OpCode.PUSH, bytecode[0].OpCode);
+        Assert.Equal(OpCode.LOAD, bytecode[0].OpCode);
         Assert.Equal("x", bytecode[0].Operand);
-        Assert.Equal(OpCode.LOAD, bytecode[1].OpCode);
-        Assert.Equal(OpCode.PUSH, bytecode[2].OpCode);
-        Assert.Equal(1, bytecode[2].Operand);
-        Assert.Equal(OpCode.EQ, bytecode[3].OpCode);
-        Assert.Equal(OpCode.JNZ, bytecode[4].OpCode);
-        Assert.Equal(16, bytecode[4].Operand);
+        Assert.Equal(OpCode.PUSH, bytecode[1].OpCode);
+        Assert.Equal(1, bytecode[1].Operand);
+        Assert.Equal(OpCode.EQ, bytecode[2].OpCode);
+        Assert.Equal(OpCode.JNZ, bytecode[3].OpCode);
+        Assert.Equal(13, bytecode[3].Operand);
+        Assert.Equal(OpCode.LOAD, bytecode[4].OpCode);
+        Assert.Equal("x", bytecode[4].Operand);
         Assert.Equal(OpCode.PUSH, bytecode[5].OpCode);
-        Assert.Equal("x", bytecode[5].Operand);
-        Assert.Equal(OpCode.LOAD, bytecode[6].OpCode);
-        Assert.Equal(OpCode.PUSH, bytecode[7].OpCode);
-        Assert.Equal(2, bytecode[7].Operand);
-        Assert.Equal(OpCode.EQ, bytecode[8].OpCode);
-        Assert.Equal(OpCode.JNZ, bytecode[9].OpCode);
-        Assert.Equal(6, bytecode[9].Operand);
-        Assert.Equal(OpCode.PUSH, bytecode[10].OpCode);
-        Assert.Equal("x", bytecode[10].Operand);
-        Assert.Equal(OpCode.LOAD, bytecode[11].OpCode);
-        Assert.Equal(OpCode.PUSH, bytecode[12].OpCode);
-        Assert.Equal(5, bytecode[12].Operand);
-        Assert.Equal(OpCode.MUL, bytecode[13].OpCode);
-        Assert.Equal(OpCode.JMP, bytecode[14].OpCode);
-        Assert.Equal(5, bytecode[14].Operand);
-        Assert.Equal(OpCode.PUSH, bytecode[15].OpCode);
-        Assert.Equal("x", bytecode[15].Operand);
+        Assert.Equal(2, bytecode[5].Operand);
+        Assert.Equal(OpCode.EQ, bytecode[6].OpCode);
+        Assert.Equal(OpCode.JNZ, bytecode[7].OpCode);
+        Assert.Equal(5, bytecode[7].Operand);
+        Assert.Equal(OpCode.LOAD, bytecode[8].OpCode);
+        Assert.Equal("x", bytecode[8].Operand);
+        Assert.Equal(OpCode.PUSH, bytecode[9].OpCode);
+        Assert.Equal(5, bytecode[9].Operand);
+        Assert.Equal(OpCode.MUL, bytecode[10].OpCode);
+        Assert.Equal(OpCode.JMP, bytecode[11].OpCode);
+        Assert.Equal(4, bytecode[11].Operand);
+        Assert.Equal(OpCode.LOAD, bytecode[12].OpCode);
+        Assert.Equal("x", bytecode[12].Operand);
+        Assert.Equal(OpCode.PUSH, bytecode[13].OpCode);
+        Assert.Equal(2, bytecode[13].Operand);
+        Assert.Equal(OpCode.ADD, bytecode[14].OpCode);
+        Assert.Equal(OpCode.JMP, bytecode[15].OpCode);
+        Assert.Equal(4, bytecode[15].Operand);
         Assert.Equal(OpCode.LOAD, bytecode[16].OpCode);
+        Assert.Equal("x", bytecode[16].Operand);
         Assert.Equal(OpCode.PUSH, bytecode[17].OpCode);
-        Assert.Equal(2, bytecode[17].Operand);
+        Assert.Equal(1, bytecode[17].Operand);
         Assert.Equal(OpCode.ADD, bytecode[18].OpCode);
-        Assert.Equal(OpCode.JMP, bytecode[19].OpCode);
-        Assert.Equal(5, bytecode[19].Operand);
-        Assert.Equal(OpCode.PUSH, bytecode[20].OpCode);
-        Assert.Equal("x", bytecode[20].Operand);
-        Assert.Equal(OpCode.LOAD, bytecode[21].OpCode);
-        Assert.Equal(OpCode.PUSH, bytecode[22].OpCode);
-        Assert.Equal(1, bytecode[22].Operand);
-        Assert.Equal(OpCode.ADD, bytecode[23].OpCode);
     }
     
     [Fact]
@@ -206,24 +193,16 @@ public class BytecodeGeneratorTest
     public void Generates_BinaryCompoundAssignment(string input, object? right, OpCode opCode)
     {
         var bytecode = GenerateBytecode(input).Skip(3);
-        var pushIdentifier = bytecode[0];
-        var pushIdentifierAgain = bytecode[1];
-        var load = bytecode[2];
-        var pushRight = bytecode[3];
-        var operation = bytecode[4];
-        var store = bytecode[5];
-        Assert.Equal(OpCode.PUSH, pushIdentifier.OpCode);
-        Assert.Equal("a", pushIdentifier.Operand);
-        Assert.Equal(OpCode.PUSH, pushIdentifierAgain.OpCode);
-        Assert.Equal("a", pushIdentifierAgain.Operand);
-        Assert.Equal(OpCode.LOAD, load.OpCode);
-        Assert.Null(load.Operand);
-        Assert.Equal(OpCode.PUSH, pushRight.OpCode);
-        Assert.Equal(right, pushRight.Operand);
-        Assert.Equal(opCode, operation.OpCode);
-        Assert.Null(operation.Operand);
-        Assert.Equal(OpCode.STORE, store.OpCode);
-        Assert.True(store.Operand as bool?);
+        Assert.Equal(OpCode.PUSH, bytecode[0].OpCode);
+        Assert.Equal("a", bytecode[0].Operand);
+        Assert.Equal(OpCode.LOAD, bytecode[1].OpCode);
+        Assert.Equal("a", bytecode[1].Operand);
+        Assert.Equal(OpCode.PUSH, bytecode[2].OpCode);
+        Assert.Equal(right, bytecode[2].Operand);
+        Assert.Equal(opCode, bytecode[3].OpCode);
+        Assert.Null(bytecode[3].Operand);
+        Assert.Equal(OpCode.STORE, bytecode[4].OpCode);
+        Assert.True(bytecode[4].Operand as bool?);
     }
 
     [Theory]
@@ -295,14 +274,11 @@ public class BytecodeGeneratorTest
     public void Generates_Invocation()
     {
         var bytecode = GenerateBytecode("fn abc(x: int): int -> 123 + x; abc(69);").Skip(3);
-        var pushIdentifier = bytecode[0];
-        var load = bytecode[1];
-        var call = bytecode[2];
-        var pushXArgument = bytecode[3];
-        Assert.Equal(OpCode.PUSH, pushIdentifier.OpCode);
-        Assert.Equal("abc", pushIdentifier.Operand);
+        var load = bytecode[0];
+        var call = bytecode[1];
+        var pushXArgument = bytecode[2];
         Assert.Equal(OpCode.LOAD, load.OpCode);
-        Assert.Null(load.Operand);
+        Assert.Equal("abc", load.Operand);
         Assert.Equal(OpCode.CALL, call.OpCode);
         Assert.IsType<ValueTuple<int, List<string>>>(call.Operand);
         

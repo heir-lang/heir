@@ -68,8 +68,8 @@ public enum OpCode : byte
     /// </example>
     STOREINDEX,
     /// <summary>
-    /// Loads a variable from the current scope using the last frame in the stack.
-    /// The frame it uses is the name of the variable to load.
+    /// Loads a variable from the current scope.
+    /// <param name="operand">The name of the variable to load (string)</param>
     /// </summary>
     LOAD,
     /// <summary>
@@ -129,10 +129,10 @@ public enum OpCode : byte
     /// <summary>Unary minus; negates the last frame in the stack (assuming it's a number)</summary>
     UNM,
     /// <summary>Increments a variable (assuming it's a number) by 1</summary>
-    /// <param name="operand">The name of the variable being incremented (string)</param>
+    /// <param name="operand">The name of the variable to increment (string)</param>
     INC,
     /// <summary>Decrements a variable (assuming it's a number) by 1</summary>
-    /// <param name="operand">The name of the variable being incremented (string)</param>
+    /// <param name="operand">The name of the variable to decrement (string)</param>
     DEC,
 
     /// <summary>Calculates binary not on the last frame in the stack (assuming it's an <see cref="long"/>)</summary>
