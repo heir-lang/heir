@@ -1,6 +1,7 @@
 using Heir.Runtime.Intrinsics.Global;
 using Heir.Runtime.Intrinsics.Libraries.MathLibrary;
 using Heir.Syntax;
+using Heir.Types;
 
 namespace Heir.Runtime.Intrinsics;
 
@@ -21,6 +22,7 @@ public static class Intrinsics
 
     public static void RegisterGlobalSymbols(Binder binder)
     {
+        binder.DefineTypeSymbol(TokenFactory.Identifier("any"), IntrinsicTypes.Any, true);
         foreach (var (kind, type) in SyntaxFacts.PrimitiveTypeMap)
         {
             var token = TokenFactory.Keyword(kind);

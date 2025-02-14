@@ -43,7 +43,9 @@ public abstract class BaseType
         {
             AST.SingularType singularType =>
                 singularType.Token?.IsKind(SyntaxKind.Identifier) ?? false
-                    ? new SingularType(singularType.Token.Text)
+                    ? singularType.Token.Text == "any"
+                        ? IntrinsicTypes.Any
+                        : new SingularType(singularType.Token.Text)
                     : singularType.Token != null
                         ? SyntaxFacts.PrimitiveTypeMap.GetValueOrDefault(singularType.Token.Kind) ?? PrimitiveType.None
                         : PrimitiveType.None,
