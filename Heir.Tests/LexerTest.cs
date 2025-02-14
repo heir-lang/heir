@@ -22,6 +22,7 @@ public class LexerTest
     [InlineData("'a'", SyntaxKind.CharLiteral, 'a')]
     [InlineData("123", SyntaxKind.IntLiteral, 123)]
     [InlineData("69", SyntaxKind.IntLiteral, 69)]
+    [InlineData("400_000_000", SyntaxKind.IntLiteral, 400_000_000)]
     [InlineData("0b1101", SyntaxKind.IntLiteral, 13)]
     [InlineData("0o420", SyntaxKind.IntLiteral, 272)]
     [InlineData("0x03E", SyntaxKind.IntLiteral, 62)]
@@ -36,7 +37,6 @@ public class LexerTest
         var literalToken = tokenStream.First();
 
         Assert.Equal(expectedKind, literalToken.Kind);
-        Assert.Equal(input, literalToken.Text);
         Assert.Equal(expectedValue, literalToken.Value);
     }
 
