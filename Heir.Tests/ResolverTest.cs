@@ -6,6 +6,8 @@ namespace Heir.Tests;
 public class ResolverTest
 {
     [Theory]
+    [InlineData("break;", DiagnosticCode.H023)]
+    [InlineData("continue;", DiagnosticCode.H023)]
     [InlineData("return 123;", DiagnosticCode.H015)]
     [InlineData("x", DiagnosticCode.H011)]
     [InlineData("let x = x;", DiagnosticCode.H010)]

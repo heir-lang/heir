@@ -389,6 +389,25 @@ public class BinderTest
         var primitiveType = (PrimitiveType)declaration.Type;
         Assert.Equal(PrimitiveTypeKind.Int, primitiveType.PrimitiveKind);
     }
+    
+    [Fact]
+    public void Binds_EnumDeclarations()
+    {
+        var binder = Bind("enum Abc { A, B, C }");
+        var boundTree = binder.GetBoundSyntaxTree();
+        var statement = boundTree.Statements.First();
+        Assert.IsType<BoundEnumDeclaration>(statement);
+
+        var declaration = (BoundEnumDeclaration)statement;
+        Assert.False(declaration.IsInline);
+        Assert.Equal(3, declaration.Members.Count);
+        Assert.IsType<InterfaceType>(declaration.Type);
+        
+        var interfaceType = (InterfaceType)declaration.Type;
+        Assert.Equal(3, interfaceType.Members.Count);
+
+        Assert.IsType<UnionType>(declaration.TypeSymbol.Type);
+    }
 
     [Theory]
     [InlineData("{ a: true }", "a")]

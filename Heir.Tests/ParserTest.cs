@@ -8,6 +8,8 @@ namespace Heir.Tests;
 public class ParserTest
 {
     [Theory]
+    [InlineData("interface A { a: int; a: int }", DiagnosticCode.H024)]
+    [InlineData("enum Abc { A, A }", DiagnosticCode.H024)]
     [InlineData("let inline x = none", DiagnosticCode.H022)]
     [InlineData("let inline x", DiagnosticCode.H022)]
     [InlineData("let inline mut x = 1", DiagnosticCode.H021)]
@@ -64,6 +66,52 @@ public class ParserTest
         var literal = (Literal)expressionStatement.Expression;
         Assert.Equal(SyntaxKind.IntLiteral, literal.Token.Kind);
         Assert.Equal(1, literal.Token.Value);
+    }
+    
+    [Fact]
+    public void Parses_InlineEnums()
+    {
+        var tree = Parse("inline enum A { B }; A.B;");
+        var statement = tree.Statements.Last();
+        Assert.IsType<ExpressionStatement>(statement);
+        
+        var expressionStatement = (ExpressionStatement)statement;
+        Assert.IsType<Literal>(expressionStatement.Expression);
+        
+        var literal = (Literal)expressionStatement.Expression;
+        Assert.Equal(SyntaxKind.IntLiteral, literal.Token.Kind);
+        Assert.Equal(0, literal.Token.Value);
+    }
+    
+    [Fact]
+    public void Parses_EnumDeclarations()
+    {
+        var tree = Parse("enum Abc { A, B = 3, C, D = \"yes\", E }");
+        var statement = tree.Statements.First();
+        Assert.IsType<EnumDeclaration>(statement);
+
+        var enumDeclaration = (EnumDeclaration)statement;
+        Assert.Equal(SyntaxKind.EnumKeyword, enumDeclaration.Keyword.Kind);
+        Assert.False(enumDeclaration.IsInline);
+        Assert.Equal("Abc", enumDeclaration.Name.ToString());
+        Assert.Equal(5, enumDeclaration.Members.Count);
+        
+        var members = enumDeclaration.Members.ToList();
+        var firstMember = members[0];
+        var secondMember = members[1];
+        var thirdMember = members[2];
+        var fourthMember = members[3];
+        var fifthMember = members[4];
+        Assert.Equal("A", firstMember.Name.ToString());
+        Assert.Equal(0, firstMember.Value.Token.Value);
+        Assert.Equal("B", secondMember.Name.ToString());
+        Assert.Equal(3, secondMember.Value.Token.Value);
+        Assert.Equal("C", thirdMember.Name.ToString());
+        Assert.Equal(4, thirdMember.Value.Token.Value);
+        Assert.Equal("D", fourthMember.Name.ToString());
+        Assert.Equal("yes", fourthMember.Value.Token.Value);
+        Assert.Equal("E", fifthMember.Name.ToString());
+        Assert.Equal(5, fifthMember.Value.Token.Value);
     }
     
     [Theory]
