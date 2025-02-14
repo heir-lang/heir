@@ -296,7 +296,7 @@ public sealed class Lexer(SourceFile sourceFile)
         }
 
         var decimalUsed = false;
-        while (_current is { } character && (char.IsDigit(character) || character == '.'))
+        while (_current is { } character && (char.IsDigit(character) || character == '.' || (!decimalUsed && character == '_')))
         {
             if (_current == '.')
             {
@@ -312,9 +312,10 @@ public sealed class Lexer(SourceFile sourceFile)
         }
 
         // TODO: handle conversion errors
+        var numberLexeme = _currentLexeme.Replace("_", "");
         return decimalUsed ?
-            TokenFactory.FloatLiteral(_currentLexeme, location, _currentLocation)
-            : TokenFactory.IntLiteral(_currentLexeme, location, _currentLocation);
+            TokenFactory.FloatLiteral(numberLexeme, location, _currentLocation)
+            : TokenFactory.IntLiteral(numberLexeme, location, _currentLocation);
     }
 
     private Token ReadNonDecimalNumber(Location location, int radix)
