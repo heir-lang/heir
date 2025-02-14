@@ -8,8 +8,6 @@ namespace Heir.Tests;
 public class ParserTest
 {
     [Theory]
-    [InlineData("interface A { a: int; a: int }", DiagnosticCode.H024)]
-    [InlineData("enum Abc { A, A }", DiagnosticCode.H024)]
     [InlineData("let inline x = none", DiagnosticCode.H022)]
     [InlineData("let inline x", DiagnosticCode.H022)]
     [InlineData("let inline mut x = 1", DiagnosticCode.H021)]

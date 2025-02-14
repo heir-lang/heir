@@ -16,6 +16,16 @@ public class VirtualMachineTest
     }
     
     [Theory]
+    [InlineData("inline enum Abc { A, B, C }; Abc.B;", 1)]
+    [InlineData("enum Abc { A, B, C }; Abc.C;", 2)]
+    [InlineData("enum Foo { Bar = \"baz\" }; Foo.Bar;", "baz")]
+    public void Evaluates_Enums(string input, object expectedValue)
+    {
+        var (value, _) = Evaluate(input);
+        Assert.Equal(expectedValue, value);
+    }
+    
+    [Theory]
     [InlineData("interface Abc; nameof(Abc);", "Abc")]
     [InlineData("let x = 1; nameof(x);", "x")]
     public void Evaluates_NameOf(string input, string expectedValue)

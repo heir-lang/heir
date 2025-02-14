@@ -15,7 +15,33 @@ public class BytecodeGeneratorTest
         Assert.Equal(OpCode.EXIT, instruction.OpCode);
         Assert.Null(instruction.Operand);
     }
-    
+
+    [Fact]
+    public void Generates_EnumDeclarations()
+    {
+        const string input = """
+                             enum Abc {
+                                A,
+                                B,
+                                C
+                             }
+                             """;
+
+        var bytecode = GenerateBytecode(input);
+        var pushName = bytecode[0];
+        var pushObject = bytecode[1];
+        var store = bytecode[2];
+        Assert.Equal(OpCode.PUSH, pushName.OpCode);
+        Assert.Equal("Abc", pushName.Operand);
+        Assert.Equal(OpCode.PUSHOBJECT, pushObject.OpCode);
+        Assert.IsType<ObjectBytecode>(pushObject.Operand);
+        Assert.Equal(OpCode.STORE, store.OpCode);
+        Assert.Equal(false, store.Operand);
+        
+        var objectBytecode = (ObjectBytecode)pushObject.Operand;
+        Assert.Equal(3, objectBytecode.Count);
+    }
+
     [Theory]
     [InlineData("abc[\"buh\"]")]
     [InlineData("abc.buh")]
@@ -31,7 +57,7 @@ public class BytecodeGeneratorTest
     }
 
     [Fact]
-    public void Generates_WhileStatement()
+    public void Generates_WhileStatements()
     {
         const string input = """
                              while i < 10
@@ -54,7 +80,7 @@ public class BytecodeGeneratorTest
     }
 
     [Fact]
-    public void Generates_IfStatement()
+    public void Generates_IfStatements()
     {
         const string input = """
                              if x == 1
@@ -102,7 +128,7 @@ public class BytecodeGeneratorTest
     }
     
     [Fact]
-    public void Generates_Return()
+    public void Generates_ReturnStatements()
     {
         var bytecode = GenerateBytecode("return 123;");
         var instruction = bytecode[^1];
@@ -173,7 +199,7 @@ public class BytecodeGeneratorTest
     }
 
     [Fact]
-    public void Generates_Assignment()
+    public void Generates_Assignments()
     {
         var bytecode = GenerateBytecode("let mut a = 1; a = 2;").Skip(3);
         var pushIdentifier = bytecode[0];
@@ -226,7 +252,7 @@ public class BytecodeGeneratorTest
     [Theory]
     [InlineData("let mut a = 1; ++a", OpCode.INC)]
     [InlineData("let mut a = 1; --a", OpCode.DEC)]
-    public void Generates_UnaryCompoundAssignment(string input, OpCode opCode)
+    public void Generates_UnaryCompoundAssignments(string input, OpCode opCode)
     {
         var bytecode = GenerateBytecode(input).Skip(3);
         var operation = bytecode[0];
@@ -271,7 +297,7 @@ public class BytecodeGeneratorTest
     }
 
     [Fact]
-    public void Generates_Invocation()
+    public void Generates_Invocations()
     {
         var bytecode = GenerateBytecode("fn abc(x: int): int -> 123 + x; abc(69);").Skip(3);
         var load = bytecode[0];
