@@ -240,7 +240,7 @@ public sealed class Lexer(SourceFile sourceFile)
 
             default:
             {
-                if (char.IsLetter(current))
+                if (char.IsLetter(current) || current == '_')
                 {
                     if (MatchLexeme("true") || MatchLexeme("false"))
                         return TokenFactory.BoolLiteral(_currentLexeme, startLocation, _currentLocation);

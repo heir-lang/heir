@@ -99,6 +99,7 @@ public class LexerTest
     [InlineData("abc")]
     [InlineData("abc123")]
     [InlineData("abc_123")]
+    [InlineData("_yep123")]
     public void Tokenizes_Identifiers(string input)
     {
         var tokenStream = Tokenize(input);
