@@ -11,12 +11,16 @@ public abstract class BaseType
     public abstract TypeKind Kind { get; }
 
     public abstract string ToString(bool colors = false);
-    
+
     public static BaseType UnwrapParentheses(BaseType type)
     {
-        return type is ParenthesizedType parenthesizedType
-            ? UnwrapParentheses(parenthesizedType.Type)
-            : type;
+        while (true)
+        {
+            if (type is not ParenthesizedType parenthesizedType)
+                return type;
+            
+            type = parenthesizedType.Type;
+        }
     }
 
     public static BaseType Nullable(BaseType type)
@@ -93,25 +97,22 @@ public abstract class BaseType
         if (other is ParenthesizedType)
             return other.IsAssignableTo(this);
         
+        if (this is ArrayType array)
+            return other is ArrayType otherArray
+                   && array.ElementType.IsAssignableTo(otherArray.ElementType);
+        
         if (this is InterfaceType interfaceType && other is InterfaceType otherInterfaceType)
             return interfaceType.Members.Count == otherInterfaceType.Members.Count &&
                    interfaceType.IndexSignatures.Count == otherInterfaceType.IndexSignatures.Count &&
                    interfaceType.Members.All(member =>
                    {
                        var otherMember = otherInterfaceType.Members.GetValueOrDefault(member.Key);
-                       if (otherMember == null)
-                           return false;
-
-                       return member.Value.Type.IsAssignableTo(otherMember.Type); //&&
-                       // member.Value.IsMutable == otherMember.IsMutable;
+                       return otherMember != null && member.Value.Type.IsAssignableTo(otherMember.Type); //&& member.Value.IsMutable == otherMember.IsMutable;
                    }) &&
                    interfaceType.IndexSignatures.All(indexSignature =>
                    {
                        var otherIndexSignature = otherInterfaceType.IndexSignatures.GetValueOrDefault(indexSignature.Key);
-                       if (otherIndexSignature == null)
-                           return false;
-                       
-                       return indexSignature.Value.IsAssignableTo(otherIndexSignature);
+                       return otherIndexSignature != null && indexSignature.Value.IsAssignableTo(otherIndexSignature);
                    });
 
         if (other is InterfaceType)

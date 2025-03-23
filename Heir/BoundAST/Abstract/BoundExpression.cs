@@ -18,6 +18,7 @@ public abstract class BoundExpression : BoundSyntaxNode
         public R VisitBoundParenthesizedExpression(BoundParenthesized parenthesized);
         public R VisitBoundLiteralExpression(BoundLiteral literal);
         public R VisitBoundObjectLiteralExpression(BoundObjectLiteral objectLiteral);
+        public R VisitBoundArrayLiteralExpression(BoundArrayLiteral arrayLiteral);
         public R VisitBoundNoOp(BoundNoOp noOp);
         public R VisitBoundParameter(BoundParameter boundParameter);
         public R VisitBoundInvocationExpression(BoundInvocation invocation);

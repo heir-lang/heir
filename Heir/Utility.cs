@@ -62,6 +62,11 @@ public static class Utility
     {
         switch (value)
         {
+            case ArrayValue arrayValue:
+            {
+                var indent = 0;
+                return arrayValue.ToString(ref indent, colors);
+            }
             case ObjectValue objectValue:
             {
                 var indent = 0;

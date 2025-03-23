@@ -237,6 +237,14 @@ public sealed class Resolver(DiagnosticBag diagnostics, SyntaxTree syntaxTree) :
         
         return default;
     }
+    
+    public Void VisitArrayLiteralExpression(ArrayLiteral arrayLiteral)
+    {
+        foreach (var element in arrayLiteral.Elements)
+            Resolve(element);
+        
+        return default;
+    }
 
     public Void VisitNoOp(NoOp noOp) => default;
     public Void VisitNoOp(NoOpStatement noOp) => default;

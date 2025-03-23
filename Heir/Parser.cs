@@ -120,7 +120,7 @@ public sealed class Parser(TokenStream tokenStream)
         
         if (Tokens.Match(SyntaxKind.LBrace))
         {
-            var token = Tokens.Previous!.TransformKind(SyntaxKind.ObjectLiteral);
+            var token = Tokens.Previous!.WithKind(SyntaxKind.ObjectLiteral);
             if (Tokens.Match(SyntaxKind.RBrace))
             {
                 statement = new ExpressionStatement(new ObjectLiteral(token, []));
@@ -170,14 +170,24 @@ public sealed class Parser(TokenStream tokenStream)
         return new Block(statements);
     }
 
-    private ObjectLiteral ParseObject(Token token)
+    private ArrayLiteral ParseArray(Token bracket)
+    {
+        var elements = new List<Expression> { ParseExpression() };
+        while (Tokens.Match(SyntaxKind.Comma) && !Tokens.Check(SyntaxKind.RBracket))
+            elements.Add(ParseExpression());
+
+        Tokens.Consume(SyntaxKind.RBracket);
+        return new ArrayLiteral(bracket, elements);
+    }
+
+    private ObjectLiteral ParseObject(Token brace)
     {
         var keyValuePairs = new List<KeyValuePair<Expression, Expression>> { ParseObjectKeyValuePair() };
         while (Tokens.Match(SyntaxKind.Comma) && !IsAtEndOfBlock())
             keyValuePairs.Add(ParseObjectKeyValuePair());
             
         Tokens.Consume(SyntaxKind.RBrace);
-        return new ObjectLiteral(token, new(keyValuePairs));
+        return new ObjectLiteral(brace, new(keyValuePairs));
     }
 
     private KeyValuePair<Expression, Expression> ParseObjectKeyValuePair()
@@ -797,7 +807,7 @@ public sealed class Parser(TokenStream tokenStream)
     private Expression ParsePrimary()
     {
         var token = Tokens.Advance();
-        switch (token.Kind)
+        switch (token?.Kind)
         {
             case SyntaxKind.BoolLiteral:
             case SyntaxKind.CharLiteral:
@@ -837,11 +847,18 @@ public sealed class Parser(TokenStream tokenStream)
 
             case SyntaxKind.LBrace:
             {
-                var brace = token.TransformKind(SyntaxKind.ObjectLiteral);
-                if (Tokens.Match(SyntaxKind.RBrace))
-                    return new ObjectLiteral(brace, []);
+                var brace = token.WithKind(SyntaxKind.ObjectLiteral);
+                return Tokens.Match(SyntaxKind.RBrace)
+                    ? new ObjectLiteral(brace)
+                    : ParseObject(brace);
+            }
 
-                return ParseObject(brace);
+            case SyntaxKind.LBracket:
+            {
+                var bracket = token.WithKind(SyntaxKind.ArrayLiteral);
+                return Tokens.Match(SyntaxKind.RBracket)
+                    ? new ArrayLiteral(bracket)
+                    : ParseArray(bracket);
             }
         }
 

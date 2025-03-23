@@ -14,6 +14,7 @@ public abstract class Expression : SyntaxNode
         public R VisitParenthesizedExpression(Parenthesized parenthesized);
         public R VisitLiteralExpression(Literal literal);
         public R VisitObjectLiteralExpression(ObjectLiteral objectLiteral);
+        public R VisitArrayLiteralExpression(ArrayLiteral arrayLiteral);
         public R VisitNoOp(NoOp noOp);
         public R VisitNoOp(NoOpType noOp);
         public R VisitSingularTypeRef(SingularType singularType);

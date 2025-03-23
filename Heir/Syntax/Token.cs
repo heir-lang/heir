@@ -23,7 +23,7 @@ public class Token
         Span = span;
     }
 
-    public Token TransformKind(SyntaxKind kind) => new(kind, Text, Value, Span);
+    public Token WithKind(SyntaxKind kind) => new(kind, Text, Value, Span);
     public bool IsKind(SyntaxKind kind) => Kind == kind;
     public override string ToString() =>
         $"{Kind}: {Text} {(Value == null ? "" : '(' + Value.ToString() + ')')}      {Span}";

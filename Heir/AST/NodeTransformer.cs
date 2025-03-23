@@ -92,7 +92,15 @@ public abstract class NodeTransformer(SyntaxTree tree) : INodeVisitor<SyntaxNode
         
         return new ObjectLiteral(objectLiteral.Token, properties);
     }
-    
+
+    public SyntaxNode? VisitArrayLiteralExpression(ArrayLiteral arrayLiteral)
+    {
+        var elements = arrayLiteral.Elements
+            .ConvertAll(element => Transform(element) ?? element);
+
+        return new ArrayLiteral(arrayLiteral.Token, elements);
+    }
+
     public virtual SyntaxNode? VisitNoOp(NoOp noOp) => null;
     public virtual SyntaxNode? VisitNoOp(NoOpType noOp) => null;
     public virtual SyntaxNode? VisitNoOp(NoOpStatement noOp) => null;
@@ -215,11 +223,11 @@ public abstract class NodeTransformer(SyntaxTree tree) : INodeVisitor<SyntaxNode
     public virtual SyntaxNode? VisitEnumMember(EnumMember enumMember)
     {
         var name = Transform(enumMember.Name) as IdentifierName;
-        var value = enumMember.Value != null ? Transform(enumMember.Value) as Literal : null;
-        if (name == null)
+        var value = Transform(enumMember.Value) as Literal;
+        if (name == null || value == null)
             return null;
 
-        return new EnumMember(name ?? enumMember.Name, value ?? enumMember.Value);
+        return new EnumMember(name, value);
     }
 
     public virtual SyntaxNode? VisitFunctionDeclaration(FunctionDeclaration functionDeclaration)

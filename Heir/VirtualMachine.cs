@@ -218,6 +218,7 @@ public sealed class VirtualMachine
                         .ToList()
                         .ConvertAll(pair =>
                         {
+                            // TODO: jump to instructions instead of evaluating via separate vm (like wtf)
                             var keyVM = new VirtualMachine(new Bytecode(pair.Key), Diagnostics, Scope);
                             var valueVM = new VirtualMachine(new Bytecode(pair.Value), Diagnostics, Scope);
                             var key = keyVM.Evaluate()!;
@@ -227,6 +228,23 @@ public sealed class VirtualMachine
                 );
 
                 Stack.Push(new StackFrame(bytecodeDictionaryFrame.Node, evaluatedDictionary));
+                Advance();
+                break;
+            }
+            case OpCode.PUSHARRAY:
+            {
+                var bytecodeListFrame = CreateStackFrameFromInstruction();
+                var bytecodeList = (List<List<Instruction>>)bytecodeListFrame.Value!;
+                var evaluatedArray = new ArrayValue(
+                    bytecodeList.Select(bytecode =>
+                    {
+                        // TODO: jump to instructions instead of evaluating via separate vm (like wtf)
+                        var vm = new VirtualMachine(new Bytecode(bytecode), Diagnostics, Scope);
+                        return vm.Evaluate();
+                    })
+                );
+                
+                Stack.Push(new StackFrame(bytecodeListFrame.Node, evaluatedArray));
                 Advance();
                 break;
             }

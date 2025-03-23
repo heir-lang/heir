@@ -334,10 +334,10 @@ public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder) 
     public List<Instruction> VisitObjectLiteralExpression(ObjectLiteral objectLiteral)
     {
         // store objects as dictionaries, for now (this may be permanent tbh)
-        var objectValue = new Dictionary<List<Instruction>, List<Instruction>>(
+        var objectBytecode = new Dictionary<List<Instruction>, List<Instruction>>(
             objectLiteral.Properties
                 .ToList()
-                .ConvertAll<KeyValuePair<List<Instruction>, List<Instruction>>>(property =>
+                .ConvertAll(property =>
                 {
                     var keyExpression = property.Key;
                     if (keyExpression is IdentifierName identifier)
@@ -345,11 +345,17 @@ public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder) 
 
                     var key = GenerateBytecode(keyExpression);
                     var value = GenerateBytecode(property.Value);
-                    return new(key, value);
+                    return new KeyValuePair<List<Instruction>, List<Instruction>>(key, value);
                 })
         );
 
-        return [new Instruction(objectLiteral, OpCode.PUSHOBJECT, objectValue)];
+        return [new Instruction(objectLiteral, OpCode.PUSHOBJECT, objectBytecode)];
+    }
+    
+    public List<Instruction> VisitArrayLiteralExpression(ArrayLiteral arrayLiteral)
+    {
+        var arrayBytecode = new List<List<Instruction>>(arrayLiteral.Elements.ConvertAll(GenerateBytecode));
+        return [new Instruction(arrayLiteral, OpCode.PUSHARRAY, arrayBytecode)];
     }
 
     private List<Instruction> PushAssignmentTarget(AssignmentTarget assignmentTarget)

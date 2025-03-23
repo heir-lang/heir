@@ -201,6 +201,14 @@ public class TypeChecker(DiagnosticBag diagnostics, BoundSyntaxTree syntaxTree) 
         return default;
     }
 
+    public Void VisitBoundArrayLiteralExpression(BoundArrayLiteral arrayLiteral)
+    {
+        foreach (var element in arrayLiteral.Elements)
+            Check(element);
+        
+        return default;
+    }
+
     public Void VisitBoundIdentifierNameExpression(BoundIdentifierName identifierName) => default;
     public Void VisitBoundNoOp(BoundNoOp noOp) => default;
     public Void VisitBoundNoOp(BoundNoOpStatement noOp) => default;

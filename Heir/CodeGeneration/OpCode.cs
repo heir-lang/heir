@@ -15,6 +15,9 @@ public enum OpCode : byte
     /// <summary>Pushes an <see cref="Runtime.Values.ObjectValue"/> onto the stack</summary>
     /// <param name="operand">A <see cref="Dictionary"/> of bytecode keys &amp; bytecode values</param>
     PUSHOBJECT,
+    /// <summary>Pushes an <see cref="Runtime.Values.ArrayValue"/> onto the stack</summary>
+    /// <param name="operand">A <see cref="List"/> of a <see cref="List"/> of instructions</param>
+    PUSHARRAY,
     /// <summary>Pushes none (null) onto the stack</summary>
     PUSHNONE,
     /// <summary>Pops the last value off of the stack</summary>

@@ -383,6 +383,20 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree)
         return new BoundObjectLiteral(objectLiteral.Token, properties, type);
     }
 
+    public BoundExpression VisitArrayLiteralExpression(ArrayLiteral arrayLiteral)
+    {
+        var elements = arrayLiteral.Elements.ConvertAll(Bind);
+        var type = new ArrayType(
+            elements.Count == 0
+                ? IntrinsicTypes.Any // this is what typescript does (even with strict checks!), go figure
+                : new UnionType(elements.ConvertAll(e =>
+                    e.Type is LiteralType literal ? literal.AsPrimitive() : e.Type
+                ))
+        );
+
+        return new BoundArrayLiteral(arrayLiteral.Token, elements, type);
+    }
+
     public BoundStatement VisitNoOp(NoOpStatement noOp) => new BoundNoOpStatement();
     public BoundExpression VisitNoOp(NoOpType noOp) => new BoundNoOp();
     public BoundExpression VisitNoOp(NoOp noOp) => new BoundNoOp();

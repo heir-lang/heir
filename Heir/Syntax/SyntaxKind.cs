@@ -70,6 +70,7 @@
         CharLiteral,
         BoolLiteral,
         ObjectLiteral,
+        ArrayLiteral,
 
         LetKeyword, // keywords
         MutKeyword,
