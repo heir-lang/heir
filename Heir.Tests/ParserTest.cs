@@ -686,18 +686,58 @@ public class ParserTest
         var objectLiteral = (ObjectLiteral)node;
         Assert.Equal(propertyCount, objectLiteral.Properties.Count);
 
-        if (objectLiteral.Properties.Count > 0)
-        {
-            var key = objectLiteral.Properties.Keys.First();
-            var value = objectLiteral.Properties.Values.First();
-            Assert.IsType<Literal>(key);
-            Assert.IsType<Literal>(value);
+        if (objectLiteral.Properties.Count <= 0) return;
+        var key = objectLiteral.Properties.Keys.First();
+        var value = objectLiteral.Properties.Values.First();
+        Assert.IsType<Literal>(key);
+        Assert.IsType<Literal>(value);
 
-            var keyLiteral = (Literal)key;
-            var valueLiteral = (Literal)value;
-            Assert.Equal(keyLiteralKind, keyLiteral.Token.Kind);
-            Assert.Equal(SyntaxKind.BoolLiteral, valueLiteral.Token.Kind);
-        }
+        var keyLiteral = (Literal)key;
+        var valueLiteral = (Literal)value;
+        Assert.Equal(keyLiteralKind, keyLiteral.Token.Kind);
+        Assert.Equal(SyntaxKind.BoolLiteral, valueLiteral.Token.Kind);
+    }
+    
+    [Fact]
+    public void Parses_EmptyArrayLiterals()
+    {
+        var tree = Parse("[]");
+        var statement = tree.Statements.Last();
+        Assert.IsType<ExpressionStatement>(statement);
+        
+        var expressionStatement = (ExpressionStatement)statement;
+        Assert.IsType<ArrayLiteral>(expressionStatement.Expression);
+        
+        var arrayLiteral = (ArrayLiteral)expressionStatement.Expression;
+        Assert.Equal(SyntaxKind.ArrayLiteral, arrayLiteral.Token.Kind);
+        Assert.Empty(arrayLiteral.Elements);
+    }
+    
+    [Fact]
+    public void Parses_ArrayLiterals()
+    {
+        var tree = Parse("[1, 2]");
+        var statement = tree.Statements.Last();
+        Assert.IsType<ExpressionStatement>(statement);
+        
+        var expressionStatement = (ExpressionStatement)statement;
+        Assert.IsType<ArrayLiteral>(expressionStatement.Expression);
+        
+        var arrayLiteral = (ArrayLiteral)expressionStatement.Expression;
+        Assert.Equal(SyntaxKind.ArrayLiteral, arrayLiteral.Token.Kind);
+        Assert.Equal(2, arrayLiteral.Elements.Count);
+        
+        var elementOne = arrayLiteral.Elements.First();
+        var elementTwo = arrayLiteral.Elements.Last();
+        Assert.IsType<Literal>(elementOne);
+        Assert.IsType<Literal>(elementTwo);
+        
+        var literalOne = (Literal)elementOne;
+        var literalTwo = (Literal)elementTwo;
+        Assert.Equal(SyntaxKind.IntLiteral, literalOne.Token.Kind);
+        Assert.Equal(1, literalOne.Token.Value);
+        Assert.Equal(SyntaxKind.IntLiteral, literalTwo.Token.Kind);
+        Assert.Equal(2, literalTwo.Token.Value);
     }
 
     [Theory]

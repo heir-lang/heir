@@ -436,6 +436,58 @@ public class BinderTest
         Assert.Equal(keyValue, keyLiteralType.Value);
         Assert.Equal(true, valueLiteralType.Value);
     }
+    
+    [Fact]
+    public void Binds_EmptyArrayLiterals()
+    {
+        var tree = Bind("[]").GetBoundSyntaxTree();
+        var statement = tree.Statements.Last();
+        Assert.IsType<BoundExpressionStatement>(statement);
+        
+        var expressionStatement = (BoundExpressionStatement)statement;
+        Assert.IsType<BoundArrayLiteral>(expressionStatement.Expression);
+        
+        var arrayLiteral = (BoundArrayLiteral)expressionStatement.Expression;
+        Assert.IsType<AnyType>(arrayLiteral.Type.ElementType);
+        Assert.Equal(SyntaxKind.ArrayLiteral, arrayLiteral.Token.Kind);
+        Assert.Empty(arrayLiteral.Elements);
+    }
+    
+    [Fact]
+    public void Binds_ArrayLiterals()
+    {
+        var tree = Bind("[1, 'a']").GetBoundSyntaxTree();
+        var statement = tree.Statements.Last();
+        Assert.IsType<BoundExpressionStatement>(statement);
+        
+        var expressionStatement = (BoundExpressionStatement)statement;
+        Assert.IsType<BoundArrayLiteral>(expressionStatement.Expression);
+        
+        var arrayLiteral = (BoundArrayLiteral)expressionStatement.Expression;
+        Assert.Equal(SyntaxKind.ArrayLiteral, arrayLiteral.Token.Kind);
+        Assert.Equal(2, arrayLiteral.Elements.Count);
+        Assert.IsType<UnionType>(arrayLiteral.Type.ElementType);
+        
+        var elementType = (UnionType)arrayLiteral.Type.ElementType;
+        Assert.Equal(2, elementType.Types.Count);
+        
+        var typeOne = elementType.Types.First();
+        var typeTwo = elementType.Types.Last();
+        Assert.IsType<PrimitiveType>(typeOne);
+        Assert.IsType<PrimitiveType>(typeTwo);
+        
+        var elementOne = arrayLiteral.Elements.First();
+        var elementTwo = arrayLiteral.Elements.Last();
+        Assert.IsType<BoundLiteral>(elementOne);
+        Assert.IsType<BoundLiteral>(elementTwo);
+        
+        var literalOne = (BoundLiteral)elementOne;
+        var literalTwo = (BoundLiteral)elementTwo;
+        Assert.Equal(SyntaxKind.IntLiteral, literalOne.Token.Kind);
+        Assert.Equal(1, literalOne.Token.Value);
+        Assert.Equal(SyntaxKind.CharLiteral, literalTwo.Token.Kind);
+        Assert.Equal('a', literalTwo.Token.Value);
+    }
 
     [Theory]
     [InlineData("\"abc\"")]

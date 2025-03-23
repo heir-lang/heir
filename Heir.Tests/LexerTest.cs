@@ -53,6 +53,23 @@ public class LexerTest
             Assert.Null(token.Value);
         }
     }
+    
+    [Theory]
+    [InlineData("[", SyntaxKind.LBracket)]
+    [InlineData("]", SyntaxKind.RBracket)]
+    [InlineData("(", SyntaxKind.LParen)]
+    [InlineData(")", SyntaxKind.RParen)]
+    [InlineData("{", SyntaxKind.LBrace)]
+    [InlineData("}", SyntaxKind.RBrace)]
+    public void Tokenizes_Brackets(string input, SyntaxKind expectedKind)
+    {
+        var tokenStream = Tokenize(input);
+        var token = tokenStream.First();
+
+        Assert.Equal(expectedKind, token.Kind);
+        Assert.Equal(input, token.Text);
+        Assert.Null(token.Value);
+    }
 
     [Theory]
     [InlineData(".", SyntaxKind.Dot)]

@@ -20,6 +20,21 @@ public class TypeTest
     }
     
     [Fact]
+    public void ArrayTypes_AreAssignableTo()
+    {
+        {
+            var a = new ArrayType(PrimitiveType.Int);
+            var b = new ArrayType(PrimitiveType.Int);
+            Assert.True(a.IsAssignableTo(b));
+        }
+        {
+            var a = new ArrayType(PrimitiveType.Int);
+            var b = new ArrayType(PrimitiveType.Float);
+            Assert.False(a.IsAssignableTo(b));
+        }
+    }
+    
+    [Fact]
     public void InterfaceTypes_AreAssignableTo()
     {
         {
