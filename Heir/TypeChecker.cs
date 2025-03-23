@@ -90,16 +90,16 @@ public class TypeChecker(DiagnosticBag diagnostics, BoundSyntaxTree syntaxTree) 
         Check(memberAccess.Expression);
         Check(memberAccess.Name);
         
-        // TODO: in the future check for indexable literal types (like strings), and also arrays
-        if (memberAccess.Expression.Type is not InterfaceType interfaceType)
+        if (!BaseType.IsIndexable(memberAccess.Expression.Type))
         {
             diagnostics.Error(DiagnosticCode.H018, $"Attempt to index '{memberAccess.Expression.Type.ToString()}'", memberAccess.Expression);
             return default;
         }
-        
-        if (memberAccess.Type == memberAccess.Expression.Type)
+
+        if (memberAccess.Expression.Type is InterfaceType interfaceType &&
+            memberAccess.Type == memberAccess.Expression.Type)
         {
-            diagnostics.Error(DiagnosticCode.H013, $"No member '{memberAccess.Name.Symbol.Name.Text}' exists on type '{interfaceType.Name}'", memberAccess.Name);
+            diagnostics.Error(DiagnosticCode.H013, $"No member '{memberAccess.Name.Symbol.Name.Text}' exists on type '{interfaceType.ToString()}'", memberAccess.Name);
             return default;
         }
         
@@ -111,14 +111,15 @@ public class TypeChecker(DiagnosticBag diagnostics, BoundSyntaxTree syntaxTree) 
         Check(elementAccess.Expression);
         Check(elementAccess.IndexExpression);
         
-        // TODO: in the future check for indexable literal types (like strings), and also arrays
-        if (elementAccess.Expression.Type is not InterfaceType interfaceType)
+        if (!BaseType.IsIndexable(elementAccess.Expression.Type))
         {
             diagnostics.Error(DiagnosticCode.H018, $"Attempt to index '{elementAccess.Expression.Type.ToString()}'", elementAccess.Expression);
             return default;
         }
         
-        Assert(elementAccess.IndexExpression, interfaceType.IndexType);
+        if (elementAccess.Expression.Type is InterfaceType interfaceType)
+            Assert(elementAccess.IndexExpression, interfaceType.IndexType);
+        
         return default;
     }
 

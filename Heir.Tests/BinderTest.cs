@@ -98,7 +98,7 @@ public class BinderTest
     }
 
     [Fact]
-    public void Binds_ElementAccess()
+    public void Binds_ElementAccessForObjects()
     {
         const string input = """
                              let foo = { bar: "baz" };

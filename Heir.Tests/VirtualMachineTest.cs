@@ -244,6 +244,8 @@ public class VirtualMachineTest
     [InlineData("({ abc: \"def\" })[\"abc\"];", "def")]
     [InlineData("let a = { b: { c: 123 } }; a[\"b\"][\"c\"];", 123)]
     [InlineData("fn brah -> { a: 123 }; let foo = { bar: brah }; foo[\"bar\"]()[\"a\"];", 123)]
+    [InlineData("let a = [\"abc\"]; a[0];", "abc")]
+    [InlineData("let a = []; a[0] = 1; a[0]", 1)]
     public void Evaluates_ElementAccess(string input, object? expectedValue)
     {
         var (value, _) = Evaluate(input);

@@ -5,7 +5,7 @@
 - Parsing
   - [ ] Warn when using an expression as a statement which is not a return value and isn't something like an `AssignmentOp` or `Invocation`
   - Types
-    - [ ] Generics
+    - [x] Generics
     - [ ] Literal
     - [x] Array
     - [ ] Interface index signatures
@@ -29,6 +29,7 @@
   - [ ] `value is Type` 
   - [ ] Type narrowing
   - [ ] Type aliases
+  - [ ] Type casting
   - [ ] `typeof`
   - [x] `nameof`
 - Runtime/HVM

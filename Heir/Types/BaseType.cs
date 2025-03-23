@@ -12,6 +12,12 @@ public abstract class BaseType
 
     public abstract string ToString(bool colors = false);
 
+    public static bool IsIndexable(BaseType type)
+    {
+        return type is InterfaceType or ArrayType
+               || (type is UnionType union && union.Types.All(IsIndexable));
+    }
+
     public static BaseType UnwrapParentheses(BaseType type)
     {
         while (true)
