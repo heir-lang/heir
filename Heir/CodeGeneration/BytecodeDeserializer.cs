@@ -44,6 +44,18 @@ public static class BytecodeDeserializer
                 return Convert.ToBoolean(reader.ReadByte());
             case OperandType.Bytecode:
                 return DeserializeBytecodeOperand(reader);
+            case OperandType.ArrayBytecode:
+            {
+                var arrayBytecode = new List<List<Instruction>>();
+                var length = reader.ReadInt32();
+                for (var i = 0; i < length; i++)
+                {
+                    var element = DeserializeBytecodeOperand(reader).ToList();
+                    arrayBytecode.Add(element);
+                }
+                
+                return arrayBytecode;
+            }
             case OperandType.ObjectBytecode:
             {
                 var objectBytecode = new Dictionary<List<Instruction>, List<Instruction>>();

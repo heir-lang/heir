@@ -48,6 +48,17 @@ public static class BytecodeSerializer
                 writer.Write((byte)OperandType.Bool);
                 writer.Write(Convert.ToByte(operand));
                 break;
+            case List<Instruction> bytecode:
+                writer.Write((byte)OperandType.Bytecode);
+                SerializeBytecodeOperand(bytecode, writer);
+                break;
+            case List<List<Instruction>> arrayBytecode:
+                writer.Write((byte)OperandType.ArrayBytecode);
+                writer.Write(arrayBytecode.Count);
+                foreach (var element in arrayBytecode)
+                    SerializeBytecodeOperand(element, writer);
+                
+                break;
             case Dictionary<List<Instruction>, List<Instruction>> objectBytecode:
                 writer.Write((byte)OperandType.ObjectBytecode);
                 writer.Write(objectBytecode.Count);
@@ -57,10 +68,6 @@ public static class BytecodeSerializer
                     SerializeBytecodeOperand(value, writer);
                 }
                 
-                break;
-            case List<Instruction> bytecode:
-                writer.Write((byte)OperandType.Bytecode);
-                SerializeBytecodeOperand(bytecode, writer);
                 break;
             case ValueTuple<int, List<string>> tuple:
             {
