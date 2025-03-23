@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Interface BoundExpression.IVisitor&lt;R&gt; | Heir Docs </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Interface BoundExpression.IVisitor&lt;R&gt; | Heir Docs ">
+      
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/heir-lang/heir/new/master/apiSpec/new?filename=Heir_BoundAST_Abstract_BoundExpression_IVisitor_1.md&amp;value=---%0Auid%3A%20Heir.BoundAST.Abstract.BoundExpression.IVisitor%601%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="Heir Docs">
+            Heir Docs
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="Heir.BoundAST.Abstract.BoundExpression.IVisitor`1">
+
+
+
+  <h1 id="Heir_BoundAST_Abstract_BoundExpression_IVisitor_1" data-uid="Heir.BoundAST.Abstract.BoundExpression.IVisitor`1" class="text-break">
+Interface BoundExpression.IVisitor&lt;R&gt;  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/BoundAST/Abstract/BoundExpression.cs/#L11"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="Heir.html">Heir</a>.<a class="xref" href="Heir.BoundAST.html">BoundAST</a>.<a class="xref" href="Heir.BoundAST.Abstract.html">Abstract</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>Heir.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"></div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface BoundExpression.IVisitor&lt;out R&gt;</code></pre>
+  </div>
+
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>R</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="Heir_BoundAST_Abstract_BoundExpression_IVisitor_1_VisitBoundArrayLiteralExpression_" data-uid="Heir.BoundAST.Abstract.BoundExpression.IVisitor`1.VisitBoundArrayLiteralExpression*"></a>
+
+  <h3 id="Heir_BoundAST_Abstract_BoundExpression_IVisitor_1_VisitBoundArrayLiteralExpression_Heir_BoundAST_BoundArrayLiteral_" data-uid="Heir.BoundAST.Abstract.BoundExpression.IVisitor`1.VisitBoundArrayLiteralExpression(Heir.BoundAST.BoundArrayLiteral)">
+  VisitBoundArrayLiteralExpression(BoundArrayLiteral)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/BoundAST/Abstract/BoundExpression.cs/#L21"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">R VisitBoundArrayLiteralExpression(BoundArrayLiteral arrayLiteral)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>arrayLiteral</code> <a class="xref" href="Heir.BoundAST.BoundArrayLiteral.html">BoundArrayLiteral</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">R</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_BoundAST_Abstract_BoundExpression_IVisitor_1_VisitBoundAssignmentOpExpression_" data-uid="Heir.BoundAST.Abstract.BoundExpression.IVisitor`1.VisitBoundAssignmentOpExpression*"></a>
+
+  <h3 id="Heir_BoundAST_Abstract_BoundExpression_IVisitor_1_VisitBoundAssignmentOpExpression_Heir_BoundAST_BoundAssignmentOp_" data-uid="Heir.BoundAST.Abstract.BoundExpression.IVisitor`1.VisitBoundAssignmentOpExpression(Heir.BoundAST.BoundAssignmentOp)">
+  VisitBoundAssignmentOpExpression(BoundAssignmentOp)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/BoundAST/Abstract/BoundExpression.cs/#L14"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">R VisitBoundAssignmentOpExpression(BoundAssignmentOp assignmentOp)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>assignmentOp</code> <a class="xref" href="Heir.BoundAST.BoundAssignmentOp.html">BoundAssignmentOp</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">R</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_BoundAST_Abstract_BoundExpression_IVisitor_1_VisitBoundBinaryOpExpression_" data-uid="Heir.BoundAST.Abstract.BoundExpression.IVisitor`1.VisitBoundBinaryOpExpression*"></a>
+
+  <h3 id="Heir_BoundAST_Abstract_BoundExpression_IVisitor_1_VisitBoundBinaryOpExpression_Heir_BoundAST_BoundBinaryOp_" data-uid="Heir.BoundAST.Abstract.BoundExpression.IVisitor`1.VisitBoundBinaryOpExpression(Heir.BoundAST.BoundBinaryOp)">
+  VisitBoundBinaryOpExpression(BoundBinaryOp)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/BoundAST/Abstract/BoundExpression.cs/#L17"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">R VisitBoundBinaryOpExpression(BoundBinaryOp binaryOp)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>binaryOp</code> <a class="xref" href="Heir.BoundAST.BoundBinaryOp.html">BoundBinaryOp</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">R</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_BoundAST_Abstract_BoundExpression_IVisitor_1_VisitBoundElementAccessExpression_" data-uid="Heir.BoundAST.Abstract.BoundExpression.IVisitor`1.VisitBoundElementAccessExpression*"></a>
+
+  <h3 id="Heir_BoundAST_Abstract_BoundExpression_IVisitor_1_VisitBoundElementAccessExpression_Heir_BoundAST_BoundElementAccess_" data-uid="Heir.BoundAST.Abstract.BoundExpression.IVisitor`1.VisitBoundElementAccessExpression(Heir.BoundAST.BoundElementAccess)">
+  VisitBoundElementAccessExpression(BoundElementAccess)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/BoundAST/Abstract/BoundExpression.cs/#L26"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">R VisitBoundElementAccessExpression(BoundElementAccess elementAccess)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>elementAccess</code> <a class="xref" href="Heir.BoundAST.BoundElementAccess.html">BoundElementAccess</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">R</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_BoundAST_Abstract_BoundExpression_IVisitor_1_VisitBoundIdentifierNameExpression_" data-uid="Heir.BoundAST.Abstract.BoundExpression.IVisitor`1.VisitBoundIdentifierNameExpression*"></a>
+
+  <h3 id="Heir_BoundAST_Abstract_BoundExpression_IVisitor_1_VisitBoundIdentifierNameExpression_Heir_BoundAST_BoundIdentifierName_" data-uid="Heir.BoundAST.Abstract.BoundExpression.IVisitor`1.VisitBoundIdentifierNameExpression(Heir.BoundAST.BoundIdentifierName)">
+  VisitBoundIdentifierNameExpression(BoundIdentifierName)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/BoundAST/Abstract/BoundExpression.cs/#L13"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">R VisitBoundIdentifierNameExpression(BoundIdentifierName identifierName)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>identifierName</code> <a class="xref" href="Heir.BoundAST.BoundIdentifierName.html">BoundIdentifierName</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">R</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_BoundAST_Abstract_BoundExpression_IVisitor_1_VisitBoundInvocationExpression_" data-uid="Heir.BoundAST.Abstract.BoundExpression.IVisitor`1.VisitBoundInvocationExpression*"></a>
+
+  <h3 id="Heir_BoundAST_Abstract_BoundExpression_IVisitor_1_VisitBoundInvocationExpression_Heir_BoundAST_BoundInvocation_" data-uid="Heir.BoundAST.Abstract.BoundExpression.IVisitor`1.VisitBoundInvocationExpression(Heir.BoundAST.BoundInvocation)">
+  VisitBoundInvocationExpression(BoundInvocation)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/BoundAST/Abstract/BoundExpression.cs/#L25"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">R VisitBoundInvocationExpression(BoundInvocation invocation)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>invocation</code> <a class="xref" href="Heir.BoundAST.BoundInvocation.html">BoundInvocation</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">R</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_BoundAST_Abstract_BoundExpression_IVisitor_1_VisitBoundLiteralExpression_" data-uid="Heir.BoundAST.Abstract.BoundExpression.IVisitor`1.VisitBoundLiteralExpression*"></a>
+
+  <h3 id="Heir_BoundAST_Abstract_BoundExpression_IVisitor_1_VisitBoundLiteralExpression_Heir_BoundAST_BoundLiteral_" data-uid="Heir.BoundAST.Abstract.BoundExpression.IVisitor`1.VisitBoundLiteralExpression(Heir.BoundAST.BoundLiteral)">
+  VisitBoundLiteralExpression(BoundLiteral)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/BoundAST/Abstract/BoundExpression.cs/#L19"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">R VisitBoundLiteralExpression(BoundLiteral literal)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>literal</code> <a class="xref" href="Heir.BoundAST.BoundLiteral.html">BoundLiteral</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">R</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_BoundAST_Abstract_BoundExpression_IVisitor_1_VisitBoundMemberAccessExpression_" data-uid="Heir.BoundAST.Abstract.BoundExpression.IVisitor`1.VisitBoundMemberAccessExpression*"></a>
+
+  <h3 id="Heir_BoundAST_Abstract_BoundExpression_IVisitor_1_VisitBoundMemberAccessExpression_Heir_BoundAST_BoundMemberAccess_" data-uid="Heir.BoundAST.Abstract.BoundExpression.IVisitor`1.VisitBoundMemberAccessExpression(Heir.BoundAST.BoundMemberAccess)">
+  VisitBoundMemberAccessExpression(BoundMemberAccess)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/BoundAST/Abstract/BoundExpression.cs/#L27"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">R VisitBoundMemberAccessExpression(BoundMemberAccess memberAccess)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>memberAccess</code> <a class="xref" href="Heir.BoundAST.BoundMemberAccess.html">BoundMemberAccess</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">R</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_BoundAST_Abstract_BoundExpression_IVisitor_1_VisitBoundNoOp_" data-uid="Heir.BoundAST.Abstract.BoundExpression.IVisitor`1.VisitBoundNoOp*"></a>
+
+  <h3 id="Heir_BoundAST_Abstract_BoundExpression_IVisitor_1_VisitBoundNoOp_Heir_BoundAST_BoundNoOp_" data-uid="Heir.BoundAST.Abstract.BoundExpression.IVisitor`1.VisitBoundNoOp(Heir.BoundAST.BoundNoOp)">
+  VisitBoundNoOp(BoundNoOp)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/BoundAST/Abstract/BoundExpression.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">R VisitBoundNoOp(BoundNoOp noOp)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>noOp</code> <a class="xref" href="Heir.BoundAST.BoundNoOp.html">BoundNoOp</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">R</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_BoundAST_Abstract_BoundExpression_IVisitor_1_VisitBoundObjectLiteralExpression_" data-uid="Heir.BoundAST.Abstract.BoundExpression.IVisitor`1.VisitBoundObjectLiteralExpression*"></a>
+
+  <h3 id="Heir_BoundAST_Abstract_BoundExpression_IVisitor_1_VisitBoundObjectLiteralExpression_Heir_BoundAST_BoundObjectLiteral_" data-uid="Heir.BoundAST.Abstract.BoundExpression.IVisitor`1.VisitBoundObjectLiteralExpression(Heir.BoundAST.BoundObjectLiteral)">
+  VisitBoundObjectLiteralExpression(BoundObjectLiteral)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/BoundAST/Abstract/BoundExpression.cs/#L20"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">R VisitBoundObjectLiteralExpression(BoundObjectLiteral objectLiteral)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>objectLiteral</code> <a class="xref" href="Heir.BoundAST.BoundObjectLiteral.html">BoundObjectLiteral</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">R</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_BoundAST_Abstract_BoundExpression_IVisitor_1_VisitBoundParameter_" data-uid="Heir.BoundAST.Abstract.BoundExpression.IVisitor`1.VisitBoundParameter*"></a>
+
+  <h3 id="Heir_BoundAST_Abstract_BoundExpression_IVisitor_1_VisitBoundParameter_Heir_BoundAST_BoundParameter_" data-uid="Heir.BoundAST.Abstract.BoundExpression.IVisitor`1.VisitBoundParameter(Heir.BoundAST.BoundParameter)">
+  VisitBoundParameter(BoundParameter)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/BoundAST/Abstract/BoundExpression.cs/#L23"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">R VisitBoundParameter(BoundParameter boundParameter)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>boundParameter</code> <a class="xref" href="Heir.BoundAST.BoundParameter.html">BoundParameter</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">R</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_BoundAST_Abstract_BoundExpression_IVisitor_1_VisitBoundParenthesizedExpression_" data-uid="Heir.BoundAST.Abstract.BoundExpression.IVisitor`1.VisitBoundParenthesizedExpression*"></a>
+
+  <h3 id="Heir_BoundAST_Abstract_BoundExpression_IVisitor_1_VisitBoundParenthesizedExpression_Heir_BoundAST_BoundParenthesized_" data-uid="Heir.BoundAST.Abstract.BoundExpression.IVisitor`1.VisitBoundParenthesizedExpression(Heir.BoundAST.BoundParenthesized)">
+  VisitBoundParenthesizedExpression(BoundParenthesized)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/BoundAST/Abstract/BoundExpression.cs/#L18"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">R VisitBoundParenthesizedExpression(BoundParenthesized parenthesized)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>parenthesized</code> <a class="xref" href="Heir.BoundAST.BoundParenthesized.html">BoundParenthesized</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">R</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_BoundAST_Abstract_BoundExpression_IVisitor_1_VisitBoundPostfixOpExpression_" data-uid="Heir.BoundAST.Abstract.BoundExpression.IVisitor`1.VisitBoundPostfixOpExpression*"></a>
+
+  <h3 id="Heir_BoundAST_Abstract_BoundExpression_IVisitor_1_VisitBoundPostfixOpExpression_Heir_BoundAST_BoundPostfixOp_" data-uid="Heir.BoundAST.Abstract.BoundExpression.IVisitor`1.VisitBoundPostfixOpExpression(Heir.BoundAST.BoundPostfixOp)">
+  VisitBoundPostfixOpExpression(BoundPostfixOp)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/BoundAST/Abstract/BoundExpression.cs/#L16"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">R VisitBoundPostfixOpExpression(BoundPostfixOp postfixOp)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>postfixOp</code> <a class="xref" href="Heir.BoundAST.BoundPostfixOp.html">BoundPostfixOp</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">R</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_BoundAST_Abstract_BoundExpression_IVisitor_1_VisitBoundTypeParameter_" data-uid="Heir.BoundAST.Abstract.BoundExpression.IVisitor`1.VisitBoundTypeParameter*"></a>
+
+  <h3 id="Heir_BoundAST_Abstract_BoundExpression_IVisitor_1_VisitBoundTypeParameter_Heir_BoundAST_BoundTypeParameter_" data-uid="Heir.BoundAST.Abstract.BoundExpression.IVisitor`1.VisitBoundTypeParameter(Heir.BoundAST.BoundTypeParameter)">
+  VisitBoundTypeParameter(BoundTypeParameter)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/BoundAST/Abstract/BoundExpression.cs/#L24"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">R VisitBoundTypeParameter(BoundTypeParameter boundTypeParameter)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>boundTypeParameter</code> <a class="xref" href="Heir.BoundAST.BoundTypeParameter.html">BoundTypeParameter</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">R</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_BoundAST_Abstract_BoundExpression_IVisitor_1_VisitBoundUnaryOpExpression_" data-uid="Heir.BoundAST.Abstract.BoundExpression.IVisitor`1.VisitBoundUnaryOpExpression*"></a>
+
+  <h3 id="Heir_BoundAST_Abstract_BoundExpression_IVisitor_1_VisitBoundUnaryOpExpression_Heir_BoundAST_BoundUnaryOp_" data-uid="Heir.BoundAST.Abstract.BoundExpression.IVisitor`1.VisitBoundUnaryOpExpression(Heir.BoundAST.BoundUnaryOp)">
+  VisitBoundUnaryOpExpression(BoundUnaryOp)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/BoundAST/Abstract/BoundExpression.cs/#L15"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">R VisitBoundUnaryOpExpression(BoundUnaryOp unaryOp)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>unaryOp</code> <a class="xref" href="Heir.BoundAST.BoundUnaryOp.html">BoundUnaryOp</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">R</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/heir-lang/heir/blob/master/Heir/BoundAST/Abstract/BoundExpression.cs/#L11" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

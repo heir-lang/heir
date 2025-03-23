@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Enum OpCode | Heir Docs </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Enum OpCode | Heir Docs ">
+      
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/heir-lang/heir/new/master/apiSpec/new?filename=Heir_CodeGeneration_OpCode.md&amp;value=---%0Auid%3A%20Heir.CodeGeneration.OpCode%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="Heir Docs">
+            Heir Docs
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="Heir.CodeGeneration.OpCode">
+
+
+
+
+  <h1 id="Heir_CodeGeneration_OpCode" data-uid="Heir.CodeGeneration.OpCode" class="text-break">
+Enum OpCode  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/CodeGeneration/OpCode.cs/#L5"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="Heir.html">Heir</a>.<a class="xref" href="Heir.CodeGeneration.html">CodeGeneration</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>Heir.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"></div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public enum OpCode : byte</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+  <h2 id="fields">Fields
+</h2>
+  <dl class="parameters">
+    <dt id="Heir_CodeGeneration_OpCode_ADD"><code>ADD = 22</code></dt>
+  
+  <dd><p>Adds the last two frames in the stack together (assuming they're numbers)</p>
+</dd>
+    <dt id="Heir_CodeGeneration_OpCode_AND"><code>AND = 38</code></dt>
+  
+  <dd><p>Calculates logical and on the last two frames in the stack (assuming they're <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>s)</p>
+</dd>
+    <dt id="Heir_CodeGeneration_OpCode_BAND"><code>BAND = 33</code></dt>
+  
+  <dd><p>Calculates binary and on the last two frames in the stack (assuming they're <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a>s)</p>
+</dd>
+    <dt id="Heir_CodeGeneration_OpCode_BEGINSCOPE"><code>BEGINSCOPE = 0</code></dt>
+  
+  <dd><p>Creates a new scope</p>
+</dd>
+    <dt id="Heir_CodeGeneration_OpCode_BNOT"><code>BNOT = 32</code></dt>
+  
+  <dd><p>Calculates binary not on the last frame in the stack (assuming it's an <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a>)</p>
+</dd>
+    <dt id="Heir_CodeGeneration_OpCode_BOR"><code>BOR = 34</code></dt>
+  
+  <dd><p>Calculates binary or on the last two frames in the stack (assuming they're <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a>s)</p>
+</dd>
+    <dt id="Heir_CodeGeneration_OpCode_BREAK"><code>BREAK = 8</code></dt>
+  
+  <dd><p>Jump ahead by the given offset</p>
+</dd>
+    <dt id="Heir_CodeGeneration_OpCode_BSHL"><code>BSHL = 36</code></dt>
+  
+  <dd><p>Calculates bit shift left on the last two frames in the stack (assuming they're <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>s)</p>
+</dd>
+    <dt id="Heir_CodeGeneration_OpCode_BSHR"><code>BSHR = 37</code></dt>
+  
+  <dd><p>Calculates bit shift right on the last two frames in the stack (assuming they're <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>s)</p>
+</dd>
+    <dt id="Heir_CodeGeneration_OpCode_BXOR"><code>BXOR = 35</code></dt>
+  
+  <dd><p>Calculates binary exclusive or on the last two frames in the stack (assuming they're <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a>s)</p>
+</dd>
+    <dt id="Heir_CodeGeneration_OpCode_CALL"><code>CALL = 19</code></dt>
+  
+  <dd><p>Calls the last frame in the stack (assuming it's a <a class="xref" href="Heir.Runtime.Values.FunctionValue.html">FunctionValue</a>)</p>
+</dd>
+    <dt id="Heir_CodeGeneration_OpCode_CONCAT"><code>CONCAT = 21</code></dt>
+  
+  <dd><p>Concatenates the last two frames in the stack together (assuming they're <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>s)</p>
+</dd>
+    <dt id="Heir_CodeGeneration_OpCode_CONTINUE"><code>CONTINUE = 9</code></dt>
+  
+  <dd><p>Jump ahead by the given offset plus one</p>
+</dd>
+    <dt id="Heir_CodeGeneration_OpCode_DEC"><code>DEC = 31</code></dt>
+  
+  <dd><p>Decrements a variable (assuming it's a number) by 1</p>
+</dd>
+    <dt id="Heir_CodeGeneration_OpCode_DIV"><code>DIV = 25</code></dt>
+  
+  <dd><p>Divides the last two frames in the stack (assuming they're numbers)</p>
+</dd>
+    <dt id="Heir_CodeGeneration_OpCode_DUP"><code>DUP = 13</code></dt>
+  
+  <dd><p>Pushes the last element in the stack onto the stack again</p>
+</dd>
+    <dt id="Heir_CodeGeneration_OpCode_ENDSCOPE"><code>ENDSCOPE = 1</code></dt>
+  
+  <dd><p>Ends the current scope and returns to the enclosing scope</p>
+</dd>
+    <dt id="Heir_CodeGeneration_OpCode_EQ"><code>EQ = 45</code></dt>
+  
+  <dd><p>Calculates equality of the last two frames in the stack</p>
+</dd>
+    <dt id="Heir_CodeGeneration_OpCode_EXIT"><code>EXIT = 48</code></dt>
+  
+  <dd><p>Signal to the <a class="xref" href="Heir.VirtualMachine.html">VirtualMachine</a> that the program has completed.</p>
+</dd>
+    <dt id="Heir_CodeGeneration_OpCode_GT"><code>GT = 43</code></dt>
+  
+  <dd><p>Calculates greater than (GT) on the last two frames in the stack (assuming they're numbers)</p>
+</dd>
+    <dt id="Heir_CodeGeneration_OpCode_GTE"><code>GTE = 44</code></dt>
+  
+  <dd><p>Calculates greater than or equal to (GTE) on the last two frames in the stack (assuming they're numbers)</p>
+</dd>
+    <dt id="Heir_CodeGeneration_OpCode_IDIV"><code>IDIV = 26</code></dt>
+  
+  <dd><p>Divides then floors (integer division) the last two frames in the stack (assuming they're numbers)</p>
+</dd>
+    <dt id="Heir_CodeGeneration_OpCode_INC"><code>INC = 30</code></dt>
+  
+  <dd><p>Increments a variable (assuming it's a number) by 1</p>
+</dd>
+    <dt id="Heir_CodeGeneration_OpCode_INDEX"><code>INDEX = 20</code></dt>
+  
+  <dd><p>Indexes the second to last frame in the stack using the last frame in the stack (assuming it's an <a class="xref" href="Heir.Runtime.Values.ObjectValue.html">ObjectValue</a>)</p>
+</dd>
+    <dt id="Heir_CodeGeneration_OpCode_JMP"><code>JMP = 7</code></dt>
+  
+  <dd><p>Jump ahead by the given offset</p>
+</dd>
+    <dt id="Heir_CodeGeneration_OpCode_JNZ"><code>JNZ = 11</code></dt>
+  
+  <dd><p>Jump ahead by the given offset if the last value on the stack is true or 1</p>
+</dd>
+    <dt id="Heir_CodeGeneration_OpCode_JZ"><code>JZ = 10</code></dt>
+  
+  <dd><p>Jump ahead by the given offset if the last value on the stack is false or 0</p>
+</dd>
+    <dt id="Heir_CodeGeneration_OpCode_LOAD"><code>LOAD = 16</code></dt>
+  
+  <dd><p>Loads a variable from the current scope.</p>
+<param name="operand">The name of the variable to load (string)
+</dd>
+    <dt id="Heir_CodeGeneration_OpCode_LT"><code>LT = 41</code></dt>
+  
+  <dd><p>Calculates less than (LT) on the last two frames in the stack (assuming they're numbers)</p>
+</dd>
+    <dt id="Heir_CodeGeneration_OpCode_LTE"><code>LTE = 42</code></dt>
+  
+  <dd><p>Calculates less than or equal to (LTE) on the last two frames in the stack (assuming they're numbers)</p>
+</dd>
+    <dt id="Heir_CodeGeneration_OpCode_MOD"><code>MOD = 28</code></dt>
+  
+  <dd><p>Calculates the modulus of the last two frames in the stack (assuming they're numbers)</p>
+</dd>
+    <dt id="Heir_CodeGeneration_OpCode_MUL"><code>MUL = 24</code></dt>
+  
+  <dd><p>Multiplies the last two frames in the stack (assuming they're numbers)</p>
+</dd>
+    <dt id="Heir_CodeGeneration_OpCode_NEQ"><code>NEQ = 46</code></dt>
+  
+  <dd><p>Calculates inequality of the last two frames in the stack</p>
+</dd>
+    <dt id="Heir_CodeGeneration_OpCode_NOOP"><code>NOOP = 47</code></dt>
+  
+  <dd><p>No operation, blank instruction</p>
+</dd>
+    <dt id="Heir_CodeGeneration_OpCode_NOT"><code>NOT = 40</code></dt>
+  
+  <dd><p>Calculates logical not on the last frame in the stack (assuming it's a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>)</p>
+</dd>
+    <dt id="Heir_CodeGeneration_OpCode_OR"><code>OR = 39</code></dt>
+  
+  <dd><p>Calculates logical or on the last two frames in the stack (assuming they're <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>s)</p>
+</dd>
+    <dt id="Heir_CodeGeneration_OpCode_POP"><code>POP = 6</code></dt>
+  
+  <dd><p>Pops the last value off of the stack</p>
+</dd>
+    <dt id="Heir_CodeGeneration_OpCode_POW"><code>POW = 27</code></dt>
+  
+  <dd><p>Raises the last frame in the stack to the second to last frame in the stack's power (assuming they're numbers)</p>
+</dd>
+    <dt id="Heir_CodeGeneration_OpCode_PROC"><code>PROC = 18</code></dt>
+  
+  <dd><p>Pushes a <a class="xref" href="Heir.Runtime.Values.FunctionValue.html">FunctionValue</a> onto the stack</p>
+</dd>
+    <dt id="Heir_CodeGeneration_OpCode_PUSH"><code>PUSH = 2</code></dt>
+  
+  <dd><p>Pushes the given value onto the stack</p>
+</dd>
+    <dt id="Heir_CodeGeneration_OpCode_PUSHARRAY"><code>PUSHARRAY = 4</code></dt>
+  
+  <dd><p>Pushes an <a class="xref" href="Heir.Runtime.Values.ArrayValue.html">ArrayValue</a> onto the stack</p>
+</dd>
+    <dt id="Heir_CodeGeneration_OpCode_PUSHNONE"><code>PUSHNONE = 5</code></dt>
+  
+  <dd><p>Pushes none (null) onto the stack</p>
+</dd>
+    <dt id="Heir_CodeGeneration_OpCode_PUSHOBJECT"><code>PUSHOBJECT = 3</code></dt>
+  
+  <dd><p>Pushes an <a class="xref" href="Heir.Runtime.Values.ObjectValue.html">ObjectValue</a> onto the stack</p>
+</dd>
+    <dt id="Heir_CodeGeneration_OpCode_RETURN"><code>RETURN = 17</code></dt>
+  
+  <dd><p>If the call stack is not empty, returns to the last <span class="xref">Heir.Runtime.CallStackFrame</span>.
+Otherwise, it advances.</p>
+</dd>
+    <dt id="Heir_CodeGeneration_OpCode_STORE"><code>STORE = 14</code></dt>
+  
+  <dd><p>Stores a variable in the current scope using the last two frames of the stack.
+Of those last two frames, the first is the value and the second is the name.</p>
+</dd>
+    <dt id="Heir_CodeGeneration_OpCode_STOREINDEX"><code>STOREINDEX = 15</code></dt>
+  
+  <dd><p>Stores a value in the index of an object using the last three frames of the stack.
+Of those last three frames, the first is the value, the second is the index, and the third is the object.</p>
+</dd>
+    <dt id="Heir_CodeGeneration_OpCode_SUB"><code>SUB = 23</code></dt>
+  
+  <dd><p>Subtracts the last two frames in the stack (assuming they're numbers)</p>
+</dd>
+    <dt id="Heir_CodeGeneration_OpCode_SWAP"><code>SWAP = 12</code></dt>
+  
+  <dd><p>Swaps the positions of the last 2 elements on the stack</p>
+</dd>
+    <dt id="Heir_CodeGeneration_OpCode_UNM"><code>UNM = 29</code></dt>
+  
+  <dd><p>Unary minus; negates the last frame in the stack (assuming it's a number)</p>
+</dd>
+  </dl>
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/heir-lang/heir/blob/master/Heir/CodeGeneration/OpCode.cs/#L5" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

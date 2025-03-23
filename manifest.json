@@ -1,0 +1,2912 @@
+{
+  "source_base_path": "/home/runner/work/heir/heir",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Resource",
+      "output": {
+        "resource": {
+          "relative_path": "index.json"
+        }
+      }
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "README.md",
+      "output": {
+        ".html": {
+          "relative_path": "README.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.AST.Abstract.AssignmentTarget.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.AST.Abstract.AssignmentTarget.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.AST.Abstract.AssignmentTarget",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.AST.Abstract.Expression.IVisitor-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.AST.Abstract.Expression.IVisitor-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.AST.Abstract.Expression.IVisitor<R>",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.AST.Abstract.Expression.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.AST.Abstract.Expression.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.AST.Abstract.Expression",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.AST.Abstract.INodeVisitor-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.AST.Abstract.INodeVisitor-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.AST.Abstract.INodeVisitor<T>",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.AST.Abstract.INodeVisitor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.AST.Abstract.INodeVisitor.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.AST.Abstract.INodeVisitor",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.AST.Abstract.Name.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.AST.Abstract.Name.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.AST.Abstract.Name",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.AST.Abstract.Statement.IVisitor-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.AST.Abstract.Statement.IVisitor-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.AST.Abstract.Statement.IVisitor<R>",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.AST.Abstract.Statement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.AST.Abstract.Statement.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.AST.Abstract.Statement",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.AST.Abstract.SyntaxNode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.AST.Abstract.SyntaxNode.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.AST.Abstract.SyntaxNode",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.AST.Abstract.TypeRef.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.AST.Abstract.TypeRef.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.AST.Abstract.TypeRef",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.AST.Abstract.Void.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.AST.Abstract.Void.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.AST.Abstract.Void",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.AST.Abstract.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.AST.Abstract.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.AST.Abstract",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.AST.ArrayLiteral.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.AST.ArrayLiteral.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.AST.ArrayLiteral",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.AST.ArrayType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.AST.ArrayType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.AST.ArrayType",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.AST.AssignmentOp.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.AST.AssignmentOp.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.AST.AssignmentOp",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.AST.BinaryOp.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.AST.BinaryOp.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.AST.BinaryOp",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.AST.Block.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.AST.Block.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.AST.Block",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.AST.Break.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.AST.Break.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.AST.Break",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.AST.Continue.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.AST.Continue.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.AST.Continue",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.AST.ElementAccess.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.AST.ElementAccess.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.AST.ElementAccess",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.AST.EnumDeclaration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.AST.EnumDeclaration.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.AST.EnumDeclaration",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.AST.EnumMember.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.AST.EnumMember.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.AST.EnumMember",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.AST.ExpressionStatement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.AST.ExpressionStatement.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.AST.ExpressionStatement",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.AST.FunctionDeclaration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.AST.FunctionDeclaration.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.AST.FunctionDeclaration",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.AST.FunctionType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.AST.FunctionType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.AST.FunctionType",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.AST.IdentifierName.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.AST.IdentifierName.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.AST.IdentifierName",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.AST.If.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.AST.If.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.AST.If",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.AST.InterfaceDeclaration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.AST.InterfaceDeclaration.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.AST.InterfaceDeclaration",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.AST.InterfaceField.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.AST.InterfaceField.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.AST.InterfaceField",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.AST.IntersectionType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.AST.IntersectionType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.AST.IntersectionType",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.AST.Invocation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.AST.Invocation.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.AST.Invocation",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.AST.Literal.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.AST.Literal.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.AST.Literal",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.AST.MemberAccess.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.AST.MemberAccess.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.AST.MemberAccess",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.AST.NameOf.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.AST.NameOf.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.AST.NameOf",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.AST.NoOp.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.AST.NoOp.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.AST.NoOp",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.AST.NoOpStatement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.AST.NoOpStatement.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.AST.NoOpStatement",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.AST.NoOpType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.AST.NoOpType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.AST.NoOpType",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.AST.NodeTransformer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.AST.NodeTransformer.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.AST.NodeTransformer",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.AST.ObjectLiteral.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.AST.ObjectLiteral.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.AST.ObjectLiteral",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.AST.Parameter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.AST.Parameter.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.AST.Parameter",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.AST.Parenthesized.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.AST.Parenthesized.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.AST.Parenthesized",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.AST.ParenthesizedType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.AST.ParenthesizedType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.AST.ParenthesizedType",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.AST.PostfixOp.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.AST.PostfixOp.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.AST.PostfixOp",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.AST.Return.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.AST.Return.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.AST.Return",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.AST.SingularType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.AST.SingularType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.AST.SingularType",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.AST.SyntaxTree.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.AST.SyntaxTree.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.AST.SyntaxTree",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.AST.TypeParameter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.AST.TypeParameter.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.AST.TypeParameter",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.AST.UnaryOp.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.AST.UnaryOp.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.AST.UnaryOp",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.AST.UnionType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.AST.UnionType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.AST.UnionType",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.AST.VariableDeclaration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.AST.VariableDeclaration.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.AST.VariableDeclaration",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.AST.While.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.AST.While.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.AST.While",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.AST.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.AST.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.AST",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.BiDictionary-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.BiDictionary-2.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.BiDictionary<TKey, TValue>",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Binder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Binder.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Binder",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Binding.BoundBinaryOperator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Binding.BoundBinaryOperator.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Binding.BoundBinaryOperator",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Binding.BoundBinaryOperatorType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Binding.BoundBinaryOperatorType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Binding.BoundBinaryOperatorType",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Binding.BoundPostfixOperator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Binding.BoundPostfixOperator.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Binding.BoundPostfixOperator",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Binding.BoundPostfixOperatorType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Binding.BoundPostfixOperatorType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Binding.BoundPostfixOperatorType",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Binding.BoundUnaryOperator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Binding.BoundUnaryOperator.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Binding.BoundUnaryOperator",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Binding.BoundUnaryOperatorType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Binding.BoundUnaryOperatorType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Binding.BoundUnaryOperatorType",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Binding.ISymbol.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Binding.ISymbol.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Binding.ISymbol",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Binding.InterfaceMemberSignature.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Binding.InterfaceMemberSignature.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Binding.InterfaceMemberSignature",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Binding.TypeSymbol.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Binding.TypeSymbol.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Binding.TypeSymbol",
+      "Summary": "<p sourcefile=\"api/Heir.Binding.TypeSymbol.yml\" sourcestartlinenumber=\"1\">Binds a type to a name</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Binding.VariableSymbol-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Binding.VariableSymbol-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Binding.VariableSymbol<T>",
+      "Summary": "<p sourcefile=\"api/Heir.Binding.VariableSymbol-1.yml\" sourcestartlinenumber=\"1\">Binds a name to a type</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Binding.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Binding.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Binding",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.BoundAST.Abstract.BoundAssignmentTarget.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.BoundAST.Abstract.BoundAssignmentTarget.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.BoundAST.Abstract.BoundAssignmentTarget",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.BoundAST.Abstract.BoundExpression.IVisitor-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.BoundAST.Abstract.BoundExpression.IVisitor-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.BoundAST.Abstract.BoundExpression.IVisitor<R>",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.BoundAST.Abstract.BoundExpression.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.BoundAST.Abstract.BoundExpression.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.BoundAST.Abstract.BoundExpression",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.BoundAST.Abstract.BoundName.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.BoundAST.Abstract.BoundName.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.BoundAST.Abstract.BoundName",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.BoundAST.Abstract.BoundStatement.IVisitor-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.BoundAST.Abstract.BoundStatement.IVisitor-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.BoundAST.Abstract.BoundStatement.IVisitor<R>",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.BoundAST.Abstract.BoundStatement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.BoundAST.Abstract.BoundStatement.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.BoundAST.Abstract.BoundStatement",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.BoundAST.Abstract.BoundSyntaxNode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.BoundAST.Abstract.BoundSyntaxNode.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.BoundAST.Abstract.BoundSyntaxNode",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.BoundAST.Abstract.IBoundNodeVisitor-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.BoundAST.Abstract.IBoundNodeVisitor-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.BoundAST.Abstract.IBoundNodeVisitor<T>",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.BoundAST.Abstract.IBoundNodeVisitor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.BoundAST.Abstract.IBoundNodeVisitor.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.BoundAST.Abstract.IBoundNodeVisitor",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.BoundAST.Abstract.Void.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.BoundAST.Abstract.Void.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.BoundAST.Abstract.Void",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.BoundAST.Abstract.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.BoundAST.Abstract.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.BoundAST.Abstract",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.BoundAST.BoundArrayLiteral.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.BoundAST.BoundArrayLiteral.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.BoundAST.BoundArrayLiteral",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.BoundAST.BoundAssignmentOp.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.BoundAST.BoundAssignmentOp.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.BoundAST.BoundAssignmentOp",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.BoundAST.BoundBinaryOp.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.BoundAST.BoundBinaryOp.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.BoundAST.BoundBinaryOp",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.BoundAST.BoundBlock.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.BoundAST.BoundBlock.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.BoundAST.BoundBlock",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.BoundAST.BoundBreak.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.BoundAST.BoundBreak.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.BoundAST.BoundBreak",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.BoundAST.BoundContinue.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.BoundAST.BoundContinue.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.BoundAST.BoundContinue",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.BoundAST.BoundElementAccess.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.BoundAST.BoundElementAccess.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.BoundAST.BoundElementAccess",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.BoundAST.BoundEnumDeclaration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.BoundAST.BoundEnumDeclaration.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.BoundAST.BoundEnumDeclaration",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.BoundAST.BoundEnumMember.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.BoundAST.BoundEnumMember.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.BoundAST.BoundEnumMember",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.BoundAST.BoundExpressionStatement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.BoundAST.BoundExpressionStatement.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.BoundAST.BoundExpressionStatement",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.BoundAST.BoundFunctionDeclaration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.BoundAST.BoundFunctionDeclaration.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.BoundAST.BoundFunctionDeclaration",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.BoundAST.BoundIdentifierName.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.BoundAST.BoundIdentifierName.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.BoundAST.BoundIdentifierName",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.BoundAST.BoundIf.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.BoundAST.BoundIf.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.BoundAST.BoundIf",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.BoundAST.BoundInvocation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.BoundAST.BoundInvocation.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.BoundAST.BoundInvocation",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.BoundAST.BoundLiteral.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.BoundAST.BoundLiteral.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.BoundAST.BoundLiteral",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.BoundAST.BoundMemberAccess.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.BoundAST.BoundMemberAccess.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.BoundAST.BoundMemberAccess",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.BoundAST.BoundNoOp.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.BoundAST.BoundNoOp.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.BoundAST.BoundNoOp",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.BoundAST.BoundNoOpStatement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.BoundAST.BoundNoOpStatement.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.BoundAST.BoundNoOpStatement",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.BoundAST.BoundObjectLiteral.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.BoundAST.BoundObjectLiteral.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.BoundAST.BoundObjectLiteral",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.BoundAST.BoundParameter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.BoundAST.BoundParameter.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.BoundAST.BoundParameter",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.BoundAST.BoundParenthesized.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.BoundAST.BoundParenthesized.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.BoundAST.BoundParenthesized",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.BoundAST.BoundPostfixOp.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.BoundAST.BoundPostfixOp.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.BoundAST.BoundPostfixOp",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.BoundAST.BoundReturn.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.BoundAST.BoundReturn.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.BoundAST.BoundReturn",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.BoundAST.BoundSyntaxTree.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.BoundAST.BoundSyntaxTree.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.BoundAST.BoundSyntaxTree",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.BoundAST.BoundTypeParameter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.BoundAST.BoundTypeParameter.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.BoundAST.BoundTypeParameter",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.BoundAST.BoundUnaryOp.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.BoundAST.BoundUnaryOp.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.BoundAST.BoundUnaryOp",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.BoundAST.BoundVariableDeclaration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.BoundAST.BoundVariableDeclaration.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.BoundAST.BoundVariableDeclaration",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.BoundAST.BoundWhile.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.BoundAST.BoundWhile.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.BoundAST.BoundWhile",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.BoundAST.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.BoundAST.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.BoundAST",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.BytecodeGenerator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.BytecodeGenerator.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.BytecodeGenerator",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.CodeGeneration.Bytecode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.CodeGeneration.Bytecode.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.CodeGeneration.Bytecode",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.CodeGeneration.BytecodeDeserializer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.CodeGeneration.BytecodeDeserializer.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.CodeGeneration.BytecodeDeserializer",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.CodeGeneration.BytecodeOptimizer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.CodeGeneration.BytecodeOptimizer.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.CodeGeneration.BytecodeOptimizer",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.CodeGeneration.BytecodeSerializer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.CodeGeneration.BytecodeSerializer.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.CodeGeneration.BytecodeSerializer",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.CodeGeneration.Instruction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.CodeGeneration.Instruction.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.CodeGeneration.Instruction",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.CodeGeneration.OpCode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.CodeGeneration.OpCode.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.CodeGeneration.OpCode",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.CodeGeneration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.CodeGeneration.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.CodeGeneration",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.CompileTimeMacroEvaluator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.CompileTimeMacroEvaluator.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.CompileTimeMacroEvaluator",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Diagnostics.Diagnostic.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Diagnostics.Diagnostic.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Diagnostics.Diagnostic",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Diagnostics.DiagnosticBag.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Diagnostics.DiagnosticBag.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Diagnostics.DiagnosticBag",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Diagnostics.DiagnosticCode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Diagnostics.DiagnosticCode.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Diagnostics.DiagnosticCode",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Diagnostics.DiagnosticLevel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Diagnostics.DiagnosticLevel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Diagnostics.DiagnosticLevel",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Diagnostics.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Diagnostics.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Diagnostics",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Lexer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Lexer.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Lexer",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Parser.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Parser.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Parser",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Resolver.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Resolver.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Resolver",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Runtime.BinaryTypeOperations.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Runtime.BinaryTypeOperations.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Runtime.BinaryTypeOperations",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Runtime.Intrinsics.Global.NowFunction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Runtime.Intrinsics.Global.NowFunction.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Runtime.Intrinsics.Global.NowFunction",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Runtime.Intrinsics.Global.PrintFunction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Runtime.Intrinsics.Global.PrintFunction.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Runtime.Intrinsics.Global.PrintFunction",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Runtime.Intrinsics.Global.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Runtime.Intrinsics.Global.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Runtime.Intrinsics.Global",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Runtime.Intrinsics.IIntrinsicValue-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Runtime.Intrinsics.IIntrinsicValue-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Runtime.Intrinsics.IIntrinsicValue<TType>",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Runtime.Intrinsics.IIntrinsicValue.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Runtime.Intrinsics.IIntrinsicValue.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Runtime.Intrinsics.IIntrinsicValue",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Runtime.Intrinsics.IntrinsicFunction.BaseDelegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Runtime.Intrinsics.IntrinsicFunction.BaseDelegate.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Runtime.Intrinsics.IntrinsicFunction.BaseDelegate",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Runtime.Intrinsics.IntrinsicFunction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Runtime.Intrinsics.IntrinsicFunction.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Runtime.Intrinsics.IntrinsicFunction",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Runtime.Intrinsics.IntrinsicLibrary.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Runtime.Intrinsics.IntrinsicLibrary.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Runtime.Intrinsics.IntrinsicLibrary",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Runtime.Intrinsics.IntrinsicRegistrar.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Runtime.Intrinsics.IntrinsicRegistrar.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Runtime.Intrinsics.IntrinsicRegistrar",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Runtime.Intrinsics.IntrinsicValue-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Runtime.Intrinsics.IntrinsicValue-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Runtime.Intrinsics.IntrinsicValue<TType>",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Runtime.Intrinsics.Intrinsics.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Runtime.Intrinsics.Intrinsics.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Runtime.Intrinsics.Intrinsics",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Runtime.Intrinsics.Libraries.MathLibrary.AbsFunction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Runtime.Intrinsics.Libraries.MathLibrary.AbsFunction.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Runtime.Intrinsics.Libraries.MathLibrary.AbsFunction",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Runtime.Intrinsics.Libraries.MathLibrary.AcosFunction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Runtime.Intrinsics.Libraries.MathLibrary.AcosFunction.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Runtime.Intrinsics.Libraries.MathLibrary.AcosFunction",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Runtime.Intrinsics.Libraries.MathLibrary.AcoshFunction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Runtime.Intrinsics.Libraries.MathLibrary.AcoshFunction.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Runtime.Intrinsics.Libraries.MathLibrary.AcoshFunction",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Runtime.Intrinsics.Libraries.MathLibrary.AsinFunction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Runtime.Intrinsics.Libraries.MathLibrary.AsinFunction.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Runtime.Intrinsics.Libraries.MathLibrary.AsinFunction",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Runtime.Intrinsics.Libraries.MathLibrary.AsinhFunction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Runtime.Intrinsics.Libraries.MathLibrary.AsinhFunction.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Runtime.Intrinsics.Libraries.MathLibrary.AsinhFunction",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Runtime.Intrinsics.Libraries.MathLibrary.Atan2Function.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Runtime.Intrinsics.Libraries.MathLibrary.Atan2Function.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Runtime.Intrinsics.Libraries.MathLibrary.Atan2Function",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Runtime.Intrinsics.Libraries.MathLibrary.AtanFunction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Runtime.Intrinsics.Libraries.MathLibrary.AtanFunction.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Runtime.Intrinsics.Libraries.MathLibrary.AtanFunction",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Runtime.Intrinsics.Libraries.MathLibrary.AtanhFunction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Runtime.Intrinsics.Libraries.MathLibrary.AtanhFunction.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Runtime.Intrinsics.Libraries.MathLibrary.AtanhFunction",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Runtime.Intrinsics.Libraries.MathLibrary.CbrtFunction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Runtime.Intrinsics.Libraries.MathLibrary.CbrtFunction.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Runtime.Intrinsics.Libraries.MathLibrary.CbrtFunction",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Runtime.Intrinsics.Libraries.MathLibrary.CeilFunction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Runtime.Intrinsics.Libraries.MathLibrary.CeilFunction.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Runtime.Intrinsics.Libraries.MathLibrary.CeilFunction",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Runtime.Intrinsics.Libraries.MathLibrary.CosFunction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Runtime.Intrinsics.Libraries.MathLibrary.CosFunction.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Runtime.Intrinsics.Libraries.MathLibrary.CosFunction",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Runtime.Intrinsics.Libraries.MathLibrary.CoshFunction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Runtime.Intrinsics.Libraries.MathLibrary.CoshFunction.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Runtime.Intrinsics.Libraries.MathLibrary.CoshFunction",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Runtime.Intrinsics.Libraries.MathLibrary.FloorFunction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Runtime.Intrinsics.Libraries.MathLibrary.FloorFunction.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Runtime.Intrinsics.Libraries.MathLibrary.FloorFunction",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Runtime.Intrinsics.Libraries.MathLibrary.InDegreesFunction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Runtime.Intrinsics.Libraries.MathLibrary.InDegreesFunction.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Runtime.Intrinsics.Libraries.MathLibrary.InDegreesFunction",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Runtime.Intrinsics.Libraries.MathLibrary.InRadiansFunction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Runtime.Intrinsics.Libraries.MathLibrary.InRadiansFunction.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Runtime.Intrinsics.Libraries.MathLibrary.InRadiansFunction",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Runtime.Intrinsics.Libraries.MathLibrary.LerpFunction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Runtime.Intrinsics.Libraries.MathLibrary.LerpFunction.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Runtime.Intrinsics.Libraries.MathLibrary.LerpFunction",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Runtime.Intrinsics.Libraries.MathLibrary.MathLibrary.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Runtime.Intrinsics.Libraries.MathLibrary.MathLibrary.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Runtime.Intrinsics.Libraries.MathLibrary.MathLibrary",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Runtime.Intrinsics.Libraries.MathLibrary.Q_RsqrtFunction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Runtime.Intrinsics.Libraries.MathLibrary.Q_RsqrtFunction.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Runtime.Intrinsics.Libraries.MathLibrary.Q_RsqrtFunction",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Runtime.Intrinsics.Libraries.MathLibrary.RandomFloatFunction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Runtime.Intrinsics.Libraries.MathLibrary.RandomFloatFunction.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Runtime.Intrinsics.Libraries.MathLibrary.RandomFloatFunction",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Runtime.Intrinsics.Libraries.MathLibrary.RandomIntFunction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Runtime.Intrinsics.Libraries.MathLibrary.RandomIntFunction.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Runtime.Intrinsics.Libraries.MathLibrary.RandomIntFunction",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Runtime.Intrinsics.Libraries.MathLibrary.RoundFunction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Runtime.Intrinsics.Libraries.MathLibrary.RoundFunction.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Runtime.Intrinsics.Libraries.MathLibrary.RoundFunction",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Runtime.Intrinsics.Libraries.MathLibrary.SinFunction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Runtime.Intrinsics.Libraries.MathLibrary.SinFunction.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Runtime.Intrinsics.Libraries.MathLibrary.SinFunction",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Runtime.Intrinsics.Libraries.MathLibrary.SinhFunction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Runtime.Intrinsics.Libraries.MathLibrary.SinhFunction.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Runtime.Intrinsics.Libraries.MathLibrary.SinhFunction",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Runtime.Intrinsics.Libraries.MathLibrary.SqrtFunction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Runtime.Intrinsics.Libraries.MathLibrary.SqrtFunction.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Runtime.Intrinsics.Libraries.MathLibrary.SqrtFunction",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Runtime.Intrinsics.Libraries.MathLibrary.TanFunction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Runtime.Intrinsics.Libraries.MathLibrary.TanFunction.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Runtime.Intrinsics.Libraries.MathLibrary.TanFunction",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Runtime.Intrinsics.Libraries.MathLibrary.TanhFunction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Runtime.Intrinsics.Libraries.MathLibrary.TanhFunction.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Runtime.Intrinsics.Libraries.MathLibrary.TanhFunction",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Runtime.Intrinsics.Libraries.MathLibrary.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Runtime.Intrinsics.Libraries.MathLibrary.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Runtime.Intrinsics.Libraries.MathLibrary",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Runtime.Intrinsics.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Runtime.Intrinsics.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Runtime.Intrinsics",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Runtime.Scope.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Runtime.Scope.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Runtime.Scope",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Runtime.StackFrame.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Runtime.StackFrame.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Runtime.StackFrame",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Runtime.Values.ArrayValue.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Runtime.Values.ArrayValue.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Runtime.Values.ArrayValue",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Runtime.Values.FunctionValue.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Runtime.Values.FunctionValue.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Runtime.Values.FunctionValue",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Runtime.Values.IValue.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Runtime.Values.IValue.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Runtime.Values.IValue",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Runtime.Values.ObjectValue.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Runtime.Values.ObjectValue.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Runtime.Values.ObjectValue",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Runtime.Values.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Runtime.Values.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Runtime.Values",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Runtime.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Runtime.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Runtime",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.SourceFile.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.SourceFile.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.SourceFile",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Syntax.Location.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Syntax.Location.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Syntax.Location",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Syntax.Span.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Syntax.Span.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Syntax.Span",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Syntax.SyntaxFacts.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Syntax.SyntaxFacts.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Syntax.SyntaxFacts",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Syntax.SyntaxKind.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Syntax.SyntaxKind.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Syntax.SyntaxKind",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Syntax.Token.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Syntax.Token.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Syntax.Token",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Syntax.TokenFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Syntax.TokenFactory.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Syntax.TokenFactory",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Syntax.TokenStream.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Syntax.TokenStream.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Syntax.TokenStream",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Syntax.TriviaKind.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Syntax.TriviaKind.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Syntax.TriviaKind",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Syntax.TriviaToken.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Syntax.TriviaToken.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Syntax.TriviaToken",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Syntax.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Syntax.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Syntax",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.TypeChecker.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.TypeChecker.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.TypeChecker",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Types.AnyType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Types.AnyType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Types.AnyType",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Types.ArrayType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Types.ArrayType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Types.ArrayType",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Types.BaseType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Types.BaseType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Types.BaseType",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Types.FunctionType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Types.FunctionType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Types.FunctionType",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Types.InterfaceType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Types.InterfaceType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Types.InterfaceType",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Types.IntersectionType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Types.IntersectionType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Types.IntersectionType",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Types.IntrinsicTypes.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Types.IntrinsicTypes.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Types.IntrinsicTypes",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Types.LiteralType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Types.LiteralType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Types.LiteralType",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Types.ParenthesizedType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Types.ParenthesizedType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Types.ParenthesizedType",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Types.PrimitiveType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Types.PrimitiveType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Types.PrimitiveType",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Types.PrimitiveTypeKind.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Types.PrimitiveTypeKind.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Types.PrimitiveTypeKind",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Types.SingularType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Types.SingularType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Types.SingularType",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Types.TypeKind.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Types.TypeKind.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Types.TypeKind",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Types.TypeParameter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Types.TypeParameter.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Types.TypeParameter",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Types.UnionType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Types.UnionType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Types.UnionType",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Types.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Types.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Types",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.Utility.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.Utility.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.Utility",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.VirtualMachine.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.VirtualMachine.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir.VirtualMachine",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Heir.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Heir.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Heir",
+      "Summary": null
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".json": {
+          "relative_path": "api/toc.json"
+        },
+        ".html": {
+          "relative_path": "api/toc.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/getting-started.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/getting-started.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/roadmap.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/roadmap.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "docs/toc.yml",
+      "output": {
+        ".json": {
+          "relative_path": "docs/toc.json"
+        },
+        ".html": {
+          "relative_path": "docs/toc.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".json": {
+          "relative_path": "toc.json"
+        },
+        ".html": {
+          "relative_path": "toc.html"
+        }
+      },
+      "version": ""
+    }
+  ],
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}

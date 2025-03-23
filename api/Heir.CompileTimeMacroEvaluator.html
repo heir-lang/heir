@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class CompileTimeMacroEvaluator | Heir Docs </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class CompileTimeMacroEvaluator | Heir Docs ">
+      
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/heir-lang/heir/new/master/apiSpec/new?filename=Heir_CompileTimeMacroEvaluator.md&amp;value=---%0Auid%3A%20Heir.CompileTimeMacroEvaluator%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="Heir Docs">
+            Heir Docs
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="Heir.CompileTimeMacroEvaluator">
+
+
+
+  <h1 id="Heir_CompileTimeMacroEvaluator" data-uid="Heir.CompileTimeMacroEvaluator" class="text-break">
+Class CompileTimeMacroEvaluator  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/CompileTimeMacroEvaluator.cs/#L7"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="Heir.html">Heir</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>Heir.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"></div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class CompileTimeMacroEvaluator : NodeTransformer, INodeVisitor&lt;SyntaxNode?&gt;, Expression.IVisitor&lt;SyntaxNode?&gt;, Statement.IVisitor&lt;SyntaxNode?&gt;</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="Heir.AST.NodeTransformer.html">NodeTransformer</a></div>
+      <div><span class="xref">CompileTimeMacroEvaluator</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="Heir.AST.Abstract.INodeVisitor-1.html">INodeVisitor</a>&lt;<a class="xref" href="Heir.AST.Abstract.SyntaxNode.html">SyntaxNode</a>&gt;</div>
+      <div><a class="xref" href="Heir.AST.Abstract.Expression.html">Expression</a>.<a class="xref" href="Heir.AST.Abstract.Expression.IVisitor-1.html">IVisitor</a>&lt;<a class="xref" href="Heir.AST.Abstract.SyntaxNode.html">SyntaxNode</a>&gt;</div>
+      <div><a class="xref" href="Heir.AST.Abstract.Statement.html">Statement</a>.<a class="xref" href="Heir.AST.Abstract.Statement.IVisitor-1.html">IVisitor</a>&lt;<a class="xref" href="Heir.AST.Abstract.SyntaxNode.html">SyntaxNode</a>&gt;</div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="Heir.AST.NodeTransformer.html#Heir_AST_NodeTransformer_VisitSyntaxTree_Heir_AST_SyntaxTree_">NodeTransformer.VisitSyntaxTree(SyntaxTree)</a>
+    </div>
+    <div>
+      <a class="xref" href="Heir.AST.NodeTransformer.html#Heir_AST_NodeTransformer_VisitAssignmentOpExpression_Heir_AST_AssignmentOp_">NodeTransformer.VisitAssignmentOpExpression(AssignmentOp)</a>
+    </div>
+    <div>
+      <a class="xref" href="Heir.AST.NodeTransformer.html#Heir_AST_NodeTransformer_VisitUnaryOpExpression_Heir_AST_UnaryOp_">NodeTransformer.VisitUnaryOpExpression(UnaryOp)</a>
+    </div>
+    <div>
+      <a class="xref" href="Heir.AST.NodeTransformer.html#Heir_AST_NodeTransformer_VisitPostfixOpExpression_Heir_AST_PostfixOp_">NodeTransformer.VisitPostfixOpExpression(PostfixOp)</a>
+    </div>
+    <div>
+      <a class="xref" href="Heir.AST.NodeTransformer.html#Heir_AST_NodeTransformer_VisitBinaryOpExpression_Heir_AST_BinaryOp_">NodeTransformer.VisitBinaryOpExpression(BinaryOp)</a>
+    </div>
+    <div>
+      <a class="xref" href="Heir.AST.NodeTransformer.html#Heir_AST_NodeTransformer_VisitParenthesizedExpression_Heir_AST_Parenthesized_">NodeTransformer.VisitParenthesizedExpression(Parenthesized)</a>
+    </div>
+    <div>
+      <a class="xref" href="Heir.AST.NodeTransformer.html#Heir_AST_NodeTransformer_VisitLiteralExpression_Heir_AST_Literal_">NodeTransformer.VisitLiteralExpression(Literal)</a>
+    </div>
+    <div>
+      <a class="xref" href="Heir.AST.NodeTransformer.html#Heir_AST_NodeTransformer_VisitObjectLiteralExpression_Heir_AST_ObjectLiteral_">NodeTransformer.VisitObjectLiteralExpression(ObjectLiteral)</a>
+    </div>
+    <div>
+      <a class="xref" href="Heir.AST.NodeTransformer.html#Heir_AST_NodeTransformer_VisitArrayLiteralExpression_Heir_AST_ArrayLiteral_">NodeTransformer.VisitArrayLiteralExpression(ArrayLiteral)</a>
+    </div>
+    <div>
+      <a class="xref" href="Heir.AST.NodeTransformer.html#Heir_AST_NodeTransformer_VisitNoOp_Heir_AST_NoOp_">NodeTransformer.VisitNoOp(NoOp)</a>
+    </div>
+    <div>
+      <a class="xref" href="Heir.AST.NodeTransformer.html#Heir_AST_NodeTransformer_VisitNoOp_Heir_AST_NoOpType_">NodeTransformer.VisitNoOp(NoOpType)</a>
+    </div>
+    <div>
+      <a class="xref" href="Heir.AST.NodeTransformer.html#Heir_AST_NodeTransformer_VisitNoOp_Heir_AST_NoOpStatement_">NodeTransformer.VisitNoOp(NoOpStatement)</a>
+    </div>
+    <div>
+      <a class="xref" href="Heir.AST.NodeTransformer.html#Heir_AST_NodeTransformer_VisitSingularTypeRef_Heir_AST_SingularType_">NodeTransformer.VisitSingularTypeRef(SingularType)</a>
+    </div>
+    <div>
+      <a class="xref" href="Heir.AST.NodeTransformer.html#Heir_AST_NodeTransformer_VisitParenthesizedTypeRef_Heir_AST_ParenthesizedType_">NodeTransformer.VisitParenthesizedTypeRef(ParenthesizedType)</a>
+    </div>
+    <div>
+      <a class="xref" href="Heir.AST.NodeTransformer.html#Heir_AST_NodeTransformer_VisitUnionTypeRef_Heir_AST_UnionType_">NodeTransformer.VisitUnionTypeRef(UnionType)</a>
+    </div>
+    <div>
+      <a class="xref" href="Heir.AST.NodeTransformer.html#Heir_AST_NodeTransformer_VisitIntersectionTypeRef_Heir_AST_IntersectionType_">NodeTransformer.VisitIntersectionTypeRef(IntersectionType)</a>
+    </div>
+    <div>
+      <a class="xref" href="Heir.AST.NodeTransformer.html#Heir_AST_NodeTransformer_VisitFunctionTypeRef_Heir_AST_FunctionType_">NodeTransformer.VisitFunctionTypeRef(FunctionType)</a>
+    </div>
+    <div>
+      <a class="xref" href="Heir.AST.NodeTransformer.html#Heir_AST_NodeTransformer_VisitArrayTypeRef_Heir_AST_ArrayType_">NodeTransformer.VisitArrayTypeRef(ArrayType)</a>
+    </div>
+    <div>
+      <a class="xref" href="Heir.AST.NodeTransformer.html#Heir_AST_NodeTransformer_VisitParameter_Heir_AST_Parameter_">NodeTransformer.VisitParameter(Parameter)</a>
+    </div>
+    <div>
+      <a class="xref" href="Heir.AST.NodeTransformer.html#Heir_AST_NodeTransformer_VisitTypeParameter_Heir_AST_TypeParameter_">NodeTransformer.VisitTypeParameter(TypeParameter)</a>
+    </div>
+    <div>
+      <a class="xref" href="Heir.AST.NodeTransformer.html#Heir_AST_NodeTransformer_VisitInvocationExpression_Heir_AST_Invocation_">NodeTransformer.VisitInvocationExpression(Invocation)</a>
+    </div>
+    <div>
+      <a class="xref" href="Heir.AST.NodeTransformer.html#Heir_AST_NodeTransformer_VisitElementAccessExpression_Heir_AST_ElementAccess_">NodeTransformer.VisitElementAccessExpression(ElementAccess)</a>
+    </div>
+    <div>
+      <a class="xref" href="Heir.AST.NodeTransformer.html#Heir_AST_NodeTransformer_VisitBlock_Heir_AST_Block_">NodeTransformer.VisitBlock(Block)</a>
+    </div>
+    <div>
+      <a class="xref" href="Heir.AST.NodeTransformer.html#Heir_AST_NodeTransformer_VisitExpressionStatement_Heir_AST_ExpressionStatement_">NodeTransformer.VisitExpressionStatement(ExpressionStatement)</a>
+    </div>
+    <div>
+      <a class="xref" href="Heir.AST.NodeTransformer.html#Heir_AST_NodeTransformer_VisitReturnStatement_Heir_AST_Return_">NodeTransformer.VisitReturnStatement(Return)</a>
+    </div>
+    <div>
+      <a class="xref" href="Heir.AST.NodeTransformer.html#Heir_AST_NodeTransformer_VisitBreakStatement_Heir_AST_Break_">NodeTransformer.VisitBreakStatement(Break)</a>
+    </div>
+    <div>
+      <a class="xref" href="Heir.AST.NodeTransformer.html#Heir_AST_NodeTransformer_VisitContinueStatement_Heir_AST_Continue_">NodeTransformer.VisitContinueStatement(Continue)</a>
+    </div>
+    <div>
+      <a class="xref" href="Heir.AST.NodeTransformer.html#Heir_AST_NodeTransformer_VisitEnumMember_Heir_AST_EnumMember_">NodeTransformer.VisitEnumMember(EnumMember)</a>
+    </div>
+    <div>
+      <a class="xref" href="Heir.AST.NodeTransformer.html#Heir_AST_NodeTransformer_VisitFunctionDeclaration_Heir_AST_FunctionDeclaration_">NodeTransformer.VisitFunctionDeclaration(FunctionDeclaration)</a>
+    </div>
+    <div>
+      <a class="xref" href="Heir.AST.NodeTransformer.html#Heir_AST_NodeTransformer_VisitIfStatement_Heir_AST_If_">NodeTransformer.VisitIfStatement(If)</a>
+    </div>
+    <div>
+      <a class="xref" href="Heir.AST.NodeTransformer.html#Heir_AST_NodeTransformer_VisitWhileStatement_Heir_AST_While_">NodeTransformer.VisitWhileStatement(While)</a>
+    </div>
+    <div>
+      <a class="xref" href="Heir.AST.NodeTransformer.html#Heir_AST_NodeTransformer_VisitInterfaceField_Heir_AST_InterfaceField_">NodeTransformer.VisitInterfaceField(InterfaceField)</a>
+    </div>
+    <div>
+      <a class="xref" href="Heir.AST.NodeTransformer.html#Heir_AST_NodeTransformer_VisitInterfaceDeclaration_Heir_AST_InterfaceDeclaration_">NodeTransformer.VisitInterfaceDeclaration(InterfaceDeclaration)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="Heir_CompileTimeMacroEvaluator__ctor_" data-uid="Heir.CompileTimeMacroEvaluator.#ctor*"></a>
+
+  <h3 id="Heir_CompileTimeMacroEvaluator__ctor_Heir_AST_SyntaxTree_" data-uid="Heir.CompileTimeMacroEvaluator.#ctor(Heir.AST.SyntaxTree)">
+  CompileTimeMacroEvaluator(SyntaxTree)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/CompileTimeMacroEvaluator.cs/#L7"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CompileTimeMacroEvaluator(SyntaxTree cleanTree)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>cleanTree</code> <a class="xref" href="Heir.AST.SyntaxTree.html">SyntaxTree</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="Heir_CompileTimeMacroEvaluator_Evaluate_" data-uid="Heir.CompileTimeMacroEvaluator.Evaluate*"></a>
+
+  <h3 id="Heir_CompileTimeMacroEvaluator_Evaluate" data-uid="Heir.CompileTimeMacroEvaluator.Evaluate">
+  Evaluate()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/CompileTimeMacroEvaluator.cs/#L13"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SyntaxTree Evaluate()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Heir.AST.SyntaxTree.html">SyntaxTree</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_CompileTimeMacroEvaluator_VisitEnumDeclaration_" data-uid="Heir.CompileTimeMacroEvaluator.VisitEnumDeclaration*"></a>
+
+  <h3 id="Heir_CompileTimeMacroEvaluator_VisitEnumDeclaration_Heir_AST_EnumDeclaration_" data-uid="Heir.CompileTimeMacroEvaluator.VisitEnumDeclaration(Heir.AST.EnumDeclaration)">
+  VisitEnumDeclaration(EnumDeclaration)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/CompileTimeMacroEvaluator.cs/#L15"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override SyntaxNode? VisitEnumDeclaration(EnumDeclaration enumDeclaration)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>enumDeclaration</code> <a class="xref" href="Heir.AST.EnumDeclaration.html">EnumDeclaration</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Heir.AST.Abstract.SyntaxNode.html">SyntaxNode</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_CompileTimeMacroEvaluator_VisitIdentifierNameExpression_" data-uid="Heir.CompileTimeMacroEvaluator.VisitIdentifierNameExpression*"></a>
+
+  <h3 id="Heir_CompileTimeMacroEvaluator_VisitIdentifierNameExpression_Heir_AST_IdentifierName_" data-uid="Heir.CompileTimeMacroEvaluator.VisitIdentifierNameExpression(Heir.AST.IdentifierName)">
+  VisitIdentifierNameExpression(IdentifierName)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/CompileTimeMacroEvaluator.cs/#L50"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override SyntaxNode? VisitIdentifierNameExpression(IdentifierName identifierName)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>identifierName</code> <a class="xref" href="Heir.AST.IdentifierName.html">IdentifierName</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Heir.AST.Abstract.SyntaxNode.html">SyntaxNode</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_CompileTimeMacroEvaluator_VisitMemberAccessExpression_" data-uid="Heir.CompileTimeMacroEvaluator.VisitMemberAccessExpression*"></a>
+
+  <h3 id="Heir_CompileTimeMacroEvaluator_VisitMemberAccessExpression_Heir_AST_MemberAccess_" data-uid="Heir.CompileTimeMacroEvaluator.VisitMemberAccessExpression(Heir.AST.MemberAccess)">
+  VisitMemberAccessExpression(MemberAccess)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/CompileTimeMacroEvaluator.cs/#L37"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override SyntaxNode? VisitMemberAccessExpression(MemberAccess memberAccess)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>memberAccess</code> <a class="xref" href="Heir.AST.MemberAccess.html">MemberAccess</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Heir.AST.Abstract.SyntaxNode.html">SyntaxNode</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_CompileTimeMacroEvaluator_VisitNameOfExpression_" data-uid="Heir.CompileTimeMacroEvaluator.VisitNameOfExpression*"></a>
+
+  <h3 id="Heir_CompileTimeMacroEvaluator_VisitNameOfExpression_Heir_AST_NameOf_" data-uid="Heir.CompileTimeMacroEvaluator.VisitNameOfExpression(Heir.AST.NameOf)">
+  VisitNameOfExpression(NameOf)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/CompileTimeMacroEvaluator.cs/#L57"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override Literal VisitNameOfExpression(NameOf nameOf)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>nameOf</code> <a class="xref" href="Heir.AST.NameOf.html">NameOf</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Heir.AST.Literal.html">Literal</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_CompileTimeMacroEvaluator_VisitVariableDeclaration_" data-uid="Heir.CompileTimeMacroEvaluator.VisitVariableDeclaration*"></a>
+
+  <h3 id="Heir_CompileTimeMacroEvaluator_VisitVariableDeclaration_Heir_AST_VariableDeclaration_" data-uid="Heir.CompileTimeMacroEvaluator.VisitVariableDeclaration(Heir.AST.VariableDeclaration)">
+  VisitVariableDeclaration(VariableDeclaration)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/CompileTimeMacroEvaluator.cs/#L26"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override SyntaxNode? VisitVariableDeclaration(VariableDeclaration variableDeclaration)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>variableDeclaration</code> <a class="xref" href="Heir.AST.VariableDeclaration.html">VariableDeclaration</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Heir.AST.Abstract.SyntaxNode.html">SyntaxNode</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/heir-lang/heir/blob/master/Heir/CompileTimeMacroEvaluator.cs/#L7" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

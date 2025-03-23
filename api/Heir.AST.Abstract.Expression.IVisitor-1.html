@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Interface Expression.IVisitor&lt;R&gt; | Heir Docs </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Interface Expression.IVisitor&lt;R&gt; | Heir Docs ">
+      
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/heir-lang/heir/new/master/apiSpec/new?filename=Heir_AST_Abstract_Expression_IVisitor_1.md&amp;value=---%0Auid%3A%20Heir.AST.Abstract.Expression.IVisitor%601%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="Heir Docs">
+            Heir Docs
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="Heir.AST.Abstract.Expression.IVisitor`1">
+
+
+
+  <h1 id="Heir_AST_Abstract_Expression_IVisitor_1" data-uid="Heir.AST.Abstract.Expression.IVisitor`1" class="text-break">
+Interface Expression.IVisitor&lt;R&gt;  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/AST/Abstract/Expression.cs/#L7"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="Heir.html">Heir</a>.<a class="xref" href="Heir.AST.html">AST</a>.<a class="xref" href="Heir.AST.Abstract.html">Abstract</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>Heir.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"></div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface Expression.IVisitor&lt;out R&gt;</code></pre>
+  </div>
+
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>R</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="Heir_AST_Abstract_Expression_IVisitor_1_VisitArrayLiteralExpression_" data-uid="Heir.AST.Abstract.Expression.IVisitor`1.VisitArrayLiteralExpression*"></a>
+
+  <h3 id="Heir_AST_Abstract_Expression_IVisitor_1_VisitArrayLiteralExpression_Heir_AST_ArrayLiteral_" data-uid="Heir.AST.Abstract.Expression.IVisitor`1.VisitArrayLiteralExpression(Heir.AST.ArrayLiteral)">
+  VisitArrayLiteralExpression(ArrayLiteral)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/AST/Abstract/Expression.cs/#L17"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">R VisitArrayLiteralExpression(ArrayLiteral arrayLiteral)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>arrayLiteral</code> <a class="xref" href="Heir.AST.ArrayLiteral.html">ArrayLiteral</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">R</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_AST_Abstract_Expression_IVisitor_1_VisitArrayTypeRef_" data-uid="Heir.AST.Abstract.Expression.IVisitor`1.VisitArrayTypeRef*"></a>
+
+  <h3 id="Heir_AST_Abstract_Expression_IVisitor_1_VisitArrayTypeRef_Heir_AST_ArrayType_" data-uid="Heir.AST.Abstract.Expression.IVisitor`1.VisitArrayTypeRef(Heir.AST.ArrayType)">
+  VisitArrayTypeRef(ArrayType)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/AST/Abstract/Expression.cs/#L25"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">R VisitArrayTypeRef(ArrayType arrayType)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>arrayType</code> <a class="xref" href="Heir.AST.ArrayType.html">ArrayType</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">R</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_AST_Abstract_Expression_IVisitor_1_VisitAssignmentOpExpression_" data-uid="Heir.AST.Abstract.Expression.IVisitor`1.VisitAssignmentOpExpression*"></a>
+
+  <h3 id="Heir_AST_Abstract_Expression_IVisitor_1_VisitAssignmentOpExpression_Heir_AST_AssignmentOp_" data-uid="Heir.AST.Abstract.Expression.IVisitor`1.VisitAssignmentOpExpression(Heir.AST.AssignmentOp)">
+  VisitAssignmentOpExpression(AssignmentOp)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/AST/Abstract/Expression.cs/#L10"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">R VisitAssignmentOpExpression(AssignmentOp assignmentOp)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>assignmentOp</code> <a class="xref" href="Heir.AST.AssignmentOp.html">AssignmentOp</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">R</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_AST_Abstract_Expression_IVisitor_1_VisitBinaryOpExpression_" data-uid="Heir.AST.Abstract.Expression.IVisitor`1.VisitBinaryOpExpression*"></a>
+
+  <h3 id="Heir_AST_Abstract_Expression_IVisitor_1_VisitBinaryOpExpression_Heir_AST_BinaryOp_" data-uid="Heir.AST.Abstract.Expression.IVisitor`1.VisitBinaryOpExpression(Heir.AST.BinaryOp)">
+  VisitBinaryOpExpression(BinaryOp)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/AST/Abstract/Expression.cs/#L13"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">R VisitBinaryOpExpression(BinaryOp binaryOp)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>binaryOp</code> <a class="xref" href="Heir.AST.BinaryOp.html">BinaryOp</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">R</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_AST_Abstract_Expression_IVisitor_1_VisitElementAccessExpression_" data-uid="Heir.AST.Abstract.Expression.IVisitor`1.VisitElementAccessExpression*"></a>
+
+  <h3 id="Heir_AST_Abstract_Expression_IVisitor_1_VisitElementAccessExpression_Heir_AST_ElementAccess_" data-uid="Heir.AST.Abstract.Expression.IVisitor`1.VisitElementAccessExpression(Heir.AST.ElementAccess)">
+  VisitElementAccessExpression(ElementAccess)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/AST/Abstract/Expression.cs/#L28"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">R VisitElementAccessExpression(ElementAccess elementAccess)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>elementAccess</code> <a class="xref" href="Heir.AST.ElementAccess.html">ElementAccess</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">R</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_AST_Abstract_Expression_IVisitor_1_VisitFunctionTypeRef_" data-uid="Heir.AST.Abstract.Expression.IVisitor`1.VisitFunctionTypeRef*"></a>
+
+  <h3 id="Heir_AST_Abstract_Expression_IVisitor_1_VisitFunctionTypeRef_Heir_AST_FunctionType_" data-uid="Heir.AST.Abstract.Expression.IVisitor`1.VisitFunctionTypeRef(Heir.AST.FunctionType)">
+  VisitFunctionTypeRef(FunctionType)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/AST/Abstract/Expression.cs/#L24"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">R VisitFunctionTypeRef(FunctionType functionType)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>functionType</code> <a class="xref" href="Heir.AST.FunctionType.html">FunctionType</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">R</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_AST_Abstract_Expression_IVisitor_1_VisitIdentifierNameExpression_" data-uid="Heir.AST.Abstract.Expression.IVisitor`1.VisitIdentifierNameExpression*"></a>
+
+  <h3 id="Heir_AST_Abstract_Expression_IVisitor_1_VisitIdentifierNameExpression_Heir_AST_IdentifierName_" data-uid="Heir.AST.Abstract.Expression.IVisitor`1.VisitIdentifierNameExpression(Heir.AST.IdentifierName)">
+  VisitIdentifierNameExpression(IdentifierName)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/AST/Abstract/Expression.cs/#L9"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">R VisitIdentifierNameExpression(IdentifierName identifierName)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>identifierName</code> <a class="xref" href="Heir.AST.IdentifierName.html">IdentifierName</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">R</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_AST_Abstract_Expression_IVisitor_1_VisitIntersectionTypeRef_" data-uid="Heir.AST.Abstract.Expression.IVisitor`1.VisitIntersectionTypeRef*"></a>
+
+  <h3 id="Heir_AST_Abstract_Expression_IVisitor_1_VisitIntersectionTypeRef_Heir_AST_IntersectionType_" data-uid="Heir.AST.Abstract.Expression.IVisitor`1.VisitIntersectionTypeRef(Heir.AST.IntersectionType)">
+  VisitIntersectionTypeRef(IntersectionType)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/AST/Abstract/Expression.cs/#L23"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">R VisitIntersectionTypeRef(IntersectionType intersectionType)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>intersectionType</code> <a class="xref" href="Heir.AST.IntersectionType.html">IntersectionType</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">R</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_AST_Abstract_Expression_IVisitor_1_VisitInvocationExpression_" data-uid="Heir.AST.Abstract.Expression.IVisitor`1.VisitInvocationExpression*"></a>
+
+  <h3 id="Heir_AST_Abstract_Expression_IVisitor_1_VisitInvocationExpression_Heir_AST_Invocation_" data-uid="Heir.AST.Abstract.Expression.IVisitor`1.VisitInvocationExpression(Heir.AST.Invocation)">
+  VisitInvocationExpression(Invocation)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/AST/Abstract/Expression.cs/#L27"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">R VisitInvocationExpression(Invocation invocation)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>invocation</code> <a class="xref" href="Heir.AST.Invocation.html">Invocation</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">R</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_AST_Abstract_Expression_IVisitor_1_VisitLiteralExpression_" data-uid="Heir.AST.Abstract.Expression.IVisitor`1.VisitLiteralExpression*"></a>
+
+  <h3 id="Heir_AST_Abstract_Expression_IVisitor_1_VisitLiteralExpression_Heir_AST_Literal_" data-uid="Heir.AST.Abstract.Expression.IVisitor`1.VisitLiteralExpression(Heir.AST.Literal)">
+  VisitLiteralExpression(Literal)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/AST/Abstract/Expression.cs/#L15"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">R VisitLiteralExpression(Literal literal)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>literal</code> <a class="xref" href="Heir.AST.Literal.html">Literal</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">R</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_AST_Abstract_Expression_IVisitor_1_VisitMemberAccessExpression_" data-uid="Heir.AST.Abstract.Expression.IVisitor`1.VisitMemberAccessExpression*"></a>
+
+  <h3 id="Heir_AST_Abstract_Expression_IVisitor_1_VisitMemberAccessExpression_Heir_AST_MemberAccess_" data-uid="Heir.AST.Abstract.Expression.IVisitor`1.VisitMemberAccessExpression(Heir.AST.MemberAccess)">
+  VisitMemberAccessExpression(MemberAccess)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/AST/Abstract/Expression.cs/#L29"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">R VisitMemberAccessExpression(MemberAccess memberAccess)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>memberAccess</code> <a class="xref" href="Heir.AST.MemberAccess.html">MemberAccess</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">R</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_AST_Abstract_Expression_IVisitor_1_VisitNameOfExpression_" data-uid="Heir.AST.Abstract.Expression.IVisitor`1.VisitNameOfExpression*"></a>
+
+  <h3 id="Heir_AST_Abstract_Expression_IVisitor_1_VisitNameOfExpression_Heir_AST_NameOf_" data-uid="Heir.AST.Abstract.Expression.IVisitor`1.VisitNameOfExpression(Heir.AST.NameOf)">
+  VisitNameOfExpression(NameOf)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/AST/Abstract/Expression.cs/#L30"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">R VisitNameOfExpression(NameOf nameOf)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>nameOf</code> <a class="xref" href="Heir.AST.NameOf.html">NameOf</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">R</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_AST_Abstract_Expression_IVisitor_1_VisitNoOp_" data-uid="Heir.AST.Abstract.Expression.IVisitor`1.VisitNoOp*"></a>
+
+  <h3 id="Heir_AST_Abstract_Expression_IVisitor_1_VisitNoOp_Heir_AST_NoOp_" data-uid="Heir.AST.Abstract.Expression.IVisitor`1.VisitNoOp(Heir.AST.NoOp)">
+  VisitNoOp(NoOp)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/AST/Abstract/Expression.cs/#L18"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">R VisitNoOp(NoOp noOp)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>noOp</code> <a class="xref" href="Heir.AST.NoOp.html">NoOp</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">R</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_AST_Abstract_Expression_IVisitor_1_VisitNoOp_" data-uid="Heir.AST.Abstract.Expression.IVisitor`1.VisitNoOp*"></a>
+
+  <h3 id="Heir_AST_Abstract_Expression_IVisitor_1_VisitNoOp_Heir_AST_NoOpType_" data-uid="Heir.AST.Abstract.Expression.IVisitor`1.VisitNoOp(Heir.AST.NoOpType)">
+  VisitNoOp(NoOpType)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/AST/Abstract/Expression.cs/#L19"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">R VisitNoOp(NoOpType noOp)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>noOp</code> <a class="xref" href="Heir.AST.NoOpType.html">NoOpType</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">R</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_AST_Abstract_Expression_IVisitor_1_VisitObjectLiteralExpression_" data-uid="Heir.AST.Abstract.Expression.IVisitor`1.VisitObjectLiteralExpression*"></a>
+
+  <h3 id="Heir_AST_Abstract_Expression_IVisitor_1_VisitObjectLiteralExpression_Heir_AST_ObjectLiteral_" data-uid="Heir.AST.Abstract.Expression.IVisitor`1.VisitObjectLiteralExpression(Heir.AST.ObjectLiteral)">
+  VisitObjectLiteralExpression(ObjectLiteral)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/AST/Abstract/Expression.cs/#L16"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">R VisitObjectLiteralExpression(ObjectLiteral objectLiteral)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>objectLiteral</code> <a class="xref" href="Heir.AST.ObjectLiteral.html">ObjectLiteral</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">R</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_AST_Abstract_Expression_IVisitor_1_VisitParameter_" data-uid="Heir.AST.Abstract.Expression.IVisitor`1.VisitParameter*"></a>
+
+  <h3 id="Heir_AST_Abstract_Expression_IVisitor_1_VisitParameter_Heir_AST_Parameter_" data-uid="Heir.AST.Abstract.Expression.IVisitor`1.VisitParameter(Heir.AST.Parameter)">
+  VisitParameter(Parameter)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/AST/Abstract/Expression.cs/#L26"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">R VisitParameter(Parameter parameter)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>parameter</code> <a class="xref" href="Heir.AST.Parameter.html">Parameter</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">R</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_AST_Abstract_Expression_IVisitor_1_VisitParenthesizedExpression_" data-uid="Heir.AST.Abstract.Expression.IVisitor`1.VisitParenthesizedExpression*"></a>
+
+  <h3 id="Heir_AST_Abstract_Expression_IVisitor_1_VisitParenthesizedExpression_Heir_AST_Parenthesized_" data-uid="Heir.AST.Abstract.Expression.IVisitor`1.VisitParenthesizedExpression(Heir.AST.Parenthesized)">
+  VisitParenthesizedExpression(Parenthesized)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/AST/Abstract/Expression.cs/#L14"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">R VisitParenthesizedExpression(Parenthesized parenthesized)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>parenthesized</code> <a class="xref" href="Heir.AST.Parenthesized.html">Parenthesized</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">R</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_AST_Abstract_Expression_IVisitor_1_VisitParenthesizedTypeRef_" data-uid="Heir.AST.Abstract.Expression.IVisitor`1.VisitParenthesizedTypeRef*"></a>
+
+  <h3 id="Heir_AST_Abstract_Expression_IVisitor_1_VisitParenthesizedTypeRef_Heir_AST_ParenthesizedType_" data-uid="Heir.AST.Abstract.Expression.IVisitor`1.VisitParenthesizedTypeRef(Heir.AST.ParenthesizedType)">
+  VisitParenthesizedTypeRef(ParenthesizedType)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/AST/Abstract/Expression.cs/#L21"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">R VisitParenthesizedTypeRef(ParenthesizedType parenthesizedType)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>parenthesizedType</code> <a class="xref" href="Heir.AST.ParenthesizedType.html">ParenthesizedType</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">R</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_AST_Abstract_Expression_IVisitor_1_VisitPostfixOpExpression_" data-uid="Heir.AST.Abstract.Expression.IVisitor`1.VisitPostfixOpExpression*"></a>
+
+  <h3 id="Heir_AST_Abstract_Expression_IVisitor_1_VisitPostfixOpExpression_Heir_AST_PostfixOp_" data-uid="Heir.AST.Abstract.Expression.IVisitor`1.VisitPostfixOpExpression(Heir.AST.PostfixOp)">
+  VisitPostfixOpExpression(PostfixOp)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/AST/Abstract/Expression.cs/#L12"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">R VisitPostfixOpExpression(PostfixOp postfixOp)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>postfixOp</code> <a class="xref" href="Heir.AST.PostfixOp.html">PostfixOp</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">R</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_AST_Abstract_Expression_IVisitor_1_VisitSingularTypeRef_" data-uid="Heir.AST.Abstract.Expression.IVisitor`1.VisitSingularTypeRef*"></a>
+
+  <h3 id="Heir_AST_Abstract_Expression_IVisitor_1_VisitSingularTypeRef_Heir_AST_SingularType_" data-uid="Heir.AST.Abstract.Expression.IVisitor`1.VisitSingularTypeRef(Heir.AST.SingularType)">
+  VisitSingularTypeRef(SingularType)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/AST/Abstract/Expression.cs/#L20"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">R VisitSingularTypeRef(SingularType singularType)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>singularType</code> <a class="xref" href="Heir.AST.SingularType.html">SingularType</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">R</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_AST_Abstract_Expression_IVisitor_1_VisitTypeParameter_" data-uid="Heir.AST.Abstract.Expression.IVisitor`1.VisitTypeParameter*"></a>
+
+  <h3 id="Heir_AST_Abstract_Expression_IVisitor_1_VisitTypeParameter_Heir_AST_TypeParameter_" data-uid="Heir.AST.Abstract.Expression.IVisitor`1.VisitTypeParameter(Heir.AST.TypeParameter)">
+  VisitTypeParameter(TypeParameter)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/AST/Abstract/Expression.cs/#L31"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">R VisitTypeParameter(TypeParameter typeParameter)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>typeParameter</code> <a class="xref" href="Heir.AST.TypeParameter.html">TypeParameter</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">R</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_AST_Abstract_Expression_IVisitor_1_VisitUnaryOpExpression_" data-uid="Heir.AST.Abstract.Expression.IVisitor`1.VisitUnaryOpExpression*"></a>
+
+  <h3 id="Heir_AST_Abstract_Expression_IVisitor_1_VisitUnaryOpExpression_Heir_AST_UnaryOp_" data-uid="Heir.AST.Abstract.Expression.IVisitor`1.VisitUnaryOpExpression(Heir.AST.UnaryOp)">
+  VisitUnaryOpExpression(UnaryOp)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/AST/Abstract/Expression.cs/#L11"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">R VisitUnaryOpExpression(UnaryOp unaryOp)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>unaryOp</code> <a class="xref" href="Heir.AST.UnaryOp.html">UnaryOp</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">R</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_AST_Abstract_Expression_IVisitor_1_VisitUnionTypeRef_" data-uid="Heir.AST.Abstract.Expression.IVisitor`1.VisitUnionTypeRef*"></a>
+
+  <h3 id="Heir_AST_Abstract_Expression_IVisitor_1_VisitUnionTypeRef_Heir_AST_UnionType_" data-uid="Heir.AST.Abstract.Expression.IVisitor`1.VisitUnionTypeRef(Heir.AST.UnionType)">
+  VisitUnionTypeRef(UnionType)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/AST/Abstract/Expression.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">R VisitUnionTypeRef(UnionType unionType)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>unionType</code> <a class="xref" href="Heir.AST.UnionType.html">UnionType</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">R</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/heir-lang/heir/blob/master/Heir/AST/Abstract/Expression.cs/#L7" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,1621 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class BytecodeGenerator | Heir Docs </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class BytecodeGenerator | Heir Docs ">
+      
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/heir-lang/heir/new/master/apiSpec/new?filename=Heir_BytecodeGenerator.md&amp;value=---%0Auid%3A%20Heir.BytecodeGenerator%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="Heir Docs">
+            Heir Docs
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="Heir.BytecodeGenerator">
+
+
+
+  <h1 id="Heir_BytecodeGenerator" data-uid="Heir.BytecodeGenerator" class="text-break">
+Class BytecodeGenerator  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/BytecodeGenerator.cs/#L11"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="Heir.html">Heir</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>Heir.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"></div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class BytecodeGenerator : INodeVisitor&lt;List&lt;Instruction&gt;&gt;, Expression.IVisitor&lt;List&lt;Instruction&gt;&gt;, Statement.IVisitor&lt;List&lt;Instruction&gt;&gt;</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">BytecodeGenerator</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="Heir.AST.Abstract.INodeVisitor-1.html">INodeVisitor</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="Heir.CodeGeneration.Instruction.html">Instruction</a>&gt;&gt;</div>
+      <div><a class="xref" href="Heir.AST.Abstract.Expression.html">Expression</a>.<a class="xref" href="Heir.AST.Abstract.Expression.IVisitor-1.html">IVisitor</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="Heir.CodeGeneration.Instruction.html">Instruction</a>&gt;&gt;</div>
+      <div><a class="xref" href="Heir.AST.Abstract.Statement.html">Statement</a>.<a class="xref" href="Heir.AST.Abstract.Statement.IVisitor-1.html">IVisitor</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="Heir.CodeGeneration.Instruction.html">Instruction</a>&gt;&gt;</div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="Heir_BytecodeGenerator__ctor_" data-uid="Heir.BytecodeGenerator.#ctor*"></a>
+
+  <h3 id="Heir_BytecodeGenerator__ctor_Heir_Diagnostics_DiagnosticBag_Heir_Binder_" data-uid="Heir.BytecodeGenerator.#ctor(Heir.Diagnostics.DiagnosticBag,Heir.Binder)">
+  BytecodeGenerator(DiagnosticBag, Binder)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/BytecodeGenerator.cs/#L11"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BytecodeGenerator(DiagnosticBag diagnostics, Binder binder)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>diagnostics</code> <a class="xref" href="Heir.Diagnostics.DiagnosticBag.html">DiagnosticBag</a></dt>
+    <dd></dd>
+    <dt><code>binder</code> <a class="xref" href="Heir.Binder.html">Binder</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="Heir_BytecodeGenerator_GenerateBytecode_" data-uid="Heir.BytecodeGenerator.GenerateBytecode*"></a>
+
+  <h3 id="Heir_BytecodeGenerator_GenerateBytecode" data-uid="Heir.BytecodeGenerator.GenerateBytecode">
+  GenerateBytecode()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/BytecodeGenerator.cs/#L15"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Bytecode GenerateBytecode()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Heir.CodeGeneration.Bytecode.html">Bytecode</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_BytecodeGenerator_VisitArrayLiteralExpression_" data-uid="Heir.BytecodeGenerator.VisitArrayLiteralExpression*"></a>
+
+  <h3 id="Heir_BytecodeGenerator_VisitArrayLiteralExpression_Heir_AST_ArrayLiteral_" data-uid="Heir.BytecodeGenerator.VisitArrayLiteralExpression(Heir.AST.ArrayLiteral)">
+  VisitArrayLiteralExpression(ArrayLiteral)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/BytecodeGenerator.cs/#L351"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;Instruction&gt; VisitArrayLiteralExpression(ArrayLiteral arrayLiteral)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>arrayLiteral</code> <a class="xref" href="Heir.AST.ArrayLiteral.html">ArrayLiteral</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="Heir.CodeGeneration.Instruction.html">Instruction</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_BytecodeGenerator_VisitArrayTypeRef_" data-uid="Heir.BytecodeGenerator.VisitArrayTypeRef*"></a>
+
+  <h3 id="Heir_BytecodeGenerator_VisitArrayTypeRef_Heir_AST_ArrayType_" data-uid="Heir.BytecodeGenerator.VisitArrayTypeRef(Heir.AST.ArrayType)">
+  VisitArrayTypeRef(ArrayType)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/BytecodeGenerator.cs/#L236"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;Instruction&gt; VisitArrayTypeRef(ArrayType arrayType)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>arrayType</code> <a class="xref" href="Heir.AST.ArrayType.html">ArrayType</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="Heir.CodeGeneration.Instruction.html">Instruction</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_BytecodeGenerator_VisitAssignmentOpExpression_" data-uid="Heir.BytecodeGenerator.VisitAssignmentOpExpression*"></a>
+
+  <h3 id="Heir_BytecodeGenerator_VisitAssignmentOpExpression_Heir_AST_AssignmentOp_" data-uid="Heir.BytecodeGenerator.VisitAssignmentOpExpression(Heir.AST.AssignmentOp)">
+  VisitAssignmentOpExpression(AssignmentOp)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/BytecodeGenerator.cs/#L239"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;Instruction&gt; VisitAssignmentOpExpression(AssignmentOp assignmentOp)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>assignmentOp</code> <a class="xref" href="Heir.AST.AssignmentOp.html">AssignmentOp</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="Heir.CodeGeneration.Instruction.html">Instruction</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_BytecodeGenerator_VisitBinaryOpExpression_" data-uid="Heir.BytecodeGenerator.VisitBinaryOpExpression*"></a>
+
+  <h3 id="Heir_BytecodeGenerator_VisitBinaryOpExpression_Heir_AST_BinaryOp_" data-uid="Heir.BytecodeGenerator.VisitBinaryOpExpression(Heir.AST.BinaryOp)">
+  VisitBinaryOpExpression(BinaryOp)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/BytecodeGenerator.cs/#L240"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;Instruction&gt; VisitBinaryOpExpression(BinaryOp binaryOp)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>binaryOp</code> <a class="xref" href="Heir.AST.BinaryOp.html">BinaryOp</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="Heir.CodeGeneration.Instruction.html">Instruction</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_BytecodeGenerator_VisitBlock_" data-uid="Heir.BytecodeGenerator.VisitBlock*"></a>
+
+  <h3 id="Heir_BytecodeGenerator_VisitBlock_Heir_AST_Block_" data-uid="Heir.BytecodeGenerator.VisitBlock(Heir.AST.Block)">
+  VisitBlock(Block)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/BytecodeGenerator.cs/#L33"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;Instruction&gt; VisitBlock(Block block)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>block</code> <a class="xref" href="Heir.AST.Block.html">Block</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="Heir.CodeGeneration.Instruction.html">Instruction</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_BytecodeGenerator_VisitBreakStatement_" data-uid="Heir.BytecodeGenerator.VisitBreakStatement*"></a>
+
+  <h3 id="Heir_BytecodeGenerator_VisitBreakStatement_Heir_AST_Break_" data-uid="Heir.BytecodeGenerator.VisitBreakStatement(Heir.AST.Break)">
+  VisitBreakStatement(Break)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/BytecodeGenerator.cs/#L213"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;Instruction&gt; VisitBreakStatement(Break @break)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>break</code> <a class="xref" href="Heir.AST.Break.html">Break</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="Heir.CodeGeneration.Instruction.html">Instruction</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_BytecodeGenerator_VisitContinueStatement_" data-uid="Heir.BytecodeGenerator.VisitContinueStatement*"></a>
+
+  <h3 id="Heir_BytecodeGenerator_VisitContinueStatement_Heir_AST_Continue_" data-uid="Heir.BytecodeGenerator.VisitContinueStatement(Heir.AST.Continue)">
+  VisitContinueStatement(Continue)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/BytecodeGenerator.cs/#L218"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;Instruction&gt; VisitContinueStatement(Continue @continue)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>continue</code> <a class="xref" href="Heir.AST.Continue.html">Continue</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="Heir.CodeGeneration.Instruction.html">Instruction</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_BytecodeGenerator_VisitElementAccessExpression_" data-uid="Heir.BytecodeGenerator.VisitElementAccessExpression*"></a>
+
+  <h3 id="Heir_BytecodeGenerator_VisitElementAccessExpression_Heir_AST_ElementAccess_" data-uid="Heir.BytecodeGenerator.VisitElementAccessExpression(Heir.AST.ElementAccess)">
+  VisitElementAccessExpression(ElementAccess)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/BytecodeGenerator.cs/#L167"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;Instruction&gt; VisitElementAccessExpression(ElementAccess elementAccess)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>elementAccess</code> <a class="xref" href="Heir.AST.ElementAccess.html">ElementAccess</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="Heir.CodeGeneration.Instruction.html">Instruction</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_BytecodeGenerator_VisitEnumDeclaration_" data-uid="Heir.BytecodeGenerator.VisitEnumDeclaration*"></a>
+
+  <h3 id="Heir_BytecodeGenerator_VisitEnumDeclaration_Heir_AST_EnumDeclaration_" data-uid="Heir.BytecodeGenerator.VisitEnumDeclaration(Heir.AST.EnumDeclaration)">
+  VisitEnumDeclaration(EnumDeclaration)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/BytecodeGenerator.cs/#L72"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;Instruction&gt; VisitEnumDeclaration(EnumDeclaration enumDeclaration)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>enumDeclaration</code> <a class="xref" href="Heir.AST.EnumDeclaration.html">EnumDeclaration</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="Heir.CodeGeneration.Instruction.html">Instruction</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_BytecodeGenerator_VisitEnumMember_" data-uid="Heir.BytecodeGenerator.VisitEnumMember*"></a>
+
+  <h3 id="Heir_BytecodeGenerator_VisitEnumMember_Heir_AST_EnumMember_" data-uid="Heir.BytecodeGenerator.VisitEnumMember(Heir.AST.EnumMember)">
+  VisitEnumMember(EnumMember)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/BytecodeGenerator.cs/#L96"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;Instruction&gt; VisitEnumMember(EnumMember enumMember)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>enumMember</code> <a class="xref" href="Heir.AST.EnumMember.html">EnumMember</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="Heir.CodeGeneration.Instruction.html">Instruction</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_BytecodeGenerator_VisitExpressionStatement_" data-uid="Heir.BytecodeGenerator.VisitExpressionStatement*"></a>
+
+  <h3 id="Heir_BytecodeGenerator_VisitExpressionStatement_Heir_AST_ExpressionStatement_" data-uid="Heir.BytecodeGenerator.VisitExpressionStatement(Heir.AST.ExpressionStatement)">
+  VisitExpressionStatement(ExpressionStatement)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/BytecodeGenerator.cs/#L223"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;Instruction&gt; VisitExpressionStatement(ExpressionStatement expressionStatement)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>expressionStatement</code> <a class="xref" href="Heir.AST.ExpressionStatement.html">ExpressionStatement</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="Heir.CodeGeneration.Instruction.html">Instruction</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_BytecodeGenerator_VisitFunctionDeclaration_" data-uid="Heir.BytecodeGenerator.VisitFunctionDeclaration*"></a>
+
+  <h3 id="Heir_BytecodeGenerator_VisitFunctionDeclaration_Heir_AST_FunctionDeclaration_" data-uid="Heir.BytecodeGenerator.VisitFunctionDeclaration(Heir.AST.FunctionDeclaration)">
+  VisitFunctionDeclaration(FunctionDeclaration)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/BytecodeGenerator.cs/#L53"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;Instruction&gt; VisitFunctionDeclaration(FunctionDeclaration functionDeclaration)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>functionDeclaration</code> <a class="xref" href="Heir.AST.FunctionDeclaration.html">FunctionDeclaration</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="Heir.CodeGeneration.Instruction.html">Instruction</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_BytecodeGenerator_VisitFunctionTypeRef_" data-uid="Heir.BytecodeGenerator.VisitFunctionTypeRef*"></a>
+
+  <h3 id="Heir_BytecodeGenerator_VisitFunctionTypeRef_Heir_AST_FunctionType_" data-uid="Heir.BytecodeGenerator.VisitFunctionTypeRef(Heir.AST.FunctionType)">
+  VisitFunctionTypeRef(FunctionType)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/BytecodeGenerator.cs/#L235"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;Instruction&gt; VisitFunctionTypeRef(FunctionType functionType)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>functionType</code> <a class="xref" href="Heir.AST.FunctionType.html">FunctionType</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="Heir.CodeGeneration.Instruction.html">Instruction</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_BytecodeGenerator_VisitIdentifierNameExpression_" data-uid="Heir.BytecodeGenerator.VisitIdentifierNameExpression*"></a>
+
+  <h3 id="Heir_BytecodeGenerator_VisitIdentifierNameExpression_Heir_AST_IdentifierName_" data-uid="Heir.BytecodeGenerator.VisitIdentifierNameExpression(Heir.AST.IdentifierName)">
+  VisitIdentifierNameExpression(IdentifierName)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/BytecodeGenerator.cs/#L319"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;Instruction&gt; VisitIdentifierNameExpression(IdentifierName identifierName)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>identifierName</code> <a class="xref" href="Heir.AST.IdentifierName.html">IdentifierName</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="Heir.CodeGeneration.Instruction.html">Instruction</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_BytecodeGenerator_VisitIfStatement_" data-uid="Heir.BytecodeGenerator.VisitIfStatement*"></a>
+
+  <h3 id="Heir_BytecodeGenerator_VisitIfStatement_Heir_AST_If_" data-uid="Heir.BytecodeGenerator.VisitIfStatement(Heir.AST.If)">
+  VisitIfStatement(If)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/BytecodeGenerator.cs/#L98"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;Instruction&gt; VisitIfStatement(If @if)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>if</code> <a class="xref" href="Heir.AST.If.html">If</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="Heir.CodeGeneration.Instruction.html">Instruction</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_BytecodeGenerator_VisitInterfaceDeclaration_" data-uid="Heir.BytecodeGenerator.VisitInterfaceDeclaration*"></a>
+
+  <h3 id="Heir_BytecodeGenerator_VisitInterfaceDeclaration_Heir_AST_InterfaceDeclaration_" data-uid="Heir.BytecodeGenerator.VisitInterfaceDeclaration(Heir.AST.InterfaceDeclaration)">
+  VisitInterfaceDeclaration(InterfaceDeclaration)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/BytecodeGenerator.cs/#L40"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;Instruction&gt; VisitInterfaceDeclaration(InterfaceDeclaration interfaceDeclaration)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>interfaceDeclaration</code> <a class="xref" href="Heir.AST.InterfaceDeclaration.html">InterfaceDeclaration</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="Heir.CodeGeneration.Instruction.html">Instruction</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_BytecodeGenerator_VisitInterfaceField_" data-uid="Heir.BytecodeGenerator.VisitInterfaceField*"></a>
+
+  <h3 id="Heir_BytecodeGenerator_VisitInterfaceField_Heir_AST_InterfaceField_" data-uid="Heir.BytecodeGenerator.VisitInterfaceField(Heir.AST.InterfaceField)">
+  VisitInterfaceField(InterfaceField)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/BytecodeGenerator.cs/#L39"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;Instruction&gt; VisitInterfaceField(InterfaceField interfaceField)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>interfaceField</code> <a class="xref" href="Heir.AST.InterfaceField.html">InterfaceField</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="Heir.CodeGeneration.Instruction.html">Instruction</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_BytecodeGenerator_VisitIntersectionTypeRef_" data-uid="Heir.BytecodeGenerator.VisitIntersectionTypeRef*"></a>
+
+  <h3 id="Heir_BytecodeGenerator_VisitIntersectionTypeRef_Heir_AST_IntersectionType_" data-uid="Heir.BytecodeGenerator.VisitIntersectionTypeRef(Heir.AST.IntersectionType)">
+  VisitIntersectionTypeRef(IntersectionType)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/BytecodeGenerator.cs/#L234"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;Instruction&gt; VisitIntersectionTypeRef(IntersectionType intersectionType)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>intersectionType</code> <a class="xref" href="Heir.AST.IntersectionType.html">IntersectionType</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="Heir.CodeGeneration.Instruction.html">Instruction</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_BytecodeGenerator_VisitInvocationExpression_" data-uid="Heir.BytecodeGenerator.VisitInvocationExpression*"></a>
+
+  <h3 id="Heir_BytecodeGenerator_VisitInvocationExpression_Heir_AST_Invocation_" data-uid="Heir.BytecodeGenerator.VisitInvocationExpression(Heir.AST.Invocation)">
+  VisitInvocationExpression(Invocation)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/BytecodeGenerator.cs/#L174"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;Instruction&gt; VisitInvocationExpression(Invocation invocation)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>invocation</code> <a class="xref" href="Heir.AST.Invocation.html">Invocation</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="Heir.CodeGeneration.Instruction.html">Instruction</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_BytecodeGenerator_VisitLiteralExpression_" data-uid="Heir.BytecodeGenerator.VisitLiteralExpression*"></a>
+
+  <h3 id="Heir_BytecodeGenerator_VisitLiteralExpression_Heir_AST_Literal_" data-uid="Heir.BytecodeGenerator.VisitLiteralExpression(Heir.AST.Literal)">
+  VisitLiteralExpression(Literal)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/BytecodeGenerator.cs/#L325"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;Instruction&gt; VisitLiteralExpression(Literal literal)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>literal</code> <a class="xref" href="Heir.AST.Literal.html">Literal</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="Heir.CodeGeneration.Instruction.html">Instruction</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_BytecodeGenerator_VisitMemberAccessExpression_" data-uid="Heir.BytecodeGenerator.VisitMemberAccessExpression*"></a>
+
+  <h3 id="Heir_BytecodeGenerator_VisitMemberAccessExpression_Heir_AST_MemberAccess_" data-uid="Heir.BytecodeGenerator.VisitMemberAccessExpression(Heir.AST.MemberAccess)">
+  VisitMemberAccessExpression(MemberAccess)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/BytecodeGenerator.cs/#L160"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;Instruction&gt; VisitMemberAccessExpression(MemberAccess memberAccess)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>memberAccess</code> <a class="xref" href="Heir.AST.MemberAccess.html">MemberAccess</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="Heir.CodeGeneration.Instruction.html">Instruction</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_BytecodeGenerator_VisitNameOfExpression_" data-uid="Heir.BytecodeGenerator.VisitNameOfExpression*"></a>
+
+  <h3 id="Heir_BytecodeGenerator_VisitNameOfExpression_Heir_AST_NameOf_" data-uid="Heir.BytecodeGenerator.VisitNameOfExpression(Heir.AST.NameOf)">
+  VisitNameOfExpression(NameOf)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/BytecodeGenerator.cs/#L229"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;Instruction&gt; VisitNameOfExpression(NameOf nameOf)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>nameOf</code> <a class="xref" href="Heir.AST.NameOf.html">NameOf</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="Heir.CodeGeneration.Instruction.html">Instruction</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_BytecodeGenerator_VisitNoOp_" data-uid="Heir.BytecodeGenerator.VisitNoOp*"></a>
+
+  <h3 id="Heir_BytecodeGenerator_VisitNoOp_Heir_AST_NoOp_" data-uid="Heir.BytecodeGenerator.VisitNoOp(Heir.AST.NoOp)">
+  VisitNoOp(NoOp)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/BytecodeGenerator.cs/#L226"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;Instruction&gt; VisitNoOp(NoOp noOp)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>noOp</code> <a class="xref" href="Heir.AST.NoOp.html">NoOp</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="Heir.CodeGeneration.Instruction.html">Instruction</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_BytecodeGenerator_VisitNoOp_" data-uid="Heir.BytecodeGenerator.VisitNoOp*"></a>
+
+  <h3 id="Heir_BytecodeGenerator_VisitNoOp_Heir_AST_NoOpStatement_" data-uid="Heir.BytecodeGenerator.VisitNoOp(Heir.AST.NoOpStatement)">
+  VisitNoOp(NoOpStatement)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/BytecodeGenerator.cs/#L227"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;Instruction&gt; VisitNoOp(NoOpStatement noOp)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>noOp</code> <a class="xref" href="Heir.AST.NoOpStatement.html">NoOpStatement</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="Heir.CodeGeneration.Instruction.html">Instruction</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_BytecodeGenerator_VisitNoOp_" data-uid="Heir.BytecodeGenerator.VisitNoOp*"></a>
+
+  <h3 id="Heir_BytecodeGenerator_VisitNoOp_Heir_AST_NoOpType_" data-uid="Heir.BytecodeGenerator.VisitNoOp(Heir.AST.NoOpType)">
+  VisitNoOp(NoOpType)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/BytecodeGenerator.cs/#L228"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;Instruction&gt; VisitNoOp(NoOpType noOp)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>noOp</code> <a class="xref" href="Heir.AST.NoOpType.html">NoOpType</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="Heir.CodeGeneration.Instruction.html">Instruction</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_BytecodeGenerator_VisitObjectLiteralExpression_" data-uid="Heir.BytecodeGenerator.VisitObjectLiteralExpression*"></a>
+
+  <h3 id="Heir_BytecodeGenerator_VisitObjectLiteralExpression_Heir_AST_ObjectLiteral_" data-uid="Heir.BytecodeGenerator.VisitObjectLiteralExpression(Heir.AST.ObjectLiteral)">
+  VisitObjectLiteralExpression(ObjectLiteral)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/BytecodeGenerator.cs/#L330"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;Instruction&gt; VisitObjectLiteralExpression(ObjectLiteral objectLiteral)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>objectLiteral</code> <a class="xref" href="Heir.AST.ObjectLiteral.html">ObjectLiteral</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="Heir.CodeGeneration.Instruction.html">Instruction</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_BytecodeGenerator_VisitParameter_" data-uid="Heir.BytecodeGenerator.VisitParameter*"></a>
+
+  <h3 id="Heir_BytecodeGenerator_VisitParameter_Heir_AST_Parameter_" data-uid="Heir.BytecodeGenerator.VisitParameter(Heir.AST.Parameter)">
+  VisitParameter(Parameter)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/BytecodeGenerator.cs/#L153"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;Instruction&gt; VisitParameter(Parameter parameter)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>parameter</code> <a class="xref" href="Heir.AST.Parameter.html">Parameter</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="Heir.CodeGeneration.Instruction.html">Instruction</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_BytecodeGenerator_VisitParenthesizedExpression_" data-uid="Heir.BytecodeGenerator.VisitParenthesizedExpression*"></a>
+
+  <h3 id="Heir_BytecodeGenerator_VisitParenthesizedExpression_Heir_AST_Parenthesized_" data-uid="Heir.BytecodeGenerator.VisitParenthesizedExpression(Heir.AST.Parenthesized)">
+  VisitParenthesizedExpression(Parenthesized)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/BytecodeGenerator.cs/#L324"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;Instruction&gt; VisitParenthesizedExpression(Parenthesized parenthesized)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>parenthesized</code> <a class="xref" href="Heir.AST.Parenthesized.html">Parenthesized</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="Heir.CodeGeneration.Instruction.html">Instruction</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_BytecodeGenerator_VisitParenthesizedTypeRef_" data-uid="Heir.BytecodeGenerator.VisitParenthesizedTypeRef*"></a>
+
+  <h3 id="Heir_BytecodeGenerator_VisitParenthesizedTypeRef_Heir_AST_ParenthesizedType_" data-uid="Heir.BytecodeGenerator.VisitParenthesizedTypeRef(Heir.AST.ParenthesizedType)">
+  VisitParenthesizedTypeRef(ParenthesizedType)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/BytecodeGenerator.cs/#L232"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;Instruction&gt; VisitParenthesizedTypeRef(ParenthesizedType parenthesizedType)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>parenthesizedType</code> <a class="xref" href="Heir.AST.ParenthesizedType.html">ParenthesizedType</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="Heir.CodeGeneration.Instruction.html">Instruction</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_BytecodeGenerator_VisitPostfixOpExpression_" data-uid="Heir.BytecodeGenerator.VisitPostfixOpExpression*"></a>
+
+  <h3 id="Heir_BytecodeGenerator_VisitPostfixOpExpression_Heir_AST_PostfixOp_" data-uid="Heir.BytecodeGenerator.VisitPostfixOpExpression(Heir.AST.PostfixOp)">
+  VisitPostfixOpExpression(PostfixOp)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/BytecodeGenerator.cs/#L291"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;Instruction&gt; VisitPostfixOpExpression(PostfixOp postfixOp)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>postfixOp</code> <a class="xref" href="Heir.AST.PostfixOp.html">PostfixOp</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="Heir.CodeGeneration.Instruction.html">Instruction</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_BytecodeGenerator_VisitReturnStatement_" data-uid="Heir.BytecodeGenerator.VisitReturnStatement*"></a>
+
+  <h3 id="Heir_BytecodeGenerator_VisitReturnStatement_Heir_AST_Return_" data-uid="Heir.BytecodeGenerator.VisitReturnStatement(Heir.AST.Return)">
+  VisitReturnStatement(Return)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/BytecodeGenerator.cs/#L207"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;Instruction&gt; VisitReturnStatement(Return @return)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>return</code> <a class="xref" href="Heir.AST.Return.html">Return</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="Heir.CodeGeneration.Instruction.html">Instruction</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_BytecodeGenerator_VisitSingularTypeRef_" data-uid="Heir.BytecodeGenerator.VisitSingularTypeRef*"></a>
+
+  <h3 id="Heir_BytecodeGenerator_VisitSingularTypeRef_Heir_AST_SingularType_" data-uid="Heir.BytecodeGenerator.VisitSingularTypeRef(Heir.AST.SingularType)">
+  VisitSingularTypeRef(SingularType)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/BytecodeGenerator.cs/#L231"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;Instruction&gt; VisitSingularTypeRef(SingularType singularType)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>singularType</code> <a class="xref" href="Heir.AST.SingularType.html">SingularType</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="Heir.CodeGeneration.Instruction.html">Instruction</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_BytecodeGenerator_VisitSyntaxTree_" data-uid="Heir.BytecodeGenerator.VisitSyntaxTree*"></a>
+
+  <h3 id="Heir_BytecodeGenerator_VisitSyntaxTree_Heir_AST_SyntaxTree_" data-uid="Heir.BytecodeGenerator.VisitSyntaxTree(Heir.AST.SyntaxTree)">
+  VisitSyntaxTree(SyntaxTree)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/BytecodeGenerator.cs/#L24"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;Instruction&gt; VisitSyntaxTree(SyntaxTree tree)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>tree</code> <a class="xref" href="Heir.AST.SyntaxTree.html">SyntaxTree</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="Heir.CodeGeneration.Instruction.html">Instruction</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_BytecodeGenerator_VisitTypeParameter_" data-uid="Heir.BytecodeGenerator.VisitTypeParameter*"></a>
+
+  <h3 id="Heir_BytecodeGenerator_VisitTypeParameter_Heir_AST_TypeParameter_" data-uid="Heir.BytecodeGenerator.VisitTypeParameter(Heir.AST.TypeParameter)">
+  VisitTypeParameter(TypeParameter)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/BytecodeGenerator.cs/#L237"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;Instruction&gt; VisitTypeParameter(TypeParameter typeParameter)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>typeParameter</code> <a class="xref" href="Heir.AST.TypeParameter.html">TypeParameter</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="Heir.CodeGeneration.Instruction.html">Instruction</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_BytecodeGenerator_VisitUnaryOpExpression_" data-uid="Heir.BytecodeGenerator.VisitUnaryOpExpression*"></a>
+
+  <h3 id="Heir_BytecodeGenerator_VisitUnaryOpExpression_Heir_AST_UnaryOp_" data-uid="Heir.BytecodeGenerator.VisitUnaryOpExpression(Heir.AST.UnaryOp)">
+  VisitUnaryOpExpression(UnaryOp)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/BytecodeGenerator.cs/#L302"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;Instruction&gt; VisitUnaryOpExpression(UnaryOp unaryOp)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>unaryOp</code> <a class="xref" href="Heir.AST.UnaryOp.html">UnaryOp</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="Heir.CodeGeneration.Instruction.html">Instruction</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_BytecodeGenerator_VisitUnionTypeRef_" data-uid="Heir.BytecodeGenerator.VisitUnionTypeRef*"></a>
+
+  <h3 id="Heir_BytecodeGenerator_VisitUnionTypeRef_Heir_AST_UnionType_" data-uid="Heir.BytecodeGenerator.VisitUnionTypeRef(Heir.AST.UnionType)">
+  VisitUnionTypeRef(UnionType)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/BytecodeGenerator.cs/#L233"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;Instruction&gt; VisitUnionTypeRef(UnionType unionType)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>unionType</code> <a class="xref" href="Heir.AST.UnionType.html">UnionType</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="Heir.CodeGeneration.Instruction.html">Instruction</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_BytecodeGenerator_VisitVariableDeclaration_" data-uid="Heir.BytecodeGenerator.VisitVariableDeclaration*"></a>
+
+  <h3 id="Heir_BytecodeGenerator_VisitVariableDeclaration_Heir_AST_VariableDeclaration_" data-uid="Heir.BytecodeGenerator.VisitVariableDeclaration(Heir.AST.VariableDeclaration)">
+  VisitVariableDeclaration(VariableDeclaration)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/BytecodeGenerator.cs/#L43"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;Instruction&gt; VisitVariableDeclaration(VariableDeclaration variableDeclaration)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>variableDeclaration</code> <a class="xref" href="Heir.AST.VariableDeclaration.html">VariableDeclaration</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="Heir.CodeGeneration.Instruction.html">Instruction</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_BytecodeGenerator_VisitWhileStatement_" data-uid="Heir.BytecodeGenerator.VisitWhileStatement*"></a>
+
+  <h3 id="Heir_BytecodeGenerator_VisitWhileStatement_Heir_AST_While_" data-uid="Heir.BytecodeGenerator.VisitWhileStatement(Heir.AST.While)">
+  VisitWhileStatement(While)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/BytecodeGenerator.cs/#L120"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;Instruction&gt; VisitWhileStatement(While @while)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>while</code> <a class="xref" href="Heir.AST.While.html">While</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="Heir.CodeGeneration.Instruction.html">Instruction</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/heir-lang/heir/blob/master/Heir/BytecodeGenerator.cs/#L11" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

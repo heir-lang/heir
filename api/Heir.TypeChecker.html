@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class TypeChecker | Heir Docs </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class TypeChecker | Heir Docs ">
+      
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/heir-lang/heir/new/master/apiSpec/new?filename=Heir_TypeChecker.md&amp;value=---%0Auid%3A%20Heir.TypeChecker%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="Heir Docs">
+            Heir Docs
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="Heir.TypeChecker">
+
+
+
+  <h1 id="Heir_TypeChecker" data-uid="Heir.TypeChecker" class="text-break">
+Class TypeChecker  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/TypeChecker.cs/#L11"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="Heir.html">Heir</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>Heir.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"></div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class TypeChecker : IBoundNodeVisitor, IBoundNodeVisitor&lt;Void&gt;, BoundExpression.IVisitor&lt;Void&gt;, BoundStatement.IVisitor&lt;Void&gt;</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">TypeChecker</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="Heir.BoundAST.Abstract.IBoundNodeVisitor.html">IBoundNodeVisitor</a></div>
+      <div><a class="xref" href="Heir.BoundAST.Abstract.IBoundNodeVisitor-1.html">IBoundNodeVisitor</a>&lt;<a class="xref" href="Heir.BoundAST.Abstract.Void.html">Void</a>&gt;</div>
+      <div><a class="xref" href="Heir.BoundAST.Abstract.BoundExpression.html">BoundExpression</a>.<a class="xref" href="Heir.BoundAST.Abstract.BoundExpression.IVisitor-1.html">IVisitor</a>&lt;<a class="xref" href="Heir.BoundAST.Abstract.Void.html">Void</a>&gt;</div>
+      <div><a class="xref" href="Heir.BoundAST.Abstract.BoundStatement.html">BoundStatement</a>.<a class="xref" href="Heir.BoundAST.Abstract.BoundStatement.IVisitor-1.html">IVisitor</a>&lt;<a class="xref" href="Heir.BoundAST.Abstract.Void.html">Void</a>&gt;</div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="Heir_TypeChecker__ctor_" data-uid="Heir.TypeChecker.#ctor*"></a>
+
+  <h3 id="Heir_TypeChecker__ctor_Heir_Diagnostics_DiagnosticBag_Heir_BoundAST_BoundSyntaxTree_" data-uid="Heir.TypeChecker.#ctor(Heir.Diagnostics.DiagnosticBag,Heir.BoundAST.BoundSyntaxTree)">
+  TypeChecker(DiagnosticBag, BoundSyntaxTree)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/TypeChecker.cs/#L11"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TypeChecker(DiagnosticBag diagnostics, BoundSyntaxTree syntaxTree)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>diagnostics</code> <a class="xref" href="Heir.Diagnostics.DiagnosticBag.html">DiagnosticBag</a></dt>
+    <dd></dd>
+    <dt><code>syntaxTree</code> <a class="xref" href="Heir.BoundAST.BoundSyntaxTree.html">BoundSyntaxTree</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="Heir_TypeChecker_Check_" data-uid="Heir.TypeChecker.Check*"></a>
+
+  <h3 id="Heir_TypeChecker_Check" data-uid="Heir.TypeChecker.Check">
+  Check()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/TypeChecker.cs/#L13"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Check()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_TypeChecker_VisitBoundArrayLiteralExpression_" data-uid="Heir.TypeChecker.VisitBoundArrayLiteralExpression*"></a>
+
+  <h3 id="Heir_TypeChecker_VisitBoundArrayLiteralExpression_Heir_BoundAST_BoundArrayLiteral_" data-uid="Heir.TypeChecker.VisitBoundArrayLiteralExpression(Heir.BoundAST.BoundArrayLiteral)">
+  VisitBoundArrayLiteralExpression(BoundArrayLiteral)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/TypeChecker.cs/#L423"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Void VisitBoundArrayLiteralExpression(BoundArrayLiteral arrayLiteral)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>arrayLiteral</code> <a class="xref" href="Heir.BoundAST.BoundArrayLiteral.html">BoundArrayLiteral</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Heir.BoundAST.Abstract.Void.html">Void</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_TypeChecker_VisitBoundAssignmentOpExpression_" data-uid="Heir.TypeChecker.VisitBoundAssignmentOpExpression*"></a>
+
+  <h3 id="Heir_TypeChecker_VisitBoundAssignmentOpExpression_Heir_BoundAST_BoundAssignmentOp_" data-uid="Heir.TypeChecker.VisitBoundAssignmentOpExpression(Heir.BoundAST.BoundAssignmentOp)">
+  VisitBoundAssignmentOpExpression(BoundAssignmentOp)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/TypeChecker.cs/#L380"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Void VisitBoundAssignmentOpExpression(BoundAssignmentOp assignmentOp)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>assignmentOp</code> <a class="xref" href="Heir.BoundAST.BoundAssignmentOp.html">BoundAssignmentOp</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Heir.BoundAST.Abstract.Void.html">Void</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_TypeChecker_VisitBoundBinaryOpExpression_" data-uid="Heir.TypeChecker.VisitBoundBinaryOpExpression*"></a>
+
+  <h3 id="Heir_TypeChecker_VisitBoundBinaryOpExpression_Heir_BoundAST_BoundBinaryOp_" data-uid="Heir.TypeChecker.VisitBoundBinaryOpExpression(Heir.BoundAST.BoundBinaryOp)">
+  VisitBoundBinaryOpExpression(BoundBinaryOp)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/TypeChecker.cs/#L387"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Void VisitBoundBinaryOpExpression(BoundBinaryOp binaryOp)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>binaryOp</code> <a class="xref" href="Heir.BoundAST.BoundBinaryOp.html">BoundBinaryOp</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Heir.BoundAST.Abstract.Void.html">Void</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_TypeChecker_VisitBoundBlock_" data-uid="Heir.TypeChecker.VisitBoundBlock*"></a>
+
+  <h3 id="Heir_TypeChecker_VisitBoundBlock_Heir_BoundAST_BoundBlock_" data-uid="Heir.TypeChecker.VisitBoundBlock(Heir.BoundAST.BoundBlock)">
+  VisitBoundBlock(BoundBlock)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/TypeChecker.cs/#L16"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Void VisitBoundBlock(BoundBlock block)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>block</code> <a class="xref" href="Heir.BoundAST.BoundBlock.html">BoundBlock</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Heir.BoundAST.Abstract.Void.html">Void</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_TypeChecker_VisitBoundBreakStatement_" data-uid="Heir.TypeChecker.VisitBoundBreakStatement*"></a>
+
+  <h3 id="Heir_TypeChecker_VisitBoundBreakStatement_Heir_BoundAST_BoundBreak_" data-uid="Heir.TypeChecker.VisitBoundBreakStatement(Heir.BoundAST.BoundBreak)">
+  VisitBoundBreakStatement(BoundBreak)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/TypeChecker.cs/#L19"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Void VisitBoundBreakStatement(BoundBreak @break)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>break</code> <a class="xref" href="Heir.BoundAST.BoundBreak.html">BoundBreak</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Heir.BoundAST.Abstract.Void.html">Void</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_TypeChecker_VisitBoundContinueStatement_" data-uid="Heir.TypeChecker.VisitBoundContinueStatement*"></a>
+
+  <h3 id="Heir_TypeChecker_VisitBoundContinueStatement_Heir_BoundAST_BoundContinue_" data-uid="Heir.TypeChecker.VisitBoundContinueStatement(Heir.BoundAST.BoundContinue)">
+  VisitBoundContinueStatement(BoundContinue)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/TypeChecker.cs/#L20"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Void VisitBoundContinueStatement(BoundContinue @continue)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>continue</code> <a class="xref" href="Heir.BoundAST.BoundContinue.html">BoundContinue</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Heir.BoundAST.Abstract.Void.html">Void</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_TypeChecker_VisitBoundElementAccessExpression_" data-uid="Heir.TypeChecker.VisitBoundElementAccessExpression*"></a>
+
+  <h3 id="Heir_TypeChecker_VisitBoundElementAccessExpression_Heir_BoundAST_BoundElementAccess_" data-uid="Heir.TypeChecker.VisitBoundElementAccessExpression(Heir.BoundAST.BoundElementAccess)">
+  VisitBoundElementAccessExpression(BoundElementAccess)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/TypeChecker.cs/#L109"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Void VisitBoundElementAccessExpression(BoundElementAccess elementAccess)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>elementAccess</code> <a class="xref" href="Heir.BoundAST.BoundElementAccess.html">BoundElementAccess</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Heir.BoundAST.Abstract.Void.html">Void</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_TypeChecker_VisitBoundEnumDeclaration_" data-uid="Heir.TypeChecker.VisitBoundEnumDeclaration*"></a>
+
+  <h3 id="Heir_TypeChecker_VisitBoundEnumDeclaration_Heir_BoundAST_BoundEnumDeclaration_" data-uid="Heir.TypeChecker.VisitBoundEnumDeclaration(Heir.BoundAST.BoundEnumDeclaration)">
+  VisitBoundEnumDeclaration(BoundEnumDeclaration)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/TypeChecker.cs/#L44"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Void VisitBoundEnumDeclaration(BoundEnumDeclaration enumDeclaration)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>enumDeclaration</code> <a class="xref" href="Heir.BoundAST.BoundEnumDeclaration.html">BoundEnumDeclaration</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Heir.BoundAST.Abstract.Void.html">Void</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_TypeChecker_VisitBoundEnumMember_" data-uid="Heir.TypeChecker.VisitBoundEnumMember*"></a>
+
+  <h3 id="Heir_TypeChecker_VisitBoundEnumMember_Heir_BoundAST_BoundEnumMember_" data-uid="Heir.TypeChecker.VisitBoundEnumMember(Heir.BoundAST.BoundEnumMember)">
+  VisitBoundEnumMember(BoundEnumMember)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/TypeChecker.cs/#L52"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Void VisitBoundEnumMember(BoundEnumMember enumMember)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>enumMember</code> <a class="xref" href="Heir.BoundAST.BoundEnumMember.html">BoundEnumMember</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Heir.BoundAST.Abstract.Void.html">Void</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_TypeChecker_VisitBoundExpressionStatement_" data-uid="Heir.TypeChecker.VisitBoundExpressionStatement*"></a>
+
+  <h3 id="Heir_TypeChecker_VisitBoundExpressionStatement_Heir_BoundAST_BoundExpressionStatement_" data-uid="Heir.TypeChecker.VisitBoundExpressionStatement(Heir.BoundAST.BoundExpressionStatement)">
+  VisitBoundExpressionStatement(BoundExpressionStatement)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/TypeChecker.cs/#L18"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Void VisitBoundExpressionStatement(BoundExpressionStatement expressionStatement)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>expressionStatement</code> <a class="xref" href="Heir.BoundAST.BoundExpressionStatement.html">BoundExpressionStatement</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Heir.BoundAST.Abstract.Void.html">Void</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_TypeChecker_VisitBoundFunctionDeclaration_" data-uid="Heir.TypeChecker.VisitBoundFunctionDeclaration*"></a>
+
+  <h3 id="Heir_TypeChecker_VisitBoundFunctionDeclaration_Heir_BoundAST_BoundFunctionDeclaration_" data-uid="Heir.TypeChecker.VisitBoundFunctionDeclaration(Heir.BoundAST.BoundFunctionDeclaration)">
+  VisitBoundFunctionDeclaration(BoundFunctionDeclaration)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/TypeChecker.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Void VisitBoundFunctionDeclaration(BoundFunctionDeclaration declaration)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>declaration</code> <a class="xref" href="Heir.BoundAST.BoundFunctionDeclaration.html">BoundFunctionDeclaration</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Heir.BoundAST.Abstract.Void.html">Void</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_TypeChecker_VisitBoundIdentifierNameExpression_" data-uid="Heir.TypeChecker.VisitBoundIdentifierNameExpression*"></a>
+
+  <h3 id="Heir_TypeChecker_VisitBoundIdentifierNameExpression_Heir_BoundAST_BoundIdentifierName_" data-uid="Heir.TypeChecker.VisitBoundIdentifierNameExpression(Heir.BoundAST.BoundIdentifierName)">
+  VisitBoundIdentifierNameExpression(BoundIdentifierName)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/TypeChecker.cs/#L431"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Void VisitBoundIdentifierNameExpression(BoundIdentifierName identifierName)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>identifierName</code> <a class="xref" href="Heir.BoundAST.BoundIdentifierName.html">BoundIdentifierName</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Heir.BoundAST.Abstract.Void.html">Void</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_TypeChecker_VisitBoundIfStatement_" data-uid="Heir.TypeChecker.VisitBoundIfStatement*"></a>
+
+  <h3 id="Heir_TypeChecker_VisitBoundIfStatement_Heir_BoundAST_BoundIf_" data-uid="Heir.TypeChecker.VisitBoundIfStatement(Heir.BoundAST.BoundIf)">
+  VisitBoundIfStatement(BoundIf)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/TypeChecker.cs/#L58"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Void VisitBoundIfStatement(BoundIf @if)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>if</code> <a class="xref" href="Heir.BoundAST.BoundIf.html">BoundIf</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Heir.BoundAST.Abstract.Void.html">Void</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_TypeChecker_VisitBoundInvocationExpression_" data-uid="Heir.TypeChecker.VisitBoundInvocationExpression*"></a>
+
+  <h3 id="Heir_TypeChecker_VisitBoundInvocationExpression_Heir_BoundAST_BoundInvocation_" data-uid="Heir.TypeChecker.VisitBoundInvocationExpression(Heir.BoundAST.BoundInvocation)">
+  VisitBoundInvocationExpression(BoundInvocation)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/TypeChecker.cs/#L126"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Void VisitBoundInvocationExpression(BoundInvocation invocation)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>invocation</code> <a class="xref" href="Heir.BoundAST.BoundInvocation.html">BoundInvocation</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Heir.BoundAST.Abstract.Void.html">Void</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_TypeChecker_VisitBoundLiteralExpression_" data-uid="Heir.TypeChecker.VisitBoundLiteralExpression*"></a>
+
+  <h3 id="Heir_TypeChecker_VisitBoundLiteralExpression_Heir_BoundAST_BoundLiteral_" data-uid="Heir.TypeChecker.VisitBoundLiteralExpression(Heir.BoundAST.BoundLiteral)">
+  VisitBoundLiteralExpression(BoundLiteral)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/TypeChecker.cs/#L396"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Void VisitBoundLiteralExpression(BoundLiteral literal)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>literal</code> <a class="xref" href="Heir.BoundAST.BoundLiteral.html">BoundLiteral</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Heir.BoundAST.Abstract.Void.html">Void</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_TypeChecker_VisitBoundMemberAccessExpression_" data-uid="Heir.TypeChecker.VisitBoundMemberAccessExpression*"></a>
+
+  <h3 id="Heir_TypeChecker_VisitBoundMemberAccessExpression_Heir_BoundAST_BoundMemberAccess_" data-uid="Heir.TypeChecker.VisitBoundMemberAccessExpression(Heir.BoundAST.BoundMemberAccess)">
+  VisitBoundMemberAccessExpression(BoundMemberAccess)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/TypeChecker.cs/#L88"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Void VisitBoundMemberAccessExpression(BoundMemberAccess memberAccess)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>memberAccess</code> <a class="xref" href="Heir.BoundAST.BoundMemberAccess.html">BoundMemberAccess</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Heir.BoundAST.Abstract.Void.html">Void</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_TypeChecker_VisitBoundNoOp_" data-uid="Heir.TypeChecker.VisitBoundNoOp*"></a>
+
+  <h3 id="Heir_TypeChecker_VisitBoundNoOp_Heir_BoundAST_BoundNoOp_" data-uid="Heir.TypeChecker.VisitBoundNoOp(Heir.BoundAST.BoundNoOp)">
+  VisitBoundNoOp(BoundNoOp)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/TypeChecker.cs/#L432"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Void VisitBoundNoOp(BoundNoOp noOp)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>noOp</code> <a class="xref" href="Heir.BoundAST.BoundNoOp.html">BoundNoOp</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Heir.BoundAST.Abstract.Void.html">Void</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_TypeChecker_VisitBoundNoOp_" data-uid="Heir.TypeChecker.VisitBoundNoOp*"></a>
+
+  <h3 id="Heir_TypeChecker_VisitBoundNoOp_Heir_BoundAST_BoundNoOpStatement_" data-uid="Heir.TypeChecker.VisitBoundNoOp(Heir.BoundAST.BoundNoOpStatement)">
+  VisitBoundNoOp(BoundNoOpStatement)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/TypeChecker.cs/#L433"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Void VisitBoundNoOp(BoundNoOpStatement noOp)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>noOp</code> <a class="xref" href="Heir.BoundAST.BoundNoOpStatement.html">BoundNoOpStatement</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Heir.BoundAST.Abstract.Void.html">Void</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_TypeChecker_VisitBoundObjectLiteralExpression_" data-uid="Heir.TypeChecker.VisitBoundObjectLiteralExpression*"></a>
+
+  <h3 id="Heir_TypeChecker_VisitBoundObjectLiteralExpression_Heir_BoundAST_BoundObjectLiteral_" data-uid="Heir.TypeChecker.VisitBoundObjectLiteralExpression(Heir.BoundAST.BoundObjectLiteral)">
+  VisitBoundObjectLiteralExpression(BoundObjectLiteral)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/TypeChecker.cs/#L397"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Void VisitBoundObjectLiteralExpression(BoundObjectLiteral objectLiteral)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>objectLiteral</code> <a class="xref" href="Heir.BoundAST.BoundObjectLiteral.html">BoundObjectLiteral</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Heir.BoundAST.Abstract.Void.html">Void</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_TypeChecker_VisitBoundParameter_" data-uid="Heir.TypeChecker.VisitBoundParameter*"></a>
+
+  <h3 id="Heir_TypeChecker_VisitBoundParameter_Heir_BoundAST_BoundParameter_" data-uid="Heir.TypeChecker.VisitBoundParameter(Heir.BoundAST.BoundParameter)">
+  VisitBoundParameter(BoundParameter)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/TypeChecker.cs/#L76"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Void VisitBoundParameter(BoundParameter parameter)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>parameter</code> <a class="xref" href="Heir.BoundAST.BoundParameter.html">BoundParameter</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Heir.BoundAST.Abstract.Void.html">Void</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_TypeChecker_VisitBoundParenthesizedExpression_" data-uid="Heir.TypeChecker.VisitBoundParenthesizedExpression*"></a>
+
+  <h3 id="Heir_TypeChecker_VisitBoundParenthesizedExpression_Heir_BoundAST_BoundParenthesized_" data-uid="Heir.TypeChecker.VisitBoundParenthesizedExpression(Heir.BoundAST.BoundParenthesized)">
+  VisitBoundParenthesizedExpression(BoundParenthesized)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/TypeChecker.cs/#L435"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Void VisitBoundParenthesizedExpression(BoundParenthesized parenthesized)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>parenthesized</code> <a class="xref" href="Heir.BoundAST.BoundParenthesized.html">BoundParenthesized</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Heir.BoundAST.Abstract.Void.html">Void</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_TypeChecker_VisitBoundPostfixOpExpression_" data-uid="Heir.TypeChecker.VisitBoundPostfixOpExpression*"></a>
+
+  <h3 id="Heir_TypeChecker_VisitBoundPostfixOpExpression_Heir_BoundAST_BoundPostfixOp_" data-uid="Heir.TypeChecker.VisitBoundPostfixOpExpression(Heir.BoundAST.BoundPostfixOp)">
+  VisitBoundPostfixOpExpression(BoundPostfixOp)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/TypeChecker.cs/#L444"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Void VisitBoundPostfixOpExpression(BoundPostfixOp postfixOp)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>postfixOp</code> <a class="xref" href="Heir.BoundAST.BoundPostfixOp.html">BoundPostfixOp</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Heir.BoundAST.Abstract.Void.html">Void</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_TypeChecker_VisitBoundReturnStatement_" data-uid="Heir.TypeChecker.VisitBoundReturnStatement*"></a>
+
+  <h3 id="Heir_TypeChecker_VisitBoundReturnStatement_Heir_BoundAST_BoundReturn_" data-uid="Heir.TypeChecker.VisitBoundReturnStatement(Heir.BoundAST.BoundReturn)">
+  VisitBoundReturnStatement(BoundReturn)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/TypeChecker.cs/#L17"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Void VisitBoundReturnStatement(BoundReturn @return)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>return</code> <a class="xref" href="Heir.BoundAST.BoundReturn.html">BoundReturn</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Heir.BoundAST.Abstract.Void.html">Void</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_TypeChecker_VisitBoundSyntaxTree_" data-uid="Heir.TypeChecker.VisitBoundSyntaxTree*"></a>
+
+  <h3 id="Heir_TypeChecker_VisitBoundSyntaxTree_Heir_BoundAST_BoundSyntaxTree_" data-uid="Heir.TypeChecker.VisitBoundSyntaxTree(Heir.BoundAST.BoundSyntaxTree)">
+  VisitBoundSyntaxTree(BoundSyntaxTree)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/TypeChecker.cs/#L15"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Void VisitBoundSyntaxTree(BoundSyntaxTree tree)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>tree</code> <a class="xref" href="Heir.BoundAST.BoundSyntaxTree.html">BoundSyntaxTree</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Heir.BoundAST.Abstract.Void.html">Void</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_TypeChecker_VisitBoundTypeParameter_" data-uid="Heir.TypeChecker.VisitBoundTypeParameter*"></a>
+
+  <h3 id="Heir_TypeChecker_VisitBoundTypeParameter_Heir_BoundAST_BoundTypeParameter_" data-uid="Heir.TypeChecker.VisitBoundTypeParameter(Heir.BoundAST.BoundTypeParameter)">
+  VisitBoundTypeParameter(BoundTypeParameter)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/TypeChecker.cs/#L86"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Void VisitBoundTypeParameter(BoundTypeParameter boundTypeParameter)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>boundTypeParameter</code> <a class="xref" href="Heir.BoundAST.BoundTypeParameter.html">BoundTypeParameter</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Heir.BoundAST.Abstract.Void.html">Void</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_TypeChecker_VisitBoundUnaryOpExpression_" data-uid="Heir.TypeChecker.VisitBoundUnaryOpExpression*"></a>
+
+  <h3 id="Heir_TypeChecker_VisitBoundUnaryOpExpression_Heir_BoundAST_BoundUnaryOp_" data-uid="Heir.TypeChecker.VisitBoundUnaryOpExpression(Heir.BoundAST.BoundUnaryOp)">
+  VisitBoundUnaryOpExpression(BoundUnaryOp)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/TypeChecker.cs/#L437"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Void VisitBoundUnaryOpExpression(BoundUnaryOp unaryOp)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>unaryOp</code> <a class="xref" href="Heir.BoundAST.BoundUnaryOp.html">BoundUnaryOp</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Heir.BoundAST.Abstract.Void.html">Void</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_TypeChecker_VisitBoundVariableDeclaration_" data-uid="Heir.TypeChecker.VisitBoundVariableDeclaration*"></a>
+
+  <h3 id="Heir_TypeChecker_VisitBoundVariableDeclaration_Heir_BoundAST_BoundVariableDeclaration_" data-uid="Heir.TypeChecker.VisitBoundVariableDeclaration(Heir.BoundAST.BoundVariableDeclaration)">
+  VisitBoundVariableDeclaration(BoundVariableDeclaration)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/TypeChecker.cs/#L34"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Void VisitBoundVariableDeclaration(BoundVariableDeclaration variableDeclaration)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>variableDeclaration</code> <a class="xref" href="Heir.BoundAST.BoundVariableDeclaration.html">BoundVariableDeclaration</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Heir.BoundAST.Abstract.Void.html">Void</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Heir_TypeChecker_VisitBoundWhileStatement_" data-uid="Heir.TypeChecker.VisitBoundWhileStatement*"></a>
+
+  <h3 id="Heir_TypeChecker_VisitBoundWhileStatement_Heir_BoundAST_BoundWhile_" data-uid="Heir.TypeChecker.VisitBoundWhileStatement(Heir.BoundAST.BoundWhile)">
+  VisitBoundWhileStatement(BoundWhile)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/heir-lang/heir/blob/master/Heir/TypeChecker.cs/#L69"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Void VisitBoundWhileStatement(BoundWhile @while)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>while</code> <a class="xref" href="Heir.BoundAST.BoundWhile.html">BoundWhile</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Heir.BoundAST.Abstract.Void.html">Void</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/heir-lang/heir/blob/master/Heir/TypeChecker.cs/#L11" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
