@@ -188,16 +188,21 @@ public sealed class VirtualMachine
                         "Failed to execute INDEX op-code: Loaded index is null",
                         instruction.Root?.GetFirstToken());
                 
-                if (objectFrame.Value is not ObjectValue objectValue)
+                if (objectFrame.Value is not ObjectValue and not ArrayValue)
                 {
                     Diagnostics.RuntimeError(DiagnosticCode.HDEV,
-                        "Failed to execute INDEX op-code: Loaded object is not an object dictionary",
+                        "Failed to execute INDEX op-code: Loaded object is not an object/array",
                         instruction.Root?.GetFirstToken());
                     
                     break;
                 }
-                
-                var value = objectValue[indexFrame.Value];
+
+                var value = objectFrame.Value switch
+                {
+                    ObjectValue objectValue => objectValue[indexFrame.Value!],
+                    ArrayValue arrayValue => arrayValue[Convert.ToInt32(indexFrame.Value!)],
+                    _ => null
+                };
                 Stack.Push(new(objectFrame.Node, value));
                 Advance();
                 break;
@@ -317,7 +322,8 @@ public sealed class VirtualMachine
                 var initializerFrame = Stack.Pop();
                 var indexFrame = Stack.Pop();
                 var objectFrame = Stack.Pop();
-                if (objectFrame.Value is not ObjectValue or ArrayValue)
+                
+                if (objectFrame.Value is not ObjectValue and not ArrayValue)
                 {
                     Diagnostics.RuntimeError(DiagnosticCode.HDEV,
                         $"Failed to execute STOREINDEX op-code: No object or array to index was located in the stack, got {objectFrame.Value ?? "null"}",
@@ -340,7 +346,7 @@ public sealed class VirtualMachine
                         objectValue[indexFrame.Value!] = initializerFrame.Value;
                         break;
                     case ArrayValue arrayValue:
-                        arrayValue[(int)indexFrame.Value!] = initializerFrame.Value;
+                        arrayValue[Convert.ToInt32(indexFrame.Value!)] = initializerFrame.Value;
                         break;
                 }
                 if (instruction.Operand is true)

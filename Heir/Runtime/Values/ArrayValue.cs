@@ -10,7 +10,9 @@ public sealed class ArrayValue(IEnumerable<object?> elements) : IEnumerable<obje
     public object? this[int index]
     {
         get => Elements.ElementAtOrDefault(index);
-        set => Elements = Elements.Select((v, i) => i == index ? value : v);
+        set => Elements = Elements.Take(index)
+            .Append(value)
+            .Concat(Elements.Skip(index));
     }
 
     public string ToString(ref int indent, bool colors = false)
@@ -37,7 +39,7 @@ public sealed class ArrayValue(IEnumerable<object?> elements) : IEnumerable<obje
 
             if (count > elementCountForNewlines)
                 result.Append(string.Join("", Enumerable.Repeat("  ", indent)));
-                    
+
             result.Append(valueString);
             if (i++ != count - 1)
                 result.Append(',').Append(count > elementCountForNewlines ? '\n' : ' ');
@@ -52,6 +54,13 @@ public sealed class ArrayValue(IEnumerable<object?> elements) : IEnumerable<obje
         return result.Append(colors ? "]]" : "]").ToString();
     }
 
-    public IEnumerator<object?> GetEnumerator() => Elements.GetEnumerator();
-    IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+    public IEnumerator<object?> GetEnumerator()
+    {
+        return Elements.GetEnumerator();
+    }
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return GetEnumerator();
+    }
 }
