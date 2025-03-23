@@ -38,3 +38,5 @@
     - [x] functions
     - [ ] classes
     - [ ] types
+- Unit Tests
+  - [ ] Parsing/binding/typechecking type parameters/arguments
