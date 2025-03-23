@@ -115,6 +115,7 @@ public abstract class NodeTransformer(SyntaxTree tree) : INodeVisitor<SyntaxNode
     public virtual SyntaxNode? VisitUnionTypeRef(UnionType unionType) => null;
     public virtual SyntaxNode? VisitIntersectionTypeRef(IntersectionType intersectionType) => null;
     public virtual SyntaxNode? VisitFunctionTypeRef(FunctionType functionType) => null;
+    public virtual SyntaxNode? VisitArrayTypeRef(ArrayType arrayType) => null;
     public virtual SyntaxNode? VisitParameter(Parameter parameter)
     {
         var name = Transform(parameter.Name) as IdentifierName;
@@ -209,7 +210,7 @@ public abstract class NodeTransformer(SyntaxTree tree) : INodeVisitor<SyntaxNode
     {
         var name = Transform(enumDeclaration.Name) as IdentifierName;
         var members = enumDeclaration.Members
-            .Select(member => Transform(member) as EnumMember)
+            .Select(Transform)
             .OfType<EnumMember>()
             .ToHashSet();
         
@@ -224,10 +225,10 @@ public abstract class NodeTransformer(SyntaxTree tree) : INodeVisitor<SyntaxNode
     {
         var name = Transform(enumMember.Name) as IdentifierName;
         var value = Transform(enumMember.Value) as Literal;
-        if (name == null || value == null)
+        if (name == null && value == null)
             return null;
 
-        return new EnumMember(name, value);
+        return new EnumMember(name ?? enumMember.Name, value ?? enumMember.Value);
     }
 
     public virtual SyntaxNode? VisitFunctionDeclaration(FunctionDeclaration functionDeclaration)

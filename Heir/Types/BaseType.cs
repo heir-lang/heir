@@ -99,7 +99,8 @@ public abstract class BaseType
         
         if (this is ArrayType array)
             return other is ArrayType otherArray
-                   && array.ElementType.IsAssignableTo(otherArray.ElementType);
+                   && array.ElementType.IsAssignableTo(otherArray.ElementType)
+                   && otherArray.ElementType.IsAssignableTo(array.ElementType);
         
         if (this is InterfaceType interfaceType && other is InterfaceType otherInterfaceType)
             return interfaceType.Members.Count == otherInterfaceType.Members.Count &&

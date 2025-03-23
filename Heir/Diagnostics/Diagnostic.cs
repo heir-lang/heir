@@ -16,7 +16,7 @@ public sealed class Diagnostic(SourceFile sourceFile, DiagnosticCode code, strin
     {
         var levelDisplay = Level.ToString().ToLower();
         var errorCodeDisplay = Code.ToString();
-        var messageDisplay = Message;
+        var messageDisplay = colors ? Markup.Escape(Message) : Message;
         var locationDisplay = StartLocation.ToString();
 
         var erroneousCodeColumnLength = EndLocation.Column - StartLocation.Column;

@@ -7,6 +7,7 @@ using Heir.Diagnostics;
 using Heir.Runtime.Intrinsics;
 using Heir.Syntax;
 using Heir.Types;
+using ArrayType = Heir.Types.ArrayType;
 using FunctionType = Heir.Types.FunctionType;
 using IntersectionType = Heir.AST.IntersectionType;
 using ParenthesizedType = Heir.Types.ParenthesizedType;
@@ -302,7 +303,8 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree)
     {
         var left = Bind(binaryOp.Left);
         var right = Bind(binaryOp.Right);
-        var boundOperator = BoundBinaryOperator.Bind(binaryOp.Operator, left.Type, right.Type);
+        var boundOperator = BoundBinaryOperator.Bind(binaryOp.Operator, left.Type, right.Type)
+                            ?? BoundBinaryOperator.Bind(binaryOp.Operator, right.Type, left.Type);
         if (boundOperator == null)
         {
             diagnostics.Error(DiagnosticCode.H007, $"Cannot apply operator '{binaryOp.Operator.Text}' to operands of type '{left.Type.ToString()}' and '{right.Type.ToString()}'", binaryOp.Operator);
@@ -386,12 +388,17 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree)
     public BoundExpression VisitArrayLiteralExpression(ArrayLiteral arrayLiteral)
     {
         var elements = arrayLiteral.Elements.ConvertAll(Bind);
+        var elementTypes = elements
+            .ConvertAll(e => e.Type is LiteralType literal ? literal.AsPrimitive() : e.Type)
+            .Distinct()
+            .ToList();
+        
         var type = new ArrayType(
             elements.Count == 0
                 ? IntrinsicTypes.Any // this is what typescript does (even with strict checks!), go figure
-                : new UnionType(elements.ConvertAll(e =>
-                    e.Type is LiteralType literal ? literal.AsPrimitive() : e.Type
-                ))
+                : elementTypes.Count > 1
+                    ? new UnionType(elementTypes)
+                    : elementTypes.First()
         );
 
         return new BoundArrayLiteral(arrayLiteral.Token, elements, type);
@@ -412,6 +419,12 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree)
     public BoundExpression VisitParenthesizedTypeRef(AST.ParenthesizedType parenthesizedType)
     {
         var type = new ParenthesizedType(Bind(parenthesizedType.Type).Type);
+        return new BoundNoOp(type);
+    }
+    
+    public BoundExpression VisitArrayTypeRef(AST.ArrayType arrayType)
+    {
+        var type = new ArrayType(Bind(arrayType.ElementType).Type);
         return new BoundNoOp(type);
     }
     

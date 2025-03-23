@@ -142,7 +142,7 @@ public sealed class BoundBinaryOperator
 
         return _operators
             .Where(op => token.IsKind(op.SyntaxKind))
-            .Where(op => op.LeftType.IsAssignableTo(leftType))
-            .FirstOrDefault(op => op.RightType.IsAssignableTo(rightType));
+            .Where(op => leftType.IsAssignableTo(op.LeftType))
+            .FirstOrDefault(op => rightType.IsAssignableTo(op.RightType));
     }
 }

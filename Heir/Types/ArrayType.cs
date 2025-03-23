@@ -1,6 +1,11 @@
 ﻿namespace Heir.Types;
 
-public class ArrayType(BaseType elementType) : BaseType
+public class ArrayType(BaseType elementType)
+    : InterfaceType(
+        [],
+        new Dictionary<PrimitiveType, BaseType>([new(PrimitiveType.Int, elementType)]),
+        $"Array<{elementType.ToString()}>"
+    )
 {
     public override TypeKind Kind => TypeKind.Singular;
     

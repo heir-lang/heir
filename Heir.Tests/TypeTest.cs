@@ -121,8 +121,8 @@ public class TypeTest
             Assert.True(a.IsAssignableTo(b));
         }
         {
-            var a = IntrinsicTypes.Number;
-            var b = PrimitiveType.Float;
+            var a = PrimitiveType.Float;
+            var b = IntrinsicTypes.Number;
             Assert.True(a.IsAssignableTo(b));
         }
         {
@@ -131,8 +131,8 @@ public class TypeTest
             Assert.True(a.IsAssignableTo(b));
         }
         {
-            var a = IntrinsicTypes.StringOrChar;
-            var b = PrimitiveType.Char;
+            var a = PrimitiveType.Char;
+            var b = IntrinsicTypes.StringOrChar;
             Assert.True(a.IsAssignableTo(b));
         }
         {

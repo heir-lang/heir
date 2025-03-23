@@ -65,7 +65,8 @@ public sealed class DiagnosticBag(SourceFile sourceFile, IEnumerable<Diagnostic>
             Clear();
     }
     
-    public string ToString(bool colors, bool all = false) => all
-        ? string.Join('\n', this.Select(diagnostic => diagnostic.ToString(colors)))
-        : this.First().ToString(colors);
+    public string ToString(bool colors, bool all = false) =>
+        all
+            ? string.Join('\n', this.Select(diagnostic => diagnostic.ToString(colors)))
+            : this.First().ToString(colors);
 }

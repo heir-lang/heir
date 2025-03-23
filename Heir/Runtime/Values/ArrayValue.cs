@@ -5,11 +5,17 @@ namespace Heir.Runtime.Values;
 
 public sealed class ArrayValue(IEnumerable<object?> elements) : IEnumerable<object?>, IValue
 {
-    public IEnumerable<object?> Elements { get; } = elements;
+    public IEnumerable<object?> Elements { get; private set; } = elements;
+
+    public object? this[int index]
+    {
+        get => Elements.ElementAtOrDefault(index);
+        set => Elements = Elements.Select((v, i) => i == index ? value : v);
+    }
 
     public string ToString(ref int indent, bool colors = false)
     {
-        var result = new StringBuilder("[[");
+        var result = new StringBuilder(colors ? "[[" : "[");
         var count = Elements.Count();
         const int elementCountForNewlines = 5;
         if (count > elementCountForNewlines)
@@ -43,7 +49,7 @@ public sealed class ArrayValue(IEnumerable<object?> elements) : IEnumerable<obje
             indent--;
         }
 
-        return result.Append("]]").ToString();
+        return result.Append(colors ? "]]" : "]").ToString();
     }
 
     public IEnumerator<object?> GetEnumerator() => Elements.GetEnumerator();

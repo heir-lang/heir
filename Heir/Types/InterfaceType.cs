@@ -3,7 +3,8 @@ using System.Text;
 
 namespace Heir.Types;
 
-public sealed class InterfaceType(
+// TODO: type params
+public class InterfaceType(
     Dictionary<LiteralType, InterfaceMemberSignature> members,
     Dictionary<PrimitiveType, BaseType> indexSignatures,
     string? name = null
@@ -15,7 +16,7 @@ public sealed class InterfaceType(
     public Dictionary<PrimitiveType, BaseType> IndexSignatures { get; } = indexSignatures;
     public BaseType IndexType { get; } = members.Count + indexSignatures.Count == 1
         ? members.Keys.FirstOrDefault() ?? indexSignatures.Keys.First()
-        : new UnionType([..members.Keys, ..indexSignatures.Keys]);
+        : new UnionType(new List<BaseType>([..members.Keys, ..indexSignatures.Keys]).Distinct().ToList());
 
     /// <summary>Creates an interface with immutable fields & no custom index signatures; just members </summary>
     public static InterfaceType Readonly(string name, Dictionary<string, BaseType> members) =>

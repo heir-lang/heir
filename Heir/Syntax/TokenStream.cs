@@ -71,7 +71,7 @@ public sealed class TokenStream(DiagnosticBag diagnostics, List<Token> tokens) :
     public Token? ConsumeType()
     {
         var token = Advance();
-        if (SyntaxFacts.TypeSyntaxes.Any(typeKind => token.IsKind(typeKind)))
+        if (SyntaxFacts.TypeSyntaxes.Any(typeKind => token != null && token.IsKind(typeKind)))
             return token;
 
         Diagnostics.Error(DiagnosticCode.H004B,

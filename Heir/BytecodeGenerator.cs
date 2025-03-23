@@ -6,6 +6,7 @@ using Heir.BoundAST;
 using Heir.CodeGeneration;
 using Heir.Diagnostics;
 using Heir.Types;
+using ArrayType = Heir.AST.ArrayType;
 using FunctionType = Heir.AST.FunctionType;
 using IntersectionType = Heir.AST.IntersectionType;
 using ParenthesizedType = Heir.AST.ParenthesizedType;
@@ -239,6 +240,7 @@ public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder) 
     public List<Instruction> VisitUnionTypeRef(UnionType unionType) => NoOp(unionType);
     public List<Instruction> VisitIntersectionTypeRef(IntersectionType intersectionType) => NoOp(intersectionType);
     public List<Instruction> VisitFunctionTypeRef(FunctionType functionType) => NoOp(functionType);
+    public List<Instruction> VisitArrayTypeRef(ArrayType arrayType) => NoOp(arrayType);
 
     public List<Instruction> VisitAssignmentOpExpression(AssignmentOp assignmentOp) => VisitBinaryOpExpression(assignmentOp);
     public List<Instruction> VisitBinaryOpExpression(BinaryOp binaryOp)

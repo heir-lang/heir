@@ -46,4 +46,10 @@ public class PrimitiveType : SingularType
             ? new PrimitiveType((PrimitiveTypeKind)primitiveTypeKind)
             : null;
     }
+    
+    public override bool Equals(object? obj) => obj is PrimitiveType otherPrimitiveType &&
+                                                otherPrimitiveType.PrimitiveKind == PrimitiveKind;
+    
+    public override int GetHashCode() => PrimitiveKind.GetHashCode();
+    
 }

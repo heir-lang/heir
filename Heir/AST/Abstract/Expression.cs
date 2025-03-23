@@ -22,6 +22,7 @@ public abstract class Expression : SyntaxNode
         public R VisitUnionTypeRef(UnionType unionType);
         public R VisitIntersectionTypeRef(IntersectionType intersectionType);
         public R VisitFunctionTypeRef(FunctionType functionType);
+        public R VisitArrayTypeRef(ArrayType arrayType);
         public R VisitParameter(Parameter parameter);
         public R VisitInvocationExpression(Invocation invocation);
         public R VisitElementAccessExpression(ElementAccess elementAccess);

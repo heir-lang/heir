@@ -255,6 +255,7 @@ public sealed class Resolver(DiagnosticBag diagnostics, SyntaxTree syntaxTree) :
     public Void VisitUnionTypeRef(UnionType unionType) => default;
     public Void VisitIntersectionTypeRef(IntersectionType intersectionType) => default;
     public Void VisitFunctionTypeRef(FunctionType functionType) => default;
+    public Void VisitArrayTypeRef(ArrayType arrayType) => default;
 
     public Void VisitParenthesizedExpression(Parenthesized parenthesized)
     {

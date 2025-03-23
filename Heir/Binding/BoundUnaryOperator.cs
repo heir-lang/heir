@@ -58,6 +58,6 @@ public sealed class BoundUnaryOperator
 
         return _operators
             .Where(op => token.IsKind(op.SyntaxKind))
-            .FirstOrDefault(op => op.OperandType.IsAssignableTo(operandType));
+            .FirstOrDefault(op => operandType.IsAssignableTo(op.OperandType));
     }
 }

@@ -317,10 +317,10 @@ public sealed class VirtualMachine
                 var initializerFrame = Stack.Pop();
                 var indexFrame = Stack.Pop();
                 var objectFrame = Stack.Pop();
-                if (objectFrame.Value is not ObjectValue objectValue)
+                if (objectFrame.Value is not ObjectValue or ArrayValue)
                 {
                     Diagnostics.RuntimeError(DiagnosticCode.HDEV,
-                        $"Failed to execute STOREINDEX op-code: No object to index was located in the stack, got {objectFrame.Value ?? "null"}",
+                        $"Failed to execute STOREINDEX op-code: No object or array to index was located in the stack, got {objectFrame.Value ?? "null"}",
                         initializerFrame.Node?.GetFirstToken());
                     
                     break;
@@ -328,13 +328,21 @@ public sealed class VirtualMachine
                 if (indexFrame.Value is null)
                 {
                     Diagnostics.RuntimeError(DiagnosticCode.HDEV,
-                        $"Failed to execute STOREINDEX op-code: Expected frame for object index has null operand",
+                        $"Failed to execute STOREINDEX op-code: Expected frame for object/array index has null operand",
                         indexFrame.Node?.GetFirstToken());
                     
                     break;
                 }
 
-                objectValue[indexFrame.Value!] = initializerFrame.Value;
+                switch (objectFrame.Value)
+                {
+                    case ObjectValue objectValue:
+                        objectValue[indexFrame.Value!] = initializerFrame.Value;
+                        break;
+                    case ArrayValue arrayValue:
+                        arrayValue[(int)indexFrame.Value!] = initializerFrame.Value;
+                        break;
+                }
                 if (instruction.Operand is true)
                     Stack.Push(initializerFrame);
 

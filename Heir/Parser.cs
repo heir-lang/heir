@@ -484,7 +484,7 @@ public sealed class Parser(TokenStream tokenStream)
         
     private TypeRef ParseIntersectionType()
     {
-        var left = ParseParenthesizedOrFunctionType();
+        var left = ParseArrayType();
         if (Tokens.Match(SyntaxKind.Question, out var questionToken))
             left = new UnionType([
                 left,
@@ -502,33 +502,24 @@ public sealed class Parser(TokenStream tokenStream)
 
         return left;
     }
+
+    private TypeRef ParseArrayType()
+    {
+        var elementType = ParseParenthesizedOrFunctionType();
+        if (!Tokens.Match(SyntaxKind.LBracket))
+            return elementType;
         
+        Tokens.Consume(SyntaxKind.RBracket);
+        return new ArrayType(elementType);
+    }
+
     private TypeRef ParseParenthesizedOrFunctionType()
     {
-        if (Tokens.Match(SyntaxKind.LParen))
+        if (!Tokens.Match(SyntaxKind.LParen))
+            return ParseSingularType();
+        
+        if (!IsFunctionType())
         {
-            if (IsFunctionType())
-            {
-                var parameterTypes = new Dictionary<string, TypeRef>();
-                while (!Tokens.Check(SyntaxKind.RParen) && !Tokens.IsAtEnd)
-                {
-                    var identifier = Tokens.Consume(SyntaxKind.Identifier);
-                    if (identifier == null)
-                        return new NoOpType();
-
-                    Tokens.Consume(SyntaxKind.Colon);
-                    var type = ParseType();
-                    parameterTypes.Add(identifier.Text, type);
-                    Tokens.Match(SyntaxKind.Comma);
-                }
-
-                Tokens.Consume(SyntaxKind.RParen);
-                Tokens.Consume(SyntaxKind.DashRArrow);
-                var returnType = ParseType();
-
-                return new FunctionType(parameterTypes, returnType);
-            }
-
             var innerType = ParseType();
             Tokens.Consume(SyntaxKind.RParen);
 
@@ -538,7 +529,24 @@ public sealed class Parser(TokenStream tokenStream)
             return new ParenthesizedType(innerType);
         }
 
-        return ParseSingularType();
+        var parameterTypes = new Dictionary<string, TypeRef>();
+        while (!Tokens.Check(SyntaxKind.RParen) && !Tokens.IsAtEnd)
+        {
+            var identifier = Tokens.Consume(SyntaxKind.Identifier);
+            if (identifier == null)
+                return new NoOpType();
+
+            Tokens.Consume(SyntaxKind.Colon);
+            var type = ParseType();
+            parameterTypes.Add(identifier.Text, type);
+            Tokens.Match(SyntaxKind.Comma);
+        }
+
+        Tokens.Consume(SyntaxKind.RParen);
+        Tokens.Consume(SyntaxKind.DashRArrow);
+        var returnType = ParseType();
+
+        return new FunctionType(parameterTypes, returnType);
     }
 
     private SingularType ParseSingularType()
@@ -862,7 +870,7 @@ public sealed class Parser(TokenStream tokenStream)
             }
         }
 
-        _diagnostics.Error(DiagnosticCode.H001B, $"Unexpected token '{token.Kind}'", token);
+        _diagnostics.Error(DiagnosticCode.H001B, $"Unexpected token '{token?.Kind}'", token ?? Tokens.Peek(-2));
         return new NoOp();
     }
 

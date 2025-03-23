@@ -7,7 +7,7 @@
   - Types
     - [ ] Generics
     - [ ] Literal
-    - [ ] Array
+    - [x] Array
     - [ ] Interface index signatures
     - [ ] Interface method signatures
     - [ ] Class
@@ -19,7 +19,7 @@
     - [x] `break`
     - [x] `continue`
   - [ ] Lambdas
-  - [ ] Array literals
+  - [x] Array literals
   - [x] Enums
   - [ ] `inline`
     - [x] Variables 
