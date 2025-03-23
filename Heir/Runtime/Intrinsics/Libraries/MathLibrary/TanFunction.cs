@@ -9,6 +9,7 @@ public class TanFunction()
         {
             { "n", IntrinsicTypes.Number }
         },
+        [],
         PrimitiveType.Float
     )
 {

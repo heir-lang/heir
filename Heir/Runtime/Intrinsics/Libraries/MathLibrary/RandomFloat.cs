@@ -10,6 +10,7 @@ public class RandomFloatFunction()
             { "minimum", IntrinsicTypes.Number },
             { "maximum", IntrinsicTypes.Number }
         },
+        [],
         PrimitiveType.Float
     )
 {

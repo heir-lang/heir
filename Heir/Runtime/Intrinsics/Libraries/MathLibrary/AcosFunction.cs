@@ -9,6 +9,7 @@ public class AcosFunction()
         {
             { "n", IntrinsicTypes.Number }
         },
+        [],
         PrimitiveType.Float
     )
 {

@@ -360,6 +360,20 @@ public sealed class Parser(TokenStream tokenStream)
             _diagnostics.Error(DiagnosticCode.H004C, $"Expected identifier after 'fn', got {Tokens.Current}", Tokens.Previous!);
             return new NoOpStatement();
         }
+        
+        var typeParameters = new List<TypeParameter>();
+        if (Tokens.Match(SyntaxKind.LT))
+        {
+            while (!Tokens.Check(SyntaxKind.GT) && !Tokens.IsAtEnd)
+            {
+                var expression = ParseTypeParameter();
+                if (expression is not TypeParameter typeParameter) continue;
+                
+                typeParameters.Add(typeParameter);
+                Tokens.Match(SyntaxKind.Comma);
+            }
+            Tokens.Consume(SyntaxKind.GT);
+        }
 
         var parameters = new List<Parameter>();
         if (Tokens.Match(SyntaxKind.LParen))
@@ -388,7 +402,7 @@ public sealed class Parser(TokenStream tokenStream)
             body = ParseBlock();
         }
 
-        return new FunctionDeclaration(keyword, new IdentifierName(identifier), parameters, body, returnType);
+        return new FunctionDeclaration(keyword, new IdentifierName(identifier), parameters, typeParameters, body, returnType);
     }
 
     private Statement ParseVariableDeclaration()
@@ -460,6 +474,23 @@ public sealed class Parser(TokenStream tokenStream)
         
         return new Parameter(new IdentifierName(identifier), type, initializer);
     }
+    
+    private Expression ParseTypeParameter()
+    {
+        var identifier = Tokens.Consume(SyntaxKind.Identifier);
+        if (identifier == null)
+            return new NoOp();
+        
+        TypeRef? baseType = null;
+        if (Tokens.Match(SyntaxKind.Colon))
+            baseType = ParseType();
+        
+        TypeRef? initializer = null;
+        if (Tokens.Match(SyntaxKind.Equals))
+            initializer = ParseType();
+
+        return new TypeParameter(new IdentifierName(identifier), baseType, initializer);
+    }
 
     private TypeRef ParseType()
     {
@@ -515,9 +546,24 @@ public sealed class Parser(TokenStream tokenStream)
 
     private TypeRef ParseParenthesizedOrFunctionType()
     {
-        if (!Tokens.Match(SyntaxKind.LParen))
+        if (!Tokens.Check(SyntaxKind.LT) && !Tokens.Check(SyntaxKind.LParen))
             return ParseSingularType();
+
+        var typeParameters = new List<TypeParameter>();
+        if (Tokens.Match(SyntaxKind.LT))
+        {
+            while (!Tokens.Check(SyntaxKind.GT) && !Tokens.IsAtEnd)
+            {
+                var expression = ParseTypeParameter();
+                if (expression is not TypeParameter typeParameter) continue;
+                
+                typeParameters.Add(typeParameter);
+                Tokens.Match(SyntaxKind.Comma);
+            }
+            Tokens.Consume(SyntaxKind.GT);
+        }
         
+        Tokens.Consume(SyntaxKind.LParen);
         if (!IsFunctionType())
         {
             var innerType = ParseType();
@@ -546,7 +592,7 @@ public sealed class Parser(TokenStream tokenStream)
         Tokens.Consume(SyntaxKind.DashRArrow);
         var returnType = ParseType();
 
-        return new FunctionType(parameterTypes, returnType);
+        return new FunctionType(parameterTypes, typeParameters, returnType);
     }
 
     private SingularType ParseSingularType()
@@ -555,9 +601,29 @@ public sealed class Parser(TokenStream tokenStream)
         return new SingularType(token ?? Tokens.Previous!);
     }
 
-    private bool IsFunctionType()
+    private bool IsInvocation(int startOffset = 0)
     {
-        var offset = 0;
+        var offset = startOffset;
+        if (Tokens.Check(SyntaxKind.LT, offset))
+        {
+            while (!Tokens.Check(SyntaxKind.GT, offset++) && Tokens.Peek(offset) != null)
+            {
+            }
+        }
+
+        if (!Tokens.Check(SyntaxKind.LParen, offset++))
+            return false;
+        
+        while (!Tokens.Check(SyntaxKind.RParen, offset++) && Tokens.Peek(offset) != null)
+        {
+        }
+
+        return Tokens.Check(SyntaxKind.RParen, offset - 1);
+    }
+
+    private bool IsFunctionType(int startOffset = 0)
+    {
+        var offset = startOffset;
         if (Tokens.Check(SyntaxKind.LParen, offset))
             return false;
         
@@ -570,8 +636,9 @@ public sealed class Parser(TokenStream tokenStream)
     
     private Invocation ParseInvocation(Expression callee)
     {
+        var typeArguments = ParseTypeArguments();
         var arguments = ParseArguments();
-        return new Invocation(callee, arguments);
+        return new Invocation(callee, arguments, typeArguments);
     }
     
     private ElementAccess ParseElementAccess(Expression expression)
@@ -587,9 +654,27 @@ public sealed class Parser(TokenStream tokenStream)
         var name = new IdentifierName(Tokens.Consume(SyntaxKind.Identifier)!);
         return new MemberAccess(expression, name);
     }
+    
+    private List<TypeRef> ParseTypeArguments()
+    {
+        var typeArguments = new List<TypeRef>();
+        if (!Tokens.Match(SyntaxKind.LT))
+            return typeArguments;
+        
+        while (!Tokens.Check(SyntaxKind.GT) && !Tokens.IsAtEnd)
+        {
+            typeArguments.Add(ParseType());
+            Tokens.Match(SyntaxKind.Comma);
+        }
+
+        Tokens.Consume(SyntaxKind.GT);
+        return typeArguments;
+    }
 
     private List<Expression> ParseArguments()
     {
+        Tokens.Consume(SyntaxKind.LParen);
+        
         var arguments = new List<Expression>();
         while (!Tokens.Check(SyntaxKind.RParen) && !Tokens.IsAtEnd)
         {
@@ -803,7 +888,7 @@ public sealed class Parser(TokenStream tokenStream)
                 expression = new PostfixOp(expression, Tokens.Previous!);
             else if (Tokens.Match(SyntaxKind.LBracket))
                 expression = ParseElementAccess(expression);
-            else if (Tokens.Match(SyntaxKind.LParen))
+            else if (IsInvocation())
                 expression = ParseInvocation(expression);
             else
                 break; // No more postfix operations

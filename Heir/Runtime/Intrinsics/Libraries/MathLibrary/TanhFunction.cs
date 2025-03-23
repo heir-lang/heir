@@ -9,6 +9,7 @@ public class TanhFunction()
         {
             { "n", IntrinsicTypes.Number }
         },
+        [],
         PrimitiveType.Float
     )
 {

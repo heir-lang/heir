@@ -9,6 +9,7 @@ public class CbrtFunction()
         {
             { "n", IntrinsicTypes.Number }
         },
+        [],
         PrimitiveType.Float
     )
 {

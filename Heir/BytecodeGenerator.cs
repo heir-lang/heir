@@ -5,13 +5,6 @@ using Heir.Binding;
 using Heir.BoundAST;
 using Heir.CodeGeneration;
 using Heir.Diagnostics;
-using Heir.Types;
-using ArrayType = Heir.AST.ArrayType;
-using FunctionType = Heir.AST.FunctionType;
-using IntersectionType = Heir.AST.IntersectionType;
-using ParenthesizedType = Heir.AST.ParenthesizedType;
-using SingularType = Heir.AST.SingularType;
-using UnionType = Heir.AST.UnionType;
 
 namespace Heir;
 
@@ -182,11 +175,11 @@ public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder) 
     {
         var boundInvocation = (BoundInvocation)binder.GetBoundNode(invocation);
         var argumentsBytecode = invocation.Arguments.ConvertAll(GenerateBytecode);
-        if (BaseType.UnwrapParentheses(boundInvocation.Callee.Type) is not Types.FunctionType functionType)
+        if (Types.BaseType.UnwrapParentheses(boundInvocation.Callee.Type) is not Types.FunctionType functionType)
             return NoOp(invocation);
         
         List<Instruction> argumentsBytecodeWithDefaults = [];
-        var parameterTypes = functionType.ParameterTypes;
+        var parameterTypes = functionType.Parameters;
         var bytecodeIndex = 0;
         foreach (var (name, type) in parameterTypes)
         {
@@ -203,7 +196,7 @@ public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder) 
 
         var argumentsOptimizer = new BytecodeOptimizer(argumentsBytecodeWithDefaults, diagnostics);
         var optimizedArgumentsBytecode = argumentsOptimizer.Optimize();
-        var operand = (optimizedArgumentsBytecode.Count, functionType.ParameterTypes.Keys.ToList());
+        var operand = (optimizedArgumentsBytecode.Count, functionType.Parameters.Keys.ToList());
         return [
             ..GenerateBytecode(invocation.Callee),
             new(invocation, OpCode.CALL, operand),
@@ -241,6 +234,7 @@ public sealed class BytecodeGenerator(DiagnosticBag diagnostics, Binder binder) 
     public List<Instruction> VisitIntersectionTypeRef(IntersectionType intersectionType) => NoOp(intersectionType);
     public List<Instruction> VisitFunctionTypeRef(FunctionType functionType) => NoOp(functionType);
     public List<Instruction> VisitArrayTypeRef(ArrayType arrayType) => NoOp(arrayType);
+    public List<Instruction> VisitTypeParameter(TypeParameter typeParameter) => NoOp(typeParameter);
 
     public List<Instruction> VisitAssignmentOpExpression(AssignmentOp assignmentOp) => VisitBinaryOpExpression(assignmentOp);
     public List<Instruction> VisitBinaryOpExpression(BinaryOp binaryOp)

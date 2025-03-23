@@ -10,6 +10,7 @@ public class RoundFunction()
             { "n", IntrinsicTypes.Number },
             { "digits", BaseType.Nullable(PrimitiveType.Int) }
         },
+        [],
         IntrinsicTypes.Number
     )
 {

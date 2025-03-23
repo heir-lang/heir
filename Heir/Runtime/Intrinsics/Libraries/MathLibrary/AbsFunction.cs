@@ -9,6 +9,7 @@ public class AbsFunction()
         {
             { "n", IntrinsicTypes.Number }
         },
+        [],
         IntrinsicTypes.Number
     )
 {

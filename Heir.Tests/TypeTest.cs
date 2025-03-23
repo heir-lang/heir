@@ -65,33 +65,33 @@ public class TypeTest
             var a = new FunctionType([], new()
             {
                 { "a", PrimitiveType.Int }
-            }, PrimitiveType.Int);
+            }, [], PrimitiveType.Int);
             var b = new FunctionType([], new()
             {
                 { "b", PrimitiveType.Int }
-            }, PrimitiveType.Int);
+            }, [], PrimitiveType.Int);
             Assert.True(a.IsAssignableTo(b));
         }
         {
             var a = new FunctionType([], new()
             {
                 { "a", PrimitiveType.Int }
-            }, PrimitiveType.Int);
+            }, [], PrimitiveType.Int);
             var b = new FunctionType([], new()
             {
                 { "a", PrimitiveType.Int }
-            }, PrimitiveType.Float);
+            }, [], PrimitiveType.Float);
             Assert.False(a.IsAssignableTo(b));
         }
         {
             var a = new FunctionType([], new()
             {
                 { "a", PrimitiveType.Int }
-            }, PrimitiveType.Int);
+            }, [], PrimitiveType.Int);
             var b = new FunctionType([], new()
             {
                 { "a", PrimitiveType.Float }
-            }, PrimitiveType.Int);
+            }, [], PrimitiveType.Int);
             Assert.False(a.IsAssignableTo(b));
         }
     }

@@ -9,6 +9,7 @@ public class AsinFunction()
         {
             { "n", IntrinsicTypes.Number }
         },
+        [],
         PrimitiveType.Float
     )
 {

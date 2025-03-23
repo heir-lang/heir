@@ -21,6 +21,7 @@ public abstract class BoundExpression : BoundSyntaxNode
         public R VisitBoundArrayLiteralExpression(BoundArrayLiteral arrayLiteral);
         public R VisitBoundNoOp(BoundNoOp noOp);
         public R VisitBoundParameter(BoundParameter boundParameter);
+        public R VisitBoundTypeParameter(BoundTypeParameter boundTypeParameter);
         public R VisitBoundInvocationExpression(BoundInvocation invocation);
         public R VisitBoundElementAccessExpression(BoundElementAccess elementAccess);
         public R VisitBoundMemberAccessExpression(BoundMemberAccess memberAccess);

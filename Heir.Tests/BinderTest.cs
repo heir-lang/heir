@@ -273,7 +273,7 @@ public class BinderTest
         
         var functionDeclaration = (BoundFunctionDeclaration)statement;
         Assert.Empty(functionDeclaration.Parameters);
-        Assert.Empty(functionDeclaration.Type.ParameterTypes);
+        Assert.Empty(functionDeclaration.Type.Parameters);
         Assert.Equal("abc", functionDeclaration.Symbol.Name.Text);
         Assert.IsAssignableFrom<PrimitiveType>(functionDeclaration.Type.ReturnType);
         
@@ -310,7 +310,7 @@ public class BinderTest
         Assert.IsType<FunctionType>(calleeName.Type);
         
         var functionType = (FunctionType)calleeName.Type;
-        Assert.Equal(2, functionType.ParameterTypes.Count);
+        Assert.Equal(2, functionType.Parameters.Count);
         Assert.IsAssignableFrom<PrimitiveType>(functionType.ReturnType);
         
         var returnType = (PrimitiveType)functionType.ReturnType;

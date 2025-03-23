@@ -9,6 +9,7 @@ public class AcoshFunction()
         {
             { "n", IntrinsicTypes.Number }
         },
+        [],
         PrimitiveType.Float
     )
 {

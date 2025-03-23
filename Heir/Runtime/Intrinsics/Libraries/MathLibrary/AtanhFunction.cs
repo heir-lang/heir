@@ -9,6 +9,7 @@ public class AtanhFunction()
         {
             { "n", IntrinsicTypes.Number }
         },
+        [],
         PrimitiveType.Float
     )
 {

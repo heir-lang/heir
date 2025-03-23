@@ -9,9 +9,10 @@ using Heir.Syntax;
 using Heir.Types;
 using ArrayType = Heir.Types.ArrayType;
 using FunctionType = Heir.Types.FunctionType;
-using IntersectionType = Heir.AST.IntersectionType;
+using IntersectionType = Heir.Types.IntersectionType;
 using ParenthesizedType = Heir.Types.ParenthesizedType;
 using UnionType = Heir.Types.UnionType;
+using TypeParameter = Heir.Types.TypeParameter;
 
 namespace Heir;
 
@@ -146,17 +147,27 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree)
 
     public BoundStatement VisitFunctionDeclaration(FunctionDeclaration functionDeclaration)
     {
+        var boundTypeParameters = functionDeclaration.TypeParameters
+            .ConvertAll(Bind)
+            .OfType<BoundTypeParameter>()
+            .ToList();
+        
         var boundParameters = functionDeclaration.Parameters
             .ConvertAll(Bind)
             .OfType<BoundParameter>()
             .ToList();
-
+        
         BaseType? returnType = null;
         if (functionDeclaration.ReturnType != null)
         {
             var typeRef = Bind(functionDeclaration.ReturnType);
             returnType = typeRef.Type;
         }
+
+        var typeParameterTypes = boundTypeParameters
+            .ConvertAll(typeParameter => typeParameter.Type)
+            .OfType<TypeParameter>()
+            .ToList();
         
         var parameterTypePairs = boundParameters.ConvertAll(parameter =>
             new KeyValuePair<string, BaseType>(parameter.Symbol.Name.Text, parameter.Initializer != null
@@ -165,7 +176,8 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree)
         
         // TODO: fix this!
         // if heir is left to infer a function return type, then we do not know the
-        // return type of a recursive call within the function.
+        // return type of a recursive call within the function. to solve this we need
+        // to do more static analysis on the code beforehand
         // in this example, the type of `x` is any:
         // fn abc { let x = abc(); return 123; }
         var parameterTypes = new Dictionary<string, BaseType>(parameterTypePairs);
@@ -176,6 +188,7 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree)
         var placeholderType = new FunctionType(
             defaults,
             parameterTypes,
+            typeParameterTypes,
             returnType ?? IntrinsicTypes.Any
         );
         
@@ -184,12 +197,22 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree)
         var finalType = new FunctionType(
             defaults,
             parameterTypes,
+            typeParameterTypes,
             returnType ?? boundBody.Type
         );
 
-        UndefineSymbol(placeholderSymbol);
+        UndefineVariableSymbol(placeholderSymbol);
+        foreach (var typeParameter in boundTypeParameters)
+            UndefineTypeSymbol(typeParameter.Symbol);
+        
         var symbol = DefineVariableSymbol(functionDeclaration.Name.Token, finalType, false);
-        return new BoundFunctionDeclaration(functionDeclaration.Keyword, symbol, boundParameters, boundBody);
+        return new BoundFunctionDeclaration(
+            functionDeclaration.Keyword,
+            symbol,
+            boundParameters,
+            boundTypeParameters,
+            boundBody
+        );
     }
 
     public BoundStatement VisitEnumDeclaration(EnumDeclaration enumDeclaration)
@@ -267,6 +290,15 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree)
         return new BoundParameter(symbol, initializer);
     }
 
+    public BoundExpression VisitTypeParameter(AST.TypeParameter typeParameter)
+    {
+        var baseType = typeParameter.BaseType != null ? Bind(typeParameter.BaseType).Type : IntrinsicTypes.Any;
+        var initializer = typeParameter.Initializer != null ? Bind(typeParameter.Initializer).Type : null;
+        var type = new TypeParameter(typeParameter.Name.Token.Text, baseType, initializer);
+        var symbol = DefineTypeSymbol(typeParameter.Name.Token, type);
+        return new BoundTypeParameter(symbol, initializer);
+    }
+
     public BoundExpression VisitMemberAccessExpression(MemberAccess memberAccess)
     {
         var expression = Bind(memberAccess.Expression);
@@ -285,7 +317,8 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree)
     {
         var callee = Bind(invocation.Callee);
         var arguments = invocation.Arguments.ConvertAll(Bind);
-        return new BoundInvocation(callee, arguments);
+        var typeArguments = invocation.TypeArguments.ConvertAll(typeArgument => Bind(typeArgument).Type);
+        return new BoundInvocation(callee, arguments, typeArguments);
     }
 
     public BoundExpression VisitAssignmentOpExpression(AssignmentOp assignmentOp)
@@ -303,8 +336,7 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree)
     {
         var left = Bind(binaryOp.Left);
         var right = Bind(binaryOp.Right);
-        var boundOperator = BoundBinaryOperator.Bind(binaryOp.Operator, left.Type, right.Type)
-                            ?? BoundBinaryOperator.Bind(binaryOp.Operator, right.Type, left.Type);
+        var boundOperator = BoundBinaryOperator.Bind(binaryOp.Operator, left.Type, right.Type);
         if (boundOperator == null)
         {
             diagnostics.Error(DiagnosticCode.H007, $"Cannot apply operator '{binaryOp.Operator.Text}' to operands of type '{left.Type.ToString()}' and '{right.Type.ToString()}'", binaryOp.Operator);
@@ -418,40 +450,31 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree)
     
     public BoundExpression VisitParenthesizedTypeRef(AST.ParenthesizedType parenthesizedType)
     {
-        var type = new ParenthesizedType(Bind(parenthesizedType.Type).Type);
+        var type = BaseType.FromTypeRef(parenthesizedType);
         return new BoundNoOp(type);
     }
     
     public BoundExpression VisitArrayTypeRef(AST.ArrayType arrayType)
     {
-        var type = new ArrayType(Bind(arrayType.ElementType).Type);
+        var type = BaseType.FromTypeRef(arrayType);
         return new BoundNoOp(type);
     }
     
     public BoundExpression VisitUnionTypeRef(AST.UnionType unionType)
     {
-        var types = unionType.Types.Select(typeRef => Bind(typeRef).Type).ToList();
-        var type = new UnionType(types);
-        
+        var type = BaseType.FromTypeRef(unionType);
         return new BoundNoOp(type);
     }
     
-    public BoundExpression VisitIntersectionTypeRef(IntersectionType intersectionType)
+    public BoundExpression VisitIntersectionTypeRef(AST.IntersectionType intersectionType)
     {
-        var types = intersectionType.Types.Select(typeRef => Bind(typeRef).Type).ToList();
-        var type = new Types.IntersectionType(types);
-        
+        var type = BaseType.FromTypeRef(intersectionType);
         return new BoundNoOp(type);
     }
     
     public BoundExpression VisitFunctionTypeRef(AST.FunctionType functionType)
     {
-        var parameterTypes = functionType.ParameterTypes
-            .Select(pair => new KeyValuePair<string, BaseType>(pair.Key, Bind(pair.Value).Type))
-            .ToDictionary();
-        
-        var returnType = Bind(functionType.ReturnType).Type;
-        var type = new FunctionType([], parameterTypes, returnType);
+        var type = BaseType.FromTypeRef(functionType);
         return new BoundNoOp(type);
     }
 
@@ -461,13 +484,22 @@ public sealed class Binder(DiagnosticBag diagnostics, SyntaxTree syntaxTree)
         return new BoundParenthesized(expression);
     }
 
-    private void UndefineSymbol(VariableSymbol<BaseType> variableSymbol)
+    private void UndefineVariableSymbol(VariableSymbol<BaseType> variableSymbol)
     {
         if (!_variableScopes.TryPop(out var scope)) return;
 
         var newScope = scope.ToList();
         newScope.Remove(variableSymbol);
         _variableScopes.Push(new Stack<VariableSymbol<BaseType>>(newScope));
+    }
+    
+    private void UndefineTypeSymbol(TypeSymbol typeSymbol)
+    {
+        if (!_typeScopes.TryPop(out var scope)) return;
+
+        var newScope = scope.ToList();
+        newScope.Remove(typeSymbol);
+        _typeScopes.Push(new Stack<TypeSymbol>(newScope));
     }
 
     private void BeginScope()

@@ -10,6 +10,7 @@ public class RandomIntFunction()
             { "minimum", PrimitiveType.Int },
             { "maximum", PrimitiveType.Int }
         },
+        [],
         PrimitiveType.Int
     )
 {

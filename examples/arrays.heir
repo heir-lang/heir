@@ -1,0 +1,27 @@
+fn length(arr: any[]): int {
+    let mut i = 0;
+    while true {
+        if arr[i] == none break;
+        let _ = ++i;
+    }
+    
+    return i;
+}
+
+fn push(arr: any[], value: any): none ->
+    arr[length(arr) + 1] = value;
+    
+fn forEach(arr: any[] callback: (value: any) -> none): none {
+    let i = 0;
+    let len = length(arr);
+    while i < len {
+        callback(arr[i]);
+        ++i;
+    }
+}
+
+let nums = [1, 5, 9, 13];
+push(nums, 17);
+push(nums, 21);
+
+forEach(nums, print);

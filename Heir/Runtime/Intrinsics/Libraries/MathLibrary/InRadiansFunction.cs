@@ -9,6 +9,7 @@ public class InRadiansFunction()
         {
             { "n", IntrinsicTypes.Number }
         },
+        [],
         PrimitiveType.Float
     )
 {

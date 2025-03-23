@@ -135,11 +135,31 @@ public abstract class NodeTransformer(SyntaxTree tree) : INodeVisitor<SyntaxNode
         return newNode;
     }
 
+    public SyntaxNode? VisitTypeParameter(TypeParameter typeParameter)
+    {
+        var name = Transform(typeParameter.Name) as IdentifierName;
+        var baseType = typeParameter.BaseType != null ? Transform(typeParameter.BaseType) as TypeRef : null;
+        var initializer = typeParameter.Initializer != null ? Transform(typeParameter.Initializer) as TypeRef : null;
+        if (name == null && initializer == null && baseType == null)
+            return null;
+
+        var newNode = typeParameter;
+        if (name != null)
+            newNode = newNode.WithName(name);
+        if (initializer != null)
+            newNode = newNode.WithInitializer(initializer);
+        if (baseType != null)
+            newNode = newNode.WithBaseType(baseType);
+        
+        return newNode;
+    }
+
     public virtual SyntaxNode? VisitInvocationExpression(Invocation invocation)
     {
         var callee = Transform(invocation.Callee);
         var arguments = invocation.Arguments.ConvertAll(argument => Transform(argument) ?? argument);
-        return new Invocation(callee ?? invocation.Callee, arguments);
+        var typeArguments = invocation.TypeArguments.ConvertAll(typeArgument => Transform(typeArgument) as TypeRef ?? typeArgument);
+        return new Invocation(callee ?? invocation.Callee, arguments, typeArguments);
     }
     
     public virtual SyntaxNode? VisitElementAccessExpression(ElementAccess elementAccess)
@@ -242,11 +262,16 @@ public abstract class NodeTransformer(SyntaxTree tree) : INodeVisitor<SyntaxNode
             .ConvertAll(parameter => Transform(parameter) ?? parameter)
             .OfType<Parameter>()
             .ToList();
+        var typeParameters = functionDeclaration.TypeParameters
+            .ConvertAll(typeParameter => Transform(typeParameter) ?? typeParameter)
+            .OfType<TypeParameter>()
+            .ToList();
         
         return new FunctionDeclaration(
             functionDeclaration.Keyword,
             name ?? functionDeclaration.Name,
             parameters,
+            typeParameters,
             body ?? functionDeclaration.Body,
             returnTypeRef ?? functionDeclaration.ReturnType);
     }

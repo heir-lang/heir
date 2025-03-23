@@ -10,6 +10,7 @@ public class PrintFunction()
         {
             { "value", IntrinsicTypes.Any }
         },
+        [],
         PrimitiveType.None,
         true
     )

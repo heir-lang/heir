@@ -9,6 +9,7 @@ public class CeilFunction()
         {
             { "n", IntrinsicTypes.Number }
         },
+        [],
         PrimitiveType.Int
     )
 {

@@ -9,6 +9,7 @@ public class FloorFunction()
         {
             { "n", IntrinsicTypes.Number }
         },
+        [],
         PrimitiveType.Int
     )
 {

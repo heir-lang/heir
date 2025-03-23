@@ -9,6 +9,7 @@ public sealed class BoundFunctionDeclaration(
     Token keyword,
     VariableSymbol<FunctionType> symbol,
     List<BoundParameter> parameters,
+    List<BoundTypeParameter> typeParameters,
     BoundBlock body) : BoundStatement
 {
     public override FunctionType Type => Symbol.Type;
@@ -16,6 +17,7 @@ public sealed class BoundFunctionDeclaration(
     public Token Keyword { get; } = keyword;
     public VariableSymbol<FunctionType> Symbol { get; } = symbol;
     public List<BoundParameter> Parameters { get; } = parameters;
+    public List<BoundTypeParameter> TypeParameters { get; } = typeParameters;
     public BoundBlock Body { get; } = body;
 
     public override R Accept<R>(IVisitor<R> visitor) => visitor.VisitBoundFunctionDeclaration(this);

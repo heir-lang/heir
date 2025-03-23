@@ -11,6 +11,7 @@ public class LerpFunction()
             { "b", IntrinsicTypes.Number },
             { "t", IntrinsicTypes.Number }
         },
+        [],
         PrimitiveType.Float
     )
 {

@@ -1,11 +1,11 @@
 using Heir.Types;
-using Spectre.Console;
 
 namespace Heir.Runtime.Intrinsics.Global;
 
 public class NowFunction()
     : IntrinsicFunction(
         "now",
+        [],
         [],
         PrimitiveType.Float,
         true

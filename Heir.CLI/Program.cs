@@ -40,46 +40,49 @@ public static class Program
         CommandLine.Parser.Default.ParseArguments<Options>(args)
             .WithParsed(options =>
             {
-                if (options.LoadBytecode)
+                if (options.LoadBytecode && !TryLoadBytecode(options)) return;
+                if (options.FilePath == null)
                 {
-                    if (options.FilePath == null)
-                    {
-                        Console.WriteLine("Failed to call HVM: No file path provided");
-                        Environment.Exit(1);
-                        return;
-                    }
-                    if (!options.FilePath.EndsWith(".bin"))
-                    {
-                        Console.WriteLine($"Failed to call HVM: Provided invalid bytecode file type, got {Path.GetExtension(options.FilePath)}");
-                        Environment.Exit(1);
-                        return;
-                    }
+                    StartRepl(options);
+                    return;
                 }
                 
-                if (options.FilePath != null)
+                SourceFile file;
+                try
                 {
-                    if (options.LoadBytecode)
-                        LoadAndExecuteBytecode(options);
-                    else
-                    {
-                        SourceFile file;
-                        try
-                        {
-                            file = SourceFile.FromPath(options.FilePath, isMainFile: true);
-                        }
-                        catch (Exception ex)
-                        {
-                            Console.WriteLine($"Error reading file: {ex.Message}");
-                            Environment.Exit(1);
-                            return;
-                        }
-                        
-                        ExecuteFile(file, options, false); // false is temporary
-                    }
+                    file = SourceFile.FromPath(options.FilePath, isMainFile: true);
                 }
-                else
-                    StartRepl(options);
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error reading file: {ex.Message}");
+                    Environment.Exit(1);
+                    return;
+                }
+                
+                ExecuteFile(file, options, false); // false is temporary
             });
+    }
+
+    private static bool TryLoadBytecode(Options options)
+    {
+        if (options.FilePath == null)
+        {
+            Console.WriteLine("Failed to call HVM: No file path provided");
+            Environment.Exit(1);
+            return false;
+        }
+
+        if (!options.FilePath.EndsWith(".bin"))
+        {
+            Console.WriteLine($"Failed to call HVM: Provided invalid bytecode file type, got {Path.GetExtension(options.FilePath)}");
+            Environment.Exit(1);
+            return false;
+        }
+        
+        if (options.FilePath != null)
+            LoadAndExecuteBytecode(options);
+
+        return true;
     }
 
     private static void StartRepl(Options options)

@@ -9,6 +9,7 @@ public class InDegreesFunction()
         {
             { "n", IntrinsicTypes.Number }
         },
+        [],
         PrimitiveType.Float
     )
 {

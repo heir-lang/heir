@@ -68,7 +68,17 @@ public abstract class BaseType
                     functionType.ParameterTypes
                         .Select(pair => new KeyValuePair<string, BaseType>(pair.Key, FromTypeRef(pair.Value)))
                         .ToDictionary(),
+                    functionType.TypeParameters.ConvertAll(FromTypeRef).OfType<TypeParameter>().ToList(),
                     FromTypeRef(functionType.ReturnType)),
+            
+            AST.ArrayType arrayType =>
+                new ArrayType(FromTypeRef(arrayType.ElementType)),
+            
+            AST.TypeParameter typeParameter =>
+                new TypeParameter(
+                    typeParameter.Name.Token.Text,
+                    typeParameter.BaseType != null ? FromTypeRef(typeParameter.BaseType) : null,
+                    typeParameter.Initializer != null ? FromTypeRef(typeParameter.Initializer) : null),
             
             _ => PrimitiveType.None
         };
@@ -96,6 +106,12 @@ public abstract class BaseType
         
         if (other is ParenthesizedType)
             return other.IsAssignableTo(this);
+
+        if (this is TypeParameter typeParameter)
+            return typeParameter.BaseType == null || other.IsAssignableTo(typeParameter.BaseType);
+        
+        if (other is TypeParameter otherTypeParameter)
+            return otherTypeParameter.BaseType == null || IsAssignableTo(otherTypeParameter.BaseType);
         
         if (this is ArrayType array)
             return other is ArrayType otherArray
@@ -124,9 +140,9 @@ public abstract class BaseType
             var parameterIndex = 0;
             return other is FunctionType otherFunction &&
                    functionType.ReturnType.IsAssignableTo(otherFunction.ReturnType) &&
-                   functionType.ParameterTypes.Count == otherFunction.ParameterTypes.Count &&
-                   functionType.ParameterTypes.Values.All(parameterType =>
-                       otherFunction.ParameterTypes.Values
+                   functionType.Parameters.Count == otherFunction.Parameters.Count &&
+                   functionType.Parameters.Values.All(parameterType =>
+                       otherFunction.Parameters.Values
                            .ElementAtOrDefault(parameterIndex++)?
                            .IsAssignableTo(parameterType) ?? false);
         }

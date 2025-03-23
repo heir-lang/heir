@@ -23,6 +23,7 @@ public sealed class Resolver(DiagnosticBag diagnostics, SyntaxTree syntaxTree) :
 
     public void Resolve() => Resolve(syntaxTree);
     
+    public void Define(IdentifierName identifier) => Define(identifier.Token);
     public void Define(Token identifier)
     {
         if (_scopes.Count == 0) return;
@@ -31,6 +32,7 @@ public sealed class Resolver(DiagnosticBag diagnostics, SyntaxTree syntaxTree) :
         scope[identifier.Text] = true;
     }
 
+    public void Declare(IdentifierName identifier) => Declare(identifier.Token);
     public void Declare(Token identifier)
     {
         if (_scopes.Count == 0) return;
@@ -68,27 +70,27 @@ public sealed class Resolver(DiagnosticBag diagnostics, SyntaxTree syntaxTree) :
 
     public Void VisitVariableDeclaration(VariableDeclaration variableDeclaration)
     {
-        Declare(variableDeclaration.Name.Token);
+        Declare(variableDeclaration.Name);
         if (variableDeclaration.Type != null)
             Resolve(variableDeclaration.Type);
         if (variableDeclaration.Initializer != null)
             Resolve(variableDeclaration.Initializer);
 
-        Define(variableDeclaration.Name.Token);
+        Define(variableDeclaration.Name);
         return default;
     }
 
     public Void VisitFunctionDeclaration(FunctionDeclaration functionDeclaration)
     {
-        Declare(functionDeclaration.Name.Token);
-        Define(functionDeclaration.Name.Token);
+        Declare(functionDeclaration.Name);
+        Define(functionDeclaration.Name);
         return ResolveFunction(functionDeclaration);
     }
 
     public Void VisitEnumDeclaration(EnumDeclaration enumDeclaration)
     {
-        Declare(enumDeclaration.Name.Token);
-        Define(enumDeclaration.Name.Token);
+        Declare(enumDeclaration.Name);
+        Define(enumDeclaration.Name);
         
         foreach (var member in enumDeclaration.Members)
             Resolve(member);
@@ -194,11 +196,19 @@ public sealed class Resolver(DiagnosticBag diagnostics, SyntaxTree syntaxTree) :
 
     public Void VisitParameter(Parameter parameter)
     {
-        Declare(parameter.Name.Token);
-        Define(parameter.Name.Token);
+        Declare(parameter.Name);
+        Define(parameter.Name);
         if (parameter.Type != null)
             Resolve(parameter.Type);
         
+        return default;
+    }
+
+    public Void VisitTypeParameter(TypeParameter typeParameter)
+    {
+        Declare(typeParameter.Name);
+        Define(typeParameter.Name);
+
         return default;
     }
 

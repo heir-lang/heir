@@ -10,6 +10,7 @@ public class Atan2Function()
             { "y", IntrinsicTypes.Number },
             { "x", IntrinsicTypes.Number }
         },
+        [],
         PrimitiveType.Float
     )
 {

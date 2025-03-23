@@ -9,6 +9,7 @@ public class SqrtFunction()
         {
             { "n", IntrinsicTypes.Number }
         },
+        [],
         PrimitiveType.Float
     )
 {

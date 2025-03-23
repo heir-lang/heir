@@ -12,6 +12,7 @@ public class Q_RsqrtFunction()
             { "n", IntrinsicTypes.Number },
             { "secondIteration", BaseType.Nullable(PrimitiveType.Bool) }
         },
+        [],
         PrimitiveType.Float
     )
 {
