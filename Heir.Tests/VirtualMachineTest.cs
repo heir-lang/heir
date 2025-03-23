@@ -331,6 +331,30 @@ public class VirtualMachineTest
         var objectValue = (ObjectValue)resultValue;
         Assert.Empty(objectValue);
     }
+    
+    [Theory]
+    [InlineData("[1]", 1)]
+    [InlineData("[\"abc\"]", "abc")]
+    [InlineData("['a']", 'a')]
+    public void Evaluates_ArrayLiterals(string input, object? expectedElement)
+    {
+        var (resultValue, _) = Evaluate(input);
+        Assert.IsType<ArrayValue>(resultValue);
+
+        var arrayValue = (ArrayValue)resultValue;
+        var element = arrayValue.First();
+        Assert.Equal(expectedElement, element);
+    }
+    
+    [Fact]
+    public void Evaluates_EmptyArrayLiterals()
+    {
+        var (resultValue, _) = Evaluate("[]");
+        Assert.IsType<ArrayValue>(resultValue);
+
+        var arrayValue = (ArrayValue)resultValue;
+        Assert.Empty(arrayValue);
+    }
 
     [Theory]
     [InlineData("69.420", 69.420)]
