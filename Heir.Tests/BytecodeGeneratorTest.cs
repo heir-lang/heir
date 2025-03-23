@@ -4,6 +4,7 @@ using static Heir.Tests.Common;
 
 namespace Heir.Tests;
 using ObjectBytecode = Dictionary<List<Instruction>, List<Instruction>>;
+using ArrayBytecode = List<List<Instruction>>;
 
 public class BytecodeGeneratorTest
 {
@@ -151,6 +152,21 @@ public class BytecodeGeneratorTest
         var pushTrue = valueBytecode.First();
         Assert.Equal("a", pushA.Operand);
         Assert.Equal(true, pushTrue.Operand);
+    }
+    
+    [Fact]
+    public void GeneratesPushArray_ForArrayLiterals()
+    {
+        var bytecode = GenerateBytecode("[1]");
+        var pushObject = bytecode[0];
+        Assert.Equal(OpCode.PUSHARRAY, pushObject.OpCode);
+        Assert.IsType<ArrayBytecode>(pushObject.Operand);
+
+        var arrayBytecode = (ArrayBytecode)pushObject.Operand;
+        var elementBytecode = arrayBytecode.First();
+        var pushOne = elementBytecode.First();
+        Assert.Equal(OpCode.PUSH, pushOne.OpCode);
+        Assert.Equal(1, pushOne.Operand);
     }
     
     [Fact]

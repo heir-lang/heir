@@ -59,25 +59,30 @@ public class BytecodeSerdeTest
             var deserializedInstruction = deserializedBytecode.Instructions.ElementAtOrDefault(i);
             Assert.NotNull(deserializedInstruction);
             Assert.Equal(instruction.OpCode, deserializedInstruction.OpCode);
-            if (instruction.Operand is List<Instruction> instructions &&
-                deserializedInstruction.Operand is List<Instruction> deserializedInstructions)
+            
+            switch (instruction.Operand)
             {
-                AssertBytecodeEqual(new(instructions), new(deserializedInstructions));
-            }
-            else if (instruction.Operand is ValueTuple<int, List<string>> data &&
-                     deserializedInstruction.Operand is ValueTuple<int, List<string>> deserializedData)
-            {
-                Assert.Equal(data.Item1, deserializedData.Item1);
+                case List<Instruction> instructions when
+                    deserializedInstruction.Operand is List<Instruction> deserializedInstructions:
+                    AssertBytecodeEqual(new(instructions), new(deserializedInstructions));
+                    break;
+                case ValueTuple<int, List<string>> data when
+                    deserializedInstruction.Operand is ValueTuple<int, List<string>> deserializedData:
+                {
+                    Assert.Equal(data.Item1, deserializedData.Item1);
 
-                var index = 0;
-                var elementInspectors = data.Item2.ConvertAll<Action<string>>(_ =>
-                    item => Assert.Equal(deserializedData.Item2[index++], item))
-                    .ToArray();
+                    var index = 0;
+                    var elementInspectors = data.Item2.ConvertAll<Action<string>>(_ =>
+                            item => Assert.Equal(deserializedData.Item2[index++], item))
+                        .ToArray();
                 
-                Assert.Collection(data.Item2, elementInspectors);
+                    Assert.Collection(data.Item2, elementInspectors);
+                    break;
+                }
+                default:
+                    Assert.Equal(instruction.Operand, deserializedInstruction.Operand);
+                    break;
             }
-            else
-                Assert.Equal(instruction.Operand, deserializedInstruction.Operand);
         }
     }
 }
