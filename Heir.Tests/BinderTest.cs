@@ -127,6 +127,37 @@ public class BinderTest
         var type = (LiteralType)elementAccess.Type;
         Assert.Equal("baz", type.Value);
     }
+    
+    [Fact]
+    public void Binds_ElementAccessForArrays()
+    {
+        const string input = """
+                             let foo = [1, 2, 3];
+
+                             foo[0];
+                             """;
+        
+        var tree = Bind(input).GetBoundSyntaxTree();
+        var statement = tree.Statements.Last();
+        Assert.IsType<BoundExpressionStatement>(statement);
+        
+        var expressionStatement = (BoundExpressionStatement)statement;
+        Assert.IsType<BoundElementAccess>(expressionStatement.Expression);
+        
+        var elementAccess = (BoundElementAccess)expressionStatement.Expression;
+        Assert.IsType<BoundIdentifierName>(elementAccess.Expression);
+        Assert.IsType<ArrayType>(elementAccess.Expression.Type);
+        
+        var arrayType = (ArrayType)elementAccess.Expression.Type;
+        Assert.IsType<PrimitiveType>(arrayType.ElementType);
+        
+        Assert.IsType<BoundLiteral>(elementAccess.IndexExpression);
+        Assert.IsType<LiteralType>(elementAccess.IndexExpression.Type);
+        Assert.IsType<PrimitiveType>(elementAccess.Type);
+        
+        var type = (PrimitiveType)elementAccess.Type;
+        Assert.Equal(PrimitiveTypeKind.Int, type.PrimitiveKind);
+    }
 
     [Fact]
     public void Binds_WhileStatements()
